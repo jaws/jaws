@@ -21,15 +21,15 @@ Provide a scriptable API to extend the initial L2-to-L3 conversion to newer AWS-
 
 ## Resources
 
-* [API Reference](https://github.com/d3/d3/blob/master/API.md)
-* [Release Notes](https://github.com/d3/d3/releases)
-* [Gallery](https://github.com/d3/d3/wiki/Gallery)
-* [Examples](https://bl.ocks.org/mbostock)
+* [API Reference](https://github.com/jaws/JustifiedAWS/blob/master/API.md)
+* [Release Notes](https://github.com/jaws/JustifiedAWS/releases)
+* [Gallery](https://github.com/jaws/JustifiedAWS/wiki/Gallery)
+* [Examples](https://)
 
 
 ## Full Documentation
 
-See the [Wiki](https://github.com/jaws/wiki/) for full documentation, examples, operational details and other information.
+See the [Wiki](https://github.com/jaws/JustifiedAWS/wiki/) for full documentation, examples, operational details and other information.
 
 
 ## Installation
@@ -86,7 +86,7 @@ To build:
 
 ## Run Demo
 
-To run a [demo](https://github.com/jaws/tree/master/) do the following:
+To run a [demo](https://github.com/jaws/JustifiedAWS/tree/master/) do the following:
 
 ```
 $ git clone 
@@ -103,7 +103,7 @@ You will see output similar to the following:
 
 ## Bugs and Feedback
 
-For bugs, questions and discussions please use the [GitHub Issues](https://github.com/Netflix/Hystrix/issues).
+For bugs, questions and discussions please use the [GitHub Issues](https://github.com/jaws/JustifiedAWS/issues).
 
  
 ## Copyright and License
