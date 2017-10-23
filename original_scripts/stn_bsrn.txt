@@ -1,0 +1,2 @@
+dom -75.1000 123.3830 3233 Dome_C
+gvn -70.6500 -8.2500 42 Georg_von_Neumayer

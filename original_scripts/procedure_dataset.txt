@@ -1,0 +1,88 @@
+How to perform tilt correction: RIGB
+
+copy files to exe/; keep a log
+
+Procedures:
+============================================================
+Validation: evaluate CRM simulation under clear-sky conditions
+Data needed:
+1, CRM-profiles (p,t,q,o3): AIRS, MERRA
+2, CRM-surface (p,t): AIRS, MERRA, station
+3, CRM-albedo: station (not important for tilt correction: leave as default)
+4, lat,lon,time
+5, ref radiation: ARM, BSRN
+Procedures:
+0, stn lst: stn_bsrn.txt
+1, process AIRS data
+		nomiss
+		all-in-one
+2, process ref data
+		txt2nc
+3, plot to compare and pick up clear days: plot-xy_clr.ncl
+4, cal dfs on clr days
+------------------------------------------------------------
+Tilt correction:
+Pre-correction:
+0, stn lst
+1, process AWS data: txt2nc
+2, time stamp check
+3, plot to pick up clr days: plot-xy_clr.ncl for hourly data; clr_days_long2000_test3.ncl for minute data
+4, process CERES cloud fraction and TOA
+5, run CRM
+		1) process AIRS profile, sfc
+Correction:
+0, check time logger: plot fsus together with fsds: if fsus changes together with fsds ==> time logger problem rather than tilt
+1, cal_aw-beta_main.ncl --> lst_aw-beta_stamp.txt
+		summarize: missing and reasons
+                (replaced by check time logger --> new txt2nc_spole.ncl) pre-correction:
+                    if the tilt angle is too large, data needs to be pre-corrected by an initial guess of tilt angle
+2, fix_tilt.ncl: fix data using estimated (aw,beta)
+3, plot to see
+4, missing & why: check plots and update lists: lst_fix-fail.txt and summary/note_fix-fail.txt
+5, fix quick change in one month:
+		quick-chg.ncl --> high_dfs-std.txt
+
+		gnrt_clr-day_qk-chg.ncl: generate one clr day per line from high_dfs-std.txt
+		--> cal_aw-beta_main.ncl
+		break_finder.ncl: output files: lst_brk.txt (breaking points for fix); clr-days_brk.txt; output msg: bad estimates and no break point day
+		gnrt_test-lst.ncl: generate lsts for fix_tilt_test.ncl
+		--> fix_tilt-test.ncl plot*_test.ncl ==> plots
+		human: check plots to update lst_brk.txt (if no break, mark break point as 1), clr-days_brk.txt, clr-days.txt
+		--> cal_aw-beta_main.ncl
+
+		*update lst_quick-chg*.txt manually (old file names)
+		*qk-chg_lst_triple.ncl (old: included by break_finder.ncl)
+		fix_triple.ncl
+		*plot-xy_chk-quick-chg.ncl
+Post-correction:
+1, dent-free
+2, (if didn't used qc_sw-limit.ncl before rigb, use fill_zero.ncl first) interp 1hr --> *then use qc_sw-limit_rigb.ncl to rm impossible values
+3, final check: may need to report auto_quick-chg.sh and procedures listed there; or find new spliting points
+	 NOTE: corrected results are also affected by cloud cover --> may not be as good as only on manually picked clear days
+
+Datasets needed:
+1, CERES: cloud fraction
+2, AIRS: pfl, sfc
+3, ref rdn
+4, AWS rdn
+
+============================================================
+Tips for next round
+============================================================
+1, fsus still shifts at some stations
+   --> if fsus shift too much ==> clock log problem instead of stn tilt?
+2, don't go through the regular qc_lw-limit --> rm too much info; mild cut off outliers would be better
+3, bump problems == bumps or digs at a certain time of day
+   --> most severe at GC-Net stations: eg, humb, tunu, neem and nse; PROMICE better but still
+4, remain problems
+   - KPC_U: overestimate in the afternoon
+   - dye: missing a lot at hr = 23.5
+   - sdome: fsus tilt
+5, tilt angles at some stations are pretty variable
+
+============================================================
+Tips for using AWS data
+============================================================
+1, I think it's not possible to make the obs data perfect, especially for AWS data
+   --> use 24-hr running avg or larger time-scale (eg, daily or longer)
+2, Take a look at the hourly plot (one day one panel) to feel it
