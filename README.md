@@ -1,7 +1,7 @@
 ![Shark](./img/shark.jpg?raw=true)
 
 
-#JAWS: Justified Automated Weather Station
+# JAWS: Justified Automated Weather Station
 ___
 
 ## About
