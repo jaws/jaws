@@ -31,32 +31,38 @@ Provide a scriptable API to extend the initial L2-to-L3 conversion to newer AWS-
 
 ___
 ## Installation
-### 64-bit Linux/unix
+### Linux/unix/win
 #### Requirements:
 * writable directory
-* installed curl package
+* anaconda/miniconda
 * installed unzip package
 
 From within a writable directory, run the following command:
 ``` html
-curl -L http://bit.ly/2j2SZz2 | bash
+$ conda install -c conda-forge jaws
 ```
 
 ## Running JAWS
-### Example Run on Linux
-From within the JAWS-master directory, run the following commands:
+### Example
+Translating L2 ASCII formats into homogenized netCDF format:
 ``` html
-$ source env.sh
+$ jaws --L2=gcnet L2.ascii L3.nc
 ```
-* Should see the following output...
+Storing AWS-like data using DSG convention:
 ``` html
-Adding conda to your path...
-Activating jaws conda environment...
-All done. Enjoy!
+$ jaws --L2=gcnet --featureType L2.ascii L3.nc
 ```
-
+Unit-test to verify data:
 ``` html
-$ python RUNNER.py
+$ jaws --L2=gcnet --kelvin sample_L2.ascii sample_L3.nc
+```
+Annotate L2b netCDF with CF and ACDD variable and global metadata:
+``` html
+$ jaws --L2=imau --creator_email=’janedoe@summit.com’ --L2.ascii L3.nc
+```
+Derive value-added data and metadata:
+``` html
+$ jaws --L2=gcnet --solar_zenith_angles L2.ascii L3.nc
 ```
 <!--
 * Should see similar log output to the following:
@@ -76,7 +82,7 @@ DEBUG : filemanager     Creating packet: 2
 ___
 ## Credit
 
-This software is being developed by the University of California under NASA Advanced Information Systems Technology (AIST) Proposal and Project 80NSSC17K0540.
+This software is being developed by the University of California Irvine under NASA Advanced Information Systems Technology (AIST) Proposal and Project 80NSSC17K0540.
 
 
 
