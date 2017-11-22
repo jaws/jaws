@@ -77,6 +77,34 @@ def ascii2nc(f):
 	qc17 = root_grp.createVariable('qc17', 'i8', ('time',))
 	qc25 = root_grp.createVariable('qc25', 'i8', ('time',))
 
+	qc_swdn = root_grp.createVariable('qc_swdn', 'S1', ('time',))
+	qc_swup = root_grp.createVariable('qc_swup', 'S1', ('time',))
+	qc_netradiation = root_grp.createVariable('qc_netradiation', 'S1', ('time',))
+	qc_ttc1 = root_grp.createVariable('qc_ttc1', 'S1', ('time',))
+	qc_ttc2 = root_grp.createVariable('qc_ttc2', 'S1', ('time',))
+	qc_tcs1 = root_grp.createVariable('qc_tcs1', 'S1', ('time',))
+	qc_tcs2 = root_grp.createVariable('qc_tcs2', 'S1', ('time',))
+	qc_rh1 = root_grp.createVariable('qc_rh1', 'S1', ('time',))
+	qc_rh2 = root_grp.createVariable('qc_rh2', 'S1', ('time',))
+	qc_u1 = root_grp.createVariable('qc_u1', 'S1', ('time',))
+	qc_u2 = root_grp.createVariable('qc_u2', 'S1', ('time',))
+	qc_ud1 = root_grp.createVariable('qc_ud1', 'S1', ('time',))
+	qc_ud2 = root_grp.createVariable('qc_ud2', 'S1', ('time',))
+	qc_pressure = root_grp.createVariable('qc_pressure', 'S1', ('time',))
+	qc_snowheight1 = root_grp.createVariable('qc_snowheight1', 'S1', ('time',))
+	qc_snowheight2 = root_grp.createVariable('qc_snowheight2', 'S1', ('time',))
+	qc_tsnow1 = root_grp.createVariable('qc_tsnow1', 'S1', ('time',))
+	qc_tsnow2 = root_grp.createVariable('qc_tsnow2', 'S1', ('time',))
+	qc_tsnow3 = root_grp.createVariable('qc_tsnow3', 'S1', ('time',))
+	qc_tsnow4 = root_grp.createVariable('qc_tsnow4', 'S1', ('time',))
+	qc_tsnow5 = root_grp.createVariable('qc_tsnow5', 'S1', ('time',))
+	qc_tsnow6 = root_grp.createVariable('qc_tsnow6', 'S1', ('time',))
+	qc_tsnow7 = root_grp.createVariable('qc_tsnow7', 'S1', ('time',))
+	qc_tsnow8 = root_grp.createVariable('qc_tsnow8', 'S1', ('time',))
+	qc_tsnow9 = root_grp.createVariable('qc_tsnow9', 'S1', ('time',))
+	qc_tsnow10 = root_grp.createVariable('qc_tsnow10', 'S1', ('time',))
+	qc_battery = root_grp.createVariable('qc_battery', 'S1', ('time',))
+	
 	time = root_grp.createVariable('time', 'f4', ('time',))
 
 
@@ -358,14 +386,133 @@ def ascii2nc(f):
 	    j += 1
 
 
-	n = 0
+	qc1_str = [str(e) for e in qc1]
+	qc9_str = [str(e) for e in qc9]
+	qc17_str = [str(e) for e in qc17]
+	qc25_str = [str(e) for e in qc25]
+	
+	k,l = 0,0,0
+
+	for item in qc1_str:
+		qc_swdn[k] = qc1_str[k][l]
+		qc_swup[k] = qc1_str[k][l+1]
+		qc_netradiation[k] = qc1_str[k][l+2]
+		qc_ttc1[k] = qc1_str[k][l+3]
+		qc_ttc2[k] = qc1_str[k][l+4]
+		qc_tcs1[k] = qc1_str[k][l+5]
+		qc_tcs2[k] = qc1_str[k][l+6]
+		qc_rh1[k] = qc1_str[k][l+7]
+
+		k += 1
+		
+	k,l = 0,0,0
+
+	for item in qc9_str:
+		qc_rh2[k] = qc9_str[k][l]
+		qc_u1[k] = qc9_str[k][l+1]
+		qc_u2[k] = qc9_str[k][l+2]
+		qc_ud1[k] = qc9_str[k][l+3]
+		qc_ud2[k] = qc9_str[k][l+4]
+		qc_pressure[k] = qc9_str[k][l+5]
+		qc_snowheight1[k] = qc9_str[k][l+6]
+		qc_snowheight2[k] = qc9_str[k][l+7]
+
+		k += 1
+		
+	k,l = 0,0,0
+
+	for item in qc17_str:
+		qc_tsnow1[k] = qc17_str[k][l]
+		qc_tsnow2[k] = qc17_str[k][l+1]
+		qc_tsnow3[k] = qc17_str[k][l+2]
+		qc_tsnow4[k] = qc17_str[k][l+3]
+		qc_tsnow5[k] = qc17_str[k][l+4]
+		qc_tsnow6[k] = qc17_str[k][l+5]
+		qc_tsnow7[k] = qc17_str[k][l+6]
+		qc_tsnow8[k] = qc17_str[k][l+7]
+
+		k += 1
+		
+	k,l = 0,0,0
+
+	for item in qc25_str:
+		qc_tsnow9[k] = qc25_str[k][l]
+		qc_tsnow10[k] = qc25_str[k][l+1]
+		qc_battery[k] = qc25_str[k][l+2]
+
+		k += 1
+		
+#############################################################################################################################################################
+
+	#qc1_str = ''.join(str(e) for e in qc1)
+	#qc9_str = ''.join(str(e) for e in qc9)
+	#qc17_str = ''.join(str(e) for e in qc17)
+	#qc25_str = ''.join(str(e) for e in qc25)
+
+
+	#a,b = 0,0
+	#while a < 12183:
+	#	qc_swdn[a] = qc1_str[b]
+	#	qc_swup[a] = qc1_str[b+1]
+	#	qc_netradiation[a] = qc1_str[b+2]
+	#	qc_ttc1[a] = qc1_str[b+3]
+	#	qc_ttc2[a] = qc1_str[b+4]
+	#	qc_tcs1[a] = qc1_str[b+5]
+	#	qc_tcs2[a] = qc1_str[b+6]
+	#	qc_rh1[a] = qc1_str[b+7]
+
+	#	a += 1
+	#	b += 8
+
+	#a,b = 0,0
+	#while a < 12183:
+	#	qc_rh2[a] = qc9_str[b]
+	#	qc_u1[a] = qc9_str[b+1]
+	#	qc_u2[a] = qc9_str[b+2]
+	#	qc_ud1[a] = qc9_str[b+3]
+	#	qc_ud2[a] = qc9_str[b+4]
+	#	qc_pressure[a] = qc9_str[b+5]
+	#	qc_snowheight1[a] = qc9_str[b+6]
+	#	qc_snowheight2[a] = qc9_str[b+7]
+
+	#	a += 1
+	#	b += 8
+
+
+	#a,b = 0,0
+	#while a < 12183:
+	#	qc_tsnow1[a] = qc17_str[b]
+	#	qc_tsnow2[a] = qc17_str[b+1]
+	#	qc_tsnow3[a] = qc17_str[b+2]
+	#	qc_tsnow4[a] = qc17_str[b+3]
+	#	qc_tsnow5[a] = qc17_str[b+4]
+	#	qc_tsnow6[a] = qc17_str[b+5]
+	#	qc_tsnow7[a] = qc17_str[b+6]
+	#	qc_tsnow8[a] = qc17_str[b+7]
+
+	#	a += 1
+	#	b += 8
+
+
+	#a,b = 0,0
+	#while a < 12183:
+	#	qc_tsnow9[a] = qc25_str[b]
+	#	qc_tsnow10[a] = qc25_str[b+1]
+	#	qc_battery[a] = qc25_str[b+2]
+		
+	#	a += 1
+	#	b += 3
+
+##################################################################################################################################################################
+
+	m = 0
 	d0 = date(1995, 1, 1)
 	d1 = date(2012, 12, 31)
 	offset = (d1 - d0).days
 
 	for item in julian_decimal_time:
-	    time[n] = offset + int(julian_decimal_time[n])
-	    n += 1
+	    time[m] = offset + int(julian_decimal_time[m])
+	    m += 1
 
 	root_grp.close()
 
