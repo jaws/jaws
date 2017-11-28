@@ -21,7 +21,7 @@ def ascii2nc(f):
 	root_grp.Conventions = 'CF-v46'
 
 	# dimension
-	root_grp.createDimension('time', 12183)
+	root_grp.createDimension('time', args.row_count)
 
 	# variables
 	station_number = root_grp.createVariable('station_number', 'u1', ('time',))
@@ -523,6 +523,7 @@ def ascii2nc(f):
 def Main():
     parser = argparse.ArgumentParser()
     parser.add_argument("input", help="The GCNET file you wish to convert to netCDF.", type=str)
+    parser.add_argument("row_count", help="Total number of rows in your dataset", type=int)
     parser.add_argument("-o", "--output", help="Path where you want to store the output file", type=str)
 
     global args
