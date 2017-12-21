@@ -37,17 +37,20 @@ ___
 * anaconda/miniconda
 * installed unzip package
 
+<!--
 From within a writable directory, run the following command:
 ``` html
 $ conda install -c conda-forge jaws
 ```
+-->
 
 ## Running JAWS
 ### Example
 Translating L2 ASCII formats into homogenized netCDF format:
 ``` html
-$ jaws --L2=gcnet L2.ascii L3.nc
+$ jaws input_file_name row_count output_file_name
 ```
+<!--
 Storing AWS-like data using DSG convention:
 ``` html
 $ jaws --L2=gcnet --featureType L2.ascii L3.nc
@@ -64,7 +67,7 @@ Derive value-added data and metadata:
 ``` html
 $ jaws --L2=gcnet --solar_zenith_angles L2.ascii L3.nc
 ```
-<!--
+
 * Should see similar log output to the following:
 ``` html
 DEBUG : filemanager     Creating packet: './Example_data/AKUL232'
