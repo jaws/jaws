@@ -1,0 +1,44 @@
+2017-12-14  Ajay Saini  <sainiak@uci.edu>
+
+	* jaws.py: Combined program to convert GCNET and PROMICE
+
+2017-12-01  Ajay Saini  <sainiak@uci.edu>
+
+	* promice2netcdf.py: Convert PROMICE to NetCDF format
+
+2017-11-27  Ajay Saini  <sainiak@uci.edu>
+
+	* gcnet2netcdf.py: Added functionality to take row_count input from user
+
+2017-11-22  Ajay Saini  <sainiak@uci.edu>
+
+	* gcnet2netcdf.py: Derived quality control variables
+
+2017-11-20  Ajay Saini  <sainiak@uci.edu>
+
+	* gcnet2netcdf.py: Added command line arguments
+
+2017-11-14  Ajay Saini  <sainiak@uci.edu>
+
+	* gcnet2netcdf.py: Renamed some variables
+
+2017-11-13  Ajay Saini  <sainiak@uci.edu>
+
+	* gcnet2netcdf.py: script for converting GCNet L2 ASCII data to netCDF format
+
+2017-10-29  Ajay Saini  <sainiak@uci.edu>
+
+	* jaws 0.1: Updated installation commands
+
+2017-10-25  Ajay Saini  <sainiak@uci.edu>
+
+	* Created new directories
+
+2017-10-23  Ajay Saini  <sainiak@uci.edu>
+
+	* jaws 0.1: Original scripts from Wenshan
+
+2017-10-09  Ajay Saini  <sainiak@uci.edu>
+
+	* Initial commit
+	* README.md: Instructions about jaws
