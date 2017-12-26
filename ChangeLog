@@ -1,3 +1,7 @@
+2017-12-25  Ajay Saini  <sainiak@uci.edu>
+
+	* Networks have individual functions in their files with consistent names. jaws.py contains main function
+
 2017-12-24  Ajay Saini  <sainiak@uci.edu>
 
 	* Draft of Quarterly Technical Report
