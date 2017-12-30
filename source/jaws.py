@@ -1,6 +1,7 @@
 import argparse
 import gcnet2nc
 import promice2nc
+import aaws2nc
 
 def Main():
     parser = argparse.ArgumentParser()
@@ -19,6 +20,9 @@ def Main():
 
     elif line[0] == 'Y':
     	promice2nc.promice2nc(args)
+    
+    elif line[0] == '#':
+    	aaws2nc.aaws2nc(args)
     
     print "The file " + str(args.input) + " is converted into netCDF format."
 
