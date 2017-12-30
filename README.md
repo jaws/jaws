@@ -30,6 +30,7 @@ Include value-added L3 features like the Retrospective, Iterative, Geometry-Base
 Provide a scriptable API to extend the initial L2-to-L3 conversion to newer AWS-like networks and instruments.
 
 ___
+<!--
 ## Installation
 ### Linux/unix/win
 #### Requirements:
@@ -37,7 +38,6 @@ ___
 * anaconda/miniconda
 * installed unzip package
 
-<!--
 From within a writable directory, run the following command:
 ``` html
 $ conda install -c conda-forge jaws
@@ -48,7 +48,7 @@ $ conda install -c conda-forge jaws
 ### Example
 Translating L2 ASCII formats into homogenized netCDF format:
 ``` html
-$ jaws input_file_name row_count output_file_name
+$ python jaws.py 'promice.txt' 12072
 ```
 <!--
 Storing AWS-like data using DSG convention:
