@@ -5,8 +5,7 @@ from datetime import date
 def gcnet2nc(f):
 
 	# NC file setup
-	global op_file
-	op_file = 'converted.nc'
+	op_file = str((args.input).split('.')[0])+'.nc'
 	if args.output:
 		op_file = str(args.output)
 	root_grp = Dataset(op_file, 'w', format='NETCDF4')
@@ -390,7 +389,7 @@ def gcnet2nc(f):
 	qc17_str = [str(e) for e in qc17]
 	qc25_str = [str(e) for e in qc25]
 	
-	k,l = 0,0,0
+	k,l = 0,0
 
 	for item in qc1_str:
 		qc_swdn[k] = qc1_str[k][l]
@@ -404,7 +403,7 @@ def gcnet2nc(f):
 
 		k += 1
 		
-	k,l = 0,0,0
+	k,l = 0,0
 
 	for item in qc9_str:
 		qc_rh2[k] = qc9_str[k][l]
@@ -418,7 +417,7 @@ def gcnet2nc(f):
 
 		k += 1
 		
-	k,l = 0,0,0
+	k,l = 0,0
 
 	for item in qc17_str:
 		qc_tsnow1[k] = qc17_str[k][l]
@@ -432,7 +431,7 @@ def gcnet2nc(f):
 
 		k += 1
 		
-	k,l = 0,0,0
+	k,l = 0,0
 
 	for item in qc25_str:
 		qc_tsnow9[k] = qc25_str[k][l]
