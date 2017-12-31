@@ -62,15 +62,15 @@ def imau2nc(f):
 
 	wind_direction.units = 'deg'
 	wind_direction.original_var_name = 'wind direction'
-	wind_direction.standard_name = ''
+	wind_direction.standard_name = 'wind_from_direction'
 
 	wind_speed.units = 'ms-1'
 	wind_speed.original_var_name = 'wind speed'
-	wind_speed.standard_name = ''
+	wind_speed.standard_name = 'wind_speed'
 	
 	wind_speed_max.units = 'ms-1'
 	wind_speed_max.original_var_name = 'wind speed maximum'
-	wind_speed_max.standard_name = ''
+	wind_speed_max.standard_name = 'wind_speed'
 	
 	shortwave_in.units = 'Wm-2'
 	shortwave_in.original_var_name = 'shortwave in'
@@ -146,11 +146,11 @@ def imau2nc(f):
 
 	temp_tc1.units = 'degC'
 	temp_tc1.original_var_name = 'temp TC1'
-	temp_tc1.standard_name = ''
+	temp_tc1.standard_name = 'air_temperature'
 
 	temp_tc2.units = 'degC'
 	temp_tc2.original_var_name = 'temp TC2'
-	temp_tc2.standard_name = ''
+	temp_tc2.standard_name = 'air_temperature'
 
 	tilt_pitch.units = 'deg'
 	tilt_pitch.original_var_name = 'tilt pitch'
@@ -174,7 +174,7 @@ def imau2nc(f):
 
 	battery_voltage.units = 'V'
 	battery_voltage.original_var_name = 'BatteryVoltage'
-	battery_voltage.standard_name = ''
+	battery_voltage.standard_name = 'battery_voltage'
 
 	status.units = '1'
 	status.original_var_name = 'status'
@@ -191,22 +191,3 @@ def imau2nc(f):
 	time.note = 'Created new derived variable'
 
 	root_grp.close()
-
-
-
-def Main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("input", help="The PROMICE file you wish to convert to netCDF.", type=str)
-    parser.add_argument("row_count", help="Total number of rows in your dataset", type=int)
-    parser.add_argument("-o", "--output", help="Path where you want to store the output file", type=str)
-
-    global args
-    
-    args = parser.parse_args()
-
-    imau2nc(args.input)
-    
-    print "The file " + str(args.input) + " is converted into netCDF format and is saved at " + op_file
-
-if __name__ == '__main__':
-    Main()

@@ -1,0 +1,35 @@
+GCNET->
+snow_height_1: Thought of height_snow_thickness but about 1/5 values are negative.
+t_snow_01: Thought of temperature_in_surface_snow but Wenshan said that temperature_in_surface_snow is bulk temperature. So, not sure about it.
+
+PROMICE->
+cloudcover: unit is 1
+height_sensor_boom: unit is 'm'
+height_stakes: unit is 'm'
+depth_pressure_transducer: unit is 'm'
+depth_pressure_transducer_cor: unit is 'm'
+tilt_east: unit is deg
+tilt_north: unit is deg
+elevation: unit is 'm'
+hor_dil_prec: unit is 1
+logger_temp: unit is degC
+fan_current: unit is mA
+
+AAWS->
+vtempdiff
+
+IMAU->
+shortwave_in
+shortwave_ref
+longwave_in
+longwave_out
+temp_cnr1
+sonic_alt: unit is 'm'
+melt_wire: unit is 'm'
+snow_temp_01: thought of land_snow_temperature but not sure
+tilt_pitch: unit is deg
+tilt_roll: unit is deg
+compass_heading: unit is deg
+battery_usage: unit is 1
+memory_usage: unit is %
+gps_height: unit is masl

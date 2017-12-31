@@ -240,7 +240,7 @@ def promice2nc(args):
 
 	battery_voltage.units = 'V'
 	battery_voltage.original_var_name = 'BatteryVoltage'
-	#battery_voltage.standard_name = ''
+	battery_voltage.standard_name = 'battery_voltage'
 
 	time.units = 'days since 2007-01-01 00:00:00'
 	time.long_name = 'time'

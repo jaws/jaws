@@ -24,6 +24,7 @@ def aaws2nc(args):
 	root_grp.createDimension('time', args.row_count)
 
 	# variables
+	station_name = root_grp.createVariable('station_name', 'string', ('time',))
 	air_temperature = root_grp.createVariable('air_temperature', 'f8', ('time',))
 	vtempdiff = root_grp.createVariable('vtempdiff', 'f8', ('time',))
 	relative_humidity = root_grp.createVariable('relative_humidity', 'f8', ('time',))
@@ -53,11 +54,11 @@ def aaws2nc(args):
 
 	wind_direction.units = 'deg'
 	wind_direction.original_var_name = 'wind_dir'
-	wind_direction.standard_name = ''
+	wind_direction.standard_name = 'wind_from_direction'
 
 	wind_speed.units = 'ms-1'
 	wind_speed.original_var_name = 'wind_spd'
-	wind_speed.standard_name = ''
+	wind_speed.standard_name = 'wind_speed'
 	
 	
 	time.units = 'days since 1980-01-01 00:00:00'
