@@ -12,69 +12,77 @@ def aaws2nc(args):
 	if args.output:
 		op_file = str(args.output)
 	root_grp = Dataset(op_file, 'w', format='NETCDF4')
-	root_grp.TITLE = 'Weather Station Data'
-	root_grp.SOURCE = 'Surface Observations'
-	root_grp.INSTITUTION = 'The Antarctic Meteorological Research Center (AMRC) and Automatic Weather Station (AWS)'
+	root_grp.SOURCE = 'surface observation'
+	root_grp.featureType = 'timeSeries'
+	root_grp.INSTITUTION = 'UW SSEC'
 	root_grp.REFERENCE = 'https://amrc.ssec.wisc.edu/'
-	#root_grp.History = 'Created on '
-	#root_grp.CREATED_BY = 'Created by'
-	root_grp.Conventions = 'CF-v46'
+	root_grp.Conventions = 'CF-1.6'
+	root_grp.start_time = ''
+	root_grp.end_time = ''
+	root_grp.data_type = 'q1h'
 
 	# dimension
+	root_grp.createDimension('station', 1)
 	root_grp.createDimension('time', args.row_count)
 
 	# variables
-	station_name = root_grp.createVariable('station_name', 'string', ('time',))
-	air_temperature = root_grp.createVariable('air_temperature', 'f8', ('time',))
-	vtempdiff = root_grp.createVariable('vtempdiff', 'f8', ('time',))
-	relative_humidity = root_grp.createVariable('relative_humidity', 'f8', ('time',))
-	air_pressure = root_grp.createVariable('air_pressure', 'f8', ('time',))
-	wind_direction = root_grp.createVariable('wind_direction', 'f8', ('time',))
-	wind_speed = root_grp.createVariable('wind_speed', 'f8', ('time',))
+	station_name = root_grp.createVariable('station_name', 'S20', ('station',))
+	time = root_grp.createVariable('time', 'i4', ('time',))
+	air_temp = root_grp.createVariable('air_temp', 'f4', ('station','time',), fill_value = -999)
+	vtempdiff = root_grp.createVariable('vtempdiff', 'f4', ('station','time',), fill_value = -999)
+	rh = root_grp.createVariable('rh', 'f4', ('station','time',), fill_value = -999)
+	pressure = root_grp.createVariable('pressure', 'f4', ('station','time',), fill_value = -999)
+	wind_dir = root_grp.createVariable('wind_dir', 'f4', ('station','time',), fill_value = -999)
+	wind_spd = root_grp.createVariable('wind_spd', 'f4', ('station','time',), fill_value = -999)
 	
 	
-	time = root_grp.createVariable('time', 'f4', ('time',))
+	
+	station_name.long_name = 'name of station'
+	station_name.cf_role = 'timeseries_id'
 
-
-	air_temperature.units = 'degC'
-	air_temperature.original_var_name = 'air_temp'
-	air_temperature.standard_name = 'air_temperature'
+	time.units = 'seconds since 1970-01-01 00:00:00T00:00:00Z'
+	time.long_name = 'time of measurement'
+	time.standard_name = 'time'
+	time.calendar = 'standard'
 	
-	vtempdiff.units = 'degC'
-	vtempdiff.original_var_name = 'vtempdiff'
-	vtempdiff.standard_name = ''
+	air_temp.units = 'degC'
+	air_temp.long_name = 'air temperature'
+	air_temp.standard_name = 'air_temperature'
 	
-	relative_humidity.units = '%'
-	relative_humidity.original_var_name = 'rh'
-	relative_humidity.standard_name = 'relative_humidity'
+	vtempdiff.units = '1'
+	vtempdiff.long_name = 'vertical temperature differential'
+	
+	rh.units = '%'
+	rh.long_name = 'relative humidity'
+	rh.standard_name = 'relative_humidity'
 
-	air_pressure.units = 'mb'
-	air_pressure.original_var_name = 'pressure'
-	air_pressure.standard_name = 'air_pressure'
+	pressure.units = 'hPa'
+	pressure.long_name = 'air pressure'
+	pressure.standard_name = 'air_pressure'
 
-	wind_direction.units = 'deg'
-	wind_direction.original_var_name = 'wind_dir'
-	wind_direction.standard_name = 'wind_from_direction'
+	wind_dir.units = 'deg'
+	wind_dir.long_name = 'wind direction'
+	wind_dir.standard_name = 'wind_from_direction'
 
-	wind_speed.units = 'ms-1'
-	wind_speed.original_var_name = 'wind_spd'
-	wind_speed.standard_name = 'wind_speed'
+	wind_spd.units = 'ms-1'
+	wind_spd.original_var_name = 'wind speed'
+	wind_spd.standard_name = 'wind_speed'
 	
 	
-	time.units = 'days since 1980-01-01 00:00:00'
-	time.long_name = 'time'
-	time.calendar = 'noleap'
-	time.bounds = 'time_bnds'
-	time.note = 'Created new derived variable'
 
 
 	for i in data:
-		air_temperature[:] = data['col2']
+		air_temp[:] = data['col2']
 		#vtempdiff[:] = data['col3']
-		relative_humidity[:] = data['col4']
-		air_pressure[:] = data['col5']
-		wind_direction[:] = data['col6']
-		wind_speed[:] = data['col7']
+		rh[:] = data['col4']
+		pressure[:] = data['col5']
+		wind_dir[:] = data['col6']
+		wind_spd[:] = data['col7']
 		
+	f = open("antartic aws.txt")
+	f.readline()
+	for line in f:
+		station_name[0] = line[12:17]
+		break
 
 	root_grp.close()

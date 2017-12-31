@@ -3,7 +3,7 @@ from netCDF4 import Dataset
 from datetime import date
 from astropy.io import ascii
 
-def imau2nc(f):
+def imau2nc(args):
 
 	data = ascii.read(args.input)
 

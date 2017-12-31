@@ -2,7 +2,7 @@ from netCDF4 import Dataset
 from datetime import date
 
 
-def gcnet2nc(f):
+def gcnet2nc(args):
 
 	# NC file setup
 	op_file = str((args.input).split('.')[0])+'.nc'
