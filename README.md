@@ -48,7 +48,7 @@ $ conda install -c conda-forge jaws
 ### Example
 Translating L2 ASCII formats into homogenized netCDF format:
 ``` html
-$ python jaws.py 'promice.txt' 12072
+$ python jaws.py 'promice.txt' 24
 ```
 <!--
 Storing AWS-like data using DSG convention:
