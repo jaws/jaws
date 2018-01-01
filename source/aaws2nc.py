@@ -89,7 +89,7 @@ def aaws2nc(args):
 	f = open(args.input)
 	f.readline()
 	for line in f:
-		station_name[0] = line[12:17]
+		station_name[0] = line[12:].strip('\n')
 		break
 	f.close()
 
