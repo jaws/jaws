@@ -32,7 +32,7 @@ def aaws2nc(args):
 
 	# dimension
 	root_grp.createDimension('station', 1)
-	root_grp.createDimension('time', row_count)
+	root_grp.createDimension('time', count)
 
 	# variables
 	station_name = root_grp.createVariable('station_name', 'S20', ('station',))
@@ -49,7 +49,7 @@ def aaws2nc(args):
 	station_name.long_name = 'name of station'
 	station_name.cf_role = 'timeseries_id'
 
-	time.units = 'seconds since 1970-01-01 00:00:00T00:00:00Z'
+	time.units = 'seconds since 1970-01-01T00:00:00Z'
 	time.long_name = 'time of measurement'
 	time.standard_name = 'time'
 	time.calendar = 'standard'
@@ -91,6 +91,86 @@ def aaws2nc(args):
 	for line in f:
 		station_name[0] = line[12:17]
 		break
+	f.close()
+
+	f = open(args.input)
+	a,b = 0,0
+	while a < 8:
+		f.readline()
+		a += 1
+	for line in f:
+		time[b] = ((date(int(line[0:4]), int(line[5:7]), int(line[8:10])) - date(1970,1,1)).days)*86400
+		if line[11:13] == '00':
+			b += 1			
+		elif line[11:13] == '01':
+			time[b] += (3600*1)
+			b += 1
+		elif line[11:13] == '02':
+			time[b] += (3600*2)
+			b += 1
+		elif line[11:13] == '03':
+			time[b] += (3600*3)
+			b += 1
+		elif line[11:13] == '04':
+			time[b] += (3600*4)
+			b += 1
+		elif line[11:13] =='05':
+			time[b] += (3600*5)
+			b += 1
+		elif line[11:13] == '06':
+			time[b] += (3600*6)
+			b += 1
+		elif line[11:13] == '07':
+			time[b] += (3600*7)
+			b += 1
+		elif line[11:13] == '08':
+			time[b] += (3600*8)
+			b += 1
+		elif line[11:13] == '09':
+			time[b] += (3600*9)
+			b += 1
+		elif line[11:13] == '10':
+			time[b] += (3600*10)
+			b += 1
+		elif line[11:13] == '11':
+			time[b] += (3600*11)
+			b += 1
+		elif line[11:13] == '12':
+			time[b] += (3600*12)
+			b += 1
+		elif line[11:13] == '13':
+			time[b] += (3600*13)
+			b += 1
+		elif line[11:13] == '14':
+			time[b] += (3600*14)
+			b += 1
+		elif line[11:13] == '15':
+			time[b] += (3600*15)
+			b += 1
+		elif line[11:13] == '16':
+			time[b] += (3600*16)
+			b += 1
+		elif line[11:13] == '17':
+			time[b] += (3600*17)
+			b += 1
+		elif line[11:13] == '18':
+			time[b] += (3600*18)
+			b += 1
+		elif line[11:13] == '19':
+			time[b] += (3600*19)
+			b += 1
+		elif line[11:13] == '20':
+			time[b] += (3600*20)
+			b += 1
+		elif line[11:13] == '21':
+			time[b] += (3600*21)
+			b += 1
+		elif line[11:13] == '22':
+			time[b] += (3600*22)
+			b += 1
+		elif line[11:13] == '23':
+			time[b] += (3600*23)
+			b += 1
 	f.close()
 
 	root_grp.close()
