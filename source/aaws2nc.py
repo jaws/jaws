@@ -79,10 +79,11 @@ def aaws2nc(args):
 		wind_dir[:] = data['col6']
 		wind_spd[:] = data['col7']
 		
-	f = open("antartic aws.txt")
+	f = open(args.input)
 	f.readline()
 	for line in f:
 		station_name[0] = line[12:17]
 		break
+	f.close()
 
 	root_grp.close()
