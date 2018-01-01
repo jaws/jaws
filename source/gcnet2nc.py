@@ -22,9 +22,7 @@ def gcnet2nc(args):
 	root_grp.INSTITUTION = 'Cooperative Institute for Research in Enviornmental Sciences'
 	root_grp.REFERENCE = 'http://cires.colorado.edu/science/groups/steffen/gcnet/'
 	root_grp.URL = 'http://cires.colorado.edu/science/groups/steffen/gcnet/'
-	#root_grp.History = 'Created on '
-	#root_grp.CREATED_BY = 'Created by'
-	root_grp.Conventions = 'CF-v46'
+	root_grp.Conventions = 'CF-1.6'
 
 	# dimension
 	root_grp.createDimension('time', count)
@@ -111,7 +109,7 @@ def gcnet2nc(args):
 	qc_tsnow10 = root_grp.createVariable('qc_tsnow10', 'S1', ('time',))
 	qc_battery = root_grp.createVariable('qc_battery', 'S1', ('time',))
 	
-	time = root_grp.createVariable('time', 'f4', ('time',))
+	time = root_grp.createVariable('time', 'i4', ('time',))
 
 
 	station_number.units = '1'
@@ -512,12 +510,8 @@ def gcnet2nc(args):
 ##################################################################################################################################################################
 
 	m = 0
-	d0 = date(1995, 1, 1)
-	d1 = date(2012, 12, 31)
-	offset = (d1 - d0).days
-
 	for item in julian_decimal_time:
-	    time[m] = offset + int(julian_decimal_time[m])
+	    time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400
 	    m += 1
 
 	root_grp.close()
