@@ -6,7 +6,6 @@ import aaws2nc
 def Main():
     parser = argparse.ArgumentParser()
     parser.add_argument("input", help="The PROMICE file you wish to convert to netCDF.", type=str)
-    parser.add_argument("row_count", help="Total number of rows in your dataset", type=int)
     parser.add_argument("-o", "--output", help="Path where you want to store the output file", type=str)
 
     args = parser.parse_args()

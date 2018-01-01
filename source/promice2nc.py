@@ -6,6 +6,15 @@ def promice2nc(args):
 
 	data = ascii.read(args.input)
 
+	f = open(args.input)
+	count = 0
+	for line in f:
+		if line[0] == 'Y':
+			continue
+		else:
+			count += 1
+	f.close()
+
 	# NC file setup
 	op_file = str((args.input).split('.')[0])+'.nc'
 	if args.output:
@@ -20,7 +29,7 @@ def promice2nc(args):
 	root_grp.Conventions = 'CF-v46'
 
 	# dimension
-	root_grp.createDimension('time', args.row_count)
+	root_grp.createDimension('time', count)
 
 	# variables
 	year = root_grp.createVariable('year', 'i4', ('time',))
@@ -296,7 +305,7 @@ def promice2nc(args):
 
 	j = 0
 
-	while j < args.row_count:
+	while j < count:
 	   	time[j] = (date(year[j],month[j],day[j])-date(2007, 1, 1)).days
 	   	j += 1
 

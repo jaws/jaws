@@ -7,6 +7,15 @@ def aaws2nc(args):
 
 	data = ascii.read(args.input)
 
+	f = open(args.input)
+	count = 0
+	for line in f:
+		if line[0] == '#':
+			continue
+		else:
+			count += 1
+	f.close()
+
 	# NC file setup
 	op_file = str((args.input).split('.')[0])+'.nc'
 	if args.output:
@@ -23,7 +32,7 @@ def aaws2nc(args):
 
 	# dimension
 	root_grp.createDimension('station', 1)
-	root_grp.createDimension('time', args.row_count)
+	root_grp.createDimension('time', row_count)
 
 	# variables
 	station_name = root_grp.createVariable('station_name', 'S20', ('station',))
@@ -69,11 +78,9 @@ def aaws2nc(args):
 	wind_spd.standard_name = 'wind_speed'
 	
 	
-
-
 	for i in data:
 		air_temp[:] = data['col2']
-		#vtempdiff[:] = data['col3']
+		vtempdiff[:] = data['col3']
 		rh[:] = data['col4']
 		pressure[:] = data['col5']
 		wind_dir[:] = data['col6']
