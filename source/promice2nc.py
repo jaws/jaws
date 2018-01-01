@@ -24,63 +24,68 @@ def promice2nc(args):
 	root_grp.SOURCE = 'Surface Observations'
 	root_grp.INSTITUTION = 'Programme for Monitoring of the Greenland Ice Sheet'
 	root_grp.REFERENCE = 'http://www.promice.dk/home.html'
-	#root_grp.History = 'Created on '
-	#root_grp.CREATED_BY = 'Created by'
-	root_grp.Conventions = 'CF-v46'
+	root_grp.Conventions = 'CF-1.6'
 
 	# dimension
+	root_grp.createDimension('station', 1)
 	root_grp.createDimension('time', count)
 
 	# variables
+	station_name = root_grp.createVariable('station_name', 'S20', ('station',))
+	time = root_grp.createVariable('time', 'i4', ('time',))
 	year = root_grp.createVariable('year', 'i4', ('time',))
 	month = root_grp.createVariable('month', 'i4', ('time',))
 	day = root_grp.createVariable('day', 'i4', ('time',))
 	hour = root_grp.createVariable('hour', 'i4', ('time',))
 	day_of_year = root_grp.createVariable('day_of_year', 'i4', ('time',))
 	day_of_century = root_grp.createVariable('day_of_century', 'i4', ('time',))
-	pressure = root_grp.createVariable('pressure', 'f8', ('time',))
-	air_temperature = root_grp.createVariable('air_temperature', 'f8', ('time',))
-	air_temperature_hygroclip = root_grp.createVariable('air_temperature_hygroclip', 'f8', ('time',))
-	relative_humidity_wrtwater = root_grp.createVariable('relative_humidity_wrtwater', 'f8', ('time',))
-	relative_humidity = root_grp.createVariable('relative_humidity', 'f8', ('time',))
-	wind_speed = root_grp.createVariable('wind_speed', 'f8', ('time',))
-	wind_direction = root_grp.createVariable('wind_direction', 'f8', ('time',))
-	shortwave_radiation_down = root_grp.createVariable('shortwave_radiation_down', 'f8', ('time',))
-	shortwave_radiation_down_cor = root_grp.createVariable('shortwave_radiation_down_cor', 'f8', ('time',))
-	shortwave_radiation_up = root_grp.createVariable('shortwave_radiation_up', 'f8', ('time',))
-	shortwave_radiation_up_cor = root_grp.createVariable('shortwave_radiation_up_cor', 'f8', ('time',))
-	albedo_theta = root_grp.createVariable('albedo_theta', 'f8', ('time',))
-	longwave_radiation_down = root_grp.createVariable('longwave_radiation_down', 'f8', ('time',))
-	longwave_radiation_up = root_grp.createVariable('longwave_radiation_up', 'f8', ('time',))
-	cloudcover = root_grp.createVariable('cloudcover', 'f8', ('time',))
-	surface_temp = root_grp.createVariable('surface_temp', 'f8', ('time',))
-	height_sensor_boom = root_grp.createVariable('height_sensor_boom', 'f8', ('time',))
-	height_stakes = root_grp.createVariable('height_stakes', 'f8', ('time',))
-	depth_pressure_transducer = root_grp.createVariable('depth_pressure_transducer', 'f8', ('time',))
-	depth_pressure_transducer_cor = root_grp.createVariable('depth_pressure_transducer_cor', 'f8', ('time',))
-	ice_temp_01 = root_grp.createVariable('ice_temp_01', 'f8', ('time',))
-	ice_temp_02 = root_grp.createVariable('ice_temp_02', 'f8', ('time',))
-	ice_temp_03 = root_grp.createVariable('ice_temp_03', 'f8', ('time',))
-	ice_temp_04 = root_grp.createVariable('ice_temp_04', 'f8', ('time',))
-	ice_temp_05 = root_grp.createVariable('ice_temp_05', 'f8', ('time',))
-	ice_temp_06 = root_grp.createVariable('ice_temp_06', 'f8', ('time',))
-	ice_temp_07 = root_grp.createVariable('ice_temp_07', 'f8', ('time',))
-	ice_temp_08 = root_grp.createVariable('ice_temp_08', 'f8', ('time',))
-	tilt_east = root_grp.createVariable('tilt_east', 'f8', ('time',))
-	tilt_north = root_grp.createVariable('tilt_north', 'f8', ('time',))
-	time_gps = root_grp.createVariable('time_gps', 'i4', ('time',))
-	latitude = root_grp.createVariable('latitude', 'f8', ('time',))
-	longitude = root_grp.createVariable('longitude', 'f8', ('time',))
-	elevation = root_grp.createVariable('elevation', 'f8', ('time',))
-	hor_dil_prec = root_grp.createVariable('hor_dil_prec', 'f8', ('time',))
-	logger_temp = root_grp.createVariable('logger_temp', 'f8', ('time',))
-	fan_current = root_grp.createVariable('fan_current', 'f8', ('time',))
-	battery_voltage = root_grp.createVariable('battery_voltage', 'f8', ('time',))
+	air_pressure = root_grp.createVariable('air_pressure', 'f4', ('station','time',))
+	air_temperature = root_grp.createVariable('air_temperature', 'f4', ('station','time',))
+	air_temperature_hygroclip = root_grp.createVariable('air_temperature_hygroclip', 'f4', ('station','time',))
+	relative_humidity_wrtwater = root_grp.createVariable('relative_humidity_wrtwater', 'f4', ('station','time',))
+	relative_humidity = root_grp.createVariable('relative_humidity', 'f4', ('station','time',))
+	wind_speed = root_grp.createVariable('wind_speed', 'f4', ('station','time',))
+	wind_direction = root_grp.createVariable('wind_direction', 'f4', ('station','time',))
+	shortwave_radiation_down = root_grp.createVariable('shortwave_radiation_down', 'f4', ('station','time',))
+	shortwave_radiation_down_cor = root_grp.createVariable('shortwave_radiation_down_cor', 'f4', ('station','time',))
+	shortwave_radiation_up = root_grp.createVariable('shortwave_radiation_up', 'f4', ('station','time',))
+	shortwave_radiation_up_cor = root_grp.createVariable('shortwave_radiation_up_cor', 'f4', ('station','time',))
+	albedo_theta = root_grp.createVariable('albedo_theta', 'f4', ('station','time',))
+	longwave_radiation_down = root_grp.createVariable('longwave_radiation_down', 'f4', ('station','time',))
+	longwave_radiation_up = root_grp.createVariable('longwave_radiation_up', 'f4', ('station','time',))
+	cloudcover = root_grp.createVariable('cloudcover', 'f4', ('station','time',))
+	surface_temp = root_grp.createVariable('surface_temp', 'f4', ('station','time',))
+	height_sensor_boom = root_grp.createVariable('height_sensor_boom', 'f4', ('station','time',))
+	height_stakes = root_grp.createVariable('height_stakes', 'f4', ('station','time',))
+	depth_pressure_transducer = root_grp.createVariable('depth_pressure_transducer', 'f4', ('station','time',))
+	depth_pressure_transducer_cor = root_grp.createVariable('depth_pressure_transducer_cor', 'f4', ('station','time',))
+	ice_temp_01 = root_grp.createVariable('ice_temp_01', 'f4', ('station','time',))
+	ice_temp_02 = root_grp.createVariable('ice_temp_02', 'f4', ('station','time',))
+	ice_temp_03 = root_grp.createVariable('ice_temp_03', 'f4', ('station','time',))
+	ice_temp_04 = root_grp.createVariable('ice_temp_04', 'f4', ('station','time',))
+	ice_temp_05 = root_grp.createVariable('ice_temp_05', 'f4', ('station','time',))
+	ice_temp_06 = root_grp.createVariable('ice_temp_06', 'f4', ('station','time',))
+	ice_temp_07 = root_grp.createVariable('ice_temp_07', 'f4', ('station','time',))
+	ice_temp_08 = root_grp.createVariable('ice_temp_08', 'f4', ('station','time',))
+	tilt_east = root_grp.createVariable('tilt_east', 'f4', ('station','time',))
+	tilt_north = root_grp.createVariable('tilt_north', 'f4', ('station','time',))
+	time_gps = root_grp.createVariable('time_gps', 'i4', ('station','time',))
+	latitude = root_grp.createVariable('latitude', 'f4', ('station','time',))
+	longitude = root_grp.createVariable('longitude', 'f4', ('station','time',))
+	elevation = root_grp.createVariable('elevation', 'f4', ('station','time',))
+	hor_dil_prec = root_grp.createVariable('hor_dil_prec', 'f4', ('station','time',))
+	logger_temp = root_grp.createVariable('logger_temp', 'f4', ('station','time',))
+	fan_current = root_grp.createVariable('fan_current', 'f4', ('station','time',))
+	battery_voltage = root_grp.createVariable('battery_voltage', 'f4', ('station','time',))
 
+	station_name.long_name = 'name of station'
+	station_name.cf_role = 'timeseries_id'
+
+	time.units = 'seconds since 2007-01-01 00:00:00'
+	time.long_name = 'time of measurement'
+	time.standard_name = 'time'
+	time.calendar = 'standard'
 	
-	time = root_grp.createVariable('time', 'f4', ('time',))
-
-
 	year.units = '1'
 	year.original_var_name = 'Year'
 
@@ -99,9 +104,9 @@ def promice2nc(args):
 	day_of_century.units = '1'
 	day_of_century.original_var_name = 'DayOfCentury'
 	
-	pressure.units = 'hPa'
-	pressure.original_var_name = 'AirPressure'
-	pressure.standard_name = 'air_pressure'
+	air_pressure.units = 'hPa'
+	air_pressure.original_var_name = 'AirPressure'
+	air_pressure.standard_name = 'air_pressure'
 
 	air_temperature.units = 'degC'
 	air_temperature.original_var_name = 'AirTemperature'
@@ -251,12 +256,7 @@ def promice2nc(args):
 	battery_voltage.original_var_name = 'BatteryVoltage'
 	battery_voltage.standard_name = 'battery_voltage'
 
-	time.units = 'days since 2007-01-01 00:00:00'
-	time.long_name = 'time'
-	time.calendar = 'noleap'
-	time.bounds = 'time_bnds'
-	time.note = 'Created new derived variable'
-
+	
 	for i in data:
 	    year[:] = data['Year'] 
 	    month[:] = data['MonthOfYear']
@@ -264,7 +264,7 @@ def promice2nc(args):
 	    hour[:] = data['HourOfDay(UTC)']
 	    day_of_year[:] = data['DayOfYear']
 	    day_of_century[:] = data['DayOfCentury']
-	    pressure[:] = data['AirPressure(hPa)']
+	    air_pressure[:] = data['AirPressure(hPa)']
 	    air_temperature[:] = data['AirTemperature(C)']
 	    air_temperature_hygroclip[:] = data['AirTemperatureHygroClip(C)']
 	    relative_humidity_wrtwater[:] = data['RelativeHumidity_wrtWater(%)']
@@ -303,10 +303,11 @@ def promice2nc(args):
 	    fan_current[:] = data['FanCurrent(mA)'] 
 	    battery_voltage[:] = data['BatteryVoltage(V)']
 
-	j = 0
+	station_name = args.input[0:5]
 
+	j = 0
 	while j < count:
-	   	time[j] = (date(year[j],month[j],day[j])-date(2007, 1, 1)).days
+	   	time[j] = ((date(year[j],month[j],day[j])-date(2007, 1, 1)).days)*86400
 	   	j += 1
 
 
