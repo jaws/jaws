@@ -52,7 +52,7 @@ If you are first-time user, please execute the following command to have a copy 
 $ git clone https://github.com/jaws/jaws.git
 ```
 
-If you are an existing user, please use the following command to checkout:
+If you are an existing user, please use the following command to update your repository with current version:
 
 ``` html
 $ git pull
