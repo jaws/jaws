@@ -114,208 +114,208 @@ def gcnet2nc(args):
 
 
 	station_number.units = '1'
-	station_number.original_var_name = 'Station Number'
+	station_number.original_name = 'Station Number'
 
 	year.units = '1'
-	year.original_var_name = 'Year'
+	year.original_name = 'Year'
 
 	julian_decimal_time.units = 'decimal time'
-	julian_decimal_time.original_var_name = 'Julian Decimal Time'
+	julian_decimal_time.original_name = 'Julian Decimal Time'
 	julian_decimal_time.note = 'Not really a standard Julian time. For each year, time starts at 1.0000 and ends at 365.9999.'
 
 	sw_down.units = 'W m-2'
-	sw_down.original_var_name = 'SW_down'
+	sw_down.original_name = 'SW_down'
 	sw_down.long_name = 'downwelling_shortwave_flux_in_air'
 
 	sw_up.units = 'W m-2'
-	sw_up.original_var_name = 'SW_up'
+	sw_up.original_name = 'SW_up'
 	sw_up.long_name = 'upwelling_shortwave_flux_in_air'
 
 	net_radiation.units = 'W m-2'
-	net_radiation.original_var_name = 'Net Radiation'
+	net_radiation.original_name = 'Net Radiation'
 	net_radiation.long_name = 'surface_net_downward_radiative_flux'
 
 	temperature_tc_1.units = 'degC'
-	temperature_tc_1.original_var_name = 'TC Air 1 Air Temperature'
+	temperature_tc_1.original_name = 'TC Air 1 Air Temperature'
 	temperature_tc_1.long_name = 'air_temperature'
 	temperature_tc_1.note = 'air temperature from TC sensor'
 
 	temperature_tc_2.units = 'degC'
-	temperature_tc_2.original_var_name = 'TC Air 2 Air Temperature'
+	temperature_tc_2.original_name = 'TC Air 2 Air Temperature'
 	temperature_tc_2.long_name = 'air_temperature'
 
 	temperature_cs500_1.units = 'degC'
-	temperature_cs500_1.original_var_name = 'CS500 T Air 1 Air Temperature'
+	temperature_cs500_1.original_name = 'CS500 T Air 1 Air Temperature'
 	temperature_cs500_1.long_name = 'air_temperature'
 	temperature_cs500_1.note = 'air temperature from CS500 sensor'
 
 	temperature_cs500_2.units = 'degC'
-	temperature_cs500_2.original_var_name = 'CS500 T Air 2 Air Temperature'
+	temperature_cs500_2.original_name = 'CS500 T Air 2 Air Temperature'
 	temperature_cs500_2.long_name = 'air_temperature'
 
 	relative_humidity_1.units = '%'
-	relative_humidity_1.original_var_name = 'RH 1 Relative Humidity'
+	relative_humidity_1.original_name = 'RH 1 Relative Humidity'
 	relative_humidity_1.long_name = 'realtive_humidity'
 
 	relative_humidity_2.units = '%'
-	relative_humidity_2.original_var_name = 'RH 2 Relative Humidity'
+	relative_humidity_2.original_name = 'RH 2 Relative Humidity'
 	relative_humidity_2.long_name = 'realtive_humidity'
 
 	u1_wind_speed.units = 'm/s'
-	u1_wind_speed.original_var_name = 'U1 Wind Speed'
+	u1_wind_speed.original_name = 'U1 Wind Speed'
 	u1_wind_speed.long_name = 'wind_speed'
 
 	u2_wind_speed.units = 'm/s'
-	u2_wind_speed.original_var_name = 'U2 Wind Speed'
+	u2_wind_speed.original_name = 'U2 Wind Speed'
 	u2_wind_speed.long_name = 'wind_speed'
 
 	u_direction_1.units = 'deg'
-	u_direction_1.original_var_name = 'U Dir 1'
+	u_direction_1.original_name = 'U Dir 1'
 	u_direction_1.long_name = 'wind_from_direction'
 
 	u_direction_2.units = 'deg'
-	u_direction_2.original_var_name = 'U Dir 2'
+	u_direction_2.original_name = 'U Dir 2'
 	u_direction_2.long_name = 'wind_from_direction'
 
 	pressure.units = 'mbar'
-	pressure.original_var_name = 'Atmos Pressure'
+	pressure.original_name = 'Atmos Pressure'
 	pressure.long_name = 'surface_air_pressure'
 
 	snow_height_1.units = 'm'
-	snow_height_1.original_var_name = 'Snow Height 1'
+	snow_height_1.original_name = 'Snow Height 1'
 	snow_height_1.long_name = 'snow_height'
 
 	snow_height_2.units = 'm'
-	snow_height_2.original_var_name = 'Snow Height 2'
+	snow_height_2.original_name = 'Snow Height 2'
 	snow_height_2.long_name = 'snow_height'
 
 	t_snow_01.units = 'degC'
-	t_snow_01.original_var_name = 'T Snow 1'
+	t_snow_01.original_name = 'T Snow 1'
 	#t_snow_01.long_name = 'temperature_in_surface_snow'
 
 	t_snow_02.units = 'degC'
-	t_snow_02.original_var_name = 'T Snow 2'
+	t_snow_02.original_name = 'T Snow 2'
 	#t_snow_02.long_name = 'temperature_in_surface_snow'
 
 	t_snow_03.units = 'degC'
-	t_snow_03.original_var_name = 'T Snow 3'
+	t_snow_03.original_name = 'T Snow 3'
 	#t_snow_03.long_name = 'temperature_in_surface_snow'
 
 	t_snow_04.units = 'degC'
-	t_snow_04.original_var_name = 'T Snow 4'
+	t_snow_04.original_name = 'T Snow 4'
 	#t_snow_04.long_name = 'temperature_in_surface_snow'
 
 	t_snow_05.units = 'degC'
-	t_snow_05.original_var_name = 'T Snow 5'
+	t_snow_05.original_name = 'T Snow 5'
 	#t_snow_05.long_name = 'temperature_in_surface_snow'
 
 	t_snow_06.units = 'degC'
-	t_snow_06.original_var_name = 'T Snow 6'
+	t_snow_06.original_name = 'T Snow 6'
 	#t_snow_06.long_name = 'temperature_in_surface_snow'
 
 	t_snow_07.units = 'degC'
-	t_snow_07.original_var_name = 'T Snow 7'
+	t_snow_07.original_name = 'T Snow 7'
 	#t_snow_07.long_name = 'temperature_in_surface_snow'
 
 	t_snow_08.units = 'degC'
-	t_snow_08.original_var_name = 'T Snow 8'
+	t_snow_08.original_name = 'T Snow 8'
 	#t_snow_08.long_name = 'temperature_in_surface_snow'
 
 	t_snow_09.units = 'degC'
-	t_snow_09.original_var_name = 'T Snow 9'
+	t_snow_09.original_name = 'T Snow 9'
 	#t_snow_09.long_name = 'temperature_in_surface_snow'
 
 	t_snow_10.units = 'degC'
-	t_snow_10.original_var_name = 'T Snow 10'
+	t_snow_10.original_name = 'T Snow 10'
 	#t_snow_10.long_name = 'temperature_in_surface_snow'
 
 	battery_voltage.units = 'V'
-	battery_voltage.original_var_name = 'Battery Voltage'
+	battery_voltage.original_name = 'Battery Voltage'
 	battery_voltage.long_name = 'battery_voltage'
 
 	sw_down_max.units = 'W m-2'
-	sw_down_max.original_var_name = 'SWinMax'
+	sw_down_max.original_name = 'SWinMax'
 	sw_down_max.long_name = 'maximum_downwelling_shortwave_flux_in_air'
 	
 	sw_up_max.units = 'W m-2'
-	sw_up_max.original_var_name = 'SWoutMax'
+	sw_up_max.original_name = 'SWoutMax'
 	sw_up_max.long_name = 'maximum_upwelling_shortwave_flux_in_air'
 	
 	net_radiation_max.units = 'W m-2'
-	net_radiation_max.original_var_name = 'NetRadMax'
+	net_radiation_max.original_name = 'NetRadMax'
 	net_radiation_max.long_name = 'maximum_net_radiation'
 
 	max_air_temperature_1.units = 'degC'
-	max_air_temperature_1.original_var_name = 'Max Air Temperture 1'
+	max_air_temperature_1.original_name = 'Max Air Temperture 1'
 	max_air_temperature_1.long_name = 'air_temperature'
 
 	max_air_temperature_2.units = 'degC'
-	max_air_temperature_2.original_var_name = 'Max Air Temperture 2'
+	max_air_temperature_2.original_name = 'Max Air Temperture 2'
 	max_air_temperature_2.long_name = 'air_temperature'
 
 	min_air_temperature_1.units = 'degC'
-	min_air_temperature_1.original_var_name = 'Min Air Temperture 1'
+	min_air_temperature_1.original_name = 'Min Air Temperture 1'
 	min_air_temperature_1.long_name = 'air_temperature'
 
 	min_air_temperature_2.units = 'degC'
-	min_air_temperature_2.original_var_name = 'Min Air Temperture 2'
+	min_air_temperature_2.original_name = 'Min Air Temperture 2'
 	min_air_temperature_2.long_name = 'air_temperature'
 
 	max_windspeed_u1.units = 'm/s'
-	max_windspeed_u1.original_var_name = 'Max Windspeed-U1'
+	max_windspeed_u1.original_name = 'Max Windspeed-U1'
 	max_windspeed_u1.long_name = 'wind_speed'
 
 	max_windspeed_u2.units = 'm/s'
-	max_windspeed_u2.original_var_name = 'Max Windspeed-U2'
+	max_windspeed_u2.original_name = 'Max Windspeed-U2'
 	max_windspeed_u2.long_name = 'wind_speed'
 
 	stdev_windspeed_u1.units = 'm/s'
-	stdev_windspeed_u1.original_var_name = 'StdDev Windspeed-U1'
+	stdev_windspeed_u1.original_name = 'StdDev Windspeed-U1'
 	stdev_windspeed_u1.long_name = 'wind_speed'
 
 	stdev_windspeed_u2.units = 'm/s'
-	stdev_windspeed_u2.original_var_name = 'StdDev Windspeed-U2'
+	stdev_windspeed_u2.original_name = 'StdDev Windspeed-U2'
 	stdev_windspeed_u2.long_name = 'wind_speed'
 
 	ref_temperature.units = 'degC'
-	ref_temperature.original_var_name = 'Ref Temperature'
+	ref_temperature.original_name = 'Ref Temperature'
 	ref_temperature.note = 'Need to ask network manager about long name'
 
 	windspeed_2m.units = 'm/s'
-	windspeed_2m.original_var_name = 'Windspeed@2m'
+	windspeed_2m.original_name = 'Windspeed@2m'
 	windspeed_2m.long_name = 'wind_speed'
 
 	windspeed_10m.units = 'm/s'
-	windspeed_10m.original_var_name = 'Windspeed@10m'
+	windspeed_10m.original_name = 'Windspeed@10m'
 	windspeed_10m.long_name = '10-m_wind_speed'
 
 	wind_sensor_height_1.units = 'm'
-	wind_sensor_height_1.original_var_name = 'WindSensorHeight1'
+	wind_sensor_height_1.original_name = 'WindSensorHeight1'
 	wind_sensor_height_1.long_name = 'n/a'
 
 	wind_sensor_height_2.units = 'm'
-	wind_sensor_height_2.original_var_name = 'WindSensorHeight2'
+	wind_sensor_height_2.original_name = 'WindSensorHeight2'
 	wind_sensor_height_2.long_name = 'n/a'
 
 	albedo.units = '1'
-	albedo.original_var_name = 'Albedo'
+	albedo.original_name = 'Albedo'
 	albedo.long_name = 'surface_albedo'
 
 	zenith_angle.units = 'deg'
-	zenith_angle.original_var_name = 'Zenith Angle'
+	zenith_angle.original_name = 'Zenith Angle'
 	zenith_angle.long_name = 'solar_zenith_angle'
 
 	qc1.units = '1'
-	qc1.original_var_name = 'QCl01-08'
+	qc1.original_name = 'QCl01-08'
 
 	qc9.units = '1'
-	qc9.original_var_name = 'QCl09-16'
+	qc9.original_name = 'QCl09-16'
 
 	qc17.units = '1'
-	qc17.original_var_name = 'QCl17-24'
+	qc17.original_name = 'QCl17-24'
 
 	qc25.units = '1'
-	qc25.original_var_name = 'QCl25-27'
+	qc25.original_name = 'QCl25-27'
 
 	time.units = 'days since 1995-01-01 00:00:00'
 	time.long_name = 'time'

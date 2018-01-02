@@ -62,127 +62,127 @@ def imau2nc(args):
 
 
 	wind_direction.units = 'deg'
-	wind_direction.original_var_name = 'wind direction'
+	wind_direction.original_name = 'wind direction'
 	wind_direction.standard_name = 'wind_from_direction'
 
 	wind_speed.units = 'ms-1'
-	wind_speed.original_var_name = 'wind speed'
+	wind_speed.original_name = 'wind speed'
 	wind_speed.standard_name = 'wind_speed'
 	
 	wind_speed_max.units = 'ms-1'
-	wind_speed_max.original_var_name = 'wind speed maximum'
+	wind_speed_max.original_name = 'wind speed maximum'
 	wind_speed_max.standard_name = 'wind_speed'
 	
 	shortwave_in.units = 'Wm-2'
-	shortwave_in.original_var_name = 'shortwave in'
+	shortwave_in.original_name = 'shortwave in'
 	shortwave_in.standard_name = ''
 	
 	shortwave_ref.units = 'Wm-2'
-	shortwave_ref.original_var_name = 'shortwave ref'
+	shortwave_ref.original_name = 'shortwave ref'
 	shortwave_ref.standard_name = ''
 	
 	longwave_in.units = 'Wm-2'
-	longwave_in.original_var_name = 'longwave in'
+	longwave_in.original_name = 'longwave in'
 	longwave_in.standard_name = ''
 
 	longwave_out.units = 'Wm-2'
-	longwave_out.original_var_name = 'longwave out'
+	longwave_out.original_name = 'longwave out'
 	longwave_out.standard_name = ''
 	
 	temp_cnr1.units = 'degC'
-	temp_cnr1.original_var_name = 'temp CNR1'
+	temp_cnr1.original_name = 'temp CNR1'
 	temp_cnr1.standard_name = ''
 
 	air_temperature.units = 'degC'
-	air_temperature.original_var_name = 'AirTemperature'
+	air_temperature.original_name = 'AirTemperature'
 	air_temperature.standard_name = 'air_temperature'
 	
 	relative_humidity.units = '%'
-	relative_humidity.original_var_name = 'RelativeHumidity'
+	relative_humidity.original_name = 'RelativeHumidity'
 	relative_humidity.standard_name = 'relative_humidity'
 
 	air_pressure.units = 'hPa'
-	air_pressure.original_var_name = 'AirPressure'
+	air_pressure.original_name = 'AirPressure'
 	air_pressure.standard_name = 'air_pressure'
 
 	sonic_alt.units = 'm'
-	sonic_alt.original_var_name = 'sonic alt'
+	sonic_alt.original_name = 'sonic alt'
 	sonic_alt.standard_name = ''
 
 	melt_wire.units = 'm'
-	melt_wire.original_var_name = 'melt wire'
+	melt_wire.original_name = 'melt wire'
 	melt_wire.standard_name = 'wind_speed'
 
 	snow_temp_01.units = 'degC'
-	snow_temp_01.original_var_name = 'snowTemperature1'
+	snow_temp_01.original_name = 'snowTemperature1'
 	snow_temp_01.standard_name = 'land_snow_temperature'
 
 	snow_temp_02.units = 'degC'
-	snow_temp_02.original_var_name = 'snowTemperature2'
+	snow_temp_02.original_name = 'snowTemperature2'
 	snow_temp_02.standard_name = 'land_snow_temperature'
 	
 	snow_temp_03.units = 'degC'
-	snow_temp_03.original_var_name = 'snowTemperature3'
+	snow_temp_03.original_name = 'snowTemperature3'
 	snow_temp_03.standard_name = 'land_snow_temperature'
 	
 	snow_temp_04.units = 'degC'
-	snow_temp_04.original_var_name = 'snowTemperature4'
+	snow_temp_04.original_name = 'snowTemperature4'
 	snow_temp_04.standard_name = 'land_snow_temperature'
 
 	snow_temp_05.units = 'degC'
-	snow_temp_05.original_var_name = 'snowTemperature5'
+	snow_temp_05.original_name = 'snowTemperature5'
 	snow_temp_05.standard_name = 'land_snow_temperature'
 
 	snow_temp_06.units = 'degC'
-	snow_temp_06.original_var_name = 'snowTemperature6'
+	snow_temp_06.original_name = 'snowTemperature6'
 	snow_temp_06.standard_name = 'land_snow_temperature'
 
 	snow_temp_07.units = 'degC'
-	snow_temp_07.original_var_name = 'snowTemperature7'
+	snow_temp_07.original_name = 'snowTemperature7'
 	snow_temp_07.standard_name = 'land_snow_temperature'
 
 	snow_temp_08.units = 'degC'
-	snow_temp_08.original_var_name = 'snowTemperature8'
+	snow_temp_08.original_name = 'snowTemperature8'
 	snow_temp_08.standard_name = 'land_snow_temperature'
 
 	temp_tc1.units = 'degC'
-	temp_tc1.original_var_name = 'temp TC1'
+	temp_tc1.original_name = 'temp TC1'
 	temp_tc1.standard_name = 'air_temperature'
 
 	temp_tc2.units = 'degC'
-	temp_tc2.original_var_name = 'temp TC2'
+	temp_tc2.original_name = 'temp TC2'
 	temp_tc2.standard_name = 'air_temperature'
 
 	tilt_pitch.units = 'deg'
-	tilt_pitch.original_var_name = 'tilt pitch'
+	tilt_pitch.original_name = 'tilt pitch'
 	tilt_pitch.standard_name = ''
 
 	tilt_roll.units = 'deg'
-	tilt_roll.original_var_name = 'tilt roll'
+	tilt_roll.original_name = 'tilt roll'
 	tilt_roll.standard_name = ''
 
 	compass_heading.units = 'deg'
-	compass_heading.original_var_name = 'compass heading'
+	compass_heading.original_name = 'compass heading'
 	compass_heading.standard_name = ''
 
 	battery_usage.units = '1'
-	battery_usage.original_var_name = 'battery usage'
+	battery_usage.original_name = 'battery usage'
 	battery_usage.standard_name = ''
 
 	memory_usage.units = '%'
-	memory_usage.original_var_name = 'memory usage'
+	memory_usage.original_name = 'memory usage'
 	memory_usage.standard_name = ''
 
 	battery_voltage.units = 'V'
-	battery_voltage.original_var_name = 'BatteryVoltage'
+	battery_voltage.original_name = 'BatteryVoltage'
 	battery_voltage.standard_name = 'battery_voltage'
 
 	status.units = '1'
-	status.original_var_name = 'status'
+	status.original_name = 'status'
 	status.standard_name = ''
 
 	gps_height.units = 'masl'
-	gps_height.original_var_name = 'GPS height'
+	gps_height.original_name = 'GPS height'
 	gps_height.standard_name = ''
 
 	time.units = 'days since 1995-01-01 00:00:00'
