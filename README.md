@@ -45,11 +45,40 @@ $ conda install -c conda-forge jaws
 -->
 
 ## Running JAWS
-### Example
-Translating L2 ASCII formats into homogenized netCDF format:
+
+If you are first-time user, please execute the following command to have a copy of *jaws* on your local machine:
+
 ``` html
-$ python jaws.py 'promice.txt' 24
+$ git clone https://github.com/jaws/jaws.git
 ```
+
+If you are an existing user, please use the following command to checkout:
+
+``` html
+$ git checkout master
+```
+
+Translating L2 ASCII formats into homogenized netCDF format:
+
+The current version can convert GCNET, PROMICE and AAWS networks to netCDF format.
+
+The user needs to provide the path to the input file. By default, the output file will be stored within the current directory with the network name (e.g. promice.nc). The user also have the option to give their own path/name to output file.
+
+### Example
+
+Execute the following command once you are inside the source directory.
+
+``` html
+$ python jaws.py ../sample_data/gcnet_20130101.txt
+```
+
+OR
+
+``` html
+$ python jaws.py ../sample_data/promice20160501.txt -o ../converted_file.nc
+```
+
+where '-o' is optional argument to provide user-defined name to output file.
 <!--
 Storing AWS-like data using DSG convention:
 ``` html
