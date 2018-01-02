@@ -55,7 +55,7 @@ $ git clone https://github.com/jaws/jaws.git
 If you are an existing user, please use the following command to checkout:
 
 ``` html
-$ git checkout master
+$ git pull
 ```
 
 Translating L2 ASCII formats into homogenized netCDF format:
