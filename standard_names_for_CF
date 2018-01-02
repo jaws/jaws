@@ -16,14 +16,14 @@ logger_temp: unit is degC
 fan_current: unit is mA
 
 AAWS->
-vtempdiff
+vtempdiff: Unit is 1 and long name is vertical temperature differential.
 
 IMAU->
-shortwave_in
-shortwave_ref
-longwave_in
-longwave_out
-temp_cnr1
+shortwave_in: Not sure if it is downwelling or upwelling
+shortwave_ref: seems like reference but found nothing in cf
+longwave_in: Not sure if it is downwelling or upwelling
+longwave_out: Not sure if it is downwelling or upwelling
+temp_cnr1: Not sure if temperature is air_temperature
 sonic_alt: unit is 'm'
 melt_wire: unit is 'm'
 snow_temp_01: thought of land_snow_temperature but not sure
