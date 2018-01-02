@@ -1,3 +1,7 @@
+2018-01-02  Charlie Zender  <zender@uci.edu>
+
+	* Polished homepage
+
 2017-12-25  Ajay Saini  <sainiak@uci.edu>
 
 	* Networks have individual functions in their files with consistent names. jaws.py contains main function
@@ -8,7 +12,7 @@
 
 2017-12-23  Ajay Saini  <sainiak@uci.edu>
 
-	* imau2nc.py: Work under progress, still haven't recieved complete data from author 
+	* imau2nc.py: Work under progress, still haven't recieved complete data from author
 
 2017-12-14  Ajay Saini  <sainiak@uci.edu>
 
