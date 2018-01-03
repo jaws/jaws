@@ -1,35 +1,23 @@
-Automated Weather Station and AWS-like networks deliver data in 
-idiosyncratic ASCII formats that hinder automated processing and 
-intercomparison among networks. Moreover, station tilt causes 
-significant biases in polar AWS measurements of radiation and wind direction. 
-Our JAWS project addresses these needs by developing a scientific
-software workflow called “Justified AWS” (JAWS) to ingest Level 2 (L2)
-data in the multiple formats now distributed, harmonize it into 
-a common format, and deliver value-added Level 3 (L3) output 
-suitable for distribution by the network operator, analysis by 
-the researcher, and curation by the data center. 
-The JAWS homepage is https://github.com/jaws.
+Summary of Accomplishments:
+From 20171001--20171231 our JAWS project familiarized new personnel with the AWS networks, idiosyncratic data formats, created the website, and issued our first draft software (version 0.1). Software Engineer (SE) Ajay Saini joined UCI and the project on 20171001 and is steadily building-out the software. We had our kick-off meeting with NASA on 20171102. Graduate student Wenshan Wang successfully defended and sumitted her PhD thesis (that includes the RIGB algorithm to be used in JAWS). PI Zender presented a poster on RIGB results at Fall AGU. While there he met with PROMICE manager D. Van As.
 
-From 20170701--20171031 our JAWS project was primarily in the
-organization and recruitment phase. SE Ajay Saini joined the 
-project on 20171001. PD Wenshan Wang successfully defended 
-her PhD thesis on 20171113. Her thesis on the radiative causes 
-of accelerated Greenland melt involved the analysis of SLD albedo, 
-water vapor, and cloud fields from MODIS, MISR, and MERRA.
+Current Progress Description*
+JAWS version 0.1 was released on 20171023. It includes the original scripts Wenshan Wang developed while conducting her thesis research that synthesizes all available AWS networks in Greenland. The SE has updated and converted these scripts to Python. JAWS currently converts GCNet and PROMICE AWS networks to netCDF format. We are maintaining a (growing) list of AWS-measured quantities that have no CF standard_name-equivalent. We will eventually address this by expanding the CF vocabulary based on this list. PI Zender is coordinating Summer 2018 travel plans to visit JAWS collaborators C. Reijmer (IMAU), D. Van As (GEUS), M. Lazzara, and S. Khalsa. Graduate Student (GS) M. Laffin is developing algorithms to classify PDFs and identify wind-speed extrema.
 
-Version 0.1 has been launched on 20171023 which includes the 
-original scripts by PD which she developed while conducting 
-her thesis research,which synthesizes all available AWS networks 
-in Greenland to estimate cloud radiative effects on Greenland melt.
-SE has been working on writing Python scripts to standarize and 
-convert AWS networks to netCDF format.
+Work Plan for Next Reporting Period*
+We are currently finishing and polishing processing for the IMAU and AAWS networks. JAWS version 0.2 will be released in late January once the Antarctic network (AAWS) is further polished. The first Critical Milestone (CM1), refactoring the code into three modular workflow stages, occurs next reporting period. The first stage, translation, is well in-hand. The second stage, metadata annotation is partially complete. We are now introducing value-added science outputs so we have a third stage to modularize. 
 
-The releases completed the first Milestone (M1) of our updated Schedule 
-and Milestone plan approved by NASA. Technical achievements of these releases 
-include designing the command-line tool jaws to convert in situ AWS-like data from 
-L2 (ASCII tables, netCDF) to L3 for PROMICE and GCNET networks. 
-Work is under progress for IMAU, AAWS, Zackenberg networks.
+Schedule Status*
+We are ahead of schedule. The 0.1 release completed the first Milestone (M1) of our updated Schedule and Milestone plan. Feedback gathered at AGU completed M2.
 
-Our aims, consistent with this project, are to increase in situ data accessibility 
-and utility, and enable new derived products, in netCDF format with CF
-conventions.
+Delays/Problems Experienced*
+E-mail communication between the PI and SE was unreliable, resulting in dropped or incomplete requests. The GitHub repository has not fully reflected the status of the project.
+
+Corrective Actions/Recovery Plan*
+We instituted bi-weekly face-to-face JAWS-specific meetings and are now tracking all software issues with GitHub project management tools. The SE is now working fully "in tree" and will update the master repository more frequently.
+
+Technology Readiness Level Assessment*
+We remain at TRL 3. We expect to reach TRL 4 during the next reporting period when CM1 is reached.
+
+Comments*
+Automated Weather Station and AWS-like networks deliver data in idiosyncratic ASCII formats that hinder automated processing and intercomparison among networks. Moreover, AWS datasets would be more user-friendly if they included additional scientific information such as diagnosed tilt-adjustment, zenith angle, and turbulent fluxes. Our project addresses these needs by developing a scientific software workflow called "Justified AWS" (JAWS) to ingest Level 2 (L2) data in the multiple formats now distributed, harmonize it into a common format, and deliver value-added Level 3 (L3) output suitable for distribution by the network operator, analysis by the researcher, and curation by the data center. The JAWS homepage is https://github.com/jaws/jaws.
