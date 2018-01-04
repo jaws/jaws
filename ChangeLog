@@ -1,6 +1,15 @@
+2018-01-03  Ajay Saini  <sainiak@uci.edu>
+
+	* Added optional argument to choose file format. For netCDF3 formats, the code is breaking at some points. Working to resolve it
+
+	* Explored seaborn and xarray package
+
+	* Created $DATA/jaws directory on JAWS at "C:\\Users\\Ajay\\data\\jaws". Raw data available and nc data is available as when converted.
+
 2018-01-02  Ajay Saini  <sainiak@uci.edu>
 
 	* Created daily and monthly plots of summit data
+
 	* Working on adding output option for different netCDF formats
 
 2018-01-02  Charlie Zender  <zender@uci.edu>
@@ -10,36 +19,47 @@
 2018-01-01  Ajay Saini  <sainiak@uci.edu>
 
 	* aaws2nc.py: Created new variable 'time' to calculate seconds since '1970-01-01'
+	
 	* aaws2nc.py: Adjusted 'station_name' variables to accomodate stations having long names
+	
 	* Added functionality to automatically count timesteps in the dataset
+	
 	* Corrected the time calculation function in gcnet2nc.py
 
 2017-12-31  Ajay Saini  <sainiak@uci.edu>
 
 	* Added variable 'station_name' to aaws2nc and promice2nc
+	
 	* Removed nrows argument
+	
 	* Added functionality to automatically count timesteps in the dataset
+	
 	* Corrected the time calculation function in gcnet2nc.py
 
 2017-12-30  Ajay Saini  <sainiak@uci.edu>
 
 	* Created master list of variables that need standard names
+	
 	* gcnet2nc.py, promice2nc.py: Edited op_file to name it as ip_file.nc
+	
 	* jaws.py: edited the parser function to take input accordingly
 
 2017-12-29  Ajay Saini  <sainiak@uci.edu>
 
 	* aaws2nc.py: astropy.io to write data properly in nc format
+	
 	* Added sample one-day datasets of GCNET, PROMICE, AAWS
 	
 2017-12-26  Ajay Saini  <sainiak@uci.edu>
 
 	* Completed NASA SATERN learning assignment
+	
 	* aaws: Collected data and created variables with their units and standard names
 
 2017-12-25  Ajay Saini  <sainiak@uci.edu>
 
 	* Restructured the source directory and created jaws.py as main function
+	
 	* gcnet2nc.py and promice2nc.py scripts respectively for GCNET and PROMICE networks
 	
 2017-12-24  Ajay Saini  <sainiak@uci.edu>
@@ -93,4 +113,5 @@
 2017-10-09  Ajay Saini  <sainiak@uci.edu>
 
 	* Initial commit
+	
 	* README.md: Instructions about jaws
