@@ -17,7 +17,20 @@ def gcnet2nc(args):
 	op_file = 'gcnet.nc'
 	if args.output:
 		op_file = str(args.output)
-	root_grp = Dataset(op_file, 'w', format='NETCDF4')
+
+	if args.format == 3:
+		root_grp = Dataset(op_file, 'w', format='NETCDF3_CLASSIC')
+	elif args.format == 4:
+		root_grp = Dataset(op_file, 'w', format='NETCDF4')
+	elif args.format == 5:
+		root_grp = Dataset(op_file, 'w', format='NETCDF3_64BIT_DATA')
+	elif args.format == 6:
+		root_grp = Dataset(op_file, 'w', format='NETCDF3_64BIT_OFFSET')
+	elif args.format == 7:
+		root_grp = Dataset(op_file, 'w', format='NETCDF4_CLASSIC')
+	else:
+		root_grp = Dataset(op_file, 'w', format='NETCDF4')
+	
 	root_grp.TITLE = 'Surface Radiation Data from Greenland Climate Network'
 	root_grp.SOURCE = 'Surface Observations'
 	root_grp.INSTITUTION = 'Cooperative Institute for Research in Enviornmental Sciences'
