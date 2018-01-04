@@ -51,6 +51,12 @@ If you are first-time user, execute this to copy *jaws* to your local machine:
 $ git clone https://github.com/jaws/jaws.git
 ```
 
+If you have a GitHub account and wish to contribute to JAWS, clone via SSH instead:
+
+``` html
+$ git clone git@github.com:/jaws/jaws.git
+```
+
 If you are an existing user, update your repository to the current version:
 
 ``` html
