@@ -6,10 +6,6 @@
 
 	* Created $DATA/jaws directory on JAWS at "C:\\Users\\Ajay\\data\\jaws". Raw data available and nc data is available as when converted.
 
-2018-01-03  Charlie Zender  <zender@uci.edu>
-
-	* Add submitted quarterly report
-
 2018-01-02  Ajay Saini  <sainiak@uci.edu>
 
 	* Created daily and monthly plots of summit data
@@ -18,7 +14,7 @@
 
 2018-01-02  Charlie Zender  <zender@uci.edu>
 
-	* Polish homepage
+	* Polished homepage
 
 2018-01-01  Ajay Saini  <sainiak@uci.edu>
 
@@ -53,7 +49,7 @@
 	* aaws2nc.py: astropy.io to write data properly in nc format
 	
 	* Added sample one-day datasets of GCNET, PROMICE, AAWS
-
+	
 2017-12-26  Ajay Saini  <sainiak@uci.edu>
 
 	* Completed NASA SATERN learning assignment
@@ -65,7 +61,7 @@
 	* Restructured the source directory and created jaws.py as main function
 	
 	* gcnet2nc.py and promice2nc.py scripts respectively for GCNET and PROMICE networks
-
+	
 2017-12-24  Ajay Saini  <sainiak@uci.edu>
 
 	* Draft of Quarterly Technical Report
