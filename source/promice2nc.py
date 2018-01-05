@@ -101,173 +101,173 @@ def promice2nc(args):
 	time.calendar = 'standard'
 	
 	year.units = '1'
-	year.original_name = 'Year'
+	year.long_name = 'Year'
 
 	month.units = '1'
-	month.original_name = 'MonthOfYear'
+	month.long_name = 'Month of Year'
 	
 	day.units = '1'
-	day.original_name = 'DayOfMonth'
+	day.long_name = 'Day of Month'
 	
 	hour.units = '1'
-	hour.original_name = 'HourOfDay(UTC)'
+	hour.long_name = 'Hour of Day(UTC)'
 	
 	day_of_year.units = '1'
-	day_of_year.original_name = 'DayOfYear'
+	day_of_year.long_name = 'Day of Year'
 	
 	day_of_century.units = '1'
-	day_of_century.original_name = 'DayOfCentury'
+	day_of_century.long_name = 'Day of Century'
 	
 	air_pressure.units = 'hPa'
-	air_pressure.original_name = 'AirPressure'
+	air_pressure.long_name = 'Air Pressure'
 	air_pressure.standard_name = 'air_pressure'
 
 	air_temperature.units = 'degC'
-	air_temperature.original_name = 'AirTemperature'
+	air_temperature.long_name = 'Air Temperature'
 	air_temperature.standard_name = 'air_temperature'
 	
 	air_temperature_hygroclip.units = 'degC'
-	air_temperature_hygroclip.original_name = 'AirTemperatureHygroClip'
+	air_temperature_hygroclip.long_name = 'Air Temperature HygroClip'
 	air_temperature_hygroclip.standard_name = 'air_temperature'
 
 	relative_humidity_wrtwater.units = '%'
-	relative_humidity_wrtwater.original_name = 'RelativeHumidity_wrtWater'
+	relative_humidity_wrtwater.long_name = 'Relative Humidity wrt Water'
 	relative_humidity_wrtwater.standard_name = 'relative_humidity'
 
 	relative_humidity.units = '%'
-	relative_humidity.original_name = 'RelativeHumidity'
+	relative_humidity.long_name = 'Relative Humidity'
 	relative_humidity.standard_name = 'relative_humidity'
 
 	wind_speed.units = 'm/s'
-	wind_speed.original_name = 'WindSpeed'
+	wind_speed.long_name = 'Wind Speed'
 	wind_speed.standard_name = 'wind_speed'
 
 	wind_direction.units = 'deg'
-	wind_direction.original_name = 'WindDirection'
+	wind_direction.long_name = 'Wind Direction'
 	wind_direction.standard_name = 'wind_from_direction'
 
 	shortwave_radiation_down.units = 'W m-2'
-	shortwave_radiation_down.original_name = 'ShortwaveRadiationDown'
+	shortwave_radiation_down.long_name = 'Shortwave Radiation Down'
 	shortwave_radiation_down.standard_name = 'downwelling_shortwave_flux_in_air'
 
 	shortwave_radiation_down_cor.units = 'W m-2'
-	shortwave_radiation_down_cor.original_name = 'ShortwaveRadiationDown_Cor'
+	shortwave_radiation_down_cor.long_name = 'Shortwave Radiation Down Cor'
 	shortwave_radiation_down_cor.standard_name = 'downwelling_shortwave_flux_in_air'
 
 	shortwave_radiation_up.units = 'W m-2'
-	shortwave_radiation_up.original_name = 'ShortwaveRadiationUp'
+	shortwave_radiation_up.long_name = 'Shortwave Radiation Up'
 	shortwave_radiation_up.standard_name = 'upwelling_shortwave_flux_in_air'
 
 	shortwave_radiation_up_cor.units = 'W m-2'
-	shortwave_radiation_up_cor.original_name = 'ShortwaveRadiationUp_Cor'
+	shortwave_radiation_up_cor.long_name = 'Shortwave Radiation Up Cor'
 	shortwave_radiation_up_cor.standard_name = 'upwelling_shortwave_flux_in_air'
 
 	albedo_theta.units = '1'
-	albedo_theta.original_name = 'Albedo_theta<70d'
+	albedo_theta.long_name = 'Albedo_theta<70d'
 	albedo_theta.standard_name = 'surface_albedo'
 
 	longwave_radiation_down.units = 'W m-2'
-	longwave_radiation_down.original_name = 'LongwaveRadiationDown'
+	longwave_radiation_down.long_name = 'Longwave Radiation Down'
 	longwave_radiation_down.standard_name = 'downwelling_longwave_flux_in_air'
 
 	longwave_radiation_up.units = 'W m-2'
-	longwave_radiation_up.original_name = 'LongwaveRadiationUp'
+	longwave_radiation_up.long_name = 'Longwave Radiation Up'
 	longwave_radiation_up.standard_name = 'upwelling_longwave_flux_in_air'
 
 	cloudcover.units = '1'
-	cloudcover.original_name = 'CloudCover'
+	cloudcover.long_name = 'Cloud Cover'
 	#cloudcover.standard_name = ''
 
 	surface_temp.units = 'degC'
-	surface_temp.original_name = 'surface_temperature'
+	surface_temp.long_name = 'Surface Temperature'
 	surface_temp.standard_name = 'surface_temperature'
 
 	height_sensor_boom.units = 'm'
-	height_sensor_boom.original_name = 'HeightSensorBoom'
+	height_sensor_boom.long_name = 'Height Sensor Boom'
 	#height_sensor_boom.standard_name = ''
 
 	height_stakes.units = 'm'
-	height_stakes.original_name = 'HeightStakes'
+	height_stakes.long_name = 'Height Stakes'
 	#height_stakes.standard_name = ''
 
 	depth_pressure_transducer.units = 'm'
-	depth_pressure_transducer.original_name = 'DepthPressureTransducer'
+	depth_pressure_transducer.long_name = 'Depth Pressure Transducer'
 	#depth_pressure_transducer.standard_name = ''
 
 	depth_pressure_transducer_cor.units = 'm'
-	depth_pressure_transducer_cor.original_name = 'DepthPressureTransducer_Cor'
+	depth_pressure_transducer_cor.long_name = 'Depth Pressure Transducer Cor'
 	#depth_pressure_transducer_cor.standard_name = ''
 
 	ice_temp_01.units = 'degC'
-	ice_temp_01.original_name = 'IceTemperature1'
+	ice_temp_01.long_name = 'Ice Temperature 1'
 	ice_temp_01.standard_name = 'land_ice_temperature'
 
 	ice_temp_02.units = 'degC'
-	ice_temp_02.original_name = 'IceTemperature2'
+	ice_temp_02.long_name = 'Ice Temperature 2'
 	ice_temp_02.standard_name = 'land_ice_temperature'
 	
 	ice_temp_03.units = 'degC'
-	ice_temp_03.original_name = 'IceTemperature3'
+	ice_temp_03.long_name = 'Ice Temperature 3'
 	ice_temp_03.standard_name = 'land_ice_temperature'
 	
 	ice_temp_04.units = 'degC'
-	ice_temp_04.original_name = 'IceTemperature4'
+	ice_temp_04.long_name = 'Ice Temperature 4'
 	ice_temp_04.standard_name = 'land_ice_temperature'
 
 	ice_temp_05.units = 'degC'
-	ice_temp_05.original_name = 'IceTemperature5'
+	ice_temp_05.long_name = 'Ice Temperature 5'
 	ice_temp_05.standard_name = 'land_ice_temperature'
 
 	ice_temp_06.units = 'degC'
-	ice_temp_06.original_name = 'IceTemperature6'
+	ice_temp_06.long_name = 'IceTemperature6'
 	ice_temp_06.standard_name = 'land_ice_temperature'
 
 	ice_temp_07.units = 'degC'
-	ice_temp_07.original_name = 'IceTemperature7'
+	ice_temp_07.long_name = 'Ice Temperature 7'
 	ice_temp_07.standard_name = 'land_ice_temperature'
 
 	ice_temp_08.units = 'degC'
-	ice_temp_08.original_name = 'IceTemperature8'
+	ice_temp_08.long_name = 'Ice Temperature 8'
 	ice_temp_08.standard_name = 'land_ice_temperature'
 
 	tilt_east.units = 'deg'
-	tilt_east.original_name = 'TiltToEast'
+	tilt_east.long_name = 'Tilt to East'
 	#tilt_east.standard_name = ''
 
 	tilt_north.units = 'deg'
-	tilt_north.original_name = 'TiltToNorth'
+	tilt_north.long_name = 'Tilt to North'
 	#tilt_north.standard_name = ''
 
 	time_gps.units = 'UTC'
-	time_gps.original_name = 'TimeGPS(hhmmssUTC)'
+	time_gps.long_name = 'Time GPS(hhmmssUTC)'
 	time_gps.standard_name = 'time'
 
 	latitude.units = 'ddmm'
-	latitude.original_name = 'LatitudeGPS'
+	latitude.long_name = 'Latitude GPS'
 	latitude.standard_name = 'latitude'
 
 	longitude.units = 'ddmm'
-	longitude.original_name = 'LongitudeGPS'
+	longitude.long_name = 'Longitude GPS'
 	longitude.standard_name = 'longitude'
 
 	elevation.units = 'm'
-	elevation.original_name = 'ElevationGPS'
+	elevation.long_name = 'Elevation GPS'
 	#elevation.standard_name = ''
 
 	hor_dil_prec.units = '1'
-	hor_dil_prec.original_name = 'HorDilOfPrecGPS'
+	hor_dil_prec.long_name = 'Hor Dil of Prec GPS'
 	#hor_dil_prec.standard_name = ''
 
 	logger_temp.units = 'degC'
-	logger_temp.original_name = 'LoggerTemperature'
+	logger_temp.long_name = 'Logger Temperature'
 	#logger_temp.standard_name = ''
 
 	fan_current.units = 'mA'
-	fan_current.original_name = 'FanCurrent'
+	fan_current.long_name = 'Fan Current'
 	#fan_current.standard_name = ''
 
 	battery_voltage.units = 'V'
-	battery_voltage.original_name = 'BatteryVoltage'
+	battery_voltage.long_name = 'Battery Voltage'
 	battery_voltage.standard_name = 'battery_voltage'
 
 	
