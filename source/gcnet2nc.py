@@ -8,6 +8,7 @@ def gcnet2nc(args):
 	count, a = 0, 0
 	while a < 54:
 		f.readline()
+		a += 1
 	for line in f:
 		count += 1
 	f.close()
@@ -94,7 +95,7 @@ def gcnet2nc(args):
 	qc9 = root_grp.createVariable('qc9', 'i8', ('time',))
 	qc17 = root_grp.createVariable('qc17', 'i8', ('time',))
 	qc25 = root_grp.createVariable('qc25', 'i8', ('time',))
-
+	'''
 	qc_swdn = root_grp.createVariable('qc_swdn', 'S1', ('time',))
 	qc_swup = root_grp.createVariable('qc_swup', 'S1', ('time',))
 	qc_netradiation = root_grp.createVariable('qc_netradiation', 'S1', ('time',))
@@ -122,7 +123,7 @@ def gcnet2nc(args):
 	qc_tsnow9 = root_grp.createVariable('qc_tsnow9', 'S1', ('time',))
 	qc_tsnow10 = root_grp.createVariable('qc_tsnow10', 'S1', ('time',))
 	qc_battery = root_grp.createVariable('qc_battery', 'S1', ('time',))
-	
+	'''
 	time = root_grp.createVariable('time', 'i4', ('time',))
 
 
@@ -336,7 +337,7 @@ def gcnet2nc(args):
 	time.bounds = 'time_bnds'
 	time.note = 'Created new derived variable'
 
-
+	print "converting data"
 	i,j = 0,0
 	ip_file = open(str(args.input), 'r')
 
@@ -403,7 +404,7 @@ def gcnet2nc(args):
 	    qc25[j] = columns[51]
 	    j += 1
 
-
+	'''
 	qc1_str = [str(e) for e in qc1]
 	qc9_str = [str(e) for e in qc9]
 	qc17_str = [str(e) for e in qc17]
@@ -459,7 +460,7 @@ def gcnet2nc(args):
 		qc_battery[k] = qc25_str[k][l+2]
 
 		k += 1
-		
+	'''	
 #############################################################################################################################################################
 
 	#qc1_str = ''.join(str(e) for e in qc1)
