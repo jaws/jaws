@@ -75,6 +75,7 @@ $conda install atropy.io
 
 More details can be found on its [webpage](http://docs.astropy.org/en/stable/install.html)
 
+* argparse: As of Python >= 2.7 and >= 3.2, the argparse module is maintained within the Python standard library. 
 
 Translating L2 ASCII formats into homogenized netCDF format:
 
