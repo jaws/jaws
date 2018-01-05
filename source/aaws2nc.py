@@ -88,7 +88,7 @@ def aaws2nc(args):
 	wind_dir.standard_name = 'wind_from_direction'
 
 	wind_spd.units = 'ms-1'
-	wind_spd.original_var_name = 'wind speed'
+	wind_spd.long_name = 'wind speed'
 	wind_spd.standard_name = 'wind_speed'
 	
 	
