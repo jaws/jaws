@@ -79,13 +79,13 @@ More details can be found on its [webpage](http://docs.astropy.org/en/stable/ins
 
 
 
+### Example
+
 Translating L2 ASCII formats into homogenized netCDF format:
 
 The current version can translate ASCII data from the GCNet, PROMICE and AAWS networks to netCDF format.
 
 The user provides the input file path. By default, the output file will be stored within the current directory with the network name (e.g. promice.nc). The user can optionally give their own output path/name.
-
-### Example
 
 Execute this from the top-level JAWS directory:
 
