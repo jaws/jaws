@@ -125,6 +125,7 @@ def gcnet2nc(args):
 	qc_battery = root_grp.createVariable('qc_battery', 'S1', ('time',))
 	'''
 	time = root_grp.createVariable('time', 'i4', ('time',))
+	date_derived = root_grp.createVariable('date_derived', 'S10', ('time',))
 
 
 	station_number.units = '1'
@@ -337,7 +338,9 @@ def gcnet2nc(args):
 	time.bounds = 'time_bnds'
 	time.note = 'Created new derived variable'
 
-	print "converting data"
+	date_derived.note = 'Created date from year and julian decimal time.'
+	
+	print "converting data..."
 	i,j = 0,0
 	ip_file = open(str(args.input), 'r')
 
@@ -528,5 +531,1104 @@ def gcnet2nc(args):
 	for item in julian_decimal_time:
 	    time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400
 	    m += 1
+
+	n = 0
+	for item in julian_decimal_time:
+		if int(julian_decimal_time[n]) == 1:
+			date_derived[n] = str(year[n])+'-01-01'
+			n += 1
+		elif int(julian_decimal_time[n]) == 2:
+			date_derived[n] = str(year[n])+'-01-02'
+			n += 1
+		elif int(julian_decimal_time[n]) == 3:
+			date_derived[n] = str(year[n])+'-01-03'
+			n += 1
+		elif int(julian_decimal_time[n]) == 4:
+			date_derived[n] = str(year[n])+'-01-04'
+			n += 1
+		elif int(julian_decimal_time[n]) == 5:
+			date_derived[n] = str(year[n])+'-01-05'
+			n += 1
+		elif int(julian_decimal_time[n]) == 6:
+			date_derived[n] = str(year[n])+'-01-06'
+			n += 1
+		elif int(julian_decimal_time[n]) == 7:
+			date_derived[n] = str(year[n])+'-01-07'
+			n += 1
+		elif int(julian_decimal_time[n]) == 8:
+			date_derived[n] = str(year[n])+'-01-08'
+			n += 1
+		elif int(julian_decimal_time[n]) == 9:
+			date_derived[n] = str(year[n])+'-01-09'
+			n += 1
+		elif int(julian_decimal_time[n]) == 10:
+			date_derived[n] = str(year[n])+'-01-10'
+			n += 1
+		elif int(julian_decimal_time[n]) == 11:
+			date_derived[n] = str(year[n])+'-01-11'
+			n += 1
+		elif int(julian_decimal_time[n]) == 12:
+			date_derived[n] = str(year[n])+'-01-12'
+			n += 1
+		elif int(julian_decimal_time[n]) == 13:
+			date_derived[n] = str(year[n])+'-01-13'
+			n += 1
+		elif int(julian_decimal_time[n]) == 14:
+			date_derived[n] = str(year[n])+'-01-14'
+			n += 1
+		elif int(julian_decimal_time[n]) == 15:
+			date_derived[n] = str(year[n])+'-01-15'
+			n += 1
+		elif int(julian_decimal_time[n]) == 16:
+			date_derived[n] = str(year[n])+'-01-16'
+			n += 1
+		elif int(julian_decimal_time[n]) == 17:
+			date_derived[n] = str(year[n])+'-01-17'
+			n += 1
+		elif int(julian_decimal_time[n]) == 18:
+			date_derived[n] = str(year[n])+'-01-18'
+			n += 1
+		elif int(julian_decimal_time[n]) == 19:
+			date_derived[n] = str(year[n])+'-01-19'
+			n += 1
+		elif int(julian_decimal_time[n]) == 20:
+			date_derived[n] = str(year[n])+'-01-20'
+			n += 1
+		elif int(julian_decimal_time[n]) == 21:
+			date_derived[n] = str(year[n])+'-01-21'
+			n += 1
+		elif int(julian_decimal_time[n]) == 22:
+			date_derived[n] = str(year[n])+'-01-22'
+			n += 1
+		elif int(julian_decimal_time[n]) == 23:
+			date_derived[n] = str(year[n])+'-01-23'
+			n += 1
+		elif int(julian_decimal_time[n]) == 24:
+			date_derived[n] = str(year[n])+'-01-24'
+			n += 1
+		elif int(julian_decimal_time[n]) == 25:
+			date_derived[n] = str(year[n])+'-01-25'
+			n += 1
+		elif int(julian_decimal_time[n]) == 26:
+			date_derived[n] = str(year[n])+'-01-26'
+			n += 1
+		elif int(julian_decimal_time[n]) == 27:
+			date_derived[n] = str(year[n])+'-01-27'
+			n += 1
+		elif int(julian_decimal_time[n]) == 28:
+			date_derived[n] = str(year[n])+'-01-28'
+			n += 1
+		elif int(julian_decimal_time[n]) == 29:
+			date_derived[n] = str(year[n])+'-01-29'
+			n += 1
+		elif int(julian_decimal_time[n]) == 30:
+			date_derived[n] = str(year[n])+'-01-30'
+			n += 1
+		elif int(julian_decimal_time[n]) == 31:
+			date_derived[n] = str(year[n])+'-01-31'
+			n += 1
+		elif int(julian_decimal_time[n]) == 32:
+			date_derived[n] = str(year[n])+'-02-01'
+			n += 1
+		elif int(julian_decimal_time[n]) == 33:
+			date_derived[n] = str(year[n])+'-02-02'
+			n += 1
+		elif int(julian_decimal_time[n]) == 34:
+			date_derived[n] = str(year[n])+'-02-03'
+			n += 1
+		elif int(julian_decimal_time[n]) == 35:
+			date_derived[n] = str(year[n])+'-02-04'
+			n += 1
+		elif int(julian_decimal_time[n]) == 36:
+			date_derived[n] = str(year[n])+'-02-05'
+			n += 1
+		elif int(julian_decimal_time[n]) == 37:
+			date_derived[n] = str(year[n])+'-02-06'
+			n += 1
+		elif int(julian_decimal_time[n]) == 38:
+			date_derived[n] = str(year[n])+'-02-07'
+			n += 1
+		elif int(julian_decimal_time[n]) == 39:
+			date_derived[n] = str(year[n])+'-02-08'
+			n += 1
+		elif int(julian_decimal_time[n]) == 40:
+			date_derived[n] = str(year[n])+'-02-09'
+			n += 1
+		elif int(julian_decimal_time[n]) == 41:
+			date_derived[n] = str(year[n])+'-02-10'
+			n += 1
+		elif int(julian_decimal_time[n]) == 42:
+			date_derived[n] = str(year[n])+'-02-11'
+			n += 1
+		elif int(julian_decimal_time[n]) == 43:
+			date_derived[n] = str(year[n])+'-02-12'
+			n += 1
+		elif int(julian_decimal_time[n]) == 44:
+			date_derived[n] = str(year[n])+'-02-13'
+			n += 1
+		elif int(julian_decimal_time[n]) == 45:
+			date_derived[n] = str(year[n])+'-02-14'
+			n += 1
+		elif int(julian_decimal_time[n]) == 46:
+			date_derived[n] = str(year[n])+'-02-15'
+			n += 1
+		elif int(julian_decimal_time[n]) == 47:
+			date_derived[n] = str(year[n])+'-02-16'
+			n += 1
+		elif int(julian_decimal_time[n]) == 48:
+			date_derived[n] = str(year[n])+'-02-17'
+			n += 1
+		elif int(julian_decimal_time[n]) == 49:
+			date_derived[n] = str(year[n])+'-02-18'
+			n += 1
+		elif int(julian_decimal_time[n]) == 50:
+			date_derived[n] = str(year[n])+'-02-19'
+			n += 1
+		elif int(julian_decimal_time[n]) == 51:
+			date_derived[n] = str(year[n])+'-02-20'
+			n += 1
+		elif int(julian_decimal_time[n]) == 52:
+			date_derived[n] = str(year[n])+'-02-21'
+			n += 1
+		elif int(julian_decimal_time[n]) == 53:
+			date_derived[n] = str(year[n])+'-02-22'
+			n += 1
+		elif int(julian_decimal_time[n]) == 54:
+			date_derived[n] = str(year[n])+'-02-23'
+			n += 1
+		elif int(julian_decimal_time[n]) == 55:
+			date_derived[n] = str(year[n])+'-02-24'
+			n += 1
+		elif int(julian_decimal_time[n]) == 56:
+			date_derived[n] = str(year[n])+'-02-25'
+			n += 1
+		elif int(julian_decimal_time[n]) == 57:
+			date_derived[n] = str(year[n])+'-02-26'
+			n += 1
+		elif int(julian_decimal_time[n]) == 58:
+			date_derived[n] = str(year[n])+'-02-27'
+			n += 1
+		elif int(julian_decimal_time[n]) == 59:
+			date_derived[n] = str(year[n])+'-02-28'
+			n += 1
+		elif int(julian_decimal_time[n]) == 60:
+			date_derived[n] = str(year[n])+'-03-01'
+			n += 1
+		elif int(julian_decimal_time[n]) == 61:
+			date_derived[n] = str(year[n])+'-03-02'
+			n += 1
+		elif int(julian_decimal_time[n]) == 62:
+			date_derived[n] = str(year[n])+'-03-03'
+			n += 1
+		elif int(julian_decimal_time[n]) == 63:
+			date_derived[n] = str(year[n])+'-03-04'
+			n += 1
+		elif int(julian_decimal_time[n]) == 64:
+			date_derived[n] = str(year[n])+'-03-05'
+			n += 1
+		elif int(julian_decimal_time[n]) == 65:
+			date_derived[n] = str(year[n])+'-03-06'
+			n += 1
+		elif int(julian_decimal_time[n]) == 66:
+			date_derived[n] = str(year[n])+'-03-07'
+			n += 1
+		elif int(julian_decimal_time[n]) == 67:
+			date_derived[n] = str(year[n])+'-03-08'
+			n += 1
+		elif int(julian_decimal_time[n]) == 68:
+			date_derived[n] = str(year[n])+'-03-09'
+			n += 1
+		elif int(julian_decimal_time[n]) == 69:
+			date_derived[n] = str(year[n])+'-03-10'
+			n += 1
+		elif int(julian_decimal_time[n]) == 70:
+			date_derived[n] = str(year[n])+'-03-11'
+			n += 1
+		elif int(julian_decimal_time[n]) == 71:
+			date_derived[n] = str(year[n])+'-03-12'
+			n += 1
+		elif int(julian_decimal_time[n]) == 72:
+			date_derived[n] = str(year[n])+'-03-13'
+			n += 1
+		elif int(julian_decimal_time[n]) == 73:
+			date_derived[n] = str(year[n])+'-03-14'
+			n += 1
+		elif int(julian_decimal_time[n]) == 74:
+			date_derived[n] = str(year[n])+'-03-15'
+			n += 1
+		elif int(julian_decimal_time[n]) == 75:
+			date_derived[n] = str(year[n])+'-03-16'
+			n += 1
+		elif int(julian_decimal_time[n]) == 76:
+			date_derived[n] = str(year[n])+'-03-17'
+			n += 1
+		elif int(julian_decimal_time[n]) == 77:
+			date_derived[n] = str(year[n])+'-03-18'
+			n += 1
+		elif int(julian_decimal_time[n]) == 78:
+			date_derived[n] = str(year[n])+'-03-19'
+			n += 1
+		elif int(julian_decimal_time[n]) == 79:
+			date_derived[n] = str(year[n])+'-03-20'
+			n += 1
+		elif int(julian_decimal_time[n]) == 80:
+			date_derived[n] = str(year[n])+'-03-21'
+			n += 1
+		elif int(julian_decimal_time[n]) == 81:
+			date_derived[n] = str(year[n])+'-03-22'
+			n += 1
+		elif int(julian_decimal_time[n]) == 82:
+			date_derived[n] = str(year[n])+'-03-23'
+			n += 1
+		elif int(julian_decimal_time[n]) == 83:
+			date_derived[n] = str(year[n])+'-03-24'
+			n += 1
+		elif int(julian_decimal_time[n]) == 84:
+			date_derived[n] = str(year[n])+'-03-25'
+			n += 1
+		elif int(julian_decimal_time[n]) == 85:
+			date_derived[n] = str(year[n])+'-03-26'
+			n += 1
+		elif int(julian_decimal_time[n]) == 86:
+			date_derived[n] = str(year[n])+'-03-27'
+			n += 1
+		elif int(julian_decimal_time[n]) == 87:
+			date_derived[n] = str(year[n])+'-03-28'
+			n += 1
+		elif int(julian_decimal_time[n]) == 88:
+			date_derived[n] = str(year[n])+'-03-29'
+			n += 1
+		elif int(julian_decimal_time[n]) == 89:
+			date_derived[n] = str(year[n])+'-03-30'
+			n += 1
+		elif int(julian_decimal_time[n]) == 90:
+			date_derived[n] = str(year[n])+'-03-31'
+			n += 1
+		elif int(julian_decimal_time[n]) == 91:
+			date_derived[n] = str(year[n])+'-04-01'
+			n += 1
+		elif int(julian_decimal_time[n]) == 92:
+			date_derived[n] = str(year[n])+'-04-02'
+			n += 1
+		elif int(julian_decimal_time[n]) == 93:
+			date_derived[n] = str(year[n])+'-04-03'
+			n += 1
+		elif int(julian_decimal_time[n]) == 94:
+			date_derived[n] = str(year[n])+'-04-04'
+			n += 1
+		elif int(julian_decimal_time[n]) == 95:
+			date_derived[n] = str(year[n])+'-04-05'
+			n += 1
+		elif int(julian_decimal_time[n]) == 96:
+			date_derived[n] = str(year[n])+'-04-06'
+			n += 1
+		elif int(julian_decimal_time[n]) == 97:
+			date_derived[n] = str(year[n])+'-04-07'
+			n += 1
+		elif int(julian_decimal_time[n]) == 98:
+			date_derived[n] = str(year[n])+'-04-08'
+			n += 1
+		elif int(julian_decimal_time[n]) == 99:
+			date_derived[n] = str(year[n])+'-04-09'
+			n += 1
+		elif int(julian_decimal_time[n]) == 100:
+			date_derived[n] = str(year[n])+'-04-10'
+			n += 1
+		elif int(julian_decimal_time[n]) == 101:
+			date_derived[n] = str(year[n])+'-04-11'
+			n += 1
+		elif int(julian_decimal_time[n]) == 102:
+			date_derived[n] = str(year[n])+'-04-12'
+			n += 1
+		elif int(julian_decimal_time[n]) == 103:
+			date_derived[n] = str(year[n])+'-04-13'
+			n += 1
+		elif int(julian_decimal_time[n]) == 104:
+			date_derived[n] = str(year[n])+'-04-14'
+			n += 1
+		elif int(julian_decimal_time[n]) == 105:
+			date_derived[n] = str(year[n])+'-04-15'
+			n += 1
+		elif int(julian_decimal_time[n]) == 106:
+			date_derived[n] = str(year[n])+'-04-16'
+			n += 1
+		elif int(julian_decimal_time[n]) == 107:
+			date_derived[n] = str(year[n])+'-04-17'
+			n += 1
+		elif int(julian_decimal_time[n]) == 108:
+			date_derived[n] = str(year[n])+'-04-18'
+			n += 1
+		elif int(julian_decimal_time[n]) == 109:
+			date_derived[n] = str(year[n])+'-04-19'
+			n += 1
+		elif int(julian_decimal_time[n]) == 110:
+			date_derived[n] = str(year[n])+'-04-20'
+			n += 1
+		elif int(julian_decimal_time[n]) == 111:
+			date_derived[n] = str(year[n])+'-04-21'
+			n += 1
+		elif int(julian_decimal_time[n]) == 112:
+			date_derived[n] = str(year[n])+'-04-22'
+			n += 1
+		elif int(julian_decimal_time[n]) == 113:
+			date_derived[n] = str(year[n])+'-04-23'
+			n += 1
+		elif int(julian_decimal_time[n]) == 114:
+			date_derived[n] = str(year[n])+'-04-24'
+			n += 1
+		elif int(julian_decimal_time[n]) == 115:
+			date_derived[n] = str(year[n])+'-04-25'
+			n += 1
+		elif int(julian_decimal_time[n]) == 116:
+			date_derived[n] = str(year[n])+'-04-26'
+			n += 1
+		elif int(julian_decimal_time[n]) == 117:
+			date_derived[n] = str(year[n])+'-04-27'
+			n += 1
+		elif int(julian_decimal_time[n]) == 118:
+			date_derived[n] = str(year[n])+'-04-28'
+			n += 1
+		elif int(julian_decimal_time[n]) == 119:
+			date_derived[n] = str(year[n])+'-04-29'
+			n += 1
+		elif int(julian_decimal_time[n]) == 120:
+			date_derived[n] = str(year[n])+'-04-30'
+			n += 1
+		elif int(julian_decimal_time[n]) == 121:
+			date_derived[n] = str(year[n])+'-05-01'
+			n += 1
+		elif int(julian_decimal_time[n]) == 122:
+			date_derived[n] = str(year[n])+'-05-02'
+			n += 1
+		elif int(julian_decimal_time[n]) == 123:
+			date_derived[n] = str(year[n])+'-05-03'
+			n += 1
+		elif int(julian_decimal_time[n]) == 124:
+			date_derived[n] = str(year[n])+'-05-04'
+			n += 1
+		elif int(julian_decimal_time[n]) == 125:
+			date_derived[n] = str(year[n])+'-05-05'
+			n += 1
+		elif int(julian_decimal_time[n]) == 126:
+			date_derived[n] = str(year[n])+'-05-06'
+			n += 1
+		elif int(julian_decimal_time[n]) == 127:
+			date_derived[n] = str(year[n])+'-05-07'
+			n += 1
+		elif int(julian_decimal_time[n]) == 128:
+			date_derived[n] = str(year[n])+'-05-08'
+			n += 1
+		elif int(julian_decimal_time[n]) == 129:
+			date_derived[n] = str(year[n])+'-05-09'
+			n += 1
+		elif int(julian_decimal_time[n]) == 130:
+			date_derived[n] = str(year[n])+'-05-10'
+			n += 1
+		elif int(julian_decimal_time[n]) == 131:
+			date_derived[n] = str(year[n])+'-05-11'
+			n += 1
+		elif int(julian_decimal_time[n]) == 132:
+			date_derived[n] = str(year[n])+'-05-12'
+			n += 1
+		elif int(julian_decimal_time[n]) == 133:
+			date_derived[n] = str(year[n])+'-05-13'
+			n += 1
+		elif int(julian_decimal_time[n]) == 134:
+			date_derived[n] = str(year[n])+'-05-14'
+			n += 1
+		elif int(julian_decimal_time[n]) == 135:
+			date_derived[n] = str(year[n])+'-05-15'
+			n += 1
+		elif int(julian_decimal_time[n]) == 136:
+			date_derived[n] = str(year[n])+'-05-16'
+			n += 1
+		elif int(julian_decimal_time[n]) == 137:
+			date_derived[n] = str(year[n])+'-05-17'
+			n += 1
+		elif int(julian_decimal_time[n]) == 138:
+			date_derived[n] = str(year[n])+'-05-18'
+			n += 1
+		elif int(julian_decimal_time[n]) == 139:
+			date_derived[n] = str(year[n])+'-05-19'
+			n += 1
+		elif int(julian_decimal_time[n]) == 140:
+			date_derived[n] = str(year[n])+'-05-20'
+			n += 1
+		elif int(julian_decimal_time[n]) == 141:
+			date_derived[n] = str(year[n])+'-05-21'
+			n += 1
+		elif int(julian_decimal_time[n]) == 142:
+			date_derived[n] = str(year[n])+'-05-22'
+			n += 1
+		elif int(julian_decimal_time[n]) == 143:
+			date_derived[n] = str(year[n])+'-05-23'
+			n += 1
+		elif int(julian_decimal_time[n]) == 144:
+			date_derived[n] = str(year[n])+'-05-24'
+			n += 1
+		elif int(julian_decimal_time[n]) == 145:
+			date_derived[n] = str(year[n])+'-05-25'
+			n += 1
+		elif int(julian_decimal_time[n]) == 146:
+			date_derived[n] = str(year[n])+'-05-26'
+			n += 1
+		elif int(julian_decimal_time[n]) == 147:
+			date_derived[n] = str(year[n])+'-05-27'
+			n += 1
+		elif int(julian_decimal_time[n]) == 148:
+			date_derived[n] = str(year[n])+'-05-28'
+			n += 1
+		elif int(julian_decimal_time[n]) == 149:
+			date_derived[n] = str(year[n])+'-05-29'
+			n += 1
+		elif int(julian_decimal_time[n]) == 150:
+			date_derived[n] = str(year[n])+'-05-30'
+			n += 1
+		elif int(julian_decimal_time[n]) == 151:
+			date_derived[n] = str(year[n])+'-05-31'
+			n += 1
+		elif int(julian_decimal_time[n]) == 152:
+			date_derived[n] = str(year[n])+'-06-01'
+			n += 1
+		elif int(julian_decimal_time[n]) == 153:
+			date_derived[n] = str(year[n])+'-06-02'
+			n += 1
+		elif int(julian_decimal_time[n]) == 154:
+			date_derived[n] = str(year[n])+'-06-03'
+			n += 1
+		elif int(julian_decimal_time[n]) == 155:
+			date_derived[n] = str(year[n])+'-06-04'
+			n += 1
+		elif int(julian_decimal_time[n]) == 156:
+			date_derived[n] = str(year[n])+'-06-05'
+			n += 1
+		elif int(julian_decimal_time[n]) == 157:
+			date_derived[n] = str(year[n])+'-06-06'
+			n += 1
+		elif int(julian_decimal_time[n]) == 158:
+			date_derived[n] = str(year[n])+'-06-07'
+			n += 1
+		elif int(julian_decimal_time[n]) == 159:
+			date_derived[n] = str(year[n])+'-06-08'
+			n += 1
+		elif int(julian_decimal_time[n]) == 160:
+			date_derived[n] = str(year[n])+'-06-09'
+			n += 1
+		elif int(julian_decimal_time[n]) == 161:
+			date_derived[n] = str(year[n])+'-06-10'
+			n += 1
+		elif int(julian_decimal_time[n]) == 162:
+			date_derived[n] = str(year[n])+'-06-11'
+			n += 1
+		elif int(julian_decimal_time[n]) == 163:
+			date_derived[n] = str(year[n])+'-06-12'
+			n += 1
+		elif int(julian_decimal_time[n]) == 164:
+			date_derived[n] = str(year[n])+'-06-13'
+			n += 1
+		elif int(julian_decimal_time[n]) == 165:
+			date_derived[n] = str(year[n])+'-06-14'
+			n += 1
+		elif int(julian_decimal_time[n]) == 166:
+			date_derived[n] = str(year[n])+'-06-15'
+			n += 1
+		elif int(julian_decimal_time[n]) == 167:
+			date_derived[n] = str(year[n])+'-06-16'
+			n += 1
+		elif int(julian_decimal_time[n]) == 168:
+			date_derived[n] = str(year[n])+'-06-17'
+			n += 1
+		elif int(julian_decimal_time[n]) == 169:
+			date_derived[n] = str(year[n])+'-06-18'
+			n += 1
+		elif int(julian_decimal_time[n]) == 170:
+			date_derived[n] = str(year[n])+'-06-19'
+			n += 1
+		elif int(julian_decimal_time[n]) == 171:
+			date_derived[n] = str(year[n])+'-06-20'
+			n += 1
+		elif int(julian_decimal_time[n]) == 172:
+			date_derived[n] = str(year[n])+'-06-21'
+			n += 1
+		elif int(julian_decimal_time[n]) == 173:
+			date_derived[n] = str(year[n])+'-06-22'
+			n += 1
+		elif int(julian_decimal_time[n]) == 174:
+			date_derived[n] = str(year[n])+'-06-23'
+			n += 1
+		elif int(julian_decimal_time[n]) == 175:
+			date_derived[n] = str(year[n])+'-06-24'
+			n += 1
+		elif int(julian_decimal_time[n]) == 176:
+			date_derived[n] = str(year[n])+'-06-25'
+			n += 1
+		elif int(julian_decimal_time[n]) == 177:
+			date_derived[n] = str(year[n])+'-06-26'
+			n += 1
+		elif int(julian_decimal_time[n]) == 178:
+			date_derived[n] = str(year[n])+'-06-27'
+			n += 1
+		elif int(julian_decimal_time[n]) == 179:
+			date_derived[n] = str(year[n])+'-06-28'
+			n += 1
+		elif int(julian_decimal_time[n]) == 180:
+			date_derived[n] = str(year[n])+'-06-29'
+			n += 1
+		elif int(julian_decimal_time[n]) == 181:
+			date_derived[n] = str(year[n])+'-06-30'
+			n += 1
+		elif int(julian_decimal_time[n]) == 182:
+			date_derived[n] = str(year[n])+'-07-01'
+			n += 1
+		elif int(julian_decimal_time[n]) == 183:
+			date_derived[n] = str(year[n])+'-07-02'
+			n += 1
+		elif int(julian_decimal_time[n]) == 184:
+			date_derived[n] = str(year[n])+'-07-03'
+			n += 1
+		elif int(julian_decimal_time[n]) == 185:
+			date_derived[n] = str(year[n])+'-07-04'
+			n += 1
+		elif int(julian_decimal_time[n]) == 186:
+			date_derived[n] = str(year[n])+'-07-05'
+			n += 1
+		elif int(julian_decimal_time[n]) == 187:
+			date_derived[n] = str(year[n])+'-07-06'
+			n += 1
+		elif int(julian_decimal_time[n]) == 188:
+			date_derived[n] = str(year[n])+'-07-07'
+			n += 1
+		elif int(julian_decimal_time[n]) == 189:
+			date_derived[n] = str(year[n])+'-07-08'
+			n += 1
+		elif int(julian_decimal_time[n]) == 190:
+			date_derived[n] = str(year[n])+'-07-09'
+			n += 1
+		elif int(julian_decimal_time[n]) == 191:
+			date_derived[n] = str(year[n])+'-07-10'
+			n += 1
+		elif int(julian_decimal_time[n]) == 192:
+			date_derived[n] = str(year[n])+'-07-11'
+			n += 1
+		elif int(julian_decimal_time[n]) == 193:
+			date_derived[n] = str(year[n])+'-07-12'
+			n += 1
+		elif int(julian_decimal_time[n]) == 194:
+			date_derived[n] = str(year[n])+'-07-13'
+			n += 1
+		elif int(julian_decimal_time[n]) == 195:
+			date_derived[n] = str(year[n])+'-07-14'
+			n += 1
+		elif int(julian_decimal_time[n]) == 196:
+			date_derived[n] = str(year[n])+'-07-15'
+			n += 1
+		elif int(julian_decimal_time[n]) == 197:
+			date_derived[n] = str(year[n])+'-07-16'
+			n += 1
+		elif int(julian_decimal_time[n]) == 198:
+			date_derived[n] = str(year[n])+'-07-17'
+			n += 1
+		elif int(julian_decimal_time[n]) == 199:
+			date_derived[n] = str(year[n])+'-07-18'
+			n += 1
+		elif int(julian_decimal_time[n]) == 200:
+			date_derived[n] = str(year[n])+'-07-19'
+			n += 1
+		elif int(julian_decimal_time[n]) == 201:
+			date_derived[n] = str(year[n])+'-07-20'
+			n += 1
+		elif int(julian_decimal_time[n]) == 202:
+			date_derived[n] = str(year[n])+'-07-21'
+			n += 1
+		elif int(julian_decimal_time[n]) == 203:
+			date_derived[n] = str(year[n])+'-07-22'
+			n += 1
+		elif int(julian_decimal_time[n]) == 204:
+			date_derived[n] = str(year[n])+'-07-23'
+			n += 1
+		elif int(julian_decimal_time[n]) == 205:
+			date_derived[n] = str(year[n])+'-07-24'
+			n += 1
+		elif int(julian_decimal_time[n]) == 206:
+			date_derived[n] = str(year[n])+'-07-25'
+			n += 1
+		elif int(julian_decimal_time[n]) == 207:
+			date_derived[n] = str(year[n])+'-07-26'
+			n += 1
+		elif int(julian_decimal_time[n]) == 208:
+			date_derived[n] = str(year[n])+'-07-27'
+			n += 1
+		elif int(julian_decimal_time[n]) == 209:
+			date_derived[n] = str(year[n])+'-07-28'
+			n += 1
+		elif int(julian_decimal_time[n]) == 210:
+			date_derived[n] = str(year[n])+'-07-29'
+			n += 1
+		elif int(julian_decimal_time[n]) == 211:
+			date_derived[n] = str(year[n])+'-07-30'
+			n += 1
+		elif int(julian_decimal_time[n]) == 212:
+			date_derived[n] = str(year[n])+'-07-31'
+			n += 1
+		elif int(julian_decimal_time[n]) == 213:
+			date_derived[n] = str(year[n])+'-08-01'
+			n += 1
+		elif int(julian_decimal_time[n]) == 214:
+			date_derived[n] = str(year[n])+'-08-02'
+			n += 1
+		elif int(julian_decimal_time[n]) == 215:
+			date_derived[n] = str(year[n])+'-08-03'
+			n += 1
+		elif int(julian_decimal_time[n]) == 216:
+			date_derived[n] = str(year[n])+'-08-04'
+			n += 1
+		elif int(julian_decimal_time[n]) == 217:
+			date_derived[n] = str(year[n])+'-08-05'
+			n += 1
+		elif int(julian_decimal_time[n]) == 218:
+			date_derived[n] = str(year[n])+'-08-06'
+			n += 1
+		elif int(julian_decimal_time[n]) == 219:
+			date_derived[n] = str(year[n])+'-08-07'
+			n += 1
+		elif int(julian_decimal_time[n]) == 220:
+			date_derived[n] = str(year[n])+'-08-08'
+			n += 1
+		elif int(julian_decimal_time[n]) == 221:
+			date_derived[n] = str(year[n])+'-08-09'
+			n += 1
+		elif int(julian_decimal_time[n]) == 222:
+			date_derived[n] = str(year[n])+'-08-10'
+			n += 1
+		elif int(julian_decimal_time[n]) == 223:
+			date_derived[n] = str(year[n])+'-08-11'
+			n += 1
+		elif int(julian_decimal_time[n]) == 224:
+			date_derived[n] = str(year[n])+'-08-12'
+			n += 1
+		elif int(julian_decimal_time[n]) == 225:
+			date_derived[n] = str(year[n])+'-08-13'
+			n += 1
+		elif int(julian_decimal_time[n]) == 226:
+			date_derived[n] = str(year[n])+'-08-14'
+			n += 1
+		elif int(julian_decimal_time[n]) == 227:
+			date_derived[n] = str(year[n])+'-08-15'
+			n += 1
+		elif int(julian_decimal_time[n]) == 228:
+			date_derived[n] = str(year[n])+'-08-16'
+			n += 1
+		elif int(julian_decimal_time[n]) == 229:
+			date_derived[n] = str(year[n])+'-08-17'
+			n += 1
+		elif int(julian_decimal_time[n]) == 230:
+			date_derived[n] = str(year[n])+'-08-18'
+			n += 1
+		elif int(julian_decimal_time[n]) == 231:
+			date_derived[n] = str(year[n])+'-08-19'
+			n += 1
+		elif int(julian_decimal_time[n]) == 232:
+			date_derived[n] = str(year[n])+'-08-20'
+			n += 1
+		elif int(julian_decimal_time[n]) == 233:
+			date_derived[n] = str(year[n])+'-08-21'
+			n += 1
+		elif int(julian_decimal_time[n]) == 234:
+			date_derived[n] = str(year[n])+'-08-22'
+			n += 1
+		elif int(julian_decimal_time[n]) == 235:
+			date_derived[n] = str(year[n])+'-08-23'
+			n += 1
+		elif int(julian_decimal_time[n]) == 236:
+			date_derived[n] = str(year[n])+'-08-24'
+			n += 1
+		elif int(julian_decimal_time[n]) == 237:
+			date_derived[n] = str(year[n])+'-08-25'
+			n += 1
+		elif int(julian_decimal_time[n]) == 238:
+			date_derived[n] = str(year[n])+'-08-26'
+			n += 1
+		elif int(julian_decimal_time[n]) == 239:
+			date_derived[n] = str(year[n])+'-08-27'
+			n += 1
+		elif int(julian_decimal_time[n]) == 240:
+			date_derived[n] = str(year[n])+'-08-28'
+			n += 1
+		elif int(julian_decimal_time[n]) == 241:
+			date_derived[n] = str(year[n])+'-08-29'
+			n += 1
+		elif int(julian_decimal_time[n]) == 242:
+			date_derived[n] = str(year[n])+'-08-30'
+			n += 1
+		elif int(julian_decimal_time[n]) == 243:
+			date_derived[n] = str(year[n])+'-08-31'
+			n += 1
+		elif int(julian_decimal_time[n]) == 244:
+			date_derived[n] = str(year[n])+'-09-01'
+			n += 1
+		elif int(julian_decimal_time[n]) == 245:
+			date_derived[n] = str(year[n])+'-09-02'
+			n += 1
+		elif int(julian_decimal_time[n]) == 246:
+			date_derived[n] = str(year[n])+'-09-03'
+			n += 1
+		elif int(julian_decimal_time[n]) == 247:
+			date_derived[n] = str(year[n])+'-09-04'
+			n += 1
+		elif int(julian_decimal_time[n]) == 248:
+			date_derived[n] = str(year[n])+'-09-05'
+			n += 1
+		elif int(julian_decimal_time[n]) == 249:
+			date_derived[n] = str(year[n])+'-09-06'
+			n += 1
+		elif int(julian_decimal_time[n]) == 250:
+			date_derived[n] = str(year[n])+'-09-07'
+			n += 1
+		elif int(julian_decimal_time[n]) == 251:
+			date_derived[n] = str(year[n])+'-09-08'
+			n += 1
+		elif int(julian_decimal_time[n]) == 252:
+			date_derived[n] = str(year[n])+'-09-09'
+			n += 1
+		elif int(julian_decimal_time[n]) == 253:
+			date_derived[n] = str(year[n])+'-09-10'
+			n += 1
+		elif int(julian_decimal_time[n]) == 254:
+			date_derived[n] = str(year[n])+'-09-11'
+			n += 1
+		elif int(julian_decimal_time[n]) == 255:
+			date_derived[n] = str(year[n])+'-09-12'
+			n += 1
+		elif int(julian_decimal_time[n]) == 256:
+			date_derived[n] = str(year[n])+'-09-13'
+			n += 1
+		elif int(julian_decimal_time[n]) == 257:
+			date_derived[n] = str(year[n])+'-09-14'
+			n += 1
+		elif int(julian_decimal_time[n]) == 258:
+			date_derived[n] = str(year[n])+'-09-15'
+			n += 1
+		elif int(julian_decimal_time[n]) == 259:
+			date_derived[n] = str(year[n])+'-09-16'
+			n += 1
+		elif int(julian_decimal_time[n]) == 260:
+			date_derived[n] = str(year[n])+'-09-17'
+			n += 1
+		elif int(julian_decimal_time[n]) == 261:
+			date_derived[n] = str(year[n])+'-09-18'
+			n += 1
+		elif int(julian_decimal_time[n]) == 262:
+			date_derived[n] = str(year[n])+'-09-19'
+			n += 1
+		elif int(julian_decimal_time[n]) == 263:
+			date_derived[n] = str(year[n])+'-09-20'
+			n += 1
+		elif int(julian_decimal_time[n]) == 264:
+			date_derived[n] = str(year[n])+'-09-21'
+			n += 1
+		elif int(julian_decimal_time[n]) == 265:
+			date_derived[n] = str(year[n])+'-09-22'
+			n += 1
+		elif int(julian_decimal_time[n]) == 266:
+			date_derived[n] = str(year[n])+'-09-23'
+			n += 1
+		elif int(julian_decimal_time[n]) == 267:
+			date_derived[n] = str(year[n])+'-09-24'
+			n += 1
+		elif int(julian_decimal_time[n]) == 268:
+			date_derived[n] = str(year[n])+'-09-25'
+			n += 1
+		elif int(julian_decimal_time[n]) == 269:
+			date_derived[n] = str(year[n])+'-09-26'
+			n += 1
+		elif int(julian_decimal_time[n]) == 270:
+			date_derived[n] = str(year[n])+'-09-27'
+			n += 1
+		elif int(julian_decimal_time[n]) == 271:
+			date_derived[n] = str(year[n])+'-09-28'
+			n += 1
+		elif int(julian_decimal_time[n]) == 272:
+			date_derived[n] = str(year[n])+'-09-29'
+			n += 1
+		elif int(julian_decimal_time[n]) == 273:
+			date_derived[n] = str(year[n])+'-09-30'
+			n += 1
+		elif int(julian_decimal_time[n]) == 274:
+			date_derived[n] = str(year[n])+'-10-01'
+			n += 1
+		elif int(julian_decimal_time[n]) == 275:
+			date_derived[n] = str(year[n])+'-10-02'
+			n += 1
+		elif int(julian_decimal_time[n]) == 276:
+			date_derived[n] = str(year[n])+'-10-03'
+			n += 1
+		elif int(julian_decimal_time[n]) == 277:
+			date_derived[n] = str(year[n])+'-10-04'
+			n += 1
+		elif int(julian_decimal_time[n]) == 278:
+			date_derived[n] = str(year[n])+'-10-05'
+			n += 1
+		elif int(julian_decimal_time[n]) == 279:
+			date_derived[n] = str(year[n])+'-10-06'
+			n += 1
+		elif int(julian_decimal_time[n]) == 280:
+			date_derived[n] = str(year[n])+'-10-07'
+			n += 1
+		elif int(julian_decimal_time[n]) == 281:
+			date_derived[n] = str(year[n])+'-10-08'
+			n += 1
+		elif int(julian_decimal_time[n]) == 282:
+			date_derived[n] = str(year[n])+'-10-09'
+			n += 1
+		elif int(julian_decimal_time[n]) == 283:
+			date_derived[n] = str(year[n])+'-10-10'
+			n += 1
+		elif int(julian_decimal_time[n]) == 284:
+			date_derived[n] = str(year[n])+'-10-11'
+			n += 1
+		elif int(julian_decimal_time[n]) == 285:
+			date_derived[n] = str(year[n])+'-10-12'
+			n += 1
+		elif int(julian_decimal_time[n]) == 286:
+			date_derived[n] = str(year[n])+'-10-13'
+			n += 1
+		elif int(julian_decimal_time[n]) == 287:
+			date_derived[n] = str(year[n])+'-10-14'
+			n += 1
+		elif int(julian_decimal_time[n]) == 288:
+			date_derived[n] = str(year[n])+'-10-15'
+			n += 1
+		elif int(julian_decimal_time[n]) == 289:
+			date_derived[n] = str(year[n])+'-10-16'
+			n += 1
+		elif int(julian_decimal_time[n]) == 290:
+			date_derived[n] = str(year[n])+'-10-17'
+			n += 1
+		elif int(julian_decimal_time[n]) == 291:
+			date_derived[n] = str(year[n])+'-10-18'
+			n += 1
+		elif int(julian_decimal_time[n]) == 292:
+			date_derived[n] = str(year[n])+'-10-19'
+			n += 1
+		elif int(julian_decimal_time[n]) == 293:
+			date_derived[n] = str(year[n])+'-10-20'
+			n += 1
+		elif int(julian_decimal_time[n]) == 294:
+			date_derived[n] = str(year[n])+'-10-21'
+			n += 1
+		elif int(julian_decimal_time[n]) == 295:
+			date_derived[n] = str(year[n])+'-10-22'
+			n += 1
+		elif int(julian_decimal_time[n]) == 296:
+			date_derived[n] = str(year[n])+'-10-23'
+			n += 1
+		elif int(julian_decimal_time[n]) == 297:
+			date_derived[n] = str(year[n])+'-10-24'
+			n += 1
+		elif int(julian_decimal_time[n]) == 298:
+			date_derived[n] = str(year[n])+'-10-25'
+			n += 1
+		elif int(julian_decimal_time[n]) == 299:
+			date_derived[n] = str(year[n])+'-10-26'
+			n += 1
+		elif int(julian_decimal_time[n]) == 300:
+			date_derived[n] = str(year[n])+'-10-27'
+			n += 1
+		elif int(julian_decimal_time[n]) == 301:
+			date_derived[n] = str(year[n])+'-10-28'
+			n += 1
+		elif int(julian_decimal_time[n]) == 302:
+			date_derived[n] = str(year[n])+'-10-29'
+			n += 1
+		elif int(julian_decimal_time[n]) == 303:
+			date_derived[n] = str(year[n])+'-10-30'
+			n += 1
+		elif int(julian_decimal_time[n]) == 304:
+			date_derived[n] = str(year[n])+'-10-31'
+			n += 1
+		elif int(julian_decimal_time[n]) == 305:
+			date_derived[n] = str(year[n])+'-11-01'
+			n += 1
+		elif int(julian_decimal_time[n]) == 306:
+			date_derived[n] = str(year[n])+'-11-02'
+			n += 1
+		elif int(julian_decimal_time[n]) == 307:
+			date_derived[n] = str(year[n])+'-11-03'
+			n += 1
+		elif int(julian_decimal_time[n]) == 308:
+			date_derived[n] = str(year[n])+'-11-04'
+			n += 1
+		elif int(julian_decimal_time[n]) == 309:
+			date_derived[n] = str(year[n])+'-11-05'
+			n += 1
+		elif int(julian_decimal_time[n]) == 310:
+			date_derived[n] = str(year[n])+'-11-06'
+			n += 1
+		elif int(julian_decimal_time[n]) == 311:
+			date_derived[n] = str(year[n])+'-11-07'
+			n += 1
+		elif int(julian_decimal_time[n]) == 312:
+			date_derived[n] = str(year[n])+'-11-08'
+			n += 1
+		elif int(julian_decimal_time[n]) == 313:
+			date_derived[n] = str(year[n])+'-11-09'
+			n += 1
+		elif int(julian_decimal_time[n]) == 314:
+			date_derived[n] = str(year[n])+'-11-10'
+			n += 1
+		elif int(julian_decimal_time[n]) == 315:
+			date_derived[n] = str(year[n])+'-11-11'
+			n += 1
+		elif int(julian_decimal_time[n]) == 316:
+			date_derived[n] = str(year[n])+'-11-12'
+			n += 1
+		elif int(julian_decimal_time[n]) == 317:
+			date_derived[n] = str(year[n])+'-11-13'
+			n += 1
+		elif int(julian_decimal_time[n]) == 318:
+			date_derived[n] = str(year[n])+'-11-14'
+			n += 1
+		elif int(julian_decimal_time[n]) == 319:
+			date_derived[n] = str(year[n])+'-11-15'
+			n += 1
+		elif int(julian_decimal_time[n]) == 320:
+			date_derived[n] = str(year[n])+'-11-16'
+			n += 1
+		elif int(julian_decimal_time[n]) == 321:
+			date_derived[n] = str(year[n])+'-11-17'
+			n += 1
+		elif int(julian_decimal_time[n]) == 322:
+			date_derived[n] = str(year[n])+'-11-18'
+			n += 1
+		elif int(julian_decimal_time[n]) == 323:
+			date_derived[n] = str(year[n])+'-11-19'
+			n += 1
+		elif int(julian_decimal_time[n]) == 324:
+			date_derived[n] = str(year[n])+'-11-20'
+			n += 1
+		elif int(julian_decimal_time[n]) == 325:
+			date_derived[n] = str(year[n])+'-11-21'
+			n += 1
+		elif int(julian_decimal_time[n]) == 326:
+			date_derived[n] = str(year[n])+'-11-22'
+			n += 1
+		elif int(julian_decimal_time[n]) == 327:
+			date_derived[n] = str(year[n])+'-11-23'
+			n += 1
+		elif int(julian_decimal_time[n]) == 328:
+			date_derived[n] = str(year[n])+'-11-24'
+			n += 1
+		elif int(julian_decimal_time[n]) == 329:
+			date_derived[n] = str(year[n])+'-11-25'
+			n += 1
+		elif int(julian_decimal_time[n]) == 330:
+			date_derived[n] = str(year[n])+'-11-26'
+			n += 1
+		elif int(julian_decimal_time[n]) == 331:
+			date_derived[n] = str(year[n])+'-11-27'
+			n += 1
+		elif int(julian_decimal_time[n]) == 332:
+			date_derived[n] = str(year[n])+'-11-28'
+			n += 1
+		elif int(julian_decimal_time[n]) == 333:
+			date_derived[n] = str(year[n])+'-11-29'
+			n += 1
+		elif int(julian_decimal_time[n]) == 334:
+			date_derived[n] = str(year[n])+'-11-30'
+			n += 1
+		elif int(julian_decimal_time[n]) == 335:
+			date_derived[n] = str(year[n])+'-12-01'
+			n += 1
+		elif int(julian_decimal_time[n]) == 336:
+			date_derived[n] = str(year[n])+'-12-02'
+			n += 1
+		elif int(julian_decimal_time[n]) == 337:
+			date_derived[n] = str(year[n])+'-12-03'
+			n += 1
+		elif int(julian_decimal_time[n]) == 338:
+			date_derived[n] = str(year[n])+'-12-04'
+			n += 1
+		elif int(julian_decimal_time[n]) == 339:
+			date_derived[n] = str(year[n])+'-12-05'
+			n += 1
+		elif int(julian_decimal_time[n]) == 340:
+			date_derived[n] = str(year[n])+'-12-06'
+			n += 1
+		elif int(julian_decimal_time[n]) == 341:
+			date_derived[n] = str(year[n])+'-12-07'
+			n += 1
+		elif int(julian_decimal_time[n]) == 342:
+			date_derived[n] = str(year[n])+'-12-08'
+			n += 1
+		elif int(julian_decimal_time[n]) == 343:
+			date_derived[n] = str(year[n])+'-12-09'
+			n += 1
+		elif int(julian_decimal_time[n]) == 344:
+			date_derived[n] = str(year[n])+'-12-10'
+			n += 1
+		elif int(julian_decimal_time[n]) == 345:
+			date_derived[n] = str(year[n])+'-12-11'
+			n += 1
+		elif int(julian_decimal_time[n]) == 346:
+			date_derived[n] = str(year[n])+'-12-12'
+			n += 1
+		elif int(julian_decimal_time[n]) == 347:
+			date_derived[n] = str(year[n])+'-12-13'
+			n += 1
+		elif int(julian_decimal_time[n]) == 348:
+			date_derived[n] = str(year[n])+'-12-14'
+			n += 1
+		elif int(julian_decimal_time[n]) == 349:
+			date_derived[n] = str(year[n])+'-12-15'
+			n += 1
+		elif int(julian_decimal_time[n]) == 350:
+			date_derived[n] = str(year[n])+'-12-16'
+			n += 1
+		elif int(julian_decimal_time[n]) == 351:
+			date_derived[n] = str(year[n])+'-12-17'
+			n += 1
+		elif int(julian_decimal_time[n]) == 352:
+			date_derived[n] = str(year[n])+'-12-18'
+			n += 1
+		elif int(julian_decimal_time[n]) == 353:
+			date_derived[n] = str(year[n])+'-12-19'
+			n += 1
+		elif int(julian_decimal_time[n]) == 354:
+			date_derived[n] = str(year[n])+'-12-20'
+			n += 1
+		elif int(julian_decimal_time[n]) == 355:
+			date_derived[n] = str(year[n])+'-12-21'
+			n += 1
+		elif int(julian_decimal_time[n]) == 356:
+			date_derived[n] = str(year[n])+'-12-22'
+			n += 1
+		elif int(julian_decimal_time[n]) == 357:
+			date_derived[n] = str(year[n])+'-12-23'
+			n += 1
+		elif int(julian_decimal_time[n]) == 358:
+			date_derived[n] = str(year[n])+'-12-24'
+			n += 1
+		elif int(julian_decimal_time[n]) == 359:
+			date_derived[n] = str(year[n])+'-12-25'
+			n += 1
+		elif int(julian_decimal_time[n]) == 360:
+			date_derived[n] = str(year[n])+'-12-26'
+			n += 1
+		elif int(julian_decimal_time[n]) == 361:
+			date_derived[n] = str(year[n])+'-12-27'
+			n += 1
+		elif int(julian_decimal_time[n]) == 362:
+			date_derived[n] = str(year[n])+'-12-28'
+			n += 1
+		elif int(julian_decimal_time[n]) == 363:
+			date_derived[n] = str(year[n])+'-12-29'
+			n += 1
+		elif int(julian_decimal_time[n]) == 364:
+			date_derived[n] = str(year[n])+'-12-30'
+			n += 1
+		else:
+			date_derived[n] = str(year[n])+'-12-31'
+			n += 1
+		
 
 	root_grp.close()
