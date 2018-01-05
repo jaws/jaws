@@ -64,7 +64,7 @@ $ git pull
 ```
 
 
-###Pre-requisites 
+### Pre-requisites 
 
 * netCDF4: Installation instructions can be found on the [webpage](unidata.github.io/netcdf4-python)
 * astropy.io: Astropy is installed by default with the Anaconda Distribution. If you are using miniconda, you can execute following command to install it:
@@ -76,6 +76,8 @@ $conda install atropy.io
 More details can be found on its [webpage](http://docs.astropy.org/en/stable/install.html)
 
 * argparse: As of Python >= 2.7 and >= 3.2, the argparse module is maintained within the Python standard library. 
+
+
 
 Translating L2 ASCII formats into homogenized netCDF format:
 
