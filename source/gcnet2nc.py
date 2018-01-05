@@ -150,21 +150,21 @@ def gcnet2nc(args):
 	net_radiation.long_name = 'Net Radiation'
 	net_radiation.standard_name = 'surface_net_downward_radiative_flux'
 
-	temperature_tc_1.units = 'degC'
+	temperature_tc_1.units = 'kelvin'
 	temperature_tc_1.long_name = 'TC-1 Air Temperature'
 	temperature_tc_1.standard_name = 'air_temperature'
 	temperature_tc_1.note = 'air temperature from TC sensor'
 
-	temperature_tc_2.units = 'degC'
+	temperature_tc_2.units = 'kelvin'
 	temperature_tc_2.long_name = 'TC-2 Air Temperature'
 	temperature_tc_2.standard_name = 'air_temperature'
 
-	temperature_cs500_1.units = 'degC'
+	temperature_cs500_1.units = 'kelvin'
 	temperature_cs500_1.long_name = 'CS500-1 Air Temperature'
 	temperature_cs500_1.standard_name = 'air_temperature'
 	temperature_cs500_1.note = 'air temperature from CS500 sensor'
 
-	temperature_cs500_2.units = 'degC'
+	temperature_cs500_2.units = 'kelvin'
 	temperature_cs500_2.long_name = 'CS500-2 Air Temperature'
 	temperature_cs500_2.standard_name = 'air_temperature'
 
@@ -192,7 +192,7 @@ def gcnet2nc(args):
 	u_direction_2.long_name = 'U Direction 2'
 	u_direction_2.standard_name = 'wind_from_direction'
 
-	atmos_pressure.units = 'mbar'
+	atmos_pressure.units = 'pascal'
 	atmos_pressure.long_name = 'Atmospheric Pressure'
 	atmos_pressure.standard_name = 'surface_air_pressure'
 
@@ -204,43 +204,43 @@ def gcnet2nc(args):
 	snow_height_2.long_name = 'Snow Height 2'
 	snow_height_2.standard_name = 'snow_height'
 
-	t_snow_01.units = 'degC'
+	t_snow_01.units = 'kelvin'
 	t_snow_01.long_name = 'T Snow 1'
 	#t_snow_01.standard_name = 'temperature_in_surface_snow'
 
-	t_snow_02.units = 'degC'
+	t_snow_02.units = 'kelvin'
 	t_snow_02.long_name = 'T Snow 2'
 	#t_snow_02.standard_name = 'temperature_in_surface_snow'
 
-	t_snow_03.units = 'degC'
+	t_snow_03.units = 'kelvin'
 	t_snow_03.long_name = 'T Snow 3'
 	#t_snow_03.standard_name = 'temperature_in_surface_snow'
 
-	t_snow_04.units = 'degC'
+	t_snow_04.units = 'kelvin'
 	t_snow_04.long_name = 'T Snow 4'
 	#t_snow_04.standard_name = 'temperature_in_surface_snow'
 
-	t_snow_05.units = 'degC'
+	t_snow_05.units = 'kelvin'
 	t_snow_05.long_name = 'T Snow 5'
 	#t_snow_05.standard_name = 'temperature_in_surface_snow'
 
-	t_snow_06.units = 'degC'
+	t_snow_06.units = 'kelvin'
 	t_snow_06.long_name = 'T Snow 6'
 	#t_snow_06.standard_name = 'temperature_in_surface_snow'
 
-	t_snow_07.units = 'degC'
+	t_snow_07.units = 'kelvin'
 	t_snow_07.long_name = 'T Snow 7'
 	#t_snow_07.standard_name = 'temperature_in_surface_snow'
 
-	t_snow_08.units = 'degC'
+	t_snow_08.units = 'kelvin'
 	t_snow_08.long_name = 'T Snow 8'
 	#t_snow_08.standard_name = 'temperature_in_surface_snow'
 
-	t_snow_09.units = 'degC'
+	t_snow_09.units = 'kelvin'
 	t_snow_09.long_name = 'T Snow 9'
 	#t_snow_09.standard_name = 'temperature_in_surface_snow'
 
-	t_snow_10.units = 'degC'
+	t_snow_10.units = 'kelvin'
 	t_snow_10.long_name = 'T Snow 10'
 	#t_snow_10.standard_name = 'temperature_in_surface_snow'
 
@@ -260,19 +260,19 @@ def gcnet2nc(args):
 	net_radiation_max.long_name = 'Net Radiation max'
 	net_radiation_max.standard_name = 'maximum_net_radiation'
 
-	max_air_temperature_1.units = 'degC'
+	max_air_temperature_1.units = 'kelvin'
 	max_air_temperature_1.long_name = 'Max Air Temperture 1'
 	max_air_temperature_1.standard_name = 'air_temperature'
 
-	max_air_temperature_2.units = 'degC'
+	max_air_temperature_2.units = 'kelvin'
 	max_air_temperature_2.long_name = 'Max Air Temperture 2'
 	max_air_temperature_2.standard_name = 'air_temperature'
 
-	min_air_temperature_1.units = 'degC'
+	min_air_temperature_1.units = 'kelvin'
 	min_air_temperature_1.long_name = 'Min Air Temperture 1'
 	min_air_temperature_1.standard_name = 'air_temperature'
 
-	min_air_temperature_2.units = 'degC'
+	min_air_temperature_2.units = 'kelvin'
 	min_air_temperature_2.long_name = 'Min Air Temperture 2'
 	min_air_temperature_2.standard_name = 'air_temperature'
 
@@ -292,7 +292,7 @@ def gcnet2nc(args):
 	stdev_windspeed_u2.long_name = 'StdDev Windspeed-U2'
 	stdev_windspeed_u2.standard_name = 'wind_speed'
 
-	ref_temperature.units = 'degC'
+	ref_temperature.units = 'kelvin'
 	ref_temperature.long_name = 'Reference Temperature'
 	ref_temperature.note = 'Need to ask network manager about long name'
 
@@ -359,42 +359,42 @@ def gcnet2nc(args):
 	    sw_down[j] = columns[3]
 	    sw_up[j] = columns[4]
 	    net_radiation[j] = columns[5]
-	    temperature_tc_1[j] = columns[6]
-	    temperature_tc_2[j] = columns[7]
-	    temperature_cs500_1[j] = columns[8]
-	    temperature_cs500_2[j] = columns[9]
+	    temperature_tc_1[j] = float(columns[6]) + 273.15
+	    temperature_tc_2[j] = float(columns[7]) + 273.15
+	    temperature_cs500_1[j] = float(columns[8]) + 273.15
+	    temperature_cs500_2[j] = float(columns[9]) + 273.15
 	    relative_humidity_1[j] = columns[10]
 	    relative_humidity_2[j] = columns[11]
 	    u1_wind_speed[j] = columns[12]
 	    u2_wind_speed[j] = columns[13]
 	    u_direction_1[j] = columns[14]
 	    u_direction_2[j] = columns[15]
-	    atmos_pressure[j] = columns[16]
+	    atmos_pressure[j] = float(columns[16]) * 100
 	    snow_height_1[j] = columns[17]
 	    snow_height_2[j] = columns[18]
-	    t_snow_01[j] = columns[19]
-	    t_snow_02[j] = columns[20]
-	    t_snow_03[j] = columns[21]
-	    t_snow_04[j] = columns[22]
-	    t_snow_05[j] = columns[23]
-	    t_snow_06[j] = columns[24]
-	    t_snow_07[j] = columns[25]
-	    t_snow_08[j] = columns[26]
-	    t_snow_09[j] = columns[27]
-	    t_snow_10[j] = columns[28]
+	    t_snow_01[j] = float(columns[19]) + 273.15
+	    t_snow_02[j] = float(columns[20]) + 273.15
+	    t_snow_03[j] = float(columns[21]) + 273.15
+	    t_snow_04[j] = float(columns[22]) + 273.15
+	    t_snow_05[j] = float(columns[23]) + 273.15
+	    t_snow_06[j] = float(columns[24]) + 273.15
+	    t_snow_07[j] = float(columns[25]) + 273.15
+	    t_snow_08[j] = float(columns[26]) + 273.15
+	    t_snow_09[j] = float(columns[27]) + 273.15
+	    t_snow_10[j] = float(columns[28]) + 273.15
 	    battery_voltage[j] = columns[29]
 	    sw_down_max[j] = columns[30]
 	    sw_up_max[j] = columns[31]
 	    net_radiation_max[j] = columns[32]
-	    max_air_temperature_1[j] = columns[33]
-	    max_air_temperature_2[j] = columns[34]
-	    min_air_temperature_1[j] = columns[35]
-	    min_air_temperature_2[j] = columns[36]
+	    max_air_temperature_1[j] = float(columns[33]) + 273.15
+	    max_air_temperature_2[j] = float(columns[34]) + 273.15
+	    min_air_temperature_1[j] = float(columns[35]) + 273.15
+	    min_air_temperature_2[j] = float(columns[36]) + 273.15
 	    max_windspeed_u1[j] = columns[37]
 	    max_windspeed_u2[j] = columns[38]
 	    stdev_windspeed_u1[j] = columns[39]
 	    stdev_windspeed_u2[j] = columns[40]
-	    ref_temperature[j] = columns[41]
+	    ref_temperature[j] = float(columns[41]) + 273.15
 	    windspeed_2m[j] = columns[42]
 	    windspeed_10m[j] = columns[43]
 	    wind_sensor_height_1[j] = columns[44]
