@@ -32,10 +32,10 @@ def gcnet2nc(args):
 	else:
 		root_grp = Dataset(op_file, 'w', format='NETCDF4')
 	
-	root_grp.TITLE = 'Surface Radiation Data from Greenland Climate Network'
-	root_grp.SOURCE = 'Surface Observations'
-	root_grp.INSTITUTION = 'Cooperative Institute for Research in Enviornmental Sciences'
-	root_grp.REFERENCE = 'http://cires.colorado.edu/science/groups/steffen/gcnet/'
+	root_grp.title = 'Surface Radiation Data from Greenland Climate Network'
+	root_grp.source = 'Surface Observations'
+	root_grp.institution = 'Cooperative Institute for Research in Enviornmental Sciences'
+	root_grp.reference = 'http://cires.colorado.edu/science/groups/steffen/gcnet/'
 	root_grp.URL = 'http://cires.colorado.edu/science/groups/steffen/gcnet/'
 	root_grp.Conventions = 'CF-1.6'
 

@@ -34,10 +34,10 @@ def promice2nc(args):
 	else:
 		root_grp = Dataset(op_file, 'w', format='NETCDF4')
 	
-	root_grp.TITLE = 'Weather Station Data'
-	root_grp.SOURCE = 'Surface Observations'
-	root_grp.INSTITUTION = 'Programme for Monitoring of the Greenland Ice Sheet'
-	root_grp.REFERENCE = 'http://www.promice.dk/home.html'
+	root_grp.title = 'Weather Station Data'
+	root_grp.source = 'Surface Observations'
+	root_grp.institution = 'Programme for Monitoring of the Greenland Ice Sheet'
+	root_grp.reference = 'http://www.promice.dk/home.html'
 	root_grp.Conventions = 'CF-1.6'
 
 	# dimension

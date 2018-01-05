@@ -13,12 +13,12 @@ def imau2nc(args):
 	if args.output:
 		op_file = str(args.output)
 	root_grp = Dataset(op_file, 'w', format='NETCDF4')
-	root_grp.TITLE = 'Weather Station Data'
-	root_grp.SOURCE = 'Surface Observations'
-	root_grp.INSTITUTION = 'Institute for Marine and Atmospheric Research'
-	root_grp.REFERENCE = 'https://www.uu.nl/en/research/imau'
-	#root_grp.History = 'Created on '
-	#root_grp.CREATED_BY = 'Created by'
+	root_grp.title = 'Weather Station Data'
+	root_grp.source = 'Surface Observations'
+	root_grp.institution = 'Institute for Marine and Atmospheric Research'
+	root_grp.reference = 'https://www.uu.nl/en/research/imau'
+	#root_grp.history = 'Created on '
+	#root_grp.created_by = 'Created by'
 	root_grp.Conventions = 'CF-v46'
 
 	# dimension

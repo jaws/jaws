@@ -35,10 +35,10 @@ def aaws2nc(args):
 	else:
 		root_grp = Dataset(op_file, 'w', format='NETCDF4')
 	
-	root_grp.SOURCE = 'surface observation'
+	root_grp.source = 'surface observation'
 	root_grp.featureType = 'timeSeries'
-	root_grp.INSTITUTION = 'UW SSEC'
-	root_grp.REFERENCE = 'https://amrc.ssec.wisc.edu/'
+	root_grp.institution = 'UW SSEC'
+	root_grp.reference = 'https://amrc.ssec.wisc.edu/'
 	root_grp.Conventions = 'CF-1.6'
 	root_grp.start_time = ''
 	root_grp.end_time = ''
