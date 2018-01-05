@@ -63,6 +63,19 @@ If you are an existing user, update your repository to the current version:
 $ git pull
 ```
 
+
+###Pre-requisites 
+
+* netCDF4: Installation instructions can be found on the [webpage](unidata.github.io/netcdf4-python)
+* astropy.io: Astropy is installed by default with the Anaconda Distribution. If you are using miniconda, you can execute following command to install it:
+
+```html
+$conda install atropy.io
+```
+
+More details can be found on its [webpage](http://docs.astropy.org/en/stable/install.html)
+
+
 Translating L2 ASCII formats into homogenized netCDF format:
 
 The current version can translate ASCII data from the GCNet, PROMICE and AAWS networks to netCDF format.
