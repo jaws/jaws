@@ -59,7 +59,7 @@ def gcnet2nc(args):
 	u2_wind_speed = root_grp.createVariable('u2_wind_speed', 'f4', ('time',))
 	u_direction_1 = root_grp.createVariable('u_direction_1', 'f4', ('time',))
 	u_direction_2 = root_grp.createVariable('u_direction_2', 'f4', ('time',))
-	pressure = root_grp.createVariable('pressure', 'f4', ('time',))
+	atmos_pressure = root_grp.createVariable('atmos_pressure', 'f4', ('time',))
 	snow_height_1 = root_grp.createVariable('snow_height_1', 'f4', ('time',))
 	snow_height_2 = root_grp.createVariable('snow_height_2', 'f4', ('time',))
 	t_snow_01 = root_grp.createVariable('t_snow_01', 'f4', ('time',))
@@ -138,69 +138,69 @@ def gcnet2nc(args):
 	julian_decimal_time.long_name = 'Julian Decimal Time'
 	julian_decimal_time.note = 'Not really a standard Julian time. For each year, time starts at 1.0000 and ends at 365.9999.'
 
-	sw_down.units = 'W m-2'
-	sw_down.long_name = 'SW_down'
+	sw_down.units = 'watt meter-2'
+	sw_down.long_name = 'Shortwave Flux down'
 	sw_down.standard_name = 'downwelling_shortwave_flux_in_air'
 
-	sw_up.units = 'W m-2'
-	sw_up.long_name = 'SW_up'
+	sw_up.units = 'watt meter-2'
+	sw_up.long_name = 'Shortwave Flux up'
 	sw_up.standard_name = 'upwelling_shortwave_flux_in_air'
 
-	net_radiation.units = 'W m-2'
+	net_radiation.units = 'watt meter-2'
 	net_radiation.long_name = 'Net Radiation'
 	net_radiation.standard_name = 'surface_net_downward_radiative_flux'
 
 	temperature_tc_1.units = 'degC'
-	temperature_tc_1.long_name = 'TC Air 1 Air Temperature'
+	temperature_tc_1.long_name = 'TC-1 Air Temperature'
 	temperature_tc_1.standard_name = 'air_temperature'
 	temperature_tc_1.note = 'air temperature from TC sensor'
 
 	temperature_tc_2.units = 'degC'
-	temperature_tc_2.long_name = 'TC Air 2 Air Temperature'
+	temperature_tc_2.long_name = 'TC-2 Air Temperature'
 	temperature_tc_2.standard_name = 'air_temperature'
 
 	temperature_cs500_1.units = 'degC'
-	temperature_cs500_1.long_name = 'CS500 T Air 1 Air Temperature'
+	temperature_cs500_1.long_name = 'CS500-1 Air Temperature'
 	temperature_cs500_1.standard_name = 'air_temperature'
 	temperature_cs500_1.note = 'air temperature from CS500 sensor'
 
 	temperature_cs500_2.units = 'degC'
-	temperature_cs500_2.long_name = 'CS500 T Air 2 Air Temperature'
+	temperature_cs500_2.long_name = 'CS500-2 Air Temperature'
 	temperature_cs500_2.standard_name = 'air_temperature'
 
-	relative_humidity_1.units = '%'
-	relative_humidity_1.long_name = 'RH 1 Relative Humidity'
+	relative_humidity_1.units = '1'
+	relative_humidity_1.long_name = 'Relative Humidity 1'
 	relative_humidity_1.standard_name = 'realtive_humidity'
 
-	relative_humidity_2.units = '%'
-	relative_humidity_2.long_name = 'RH 2 Relative Humidity'
+	relative_humidity_2.units = '1'
+	relative_humidity_2.long_name = 'Relative Humidity 2'
 	relative_humidity_2.standard_name = 'realtive_humidity'
 
-	u1_wind_speed.units = 'm/s'
+	u1_wind_speed.units = 'meter second-1'
 	u1_wind_speed.long_name = 'U1 Wind Speed'
 	u1_wind_speed.standard_name = 'wind_speed'
 
-	u2_wind_speed.units = 'm/s'
+	u2_wind_speed.units = 'meter second-1'
 	u2_wind_speed.long_name = 'U2 Wind Speed'
 	u2_wind_speed.standard_name = 'wind_speed'
 
-	u_direction_1.units = 'deg'
-	u_direction_1.long_name = 'U Dir 1'
+	u_direction_1.units = 'degree'
+	u_direction_1.long_name = 'U Direction 1'
 	u_direction_1.standard_name = 'wind_from_direction'
 
-	u_direction_2.units = 'deg'
-	u_direction_2.long_name = 'U Dir 2'
+	u_direction_2.units = 'degree'
+	u_direction_2.long_name = 'U Direction 2'
 	u_direction_2.standard_name = 'wind_from_direction'
 
-	pressure.units = 'mbar'
-	pressure.long_name = 'Atmos Pressure'
-	pressure.standard_name = 'surface_air_pressure'
+	atmos_pressure.units = 'mbar'
+	atmos_pressure.long_name = 'Atmospheric Pressure'
+	atmos_pressure.standard_name = 'surface_air_pressure'
 
-	snow_height_1.units = 'm'
+	snow_height_1.units = 'meter'
 	snow_height_1.long_name = 'Snow Height 1'
 	snow_height_1.standard_name = 'snow_height'
 
-	snow_height_2.units = 'm'
+	snow_height_2.units = 'meter'
 	snow_height_2.long_name = 'Snow Height 2'
 	snow_height_2.standard_name = 'snow_height'
 
@@ -244,20 +244,20 @@ def gcnet2nc(args):
 	t_snow_10.long_name = 'T Snow 10'
 	#t_snow_10.standard_name = 'temperature_in_surface_snow'
 
-	battery_voltage.units = 'V'
+	battery_voltage.units = 'volts'
 	battery_voltage.long_name = 'Battery Voltage'
 	battery_voltage.standard_name = 'battery_voltage'
 
-	sw_down_max.units = 'W m-2'
-	sw_down_max.long_name = 'SWinMax'
+	sw_down_max.units = 'watt meter-2'
+	sw_down_max.long_name = 'Shortwave Flux down max'
 	sw_down_max.standard_name = 'maximum_downwelling_shortwave_flux_in_air'
 	
-	sw_up_max.units = 'W m-2'
-	sw_up_max.long_name = 'SWoutMax'
+	sw_up_max.units = 'watt meter-2'
+	sw_up_max.long_name = 'Shortwave Flux up max'
 	sw_up_max.standard_name = 'maximum_upwelling_shortwave_flux_in_air'
 	
-	net_radiation_max.units = 'W m-2'
-	net_radiation_max.long_name = 'NetRadMax'
+	net_radiation_max.units = 'watt meter-2'
+	net_radiation_max.long_name = 'Net Radiation max'
 	net_radiation_max.standard_name = 'maximum_net_radiation'
 
 	max_air_temperature_1.units = 'degC'
@@ -276,63 +276,63 @@ def gcnet2nc(args):
 	min_air_temperature_2.long_name = 'Min Air Temperture 2'
 	min_air_temperature_2.standard_name = 'air_temperature'
 
-	max_windspeed_u1.units = 'm/s'
+	max_windspeed_u1.units = 'meter second-1'
 	max_windspeed_u1.long_name = 'Max Windspeed-U1'
 	max_windspeed_u1.standard_name = 'wind_speed'
 
-	max_windspeed_u2.units = 'm/s'
+	max_windspeed_u2.units = 'meter second-1'
 	max_windspeed_u2.long_name = 'Max Windspeed-U2'
 	max_windspeed_u2.standard_name = 'wind_speed'
 
-	stdev_windspeed_u1.units = 'm/s'
+	stdev_windspeed_u1.units = 'meter second-1'
 	stdev_windspeed_u1.long_name = 'StdDev Windspeed-U1'
 	stdev_windspeed_u1.standard_name = 'wind_speed'
 
-	stdev_windspeed_u2.units = 'm/s'
+	stdev_windspeed_u2.units = 'meter second-1'
 	stdev_windspeed_u2.long_name = 'StdDev Windspeed-U2'
 	stdev_windspeed_u2.standard_name = 'wind_speed'
 
 	ref_temperature.units = 'degC'
-	ref_temperature.long_name = 'Ref Temperature'
+	ref_temperature.long_name = 'Reference Temperature'
 	ref_temperature.note = 'Need to ask network manager about long name'
 
-	windspeed_2m.units = 'm/s'
+	windspeed_2m.units = 'meter second-1'
 	windspeed_2m.long_name = 'Windspeed@2m'
 	windspeed_2m.standard_name = 'wind_speed'
 
-	windspeed_10m.units = 'm/s'
+	windspeed_10m.units = 'meter second-1'
 	windspeed_10m.long_name = 'Windspeed@10m'
 	windspeed_10m.standard_name = '10-m_wind_speed'
 
-	wind_sensor_height_1.units = 'm'
-	wind_sensor_height_1.long_name = 'WindSensorHeight1'
+	wind_sensor_height_1.units = 'meter'
+	wind_sensor_height_1.long_name = 'Wind Sensor Height 1'
 	wind_sensor_height_1.standard_name = 'n/a'
 
-	wind_sensor_height_2.units = 'm'
-	wind_sensor_height_2.long_name = 'WindSensorHeight2'
+	wind_sensor_height_2.units = 'meter'
+	wind_sensor_height_2.long_name = 'Wind Sensor Height 2'
 	wind_sensor_height_2.standard_name = 'n/a'
 
 	albedo.units = '1'
 	albedo.long_name = 'Albedo'
 	albedo.standard_name = 'surface_albedo'
 
-	zenith_angle.units = 'deg'
+	zenith_angle.units = 'degree'
 	zenith_angle.long_name = 'Zenith Angle'
 	zenith_angle.standard_name = 'solar_zenith_angle'
 
 	qc1.units = '1'
-	qc1.long_name = 'QCl01-08'
+	qc1.long_name = 'Quality Control variables 01-08'
 
 	qc9.units = '1'
-	qc9.long_name = 'QCl09-16'
+	qc9.long_name = 'Quality Control variables 09-16'
 
 	qc17.units = '1'
-	qc17.long_name = 'QCl17-24'
+	qc17.long_name = 'Quality Control variables 17-24'
 
 	qc25.units = '1'
-	qc25.long_name = 'QCl25-27'
+	qc25.long_name = 'Quality Control variables 25-27'
 
-	time.units = 'days since 1995-01-01 00:00:00'
+	time.units = 'seconds since 1995-01-01 00:00:00'
 	time.standard_name = 'time'
 	time.calendar = 'noleap'
 	time.bounds = 'time_bnds'
@@ -369,7 +369,7 @@ def gcnet2nc(args):
 	    u2_wind_speed[j] = columns[13]
 	    u_direction_1[j] = columns[14]
 	    u_direction_2[j] = columns[15]
-	    pressure[j] = columns[16]
+	    atmos_pressure[j] = columns[16]
 	    snow_height_1[j] = columns[17]
 	    snow_height_2[j] = columns[18]
 	    t_snow_01[j] = columns[19]
@@ -465,66 +465,66 @@ def gcnet2nc(args):
 		k += 1
 	'''	
 #############################################################################################################################################################
-
-	#qc1_str = ''.join(str(e) for e in qc1)
-	#qc9_str = ''.join(str(e) for e in qc9)
-	#qc17_str = ''.join(str(e) for e in qc17)
-	#qc25_str = ''.join(str(e) for e in qc25)
-
-
-	#a,b = 0,0
-	#while a < 12183:
-	#	qc_swdn[a] = qc1_str[b]
-	#	qc_swup[a] = qc1_str[b+1]
-	#	qc_netradiation[a] = qc1_str[b+2]
-	#	qc_ttc1[a] = qc1_str[b+3]
-	#	qc_ttc2[a] = qc1_str[b+4]
-	#	qc_tcs1[a] = qc1_str[b+5]
-	#	qc_tcs2[a] = qc1_str[b+6]
-	#	qc_rh1[a] = qc1_str[b+7]
-
-	#	a += 1
-	#	b += 8
-
-	#a,b = 0,0
-	#while a < 12183:
-	#	qc_rh2[a] = qc9_str[b]
-	#	qc_u1[a] = qc9_str[b+1]
-	#	qc_u2[a] = qc9_str[b+2]
-	#	qc_ud1[a] = qc9_str[b+3]
-	#	qc_ud2[a] = qc9_str[b+4]
-	#	qc_pressure[a] = qc9_str[b+5]
-	#	qc_snowheight1[a] = qc9_str[b+6]
-	#	qc_snowheight2[a] = qc9_str[b+7]
-
-	#	a += 1
-	#	b += 8
+	'''
+	qc1_str = ''.join(str(e) for e in qc1)
+	qc9_str = ''.join(str(e) for e in qc9)
+	qc17_str = ''.join(str(e) for e in qc17)
+	qc25_str = ''.join(str(e) for e in qc25)
 
 
-	#a,b = 0,0
-	#while a < 12183:
-	#	qc_tsnow1[a] = qc17_str[b]
-	#	qc_tsnow2[a] = qc17_str[b+1]
-	#	qc_tsnow3[a] = qc17_str[b+2]
-	#	qc_tsnow4[a] = qc17_str[b+3]
-	#	qc_tsnow5[a] = qc17_str[b+4]
-	#	qc_tsnow6[a] = qc17_str[b+5]
-	#	qc_tsnow7[a] = qc17_str[b+6]
-	#	qc_tsnow8[a] = qc17_str[b+7]
+	a,b = 0,0
+	while a < 12183:
+		qc_swdn[a] = qc1_str[b]
+		qc_swup[a] = qc1_str[b+1]
+		qc_netradiation[a] = qc1_str[b+2]
+		qc_ttc1[a] = qc1_str[b+3]
+		qc_ttc2[a] = qc1_str[b+4]
+		qc_tcs1[a] = qc1_str[b+5]
+		qc_tcs2[a] = qc1_str[b+6]
+		qc_rh1[a] = qc1_str[b+7]
 
-	#	a += 1
-	#	b += 8
+		a += 1
+		b += 8
+
+	a,b = 0,0
+	while a < 12183:
+		qc_rh2[a] = qc9_str[b]
+		qc_u1[a] = qc9_str[b+1]
+		qc_u2[a] = qc9_str[b+2]
+		qc_ud1[a] = qc9_str[b+3]
+		qc_ud2[a] = qc9_str[b+4]
+		qc_pressure[a] = qc9_str[b+5]
+		qc_snowheight1[a] = qc9_str[b+6]
+		qc_snowheight2[a] = qc9_str[b+7]
+
+		a += 1
+		b += 8
 
 
-	#a,b = 0,0
-	#while a < 12183:
-	#	qc_tsnow9[a] = qc25_str[b]
-	#	qc_tsnow10[a] = qc25_str[b+1]
-	#	qc_battery[a] = qc25_str[b+2]
+	a,b = 0,0
+	while a < 12183:
+		qc_tsnow1[a] = qc17_str[b]
+		qc_tsnow2[a] = qc17_str[b+1]
+		qc_tsnow3[a] = qc17_str[b+2]
+		qc_tsnow4[a] = qc17_str[b+3]
+		qc_tsnow5[a] = qc17_str[b+4]
+		qc_tsnow6[a] = qc17_str[b+5]
+		qc_tsnow7[a] = qc17_str[b+6]
+		qc_tsnow8[a] = qc17_str[b+7]
+
+		a += 1
+		b += 8
+
+
+	a,b = 0,0
+	while a < 12183:
+		qc_tsnow9[a] = qc25_str[b]
+		qc_tsnow10[a] = qc25_str[b+1]
+		qc_battery[a] = qc25_str[b+2]
 		
-	#	a += 1
-	#	b += 3
-
+		a += 1
+		b += 3
+	'''
 ##################################################################################################################################################################
 
 	m = 0
