@@ -1,3 +1,11 @@
+2018-01-04  Ajay Saini  <sainiak@uci.edu>
+
+	* Added functionality to calculate date from current variables for GCNET.
+
+	* Working on python/matplotlib for plots.
+
+	* Completely expunged the sensitive data using filter-branch.
+
 2018-01-03  Ajay Saini  <sainiak@uci.edu>
 
 	* Added optional argument to choose file format. For netCDF3 formats, the code is breaking at some points. Working to resolve it
