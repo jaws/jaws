@@ -4,14 +4,14 @@ from datetime import date
 
 def gcnet2nc(args):
 
-	f = open(args.input)
+	'''f = open(args.input)
 	count, a = 0, 0
 	while a < 54:
 		f.readline()
 		a += 1
 	for line in f:
 		count += 1
-	f.close()
+	f.close()'''
 
 	# NC file setup
 	#op_file = str((args.input).split('.')[0])+'.nc'
@@ -40,7 +40,7 @@ def gcnet2nc(args):
 	root_grp.Conventions = 'CF-1.6'
 
 	# dimension
-	root_grp.createDimension('time', count)
+	root_grp.createDimension('time', None)
 
 	# variables
 	station_number = root_grp.createVariable('station_number', 'u1', ('time',))
