@@ -1,11 +1,10 @@
 import argparse
 from netCDF4 import Dataset
 from datetime import date
-from astropy.io import ascii
 
 def aaws2nc(args):
 
-	data = ascii.read(args.input)
+	'''data = ascii.read(args.input)
 
 	f = open(args.input)
 	count = 0
@@ -14,7 +13,7 @@ def aaws2nc(args):
 			continue
 		else:
 			count += 1
-	f.close()
+	f.close()'''
 
 	# NC file setup
 	#op_file = str((args.input).split('.')[0])+'.nc'
@@ -46,17 +45,18 @@ def aaws2nc(args):
 
 	# dimension
 	root_grp.createDimension('station', 1)
-	root_grp.createDimension('time', count)
+	root_grp.createDimension('time', None)
 
 	# variables
 	station_name = root_grp.createVariable('station_name', 'S20', ('station',))
 	time = root_grp.createVariable('time', 'i4', ('time',))
-	air_temp = root_grp.createVariable('air_temp', 'f4', ('station','time',), fill_value = -999)
-	vtempdiff = root_grp.createVariable('vtempdiff', 'f4', ('station','time',), fill_value = -999)
-	rh = root_grp.createVariable('rh', 'f4', ('station','time',), fill_value = -999)
-	pressure = root_grp.createVariable('pressure', 'f4', ('station','time',), fill_value = -999)
-	wind_dir = root_grp.createVariable('wind_dir', 'f4', ('station','time',), fill_value = -999)
-	wind_spd = root_grp.createVariable('wind_spd', 'f4', ('station','time',), fill_value = -999)
+	stamp = root_grp.createVariable('stamp', 'S20', ('time',))
+	air_temp = root_grp.createVariable('air_temp', 'f4', ('time',), fill_value = -999)
+	vtempdiff = root_grp.createVariable('vtempdiff', 'f4', ('time',), fill_value = -999)
+	rh = root_grp.createVariable('rh', 'f4', ('time',), fill_value = -999)
+	pressure = root_grp.createVariable('pressure', 'f4', ('time',), fill_value = -999)
+	wind_dir = root_grp.createVariable('wind_dir', 'f4', ('time',), fill_value = -999)
+	wind_spd = root_grp.createVariable('wind_spd', 'f4', ('time',), fill_value = -999)
 	
 	
 	
@@ -68,6 +68,8 @@ def aaws2nc(args):
 	time.standard_name = 'time'
 	time.calendar = 'standard'
 	
+	stamp.long_name = 'Timestamp'
+
 	air_temp.units = 'degC'
 	air_temp.long_name = 'air temperature'
 	air_temp.standard_name = 'air_temperature'
@@ -91,15 +93,63 @@ def aaws2nc(args):
 	wind_spd.long_name = 'wind speed'
 	wind_spd.standard_name = 'wind_speed'
 	
-	
-	for i in data:
+	i,j = 0,0
+	ip_file = open(str(args.input), 'r')
+
+	while i < 8:
+	    ip_file.readline()
+	    i += 1
+
+	for line in ip_file:
+	    
+	    line = line.strip()
+	    columns = line.split(',')
+	    
+	    if columns[0] == '':
+	    	 stamp[j] = 'n/a'
+	    else:
+	   		stamp[j] = columns[0]
+	    
+	    if columns[1] == '':
+	    	 air_temp[j] = -999
+	    else:
+	   		air_temp[j] = columns[1]
+	    
+	    if columns[2] == '':
+	    	 vtempdiff[j] = -999
+	    else:
+	   		vtempdiff[j] = columns[2]
+	    
+	    if columns[3] == '':
+	    	 rh[j] = -999
+	    else:
+	   		rh[j] = columns[3]
+	    
+	    if columns[4] == '':
+	    	 pressure[j] = -999
+	    else:
+	   		pressure[j] = columns[4]
+	    
+	    if columns[5] == '':
+	    	 wind_dir[j] = -999
+	    else:
+	   		wind_dir[j] = columns[5]
+	    
+	    if columns[6] == '':
+	    	 wind_spd[j] = -999
+	    	 j += 1
+	    else:
+	   		wind_spd[j] = columns[6]
+	   		j += 1
+
+	'''for i in data:
 		air_temp[:] = data['col2']
 		vtempdiff[:] = data['col3']
 		rh[:] = data['col4']
 		pressure[:] = data['col5']
 		wind_dir[:] = data['col6']
 		wind_spd[:] = data['col7']
-		
+	'''	
 	f = open(args.input)
 	f.readline()
 	for line in f:
