@@ -95,35 +95,35 @@ def gcnet2nc(args):
 	qc9 = root_grp.createVariable('qc9', 'i8', ('time',))
 	qc17 = root_grp.createVariable('qc17', 'i8', ('time',))
 	qc25 = root_grp.createVariable('qc25', 'i8', ('time',))
-	'''
-	qc_swdn = root_grp.createVariable('qc_swdn', 'S1', ('time',))
-	qc_swup = root_grp.createVariable('qc_swup', 'S1', ('time',))
-	qc_netradiation = root_grp.createVariable('qc_netradiation', 'S1', ('time',))
-	qc_ttc1 = root_grp.createVariable('qc_ttc1', 'S1', ('time',))
-	qc_ttc2 = root_grp.createVariable('qc_ttc2', 'S1', ('time',))
-	qc_tcs1 = root_grp.createVariable('qc_tcs1', 'S1', ('time',))
-	qc_tcs2 = root_grp.createVariable('qc_tcs2', 'S1', ('time',))
-	qc_rh1 = root_grp.createVariable('qc_rh1', 'S1', ('time',))
-	qc_rh2 = root_grp.createVariable('qc_rh2', 'S1', ('time',))
-	qc_u1 = root_grp.createVariable('qc_u1', 'S1', ('time',))
-	qc_u2 = root_grp.createVariable('qc_u2', 'S1', ('time',))
-	qc_ud1 = root_grp.createVariable('qc_ud1', 'S1', ('time',))
-	qc_ud2 = root_grp.createVariable('qc_ud2', 'S1', ('time',))
-	qc_pressure = root_grp.createVariable('qc_pressure', 'S1', ('time',))
-	qc_snowheight1 = root_grp.createVariable('qc_snowheight1', 'S1', ('time',))
-	qc_snowheight2 = root_grp.createVariable('qc_snowheight2', 'S1', ('time',))
-	qc_tsnow1 = root_grp.createVariable('qc_tsnow1', 'S1', ('time',))
-	qc_tsnow2 = root_grp.createVariable('qc_tsnow2', 'S1', ('time',))
-	qc_tsnow3 = root_grp.createVariable('qc_tsnow3', 'S1', ('time',))
-	qc_tsnow4 = root_grp.createVariable('qc_tsnow4', 'S1', ('time',))
-	qc_tsnow5 = root_grp.createVariable('qc_tsnow5', 'S1', ('time',))
-	qc_tsnow6 = root_grp.createVariable('qc_tsnow6', 'S1', ('time',))
-	qc_tsnow7 = root_grp.createVariable('qc_tsnow7', 'S1', ('time',))
-	qc_tsnow8 = root_grp.createVariable('qc_tsnow8', 'S1', ('time',))
-	qc_tsnow9 = root_grp.createVariable('qc_tsnow9', 'S1', ('time',))
-	qc_tsnow10 = root_grp.createVariable('qc_tsnow10', 'S1', ('time',))
-	qc_battery = root_grp.createVariable('qc_battery', 'S1', ('time',))
-	'''
+	
+	qc_swdn = root_grp.createVariable('qc_swdn', 'S2', ('time',))
+	qc_swup = root_grp.createVariable('qc_swup', 'S2', ('time',))
+	qc_netradiation = root_grp.createVariable('qc_netradiation', 'S2', ('time',))
+	qc_ttc1 = root_grp.createVariable('qc_ttc1', 'S2', ('time',))
+	qc_ttc2 = root_grp.createVariable('qc_ttc2', 'S2', ('time',))
+	qc_tcs1 = root_grp.createVariable('qc_tcs1', 'S2', ('time',))
+	qc_tcs2 = root_grp.createVariable('qc_tcs2', 'S2', ('time',))
+	qc_rh1 = root_grp.createVariable('qc_rh1', 'S2', ('time',))
+	qc_rh2 = root_grp.createVariable('qc_rh2', 'S2', ('time',))
+	qc_u1 = root_grp.createVariable('qc_u1', 'S2', ('time',))
+	qc_u2 = root_grp.createVariable('qc_u2', 'S2', ('time',))
+	qc_ud1 = root_grp.createVariable('qc_ud1', 'S2', ('time',))
+	qc_ud2 = root_grp.createVariable('qc_ud2', 'S2', ('time',))
+	qc_pressure = root_grp.createVariable('qc_pressure', 'S2', ('time',))
+	qc_snowheight1 = root_grp.createVariable('qc_snowheight1', 'S2', ('time',))
+	qc_snowheight2 = root_grp.createVariable('qc_snowheight2', 'S2', ('time',))
+	qc_tsnow1 = root_grp.createVariable('qc_tsnow1', 'S2', ('time',))
+	qc_tsnow2 = root_grp.createVariable('qc_tsnow2', 'S2', ('time',))
+	qc_tsnow3 = root_grp.createVariable('qc_tsnow3', 'S2', ('time',))
+	qc_tsnow4 = root_grp.createVariable('qc_tsnow4', 'S2', ('time',))
+	qc_tsnow5 = root_grp.createVariable('qc_tsnow5', 'S2', ('time',))
+	qc_tsnow6 = root_grp.createVariable('qc_tsnow6', 'S2', ('time',))
+	qc_tsnow7 = root_grp.createVariable('qc_tsnow7', 'S2', ('time',))
+	qc_tsnow8 = root_grp.createVariable('qc_tsnow8', 'S2', ('time',))
+	qc_tsnow9 = root_grp.createVariable('qc_tsnow9', 'S2', ('time',))
+	qc_tsnow10 = root_grp.createVariable('qc_tsnow10', 'S2', ('time',))
+	qc_battery = root_grp.createVariable('qc_battery', 'S2', ('time',))
+	
 	time = root_grp.createVariable('time', 'i4', ('time',))
 	date_derived = root_grp.createVariable('date_derived', 'S10', ('time',))
 
@@ -407,7 +407,7 @@ def gcnet2nc(args):
 	    qc25[j] = columns[51]
 	    j += 1
 
-	'''
+	
 	qc1_str = [str(e) for e in qc1]
 	qc9_str = [str(e) for e in qc9]
 	qc17_str = [str(e) for e in qc17]
@@ -463,7 +463,7 @@ def gcnet2nc(args):
 		qc_battery[k] = qc25_str[k][l+2]
 
 		k += 1
-	'''	
+	
 #############################################################################################################################################################
 	'''
 	qc1_str = ''.join(str(e) for e in qc1)
