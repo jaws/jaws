@@ -70,26 +70,26 @@ def aaws2nc(args):
 	
 	stamp.long_name = 'Timestamp'
 
-	air_temp.units = 'degC'
+	air_temp.units = 'kelvin'
 	air_temp.long_name = 'air temperature'
 	air_temp.standard_name = 'air_temperature'
 	
 	vtempdiff.units = '1'
 	vtempdiff.long_name = 'vertical temperature differential'
 	
-	rh.units = '%'
+	rh.units = '1'
 	rh.long_name = 'relative humidity'
 	rh.standard_name = 'relative_humidity'
 
-	pressure.units = 'hPa'
+	pressure.units = 'pascal'
 	pressure.long_name = 'air pressure'
 	pressure.standard_name = 'air_pressure'
 
-	wind_dir.units = 'deg'
+	wind_dir.units = 'degree'
 	wind_dir.long_name = 'wind direction'
 	wind_dir.standard_name = 'wind_from_direction'
 
-	wind_spd.units = 'ms-1'
+	wind_spd.units = 'meter second-1'
 	wind_spd.long_name = 'wind speed'
 	wind_spd.standard_name = 'wind_speed'
 	
@@ -113,7 +113,7 @@ def aaws2nc(args):
 	    if columns[1] == '':
 	    	 air_temp[j] = -999
 	    else:
-	   		air_temp[j] = columns[1]
+	   		air_temp[j] = float(columns[1]) + 273.15
 	    
 	    if columns[2] == '':
 	    	 vtempdiff[j] = -999
@@ -128,7 +128,7 @@ def aaws2nc(args):
 	    if columns[4] == '':
 	    	 pressure[j] = -999
 	    else:
-	   		pressure[j] = columns[4]
+	   		pressure[j] = float(columns[4]) * 100
 	    
 	    if columns[5] == '':
 	    	 wind_dir[j] = -999
