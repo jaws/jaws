@@ -21,15 +21,15 @@ def aaws2nc(args):
 	if args.output:
 		op_file = str(args.output)
 
-	if args.format == 3:
+	if args.format3 == 1:
 		root_grp = Dataset(op_file, 'w', format='NETCDF3_CLASSIC')
-	elif args.format == 4:
+	elif args.format4 == 1:
 		root_grp = Dataset(op_file, 'w', format='NETCDF4')
-	elif args.format == 5:
+	elif args.format5 == 1:
 		root_grp = Dataset(op_file, 'w', format='NETCDF3_64BIT_DATA')
-	elif args.format == 6:
+	elif args.format6 == 1:
 		root_grp = Dataset(op_file, 'w', format='NETCDF3_64BIT_OFFSET')
-	elif args.format == 7:
+	elif args.format7 == 1:
 		root_grp = Dataset(op_file, 'w', format='NETCDF4_CLASSIC')
 	else:
 		root_grp = Dataset(op_file, 'w', format='NETCDF4')
