@@ -407,6 +407,7 @@ def gcnet2nc(args):
 	    qc25[j] = columns[51]
 	    j += 1
 
+	print "extracting quality control variables..."
 	
 	qc1_str = [str(e) for e in qc1]
 	qc9_str = [str(e) for e in qc9]
@@ -526,12 +527,13 @@ def gcnet2nc(args):
 		b += 3
 	'''
 ##################################################################################################################################################################
-
+	print "calculating time..."
 	m = 0
 	for item in julian_decimal_time:
 	    time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400
 	    m += 1
 
+	print "calculating date..."
 	n = 0
 	for item in julian_decimal_time:
 		if int(julian_decimal_time[n]) == 1:
