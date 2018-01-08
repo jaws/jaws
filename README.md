@@ -93,10 +93,10 @@ Execute this from the top-level JAWS directory:
 $ python jaws.py ../sample_data/gcnet_20130101.txt
 ```
 
-or
+or this from anywhere:
 
 ``` html
-$ python jaws.py ../sample_data/promice_20160501.txt -o ../promice_20160501.nc
+$ python ~/jaws/source/jaws.py ~/jaws/sample_data/promice_20160501.txt -o ~/promice_20160501.nc
 ```
 
 where '-o' is optional argument to provide user-defined name to output file.
