@@ -14,8 +14,8 @@ def gcnet2nc(args):
 	f.close()'''
 
 	# NC file setup
-	#op_file = str((args.input).split('.')[0])+'.nc'
-	op_file = 'gcnet.nc'
+	op_file = str((os.path.basename(args.input)).split('.')[0])+'.nc'
+	
 	if args.output:
 		op_file = str(args.output)
 
@@ -408,7 +408,7 @@ def gcnet2nc(args):
 	    j += 1
 
 	print "extracting quality control variables..."
-	
+
 	qc1_str = [str(e) for e in qc1]
 	qc9_str = [str(e) for e in qc9]
 	qc17_str = [str(e) for e in qc17]

@@ -16,8 +16,8 @@ def aaws2nc(args):
 	f.close()'''
 
 	# NC file setup
-	#op_file = str((args.input).split('.')[0])+'.nc'
-	op_file = 'aaws.nc'
+	op_file = str((os.path.basename(args.input)).split('.')[0])+'.nc'
+	
 	if args.output:
 		op_file = str(args.output)
 
