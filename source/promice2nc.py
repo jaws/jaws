@@ -267,113 +267,117 @@ def promice2nc(args):
 	j = 0
 
 	for line in ip_file:
-	    
-	    line = line.strip()
-	    columns = line.split()
-	    
-	    year[j] = columns[0]
-	    month[j] = columns[1]
-	    day[j] = columns[2]
-	    hour[j] = columns[3]
-	    day_of_year[j] = columns[4]
-	    day_of_century[j] = columns[5]
-	    
-	    if columns[6] == '-999':
-	    	air_pressure[j] = columns[6]
-	    else:
-	    	air_pressure[j] = float(columns[6]) * 100
-	    
-	    if columns[7] == '-999':
-	    	air_temperature[j] = columns[7]
-	    else:
-	    	air_temperature[j] = float(columns[7]) + 273.15
-	    
-	   	if columns[8] == '-999':
-	   		air_temperature_hygroclip[j] = columns[8]
-	   	else:
-	   		air_temperature_hygroclip[j] = float(columns[8]) + 273.15
-	    
-	    relative_humidity_wrtwater[j] = columns[9]
-	    relative_humidity[j] = columns[10]
-	    wind_speed[j] = columns[11]
-	    wind_direction[j] = columns[12]
-	    shortwave_radiation_down[j] = columns[13]
-	    shortwave_radiation_down_cor[j] = columns[14]
-	    shortwave_radiation_up[j] = columns[15]
-	    shortwave_radiation_up_cor[j] = columns[16]
-	    albedo_theta[j] = columns[17]
-	    longwave_radiation_down[j] = columns[18]
-	    longwave_radiation_up[j] = columns[19]
-	    cloudcover[j] = columns[20]
-	    
-	    if columns[21] == '-999':
-	    	surface_temp[j] = columns[21]
-	    else:
-	    	surface_temp[j] = float(columns[21]) + 273.15
-	    height_sensor_boom[j] = columns[22]
-	    height_stakes[j] = columns[23]
-	    depth_pressure_transducer[j] = columns[24]
-	    depth_pressure_transducer_cor[j] = columns[25]
-	    
-	    if columns[26] == '-999':
-	    	ice_temp_01[j] = columns[26]
-	    else:
-	    	ice_temp_01[j] = float(columns[26]) + 273.15
-	    
-	    if columns[27] == '-999':
-	    	ice_temp_02[j] = columns[27]
-	    else:
-	    	ice_temp_02[j] = float(columns[27]) + 273.15
-	    
-	    if columns[28] == '-999':
-	    	ice_temp_03[j] = columns[28]
-	    else:
-	    	ice_temp_03[j] = float(columns[28]) + 273.15
 
-	    if columns[29] == '-999':
-	    	ice_temp_04[j] = columns[29]
-	    else:
-	    	ice_temp_04[j] = float(columns[29]) + 273.15
+	    if len(line.strip()) == 0:
+	    	continue
 
-	    if columns[30] == '-999':
-	    	ice_temp_05[j] = columns[30]
 	    else:
-	    	ice_temp_05[j] = float(columns[30]) + 273.15
+	    	line = line.strip()
+		    columns = line.split()
+		    
+		    year[j] = columns[0]
+		    month[j] = columns[1]
+		    day[j] = columns[2]
+		    hour[j] = columns[3]
+		    day_of_year[j] = columns[4]
+		    day_of_century[j] = columns[5]
+		    
+		    if columns[6] == '-999':
+		    	air_pressure[j] = columns[6]
+		    else:
+		    	air_pressure[j] = float(columns[6]) * 100
+		    
+		    if columns[7] == '-999':
+		    	air_temperature[j] = columns[7]
+		    else:
+		    	air_temperature[j] = float(columns[7]) + 273.15
+		    
+		   	if columns[8] == '-999':
+		   		air_temperature_hygroclip[j] = columns[8]
+		   	else:
+		   		air_temperature_hygroclip[j] = float(columns[8]) + 273.15
+		    
+		    relative_humidity_wrtwater[j] = columns[9]
+		    relative_humidity[j] = columns[10]
+		    wind_speed[j] = columns[11]
+		    wind_direction[j] = columns[12]
+		    shortwave_radiation_down[j] = columns[13]
+		    shortwave_radiation_down_cor[j] = columns[14]
+		    shortwave_radiation_up[j] = columns[15]
+		    shortwave_radiation_up_cor[j] = columns[16]
+		    albedo_theta[j] = columns[17]
+		    longwave_radiation_down[j] = columns[18]
+		    longwave_radiation_up[j] = columns[19]
+		    cloudcover[j] = columns[20]
+		    
+		    if columns[21] == '-999':
+		    	surface_temp[j] = columns[21]
+		    else:
+		    	surface_temp[j] = float(columns[21]) + 273.15
+		    height_sensor_boom[j] = columns[22]
+		    height_stakes[j] = columns[23]
+		    depth_pressure_transducer[j] = columns[24]
+		    depth_pressure_transducer_cor[j] = columns[25]
+		    
+		    if columns[26] == '-999':
+		    	ice_temp_01[j] = columns[26]
+		    else:
+		    	ice_temp_01[j] = float(columns[26]) + 273.15
+		    
+		    if columns[27] == '-999':
+		    	ice_temp_02[j] = columns[27]
+		    else:
+		    	ice_temp_02[j] = float(columns[27]) + 273.15
+		    
+		    if columns[28] == '-999':
+		    	ice_temp_03[j] = columns[28]
+		    else:
+		    	ice_temp_03[j] = float(columns[28]) + 273.15
 
-	    if columns[31] == '-999':
-	    	ice_temp_06[j] = columns[31]
-	    else:
-	    	ice_temp_06[j] = float(columns[31]) + 273.15
+		    if columns[29] == '-999':
+		    	ice_temp_04[j] = columns[29]
+		    else:
+		    	ice_temp_04[j] = float(columns[29]) + 273.15
 
-	    if columns[32] == '-999':
-	    	ice_temp_07[j] = columns[32]
-	    else:
-	    	ice_temp_07[j] = float(columns[32]) + 273.15
+		    if columns[30] == '-999':
+		    	ice_temp_05[j] = columns[30]
+		    else:
+		    	ice_temp_05[j] = float(columns[30]) + 273.15
 
-	    if columns[33] == '-999':
-	    	ice_temp_08[j] = columns[33]
-	    else:
-	    	ice_temp_08[j] = float(columns[33]) + 273.15
-	    
-	    tilt_east[j] = columns[34]
-	    tilt_north[j] = columns[35]
-	    time_gps[j] = columns[36]
-	    latitude[j] = columns[37]
-	    longitude[j] = columns[38]
-	    elevation[j] = columns[39]
-	    hor_dil_prec[j] = columns[40]
-	    
-	    if columns[41] == '-999':
-	    	logger_temp[j] = columns[41]
-	    else:
-	    	logger_temp[j] = float(columns[41]) + 273.15
-	    
-	    if columns[42] == '-999':
-	    	fan_current[j] = columns[42]
-	    else:
-	    	fan_current[j] = float(columns[42] ) / 1000
+		    if columns[31] == '-999':
+		    	ice_temp_06[j] = columns[31]
+		    else:
+		    	ice_temp_06[j] = float(columns[31]) + 273.15
 
-	    battery_voltage[j] = columns[43]
+		    if columns[32] == '-999':
+		    	ice_temp_07[j] = columns[32]
+		    else:
+		    	ice_temp_07[j] = float(columns[32]) + 273.15
+
+		    if columns[33] == '-999':
+		    	ice_temp_08[j] = columns[33]
+		    else:
+		    	ice_temp_08[j] = float(columns[33]) + 273.15
+		    
+		    tilt_east[j] = columns[34]
+		    tilt_north[j] = columns[35]
+		    time_gps[j] = columns[36]
+		    latitude[j] = columns[37]
+		    longitude[j] = columns[38]
+		    elevation[j] = columns[39]
+		    hor_dil_prec[j] = columns[40]
+		    
+		    if columns[41] == '-999':
+		    	logger_temp[j] = columns[41]
+		    else:
+		    	logger_temp[j] = float(columns[41]) + 273.15
+		    
+		    if columns[42] == '-999':
+		    	fan_current[j] = columns[42]
+		    else:
+		    	fan_current[j] = float(columns[42] ) / 1000
+
+		    battery_voltage[j] = columns[43]
 	    j += 1
 
 
@@ -383,6 +387,8 @@ def promice2nc(args):
 	count = 0
 	for line in f:
 		if line[0] == 'Y':
+			continue
+		elif len(line.strip()) == 0:
 			continue
 		else:
 			count += 1
