@@ -1,10 +1,16 @@
 2018-01-05  Ajay Saini  <sainiak@uci.edu>
 
-	* Changed algotrithms for writing data to accomodate unlimited time dimension
+	* Changed algotrithms of AAWS, PROMICE for writing data to accomodate unlimited time dimension
 
 	* Functions to convert units to SI units (e.g. degC to kelvin)
 
-	* Edited the long mames
+	* Edited the long names
+
+	* Extracted individual quality control variables for GCNet
+
+	* Changed units for all networks
+
+	* Worked on netCDF classic formats error. Not resolved yet.
 
 2018-01-04  Ajay Saini  <sainiak@uci.edu>
 
