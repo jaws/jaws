@@ -1,6 +1,7 @@
 import argparse
 from netCDF4 import Dataset
 from datetime import date
+import os
 
 def aaws2nc(args):
 
