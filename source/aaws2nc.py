@@ -45,13 +45,13 @@ def aaws2nc(args):
 	root_grp.data_type = 'q1h'
 
 	# dimension
-	root_grp.createDimension('station', 1)
+	root_grp.createDimension('station', 25)
 	root_grp.createDimension('time', None)
 
 	# variables
-	station_name = root_grp.createVariable('station_name', 'S20', ('station',))
+	station_name = root_grp.createVariable('station_name', 'S1', ('station',))
 	time = root_grp.createVariable('time', 'i4', ('time',))
-	stamp = root_grp.createVariable('stamp', 'S20', ('time',))
+	#stamp = root_grp.createVariable('stamp', 'S20', ('time',))
 	air_temp = root_grp.createVariable('air_temp', 'f4', ('time',), fill_value = -999)
 	vtempdiff = root_grp.createVariable('vtempdiff', 'f4', ('time',), fill_value = -999)
 	rh = root_grp.createVariable('rh', 'f4', ('time',), fill_value = -999)
@@ -69,7 +69,7 @@ def aaws2nc(args):
 	time.standard_name = 'time'
 	time.calendar = 'standard'
 	
-	stamp.long_name = 'Timestamp'
+	#stamp.long_name = 'Timestamp'
 
 	air_temp.units = 'kelvin'
 	air_temp.long_name = 'air temperature'
@@ -106,10 +106,10 @@ def aaws2nc(args):
 	    line = line.strip()
 	    columns = line.split(',')
 	    
-	    if columns[0] == '':
+	    '''if columns[0] == '':
 	    	 stamp[j] = 'n/a'
 	    else:
-	   		stamp[j] = columns[0]
+	   		stamp[j] = columns[0]'''
 	    
 	    if columns[1] == '':
 	    	 air_temp[j] = -999
@@ -154,7 +154,8 @@ def aaws2nc(args):
 	f = open(args.input)
 	f.readline()
 	for line in f:
-		station_name[0] = line[12:].strip('\n')
+		x = list(line[12:].strip('\n'))
+		station_name[0:len(x)] = x
 		break
 	f.close()
 
