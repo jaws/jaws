@@ -1,3 +1,13 @@
+2018-01-06  Ajay Saini  <sainiak@uci.edu>
+
+	* Solved bug to skip blank lines in input file of PROMICE
+
+	* Adjusted calculations of temp and pressure variables to avoid changing -999 values
+
+	* Default output name is now same as input name
+
+	* PROMICE and AAWS compatible with netCDF classic formats
+
 2018-01-05  Ajay Saini  <sainiak@uci.edu>
 
 	* Changed algotrithms of AAWS, PROMICE for writing data to accomodate unlimited time dimension
