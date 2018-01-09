@@ -23,6 +23,7 @@ def promice2nc(args):
 	else:
 		root_grp = Dataset(op_file, 'w', format='NETCDF4')
 	
+	root_grp.station_name = os.path.basename(args.input)[0:5]
 	root_grp.title = 'Weather Station Data'
 	root_grp.source = 'Surface Observations'
 	root_grp.institution = 'Programme for Monitoring of the Greenland Ice Sheet'
@@ -30,11 +31,11 @@ def promice2nc(args):
 	root_grp.Conventions = 'CF-1.6'
 
 	# dimension
-	root_grp.createDimension('station', 1)
+	#root_grp.createDimension('station', 1)
 	root_grp.createDimension('time', None)
 
 	# variables
-	station_name = root_grp.createVariable('station_name', 'S20', ('station',))
+	#station_name = root_grp.createVariable('station_name', 'S20', ('station',))
 	time = root_grp.createVariable('time', 'i4', ('time',))
 	year = root_grp.createVariable('year', 'i4', ('time',))
 	month = root_grp.createVariable('month', 'i4', ('time',))
@@ -81,8 +82,8 @@ def promice2nc(args):
 	fan_current = root_grp.createVariable('fan_current', 'f4', ('time',))
 	battery_voltage = root_grp.createVariable('battery_voltage', 'f4', ('time',))
 
-	station_name.long_name = 'name of station'
-	station_name.cf_role = 'timeseries_id'
+	#station_name.long_name = 'name of station'
+	#station_name.cf_role = 'timeseries_id'
 
 	time.units = 'seconds since 2007-01-01 00:00:00'
 	time.long_name = 'time of measurement'
@@ -383,7 +384,7 @@ def promice2nc(args):
 		j += 1
 
 
-	station_name = args.input[0:5]
+	#station_name = args.input[0:5]
 
 	f = open(args.input)
 	count = 0
