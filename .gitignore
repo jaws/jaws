@@ -1,3 +1,7 @@
 aist_gcnet.txt
 EGP_hour.txt
 AWS14_SWdata_Wenshan.txt
+
+source/aaws2nc.pyc
+source/gcnet2nc.pyc
+source/promice2nc.pyc
