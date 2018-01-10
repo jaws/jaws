@@ -43,8 +43,8 @@ def gcnet2nc(args):
 	root_grp.createDimension('time', None)
 
 	# variables
-	station_number = root_grp.createVariable('station_number', 'u1', ('time',))
-	year = root_grp.createVariable('year', 'i8', ('time',))
+	station_number = root_grp.createVariable('station_number', 'i1', ('time',))
+	year = root_grp.createVariable('year', 'i4', ('time',))
 	julian_decimal_time = root_grp.createVariable('julian_decimal_time', 'f4', ('time',))
 	sw_down = root_grp.createVariable('sw_down', 'f4', ('time',))
 	sw_up = root_grp.createVariable('sw_up', 'f4', ('time',))
@@ -91,10 +91,10 @@ def gcnet2nc(args):
 	wind_sensor_height_2 = root_grp.createVariable('wind_sensor_height_2', 'f4', ('time',))
 	albedo = root_grp.createVariable('albedo', 'f4', ('time',))
 	zenith_angle = root_grp.createVariable('zenith_angle', 'f4', ('time',))
-	qc1 = root_grp.createVariable('qc1', 'i8', ('time',))
-	qc9 = root_grp.createVariable('qc9', 'i8', ('time',))
-	qc17 = root_grp.createVariable('qc17', 'i8', ('time',))
-	qc25 = root_grp.createVariable('qc25', 'i8', ('time',))
+	qc1 = root_grp.createVariable('qc1', 'i4', ('time',))
+	qc9 = root_grp.createVariable('qc9', 'i4', ('time',))
+	qc17 = root_grp.createVariable('qc17', 'i4', ('time',))
+	qc25 = root_grp.createVariable('qc25', 'i4', ('time',))
 	
 	qc_swdn = root_grp.createVariable('qc_swdn', 'i1', ('time',))
 	qc_swup = root_grp.createVariable('qc_swup', 'i1', ('time',))
@@ -125,10 +125,10 @@ def gcnet2nc(args):
 	qc_battery = root_grp.createVariable('qc_battery', 'i1', ('time',))
 	
 	time = root_grp.createVariable('time', 'i4', ('time',))
-	date_derived = root_grp.createVariable('date_derived', 'S10', ('time',))
-	month = root_grp.createVariable('month', 'i4', ('time',))
-	day = root_grp.createVariable('day', 'i4', ('time',))
-	hour = root_grp.createVariable('hour', 'i4', ('time',))
+	#date_derived = root_grp.createVariable('date_derived', 'S10', ('time',))
+	month = root_grp.createVariable('month', 'i1', ('time',))
+	day = root_grp.createVariable('day', 'i1', ('time',))
+	hour = root_grp.createVariable('hour', 'i1', ('time',))
 
 
 	station_number.units = '1'
@@ -341,7 +341,7 @@ def gcnet2nc(args):
 	time.bounds = 'time_bnds'
 	time.note = 'Created new derived variable'
 
-	date_derived.note = 'Created date from year and julian decimal time.'
+	#date_derived.note = 'Created date from year and julian decimal time.'
 	
 	print "converting data..."
 	i,j = 0,0
