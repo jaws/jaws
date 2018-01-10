@@ -96,33 +96,33 @@ def gcnet2nc(args):
 	qc17 = root_grp.createVariable('qc17', 'i8', ('time',))
 	qc25 = root_grp.createVariable('qc25', 'i8', ('time',))
 	
-	qc_swdn = root_grp.createVariable('qc_swdn', 'S2', ('time',))
-	qc_swup = root_grp.createVariable('qc_swup', 'S2', ('time',))
-	qc_netradiation = root_grp.createVariable('qc_netradiation', 'S2', ('time',))
-	qc_ttc1 = root_grp.createVariable('qc_ttc1', 'S2', ('time',))
-	qc_ttc2 = root_grp.createVariable('qc_ttc2', 'S2', ('time',))
-	qc_tcs1 = root_grp.createVariable('qc_tcs1', 'S2', ('time',))
-	qc_tcs2 = root_grp.createVariable('qc_tcs2', 'S2', ('time',))
-	qc_rh1 = root_grp.createVariable('qc_rh1', 'S2', ('time',))
-	qc_rh2 = root_grp.createVariable('qc_rh2', 'S2', ('time',))
-	qc_u1 = root_grp.createVariable('qc_u1', 'S2', ('time',))
-	qc_u2 = root_grp.createVariable('qc_u2', 'S2', ('time',))
-	qc_ud1 = root_grp.createVariable('qc_ud1', 'S2', ('time',))
-	qc_ud2 = root_grp.createVariable('qc_ud2', 'S2', ('time',))
-	qc_pressure = root_grp.createVariable('qc_pressure', 'S2', ('time',))
-	qc_snowheight1 = root_grp.createVariable('qc_snowheight1', 'S2', ('time',))
-	qc_snowheight2 = root_grp.createVariable('qc_snowheight2', 'S2', ('time',))
-	qc_tsnow1 = root_grp.createVariable('qc_tsnow1', 'S2', ('time',))
-	qc_tsnow2 = root_grp.createVariable('qc_tsnow2', 'S2', ('time',))
-	qc_tsnow3 = root_grp.createVariable('qc_tsnow3', 'S2', ('time',))
-	qc_tsnow4 = root_grp.createVariable('qc_tsnow4', 'S2', ('time',))
-	qc_tsnow5 = root_grp.createVariable('qc_tsnow5', 'S2', ('time',))
-	qc_tsnow6 = root_grp.createVariable('qc_tsnow6', 'S2', ('time',))
-	qc_tsnow7 = root_grp.createVariable('qc_tsnow7', 'S2', ('time',))
-	qc_tsnow8 = root_grp.createVariable('qc_tsnow8', 'S2', ('time',))
-	qc_tsnow9 = root_grp.createVariable('qc_tsnow9', 'S2', ('time',))
-	qc_tsnow10 = root_grp.createVariable('qc_tsnow10', 'S2', ('time',))
-	qc_battery = root_grp.createVariable('qc_battery', 'S2', ('time',))
+	qc_swdn = root_grp.createVariable('qc_swdn', 'i1', ('time',))
+	qc_swup = root_grp.createVariable('qc_swup', 'i1', ('time',))
+	qc_netradiation = root_grp.createVariable('qc_netradiation', 'i1', ('time',))
+	qc_ttc1 = root_grp.createVariable('qc_ttc1', 'i1', ('time',))
+	qc_ttc2 = root_grp.createVariable('qc_ttc2', 'i1', ('time',))
+	qc_tcs1 = root_grp.createVariable('qc_tcs1', 'i1', ('time',))
+	qc_tcs2 = root_grp.createVariable('qc_tcs2', 'i1', ('time',))
+	qc_rh1 = root_grp.createVariable('qc_rh1', 'i1', ('time',))
+	qc_rh2 = root_grp.createVariable('qc_rh2', 'i1', ('time',))
+	qc_u1 = root_grp.createVariable('qc_u1', 'i1', ('time',))
+	qc_u2 = root_grp.createVariable('qc_u2', 'i1', ('time',))
+	qc_ud1 = root_grp.createVariable('qc_ud1', 'i1', ('time',))
+	qc_ud2 = root_grp.createVariable('qc_ud2', 'i1', ('time',))
+	qc_pressure = root_grp.createVariable('qc_pressure', 'i1', ('time',))
+	qc_snowheight1 = root_grp.createVariable('qc_snowheight1', 'i1', ('time',))
+	qc_snowheight2 = root_grp.createVariable('qc_snowheight2', 'i1', ('time',))
+	qc_tsnow1 = root_grp.createVariable('qc_tsnow1', 'i1', ('time',))
+	qc_tsnow2 = root_grp.createVariable('qc_tsnow2', 'i1', ('time',))
+	qc_tsnow3 = root_grp.createVariable('qc_tsnow3', 'i1', ('time',))
+	qc_tsnow4 = root_grp.createVariable('qc_tsnow4', 'i1', ('time',))
+	qc_tsnow5 = root_grp.createVariable('qc_tsnow5', 'i1', ('time',))
+	qc_tsnow6 = root_grp.createVariable('qc_tsnow6', 'i1', ('time',))
+	qc_tsnow7 = root_grp.createVariable('qc_tsnow7', 'i1', ('time',))
+	qc_tsnow8 = root_grp.createVariable('qc_tsnow8', 'i1', ('time',))
+	qc_tsnow9 = root_grp.createVariable('qc_tsnow9', 'i1', ('time',))
+	qc_tsnow10 = root_grp.createVariable('qc_tsnow10', 'i1', ('time',))
+	qc_battery = root_grp.createVariable('qc_battery', 'i1', ('time',))
 	
 	time = root_grp.createVariable('time', 'i4', ('time',))
 	date_derived = root_grp.createVariable('date_derived', 'S10', ('time',))
@@ -471,51 +471,51 @@ def gcnet2nc(args):
 	k,l = 0,0
 
 	for item in qc1_str:
-		qc_swdn[k] = qc1_str[k][l]
-		qc_swup[k] = qc1_str[k][l+1]
-		qc_netradiation[k] = qc1_str[k][l+2]
-		qc_ttc1[k] = qc1_str[k][l+3]
-		qc_ttc2[k] = qc1_str[k][l+4]
-		qc_tcs1[k] = qc1_str[k][l+5]
-		qc_tcs2[k] = qc1_str[k][l+6]
-		qc_rh1[k] = qc1_str[k][l+7]
+		qc_swdn[k] = int(qc1_str[k][l])
+		qc_swup[k] = int(qc1_str[k][l+1])
+		qc_netradiation[k] = int(qc1_str[k][l+2])
+		qc_ttc1[k] = int(qc1_str[k][l+3])
+		qc_ttc2[k] = int(qc1_str[k][l+4])
+		qc_tcs1[k] = int(qc1_str[k][l+5])
+		qc_tcs2[k] = int(qc1_str[k][l+6])
+		qc_rh1[k] = int(qc1_str[k][l+7])
 
 		k += 1
 		
 	k,l = 0,0
 
 	for item in qc9_str:
-		qc_rh2[k] = qc9_str[k][l]
-		qc_u1[k] = qc9_str[k][l+1]
-		qc_u2[k] = qc9_str[k][l+2]
-		qc_ud1[k] = qc9_str[k][l+3]
-		qc_ud2[k] = qc9_str[k][l+4]
-		qc_pressure[k] = qc9_str[k][l+5]
-		qc_snowheight1[k] = qc9_str[k][l+6]
-		qc_snowheight2[k] = qc9_str[k][l+7]
+		qc_rh2[k] = int(qc9_str[k][l])
+		qc_u1[k] = int(qc9_str[k][l+1])
+		qc_u2[k] = int(qc9_str[k][l+2])
+		qc_ud1[k] = int(qc9_str[k][l+3])
+		qc_ud2[k] = int(qc9_str[k][l+4])
+		qc_pressure[k] = int(qc9_str[k][l+5])
+		qc_snowheight1[k] = int(qc9_str[k][l+6])
+		qc_snowheight2[k] = int(qc9_str[k][l+7])
 
 		k += 1
 		
 	k,l = 0,0
 
 	for item in qc17_str:
-		qc_tsnow1[k] = qc17_str[k][l]
-		qc_tsnow2[k] = qc17_str[k][l+1]
-		qc_tsnow3[k] = qc17_str[k][l+2]
-		qc_tsnow4[k] = qc17_str[k][l+3]
-		qc_tsnow5[k] = qc17_str[k][l+4]
-		qc_tsnow6[k] = qc17_str[k][l+5]
-		qc_tsnow7[k] = qc17_str[k][l+6]
-		qc_tsnow8[k] = qc17_str[k][l+7]
+		qc_tsnow1[k] = int(qc17_str[k][l])
+		qc_tsnow2[k] = int(qc17_str[k][l+1])
+		qc_tsnow3[k] = int(qc17_str[k][l+2])
+		qc_tsnow4[k] = int(qc17_str[k][l+3])
+		qc_tsnow5[k] = int(qc17_str[k][l+4])
+		qc_tsnow6[k] = int(qc17_str[k][l+5])
+		qc_tsnow7[k] = int(qc17_str[k][l+6])
+		qc_tsnow8[k] = int(qc17_str[k][l+7])
 
 		k += 1
 		
 	k,l = 0,0
 
 	for item in qc25_str:
-		qc_tsnow9[k] = qc25_str[k][l]
-		qc_tsnow10[k] = qc25_str[k][l+1]
-		qc_battery[k] = qc25_str[k][l+2]
+		qc_tsnow9[k] = int(qc25_str[k][l])
+		qc_tsnow10[k] = int(qc25_str[k][l+1])
+		qc_battery[k] = int(qc25_str[k][l+2])
 
 		k += 1
 	
