@@ -584,8 +584,80 @@ def gcnet2nc(args):
 	print "calculating time..."
 	m = 0
 	for item in julian_decimal_time:
-	    time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400
-	    m += 1
+		if hour[m] == 0:
+			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400
+			m += 1
+		elif hour[m] == 1:
+			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*1)
+			m += 1
+		elif hour[m] == 2:
+			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*2)
+			m += 1
+		elif hour[m] == 3:
+			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*3)
+			m += 1
+		elif hour[m] == 4:
+			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*4)
+			m += 1
+		elif hour[m] == 5:
+			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*5)
+			m += 1
+		elif hour[m] == 6:
+			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*6)
+			m += 1
+		elif hour[m] == 7:
+			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*7)
+			m += 1
+		elif hour[m] == 8:
+			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*8)
+			m += 1
+		elif hour[m] == 9:
+			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*9)
+			m += 1
+		elif hour[m] == 10:
+			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*10)
+			m += 1
+		elif hour[m] == 11:
+			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*11)
+			m += 1
+		elif hour[m] == 12:
+			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*12)
+			m += 1
+		elif hour[m] == 13:
+			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*13)
+			m += 1
+		elif hour[m] == 14:
+			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*14)
+			m += 1
+		elif hour[m] == 15:
+			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*15)
+			m += 1
+		elif hour[m] == 16:
+			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*16)
+			m += 1
+		elif hour[m] == 17:
+			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*17)
+			m += 1
+		elif hour[m] == 18:
+			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*18)
+			m += 1
+		elif hour[m] == 19:
+			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*19)
+			m += 1
+		elif hour[m] == 20:
+			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*20)
+			m += 1
+		elif hour[m] == 21:
+			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*21)
+			m += 1
+		elif hour[m] == 22:
+			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*22)
+			m += 1
+		elif hour[m] == 23:
+			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*23)
+			m += 1
+		
+		
 
 	print "calculating date..."
 	n = 0
