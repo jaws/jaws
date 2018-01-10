@@ -416,43 +416,43 @@ def gcnet2nc(args):
 	    	hour[j] = 1
 	    elif str(columns[2]-int(columns[2]))[1:] == '.0833':
 	    	hour[j] = 2
-	    elif str(columns[2]-int(columns[2]))[1:] == '.1250':
+	    elif str(columns[2]-int(columns[2]))[1:] == '.125':
 	    	hour[j] = 3
 	    elif str(columns[2]-int(columns[2]))[1:] == '.1667':
 	    	hour[j] = 4
 	    elif str(columns[2]-int(columns[2]))[1:] == '.2083':
 	    	hour[j] = 5
-	    elif str(columns[2]-int(columns[2]))[1:] == '.2500':
+	    elif str(columns[2]-int(columns[2]))[1:] == '.25':
 	    	hour[j] = 6
 	    elif str(columns[2]-int(columns[2]))[1:] == '.2917':
 	    	hour[j] = 7
 	    elif str(columns[2]-int(columns[2]))[1:] == '.3333':
 	    	hour[j] = 8
-	    elif str(columns[2]-int(columns[2]))[1:] == '.3750':
+	    elif str(columns[2]-int(columns[2]))[1:] == '.375':
 	    	hour[j] = 9
 	    elif str(columns[2]-int(columns[2]))[1:] == '.4167':
 	    	hour[j] = 10
 	    elif str(columns[2]-int(columns[2]))[1:] == '.4583':
 	    	hour[j] = 11
-	    elif str(columns[2]-int(columns[2]))[1:] == '.5000':
+	    elif str(columns[2]-int(columns[2]))[1:] == '.5':
 	    	hour[j] = 12
 	    elif str(columns[2]-int(columns[2]))[1:] == '.5417':
 	    	hour[j] = 13
 	    elif str(columns[2]-int(columns[2]))[1:] == '.5833':
 	    	hour[j] = 14
-	    elif str(columns[2]-int(columns[2]))[1:] == '.6250':
+	    elif str(columns[2]-int(columns[2]))[1:] == '.625':
 	    	hour[j] = 15
 	    elif str(columns[2]-int(columns[2]))[1:] == '.6667':
 	    	hour[j] = 16
 	    elif str(columns[2]-int(columns[2]))[1:] == '.7083':
 	    	hour[j] = 17
-	    elif str(columns[2]-int(columns[2]))[1:] == '.7500':
+	    elif str(columns[2]-int(columns[2]))[1:] == '.75':
 	    	hour[j] = 18
 	    elif str(columns[2]-int(columns[2]))[1:] == '.7917':
 	    	hour[j] = 19
 	    elif str(columns[2]-int(columns[2]))[1:] == '.8333':
 	    	hour[j] = 20
-	    elif str(columns[2]-int(columns[2]))[1:] == '.8750':
+	    elif str(columns[2]-int(columns[2]))[1:] == '.875':
 	    	hour[j] = 21
 	    elif str(columns[2]-int(columns[2]))[1:] == '.9167':
 	    	hour[j] = 22
