@@ -1,4 +1,14 @@
-2018-01-06  Ajay Saini  <sainiak@uci.edu>
+2018-01-09  Ajay Saini  <sainiak@uci.edu>
+
+	* Edited netCDF format arguments
+
+	* Arguments can now be passed in any order
+
+	* GCNET - calculated new variables month, day and hour
+
+	* Worked on daily and monthly plots
+
+2018-01-08  Ajay Saini  <sainiak@uci.edu>
 
 	* Solved bug to skip blank lines in input file of PROMICE
 
