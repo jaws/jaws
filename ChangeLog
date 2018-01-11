@@ -1,3 +1,17 @@
+2018-01-10  Ajay Saini  <sainiak@uci.edu>
+
+	* GCNET- Recalculated time to includes hourly changes. Changed quality control variables and data-types.
+
+	* GCNET- Worked on making it compatible with classic formats. Still in progress.
+
+	* PROMICE- New latitude, longitude variables and corrected latitude_gps, longitude_gps
+
+	* PROMICE- Adjusted calculation of time variable to increase monotonically
+
+	* AAWS- New latitude, longitude variables created but no values yet. Need to discuss with Wenshan
+
+	* Read about bounds variable from CF document. Added to time coordinate for all datasets, work in progress to indicate exact temporal bounds. Need to discuss with Wenshan
+
 2018-01-09  Ajay Saini  <sainiak@uci.edu>
 
 	* Edited netCDF format arguments
