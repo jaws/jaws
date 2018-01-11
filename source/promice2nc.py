@@ -33,6 +33,7 @@ def promice2nc(args):
 	# dimension
 	#root_grp.createDimension('station', 1)
 	root_grp.createDimension('time', None)
+	root_grp.createDimension('nbnd', 2)
 	root_grp.createDimension('latitude', 1)
 	root_grp.createDimension('longitude', 1)
 
@@ -85,7 +86,8 @@ def promice2nc(args):
 	logger_temp = root_grp.createVariable('logger_temp', 'f4', ('time',))
 	fan_current = root_grp.createVariable('fan_current', 'f4', ('time',))
 	battery_voltage = root_grp.createVariable('battery_voltage', 'f4', ('time',))
-
+	time_bounds = root_grp.createVariable('time_bounds', 'f4', ('time','nbnd'))
+	
 	#station_name.long_name = 'name of station'
 	#station_name.cf_role = 'timeseries_id'
 
@@ -98,6 +100,7 @@ def promice2nc(args):
 	time.units = 'seconds since 2007-01-01 00:00:00'
 	time.long_name = 'time of measurement'
 	time.standard_name = 'time'
+	time.bounds = 'time_bounds'
 	time.calendar = 'standard'
 	
 	year.units = '1'

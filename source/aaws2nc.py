@@ -47,6 +47,7 @@ def aaws2nc(args):
 	# dimension
 	root_grp.createDimension('station', 25)
 	root_grp.createDimension('time', None)
+	root_grp.createDimension('nbnd', 2)
 	root_grp.createDimension('latitude', 1)
 	root_grp.createDimension('longitude', 1)
 
@@ -62,8 +63,8 @@ def aaws2nc(args):
 	pressure = root_grp.createVariable('pressure', 'f4', ('time',), fill_value = -999)
 	wind_dir = root_grp.createVariable('wind_dir', 'f4', ('time',), fill_value = -999)
 	wind_spd = root_grp.createVariable('wind_spd', 'f4', ('time',), fill_value = -999)
-	
-	
+	time_bounds = root_grp.createVariable('time_bounds', 'f4', ('time','nbnd'))
+		
 	
 	station_name.long_name = 'name of station'
 	station_name.cf_role = 'timeseries_id'
@@ -77,6 +78,7 @@ def aaws2nc(args):
 	time.units = 'seconds since 1970-01-01T00:00:00Z'
 	time.long_name = 'time of measurement'
 	time.standard_name = 'time'
+	time.bounds = 'time_bounds'
 	time.calendar = 'standard'
 	
 	#stamp.long_name = 'Timestamp'

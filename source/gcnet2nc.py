@@ -41,6 +41,7 @@ def gcnet2nc(args):
 
 	# dimension
 	root_grp.createDimension('time', None)
+	root_grp.createDimension('nbnd', 2)
 
 	# variables
 	station_number = root_grp.createVariable('station_number', 'i1', ('time',))
@@ -129,11 +130,18 @@ def gcnet2nc(args):
 	month = root_grp.createVariable('month', 'i1', ('time',))
 	day = root_grp.createVariable('day', 'i1', ('time',))
 	hour = root_grp.createVariable('hour', 'i1', ('time',))
+	time_bounds = root_grp.createVariable('time_bounds', 'f4', ('time','nbnd'))
 
 
 	station_number.units = '1'
 	station_number.long_name = 'Station Number'
 
+	time.units = 'seconds since 1995-01-01 00:00:00'
+	time.long_name = 'time of measurement'
+	time.standard_name = 'time'
+	time.bounds = 'time_bounds'
+	time.calendar = 'noleap'
+	
 	year.units = '1'
 	year.long_name = 'Year'
 
@@ -334,12 +342,6 @@ def gcnet2nc(args):
 
 	qc25.units = '1'
 	qc25.long_name = 'Quality Control variables 25-27'
-
-	time.units = 'seconds since 1995-01-01 00:00:00'
-	time.standard_name = 'time'
-	time.calendar = 'noleap'
-	time.bounds = 'time_bnds'
-	time.note = 'Created new derived variable'
 
 	#date_derived.note = 'Created date from year and julian decimal time.'
 	
