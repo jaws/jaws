@@ -47,8 +47,12 @@ def aaws2nc(args):
 	# dimension
 	root_grp.createDimension('station', 25)
 	root_grp.createDimension('time', None)
+	root_grp.createDimension('latitude', 1)
+	root_grp.createDimension('longitude', 1)
 
 	# variables
+	latitude = root_grp.createVariable('latitude', 'f4', ('latitude',))
+	longitude = root_grp.createVariable('longitude', 'f4', ('latitude',))
 	station_name = root_grp.createVariable('station_name', 'S1', ('station',))
 	time = root_grp.createVariable('time', 'i4', ('time',))
 	#stamp = root_grp.createVariable('stamp', 'S20', ('time',))
@@ -63,6 +67,12 @@ def aaws2nc(args):
 	
 	station_name.long_name = 'name of station'
 	station_name.cf_role = 'timeseries_id'
+
+	latitude.units = 'degree_north'
+	latitude.standard_name = 'latitude'
+
+	longitude.units = 'degree_east'
+	longitude.standard_name = 'longitude'
 
 	time.units = 'seconds since 1970-01-01T00:00:00Z'
 	time.long_name = 'time of measurement'
@@ -158,6 +168,177 @@ def aaws2nc(args):
 		station_name[0:len(x)] = x
 		break
 	f.close()
+
+	if x == ['A','G','O','-','4']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['A','l','e','x','a','n','d','e','r',' ','T','a','l','l',' ','T','o','w','e','r','!']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['A','u','s','t','i','n']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['B','a','l','d','r','i','c','k']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['B','e','a','r',' ','P','e','n','i','n','s','u','l','a']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['B','y','r','d']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['C','a','p','e',' ','B','i','r','d']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['C','a','p','e',' ','D','e','n','i','s','o','n']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['C','a','p','e',' ','H','a','l','l','e','t','t']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['D','-','1','0']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['D','-','4','7']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['D','-','8','5']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['D','i','s','m','a','l',' ','I','s','l','a','n','d']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['D','o','m','e',' ','C',' ','I','I']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['D','o','m','e',' ','F','u','j','i']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['E','l','a','i','n','e']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['E','l','i','z','a','b','e','t','h']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['E','m','i','l','i','a']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['E','m','m','a']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['E','r','i','n']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['E','v','a','n','s',' ','K','n','o','l','l']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['F','e','r','r','e','l','l']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['G','i','l','l']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['H','a','r','r','y']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['H','e','n','r','y']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['J','a','n','e','t']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['J','A','S','E','2','0','0','7']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['K','a','t','h','i','e']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['K','o','m','i','n','k','o','-','S','l','a','d','e']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['L','a','u','r','i','e',' ','I','I']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['L','e','t','t','a','u']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['L','i','n','d','a']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['L','o','r','n','e']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['M','a','n','u','e','l','a']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['M','a','r','b','l','e',' ','P','o','i','n','t']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['M','a','r','b','l','e',' ','P','o','i','n','t',' ','I','I']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['M','a','r','g','a','r','e','t']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['M','a','r','i','l','y','n']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['M','i','n','n','a',' ','B','l','u','f','f']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['M','i','z','u','h','o']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['N','i','c','o']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['P','A','N','D','A','-','S','o','u','t','h']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['P','h','o','e','n','i','x']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['P','o','r','t',' ','M','a','r','t','i','n']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['P','o','s','s','e','s','s','i','o','n',' ','I','s','l','a','n','d']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['R','e','l','a','y',' ','S','t','a','t','i','o','n']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['S','a','b','r','i','n','a']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['S','c','h','w','e','r','d','t','f','e','g','e','r']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['S','i','p','l','e',' ','D','o','m','e']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['T','h','e','r','e','s','a']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['T','h','u','r','s','t','o','n',' ','I','s','l','a','n','d']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['V','i','t','o']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['W','h','i','t','e',' ','I','s','l','a','n','d']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['W','h','i','t','l','o','c','k']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['W','i','l','l','i','e',' ','F','i','e','l','d']:
+		latitude[0] = 
+		longitude[0] = 
+	elif x == ['W','i','n','d','l','e','s','s',' ','B','i','g','h','t']:
+		latitude[0] = 
+		longitude[0] = 
+	
+
 
 	f = open(args.input)
 	a,b = 0,0
