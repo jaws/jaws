@@ -33,9 +33,13 @@ def promice2nc(args):
 	# dimension
 	#root_grp.createDimension('station', 1)
 	root_grp.createDimension('time', None)
+	root_grp.createDimension('latitude', 1)
+	root_grp.createDimension('longitude', 1)
 
 	# variables
 	#station_name = root_grp.createVariable('station_name', 'S20', ('station',))
+	latitude = root_grp.createVariable('latitude', 'f4', ('latitude',))
+	longitude = root_grp.createVariable('longitude', 'f4', ('longitude',))
 	time = root_grp.createVariable('time', 'i4', ('time',))
 	year = root_grp.createVariable('year', 'i4', ('time',))
 	month = root_grp.createVariable('month', 'i4', ('time',))
@@ -73,9 +77,9 @@ def promice2nc(args):
 	ice_temp_08 = root_grp.createVariable('ice_temp_08', 'f4', ('time',))
 	tilt_east = root_grp.createVariable('tilt_east', 'f4', ('time',))
 	tilt_north = root_grp.createVariable('tilt_north', 'f4', ('time',))
-	time_gps = root_grp.createVariable('time_gps', 'i4', ('time',))
-	latitude = root_grp.createVariable('latitude', 'f4', ('time',))
-	longitude = root_grp.createVariable('longitude', 'f4', ('time',))
+	time_GPS = root_grp.createVariable('time_GPS', 'i4', ('time',))
+	latitude_GPS = root_grp.createVariable('latitude_GPS', 'f4', ('time',))
+	longitude_GPS = root_grp.createVariable('longitude_GPS', 'f4', ('time',))
 	elevation = root_grp.createVariable('elevation', 'f4', ('time',))
 	hor_dil_prec = root_grp.createVariable('hor_dil_prec', 'f4', ('time',))
 	logger_temp = root_grp.createVariable('logger_temp', 'f4', ('time',))
@@ -84,6 +88,12 @@ def promice2nc(args):
 
 	#station_name.long_name = 'name of station'
 	#station_name.cf_role = 'timeseries_id'
+
+	latitude.units = 'degree_north'
+	latitude.standard_name = 'latitude'
+
+	longitude.units = 'degree_east'
+	longitude.standard_name = 'longitude'
 
 	time.units = 'seconds since 2007-01-01 00:00:00'
 	time.long_name = 'time of measurement'
@@ -228,17 +238,17 @@ def promice2nc(args):
 	tilt_north.long_name = 'Tilt to North'
 	#tilt_north.standard_name = ''
 
-	time_gps.units = 'UTC'
-	time_gps.long_name = 'Time GPS(hhmmssUTC)'
-	time_gps.standard_name = 'time'
+	time_GPS.units = 'UTC'
+	time_GPS.long_name = 'Time GPS(hhmmssUTC)'
+	time_GPS.standard_name = 'time'
 
-	latitude.units = 'ddmm'
-	latitude.long_name = 'Latitude GPS'
-	latitude.standard_name = 'latitude'
+	latitude_GPS.units = 'degree_north'
+	latitude_GPS.long_name = 'Latitude GPS'
+	latitude_GPS.standard_name = 'latitude'
 
-	longitude.units = 'ddmm'
-	longitude.long_name = 'Longitude GPS'
-	longitude.standard_name = 'longitude'
+	longitude_GPS.units = 'degree_east'
+	longitude_GPS.long_name = 'Longitude GPS'
+	longitude_GPS.standard_name = 'longitude'
 
 	elevation.units = 'meter'
 	elevation.long_name = 'Elevation GPS'
@@ -364,9 +374,9 @@ def promice2nc(args):
 
 			tilt_east[j] = columns[34]
 			tilt_north[j] = columns[35]
-			time_gps[j] = columns[36]
-			latitude[j] = columns[37]
-			longitude[j] = columns[38]
+			time_GPS[j] = columns[36]
+			latitude_GPS[j] = columns[37]
+			longitude_GPS[j] = columns[38]
 			elevation[j] = columns[39]
 			hor_dil_prec[j] = columns[40]
 
@@ -385,6 +395,85 @@ def promice2nc(args):
 
 
 	#station_name = args.input[0:5]
+	if os.path.basename(args.input)[0:5] == 'EGP_h':
+		latitude[0] = 75.6247
+		longitude[0] = 35.9748
+	elif os.path.basename(args.input)[0:5] == 'KAN_B':
+		latitude[0] = 67.1252
+		longitude[0] = 50.1832
+	elif os.path.basename(args.input)[0:5] == 'KAN_L':
+		latitude[0] = 67.0955
+		longitude[0] = 49.9513
+	elif os.path.basename(args.input)[0:5] == 'KAN_M':
+		latitude[0] =  67.0670
+		longitude[0] = 48.8355
+	elif os.path.basename(args.input)[0:5] == 'KAN_U':
+		latitude[0] = 67.0003
+		longitude[0] = 47.0253
+	elif os.path.basename(args.input)[0:5] == 'KPC_L':
+		latitude[0] = 79.9108
+		longitude[0] = 24.0828
+	elif os.path.basename(args.input)[0:5] == 'KPC_U':
+		latitude[0] = 79.8347
+		longitude[0] = 25.1662
+	elif os.path.basename(args.input)[0:5] == 'MIT_h':
+		latitude[0] =  65.6922
+		longitude[0] =  37.8280
+	elif os.path.basename(args.input)[0:5] == 'NUK_K':
+		latitude[0] = 64.1623
+		longitude[0] = 51.3587
+	elif os.path.basename(args.input)[0:5] == 'NUK_L':
+		latitude[0] = 64.4822
+		longitude[0] = 49.5358
+	elif os.path.basename(args.input)[0:5] == 'NUK_N':
+		latitude[0] = 64.9452
+		longitude[0] = 49.8850
+	elif os.path.basename(args.input)[0:5] == 'NUK_U':
+		latitude[0] = 64.5108
+		longitude[0] = 49.2692
+	elif os.path.basename(args.input)[0:5] == 'QAS_A':
+		latitude[0] =  61.2430
+		longitude[0] = 46.7328
+	elif os.path.basename(args.input)[0:5] == 'QAS_L':
+		latitude[0] = 61.0308
+		longitude[0] =  46.8493
+	elif os.path.basename(args.input)[0:5] == 'QAS_M':
+		latitude[0] = 61.0998
+		longitude[0] = 46.8330
+	elif os.path.basename(args.input)[0:5] == 'QAS_U':
+		latitude[0] = 61.1753
+		longitude[0] = 46.8195
+	elif os.path.basename(args.input)[0:5] == 'SCO_L':
+		latitude[0] =  72.2230
+		longitude[0] =  26.8182
+	elif os.path.basename(args.input)[0:5] == 'SCO_U':
+		latitude[0] = 72.3933
+		longitude[0] = 27.2333
+	elif os.path.basename(args.input)[0:5] == 'TAS_A':
+		latitude[0] = 65.7790
+		longitude[0] = 38.8995
+	elif os.path.basename(args.input)[0:5] == 'TAS_L':
+		latitude[0] = 65.6402
+		longitude[0] =  38.8987
+	elif os.path.basename(args.input)[0:5] == 'TAS_U':
+		latitude[0] =  65.6978
+		longitude[0] = 38.8668
+	elif os.path.basename(args.input)[0:5] == 'THU_L':
+		latitude[0] = 76.3998
+		longitude[0] = 68.2665
+	elif os.path.basename(args.input)[0:5] == 'THU_U':
+		latitude[0] =  76.4197
+		longitude[0] = 68.1463
+	elif os.path.basename(args.input)[0:5] == 'UPE_L':
+		latitude[0] = 72.8932
+		longitude[0] =  54.2955
+	elif os.path.basename(args.input)[0:5] == 'UPE_U':
+		latitude[0] = 72.8878
+		longitude[0] = 53.5783
+	elif os.path.basename(args.input)[0:5] == 'CEN_h':
+		latitude[0] = 0
+		longitude[0] = 0
+	
 
 	f = open(args.input)
 	count = 0
