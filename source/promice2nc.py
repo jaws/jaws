@@ -378,8 +378,19 @@ def promice2nc(args):
 			tilt_east[j] = columns[34]
 			tilt_north[j] = columns[35]
 			time_GPS[j] = columns[36]
-			latitude_GPS[j] = columns[37]
-			longitude_GPS[j] = columns[38]
+			
+			if columns[37] == '-999':
+				latitude_GPS[j] = columns[37]
+			else:
+				columns[37] = float(columns[37])
+				latitude_GPS[j] = (round(float(int(columns[37])-((int(columns[37])/100)*100))/60, 2) + (int(columns[37])/100))
+
+			if columns[38] == '-999':
+				longitude_GPS[j] = columns[38]
+			else:
+				columns[38] = float(columns[38])
+				longitude_GPS[j] == (round(float(int(columns[38])-((int(columns[38])/100)*100))/60, 2) + (int(columns[38])/100))
+			
 			elevation[j] = columns[39]
 			hor_dil_prec[j] = columns[40]
 
