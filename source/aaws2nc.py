@@ -56,6 +56,7 @@ def aaws2nc(args):
 	longitude = root_grp.createVariable('longitude', 'f4', ('latitude',))
 	station_name = root_grp.createVariable('station_name', 'S1', ('station',))
 	time = root_grp.createVariable('time', 'i4', ('time',))
+	time_bounds = root_grp.createVariable('time_bounds', 'i4', ('time','nbnd'))
 	#stamp = root_grp.createVariable('stamp', 'S20', ('time',))
 	air_temp = root_grp.createVariable('air_temp', 'f4', ('time',), fill_value = -999)
 	vtempdiff = root_grp.createVariable('vtempdiff', 'f4', ('time',), fill_value = -999)
@@ -63,7 +64,6 @@ def aaws2nc(args):
 	pressure = root_grp.createVariable('pressure', 'f4', ('time',), fill_value = -999)
 	wind_dir = root_grp.createVariable('wind_dir', 'f4', ('time',), fill_value = -999)
 	wind_spd = root_grp.createVariable('wind_spd', 'f4', ('time',), fill_value = -999)
-	time_bounds = root_grp.createVariable('time_bounds', 'f4', ('time','nbnd'))
 		
 	
 	station_name.long_name = 'name of station'
@@ -422,4 +422,9 @@ def aaws2nc(args):
 			b += 1
 	f.close()
 
+	c = 0
+	while c < len(time):
+		time_bounds[c] = (time[c]-3600, time[c])
+		c += 1
+		
 	root_grp.close()
