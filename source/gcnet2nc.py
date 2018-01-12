@@ -50,7 +50,7 @@ def gcnet2nc(args):
 	latitude = root_grp.createVariable('latitude', 'f4', ('latitude',))
 	longitude = root_grp.createVariable('longitude', 'f4', ('longitude',))
 	time = root_grp.createVariable('time', 'i4', ('time',))
-	time_bounds = root_grp.createVariable('time_bounds', 'f4', ('time','nbnd'))
+	time_bounds = root_grp.createVariable('time_bounds', 'i4', ('time','nbnd'))
 	station_number = root_grp.createVariable('station_number', 'i1', ('station',))
 	year = root_grp.createVariable('year', 'i4', ('time',))
 	julian_decimal_time = root_grp.createVariable('julian_decimal_time', 'f4', ('time',))
@@ -812,6 +812,10 @@ def gcnet2nc(args):
 			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*23)
 			m += 1
 		
+	x = 0
+	while x < len(time):
+		time_bounds[x] = (time[x]-3600, time[x])
+		x += 1	
 		
 
 	print "calculating day and month..."
