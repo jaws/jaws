@@ -86,7 +86,7 @@ def promice2nc(args):
 	logger_temp = root_grp.createVariable('logger_temp', 'f4', ('time',))
 	fan_current = root_grp.createVariable('fan_current', 'f4', ('time',))
 	battery_voltage = root_grp.createVariable('battery_voltage', 'f4', ('time',))
-	time_bounds = root_grp.createVariable('time_bounds', 'f4', ('time','nbnd'))
+	time_bounds = root_grp.createVariable('time_bounds', 'i4', ('time','nbnd'))
 	
 	#station_name.long_name = 'name of station'
 	#station_name.cf_role = 'timeseries_id'
@@ -576,6 +576,9 @@ def promice2nc(args):
 			time[k] = ((date(year[k],month[k],day[k])-date(2007, 1, 1)).days)*86400 + (3600*23)
 			k += 1
 		
-
+	l = 0
+	while l < count:
+		time_bounds[l] = (time[l], time[l]+3600)
+		l += 1
 
 	root_grp.close()
