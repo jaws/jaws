@@ -355,113 +355,198 @@ def gcnet2nc(args):
 
 	for line in ip_file:
 	    
-	    line = line.strip()
-	    columns = line.split()
-	    
-	    station_number[j] = columns[0]
-	    year[j] = columns[1]
-	    julian_decimal_time[j] = columns[2]
-	    sw_down[j] = columns[3]
-	    sw_up[j] = columns[4]
-	    net_radiation[j] = columns[5]
-	    temperature_tc_1[j] = float(columns[6]) + 273.15
-	    temperature_tc_2[j] = float(columns[7]) + 273.15
-	    temperature_cs500_1[j] = float(columns[8]) + 273.15
-	    temperature_cs500_2[j] = float(columns[9]) + 273.15
-	    relative_humidity_1[j] = columns[10]
-	    relative_humidity_2[j] = columns[11]
-	    u1_wind_speed[j] = columns[12]
-	    u2_wind_speed[j] = columns[13]
-	    u_direction_1[j] = columns[14]
-	    u_direction_2[j] = columns[15]
-	    atmos_pressure[j] = float(columns[16]) * 100
-	    snow_height_1[j] = columns[17]
-	    snow_height_2[j] = columns[18]
-	    t_snow_01[j] = float(columns[19]) + 273.15
-	    t_snow_02[j] = float(columns[20]) + 273.15
-	    t_snow_03[j] = float(columns[21]) + 273.15
-	    t_snow_04[j] = float(columns[22]) + 273.15
-	    t_snow_05[j] = float(columns[23]) + 273.15
-	    t_snow_06[j] = float(columns[24]) + 273.15
-	    t_snow_07[j] = float(columns[25]) + 273.15
-	    t_snow_08[j] = float(columns[26]) + 273.15
-	    t_snow_09[j] = float(columns[27]) + 273.15
-	    t_snow_10[j] = float(columns[28]) + 273.15
-	    battery_voltage[j] = columns[29]
-	    sw_down_max[j] = columns[30]
-	    sw_up_max[j] = columns[31]
-	    net_radiation_max[j] = columns[32]
-	    max_air_temperature_1[j] = float(columns[33]) + 273.15
-	    max_air_temperature_2[j] = float(columns[34]) + 273.15
-	    min_air_temperature_1[j] = float(columns[35]) + 273.15
-	    min_air_temperature_2[j] = float(columns[36]) + 273.15
-	    max_windspeed_u1[j] = columns[37]
-	    max_windspeed_u2[j] = columns[38]
-	    stdev_windspeed_u1[j] = columns[39]
-	    stdev_windspeed_u2[j] = columns[40]
-	    ref_temperature[j] = float(columns[41]) + 273.15
-	    windspeed_2m[j] = columns[42]
-	    windspeed_10m[j] = columns[43]
-	    wind_sensor_height_1[j] = columns[44]
-	    wind_sensor_height_2[j] = columns[45]
-	    albedo[j] = columns[46]
-	    zenith_angle[j] = columns[47]
-	    qc1[j] = columns[48]
-	    qc9[j] = columns[49]
-	    qc17[j] = columns[50]
-	    qc25[j] = columns[51]
+		line = line.strip()
+		columns = line.split()
+		
+		station_number[j] = columns[0]
+		year[j] = columns[1]
+		julian_decimal_time[j] = columns[2]
+		sw_down[j] = columns[3]
+		sw_up[j] = columns[4]
+		net_radiation[j] = columns[5]
+		
+		if columns[6] == '999.0':
+			temperature_tc_1[j] = columns[6]
+		else:
+			temperature_tc_1[j] = float(columns[6]) + 273.15
 
-	    columns[2] = float(columns[2])
-	    if str(columns[2]-int(columns[2]))[1:] == '.0':
-	    	hour[j] = 0
-	    elif str(columns[2]-int(columns[2]))[1:] == '.0417':
-	    	hour[j] = 1
-	    elif str(columns[2]-int(columns[2]))[1:] == '.0833':
-	    	hour[j] = 2
-	    elif str(columns[2]-int(columns[2]))[1:] == '.125':
-	    	hour[j] = 3
-	    elif str(columns[2]-int(columns[2]))[1:] == '.1667':
-	    	hour[j] = 4
-	    elif str(columns[2]-int(columns[2]))[1:] == '.2083':
-	    	hour[j] = 5
-	    elif str(columns[2]-int(columns[2]))[1:] == '.25':
-	    	hour[j] = 6
-	    elif str(columns[2]-int(columns[2]))[1:] == '.2917':
-	    	hour[j] = 7
-	    elif str(columns[2]-int(columns[2]))[1:] == '.3333':
-	    	hour[j] = 8
-	    elif str(columns[2]-int(columns[2]))[1:] == '.375':
-	    	hour[j] = 9
-	    elif str(columns[2]-int(columns[2]))[1:] == '.4167':
-	    	hour[j] = 10
-	    elif str(columns[2]-int(columns[2]))[1:] == '.4583':
-	    	hour[j] = 11
-	    elif str(columns[2]-int(columns[2]))[1:] == '.5':
-	    	hour[j] = 12
-	    elif str(columns[2]-int(columns[2]))[1:] == '.5417':
-	    	hour[j] = 13
-	    elif str(columns[2]-int(columns[2]))[1:] == '.5833':
-	    	hour[j] = 14
-	    elif str(columns[2]-int(columns[2]))[1:] == '.625':
-	    	hour[j] = 15
-	    elif str(columns[2]-int(columns[2]))[1:] == '.6667':
-	    	hour[j] = 16
-	    elif str(columns[2]-int(columns[2]))[1:] == '.7083':
-	    	hour[j] = 17
-	    elif str(columns[2]-int(columns[2]))[1:] == '.75':
-	    	hour[j] = 18
-	    elif str(columns[2]-int(columns[2]))[1:] == '.7917':
-	    	hour[j] = 19
-	    elif str(columns[2]-int(columns[2]))[1:] == '.8333':
-	    	hour[j] = 20
-	    elif str(columns[2]-int(columns[2]))[1:] == '.875':
-	    	hour[j] = 21
-	    elif str(columns[2]-int(columns[2]))[1:] == '.9167':
-	    	hour[j] = 22
-	    elif str(columns[2]-int(columns[2]))[1:] == '.9583':
-	    	hour[j] = 23
-	    
-	    j += 1
+		if columns[7] == '999.0':
+			temperature_tc_2[j] = columns[7]
+		else:
+			temperature_tc_2[j] = float(columns[7]) + 273.15
+
+		if columns[8] == '999.0':
+			temperature_cs500_1[j] = columns[8]
+		else:
+			temperature_cs500_1[j] = float(columns[8]) + 273.15
+
+		if columns[9] == '999.0':
+			temperature_cs500_2[j] = columns[9]
+		else:
+			temperature_cs500_2[j] = float(columns[9]) + 273.15
+
+		relative_humidity_1[j] = columns[10]
+		relative_humidity_2[j] = columns[11]
+		u1_wind_speed[j] = columns[12]
+		u2_wind_speed[j] = columns[13]
+		u_direction_1[j] = columns[14]
+		u_direction_2[j] = columns[15]
+		
+		if columns[16] == '999.0':
+			atmos_pressure[j] = columns[16]
+		else:
+			atmos_pressure[j] = float(columns[16]) * 100
+		
+		snow_height_1[j] = columns[17]
+		snow_height_2[j] = columns[18]
+		
+		if columns[19] == '999.0':
+			t_snow_01[j] = columns[19]
+		else:
+			t_snow_01[j] = float(columns[19]) + 273.15
+
+		if columns[20] == '999.0':
+			t_snow_02[j] = columns[20]
+		else:
+			t_snow_02[j] = float(columns[20]) + 273.15
+
+		if columns[21] == '999.0':
+			t_snow_03[j] = columns[21]
+		else:
+			t_snow_03[j] = float(columns[2]) + 273.15
+		
+		if columns[22] == '999.0':
+			t_snow_04[j] = columns[22]
+		else:
+			t_snow_04[j] = float(columns[22]) + 273.15
+		
+		if columns[23] == '999.0':
+			t_snow_05[j] = columns[23]
+		else:
+			t_snow_05[j] = float(columns[23]) + 273.15
+		
+		if columns[24] == '999.0':
+			t_snow_06[j] = columns[24]
+		else:
+			t_snow_06[j] = float(columns[24]) + 273.15
+		
+		if columns[25] == '999.0':
+			t_snow_07[j] = columns[25]
+		else:
+			t_snow_07[j] = float(columns[25]) + 273.15
+		
+		if columns[26] == '999.0':
+			t_snow_08[j] = columns[26]
+		else:
+			t_snow_08[j] = float(columns[26]) + 273.15
+		
+		if columns[27] == '999.0':
+			t_snow_09[j] = columns[27]
+		else:
+			t_snow_09[j] = float(columns[27]) + 273.15
+		
+		if columns[28] == '999.0':
+			t_snow_10[j] = columns[28]
+		else:
+			t_snow_10[j] = float(columns[28]) + 273.15
+		
+		battery_voltage[j] = columns[29]
+		sw_down_max[j] = columns[30]
+		sw_up_max[j] = columns[31]
+		net_radiation_max[j] = columns[32]
+		
+		if columns[33] == '999.0':
+			max_air_temperature_1[j] = columns[33]
+		else:
+			max_air_temperature_1[j] = float(columns[33]) + 273.15
+		
+		if columns[34] == '999.0':
+			max_air_temperature_2[j] = columns[34]
+		else:
+			max_air_temperature_2[j] = float(columns[34]) + 273.15
+		
+		if columns[35] == '999.0':
+			min_air_temperature_1[j] = columns[35]
+		else:
+			min_air_temperature_1[j] = float(columns[35]) + 273.15
+		
+		if columns[36] == '999.0':
+			min_air_temperature_2[j] = columns[36]
+		else:
+			min_air_temperature_2[j] = float(columns[36]) + 273.15
+		
+		max_windspeed_u1[j] = columns[37]
+		max_windspeed_u2[j] = columns[38]
+		stdev_windspeed_u1[j] = columns[39]
+		stdev_windspeed_u2[j] = columns[40]
+		
+		if columns[41] == '999.0':
+			ref_temperature[j] = columns[41]
+		else:
+			ref_temperature[j] = float(columns[41]) + 273.15
+		
+		windspeed_2m[j] = columns[42]
+		windspeed_10m[j] = columns[43]
+		wind_sensor_height_1[j] = columns[44]
+		wind_sensor_height_2[j] = columns[45]
+		albedo[j] = columns[46]
+		zenith_angle[j] = columns[47]
+		qc1[j] = columns[48]
+		qc9[j] = columns[49]
+		qc17[j] = columns[50]
+		qc25[j] = columns[51]
+
+		columns[2] = float(columns[2])
+		if str(columns[2]-int(columns[2]))[1:] == '.0':
+			hour[j] = 0
+		elif str(columns[2]-int(columns[2]))[1:] == '.0417':
+			hour[j] = 1
+		elif str(columns[2]-int(columns[2]))[1:] == '.0833':
+			hour[j] = 2
+		elif str(columns[2]-int(columns[2]))[1:] == '.125':
+			hour[j] = 3
+		elif str(columns[2]-int(columns[2]))[1:] == '.1667':
+			hour[j] = 4
+		elif str(columns[2]-int(columns[2]))[1:] == '.2083':
+			hour[j] = 5
+		elif str(columns[2]-int(columns[2]))[1:] == '.25':
+			hour[j] = 6
+		elif str(columns[2]-int(columns[2]))[1:] == '.2917':
+			hour[j] = 7
+		elif str(columns[2]-int(columns[2]))[1:] == '.3333':
+			hour[j] = 8
+		elif str(columns[2]-int(columns[2]))[1:] == '.375':
+			hour[j] = 9
+		elif str(columns[2]-int(columns[2]))[1:] == '.4167':
+			hour[j] = 10
+		elif str(columns[2]-int(columns[2]))[1:] == '.4583':
+			hour[j] = 11
+		elif str(columns[2]-int(columns[2]))[1:] == '.5':
+			hour[j] = 12
+		elif str(columns[2]-int(columns[2]))[1:] == '.5417':
+			hour[j] = 13
+		elif str(columns[2]-int(columns[2]))[1:] == '.5833':
+			hour[j] = 14
+		elif str(columns[2]-int(columns[2]))[1:] == '.625':
+			hour[j] = 15
+		elif str(columns[2]-int(columns[2]))[1:] == '.6667':
+			hour[j] = 16
+		elif str(columns[2]-int(columns[2]))[1:] == '.7083':
+			hour[j] = 17
+		elif str(columns[2]-int(columns[2]))[1:] == '.75':
+			hour[j] = 18
+		elif str(columns[2]-int(columns[2]))[1:] == '.7917':
+			hour[j] = 19
+		elif str(columns[2]-int(columns[2]))[1:] == '.8333':
+			hour[j] = 20
+		elif str(columns[2]-int(columns[2]))[1:] == '.875':
+			hour[j] = 21
+		elif str(columns[2]-int(columns[2]))[1:] == '.9167':
+			hour[j] = 22
+		elif str(columns[2]-int(columns[2]))[1:] == '.9583':
+			hour[j] = 23
+		
+		j += 1
 
 	print "extracting quality control variables..."
 
