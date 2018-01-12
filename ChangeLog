@@ -1,5 +1,21 @@
 2018-01-10  Ajay Saini  <sainiak@uci.edu>
 
+	* GCNET- Corrected calculation of temp and pressure variables to skip '999' values.
+
+	* GCNET- For classic formats, facing issues with only quality control variables. Still in progress.
+
+	* PROMICE- Converted ddmm units to degree for GPS_latitude and GPS_longitude.
+
+	* Populated values of latitude and longitude of AAWS, GCNET stations. (Closed Issue #28)
+
+	* Calculated time_bounds variable for all datasets. (Closed Issue #29)
+
+	* Discussed Issue #9 with Wenshan. She is working on it, will let me know how to calculate ice velocity.
+
+	* Discussed Issue #8 with Wenshan. She said to wait for it as data isn't clean yet.
+
+2018-01-10  Ajay Saini  <sainiak@uci.edu>
+
 	* GCNET- Recalculated time to includes hourly changes. Changed quality control variables and data-types.
 
 	* GCNET- Worked on making it compatible with classic formats. Still in progress.
