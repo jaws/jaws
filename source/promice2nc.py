@@ -91,10 +91,10 @@ def promice2nc(args):
 	#station_name.long_name = 'name of station'
 	#station_name.cf_role = 'timeseries_id'
 
-	latitude.units = 'degree_north'
+	latitude.units = 'degrees_north'
 	latitude.standard_name = 'latitude'
 
-	longitude.units = 'degree_east'
+	longitude.units = 'degrees_east'
 	longitude.standard_name = 'longitude'
 
 	time.units = 'seconds since 2007-01-01 00:00:00'
@@ -245,11 +245,11 @@ def promice2nc(args):
 	time_GPS.long_name = 'Time GPS(hhmmssUTC)'
 	time_GPS.standard_name = 'time'
 
-	latitude_GPS.units = 'degree_north'
+	latitude_GPS.units = 'degrees_north'
 	latitude_GPS.long_name = 'Latitude GPS'
 	latitude_GPS.standard_name = 'latitude'
 
-	longitude_GPS.units = 'degree_east'
+	longitude_GPS.units = 'degrees_east'
 	longitude_GPS.long_name = 'Longitude GPS'
 	longitude_GPS.standard_name = 'longitude'
 

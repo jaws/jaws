@@ -69,10 +69,10 @@ def aaws2nc(args):
 	station_name.long_name = 'name of station'
 	station_name.cf_role = 'timeseries_id'
 
-	latitude.units = 'degree_north'
+	latitude.units = 'degrees_north'
 	latitude.standard_name = 'latitude'
 
-	longitude.units = 'degree_east'
+	longitude.units = 'degrees_east'
 	longitude.standard_name = 'longitude'
 
 	time.units = 'seconds since 1970-01-01T00:00:00Z'

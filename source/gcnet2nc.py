@@ -138,10 +138,10 @@ def gcnet2nc(args):
 	hour = root_grp.createVariable('hour', 'i1', ('time',))
 	
 
-	latitude.units = 'degree_north'
+	latitude.units = 'degrees_north'
 	latitude.standard_name = 'latitude'
 
-	longitude.units = 'degree_east'
+	longitude.units = 'degrees_east'
 	longitude.standard_name = 'longitude'
 
 	time.units = 'seconds since 1995-01-01 00:00:00'
