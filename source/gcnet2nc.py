@@ -40,11 +40,18 @@ def gcnet2nc(args):
 	root_grp.Conventions = 'CF-1.6'
 
 	# dimension
+	root_grp.createDimension('latitude', 1)
+	root_grp.createDimension('longitude', 1)
 	root_grp.createDimension('time', None)
 	root_grp.createDimension('nbnd', 2)
+	root_grp.createDimension('station', 1)
 
 	# variables
-	station_number = root_grp.createVariable('station_number', 'i1', ('time',))
+	latitude = root_grp.createVariable('latitude', 'f4', ('latitude',))
+	longitude = root_grp.createVariable('longitude', 'f4', ('longitude',))
+	time = root_grp.createVariable('time', 'i4', ('time',))
+	time_bounds = root_grp.createVariable('time_bounds', 'f4', ('time','nbnd'))
+	station_number = root_grp.createVariable('station_number', 'i1', ('station',))
 	year = root_grp.createVariable('year', 'i4', ('time',))
 	julian_decimal_time = root_grp.createVariable('julian_decimal_time', 'f4', ('time',))
 	sw_down = root_grp.createVariable('sw_down', 'f4', ('time',))
@@ -125,16 +132,17 @@ def gcnet2nc(args):
 	qc_tsnow10 = root_grp.createVariable('qc_tsnow10', 'i1', ('time',))
 	qc_battery = root_grp.createVariable('qc_battery', 'i1', ('time',))
 	
-	time = root_grp.createVariable('time', 'i4', ('time',))
 	#date_derived = root_grp.createVariable('date_derived', 'S10', ('time',))
 	month = root_grp.createVariable('month', 'i1', ('time',))
 	day = root_grp.createVariable('day', 'i1', ('time',))
 	hour = root_grp.createVariable('hour', 'i1', ('time',))
-	time_bounds = root_grp.createVariable('time_bounds', 'f4', ('time','nbnd'))
+	
 
+	latitude.units = 'degree_north'
+	latitude.standard_name = 'latitude'
 
-	station_number.units = '1'
-	station_number.long_name = 'Station Number'
+	longitude.units = 'degree_east'
+	longitude.standard_name = 'longitude'
 
 	time.units = 'seconds since 1995-01-01 00:00:00'
 	time.long_name = 'time of measurement'
@@ -142,6 +150,9 @@ def gcnet2nc(args):
 	time.bounds = 'time_bounds'
 	time.calendar = 'noleap'
 	
+	station_number.units = '1'
+	station_number.long_name = 'Station Number'
+
 	year.units = '1'
 	year.long_name = 'Year'
 
@@ -358,7 +369,7 @@ def gcnet2nc(args):
 		line = line.strip()
 		columns = line.split()
 		
-		station_number[j] = columns[0]
+		station_number[0] = columns[0]
 		year[j] = columns[1]
 		julian_decimal_time[j] = columns[2]
 		sw_down[j] = columns[3]
@@ -547,6 +558,63 @@ def gcnet2nc(args):
 			hour[j] = 23
 		
 		j += 1
+
+	if station_number[0] == 1:
+		latitude[0] = 69.56833
+		longitude[0] = -49.31582
+	elif station_number[0] == 2:
+		latitude[0] = 69.87975
+		longitude[0] = -46.98667
+	elif station_number[0] == 3:
+		latitude[0] = 73.84189
+		longitude[0] = -49.49831
+	elif station_number[0] == 4:
+		latitude[0] = 77.13781
+		longitude[0] = -61.04113
+	elif station_number[0] == 5:
+		latitude[0] = 78.5266
+		longitude[0] = -56.8305
+	elif station_number[0] == 6:
+		latitude[0] = 72.57972
+		longitude[0] = -38.50454
+	elif station_number[0] == 7:
+		latitude[0] = 78.01677
+		longitude[0] = -33.99387
+	elif station_number[0] == 8:
+		latitude[0] = 66.48001
+		longitude[0] = -46.27889
+	elif station_number[0] == 9:
+		latitude[0] = 69.498358
+		longitude[0] = -49.68156
+	elif station_number[0] == 10:
+		latitude[0] = 65.99947
+		longitude[0] = -44.50016
+	elif station_number[0] == 11:
+		latitude[0] = 63.14889
+		longitude[0] = -44.81717
+	elif station_number[0] == 12:
+		latitude[0] = 75.00000
+		longitude[0] = -29.99972
+	elif station_number[0] == 13:
+		latitude[0] = 69.87968
+		longitude[0] = -46.98692
+	elif station_number[0] == 14:
+		latitude[0] = 75.09975
+		longitude[0] = -42.33256
+	elif station_number[0] == 15:
+		latitude[0] = 66.4797
+		longitude[0] = -42.5002 
+	elif station_number[0] == 16:
+		latitude[0] = 69.69942
+		longitude[0] = -33.00058
+	elif station_number[0] == 17:
+		latitude[0] = 69.42000
+		longitude[0] = -50.05750
+	elif station_number[0] == 18:
+		latitude[0] = 65.75845
+		longitude[0] = -39.60177
+	
+
 
 	print "extracting quality control variables..."
 
@@ -746,7 +814,7 @@ def gcnet2nc(args):
 		
 		
 
-	print "calculating date..."
+	print "calculating day and month..."
 	n = 0
 	for item in julian_decimal_time:
 		if int(julian_decimal_time[n]) == 1:
