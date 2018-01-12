@@ -172,173 +172,173 @@ def aaws2nc(args):
 	f.close()
 
 	if x == ['A','G','O','-','4']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -82.010
+		longitude[0] = 96.760
 	elif x == ['A','l','e','x','a','n','d','e','r',' ','T','a','l','l',' ','T','o','w','e','r','!']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -79.012
+		longitude[0] = 170.723
 	elif x == ['A','u','s','t','i','n']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -75.995
+		longitude[0] = -87.470
 	elif x == ['B','a','l','d','r','i','c','k']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -82.774
+		longitude[0] = -13.054
 	elif x == ['B','e','a','r',' ','P','e','n','i','n','s','u','l','a']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -74.546
+		longitude[0] = -111.885
 	elif x == ['B','y','r','d']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -80.011
+		longitude[0] = -119.438
 	elif x == ['C','a','p','e',' ','B','i','r','d']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -77.217
+		longitude[0] = 166.439
 	elif x == ['C','a','p','e',' ','D','e','n','i','s','o','n']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -67.009
+		longitude[0] = 142.664
 	elif x == ['C','a','p','e',' ','H','a','l','l','e','t','t']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -72.190
+		longitude[0] = 170.160
 	elif x == ['D','-','1','0']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -66.705
+		longitude[0] = 139.841
 	elif x == ['D','-','4','7']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -67.385
+		longitude[0] = 138.729
 	elif x == ['D','-','8','5']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -70.426
+		longitude[0] = 134.149
 	elif x == ['D','i','s','m','a','l',' ','I','s','l','a','n','d']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -68.088
+		longitude[0] = -68.826
 	elif x == ['D','o','m','e',' ','C',' ','I','I']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -75.106
+		longitude[0] = 123.346
 	elif x == ['D','o','m','e',' ','F','u','j','i']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -77.310
+		longitude[0] = 39.700
 	elif x == ['E','l','a','i','n','e']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -83.094
+		longitude[0] = 174.285
 	elif x == ['E','l','i','z','a','b','e','t','h']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -82.607
+		longitude[0] = -137.078
 	elif x == ['E','m','i','l','i','a']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -78.426
+		longitude[0] = 173.186
 	elif x == ['E','m','m','a']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -83.997
+		longitude[0] = -175.047
 	elif x == ['E','r','i','n']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -84.902
+		longitude[0] = -128.860
 	elif x == ['E','v','a','n','s',' ','K','n','o','l','l']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -74.850
+		longitude[0] = -100.404
 	elif x == ['F','e','r','r','e','l','l']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -77.803
+		longitude[0] = 170.817
 	elif x == ['G','i','l','l']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -79.879
+		longitude[0] = -178.565
 	elif x == ['H','a','r','r','y']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -83.005
+		longitude[0] = -121.407
 	elif x == ['H','e','n','r','y']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -89.001
+		longitude[0] = -0.391
 	elif x == ['J','a','n','e','t']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -77.174
+		longitude[0] = -123.390
 	elif x == ['J','A','S','E','2','0','0','7']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -75.888
+		longitude[0] = 25.834
 	elif x == ['K','a','t','h','i','e']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -77.995
+		longitude[0] = -97.268
 	elif x == ['K','o','m','i','n','k','o','-','S','l','a','d','e']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -79.466
+		longitude[0] = -112.106
 	elif x == ['L','a','u','r','i','e',' ','I','I']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -77.439
+		longitude[0] = 170.750
 	elif x == ['L','e','t','t','a','u']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -82.475
+		longitude[0] = -174.587
 	elif x == ['L','i','n','d','a']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -78.394
+		longitude[0] = 168.446
 	elif x == ['L','o','r','n','e']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -78.195
+		longitude[0] = 170.028
 	elif x == ['M','a','n','u','e','l','a']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -74.946
+		longitude[0] = 163.687
 	elif x == ['M','a','r','b','l','e',' ','P','o','i','n','t']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -77.439
+		longitude[0] = 163.754
 	elif x == ['M','a','r','b','l','e',' ','P','o','i','n','t',' ','I','I']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -77.439
+		longitude[0] = 163.759
 	elif x == ['M','a','r','g','a','r','e','t']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -79.981
+		longitude[0] = -165.099
 	elif x == ['M','a','r','i','l','y','n']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -79.913
+		longitude[0] = 165.657
 	elif x == ['M','i','n','n','a',' ','B','l','u','f','f']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -78.555
+		longitude[0] = 166.691
 	elif x == ['M','i','z','u','h','o']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -70.700
+		longitude[0] = 44.290
 	elif x == ['N','i','c','o']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -89.000
+		longitude[0] = 90.024
 	elif x == ['P','A','N','D','A','-','S','o','u','t','h']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -82.325
+		longitude[0] = 75.989
 	elif x == ['P','h','o','e','n','i','x']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -77.948
+		longitude[0] = 166.758
 	elif x == ['P','o','r','t',' ','M','a','r','t','i','n']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -66.820
+		longitude[0] = 141.390
 	elif x == ['P','o','s','s','e','s','s','i','o','n',' ','I','s','l','a','n','d']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -71.891
+		longitude[0] = 171.210
 	elif x == ['R','e','l','a','y',' ','S','t','a','t','i','o','n']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -74.017
+		longitude[0] = 43.062
 	elif x == ['S','a','b','r','i','n','a']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -84.247
+		longitude[0] = -170.068
 	elif x == ['S','c','h','w','e','r','d','t','f','e','g','e','r']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -79.816
+		longitude[0] = 170.358
 	elif x == ['S','i','p','l','e',' ','D','o','m','e']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -81.652
+		longitude[0] = -148.992
 	elif x == ['T','h','e','r','e','s','a']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -84.602
+		longitude[0] = -115.841
 	elif x == ['T','h','u','r','s','t','o','n',' ','I','s','l','a','n','d']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -72.532
+		longitude[0] = -97.545
 	elif x == ['V','i','t','o']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -78.408
+		longitude[0] = 177.829
 	elif x == ['W','h','i','t','e',' ','I','s','l','a','n','d']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -78.076
+		longitude[0] = 167.451
 	elif x == ['W','h','i','t','l','o','c','k']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -76.142
+		longitude[0] = 168.394
 	elif x == ['W','i','l','l','i','e',' ','F','i','e','l','d']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -77.868
+		longitude[0] = 166.921
 	elif x == ['W','i','n','d','l','e','s','s',' ','B','i','g','h','t']:
-		latitude[0] = 
-		longitude[0] = 
+		latitude[0] = -77.728
+		longitude[0] = 167.676
 	
 
 
