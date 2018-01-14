@@ -1,3 +1,7 @@
+2018-01-12  Charlie Zender  <zender@uci.edu>
+
+	* Change degree_east/north to CF-preferred units degrees_east/north
+
 2018-01-10  Ajay Saini  <sainiak@uci.edu>
 
 	* GCNET- Corrected calculation of temp and pressure variables to skip '999' values.
