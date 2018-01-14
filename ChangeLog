@@ -2,7 +2,21 @@
 
 	* Change degree_east/north to CF-preferred units degrees_east/north
 
-2018-01-10  Ajay Saini  <sainiak@uci.edu>
+2018-01-12  Ajay Saini  <sainiak@uci.edu>
+
+	* Created monthly diurnal cycle plot
+
+	* Created monthly values plot
+
+	* Created annual cycle plot
+
+	* Created climatological seasonal cycle plot
+
+	* Added _FillValue attribute for all datasets
+
+	* Worked on fixing canonical ordering of arguments. Still in progress
+
+2018-01-11  Ajay Saini  <sainiak@uci.edu>
 
 	* GCNET- Corrected calculation of temp and pressure variables to skip '999' values.
 
