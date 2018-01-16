@@ -34,20 +34,18 @@ def promice2nc(args):
 	#root_grp.createDimension('station', 1)
 	root_grp.createDimension('time', None)
 	root_grp.createDimension('nbnd', 2)
-	root_grp.createDimension('latitude', 1)
-	root_grp.createDimension('longitude', 1)
-
+	
 	# variables
 	#station_name = root_grp.createVariable('station_name', 'S20', ('station',))
-	latitude = root_grp.createVariable('latitude', 'f4', ('latitude',), fill_value = -999)
-	longitude = root_grp.createVariable('longitude', 'f4', ('longitude',), fill_value = -999)
-	time = root_grp.createVariable('time', 'i4', ('time',), fill_value = -999)
-	year = root_grp.createVariable('year', 'i4', ('time',), fill_value = -999)
-	month = root_grp.createVariable('month', 'i4', ('time',), fill_value = -999)
-	day = root_grp.createVariable('day', 'i4', ('time',), fill_value = -999)
-	hour = root_grp.createVariable('hour', 'i4', ('time',), fill_value = -999)
-	day_of_year = root_grp.createVariable('day_of_year', 'i4', ('time',), fill_value = -999)
-	day_of_century = root_grp.createVariable('day_of_century', 'i4', ('time',), fill_value = -999)
+	latitude = root_grp.createVariable('latitude', 'f4')
+	longitude = root_grp.createVariable('longitude', 'f4')
+	time = root_grp.createVariable('time', 'i4', ('time',))
+	year = root_grp.createVariable('year', 'i4', ('time',))
+	month = root_grp.createVariable('month', 'i4', ('time',))
+	day = root_grp.createVariable('day', 'i4', ('time',))
+	hour = root_grp.createVariable('hour', 'i4', ('time',))
+	day_of_year = root_grp.createVariable('day_of_year', 'i4', ('time',))
+	day_of_century = root_grp.createVariable('day_of_century', 'i4', ('time',))
 	air_pressure = root_grp.createVariable('air_pressure', 'f4', ('time',), fill_value = -999)
 	air_temperature = root_grp.createVariable('air_temperature', 'f4', ('time',), fill_value = -999)
 	air_temperature_hygroclip = root_grp.createVariable('air_temperature_hygroclip', 'f4', ('time',), fill_value = -999)
@@ -86,7 +84,7 @@ def promice2nc(args):
 	logger_temp = root_grp.createVariable('logger_temp', 'f4', ('time',), fill_value = -999)
 	fan_current = root_grp.createVariable('fan_current', 'f4', ('time',), fill_value = -999)
 	battery_voltage = root_grp.createVariable('battery_voltage', 'f4', ('time',), fill_value = -999)
-	time_bounds = root_grp.createVariable('time_bounds', 'i4', ('time','nbnd'), fill_value = -999)
+	time_bounds = root_grp.createVariable('time_bounds', 'i4', ('time','nbnd'))
 	
 	#station_name.long_name = 'name of station'
 	#station_name.cf_role = 'timeseries_id'

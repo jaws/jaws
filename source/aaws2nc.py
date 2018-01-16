@@ -48,12 +48,10 @@ def aaws2nc(args):
 	root_grp.createDimension('station', 25)
 	root_grp.createDimension('time', None)
 	root_grp.createDimension('nbnd', 2)
-	root_grp.createDimension('latitude', 1)
-	root_grp.createDimension('longitude', 1)
-
+	
 	# variables
-	latitude = root_grp.createVariable('latitude', 'f4', ('latitude',))
-	longitude = root_grp.createVariable('longitude', 'f4', ('latitude',))
+	latitude = root_grp.createVariable('latitude', 'f4')
+	longitude = root_grp.createVariable('longitude', 'f4')
 	station_name = root_grp.createVariable('station_name', 'S1', ('station',))
 	time = root_grp.createVariable('time', 'i4', ('time',))
 	time_bounds = root_grp.createVariable('time_bounds', 'i4', ('time','nbnd'))

@@ -40,20 +40,18 @@ def gcnet2nc(args):
 	root_grp.Conventions = 'CF-1.6'
 
 	# dimension
-	root_grp.createDimension('latitude', 1)
-	root_grp.createDimension('longitude', 1)
 	root_grp.createDimension('time', None)
 	root_grp.createDimension('nbnd', 2)
 	root_grp.createDimension('station', 1)
 
 	# variables
-	latitude = root_grp.createVariable('latitude', 'f4', ('latitude',), fill_value = -999)
-	longitude = root_grp.createVariable('longitude', 'f4', ('longitude',), fill_value = -999)
-	time = root_grp.createVariable('time', 'i4', ('time',), fill_value = -999)
-	time_bounds = root_grp.createVariable('time_bounds', 'i4', ('time','nbnd'), fill_value = -999)
+	latitude = root_grp.createVariable('latitude', 'f4')
+	longitude = root_grp.createVariable('longitude', 'f4')
+	time = root_grp.createVariable('time', 'i4', ('time',))
+	time_bounds = root_grp.createVariable('time_bounds', 'i4', ('time','nbnd'))
 	station_number = root_grp.createVariable('station_number', 'i1', ('station',))
-	year = root_grp.createVariable('year', 'i4', ('time',), fill_value = -999)
-	julian_decimal_time = root_grp.createVariable('julian_decimal_time', 'f4', ('time',), fill_value = -999)
+	year = root_grp.createVariable('year', 'i4', ('time',))
+	julian_decimal_time = root_grp.createVariable('julian_decimal_time', 'f4', ('time',))
 	sw_down = root_grp.createVariable('sw_down', 'f4', ('time',), fill_value = -999)
 	sw_up = root_grp.createVariable('sw_up', 'f4', ('time',), fill_value = -999)
 	net_radiation = root_grp.createVariable('net_radiation', 'f4', ('time',), fill_value = -999)
