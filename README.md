@@ -66,18 +66,16 @@ $ git pull
 
 ### Pre-requisites 
 
+JAWS works with any Python distribution, and especially well with Anaconda and Miniconda (Ajay: link here) 
 * netCDF4: Installation instructions can be found on the [webpage](unidata.github.io/netcdf4-python)
 <!--* astropy.io: Astropy is installed by default with the Anaconda Distribution. If you are using miniconda, you can execute following command to install it:
 
 ```html
-$conda install atropy.io
+$conda install astropy.io
 ```
 
 More details can be found on its [webpage](http://docs.astropy.org/en/stable/install.html)
 -->
-* argparse: As of Python >= 2.7 and >= 3.2, the argparse module is maintained within the Python standard library. 
-
-
 
 ### Example
 
