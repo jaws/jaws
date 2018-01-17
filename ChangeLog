@@ -1,3 +1,19 @@
+2018-01-16  Ajay Saini  <sainiak@uci.edu>
+
+	* Presented plots in group meeting
+
+	* JAWS bi-weekly meeting to discuss issues and priorities of tasks
+
+	* Made latitude and longitude scalar
+
+	* Added the "coordinates" attribute with values "latitude longitude"
+
+	* Corrected file name matching for lat and long
+
+	* Renamed sample data files with station name
+
+	* Corrected _FillValue for all the variables
+
 2018-01-12  Charlie Zender  <zender@uci.edu>
 
 	* Change degree_east/north to CF-preferred units degrees_east/north
