@@ -84,25 +84,31 @@ def aaws2nc(args):
 	air_temp.units = 'kelvin'
 	air_temp.long_name = 'air temperature'
 	air_temp.standard_name = 'air_temperature'
+	air_temp.coordinates = 'longitude latitude'
 	
 	vtempdiff.units = '1'
 	vtempdiff.long_name = 'vertical temperature differential'
+	vtempdiff.coordinates = 'longitude latitude'
 	
 	rh.units = '1'
 	rh.long_name = 'relative humidity'
 	rh.standard_name = 'relative_humidity'
+	rh.coordinates = 'longitude latitude'
 
 	pressure.units = 'pascal'
 	pressure.long_name = 'air pressure'
 	pressure.standard_name = 'air_pressure'
+	pressure.coordinates = 'longitude latitude'
 
 	wind_dir.units = 'degree'
 	wind_dir.long_name = 'wind direction'
 	wind_dir.standard_name = 'wind_from_direction'
+	wind_dir.coordinates = 'longitude latitude'
 
 	wind_spd.units = 'meter second-1'
 	wind_spd.long_name = 'wind speed'
 	wind_spd.standard_name = 'wind_speed'
+	wind_spd.coordinates = 'longitude latitude'
 	
 	i,j = 0,0
 	ip_file = open(str(args.input), 'r')

@@ -161,108 +161,134 @@ def gcnet2nc(args):
 	sw_down.units = 'watt meter-2'
 	sw_down.long_name = 'Shortwave Flux down'
 	sw_down.standard_name = 'downwelling_shortwave_flux_in_air'
+	sw_down.coordinates = 'longitude latitude'
 
 	sw_up.units = 'watt meter-2'
 	sw_up.long_name = 'Shortwave Flux up'
 	sw_up.standard_name = 'upwelling_shortwave_flux_in_air'
+	sw_up.coordinates = 'longitude latitude'
 
 	net_radiation.units = 'watt meter-2'
 	net_radiation.long_name = 'Net Radiation'
 	net_radiation.standard_name = 'surface_net_downward_radiative_flux'
+	net_radiation.coordinates = 'longitude latitude'
 
 	temperature_tc_1.units = 'kelvin'
 	temperature_tc_1.long_name = 'TC-1 Air Temperature'
 	temperature_tc_1.standard_name = 'air_temperature'
 	temperature_tc_1.note = 'air temperature from TC sensor'
+	temperature_tc_1.coordinates = 'longitude latitude'
 
 	temperature_tc_2.units = 'kelvin'
 	temperature_tc_2.long_name = 'TC-2 Air Temperature'
 	temperature_tc_2.standard_name = 'air_temperature'
+	temperature_tc_2.coordinates = 'longitude latitude'
 
 	temperature_cs500_1.units = 'kelvin'
 	temperature_cs500_1.long_name = 'CS500-1 Air Temperature'
 	temperature_cs500_1.standard_name = 'air_temperature'
 	temperature_cs500_1.note = 'air temperature from CS500 sensor'
+	temperature_cs500_1.coordinates = 'longitude latitude'
 
 	temperature_cs500_2.units = 'kelvin'
 	temperature_cs500_2.long_name = 'CS500-2 Air Temperature'
 	temperature_cs500_2.standard_name = 'air_temperature'
+	temperature_cs500_2.coordinates = 'longitude latitude'
 
 	relative_humidity_1.units = '1'
 	relative_humidity_1.long_name = 'Relative Humidity 1'
 	relative_humidity_1.standard_name = 'realtive_humidity'
+	relative_humidity_1.coordinates = 'longitude latitude'
 
 	relative_humidity_2.units = '1'
 	relative_humidity_2.long_name = 'Relative Humidity 2'
 	relative_humidity_2.standard_name = 'realtive_humidity'
+	relative_humidity_2.coordinates = 'longitude latitude'
 
 	u1_wind_speed.units = 'meter second-1'
 	u1_wind_speed.long_name = 'U1 Wind Speed'
 	u1_wind_speed.standard_name = 'wind_speed'
+	u1_wind_speed.coordinates = 'longitude latitude'
 
 	u2_wind_speed.units = 'meter second-1'
 	u2_wind_speed.long_name = 'U2 Wind Speed'
 	u2_wind_speed.standard_name = 'wind_speed'
+	u2_wind_speed.coordinates = 'longitude latitude'
 
 	u_direction_1.units = 'degree'
 	u_direction_1.long_name = 'U Direction 1'
 	u_direction_1.standard_name = 'wind_from_direction'
+	u_direction_1.coordinates = 'longitude latitude'
 
 	u_direction_2.units = 'degree'
 	u_direction_2.long_name = 'U Direction 2'
 	u_direction_2.standard_name = 'wind_from_direction'
+	u_direction_2.coordinates = 'longitude latitude'
 
 	atmos_pressure.units = 'pascal'
 	atmos_pressure.long_name = 'Atmospheric Pressure'
 	atmos_pressure.standard_name = 'surface_air_pressure'
+	atmos_pressure.coordinates = 'longitude latitude'
 
 	snow_height_1.units = 'meter'
 	snow_height_1.long_name = 'Snow Height 1'
 	snow_height_1.standard_name = 'snow_height'
+	snow_height_1.coordinates = 'longitude latitude'
 
 	snow_height_2.units = 'meter'
 	snow_height_2.long_name = 'Snow Height 2'
 	snow_height_2.standard_name = 'snow_height'
+	snow_height_2.coordinates = 'longitude latitude'
 
 	t_snow_01.units = 'kelvin'
 	t_snow_01.long_name = 'T Snow 1'
 	#t_snow_01.standard_name = 'temperature_in_surface_snow'
+	t_snow_01.coordinates = 'longitude latitude'
 
 	t_snow_02.units = 'kelvin'
 	t_snow_02.long_name = 'T Snow 2'
 	#t_snow_02.standard_name = 'temperature_in_surface_snow'
+	t_snow_02.coordinates = 'longitude latitude'
 
 	t_snow_03.units = 'kelvin'
 	t_snow_03.long_name = 'T Snow 3'
 	#t_snow_03.standard_name = 'temperature_in_surface_snow'
+	t_snow_03.coordinates = 'longitude latitude'
 
 	t_snow_04.units = 'kelvin'
 	t_snow_04.long_name = 'T Snow 4'
 	#t_snow_04.standard_name = 'temperature_in_surface_snow'
+	t_snow_04.coordinates = 'longitude latitude'
 
 	t_snow_05.units = 'kelvin'
 	t_snow_05.long_name = 'T Snow 5'
 	#t_snow_05.standard_name = 'temperature_in_surface_snow'
+	t_snow_05.coordinates = 'longitude latitude'
 
 	t_snow_06.units = 'kelvin'
 	t_snow_06.long_name = 'T Snow 6'
 	#t_snow_06.standard_name = 'temperature_in_surface_snow'
+	t_snow_06.coordinates = 'longitude latitude'
 
 	t_snow_07.units = 'kelvin'
 	t_snow_07.long_name = 'T Snow 7'
 	#t_snow_07.standard_name = 'temperature_in_surface_snow'
+	t_snow_07.coordinates = 'longitude latitude'
 
 	t_snow_08.units = 'kelvin'
 	t_snow_08.long_name = 'T Snow 8'
 	#t_snow_08.standard_name = 'temperature_in_surface_snow'
+	t_snow_08.coordinates = 'longitude latitude'
 
 	t_snow_09.units = 'kelvin'
 	t_snow_09.long_name = 'T Snow 9'
 	#t_snow_09.standard_name = 'temperature_in_surface_snow'
+	t_snow_09.coordinates = 'longitude latitude'
 
 	t_snow_10.units = 'kelvin'
 	t_snow_10.long_name = 'T Snow 10'
 	#t_snow_10.standard_name = 'temperature_in_surface_snow'
+	t_snow_10.coordinates = 'longitude latitude'
 
 	battery_voltage.units = 'volts'
 	battery_voltage.long_name = 'Battery Voltage'
@@ -271,74 +297,92 @@ def gcnet2nc(args):
 	sw_down_max.units = 'watt meter-2'
 	sw_down_max.long_name = 'Shortwave Flux down max'
 	sw_down_max.standard_name = 'maximum_downwelling_shortwave_flux_in_air'
+	sw_down_max.coordinates = 'longitude latitude'
 	
 	sw_up_max.units = 'watt meter-2'
 	sw_up_max.long_name = 'Shortwave Flux up max'
 	sw_up_max.standard_name = 'maximum_upwelling_shortwave_flux_in_air'
+	sw_up_max.coordinates = 'longitude latitude'
 	
 	net_radiation_max.units = 'watt meter-2'
 	net_radiation_max.long_name = 'Net Radiation max'
 	net_radiation_max.standard_name = 'maximum_net_radiation'
+	net_radiation_max.coordinates = 'longitude latitude'
 
 	max_air_temperature_1.units = 'kelvin'
 	max_air_temperature_1.long_name = 'Max Air Temperture 1'
 	max_air_temperature_1.standard_name = 'air_temperature'
+	max_air_temperature_1.coordinates = 'longitude latitude'
 
 	max_air_temperature_2.units = 'kelvin'
 	max_air_temperature_2.long_name = 'Max Air Temperture 2'
 	max_air_temperature_2.standard_name = 'air_temperature'
+	max_air_temperature_2.coordinates = 'longitude latitude'
 
 	min_air_temperature_1.units = 'kelvin'
 	min_air_temperature_1.long_name = 'Min Air Temperture 1'
 	min_air_temperature_1.standard_name = 'air_temperature'
+	min_air_temperature_1.coordinates = 'longitude latitude'
 
 	min_air_temperature_2.units = 'kelvin'
 	min_air_temperature_2.long_name = 'Min Air Temperture 2'
 	min_air_temperature_2.standard_name = 'air_temperature'
+	min_air_temperature_2.coordinates = 'longitude latitude'
 
 	max_windspeed_u1.units = 'meter second-1'
 	max_windspeed_u1.long_name = 'Max Windspeed-U1'
 	max_windspeed_u1.standard_name = 'wind_speed'
+	max_windspeed_u1.coordinates = 'longitude latitude'
 
 	max_windspeed_u2.units = 'meter second-1'
 	max_windspeed_u2.long_name = 'Max Windspeed-U2'
 	max_windspeed_u2.standard_name = 'wind_speed'
+	max_windspeed_u2.coordinates = 'longitude latitude'
 
 	stdev_windspeed_u1.units = 'meter second-1'
 	stdev_windspeed_u1.long_name = 'StdDev Windspeed-U1'
 	stdev_windspeed_u1.standard_name = 'wind_speed'
+	stdev_windspeed_u1.coordinates = 'longitude latitude'
 
 	stdev_windspeed_u2.units = 'meter second-1'
 	stdev_windspeed_u2.long_name = 'StdDev Windspeed-U2'
 	stdev_windspeed_u2.standard_name = 'wind_speed'
+	stdev_windspeed_u2.coordinates = 'longitude latitude'
 
 	ref_temperature.units = 'kelvin'
 	ref_temperature.long_name = 'Reference Temperature'
 	ref_temperature.note = 'Need to ask network manager about long name'
+	ref_temperature.coordinates = 'longitude latitude'
 
 	windspeed_2m.units = 'meter second-1'
 	windspeed_2m.long_name = 'Windspeed@2m'
 	windspeed_2m.standard_name = 'wind_speed'
+	windspeed_2m.coordinates = 'longitude latitude'
 
 	windspeed_10m.units = 'meter second-1'
 	windspeed_10m.long_name = 'Windspeed@10m'
 	windspeed_10m.standard_name = '10-m_wind_speed'
+	windspeed_10m.coordinates = 'longitude latitude'
 
 	wind_sensor_height_1.units = 'meter'
 	wind_sensor_height_1.long_name = 'Wind Sensor Height 1'
 	wind_sensor_height_1.standard_name = 'n/a'
+	wind_sensor_height_1.coordinates = 'longitude latitude'
 
 	wind_sensor_height_2.units = 'meter'
 	wind_sensor_height_2.long_name = 'Wind Sensor Height 2'
 	wind_sensor_height_2.standard_name = 'n/a'
+	wind_sensor_height_2.coordinates = 'longitude latitude'
 
 	albedo.units = '1'
 	albedo.long_name = 'Albedo'
 	albedo.standard_name = 'surface_albedo'
+	albedo.coordinates = 'longitude latitude'
 
 	zenith_angle.units = 'degree'
 	zenith_angle.long_name = 'Zenith Angle'
 	zenith_angle.standard_name = 'solar_zenith_angle'
+	zenith_angle.coordinates = 'longitude latitude'
 
 	qc1.units = '1'
 	qc1.long_name = 'Quality Control variables 01-08'

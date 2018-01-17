@@ -122,54 +122,67 @@ def promice2nc(args):
 	air_pressure.units = 'pascal'
 	air_pressure.long_name = 'Air Pressure'
 	air_pressure.standard_name = 'air_pressure'
+	air_pressure.coordinates = 'longitude latitude'
 
 	air_temperature.units = 'kelvin'
 	air_temperature.long_name = 'Air Temperature'
 	air_temperature.standard_name = 'air_temperature'
+	air_temperature.coordinates = 'longitude latitude'
 	
 	air_temperature_hygroclip.units = 'kelvin'
 	air_temperature_hygroclip.long_name = 'Air Temperature HygroClip'
 	air_temperature_hygroclip.standard_name = 'air_temperature'
+	air_temperature_hygroclip.coordinates = 'longitude latitude'
 
 	relative_humidity_wrtwater.units = '1'
 	relative_humidity_wrtwater.long_name = 'Relative Humidity wrt Water'
 	relative_humidity_wrtwater.standard_name = 'relative_humidity'
+	relative_humidity_wrtwater.coordinates = 'longitude latitude'
 
 	relative_humidity.units = '1'
 	relative_humidity.long_name = 'Relative Humidity'
 	relative_humidity.standard_name = 'relative_humidity'
+	relative_humidity.coordinates = 'longitude latitude'
 
 	wind_speed.units = 'meter second-1'
 	wind_speed.long_name = 'Wind Speed'
 	wind_speed.standard_name = 'wind_speed'
+	wind_speed.coordinates = 'longitude latitude'
 
 	wind_direction.units = 'degree'
 	wind_direction.long_name = 'Wind Direction'
 	wind_direction.standard_name = 'wind_from_direction'
+	wind_direction.coordinates = 'longitude latitude'
 
 	shortwave_radiation_down.units = 'watt meter-2'
 	shortwave_radiation_down.long_name = 'Shortwave Radiation Down'
 	shortwave_radiation_down.standard_name = 'downwelling_shortwave_flux_in_air'
+	shortwave_radiation_down.coordinates = 'longitude latitude'
 
 	shortwave_radiation_down_cor.units = 'watt meter-2'
 	shortwave_radiation_down_cor.long_name = 'Shortwave Radiation Down Cor'
 	shortwave_radiation_down_cor.standard_name = 'downwelling_shortwave_flux_in_air'
+	shortwave_radiation_down_cor.coordinates = 'longitude latitude'
 
 	shortwave_radiation_up.units = 'watt meter-2'
 	shortwave_radiation_up.long_name = 'Shortwave Radiation Up'
 	shortwave_radiation_up.standard_name = 'upwelling_shortwave_flux_in_air'
+	shortwave_radiation_up.coordinates = 'longitude latitude'
 
 	shortwave_radiation_up_cor.units = 'watt meter-2'
 	shortwave_radiation_up_cor.long_name = 'Shortwave Radiation Up Cor'
 	shortwave_radiation_up_cor.standard_name = 'upwelling_shortwave_flux_in_air'
+	shortwave_radiation_up_cor.coordinates = 'longitude latitude'
 
 	albedo_theta.units = '1'
 	albedo_theta.long_name = 'Albedo_theta<70d'
 	albedo_theta.standard_name = 'surface_albedo'
+	albedo_theta.coordinates = 'longitude latitude'
 
 	longwave_radiation_down.units = 'watt meter-2'
 	longwave_radiation_down.long_name = 'Longwave Radiation Down'
 	longwave_radiation_down.standard_name = 'downwelling_longwave_flux_in_air'
+	longwave_radiation_down.coordinates = 'longitude latitude'
 
 	longwave_radiation_up.units = 'watt meter-2'
 	longwave_radiation_up.long_name = 'Longwave Radiation Up'
@@ -178,66 +191,82 @@ def promice2nc(args):
 	cloudcover.units = '1'
 	cloudcover.long_name = 'Cloud Cover'
 	#cloudcover.standard_name = ''
+	cloudcover.coordinates = 'longitude latitude'
 
 	surface_temp.units = 'kelvin'
 	surface_temp.long_name = 'Surface Temperature'
 	surface_temp.standard_name = 'surface_temperature'
+	surface_temp.coordinates = 'longitude latitude'
 
 	height_sensor_boom.units = 'meter'
 	height_sensor_boom.long_name = 'Height Sensor Boom'
 	#height_sensor_boom.standard_name = ''
+	height_sensor_boom.coordinates = 'longitude latitude'
 
 	height_stakes.units = 'meter'
 	height_stakes.long_name = 'Height Stakes'
 	#height_stakes.standard_name = ''
+	height_stakes.coordinates = 'longitude latitude'
 
 	depth_pressure_transducer.units = 'meter'
 	depth_pressure_transducer.long_name = 'Depth Pressure Transducer'
 	#depth_pressure_transducer.standard_name = ''
+	depth_pressure_transducer.coordinates = 'longitude latitude'
 
 	depth_pressure_transducer_cor.units = 'meter'
 	depth_pressure_transducer_cor.long_name = 'Depth Pressure Transducer Cor'
 	#depth_pressure_transducer_cor.standard_name = ''
+	depth_pressure_transducer_cor.coordinates = 'longitude latitude'
 
 	ice_temp_01.units = 'kelvin'
 	ice_temp_01.long_name = 'Ice Temperature 1'
 	ice_temp_01.standard_name = 'land_ice_temperature'
+	ice_temp_01.coordinates = 'longitude latitude'
 
 	ice_temp_02.units = 'kelvin'
 	ice_temp_02.long_name = 'Ice Temperature 2'
 	ice_temp_02.standard_name = 'land_ice_temperature'
+	ice_temp_02.coordinates = 'longitude latitude'
 	
 	ice_temp_03.units = 'kelvin'
 	ice_temp_03.long_name = 'Ice Temperature 3'
 	ice_temp_03.standard_name = 'land_ice_temperature'
+	ice_temp_03.coordinates = 'longitude latitude'
 	
 	ice_temp_04.units = 'kelvin'
 	ice_temp_04.long_name = 'Ice Temperature 4'
 	ice_temp_04.standard_name = 'land_ice_temperature'
+	ice_temp_04.coordinates = 'longitude latitude'
 
 	ice_temp_05.units = 'kelvin'
 	ice_temp_05.long_name = 'Ice Temperature 5'
 	ice_temp_05.standard_name = 'land_ice_temperature'
+	ice_temp_05.coordinates = 'longitude latitude'
 
 	ice_temp_06.units = 'kelvin'
 	ice_temp_06.long_name = 'IceTemperature6'
 	ice_temp_06.standard_name = 'land_ice_temperature'
+	ice_temp_06.coordinates = 'longitude latitude'
 
 	ice_temp_07.units = 'kelvin'
 	ice_temp_07.long_name = 'Ice Temperature 7'
 	ice_temp_07.standard_name = 'land_ice_temperature'
+	ice_temp_07.coordinates = 'longitude latitude'
 
 	ice_temp_08.units = 'kelvin'
 	ice_temp_08.long_name = 'Ice Temperature 8'
 	ice_temp_08.standard_name = 'land_ice_temperature'
+	ice_temp_08.coordinates = 'longitude latitude'
 
 	tilt_east.units = 'degree'
 	tilt_east.long_name = 'Tilt to East'
 	#tilt_east.standard_name = ''
+	tilt_east.coordinates = 'longitude latitude'
 
 	tilt_north.units = 'degree'
 	tilt_north.long_name = 'Tilt to North'
 	#tilt_north.standard_name = ''
+	tilt_north.coordinates = 'longitude latitude'
 
 	time_GPS.units = 'UTC'
 	time_GPS.long_name = 'Time GPS(hhmmssUTC)'
