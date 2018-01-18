@@ -564,51 +564,51 @@ def gcnet2nc(args):
 		columns[2] = float(columns[2])
 		if str(columns[2]-int(columns[2]))[1:] == '.0':
 			hour[j] = 0
-		elif str(columns[2]-int(columns[2]))[1:] == '.0417':
+		elif str(columns[2]-int(columns[2]))[1:] in {'.0417', '.042'}:
 			hour[j] = 1
-		elif str(columns[2]-int(columns[2]))[1:] == '.0833':
+		elif str(columns[2]-int(columns[2]))[1:] in {'.0833', '.083'}:
 			hour[j] = 2
-		elif str(columns[2]-int(columns[2]))[1:] == '.125':
+		elif str(columns[2]-int(columns[2]))[1:] in {'.125'}:
 			hour[j] = 3
-		elif str(columns[2]-int(columns[2]))[1:] == '.1667':
+		elif str(columns[2]-int(columns[2]))[1:] in {'.1667', '.167'}:
 			hour[j] = 4
-		elif str(columns[2]-int(columns[2]))[1:] == '.2083':
+		elif str(columns[2]-int(columns[2]))[1:] in {'.2083','.208'}:
 			hour[j] = 5
-		elif str(columns[2]-int(columns[2]))[1:] == '.25':
+		elif str(columns[2]-int(columns[2]))[1:] in {'.25'}:
 			hour[j] = 6
-		elif str(columns[2]-int(columns[2]))[1:] == '.2917':
+		elif str(columns[2]-int(columns[2]))[1:] in {'.2917','.292'}:
 			hour[j] = 7
-		elif str(columns[2]-int(columns[2]))[1:] == '.3333':
+		elif str(columns[2]-int(columns[2]))[1:] in {'.3333','.333'}:
 			hour[j] = 8
-		elif str(columns[2]-int(columns[2]))[1:] == '.375':
+		elif str(columns[2]-int(columns[2]))[1:] in {'.375'}:
 			hour[j] = 9
-		elif str(columns[2]-int(columns[2]))[1:] == '.4167':
+		elif str(columns[2]-int(columns[2]))[1:] in {'.4167','.417'}:
 			hour[j] = 10
-		elif str(columns[2]-int(columns[2]))[1:] == '.4583':
+		elif str(columns[2]-int(columns[2]))[1:] in {'.4583','.458'}:
 			hour[j] = 11
-		elif str(columns[2]-int(columns[2]))[1:] == '.5':
+		elif str(columns[2]-int(columns[2]))[1:] in {'.5'}:
 			hour[j] = 12
-		elif str(columns[2]-int(columns[2]))[1:] == '.5417':
+		elif str(columns[2]-int(columns[2]))[1:] in {'.5417','.542'}:
 			hour[j] = 13
-		elif str(columns[2]-int(columns[2]))[1:] == '.5833':
+		elif str(columns[2]-int(columns[2]))[1:] in {'.5833','.583'}:
 			hour[j] = 14
-		elif str(columns[2]-int(columns[2]))[1:] == '.625':
+		elif str(columns[2]-int(columns[2]))[1:] in {'.625'}:
 			hour[j] = 15
-		elif str(columns[2]-int(columns[2]))[1:] == '.6667':
+		elif str(columns[2]-int(columns[2]))[1:] in {'.6667','.667'}:
 			hour[j] = 16
-		elif str(columns[2]-int(columns[2]))[1:] == '.7083':
+		elif str(columns[2]-int(columns[2]))[1:] in {'.7083','.708'}:
 			hour[j] = 17
-		elif str(columns[2]-int(columns[2]))[1:] == '.75':
+		elif str(columns[2]-int(columns[2]))[1:] in {'.75'}:
 			hour[j] = 18
-		elif str(columns[2]-int(columns[2]))[1:] == '.7917':
+		elif str(columns[2]-int(columns[2]))[1:] in {'.7917','.792'}:
 			hour[j] = 19
-		elif str(columns[2]-int(columns[2]))[1:] == '.8333':
+		elif str(columns[2]-int(columns[2]))[1:] in {'.8333','.833'}:
 			hour[j] = 20
-		elif str(columns[2]-int(columns[2]))[1:] == '.875':
+		elif str(columns[2]-int(columns[2]))[1:] in {'.875'}:
 			hour[j] = 21
-		elif str(columns[2]-int(columns[2]))[1:] == '.9167':
+		elif str(columns[2]-int(columns[2]))[1:] in {'.9167','.917'}:
 			hour[j] = 22
-		elif str(columns[2]-int(columns[2]))[1:] == '.9583':
+		elif str(columns[2]-int(columns[2]))[1:] in {'.9583','.958'}:
 			hour[j] = 23
 		
 		j += 1
