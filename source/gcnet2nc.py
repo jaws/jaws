@@ -402,6 +402,10 @@ def gcnet2nc(args):
 	
 	print("converting data...")
 	i,j = 0,0
+	temp1 = [0]*count
+	temp9 = [0]*count
+	temp17 = [0]*count
+	temp25 = [0]*count
 	ip_file = open(str(args.input), 'r')
 
 	while i < 54:
@@ -547,9 +551,13 @@ def gcnet2nc(args):
 		albedo[j] = columns[46]
 		zenith_angle[j] = columns[47]
 		qc1[j] = columns[48]
+		temp1[j] = columns[48]
 		qc9[j] = columns[49]
+		temp9[j] = columns[49]
 		qc17[j] = columns[50]
+		temp17[j] = columns[50]
 		qc25[j] = columns[51]
+		temp25[j] = columns[51]
 
 		columns[2] = float(columns[2])
 		if str(columns[2]-int(columns[2]))[1:] == '.0':
@@ -685,10 +693,10 @@ def gcnet2nc(args):
 
 	print("extracting quality control variables...")
 
-	qc1_str = [str(e) for e in qc1]
-	qc9_str = [str(e) for e in qc9]
-	qc17_str = [str(e) for e in qc17]
-	qc25_str = [str(e) for e in qc25]
+	qc1_str = [str(e) for e in temp1]
+	qc9_str = [str(e) for e in temp9]
+	qc17_str = [str(e) for e in temp17]
+	qc25_str = [str(e) for e in temp25]
 	
 	k,l = 0,0
 
