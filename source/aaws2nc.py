@@ -167,13 +167,28 @@ def aaws2nc(args):
 		wind_dir[:] = data['col6']
 		wind_spd[:] = data['col7']
 	'''	
+	if args.station_name:
+		y = 0
+		while y < len(args.station_name):
+			station_name[y] = args.station_name[y]
+			y += 1
+	else:
+		f = open(args.input)
+		f.readline()
+		for line in f:
+			x = list(line[12:].strip('\n'))
+			station_name[0:len(x)] = x
+			break
+		f.close()
+
+	
 	f = open(args.input)
 	f.readline()
 	for line in f:
 		x = list(line[12:].strip('\n'))
-		station_name[0:len(x)] = x
 		break
 	f.close()
+
 
 	if x == ['A','G','O','-','4']:
 		latitude[0] = -82.010
