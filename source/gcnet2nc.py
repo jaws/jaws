@@ -426,22 +426,22 @@ def gcnet2nc(args):
 		sw_up[j] = columns[4]
 		net_radiation[j] = columns[5]
 		
-		if columns[6] in {'999.0'.'999.00','999.000','999.0000'}:
+		if columns[6] in {'999.0','999.00','999.000','999.0000'}:
 			temperature_tc_1[j] = columns[6]
 		else:
 			temperature_tc_1[j] = float(columns[6]) + 273.15
 
-		if columns[7] in {'999.0'.'999.00','999.000','999.0000'}:
+		if columns[7] in {'999.0','999.00','999.000','999.0000'}:
 			temperature_tc_2[j] = columns[7]
 		else:
 			temperature_tc_2[j] = float(columns[7]) + 273.15
 
-		if columns[8] in {'999.0'.'999.00','999.000','999.0000'}:
+		if columns[8] in {'999.0','999.00','999.000','999.0000'}:
 			temperature_cs500_1[j] = columns[8]
 		else:
 			temperature_cs500_1[j] = float(columns[8]) + 273.15
 
-		if columns[9] in {'999.0'.'999.00','999.000','999.0000'}:
+		if columns[9] in {'999.0','999.00','999.000','999.0000'}:
 			temperature_cs500_2[j] = columns[9]
 		else:
 			temperature_cs500_2[j] = float(columns[9]) + 273.15
@@ -453,7 +453,7 @@ def gcnet2nc(args):
 		u_direction_1[j] = columns[14]
 		u_direction_2[j] = columns[15]
 		
-		if columns[16] in {'999.0'.'999.00','999.000','999.0000'}:
+		if columns[16] in {'999.0','999.00','999.000','999.0000'}:
 			atmos_pressure[j] = columns[16]
 		else:
 			atmos_pressure[j] = float(columns[16]) * 100
@@ -461,52 +461,52 @@ def gcnet2nc(args):
 		snow_height_1[j] = columns[17]
 		snow_height_2[j] = columns[18]
 		
-		if columns[19] in {'999.0'.'999.00','999.000','999.0000'}:
+		if columns[19] in {'999.0','999.00','999.000','999.0000'}:
 			t_snow_01[j] = columns[19]
 		else:
 			t_snow_01[j] = float(columns[19]) + 273.15
 
-		if columns[20] in {'999.0'.'999.00','999.000','999.0000'}:
+		if columns[20] in {'999.0','999.00','999.000','999.0000'}:
 			t_snow_02[j] = columns[20]
 		else:
 			t_snow_02[j] = float(columns[20]) + 273.15
 
-		if columns[21] in {'999.0'.'999.00','999.000','999.0000'}:
+		if columns[21] in {'999.0','999.00','999.000','999.0000'}:
 			t_snow_03[j] = columns[21]
 		else:
 			t_snow_03[j] = float(columns[2]) + 273.15
 		
-		if columns[22] in {'999.0'.'999.00','999.000','999.0000'}:
+		if columns[22] in {'999.0','999.00','999.000','999.0000'}:
 			t_snow_04[j] = columns[22]
 		else:
 			t_snow_04[j] = float(columns[22]) + 273.15
 		
-		if columns[23] in {'999.0'.'999.00','999.000','999.0000'}:
+		if columns[23] in {'999.0','999.00','999.000','999.0000'}:
 			t_snow_05[j] = columns[23]
 		else:
 			t_snow_05[j] = float(columns[23]) + 273.15
 		
-		if columns[24] in {'999.0'.'999.00','999.000','999.0000'}:
+		if columns[24] in {'999.0','999.00','999.000','999.0000'}:
 			t_snow_06[j] = columns[24]
 		else:
 			t_snow_06[j] = float(columns[24]) + 273.15
 		
-		if columns[25] in {'999.0'.'999.00','999.000','999.0000'}:
+		if columns[25] in {'999.0','999.00','999.000','999.0000'}:
 			t_snow_07[j] = columns[25]
 		else:
 			t_snow_07[j] = float(columns[25]) + 273.15
 		
-		if columns[26] in {'999.0'.'999.00','999.000','999.0000'}:
+		if columns[26] in {'999.0','999.00','999.000','999.0000'}:
 			t_snow_08[j] = columns[26]
 		else:
 			t_snow_08[j] = float(columns[26]) + 273.15
 		
-		if columns[27] in {'999.0'.'999.00','999.000','999.0000'}:
+		if columns[27] in {'999.0','999.00','999.000','999.0000'}:
 			t_snow_09[j] = columns[27]
 		else:
 			t_snow_09[j] = float(columns[27]) + 273.15
 		
-		if columns[28] in {'999.0'.'999.00','999.000','999.0000'}:
+		if columns[28] in {'999.0','999.00','999.000','999.0000'}:
 			t_snow_10[j] = columns[28]
 		else:
 			t_snow_10[j] = float(columns[28]) + 273.15
@@ -516,22 +516,22 @@ def gcnet2nc(args):
 		sw_up_max[j] = columns[31]
 		net_radiation_max[j] = columns[32]
 		
-		if columns[33] in {'999.0'.'999.00','999.000','999.0000'}:
+		if columns[33] in {'999.0','999.00','999.000','999.0000'}:
 			max_air_temperature_1[j] = columns[33]
 		else:
 			max_air_temperature_1[j] = float(columns[33]) + 273.15
 		
-		if columns[34] in {'999.0'.'999.00','999.000','999.0000'}:
+		if columns[34] in {'999.0','999.00','999.000','999.0000'}:
 			max_air_temperature_2[j] = columns[34]
 		else:
 			max_air_temperature_2[j] = float(columns[34]) + 273.15
 		
-		if columns[35] in {'999.0'.'999.00','999.000','999.0000'}:
+		if columns[35] in {'999.0','999.00','999.000','999.0000'}:
 			min_air_temperature_1[j] = columns[35]
 		else:
 			min_air_temperature_1[j] = float(columns[35]) + 273.15
 		
-		if columns[36] in {'999.0'.'999.00','999.000','999.0000'}:
+		if columns[36] in {'999.0','999.00','999.000','999.0000'}:
 			min_air_temperature_2[j] = columns[36]
 		else:
 			min_air_temperature_2[j] = float(columns[36]) + 273.15
@@ -541,7 +541,7 @@ def gcnet2nc(args):
 		stdev_windspeed_u1[j] = columns[39]
 		stdev_windspeed_u2[j] = columns[40]
 		
-		if columns[41] in {'999.0'.'999.00','999.000','999.0000'}:
+		if columns[41] in {'999.0','999.00','999.000','999.0000'}:
 			ref_temperature[j] = columns[41]
 		else:
 			ref_temperature[j] = float(columns[41]) + 273.15
