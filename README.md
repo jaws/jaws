@@ -43,21 +43,21 @@ $ conda install -c conda-forge jaws
 ```
 -->
 
-## Running JAWS
+## Obtaining and Running JAWS
 
-If you are first-time user, execute this to copy *jaws* to your local machine:
+First-time users can execute this to copy JAWS to their local machines:
 
 ``` html
 $ git clone https://github.com/jaws/jaws.git
 ```
 
-If you have a GitHub account and wish to contribute to JAWS, clone via SSH instead:
+Those with GitHub accounts who wish to contribute to JAWS should clone via SSH instead:
 
 ``` html
 $ git clone git@github.com:/jaws/jaws.git
 ```
 
-If you are an existing user, update your repository to the current version:
+Users should periodically update their local repositories to the current version:
 
 ``` html
 $ git pull
@@ -66,8 +66,8 @@ $ git pull
 
 ### Pre-requisites 
 
-JAWS works with any Python distribution, and especially well with Anaconda and Miniconda (Ajay: link here) 
-* netCDF4: Installation instructions can be found on the [webpage](unidata.github.io/netcdf4-python)
+JAWS works with any Python distribution, and especially well with Anaconda and [Miniconda](https://conda.io/miniconda.html)
+* netCDF4: Install with `conda install netcdf4` or as instructed on the [webpage](unidata.github.io/netcdf4-python)
 <!--* astropy.io: Astropy is installed by default with the Anaconda Distribution. If you are using miniconda, you can execute following command to install it:
 
 ```html
@@ -85,19 +85,19 @@ The current version can translate ASCII data from the GCNet, PROMICE and AAWS ne
 
 The user provides the input file path. By default, the output file will be stored within the current directory with the network name (e.g. promice.nc). The user can optionally give their own output path/name.
 
-Execute this from the top-level JAWS directory:
+Execute this from the JAWS `source` directory:
 
 ``` html
-$ python jaws.py ../sample_data/gcnet_20130101.txt
+$ python jaws.py ../sample_data/PROMICE_EGP_20160501.txt
 ```
 
 or from anywhere, by specifying longer paths, and with options:
 
 ``` html
-$ python ~/jaws/source/jaws.py -3 -o ~/promice_20160501.nc ~/jaws/sample_data/promice_20160501.txt
+$ python ~/jaws/source/jaws.py -4 -o ~/PROMICE_EGP_20160501.nc ~/jaws/sample_data/PROMICE_EGP_20160501.txt
 ```
 
-where '-o' is optional argument to provide user-defined name to output file.
+where the argument to the optional `-o` is the user-defined output filename
 <!--
 Storing AWS-like data using DSG convention:
 ``` html
