@@ -31,12 +31,12 @@ def promice2nc(args):
 	root_grp.Conventions = 'CF-1.6'
 
 	# dimension
-	#root_grp.createDimension('station', 1)
+	root_grp.createDimension('station', 25)
 	root_grp.createDimension('time', None)
 	root_grp.createDimension('nbnd', 2)
 	
 	# variables
-	#station_name = root_grp.createVariable('station_name', 'S20', ('station',))
+	station_name = root_grp.createVariable('station_name', 'S1', ('station',))
 	latitude = root_grp.createVariable('latitude', 'f4')
 	longitude = root_grp.createVariable('longitude', 'f4')
 	time = root_grp.createVariable('time', 'i4', ('time',))
@@ -86,8 +86,8 @@ def promice2nc(args):
 	battery_voltage = root_grp.createVariable('battery_voltage', 'f4', ('time',), fill_value = -999)
 	time_bounds = root_grp.createVariable('time_bounds', 'i4', ('time','nbnd'))
 	
-	#station_name.long_name = 'name of station'
-	#station_name.cf_role = 'timeseries_id'
+	station_name.long_name = 'name of station'
+	station_name.cf_role = 'timeseries_id'
 
 	latitude.units = 'degrees_north'
 	latitude.standard_name = 'latitude'
@@ -439,81 +439,107 @@ def promice2nc(args):
 	if ('EGP') in os.path.basename(args.input):
 		latitude[0] = 75.6247
 		longitude[0] = 35.9748
+		station_name[0:3] = ['E','G','P']
 	elif ('KAN_B') in os.path.basename(args.input):
 		latitude[0] = 67.1252
 		longitude[0] = 50.1832
+		station_name[0:5] = ['K','A','N','_','B']
 	elif ('KAN_L') in os.path.basename(args.input):
 		latitude[0] = 67.0955
 		longitude[0] = 49.9513
+		station_name[0:5] = ['K','A','N','_','L']
 	elif ('KAN_M') in os.path.basename(args.input):
 		latitude[0] =  67.0670
 		longitude[0] = 48.8355
+		station_name[0:5] = ['K','A','N','_','M']
 	elif ('KAN_U') in os.path.basename(args.input):
 		latitude[0] = 67.0003
 		longitude[0] = 47.0253
+		station_name[0:5] = ['K','A','N','_','U']
 	elif ('KPC_L') in os.path.basename(args.input):
 		latitude[0] = 79.9108
 		longitude[0] = 24.0828
+		station_name[0:5] = ['K','P','C','_','L']
 	elif ('KPC_U') in os.path.basename(args.input):
 		latitude[0] = 79.8347
 		longitude[0] = 25.1662
+		station_name[0:5] = ['K','P','C','_','U']
 	elif ('MIT') in os.path.basename(args.input):
 		latitude[0] =  65.6922
 		longitude[0] =  37.8280
+		station_name[0:5] = ['M','I','T']
 	elif ('NUK_K') in os.path.basename(args.input):
 		latitude[0] = 64.1623
 		longitude[0] = 51.3587
+		station_name[0:5] = ['N','U','K','_','K']
 	elif ('NUK_L') in os.path.basename(args.input):
 		latitude[0] = 64.4822
 		longitude[0] = 49.5358
+		station_name[0:5] = ['N','U','K','_','L']
 	elif ('NUK_N') in os.path.basename(args.input):
 		latitude[0] = 64.9452
 		longitude[0] = 49.8850
+		station_name[0:5] = ['N','U','K','_','N']
 	elif ('NUK_U') in os.path.basename(args.input):
 		latitude[0] = 64.5108
 		longitude[0] = 49.2692
+		station_name[0:5] = ['N','U','K','_','U']
 	elif ('QAS_A') in os.path.basename(args.input):
 		latitude[0] =  61.2430
 		longitude[0] = 46.7328
+		station_name[0:5] = ['Q','A','S','_','A']
 	elif ('QAS_L') in os.path.basename(args.input):
 		latitude[0] = 61.0308
 		longitude[0] =  46.8493
+		station_name[0:5] = ['Q','A','S','_','L']
 	elif ('QAS_M') in os.path.basename(args.input):
 		latitude[0] = 61.0998
 		longitude[0] = 46.8330
+		station_name[0:5] = ['Q','A','S','_','M']
 	elif ('QAS_U') in os.path.basename(args.input):
 		latitude[0] = 61.1753
 		longitude[0] = 46.8195
+		station_name[0:5] = ['Q','A','S','_','U']
 	elif ('SCO_L') in os.path.basename(args.input):
 		latitude[0] =  72.2230
 		longitude[0] =  26.8182
+		station_name[0:5] = ['S','C','O','_','L']
 	elif ('SCO_U') in os.path.basename(args.input):
 		latitude[0] = 72.3933
 		longitude[0] = 27.2333
+		station_name[0:5] = ['S','C','O','_','U']
 	elif ('TAS_A') in os.path.basename(args.input):
 		latitude[0] = 65.7790
 		longitude[0] = 38.8995
+		station_name[0:5] = ['T','A','S','_','A']
 	elif ('TAS_L') in os.path.basename(args.input):
 		latitude[0] = 65.6402
 		longitude[0] =  38.8987
+		station_name[0:5] = ['T','A','S','_','L']
 	elif ('TAS_U') in os.path.basename(args.input):
 		latitude[0] =  65.6978
 		longitude[0] = 38.8668
+		station_name[0:5] = ['T','A','S','_','U']
 	elif ('THU_L') in os.path.basename(args.input):
 		latitude[0] = 76.3998
 		longitude[0] = 68.2665
+		station_name[0:5] = ['T','H','U','_','L']
 	elif ('THU_U') in os.path.basename(args.input):
 		latitude[0] =  76.4197
 		longitude[0] = 68.1463
+		station_name[0:5] = ['T','H','U','_','U']
 	elif ('UPE_L') in os.path.basename(args.input):
 		latitude[0] = 72.8932
 		longitude[0] =  54.2955
+		station_name[0:5] = ['U','P','E','_','L']
 	elif ('UPE_U') in os.path.basename(args.input):
 		latitude[0] = 72.8878
 		longitude[0] = 53.5783
+		station_name[0:5] = ['U','P','E','_','U']
 	elif ('CEN') in os.path.basename(args.input):
 		latitude[0] = 0
 		longitude[0] = 0
+		station_name[0:5] = ['C','E','N']
 	
 
 	f = open(args.input)
