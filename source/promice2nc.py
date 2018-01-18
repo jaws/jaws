@@ -541,6 +541,11 @@ def promice2nc(args):
 		longitude[0] = 0
 		station_name[0:5] = ['C','E','N']
 	
+	if args.station_name:
+		y = 0
+		while y < len(args.station_name):
+			station_name[y] = args.station_name[y]
+			y += 1
 
 	f = open(args.input)
 	count = 0
