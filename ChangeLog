@@ -1,3 +1,15 @@
+2018-01-17  Ajay Saini  <sainiak@uci.edu>
+
+	* Added station_name variable for all datasets
+
+	* Added functionality to change station_name from command line for all datasets
+
+	* Corrected _FillValue for GCNET
+
+	* Explored argparse, optparse and getopt modules to fix the canonical ordering. Still in progress.
+
+	* Changed sample data file for GCNET
+
 2018-01-16  Ajay Saini  <sainiak@uci.edu>
 
 	* Presented plots in group meeting
