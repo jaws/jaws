@@ -676,6 +676,11 @@ def gcnet2nc(args):
 		longitude[0] = -39.60177
 		station_name[0:4] = ['K','U','L','U']
 	
+	if args.station_name:
+		y = 0
+		while y < len(args.station_name):
+			station_name[y] = args.station_name[y]
+			y += 1
 
 
 	print "extracting quality control variables..."
