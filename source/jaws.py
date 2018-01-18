@@ -13,24 +13,24 @@ def Main():
 	parser.add_argument("-6", "--format6", "--6", "--64bit_offset", "--fl_fmt=64bit_offset", help="NETCDF3_64BIT_OFFSET", action="store_true")
 	parser.add_argument("-7", "--format7", "--7", "--fl_fmt=netcdf4_classic", help="NETCDF4_CLASSIC", action="store_true")
 	parser.add_argument("-s","--station_name", help = "name of station if you want to change")
-    #parser.add_argument("-f", "--format", help="netCDF format in which you want to store. Option '3' = NETCDF3_CLASSIC, '4' = NETCDF4, '5' = NETCDF3_64BIT_DATA, '6' = NETCDF3_64BIT_OFFSET, '7' = NETCDF4_CLASSIC", type=int)
+	#parser.add_argument("-f", "--format", help="netCDF format in which you want to store. Option '3' = NETCDF3_CLASSIC, '4' = NETCDF4, '5' = NETCDF3_64BIT_DATA, '6' = NETCDF3_64BIT_OFFSET, '7' = NETCDF4_CLASSIC", type=int)
 
-    args = parser.parse_args()
+	args = parser.parse_args()
 
-    with open(str(args.input),'r') as f:
-    	line = f.readline()
+	with open(str(args.input),'r') as f:
+		line = f.readline()
 
 
-    if line[0] == 'D': 
-    	gcnet2nc.gcnet2nc(args)
+	if line[0] == 'D':
+		gcnet2nc.gcnet2nc(args)
 
-    elif line[0] == 'Y':
-    	promice2nc.promice2nc(args)
-    
-    elif line[0] == '#':
-    	aaws2nc.aaws2nc(args)
-    
-    print "The file " + str(args.input) + " is converted into netCDF format."
+	elif line[0] == 'Y':
+		promice2nc.promice2nc(args)
+
+	elif line[0] == '#':
+		aaws2nc.aaws2nc(args)
+
+	print("The file " + str(args.input) + " is converted into netCDF format.")
 
 
 if __name__ == '__main__':

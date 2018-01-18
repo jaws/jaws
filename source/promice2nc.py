@@ -304,7 +304,7 @@ def promice2nc(args):
 	ip_file = open(str(args.input), 'r')
 	ip_file.readline()
 
-	print "converting data..."
+	print("converting data...")
 
 	j = 0
 
@@ -558,7 +558,7 @@ def promice2nc(args):
 			count += 1
 	f.close()
 
-	print "calculating time variable..."
+	print("calculating time variable...")
 	k = 0
 	while k < count:
 		if hour[k] == 0:

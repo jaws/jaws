@@ -400,7 +400,7 @@ def gcnet2nc(args):
 
 	#date_derived.note = 'Created date from year and julian decimal time.'
 	
-	print "converting data..."
+	print("converting data...")
 	i,j = 0,0
 	ip_file = open(str(args.input), 'r')
 
@@ -683,7 +683,7 @@ def gcnet2nc(args):
 			y += 1
 
 
-	print "extracting quality control variables..."
+	print("extracting quality control variables...")
 
 	qc1_str = [str(e) for e in qc1]
 	qc9_str = [str(e) for e in qc9]
@@ -803,7 +803,7 @@ def gcnet2nc(args):
 		b += 3
 	'''
 ##################################################################################################################################################################
-	print "calculating time..."
+	print("calculating time...")
 	m = 0
 	for item in julian_decimal_time:
 		if hour[m] == 0:
@@ -885,7 +885,7 @@ def gcnet2nc(args):
 		x += 1	
 		
 
-	print "calculating day and month..."
+	print("calculating day and month...")
 	n = 0
 	for item in julian_decimal_time:
 		if int(julian_decimal_time[n]) == 1:
