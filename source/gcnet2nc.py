@@ -43,8 +43,10 @@ def gcnet2nc(args):
 	root_grp.createDimension('time', None)
 	root_grp.createDimension('nbnd', 2)
 	root_grp.createDimension('station', 1)
+	root_grp.createDimension('station_name', 25)
 
 	# variables
+	station_name = root_grp.createVariable('station_name', 'S1', ('station_name',))
 	latitude = root_grp.createVariable('latitude', 'f4')
 	longitude = root_grp.createVariable('longitude', 'f4')
 	time = root_grp.createVariable('time', 'i4', ('time',))
@@ -604,57 +606,75 @@ def gcnet2nc(args):
 	if station_number[0] == 1:
 		latitude[0] = 69.56833
 		longitude[0] = -49.31582
+		station_name[0:10] = ['S','w','i','s','s',' ','C','a','m','p']
 	elif station_number[0] == 2:
 		latitude[0] = 69.87975
 		longitude[0] = -46.98667
+		station_name[0:12] = ['C','r','a','w','f','o','r','d',' ','P','t','.']
 	elif station_number[0] == 3:
 		latitude[0] = 73.84189
 		longitude[0] = -49.49831
+		station_name[0:6] = ['N','A','S','A','-','U']
 	elif station_number[0] == 4:
 		latitude[0] = 77.13781
 		longitude[0] = -61.04113
+		station_name[0:4] = ['G','I','T','S']
 	elif station_number[0] == 5:
 		latitude[0] = 78.5266
 		longitude[0] = -56.8305
+		station_name[0:8] = ['H','u','m','b','o','l','d','t']
 	elif station_number[0] == 6:
 		latitude[0] = 72.57972
 		longitude[0] = -38.50454
+		station_name[0:6] = ['S','u','m','m','i','t']
 	elif station_number[0] == 7:
 		latitude[0] = 78.01677
 		longitude[0] = -33.99387
+		station_name[0:6] = ['T','U','N','U','-','N']
 	elif station_number[0] == 8:
 		latitude[0] = 66.48001
 		longitude[0] = -46.27889
+		station_name[0:5] = ['D','Y','E','-','2']
 	elif station_number[0] == 9:
 		latitude[0] = 69.498358
 		longitude[0] = -49.68156
+		station_name[0:3] = ['J','A','R']
 	elif station_number[0] == 10:
 		latitude[0] = 65.99947
 		longitude[0] = -44.50016
+		station_name[0:6] = ['S','a','d','d','l','e']
 	elif station_number[0] == 11:
 		latitude[0] = 63.14889
 		longitude[0] = -44.81717
+		station_name[0:10] = ['S','o','u','t','h',' ','D','o','m','e']
 	elif station_number[0] == 12:
 		latitude[0] = 75.00000
 		longitude[0] = -29.99972
+		station_name[0:6] = ['N','A','S','A','-','E']
 	elif station_number[0] == 13:
 		latitude[0] = 69.87968
 		longitude[0] = -46.98692
+		station_name[0:3] = ['C','P','2']
 	elif station_number[0] == 14:
 		latitude[0] = 75.09975
 		longitude[0] = -42.33256
+		station_name[0:5] = ['N','G','R','I','P']
 	elif station_number[0] == 15:
 		latitude[0] = 66.4797
-		longitude[0] = -42.5002 
+		longitude[0] = -42.5002
+		station_name[0:7] = ['N','A','S','A','-','S','E']
 	elif station_number[0] == 16:
 		latitude[0] = 69.69942
 		longitude[0] = -33.00058
+		station_name[0:3] = ['K','A','R']
 	elif station_number[0] == 17:
 		latitude[0] = 69.42000
 		longitude[0] = -50.05750
+		station_name[0:5] = ['J','A','R',' ','2']
 	elif station_number[0] == 18:
 		latitude[0] = 65.75845
 		longitude[0] = -39.60177
+		station_name[0:4] = ['K','U','L','U']
 	
 
 
