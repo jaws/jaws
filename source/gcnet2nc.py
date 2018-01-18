@@ -4,14 +4,14 @@ import os
 
 def gcnet2nc(args):
 
-	'''f = open(args.input)
+	f = open(args.input)
 	count, a = 0, 0
 	while a < 54:
 		f.readline()
 		a += 1
 	for line in f:
 		count += 1
-	f.close()'''
+	f.close()
 
 	# NC file setup
 	op_file = str((os.path.basename(args.input)).split('.')[0])+'.nc'
@@ -406,6 +406,7 @@ def gcnet2nc(args):
 	temp9 = [0]*count
 	temp17 = [0]*count
 	temp25 = [0]*count
+	temp_jdt = [0]*count
 	ip_file = open(str(args.input), 'r')
 
 	while i < 54:
@@ -420,6 +421,7 @@ def gcnet2nc(args):
 		station_number[0] = columns[0]
 		year[j] = columns[1]
 		julian_decimal_time[j] = columns[2]
+		temp_jdt[j] = float(columns[2])
 		sw_down[j] = columns[3]
 		sw_up[j] = columns[4]
 		net_radiation[j] = columns[5]
@@ -813,78 +815,78 @@ def gcnet2nc(args):
 ##################################################################################################################################################################
 	print("calculating time...")
 	m = 0
-	for item in julian_decimal_time:
+	while m < len(temp_jdt):
 		if hour[m] == 0:
-			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400
+			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(temp_jdt[m]))*86400
 			m += 1
 		elif hour[m] == 1:
-			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*1)
+			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(temp_jdt[m]))*86400 + (3600*1)
 			m += 1
 		elif hour[m] == 2:
-			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*2)
+			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(temp_jdt[m]))*86400 + (3600*2)
 			m += 1
 		elif hour[m] == 3:
-			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*3)
+			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(temp_jdt[m]))*86400 + (3600*3)
 			m += 1
 		elif hour[m] == 4:
-			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*4)
+			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(temp_jdt[m]))*86400 + (3600*4)
 			m += 1
 		elif hour[m] == 5:
-			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*5)
+			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(temp_jdt[m]))*86400 + (3600*5)
 			m += 1
 		elif hour[m] == 6:
-			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*6)
+			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(temp_jdt[m]))*86400 + (3600*6)
 			m += 1
 		elif hour[m] == 7:
-			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*7)
+			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(temp_jdt[m]))*86400 + (3600*7)
 			m += 1
 		elif hour[m] == 8:
-			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*8)
+			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(temp_jdt[m]))*86400 + (3600*8)
 			m += 1
 		elif hour[m] == 9:
-			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*9)
+			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(temp_jdt[m]))*86400 + (3600*9)
 			m += 1
 		elif hour[m] == 10:
-			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*10)
+			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(temp_jdt[m]))*86400 + (3600*10)
 			m += 1
 		elif hour[m] == 11:
-			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*11)
+			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(temp_jdt[m]))*86400 + (3600*11)
 			m += 1
 		elif hour[m] == 12:
-			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*12)
+			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(temp_jdt[m]))*86400 + (3600*12)
 			m += 1
 		elif hour[m] == 13:
-			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*13)
+			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(temp_jdt[m]))*86400 + (3600*13)
 			m += 1
 		elif hour[m] == 14:
-			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*14)
+			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(temp_jdt[m]))*86400 + (3600*14)
 			m += 1
 		elif hour[m] == 15:
-			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*15)
+			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(temp_jdt[m]))*86400 + (3600*15)
 			m += 1
 		elif hour[m] == 16:
-			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*16)
+			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(temp_jdt[m]))*86400 + (3600*16)
 			m += 1
 		elif hour[m] == 17:
-			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*17)
+			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(temp_jdt[m]))*86400 + (3600*17)
 			m += 1
 		elif hour[m] == 18:
-			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*18)
+			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(temp_jdt[m]))*86400 + (3600*18)
 			m += 1
 		elif hour[m] == 19:
-			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*19)
+			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(temp_jdt[m]))*86400 + (3600*19)
 			m += 1
 		elif hour[m] == 20:
-			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*20)
+			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(temp_jdt[m]))*86400 + (3600*20)
 			m += 1
 		elif hour[m] == 21:
-			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*21)
+			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(temp_jdt[m]))*86400 + (3600*21)
 			m += 1
 		elif hour[m] == 22:
-			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*22)
+			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(temp_jdt[m]))*86400 + (3600*22)
 			m += 1
 		elif hour[m] == 23:
-			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*23)
+			time[m] = ((date(year[m], 1, 1) - date(1995, 1, 1)).days + int(temp_jdt[m]))*86400 + (3600*23)
 			m += 1
 		
 	x = 0
@@ -895,1823 +897,1823 @@ def gcnet2nc(args):
 
 	print("calculating day and month...")
 	n = 0
-	for item in julian_decimal_time:
-		if int(julian_decimal_time[n]) == 1:
+	for item in temp_jdt:
+		if int(temp_jdt[n]) == 1:
 			#date_derived[n] = str(year[n])+'-01-01'
 			day[n] = 1
 			month[n] = 01
 			n += 1
-		elif int(julian_decimal_time[n]) == 2:
+		elif int(temp_jdt[n]) == 2:
 			#date_derived[n] = str(year[n])+'-01-02'
 			day[n] = 2
 			month[n] = 01
 			n += 1
-		elif int(julian_decimal_time[n]) == 3:
+		elif int(temp_jdt[n]) == 3:
 			#date_derived[n] = str(year[n])+'-01-03'
 			day[n] = 3
 			month[n] = 01
 			n += 1
-		elif int(julian_decimal_time[n]) == 4:
+		elif int(temp_jdt[n]) == 4:
 			#date_derived[n] = str(year[n])+'-01-04'
 			day[n] = 4
 			month[n] = 01
 			n += 1
-		elif int(julian_decimal_time[n]) == 5:
+		elif int(temp_jdt[n]) == 5:
 			#date_derived[n] = str(year[n])+'-01-05'
 			day[n] = 5
 			month[n] = 01
 			n += 1
-		elif int(julian_decimal_time[n]) == 6:
+		elif int(temp_jdt[n]) == 6:
 			#date_derived[n] = str(year[n])+'-01-06'
 			day[n] = 6
 			month[n] = 01
 			n += 1
-		elif int(julian_decimal_time[n]) == 7:
+		elif int(temp_jdt[n]) == 7:
 			#date_derived[n] = str(year[n])+'-01-07'
 			day[n] = 7
 			month[n] = 01
 			n += 1
-		elif int(julian_decimal_time[n]) == 8:
+		elif int(temp_jdt[n]) == 8:
 			#date_derived[n] = str(year[n])+'-01-08'
 			day[n] = 8
 			month[n] = 01
 			n += 1
-		elif int(julian_decimal_time[n]) == 9:
+		elif int(temp_jdt[n]) == 9:
 			#date_derived[n] = str(year[n])+'-01-09'
 			day[n] = 9
 			month[n] = 01
 			n += 1
-		elif int(julian_decimal_time[n]) == 10:
+		elif int(temp_jdt[n]) == 10:
 			#date_derived[n] = str(year[n])+'-01-10'
 			day[n] = 10
 			month[n] = 01
 			n += 1
-		elif int(julian_decimal_time[n]) == 11:
+		elif int(temp_jdt[n]) == 11:
 			#date_derived[n] = str(year[n])+'-01-11'
 			day[n] = 11
 			month[n] = 01
 			n += 1
-		elif int(julian_decimal_time[n]) == 12:
+		elif int(temp_jdt[n]) == 12:
 			#date_derived[n] = str(year[n])+'-01-12'
 			day[n] = 12
 			month[n] = 01
 			n += 1
-		elif int(julian_decimal_time[n]) == 13:
+		elif int(temp_jdt[n]) == 13:
 			#date_derived[n] = str(year[n])+'-01-13'
 			day[n] = 13
 			month[n] = 01
 			n += 1
-		elif int(julian_decimal_time[n]) == 14:
+		elif int(temp_jdt[n]) == 14:
 			#date_derived[n] = str(year[n])+'-01-14'
 			day[n] = 14
 			month[n] = 01
 			n += 1
-		elif int(julian_decimal_time[n]) == 15:
+		elif int(temp_jdt[n]) == 15:
 			#date_derived[n] = str(year[n])+'-01-15'
 			day[n] = 15
 			month[n] = 01
 			n += 1
-		elif int(julian_decimal_time[n]) == 16:
+		elif int(temp_jdt[n]) == 16:
 			#date_derived[n] = str(year[n])+'-01-16'
 			day[n] = 16
 			month[n] = 01
 			n += 1
-		elif int(julian_decimal_time[n]) == 17:
+		elif int(temp_jdt[n]) == 17:
 			#date_derived[n] = str(year[n])+'-01-17'
 			day[n] = 17
 			month[n] = 01
 			n += 1
-		elif int(julian_decimal_time[n]) == 18:
+		elif int(temp_jdt[n]) == 18:
 			#date_derived[n] = str(year[n])+'-01-18'
 			day[n] = 18
 			month[n] = 01
 			n += 1
-		elif int(julian_decimal_time[n]) == 19:
+		elif int(temp_jdt[n]) == 19:
 			#date_derived[n] = str(year[n])+'-01-19'
 			day[n] = 19
 			month[n] = 01
 			n += 1
-		elif int(julian_decimal_time[n]) == 20:
+		elif int(temp_jdt[n]) == 20:
 			#date_derived[n] = str(year[n])+'-01-20'
 			day[n] = 20
 			month[n] = 01
 			n += 1
-		elif int(julian_decimal_time[n]) == 21:
+		elif int(temp_jdt[n]) == 21:
 			#date_derived[n] = str(year[n])+'-01-21'
 			day[n] = 21
 			month[n] = 01
 			n += 1
-		elif int(julian_decimal_time[n]) == 22:
+		elif int(temp_jdt[n]) == 22:
 			#date_derived[n] = str(year[n])+'-01-22'
 			day[n] = 22
 			month[n] = 01
 			n += 1
-		elif int(julian_decimal_time[n]) == 23:
+		elif int(temp_jdt[n]) == 23:
 			#date_derived[n] = str(year[n])+'-01-23'
 			day[n] = 23
 			month[n] = 01
 			n += 1
-		elif int(julian_decimal_time[n]) == 24:
+		elif int(temp_jdt[n]) == 24:
 			#date_derived[n] = str(year[n])+'-01-24'
 			day[n] = 24
 			month[n] = 01
 			n += 1
-		elif int(julian_decimal_time[n]) == 25:
+		elif int(temp_jdt[n]) == 25:
 			#date_derived[n] = str(year[n])+'-01-25'
 			day[n] = 25
 			month[n] = 01
 			n += 1
-		elif int(julian_decimal_time[n]) == 26:
+		elif int(temp_jdt[n]) == 26:
 			#date_derived[n] = str(year[n])+'-01-26'
 			day[n] = 26
 			month[n] = 01
 			n += 1
-		elif int(julian_decimal_time[n]) == 27:
+		elif int(temp_jdt[n]) == 27:
 			#date_derived[n] = str(year[n])+'-01-27'
 			day[n] = 27
 			month[n] = 01
 			n += 1
-		elif int(julian_decimal_time[n]) == 28:
+		elif int(temp_jdt[n]) == 28:
 			#date_derived[n] = str(year[n])+'-01-28'
 			day[n] = 28
 			month[n] = 01
 			n += 1
-		elif int(julian_decimal_time[n]) == 29:
+		elif int(temp_jdt[n]) == 29:
 			#date_derived[n] = str(year[n])+'-01-29'
 			day[n] = 29
 			month[n] = 01
 			n += 1
-		elif int(julian_decimal_time[n]) == 30:
+		elif int(temp_jdt[n]) == 30:
 			#date_derived[n] = str(year[n])+'-01-30'
 			day[n] = 30
 			month[n] = 01
 			n += 1
-		elif int(julian_decimal_time[n]) == 31:
+		elif int(temp_jdt[n]) == 31:
 			#date_derived[n] = str(year[n])+'-01-31'
 			day[n] = 31
 			month[n] = 01
 			n += 1
-		elif int(julian_decimal_time[n]) == 32:
+		elif int(temp_jdt[n]) == 32:
 			#date_derived[n] = str(year[n])+'-02-01'
 			day[n] = 1
 			month[n] = 02
 			n += 1
-		elif int(julian_decimal_time[n]) == 33:
+		elif int(temp_jdt[n]) == 33:
 			#date_derived[n] = str(year[n])+'-02-02'
 			day[n] = 2
 			month[n] = 02
 			n += 1
-		elif int(julian_decimal_time[n]) == 34:
+		elif int(temp_jdt[n]) == 34:
 			#date_derived[n] = str(year[n])+'-02-03'
 			day[n] = 3
 			month[n] = 02
 			n += 1
-		elif int(julian_decimal_time[n]) == 35:
+		elif int(temp_jdt[n]) == 35:
 			#date_derived[n] = str(year[n])+'-02-04'
 			day[n] = 4
 			month[n] = 02
 			n += 1
-		elif int(julian_decimal_time[n]) == 36:
+		elif int(temp_jdt[n]) == 36:
 			#date_derived[n] = str(year[n])+'-02-05'
 			day[n] = 5
 			month[n] = 02
 			n += 1
-		elif int(julian_decimal_time[n]) == 37:
+		elif int(temp_jdt[n]) == 37:
 			#date_derived[n] = str(year[n])+'-02-06'
 			day[n] = 6
 			month[n] = 02
 			n += 1
-		elif int(julian_decimal_time[n]) == 38:
+		elif int(temp_jdt[n]) == 38:
 			#date_derived[n] = str(year[n])+'-02-07'
 			day[n] = 7
 			month[n] = 02
 			n += 1
-		elif int(julian_decimal_time[n]) == 39:
+		elif int(temp_jdt[n]) == 39:
 			#date_derived[n] = str(year[n])+'-02-08'
 			day[n] = 8
 			month[n] = 02
 			n += 1
-		elif int(julian_decimal_time[n]) == 40:
+		elif int(temp_jdt[n]) == 40:
 			#date_derived[n] = str(year[n])+'-02-09'
 			day[n] = 9
 			month[n] = 02
 			n += 1
-		elif int(julian_decimal_time[n]) == 41:
+		elif int(temp_jdt[n]) == 41:
 			#date_derived[n] = str(year[n])+'-02-10'
 			day[n] = 10
 			month[n] = 02
 			n += 1
-		elif int(julian_decimal_time[n]) == 42:
+		elif int(temp_jdt[n]) == 42:
 			#date_derived[n] = str(year[n])+'-02-11'
 			day[n] = 11
 			month[n] = 02
 			n += 1
-		elif int(julian_decimal_time[n]) == 43:
+		elif int(temp_jdt[n]) == 43:
 			#date_derived[n] = str(year[n])+'-02-12'
 			day[n] = 12
 			month[n] = 02
 			n += 1
-		elif int(julian_decimal_time[n]) == 44:
+		elif int(temp_jdt[n]) == 44:
 			#date_derived[n] = str(year[n])+'-02-13'
 			day[n] = 13
 			month[n] = 02
 			n += 1
-		elif int(julian_decimal_time[n]) == 45:
+		elif int(temp_jdt[n]) == 45:
 			#date_derived[n] = str(year[n])+'-02-14'
 			day[n] = 14
 			month[n] = 02
 			n += 1
-		elif int(julian_decimal_time[n]) == 46:
+		elif int(temp_jdt[n]) == 46:
 			#date_derived[n] = str(year[n])+'-02-15'
 			day[n] = 15
 			month[n] = 02
 			n += 1
-		elif int(julian_decimal_time[n]) == 47:
+		elif int(temp_jdt[n]) == 47:
 			#date_derived[n] = str(year[n])+'-02-16'
 			day[n] = 16
 			month[n] = 02
 			n += 1
-		elif int(julian_decimal_time[n]) == 48:
+		elif int(temp_jdt[n]) == 48:
 			#date_derived[n] = str(year[n])+'-02-17'
 			day[n] = 17
 			month[n] = 02
 			n += 1
-		elif int(julian_decimal_time[n]) == 49:
+		elif int(temp_jdt[n]) == 49:
 			#date_derived[n] = str(year[n])+'-02-18'
 			day[n] = 18
 			month[n] = 02
 			n += 1
-		elif int(julian_decimal_time[n]) == 50:
+		elif int(temp_jdt[n]) == 50:
 			#date_derived[n] = str(year[n])+'-02-19'
 			day[n] = 19
 			month[n] = 02
 			n += 1
-		elif int(julian_decimal_time[n]) == 51:
+		elif int(temp_jdt[n]) == 51:
 			#date_derived[n] = str(year[n])+'-02-20'
 			day[n] = 20
 			month[n] = 02
 			n += 1
-		elif int(julian_decimal_time[n]) == 52:
+		elif int(temp_jdt[n]) == 52:
 			#date_derived[n] = str(year[n])+'-02-21'
 			day[n] = 21
 			month[n] = 02
 			n += 1
-		elif int(julian_decimal_time[n]) == 53:
+		elif int(temp_jdt[n]) == 53:
 			#date_derived[n] = str(year[n])+'-02-22'
 			day[n] = 22
 			month[n] = 02
 			n += 1
-		elif int(julian_decimal_time[n]) == 54:
+		elif int(temp_jdt[n]) == 54:
 			#date_derived[n] = str(year[n])+'-02-23'
 			day[n] = 23
 			month[n] = 02
 			n += 1
-		elif int(julian_decimal_time[n]) == 55:
+		elif int(temp_jdt[n]) == 55:
 			#date_derived[n] = str(year[n])+'-02-24'
 			day[n] = 24
 			month[n] = 02
 			n += 1
-		elif int(julian_decimal_time[n]) == 56:
+		elif int(temp_jdt[n]) == 56:
 			#date_derived[n] = str(year[n])+'-02-25'
 			day[n] = 25
 			month[n] = 02
 			n += 1
-		elif int(julian_decimal_time[n]) == 57:
+		elif int(temp_jdt[n]) == 57:
 			#date_derived[n] = str(year[n])+'-02-26'
 			day[n] = 26
 			month[n] = 02
 			n += 1
-		elif int(julian_decimal_time[n]) == 58:
+		elif int(temp_jdt[n]) == 58:
 			#date_derived[n] = str(year[n])+'-02-27'
 			day[n] = 27
 			month[n] = 02
 			n += 1
-		elif int(julian_decimal_time[n]) == 59:
+		elif int(temp_jdt[n]) == 59:
 			#date_derived[n] = str(year[n])+'-02-28'
 			day[n] = 28
 			month[n] = 02
 			n += 1
-		elif int(julian_decimal_time[n]) == 60:
+		elif int(temp_jdt[n]) == 60:
 			#date_derived[n] = str(year[n])+'-03-01'
 			day[n] = 1
 			month[n] = 03
 			n += 1
-		elif int(julian_decimal_time[n]) == 61:
+		elif int(temp_jdt[n]) == 61:
 			#date_derived[n] = str(year[n])+'-03-02'
 			day[n] = 2
 			month[n] = 03
 			n += 1
-		elif int(julian_decimal_time[n]) == 62:
+		elif int(temp_jdt[n]) == 62:
 			#date_derived[n] = str(year[n])+'-03-03'
 			day[n] = 3
 			month[n] = 03
 			n += 1
-		elif int(julian_decimal_time[n]) == 63:
+		elif int(temp_jdt[n]) == 63:
 			#date_derived[n] = str(year[n])+'-03-04'
 			day[n] = 4
 			month[n] = 03
 			n += 1
-		elif int(julian_decimal_time[n]) == 64:
+		elif int(temp_jdt[n]) == 64:
 			#date_derived[n] = str(year[n])+'-03-05'
 			day[n] = 5
 			month[n] = 03
 			n += 1
-		elif int(julian_decimal_time[n]) == 65:
+		elif int(temp_jdt[n]) == 65:
 			#date_derived[n] = str(year[n])+'-03-06'
 			day[n] = 6
 			month[n] = 03
 			n += 1
-		elif int(julian_decimal_time[n]) == 66:
+		elif int(temp_jdt[n]) == 66:
 			#date_derived[n] = str(year[n])+'-03-07'
 			day[n] = 7
 			month[n] = 03
 			n += 1
-		elif int(julian_decimal_time[n]) == 67:
+		elif int(temp_jdt[n]) == 67:
 			#date_derived[n] = str(year[n])+'-03-08'
 			day[n] = 8
 			month[n] = 03
 			n += 1
-		elif int(julian_decimal_time[n]) == 68:
+		elif int(temp_jdt[n]) == 68:
 			#date_derived[n] = str(year[n])+'-03-09'
 			day[n] = 9
 			month[n] = 03
 			n += 1
-		elif int(julian_decimal_time[n]) == 69:
+		elif int(temp_jdt[n]) == 69:
 			#date_derived[n] = str(year[n])+'-03-10'
 			day[n] = 10
 			month[n] = 03
 			n += 1
-		elif int(julian_decimal_time[n]) == 70:
+		elif int(temp_jdt[n]) == 70:
 			#date_derived[n] = str(year[n])+'-03-11'
 			day[n] = 11
 			month[n] = 03
 			n += 1
-		elif int(julian_decimal_time[n]) == 71:
+		elif int(temp_jdt[n]) == 71:
 			#date_derived[n] = str(year[n])+'-03-12'
 			day[n] = 12
 			month[n] = 03
 			n += 1
-		elif int(julian_decimal_time[n]) == 72:
+		elif int(temp_jdt[n]) == 72:
 			#date_derived[n] = str(year[n])+'-03-13'
 			day[n] = 13
 			month[n] = 03
 			n += 1
-		elif int(julian_decimal_time[n]) == 73:
+		elif int(temp_jdt[n]) == 73:
 			#date_derived[n] = str(year[n])+'-03-14'
 			day[n] = 14
 			month[n] = 03
 			n += 1
-		elif int(julian_decimal_time[n]) == 74:
+		elif int(temp_jdt[n]) == 74:
 			#date_derived[n] = str(year[n])+'-03-15'
 			day[n] = 15
 			month[n] = 03
 			n += 1
-		elif int(julian_decimal_time[n]) == 75:
+		elif int(temp_jdt[n]) == 75:
 			#date_derived[n] = str(year[n])+'-03-16'
 			day[n] = 16
 			month[n] = 03
 			n += 1
-		elif int(julian_decimal_time[n]) == 76:
+		elif int(temp_jdt[n]) == 76:
 			#date_derived[n] = str(year[n])+'-03-17'
 			day[n] = 17
 			month[n] = 03
 			n += 1
-		elif int(julian_decimal_time[n]) == 77:
+		elif int(temp_jdt[n]) == 77:
 			#date_derived[n] = str(year[n])+'-03-18'
 			day[n] = 18
 			month[n] = 03
 			n += 1
-		elif int(julian_decimal_time[n]) == 78:
+		elif int(temp_jdt[n]) == 78:
 			#date_derived[n] = str(year[n])+'-03-19'
 			day[n] = 19
 			month[n] = 03
 			n += 1
-		elif int(julian_decimal_time[n]) == 79:
+		elif int(temp_jdt[n]) == 79:
 			#date_derived[n] = str(year[n])+'-03-20'
 			day[n] = 20
 			month[n] = 03
 			n += 1
-		elif int(julian_decimal_time[n]) == 80:
+		elif int(temp_jdt[n]) == 80:
 			#date_derived[n] = str(year[n])+'-03-21'
 			day[n] = 21
 			month[n] = 03
 			n += 1
-		elif int(julian_decimal_time[n]) == 81:
+		elif int(temp_jdt[n]) == 81:
 			#date_derived[n] = str(year[n])+'-03-22'
 			day[n] = 22
 			month[n] = 03
 			n += 1
-		elif int(julian_decimal_time[n]) == 82:
+		elif int(temp_jdt[n]) == 82:
 			#date_derived[n] = str(year[n])+'-03-23'
 			day[n] = 23
 			month[n] = 03
 			n += 1
-		elif int(julian_decimal_time[n]) == 83:
+		elif int(temp_jdt[n]) == 83:
 			#date_derived[n] = str(year[n])+'-03-24'
 			day[n] = 24
 			month[n] = 03
 			n += 1
-		elif int(julian_decimal_time[n]) == 84:
+		elif int(temp_jdt[n]) == 84:
 			#date_derived[n] = str(year[n])+'-03-25'
 			day[n] = 25
 			month[n] = 03
 			n += 1
-		elif int(julian_decimal_time[n]) == 85:
+		elif int(temp_jdt[n]) == 85:
 			#date_derived[n] = str(year[n])+'-03-26'
 			day[n] = 26
 			month[n] = 03
 			n += 1
-		elif int(julian_decimal_time[n]) == 86:
+		elif int(temp_jdt[n]) == 86:
 			#date_derived[n] = str(year[n])+'-03-27'
 			day[n] = 27
 			month[n] = 03
 			n += 1
-		elif int(julian_decimal_time[n]) == 87:
+		elif int(temp_jdt[n]) == 87:
 			#date_derived[n] = str(year[n])+'-03-28'
 			day[n] = 28
 			month[n] = 03
 			n += 1
-		elif int(julian_decimal_time[n]) == 88:
+		elif int(temp_jdt[n]) == 88:
 			#date_derived[n] = str(year[n])+'-03-29'
 			day[n] = 29
 			month[n] = 03
 			n += 1
-		elif int(julian_decimal_time[n]) == 89:
+		elif int(temp_jdt[n]) == 89:
 			#date_derived[n] = str(year[n])+'-03-30'
 			day[n] = 30
 			month[n] = 03
 			n += 1
-		elif int(julian_decimal_time[n]) == 90:
+		elif int(temp_jdt[n]) == 90:
 			#date_derived[n] = str(year[n])+'-03-31'
 			day[n] = 31
 			month[n] = 03
 			n += 1
-		elif int(julian_decimal_time[n]) == 91:
+		elif int(temp_jdt[n]) == 91:
 			#date_derived[n] = str(year[n])+'-04-01'
 			day[n] = 1
 			month[n] = 04
 			n += 1
-		elif int(julian_decimal_time[n]) == 92:
+		elif int(temp_jdt[n]) == 92:
 			#date_derived[n] = str(year[n])+'-04-02'
 			day[n] = 2
 			month[n] = 04
 			n += 1
-		elif int(julian_decimal_time[n]) == 93:
+		elif int(temp_jdt[n]) == 93:
 			#date_derived[n] = str(year[n])+'-04-03'
 			day[n] = 3
 			month[n] = 04
 			n += 1
-		elif int(julian_decimal_time[n]) == 94:
+		elif int(temp_jdt[n]) == 94:
 			#date_derived[n] = str(year[n])+'-04-04'
 			day[n] = 4
 			month[n] = 04
 			n += 1
-		elif int(julian_decimal_time[n]) == 95:
+		elif int(temp_jdt[n]) == 95:
 			#date_derived[n] = str(year[n])+'-04-05'
 			day[n] = 5
 			month[n] = 04
 			n += 1
-		elif int(julian_decimal_time[n]) == 96:
+		elif int(temp_jdt[n]) == 96:
 			#date_derived[n] = str(year[n])+'-04-06'
 			day[n] = 6
 			month[n] = 04
 			n += 1
-		elif int(julian_decimal_time[n]) == 97:
+		elif int(temp_jdt[n]) == 97:
 			#date_derived[n] = str(year[n])+'-04-07'
 			day[n] = 7
 			month[n] = 04
 			n += 1
-		elif int(julian_decimal_time[n]) == 98:
+		elif int(temp_jdt[n]) == 98:
 			#date_derived[n] = str(year[n])+'-04-08'
 			day[n] = 8
 			month[n] = 04
 			n += 1
-		elif int(julian_decimal_time[n]) == 99:
+		elif int(temp_jdt[n]) == 99:
 			#date_derived[n] = str(year[n])+'-04-09'
 			day[n] = 9
 			month[n] = 04
 			n += 1
-		elif int(julian_decimal_time[n]) == 100:
+		elif int(temp_jdt[n]) == 100:
 			#date_derived[n] = str(year[n])+'-04-10'
 			day[n] = 10
 			month[n] = 04
 			n += 1
-		elif int(julian_decimal_time[n]) == 101:
+		elif int(temp_jdt[n]) == 101:
 			#date_derived[n] = str(year[n])+'-04-11'
 			day[n] = 11
 			month[n] = 04
 			n += 1
-		elif int(julian_decimal_time[n]) == 102:
+		elif int(temp_jdt[n]) == 102:
 			#date_derived[n] = str(year[n])+'-04-12'
 			day[n] = 12
 			month[n] = 04
 			n += 1
-		elif int(julian_decimal_time[n]) == 103:
+		elif int(temp_jdt[n]) == 103:
 			#date_derived[n] = str(year[n])+'-04-13'
 			day[n] = 13
 			month[n] = 04
 			n += 1
-		elif int(julian_decimal_time[n]) == 104:
+		elif int(temp_jdt[n]) == 104:
 			#date_derived[n] = str(year[n])+'-04-14'
 			day[n] = 14
 			month[n] = 04
 			n += 1
-		elif int(julian_decimal_time[n]) == 105:
+		elif int(temp_jdt[n]) == 105:
 			#date_derived[n] = str(year[n])+'-04-15'
 			day[n] = 15
 			month[n] = 04
 			n += 1
-		elif int(julian_decimal_time[n]) == 106:
+		elif int(temp_jdt[n]) == 106:
 			#date_derived[n] = str(year[n])+'-04-16'
 			day[n] = 16
 			month[n] = 04
 			n += 1
-		elif int(julian_decimal_time[n]) == 107:
+		elif int(temp_jdt[n]) == 107:
 			#date_derived[n] = str(year[n])+'-04-17'
 			day[n] = 17
 			month[n] = 04
 			n += 1
-		elif int(julian_decimal_time[n]) == 108:
+		elif int(temp_jdt[n]) == 108:
 			#date_derived[n] = str(year[n])+'-04-18'
 			day[n] = 18
 			month[n] = 04
 			n += 1
-		elif int(julian_decimal_time[n]) == 109:
+		elif int(temp_jdt[n]) == 109:
 			#date_derived[n] = str(year[n])+'-04-19'
 			day[n] = 19
 			month[n] = 04
 			n += 1
-		elif int(julian_decimal_time[n]) == 110:
+		elif int(temp_jdt[n]) == 110:
 			#date_derived[n] = str(year[n])+'-04-20'
 			day[n] = 20
 			month[n] = 04
 			n += 1
-		elif int(julian_decimal_time[n]) == 111:
+		elif int(temp_jdt[n]) == 111:
 			#date_derived[n] = str(year[n])+'-04-21'
 			day[n] = 21
 			month[n] = 04
 			n += 1
-		elif int(julian_decimal_time[n]) == 112:
+		elif int(temp_jdt[n]) == 112:
 			#date_derived[n] = str(year[n])+'-04-22'
 			day[n] = 22
 			month[n] = 04
 			n += 1
-		elif int(julian_decimal_time[n]) == 113:
+		elif int(temp_jdt[n]) == 113:
 			#date_derived[n] = str(year[n])+'-04-23'
 			day[n] = 23
 			month[n] = 04
 			n += 1
-		elif int(julian_decimal_time[n]) == 114:
+		elif int(temp_jdt[n]) == 114:
 			#date_derived[n] = str(year[n])+'-04-24'
 			day[n] = 24
 			month[n] = 04
 			n += 1
-		elif int(julian_decimal_time[n]) == 115:
+		elif int(temp_jdt[n]) == 115:
 			#date_derived[n] = str(year[n])+'-04-25'
 			day[n] = 25
 			month[n] = 04
 			n += 1
-		elif int(julian_decimal_time[n]) == 116:
+		elif int(temp_jdt[n]) == 116:
 			#date_derived[n] = str(year[n])+'-04-26'
 			day[n] = 26
 			month[n] = 04
 			n += 1
-		elif int(julian_decimal_time[n]) == 117:
+		elif int(temp_jdt[n]) == 117:
 			#date_derived[n] = str(year[n])+'-04-27'
 			day[n] = 27
 			month[n] = 04
 			n += 1
-		elif int(julian_decimal_time[n]) == 118:
+		elif int(temp_jdt[n]) == 118:
 			#date_derived[n] = str(year[n])+'-04-28'
 			day[n] = 28
 			month[n] = 04
 			n += 1
-		elif int(julian_decimal_time[n]) == 119:
+		elif int(temp_jdt[n]) == 119:
 			#date_derived[n] = str(year[n])+'-04-29'
 			day[n] = 29
 			month[n] = 04
 			n += 1
-		elif int(julian_decimal_time[n]) == 120:
+		elif int(temp_jdt[n]) == 120:
 			#date_derived[n] = str(year[n])+'-04-30'
 			day[n] = 30
 			month[n] = 04
 			n += 1
-		elif int(julian_decimal_time[n]) == 121:
+		elif int(temp_jdt[n]) == 121:
 			#date_derived[n] = str(year[n])+'-05-01'
 			day[n] = 1
 			month[n] = 05
 			n += 1
-		elif int(julian_decimal_time[n]) == 122:
+		elif int(temp_jdt[n]) == 122:
 			#date_derived[n] = str(year[n])+'-05-02'
 			day[n] = 2
 			month[n] = 05
 			n += 1
-		elif int(julian_decimal_time[n]) == 123:
+		elif int(temp_jdt[n]) == 123:
 			#date_derived[n] = str(year[n])+'-05-03'
 			day[n] = 3
 			month[n] = 05
 			n += 1
-		elif int(julian_decimal_time[n]) == 124:
+		elif int(temp_jdt[n]) == 124:
 			#date_derived[n] = str(year[n])+'-05-04'
 			day[n] = 4
 			month[n] = 05
 			n += 1
-		elif int(julian_decimal_time[n]) == 125:
+		elif int(temp_jdt[n]) == 125:
 			#date_derived[n] = str(year[n])+'-05-05'
 			day[n] = 5
 			month[n] = 05
 			n += 1
-		elif int(julian_decimal_time[n]) == 126:
+		elif int(temp_jdt[n]) == 126:
 			#date_derived[n] = str(year[n])+'-05-06'
 			day[n] = 6
 			month[n] = 05
 			n += 1
-		elif int(julian_decimal_time[n]) == 127:
+		elif int(temp_jdt[n]) == 127:
 			#date_derived[n] = str(year[n])+'-05-07'
 			day[n] = 7
 			month[n] = 05
 			n += 1
-		elif int(julian_decimal_time[n]) == 128:
+		elif int(temp_jdt[n]) == 128:
 			#date_derived[n] = str(year[n])+'-05-08'
 			day[n] = 8
 			month[n] = 05
 			n += 1
-		elif int(julian_decimal_time[n]) == 129:
+		elif int(temp_jdt[n]) == 129:
 			#date_derived[n] = str(year[n])+'-05-09'
 			day[n] = 9
 			month[n] = 05
 			n += 1
-		elif int(julian_decimal_time[n]) == 130:
+		elif int(temp_jdt[n]) == 130:
 			#date_derived[n] = str(year[n])+'-05-10'
 			day[n] = 10
 			month[n] = 05
 			n += 1
-		elif int(julian_decimal_time[n]) == 131:
+		elif int(temp_jdt[n]) == 131:
 			#date_derived[n] = str(year[n])+'-05-11'
 			day[n] = 11
 			month[n] = 05
 			n += 1
-		elif int(julian_decimal_time[n]) == 132:
+		elif int(temp_jdt[n]) == 132:
 			#date_derived[n] = str(year[n])+'-05-12'
 			day[n] = 12
 			month[n] = 05
 			n += 1
-		elif int(julian_decimal_time[n]) == 133:
+		elif int(temp_jdt[n]) == 133:
 			#date_derived[n] = str(year[n])+'-05-13'
 			day[n] = 13
 			month[n] = 05
 			n += 1
-		elif int(julian_decimal_time[n]) == 134:
+		elif int(temp_jdt[n]) == 134:
 			#date_derived[n] = str(year[n])+'-05-14'
 			day[n] = 14
 			month[n] = 05
 			n += 1
-		elif int(julian_decimal_time[n]) == 135:
+		elif int(temp_jdt[n]) == 135:
 			#date_derived[n] = str(year[n])+'-05-15'
 			day[n] = 15
 			month[n] = 05
 			n += 1
-		elif int(julian_decimal_time[n]) == 136:
+		elif int(temp_jdt[n]) == 136:
 			#date_derived[n] = str(year[n])+'-05-16'
 			day[n] = 16
 			month[n] = 05
 			n += 1
-		elif int(julian_decimal_time[n]) == 137:
+		elif int(temp_jdt[n]) == 137:
 			#date_derived[n] = str(year[n])+'-05-17'
 			day[n] = 17
 			month[n] = 05
 			n += 1
-		elif int(julian_decimal_time[n]) == 138:
+		elif int(temp_jdt[n]) == 138:
 			#date_derived[n] = str(year[n])+'-05-18'
 			day[n] = 18
 			month[n] = 05
 			n += 1
-		elif int(julian_decimal_time[n]) == 139:
+		elif int(temp_jdt[n]) == 139:
 			#date_derived[n] = str(year[n])+'-05-19'
 			day[n] = 19
 			month[n] = 05
 			n += 1
-		elif int(julian_decimal_time[n]) == 140:
+		elif int(temp_jdt[n]) == 140:
 			#date_derived[n] = str(year[n])+'-05-20'
 			day[n] = 20
 			month[n] = 05
 			n += 1
-		elif int(julian_decimal_time[n]) == 141:
+		elif int(temp_jdt[n]) == 141:
 			#date_derived[n] = str(year[n])+'-05-21'
 			day[n] = 21
 			month[n] = 05
 			n += 1
-		elif int(julian_decimal_time[n]) == 142:
+		elif int(temp_jdt[n]) == 142:
 			#date_derived[n] = str(year[n])+'-05-22'
 			day[n] = 22
 			month[n] = 05
 			n += 1
-		elif int(julian_decimal_time[n]) == 143:
+		elif int(temp_jdt[n]) == 143:
 			#date_derived[n] = str(year[n])+'-05-23'
 			day[n] = 23
 			month[n] = 05
 			n += 1
-		elif int(julian_decimal_time[n]) == 144:
+		elif int(temp_jdt[n]) == 144:
 			#date_derived[n] = str(year[n])+'-05-24'
 			day[n] = 24
 			month[n] = 05
 			n += 1
-		elif int(julian_decimal_time[n]) == 145:
+		elif int(temp_jdt[n]) == 145:
 			#date_derived[n] = str(year[n])+'-05-25'
 			day[n] = 25
 			month[n] = 05
 			n += 1
-		elif int(julian_decimal_time[n]) == 146:
+		elif int(temp_jdt[n]) == 146:
 			#date_derived[n] = str(year[n])+'-05-26'
 			day[n] = 26
 			month[n] = 05
 			n += 1
-		elif int(julian_decimal_time[n]) == 147:
+		elif int(temp_jdt[n]) == 147:
 			#date_derived[n] = str(year[n])+'-05-27'
 			day[n] = 27
 			month[n] = 05
 			n += 1
-		elif int(julian_decimal_time[n]) == 148:
+		elif int(temp_jdt[n]) == 148:
 			#date_derived[n] = str(year[n])+'-05-28'
 			day[n] = 28
 			month[n] = 05
 			n += 1
-		elif int(julian_decimal_time[n]) == 149:
+		elif int(temp_jdt[n]) == 149:
 			#date_derived[n] = str(year[n])+'-05-29'
 			day[n] = 29
 			month[n] = 05
 			n += 1
-		elif int(julian_decimal_time[n]) == 150:
+		elif int(temp_jdt[n]) == 150:
 			#date_derived[n] = str(year[n])+'-05-30'
 			day[n] = 30
 			month[n] = 05
 			n += 1
-		elif int(julian_decimal_time[n]) == 151:
+		elif int(temp_jdt[n]) == 151:
 			#date_derived[n] = str(year[n])+'-05-31'
 			day[n] = 31
 			month[n] = 05
 			n += 1
-		elif int(julian_decimal_time[n]) == 152:
+		elif int(temp_jdt[n]) == 152:
 			#date_derived[n] = str(year[n])+'-06-01'
 			day[n] = 1
 			month[n] = 06
 			n += 1
-		elif int(julian_decimal_time[n]) == 153:
+		elif int(temp_jdt[n]) == 153:
 			#date_derived[n] = str(year[n])+'-06-02'
 			day[n] = 2
 			month[n] = 06
 			n += 1
-		elif int(julian_decimal_time[n]) == 154:
+		elif int(temp_jdt[n]) == 154:
 			#date_derived[n] = str(year[n])+'-06-03'
 			day[n] = 3
 			month[n] = 06
 			n += 1
-		elif int(julian_decimal_time[n]) == 155:
+		elif int(temp_jdt[n]) == 155:
 			#date_derived[n] = str(year[n])+'-06-04'
 			day[n] = 4
 			month[n] = 06
 			n += 1
-		elif int(julian_decimal_time[n]) == 156:
+		elif int(temp_jdt[n]) == 156:
 			#date_derived[n] = str(year[n])+'-06-05'
 			day[n] = 5
 			month[n] = 06
 			n += 1
-		elif int(julian_decimal_time[n]) == 157:
+		elif int(temp_jdt[n]) == 157:
 			#date_derived[n] = str(year[n])+'-06-06'
 			day[n] = 6
 			month[n] = 06
 			n += 1
-		elif int(julian_decimal_time[n]) == 158:
+		elif int(temp_jdt[n]) == 158:
 			#date_derived[n] = str(year[n])+'-06-07'
 			day[n] = 7
 			month[n] = 06
 			n += 1
-		elif int(julian_decimal_time[n]) == 159:
+		elif int(temp_jdt[n]) == 159:
 			#date_derived[n] = str(year[n])+'-06-08'
 			day[n] = 8
 			month[n] = 06
 			n += 1
-		elif int(julian_decimal_time[n]) == 160:
+		elif int(temp_jdt[n]) == 160:
 			#date_derived[n] = str(year[n])+'-06-09'
 			day[n] = 9
 			month[n] = 06
 			n += 1
-		elif int(julian_decimal_time[n]) == 161:
+		elif int(temp_jdt[n]) == 161:
 			#date_derived[n] = str(year[n])+'-06-10'
 			day[n] = 10
 			month[n] = 06
 			n += 1
-		elif int(julian_decimal_time[n]) == 162:
+		elif int(temp_jdt[n]) == 162:
 			#date_derived[n] = str(year[n])+'-06-11'
 			day[n] = 11
 			month[n] = 06
 			n += 1
-		elif int(julian_decimal_time[n]) == 163:
+		elif int(temp_jdt[n]) == 163:
 			#date_derived[n] = str(year[n])+'-06-12'
 			day[n] = 12
 			month[n] = 06
 			n += 1
-		elif int(julian_decimal_time[n]) == 164:
+		elif int(temp_jdt[n]) == 164:
 			#date_derived[n] = str(year[n])+'-06-13'
 			day[n] = 13
 			month[n] = 06
 			n += 1
-		elif int(julian_decimal_time[n]) == 165:
+		elif int(temp_jdt[n]) == 165:
 			#date_derived[n] = str(year[n])+'-06-14'
 			day[n] = 14
 			month[n] = 06
 			n += 1
-		elif int(julian_decimal_time[n]) == 166:
+		elif int(temp_jdt[n]) == 166:
 			#date_derived[n] = str(year[n])+'-06-15'
 			day[n] = 15
 			month[n] = 06
 			n += 1
-		elif int(julian_decimal_time[n]) == 167:
+		elif int(temp_jdt[n]) == 167:
 			#date_derived[n] = str(year[n])+'-06-16'
 			day[n] = 16
 			month[n] = 06
 			n += 1
-		elif int(julian_decimal_time[n]) == 168:
+		elif int(temp_jdt[n]) == 168:
 			#date_derived[n] = str(year[n])+'-06-17'
 			day[n] = 17
 			month[n] = 06
 			n += 1
-		elif int(julian_decimal_time[n]) == 169:
+		elif int(temp_jdt[n]) == 169:
 			#date_derived[n] = str(year[n])+'-06-18'
 			day[n] = 18
 			month[n] = 06
 			n += 1
-		elif int(julian_decimal_time[n]) == 170:
+		elif int(temp_jdt[n]) == 170:
 			#date_derived[n] = str(year[n])+'-06-19'
 			day[n] = 19
 			month[n] = 06
 			n += 1
-		elif int(julian_decimal_time[n]) == 171:
+		elif int(temp_jdt[n]) == 171:
 			#date_derived[n] = str(year[n])+'-06-20'
 			day[n] = 20
 			month[n] = 06
 			n += 1
-		elif int(julian_decimal_time[n]) == 172:
+		elif int(temp_jdt[n]) == 172:
 			#date_derived[n] = str(year[n])+'-06-21'
 			day[n] = 21
 			month[n] = 06
 			n += 1
-		elif int(julian_decimal_time[n]) == 173:
+		elif int(temp_jdt[n]) == 173:
 			#date_derived[n] = str(year[n])+'-06-22'
 			day[n] = 22
 			month[n] = 06
 			n += 1
-		elif int(julian_decimal_time[n]) == 174:
+		elif int(temp_jdt[n]) == 174:
 			#date_derived[n] = str(year[n])+'-06-23'
 			day[n] = 23
 			month[n] = 06
 			n += 1
-		elif int(julian_decimal_time[n]) == 175:
+		elif int(temp_jdt[n]) == 175:
 			#date_derived[n] = str(year[n])+'-06-24'
 			day[n] = 24
 			month[n] = 06
 			n += 1
-		elif int(julian_decimal_time[n]) == 176:
+		elif int(temp_jdt[n]) == 176:
 			#date_derived[n] = str(year[n])+'-06-25'
 			day[n] = 25
 			month[n] = 06
 			n += 1
-		elif int(julian_decimal_time[n]) == 177:
+		elif int(temp_jdt[n]) == 177:
 			#date_derived[n] = str(year[n])+'-06-26'
 			day[n] = 26
 			month[n] = 06
 			n += 1
-		elif int(julian_decimal_time[n]) == 178:
+		elif int(temp_jdt[n]) == 178:
 			#date_derived[n] = str(year[n])+'-06-27'
 			day[n] = 27
 			month[n] = 06
 			n += 1
-		elif int(julian_decimal_time[n]) == 179:
+		elif int(temp_jdt[n]) == 179:
 			#date_derived[n] = str(year[n])+'-06-28'
 			day[n] = 28
 			month[n] = 06
 			n += 1
-		elif int(julian_decimal_time[n]) == 180:
+		elif int(temp_jdt[n]) == 180:
 			#date_derived[n] = str(year[n])+'-06-29'
 			day[n] = 29
 			month[n] = 06
 			n += 1
-		elif int(julian_decimal_time[n]) == 181:
+		elif int(temp_jdt[n]) == 181:
 			#date_derived[n] = str(year[n])+'-06-30'
 			day[n] = 30
 			month[n] = 06
 			n += 1
-		elif int(julian_decimal_time[n]) == 182:
+		elif int(temp_jdt[n]) == 182:
 			#date_derived[n] = str(year[n])+'-07-01'
 			day[n] = 1
 			month[n] = 07
 			n += 1
-		elif int(julian_decimal_time[n]) == 183:
+		elif int(temp_jdt[n]) == 183:
 			#date_derived[n] = str(year[n])+'-07-02'
 			day[n] = 2
 			month[n] = 07
 			n += 1
-		elif int(julian_decimal_time[n]) == 184:
+		elif int(temp_jdt[n]) == 184:
 			#date_derived[n] = str(year[n])+'-07-03'
 			day[n] = 3
 			month[n] = 07
 			n += 1
-		elif int(julian_decimal_time[n]) == 185:
+		elif int(temp_jdt[n]) == 185:
 			#date_derived[n] = str(year[n])+'-07-04'
 			day[n] = 4
 			month[n] = 07
 			n += 1
-		elif int(julian_decimal_time[n]) == 186:
+		elif int(temp_jdt[n]) == 186:
 			#date_derived[n] = str(year[n])+'-07-05'
 			day[n] = 5
 			month[n] = 07
 			n += 1
-		elif int(julian_decimal_time[n]) == 187:
+		elif int(temp_jdt[n]) == 187:
 			#date_derived[n] = str(year[n])+'-07-06'
 			day[n] = 6
 			month[n] = 07
 			n += 1
-		elif int(julian_decimal_time[n]) == 188:
+		elif int(temp_jdt[n]) == 188:
 			#date_derived[n] = str(year[n])+'-07-07'
 			day[n] = 7
 			month[n] = 07
 			n += 1
-		elif int(julian_decimal_time[n]) == 189:
+		elif int(temp_jdt[n]) == 189:
 			#date_derived[n] = str(year[n])+'-07-08'
 			day[n] = 8
 			month[n] = 07
 			n += 1
-		elif int(julian_decimal_time[n]) == 190:
+		elif int(temp_jdt[n]) == 190:
 			#date_derived[n] = str(year[n])+'-07-09'
 			day[n] = 9
 			month[n] = 07
 			n += 1
-		elif int(julian_decimal_time[n]) == 191:
+		elif int(temp_jdt[n]) == 191:
 			#date_derived[n] = str(year[n])+'-07-10'
 			day[n] = 10
 			month[n] = 07
 			n += 1
-		elif int(julian_decimal_time[n]) == 192:
+		elif int(temp_jdt[n]) == 192:
 			#date_derived[n] = str(year[n])+'-07-11'
 			day[n] = 11
 			month[n] = 07
 			n += 1
-		elif int(julian_decimal_time[n]) == 193:
+		elif int(temp_jdt[n]) == 193:
 			#date_derived[n] = str(year[n])+'-07-12'
 			day[n] = 12
 			month[n] = 07
 			n += 1
-		elif int(julian_decimal_time[n]) == 194:
+		elif int(temp_jdt[n]) == 194:
 			#date_derived[n] = str(year[n])+'-07-13'
 			day[n] = 13
 			month[n] = 07
 			n += 1
-		elif int(julian_decimal_time[n]) == 195:
+		elif int(temp_jdt[n]) == 195:
 			#date_derived[n] = str(year[n])+'-07-14'
 			day[n] = 14
 			month[n] = 07
 			n += 1
-		elif int(julian_decimal_time[n]) == 196:
+		elif int(temp_jdt[n]) == 196:
 			#date_derived[n] = str(year[n])+'-07-15'
 			day[n] = 15
 			month[n] = 07
 			n += 1
-		elif int(julian_decimal_time[n]) == 197:
+		elif int(temp_jdt[n]) == 197:
 			#date_derived[n] = str(year[n])+'-07-16'
 			day[n] = 16
 			month[n] = 07
 			n += 1
-		elif int(julian_decimal_time[n]) == 198:
+		elif int(temp_jdt[n]) == 198:
 			#date_derived[n] = str(year[n])+'-07-17'
 			day[n] = 17
 			month[n] = 07
 			n += 1
-		elif int(julian_decimal_time[n]) == 199:
+		elif int(temp_jdt[n]) == 199:
 			#date_derived[n] = str(year[n])+'-07-18'
 			day[n] = 18
 			month[n] = 07
 			n += 1
-		elif int(julian_decimal_time[n]) == 200:
+		elif int(temp_jdt[n]) == 200:
 			#date_derived[n] = str(year[n])+'-07-19'
 			day[n] = 19
 			month[n] = 07
 			n += 1
-		elif int(julian_decimal_time[n]) == 201:
+		elif int(temp_jdt[n]) == 201:
 			#date_derived[n] = str(year[n])+'-07-20'
 			day[n] = 20
 			month[n] = 07
 			n += 1
-		elif int(julian_decimal_time[n]) == 202:
+		elif int(temp_jdt[n]) == 202:
 			#date_derived[n] = str(year[n])+'-07-21'
 			day[n] = 21
 			month[n] = 07
 			n += 1
-		elif int(julian_decimal_time[n]) == 203:
+		elif int(temp_jdt[n]) == 203:
 			#date_derived[n] = str(year[n])+'-07-22'
 			day[n] = 22
 			month[n] = 07
 			n += 1
-		elif int(julian_decimal_time[n]) == 204:
+		elif int(temp_jdt[n]) == 204:
 			#date_derived[n] = str(year[n])+'-07-23'
 			day[n] = 23
 			month[n] = 07
 			n += 1
-		elif int(julian_decimal_time[n]) == 205:
+		elif int(temp_jdt[n]) == 205:
 			#date_derived[n] = str(year[n])+'-07-24'
 			day[n] = 24
 			month[n] = 07
 			n += 1
-		elif int(julian_decimal_time[n]) == 206:
+		elif int(temp_jdt[n]) == 206:
 			#date_derived[n] = str(year[n])+'-07-25'
 			day[n] = 25
 			month[n] = 07
 			n += 1
-		elif int(julian_decimal_time[n]) == 207:
+		elif int(temp_jdt[n]) == 207:
 			#date_derived[n] = str(year[n])+'-07-26'
 			day[n] = 26
 			month[n] = 07
 			n += 1
-		elif int(julian_decimal_time[n]) == 208:
+		elif int(temp_jdt[n]) == 208:
 			#date_derived[n] = str(year[n])+'-07-27'
 			day[n] = 27
 			month[n] = 07
 			n += 1
-		elif int(julian_decimal_time[n]) == 209:
+		elif int(temp_jdt[n]) == 209:
 			#date_derived[n] = str(year[n])+'-07-28'
 			day[n] = 28
 			month[n] = 07
 			n += 1
-		elif int(julian_decimal_time[n]) == 210:
+		elif int(temp_jdt[n]) == 210:
 			#date_derived[n] = str(year[n])+'-07-29'
 			day[n] = 29
 			month[n] = 07
 			n += 1
-		elif int(julian_decimal_time[n]) == 211:
+		elif int(temp_jdt[n]) == 211:
 			#date_derived[n] = str(year[n])+'-07-30'
 			day[n] = 30
 			month[n] = 07
 			n += 1
-		elif int(julian_decimal_time[n]) == 212:
+		elif int(temp_jdt[n]) == 212:
 			#date_derived[n] = str(year[n])+'-07-31'
 			day[n] = 31
 			month[n] = 07
 			n += 1
-		elif int(julian_decimal_time[n]) == 213:
+		elif int(temp_jdt[n]) == 213:
 			#date_derived[n] = str(year[n])+'-08-01'
 			day[n] = 1
 			month[n] = 8
 			n += 1
-		elif int(julian_decimal_time[n]) == 214:
+		elif int(temp_jdt[n]) == 214:
 			#date_derived[n] = str(year[n])+'-08-02'
 			day[n] = 2
 			month[n] = 8
 			n += 1
-		elif int(julian_decimal_time[n]) == 215:
+		elif int(temp_jdt[n]) == 215:
 			#date_derived[n] = str(year[n])+'-08-03'
 			day[n] = 3
 			month[n] = 8
 			n += 1
-		elif int(julian_decimal_time[n]) == 216:
+		elif int(temp_jdt[n]) == 216:
 			#date_derived[n] = str(year[n])+'-08-04'
 			day[n] = 4
 			month[n] = 8
 			n += 1
-		elif int(julian_decimal_time[n]) == 217:
+		elif int(temp_jdt[n]) == 217:
 			#date_derived[n] = str(year[n])+'-08-05'
 			day[n] = 5
 			month[n] = 8
 			n += 1
-		elif int(julian_decimal_time[n]) == 218:
+		elif int(temp_jdt[n]) == 218:
 			#date_derived[n] = str(year[n])+'-08-06'
 			day[n] = 6
 			month[n] = 8
 			n += 1
-		elif int(julian_decimal_time[n]) == 219:
+		elif int(temp_jdt[n]) == 219:
 			#date_derived[n] = str(year[n])+'-08-07'
 			day[n] = 7
 			month[n] = 8
 			n += 1
-		elif int(julian_decimal_time[n]) == 220:
+		elif int(temp_jdt[n]) == 220:
 			#date_derived[n] = str(year[n])+'-08-08'
 			day[n] = 8
 			month[n] = 8
 			n += 1
-		elif int(julian_decimal_time[n]) == 221:
+		elif int(temp_jdt[n]) == 221:
 			#date_derived[n] = str(year[n])+'-08-09'
 			day[n] = 9
 			month[n] = 8
 			n += 1
-		elif int(julian_decimal_time[n]) == 222:
+		elif int(temp_jdt[n]) == 222:
 			#date_derived[n] = str(year[n])+'-08-10'
 			day[n] = 10
 			month[n] = 8
 			n += 1
-		elif int(julian_decimal_time[n]) == 223:
+		elif int(temp_jdt[n]) == 223:
 			#date_derived[n] = str(year[n])+'-08-11'
 			day[n] = 11
 			month[n] = 8
 			n += 1
-		elif int(julian_decimal_time[n]) == 224:
+		elif int(temp_jdt[n]) == 224:
 			#date_derived[n] = str(year[n])+'-08-12'
 			day[n] = 12
 			month[n] = 8
 			n += 1
-		elif int(julian_decimal_time[n]) == 225:
+		elif int(temp_jdt[n]) == 225:
 			#date_derived[n] = str(year[n])+'-08-13'
 			day[n] = 13
 			month[n] = 8
 			n += 1
-		elif int(julian_decimal_time[n]) == 226:
+		elif int(temp_jdt[n]) == 226:
 			#date_derived[n] = str(year[n])+'-08-14'
 			day[n] = 14
 			month[n] = 8
 			n += 1
-		elif int(julian_decimal_time[n]) == 227:
+		elif int(temp_jdt[n]) == 227:
 			#date_derived[n] = str(year[n])+'-08-15'
 			day[n] = 15
 			month[n] = 8
 			n += 1
-		elif int(julian_decimal_time[n]) == 228:
+		elif int(temp_jdt[n]) == 228:
 			#date_derived[n] = str(year[n])+'-08-16'
 			day[n] = 16
 			month[n] = 8
 			n += 1
-		elif int(julian_decimal_time[n]) == 229:
+		elif int(temp_jdt[n]) == 229:
 			#date_derived[n] = str(year[n])+'-08-17'
 			day[n] = 17
 			month[n] = 8
 			n += 1
-		elif int(julian_decimal_time[n]) == 230:
+		elif int(temp_jdt[n]) == 230:
 			#date_derived[n] = str(year[n])+'-08-18'
 			day[n] = 18
 			month[n] = 8
 			n += 1
-		elif int(julian_decimal_time[n]) == 231:
+		elif int(temp_jdt[n]) == 231:
 			#date_derived[n] = str(year[n])+'-08-19'
 			day[n] = 19
 			month[n] = 8
 			n += 1
-		elif int(julian_decimal_time[n]) == 232:
+		elif int(temp_jdt[n]) == 232:
 			#date_derived[n] = str(year[n])+'-08-20'
 			day[n] = 20
 			month[n] = 8
 			n += 1
-		elif int(julian_decimal_time[n]) == 233:
+		elif int(temp_jdt[n]) == 233:
 			#date_derived[n] = str(year[n])+'-08-21'
 			day[n] = 21
 			month[n] = 8
 			n += 1
-		elif int(julian_decimal_time[n]) == 234:
+		elif int(temp_jdt[n]) == 234:
 			#date_derived[n] = str(year[n])+'-08-22'
 			day[n] = 22
 			month[n] = 8
 			n += 1
-		elif int(julian_decimal_time[n]) == 235:
+		elif int(temp_jdt[n]) == 235:
 			#date_derived[n] = str(year[n])+'-08-23'
 			day[n] = 23
 			month[n] = 8
 			n += 1
-		elif int(julian_decimal_time[n]) == 236:
+		elif int(temp_jdt[n]) == 236:
 			#date_derived[n] = str(year[n])+'-08-24'
 			day[n] = 24
 			month[n] = 8
 			n += 1
-		elif int(julian_decimal_time[n]) == 237:
+		elif int(temp_jdt[n]) == 237:
 			#date_derived[n] = str(year[n])+'-08-25'
 			day[n] = 25
 			month[n] = 8
 			n += 1
-		elif int(julian_decimal_time[n]) == 238:
+		elif int(temp_jdt[n]) == 238:
 			#date_derived[n] = str(year[n])+'-08-26'
 			day[n] = 26
 			month[n] = 8
 			n += 1
-		elif int(julian_decimal_time[n]) == 239:
+		elif int(temp_jdt[n]) == 239:
 			#date_derived[n] = str(year[n])+'-08-27'
 			day[n] = 27
 			month[n] = 8
 			n += 1
-		elif int(julian_decimal_time[n]) == 240:
+		elif int(temp_jdt[n]) == 240:
 			#date_derived[n] = str(year[n])+'-08-28'
 			day[n] = 28
 			month[n] = 8
 			n += 1
-		elif int(julian_decimal_time[n]) == 241:
+		elif int(temp_jdt[n]) == 241:
 			#date_derived[n] = str(year[n])+'-08-29'
 			day[n] = 29
 			month[n] = 8
 			n += 1
-		elif int(julian_decimal_time[n]) == 242:
+		elif int(temp_jdt[n]) == 242:
 			#date_derived[n] = str(year[n])+'-08-30'
 			day[n] = 30
 			month[n] = 8
 			n += 1
-		elif int(julian_decimal_time[n]) == 243:
+		elif int(temp_jdt[n]) == 243:
 			#date_derived[n] = str(year[n])+'-08-31'
 			day[n] = 31
 			month[n] = 8
 			n += 1
-		elif int(julian_decimal_time[n]) == 244:
+		elif int(temp_jdt[n]) == 244:
 			#date_derived[n] = str(year[n])+'-09-01'
 			day[n] = 1
 			month[n] = 9
 			n += 1
-		elif int(julian_decimal_time[n]) == 245:
+		elif int(temp_jdt[n]) == 245:
 			#date_derived[n] = str(year[n])+'-09-02'
 			day[n] = 2
 			month[n] = 9
 			n += 1
-		elif int(julian_decimal_time[n]) == 246:
+		elif int(temp_jdt[n]) == 246:
 			#date_derived[n] = str(year[n])+'-09-03'
 			day[n] = 3
 			month[n] = 9
 			n += 1
-		elif int(julian_decimal_time[n]) == 247:
+		elif int(temp_jdt[n]) == 247:
 			#date_derived[n] = str(year[n])+'-09-04'
 			day[n] = 4
 			month[n] = 9
 			n += 1
-		elif int(julian_decimal_time[n]) == 248:
+		elif int(temp_jdt[n]) == 248:
 			#date_derived[n] = str(year[n])+'-09-05'
 			day[n] = 5
 			month[n] = 9
 			n += 1
-		elif int(julian_decimal_time[n]) == 249:
+		elif int(temp_jdt[n]) == 249:
 			#date_derived[n] = str(year[n])+'-09-06'
 			day[n] = 6
 			month[n] = 9
 			n += 1
-		elif int(julian_decimal_time[n]) == 250:
+		elif int(temp_jdt[n]) == 250:
 			#date_derived[n] = str(year[n])+'-09-07'
 			day[n] = 7
 			month[n] = 9
 			n += 1
-		elif int(julian_decimal_time[n]) == 251:
+		elif int(temp_jdt[n]) == 251:
 			#date_derived[n] = str(year[n])+'-09-08'
 			day[n] = 8
 			month[n] = 9
 			n += 1
-		elif int(julian_decimal_time[n]) == 252:
+		elif int(temp_jdt[n]) == 252:
 			#date_derived[n] = str(year[n])+'-09-09'
 			day[n] = 9
 			month[n] = 9
 			n += 1
-		elif int(julian_decimal_time[n]) == 253:
+		elif int(temp_jdt[n]) == 253:
 			#date_derived[n] = str(year[n])+'-09-10'
 			day[n] = 10
 			month[n] = 9
 			n += 1
-		elif int(julian_decimal_time[n]) == 254:
+		elif int(temp_jdt[n]) == 254:
 			#date_derived[n] = str(year[n])+'-09-11'
 			day[n] = 11
 			month[n] = 9
 			n += 1
-		elif int(julian_decimal_time[n]) == 255:
+		elif int(temp_jdt[n]) == 255:
 			#date_derived[n] = str(year[n])+'-09-12'
 			day[n] = 12
 			month[n] = 9
 			n += 1
-		elif int(julian_decimal_time[n]) == 256:
+		elif int(temp_jdt[n]) == 256:
 			#date_derived[n] = str(year[n])+'-09-13'
 			day[n] = 13
 			month[n] = 9
 			n += 1
-		elif int(julian_decimal_time[n]) == 257:
+		elif int(temp_jdt[n]) == 257:
 			#date_derived[n] = str(year[n])+'-09-14'
 			day[n] = 14
 			month[n] = 9
 			n += 1
-		elif int(julian_decimal_time[n]) == 258:
+		elif int(temp_jdt[n]) == 258:
 			#date_derived[n] = str(year[n])+'-09-15'
 			day[n] = 15
 			month[n] = 9
 			n += 1
-		elif int(julian_decimal_time[n]) == 259:
+		elif int(temp_jdt[n]) == 259:
 			#date_derived[n] = str(year[n])+'-09-16'
 			day[n] = 16
 			month[n] = 9
 			n += 1
-		elif int(julian_decimal_time[n]) == 260:
+		elif int(temp_jdt[n]) == 260:
 			#date_derived[n] = str(year[n])+'-09-17'
 			day[n] = 17
 			month[n] = 9
 			n += 1
-		elif int(julian_decimal_time[n]) == 261:
+		elif int(temp_jdt[n]) == 261:
 			#date_derived[n] = str(year[n])+'-09-18'
 			day[n] = 18
 			month[n] = 9
 			n += 1
-		elif int(julian_decimal_time[n]) == 262:
+		elif int(temp_jdt[n]) == 262:
 			#date_derived[n] = str(year[n])+'-09-19'
 			day[n] = 19
 			month[n] = 9
 			n += 1
-		elif int(julian_decimal_time[n]) == 263:
+		elif int(temp_jdt[n]) == 263:
 			#date_derived[n] = str(year[n])+'-09-20'
 			day[n] = 20
 			month[n] = 9
 			n += 1
-		elif int(julian_decimal_time[n]) == 264:
+		elif int(temp_jdt[n]) == 264:
 			#date_derived[n] = str(year[n])+'-09-21'
 			day[n] = 21
 			month[n] = 9
 			n += 1
-		elif int(julian_decimal_time[n]) == 265:
+		elif int(temp_jdt[n]) == 265:
 			#date_derived[n] = str(year[n])+'-09-22'
 			day[n] = 22
 			month[n] = 9
 			n += 1
-		elif int(julian_decimal_time[n]) == 266:
+		elif int(temp_jdt[n]) == 266:
 			#date_derived[n] = str(year[n])+'-09-23'
 			day[n] = 23
 			month[n] = 9
 			n += 1
-		elif int(julian_decimal_time[n]) == 267:
+		elif int(temp_jdt[n]) == 267:
 			#date_derived[n] = str(year[n])+'-09-24'
 			day[n] = 24
 			month[n] = 9
 			n += 1
-		elif int(julian_decimal_time[n]) == 268:
+		elif int(temp_jdt[n]) == 268:
 			#date_derived[n] = str(year[n])+'-09-25'
 			day[n] = 25
 			month[n] = 9
 			n += 1
-		elif int(julian_decimal_time[n]) == 269:
+		elif int(temp_jdt[n]) == 269:
 			#date_derived[n] = str(year[n])+'-09-26'
 			day[n] = 26
 			month[n] = 9
 			n += 1
-		elif int(julian_decimal_time[n]) == 270:
+		elif int(temp_jdt[n]) == 270:
 			#date_derived[n] = str(year[n])+'-09-27'
 			day[n] = 27
 			month[n] = 9
 			n += 1
-		elif int(julian_decimal_time[n]) == 271:
+		elif int(temp_jdt[n]) == 271:
 			#date_derived[n] = str(year[n])+'-09-28'
 			day[n] = 28
 			month[n] = 9
 			n += 1
-		elif int(julian_decimal_time[n]) == 272:
+		elif int(temp_jdt[n]) == 272:
 			#date_derived[n] = str(year[n])+'-09-29'
 			day[n] = 29
 			month[n] = 9
 			n += 1
-		elif int(julian_decimal_time[n]) == 273:
+		elif int(temp_jdt[n]) == 273:
 			#date_derived[n] = str(year[n])+'-09-30'
 			day[n] = 30
 			month[n] = 9
 			n += 1
-		elif int(julian_decimal_time[n]) == 274:
+		elif int(temp_jdt[n]) == 274:
 			#date_derived[n] = str(year[n])+'-10-01'
 			day[n] = 1
 			month[n] = 10
 			n += 1
-		elif int(julian_decimal_time[n]) == 275:
+		elif int(temp_jdt[n]) == 275:
 			#date_derived[n] = str(year[n])+'-10-02'
 			day[n] = 2
 			month[n] = 10
 			n += 1
-		elif int(julian_decimal_time[n]) == 276:
+		elif int(temp_jdt[n]) == 276:
 			#date_derived[n] = str(year[n])+'-10-03'
 			day[n] = 3
 			month[n] = 10
 			n += 1
-		elif int(julian_decimal_time[n]) == 277:
+		elif int(temp_jdt[n]) == 277:
 			#date_derived[n] = str(year[n])+'-10-04'
 			day[n] = 4
 			month[n] = 10
 			n += 1
-		elif int(julian_decimal_time[n]) == 278:
+		elif int(temp_jdt[n]) == 278:
 			#date_derived[n] = str(year[n])+'-10-05'
 			day[n] = 5
 			month[n] = 10
 			n += 1
-		elif int(julian_decimal_time[n]) == 279:
+		elif int(temp_jdt[n]) == 279:
 			#date_derived[n] = str(year[n])+'-10-06'
 			day[n] = 6
 			month[n] = 10
 			n += 1
-		elif int(julian_decimal_time[n]) == 280:
+		elif int(temp_jdt[n]) == 280:
 			#date_derived[n] = str(year[n])+'-10-07'
 			day[n] = 7
 			month[n] = 10
 			n += 1
-		elif int(julian_decimal_time[n]) == 281:
+		elif int(temp_jdt[n]) == 281:
 			#date_derived[n] = str(year[n])+'-10-08'
 			day[n] = 8
 			month[n] = 10
 			n += 1
-		elif int(julian_decimal_time[n]) == 282:
+		elif int(temp_jdt[n]) == 282:
 			#date_derived[n] = str(year[n])+'-10-09'
 			day[n] = 9
 			month[n] = 10
 			n += 1
-		elif int(julian_decimal_time[n]) == 283:
+		elif int(temp_jdt[n]) == 283:
 			#date_derived[n] = str(year[n])+'-10-10'
 			day[n] = 10
 			month[n] = 10
 			n += 1
-		elif int(julian_decimal_time[n]) == 284:
+		elif int(temp_jdt[n]) == 284:
 			#date_derived[n] = str(year[n])+'-10-11'
 			day[n] = 11
 			month[n] = 10
 			n += 1
-		elif int(julian_decimal_time[n]) == 285:
+		elif int(temp_jdt[n]) == 285:
 			#date_derived[n] = str(year[n])+'-10-12'
 			day[n] = 12
 			month[n] = 10
 			n += 1
-		elif int(julian_decimal_time[n]) == 286:
+		elif int(temp_jdt[n]) == 286:
 			#date_derived[n] = str(year[n])+'-10-13'
 			day[n] = 13
 			month[n] = 10
 			n += 1
-		elif int(julian_decimal_time[n]) == 287:
+		elif int(temp_jdt[n]) == 287:
 			#date_derived[n] = str(year[n])+'-10-14'
 			day[n] = 14
 			month[n] = 10
 			n += 1
-		elif int(julian_decimal_time[n]) == 288:
+		elif int(temp_jdt[n]) == 288:
 			#date_derived[n] = str(year[n])+'-10-15'
 			day[n] = 15
 			month[n] = 10
 			n += 1
-		elif int(julian_decimal_time[n]) == 289:
+		elif int(temp_jdt[n]) == 289:
 			#date_derived[n] = str(year[n])+'-10-16'
 			day[n] = 16
 			month[n] = 10
 			n += 1
-		elif int(julian_decimal_time[n]) == 290:
+		elif int(temp_jdt[n]) == 290:
 			#date_derived[n] = str(year[n])+'-10-17'
 			day[n] = 17
 			month[n] = 10
 			n += 1
-		elif int(julian_decimal_time[n]) == 291:
+		elif int(temp_jdt[n]) == 291:
 			#date_derived[n] = str(year[n])+'-10-18'
 			day[n] = 18
 			month[n] = 10
 			n += 1
-		elif int(julian_decimal_time[n]) == 292:
+		elif int(temp_jdt[n]) == 292:
 			#date_derived[n] = str(year[n])+'-10-19'
 			day[n] = 19
 			month[n] = 10
 			n += 1
-		elif int(julian_decimal_time[n]) == 293:
+		elif int(temp_jdt[n]) == 293:
 			#date_derived[n] = str(year[n])+'-10-20'
 			day[n] = 20
 			month[n] = 10
 			n += 1
-		elif int(julian_decimal_time[n]) == 294:
+		elif int(temp_jdt[n]) == 294:
 			#date_derived[n] = str(year[n])+'-10-21'
 			day[n] = 21
 			month[n] = 10
 			n += 1
-		elif int(julian_decimal_time[n]) == 295:
+		elif int(temp_jdt[n]) == 295:
 			#date_derived[n] = str(year[n])+'-10-22'
 			day[n] = 22
 			month[n] = 10
 			n += 1
-		elif int(julian_decimal_time[n]) == 296:
+		elif int(temp_jdt[n]) == 296:
 			#date_derived[n] = str(year[n])+'-10-23'
 			day[n] = 23
 			month[n] = 10
 			n += 1
-		elif int(julian_decimal_time[n]) == 297:
+		elif int(temp_jdt[n]) == 297:
 			#date_derived[n] = str(year[n])+'-10-24'
 			day[n] = 24
 			month[n] = 10
 			n += 1
-		elif int(julian_decimal_time[n]) == 298:
+		elif int(temp_jdt[n]) == 298:
 			#date_derived[n] = str(year[n])+'-10-25'
 			day[n] = 25
 			month[n] = 10
 			n += 1
-		elif int(julian_decimal_time[n]) == 299:
+		elif int(temp_jdt[n]) == 299:
 			#date_derived[n] = str(year[n])+'-10-26'
 			day[n] = 26
 			month[n] = 10
 			n += 1
-		elif int(julian_decimal_time[n]) == 300:
+		elif int(temp_jdt[n]) == 300:
 			#date_derived[n] = str(year[n])+'-10-27'
 			day[n] = 27
 			month[n] = 10
 			n += 1
-		elif int(julian_decimal_time[n]) == 301:
+		elif int(temp_jdt[n]) == 301:
 			#date_derived[n] = str(year[n])+'-10-28'
 			day[n] = 28
 			month[n] = 10
 			n += 1
-		elif int(julian_decimal_time[n]) == 302:
+		elif int(temp_jdt[n]) == 302:
 			#date_derived[n] = str(year[n])+'-10-29'
 			day[n] = 29
 			month[n] = 10
 			n += 1
-		elif int(julian_decimal_time[n]) == 303:
+		elif int(temp_jdt[n]) == 303:
 			#date_derived[n] = str(year[n])+'-10-30'
 			day[n] = 30
 			month[n] = 10
 			n += 1
-		elif int(julian_decimal_time[n]) == 304:
+		elif int(temp_jdt[n]) == 304:
 			#date_derived[n] = str(year[n])+'-10-31'
 			day[n] = 31
 			month[n] = 10
 			n += 1
-		elif int(julian_decimal_time[n]) == 305:
+		elif int(temp_jdt[n]) == 305:
 			#date_derived[n] = str(year[n])+'-11-01'
 			day[n] = 1
 			month[n] = 11
 			n += 1
-		elif int(julian_decimal_time[n]) == 306:
+		elif int(temp_jdt[n]) == 306:
 			#date_derived[n] = str(year[n])+'-11-02'
 			day[n] = 2
 			month[n] = 11
 			n += 1
-		elif int(julian_decimal_time[n]) == 307:
+		elif int(temp_jdt[n]) == 307:
 			#date_derived[n] = str(year[n])+'-11-03'
 			day[n] = 3
 			month[n] = 11
 			n += 1
-		elif int(julian_decimal_time[n]) == 308:
+		elif int(temp_jdt[n]) == 308:
 			#date_derived[n] = str(year[n])+'-11-04'
 			day[n] = 4
 			month[n] = 11
 			n += 1
-		elif int(julian_decimal_time[n]) == 309:
+		elif int(temp_jdt[n]) == 309:
 			#date_derived[n] = str(year[n])+'-11-05'
 			day[n] = 5
 			month[n] = 11
 			n += 1
-		elif int(julian_decimal_time[n]) == 310:
+		elif int(temp_jdt[n]) == 310:
 			#date_derived[n] = str(year[n])+'-11-06'
 			day[n] = 6
 			month[n] = 11
 			n += 1
-		elif int(julian_decimal_time[n]) == 311:
+		elif int(temp_jdt[n]) == 311:
 			#date_derived[n] = str(year[n])+'-11-07'
 			day[n] = 7
 			month[n] = 11
 			n += 1
-		elif int(julian_decimal_time[n]) == 312:
+		elif int(temp_jdt[n]) == 312:
 			#date_derived[n] = str(year[n])+'-11-08'
 			day[n] = 8
 			month[n] = 11
 			n += 1
-		elif int(julian_decimal_time[n]) == 313:
+		elif int(temp_jdt[n]) == 313:
 			#date_derived[n] = str(year[n])+'-11-09'
 			day[n] = 9
 			month[n] = 11
 			n += 1
-		elif int(julian_decimal_time[n]) == 314:
+		elif int(temp_jdt[n]) == 314:
 			#date_derived[n] = str(year[n])+'-11-10'
 			day[n] = 10
 			month[n] = 11
 			n += 1
-		elif int(julian_decimal_time[n]) == 315:
+		elif int(temp_jdt[n]) == 315:
 			#date_derived[n] = str(year[n])+'-11-11'
 			day[n] = 11
 			month[n] = 11
 			n += 1
-		elif int(julian_decimal_time[n]) == 316:
+		elif int(temp_jdt[n]) == 316:
 			#date_derived[n] = str(year[n])+'-11-12'
 			day[n] = 12
 			month[n] = 11
 			n += 1
-		elif int(julian_decimal_time[n]) == 317:
+		elif int(temp_jdt[n]) == 317:
 			#date_derived[n] = str(year[n])+'-11-13'
 			day[n] = 13
 			month[n] = 11
 			n += 1
-		elif int(julian_decimal_time[n]) == 318:
+		elif int(temp_jdt[n]) == 318:
 			#date_derived[n] = str(year[n])+'-11-14'
 			day[n] = 14
 			month[n] = 11
 			n += 1
-		elif int(julian_decimal_time[n]) == 319:
+		elif int(temp_jdt[n]) == 319:
 			#date_derived[n] = str(year[n])+'-11-15'
 			day[n] = 15
 			month[n] = 11
 			n += 1
-		elif int(julian_decimal_time[n]) == 320:
+		elif int(temp_jdt[n]) == 320:
 			#date_derived[n] = str(year[n])+'-11-16'
 			day[n] = 16
 			month[n] = 11
 			n += 1
-		elif int(julian_decimal_time[n]) == 321:
+		elif int(temp_jdt[n]) == 321:
 			#date_derived[n] = str(year[n])+'-11-17'
 			day[n] = 17
 			month[n] = 11
 			n += 1
-		elif int(julian_decimal_time[n]) == 322:
+		elif int(temp_jdt[n]) == 322:
 			#date_derived[n] = str(year[n])+'-11-18'
 			day[n] = 18
 			month[n] = 11
 			n += 1
-		elif int(julian_decimal_time[n]) == 323:
+		elif int(temp_jdt[n]) == 323:
 			#date_derived[n] = str(year[n])+'-11-19'
 			day[n] = 19
 			month[n] = 11
 			n += 1
-		elif int(julian_decimal_time[n]) == 324:
+		elif int(temp_jdt[n]) == 324:
 			#date_derived[n] = str(year[n])+'-11-20'
 			day[n] = 20
 			month[n] = 11
 			n += 1
-		elif int(julian_decimal_time[n]) == 325:
+		elif int(temp_jdt[n]) == 325:
 			#date_derived[n] = str(year[n])+'-11-21'
 			day[n] = 21
 			month[n] = 11
 			n += 1
-		elif int(julian_decimal_time[n]) == 326:
+		elif int(temp_jdt[n]) == 326:
 			#date_derived[n] = str(year[n])+'-11-22'
 			day[n] = 22
 			month[n] = 11
 			n += 1
-		elif int(julian_decimal_time[n]) == 327:
+		elif int(temp_jdt[n]) == 327:
 			#date_derived[n] = str(year[n])+'-11-23'
 			day[n] = 23
 			month[n] = 11
 			n += 1
-		elif int(julian_decimal_time[n]) == 328:
+		elif int(temp_jdt[n]) == 328:
 			#date_derived[n] = str(year[n])+'-11-24'
 			day[n] = 24
 			month[n] = 11
 			n += 1
-		elif int(julian_decimal_time[n]) == 329:
+		elif int(temp_jdt[n]) == 329:
 			#date_derived[n] = str(year[n])+'-11-25'
 			day[n] = 25
 			month[n] = 11
 			n += 1
-		elif int(julian_decimal_time[n]) == 330:
+		elif int(temp_jdt[n]) == 330:
 			#date_derived[n] = str(year[n])+'-11-26'
 			day[n] = 26
 			month[n] = 11
 			n += 1
-		elif int(julian_decimal_time[n]) == 331:
+		elif int(temp_jdt[n]) == 331:
 			#date_derived[n] = str(year[n])+'-11-27'
 			day[n] = 27
 			month[n] = 11
 			n += 1
-		elif int(julian_decimal_time[n]) == 332:
+		elif int(temp_jdt[n]) == 332:
 			#date_derived[n] = str(year[n])+'-11-28'
 			day[n] = 28
 			month[n] = 11
 			n += 1
-		elif int(julian_decimal_time[n]) == 333:
+		elif int(temp_jdt[n]) == 333:
 			#date_derived[n] = str(year[n])+'-11-29'
 			day[n] = 29
 			month[n] = 11
 			n += 1
-		elif int(julian_decimal_time[n]) == 334:
+		elif int(temp_jdt[n]) == 334:
 			#date_derived[n] = str(year[n])+'-11-30'
 			day[n] = 30
 			month[n] = 11
 			n += 1
-		elif int(julian_decimal_time[n]) == 335:
+		elif int(temp_jdt[n]) == 335:
 			#date_derived[n] = str(year[n])+'-12-01'
 			day[n] = 1
 			month[n] = 12
 			n += 1
-		elif int(julian_decimal_time[n]) == 336:
+		elif int(temp_jdt[n]) == 336:
 			#date_derived[n] = str(year[n])+'-12-02'
 			day[n] = 2
 			month[n] = 12
 			n += 1
-		elif int(julian_decimal_time[n]) == 337:
+		elif int(temp_jdt[n]) == 337:
 			#date_derived[n] = str(year[n])+'-12-03'
 			day[n] = 3
 			month[n] = 12
 			n += 1
-		elif int(julian_decimal_time[n]) == 338:
+		elif int(temp_jdt[n]) == 338:
 			#date_derived[n] = str(year[n])+'-12-04'
 			day[n] = 4
 			month[n] = 12
 			n += 1
-		elif int(julian_decimal_time[n]) == 339:
+		elif int(temp_jdt[n]) == 339:
 			#date_derived[n] = str(year[n])+'-12-05'
 			day[n] = 5
 			month[n] = 12
 			n += 1
-		elif int(julian_decimal_time[n]) == 340:
+		elif int(temp_jdt[n]) == 340:
 			#date_derived[n] = str(year[n])+'-12-06'
 			day[n] = 6
 			month[n] = 12
 			n += 1
-		elif int(julian_decimal_time[n]) == 341:
+		elif int(temp_jdt[n]) == 341:
 			#date_derived[n] = str(year[n])+'-12-07'
 			day[n] = 7
 			month[n] = 12
 			n += 1
-		elif int(julian_decimal_time[n]) == 342:
+		elif int(temp_jdt[n]) == 342:
 			#date_derived[n] = str(year[n])+'-12-08'
 			day[n] = 8
 			month[n] = 12
 			n += 1
-		elif int(julian_decimal_time[n]) == 343:
+		elif int(temp_jdt[n]) == 343:
 			#date_derived[n] = str(year[n])+'-12-09'
 			day[n] = 9
 			month[n] = 12
 			n += 1
-		elif int(julian_decimal_time[n]) == 344:
+		elif int(temp_jdt[n]) == 344:
 			#date_derived[n] = str(year[n])+'-12-10'
 			day[n] = 10
 			month[n] = 12
 			n += 1
-		elif int(julian_decimal_time[n]) == 345:
+		elif int(temp_jdt[n]) == 345:
 			#date_derived[n] = str(year[n])+'-12-11'
 			day[n] = 11
 			month[n] = 12
 			n += 1
-		elif int(julian_decimal_time[n]) == 346:
+		elif int(temp_jdt[n]) == 346:
 			#date_derived[n] = str(year[n])+'-12-12'
 			day[n] = 12
 			month[n] = 12
 			n += 1
-		elif int(julian_decimal_time[n]) == 347:
+		elif int(temp_jdt[n]) == 347:
 			#date_derived[n] = str(year[n])+'-12-13'
 			day[n] = 13
 			month[n] = 12
 			n += 1
-		elif int(julian_decimal_time[n]) == 348:
+		elif int(temp_jdt[n]) == 348:
 			#date_derived[n] = str(year[n])+'-12-14'
 			day[n] = 14
 			month[n] = 12
 			n += 1
-		elif int(julian_decimal_time[n]) == 349:
+		elif int(temp_jdt[n]) == 349:
 			#date_derived[n] = str(year[n])+'-12-15'
 			day[n] = 15
 			month[n] = 12
 			n += 1
-		elif int(julian_decimal_time[n]) == 350:
+		elif int(temp_jdt[n]) == 350:
 			#date_derived[n] = str(year[n])+'-12-16'
 			day[n] = 16
 			month[n] = 12
 			n += 1
-		elif int(julian_decimal_time[n]) == 351:
+		elif int(temp_jdt[n]) == 351:
 			#date_derived[n] = str(year[n])+'-12-17'
 			day[n] = 17
 			month[n] = 12
 			n += 1
-		elif int(julian_decimal_time[n]) == 352:
+		elif int(temp_jdt[n]) == 352:
 			#date_derived[n] = str(year[n])+'-12-18'
 			day[n] = 18
 			month[n] = 12
 			n += 1
-		elif int(julian_decimal_time[n]) == 353:
+		elif int(temp_jdt[n]) == 353:
 			#date_derived[n] = str(year[n])+'-12-19'
 			day[n] = 19
 			month[n] = 12
 			n += 1
-		elif int(julian_decimal_time[n]) == 354:
+		elif int(temp_jdt[n]) == 354:
 			#date_derived[n] = str(year[n])+'-12-20'
 			day[n] = 20
 			month[n] = 12
 			n += 1
-		elif int(julian_decimal_time[n]) == 355:
+		elif int(temp_jdt[n]) == 355:
 			#date_derived[n] = str(year[n])+'-12-21'
 			day[n] = 21
 			month[n] = 12
 			n += 1
-		elif int(julian_decimal_time[n]) == 356:
+		elif int(temp_jdt[n]) == 356:
 			#date_derived[n] = str(year[n])+'-12-22'
 			day[n] = 22
 			month[n] = 12
 			n += 1
-		elif int(julian_decimal_time[n]) == 357:
+		elif int(temp_jdt[n]) == 357:
 			#date_derived[n] = str(year[n])+'-12-23'
 			day[n] = 23
 			month[n] = 12
 			n += 1
-		elif int(julian_decimal_time[n]) == 358:
+		elif int(temp_jdt[n]) == 358:
 			#date_derived[n] = str(year[n])+'-12-24'
 			day[n] = 24
 			month[n] = 12
 			n += 1
-		elif int(julian_decimal_time[n]) == 359:
+		elif int(temp_jdt[n]) == 359:
 			#date_derived[n] = str(year[n])+'-12-25'
 			day[n] = 25
 			month[n] = 12
 			n += 1
-		elif int(julian_decimal_time[n]) == 360:
+		elif int(temp_jdt[n]) == 360:
 			#date_derived[n] = str(year[n])+'-12-26'
 			day[n] = 26
 			month[n] = 12
 			n += 1
-		elif int(julian_decimal_time[n]) == 361:
+		elif int(temp_jdt[n]) == 361:
 			#date_derived[n] = str(year[n])+'-12-27'
 			day[n] = 27
 			month[n] = 12
 			n += 1
-		elif int(julian_decimal_time[n]) == 362:
+		elif int(temp_jdt[n]) == 362:
 			#date_derived[n] = str(year[n])+'-12-28'
 			day[n] = 28
 			month[n] = 12
 			n += 1
-		elif int(julian_decimal_time[n]) == 363:
+		elif int(temp_jdt[n]) == 363:
 			#date_derived[n] = str(year[n])+'-12-29'
 			day[n] = 29
 			month[n] = 12
 			n += 1
-		elif int(julian_decimal_time[n]) == 364:
+		elif int(temp_jdt[n]) == 364:
 			#date_derived[n] = str(year[n])+'-12-30'
 			day[n] = 30
 			month[n] = 12
