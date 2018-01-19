@@ -39,7 +39,7 @@ def aaws2nc(args):
 	root_grp.featureType = 'timeSeries'
 	root_grp.institution = 'UW SSEC'
 	root_grp.reference = 'https://amrc.ssec.wisc.edu/'
-	root_grp.Conventions = 'CF-1.6'
+	root_grp.Conventions = 'CF-1.7'
 	root_grp.start_time = ''
 	root_grp.end_time = ''
 	root_grp.data_type = 'q1h'

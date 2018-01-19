@@ -28,7 +28,7 @@ def promice2nc(args):
 	root_grp.source = 'Surface Observations'
 	root_grp.institution = 'Programme for Monitoring of the Greenland Ice Sheet'
 	root_grp.reference = 'http://www.promice.dk/home.html'
-	root_grp.Conventions = 'CF-1.6'
+	root_grp.Conventions = 'CF-1.7'
 
 	# dimension
 	root_grp.createDimension('station', 25)

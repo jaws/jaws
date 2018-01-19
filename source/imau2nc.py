@@ -19,7 +19,7 @@ def imau2nc(args):
 	root_grp.reference = 'https://www.uu.nl/en/research/imau'
 	#root_grp.history = 'Created on '
 	#root_grp.created_by = 'Created by'
-	root_grp.Conventions = 'CF-v46'
+	root_grp.Conventions = 'CF-1.7'
 
 	# dimension
 	root_grp.createDimension('time', args.row_count)

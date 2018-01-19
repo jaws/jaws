@@ -37,7 +37,7 @@ def gcnet2nc(args):
 	root_grp.institution = 'Cooperative Institute for Research in Enviornmental Sciences'
 	root_grp.reference = 'http://cires.colorado.edu/science/groups/steffen/gcnet/'
 	root_grp.URL = 'http://cires.colorado.edu/science/groups/steffen/gcnet/'
-	root_grp.Conventions = 'CF-1.6'
+	root_grp.Conventions = 'CF-1.7'
 
 	# dimension
 	root_grp.createDimension('time', None)
