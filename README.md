@@ -80,6 +80,8 @@ or from anywhere, by specifying longer paths, and with options:
 
 ``` html
 $ python ~/jaws/source/jaws.py -4 -o ~/PROMICE_EGP_20160501.nc ~/jaws/sample_data/PROMICE_EGP_20160501.txt
+$ python ~/jaws/source/jaws.py -4 -o ~/GCNET_Summit_20140601.nc ~/jaws/sample_data/GCNET_Summit_20140601.txt
+$ python ~/jaws/source/jaws.py -4 -o ~/AAWS_AGO-4_20161130.nc ~/jaws/sample_data/AAWS_AGO-4_20161130.txt
 ```
 
 where the argument to the optional `-o` is the user-defined output filename

@@ -1,5 +1,7 @@
 2018-01-19  Charlie Zender  <zender@uci.edu>
 
+	* Use stn_nm_lng_max to dimension station_name character arrays
+
 	* Add copyright/license to README.md
 
 2018-01-18  Ajay Saini  <sainiak@uci.edu>

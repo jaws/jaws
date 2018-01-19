@@ -45,14 +45,15 @@ def aaws2nc(args):
 	root_grp.data_type = 'q1h'
 
 	# dimension
-	root_grp.createDimension('station', 25)
+        stn_nm_lng_max=25
 	root_grp.createDimension('time', None)
 	root_grp.createDimension('nbnd', 2)
+	root_grp.createDimension('stn_nm_lng_max', stn_nm_lng_max)
 	
 	# variables
 	latitude = root_grp.createVariable('latitude', 'f4')
 	longitude = root_grp.createVariable('longitude', 'f4')
-	station_name = root_grp.createVariable('station_name', 'S1', ('station',))
+	station_name = root_grp.createVariable('station_name', 'S1', ('stn_nm_lng_max',))
 	time = root_grp.createVariable('time', 'i4', ('time',))
 	time_bounds = root_grp.createVariable('time_bounds', 'i4', ('time','nbnd'))
 	#stamp = root_grp.createVariable('stamp', 'S20', ('time',))
