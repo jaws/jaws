@@ -1,3 +1,19 @@
+2018-01-18  Ajay Saini  <sainiak@uci.edu>
+
+	* GCNET: Added new temp variables to store quality control variables
+
+	* GCNET: Compatible with classic netCDF formats
+
+	* GCNET: corrected calculation of hour variable to include other values
+
+	* Added global attribute featureType and cf_role for station_name
+
+	* Meeting with Wenshan to discuss coordinates and cell_methods attribute
+
+	* Coordinates attribute added to more variables
+
+	* Added cell_methods attribute
+
 2018-01-18  Charlie Zender  <zender@uci.edu>
 
 	* Fix usage example on README.md
