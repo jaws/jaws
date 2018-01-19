@@ -2,6 +2,7 @@ import argparse
 import gcnet2nc
 import promice2nc
 import aaws2nc
+import os
 
 def Main():
 	parser = argparse.ArgumentParser()
@@ -30,7 +31,7 @@ def Main():
 	elif line[0] == '#':
 		aaws2nc.aaws2nc(args)
 
-	print("Converted " + str(args.input) + " to netCDF format")
+	print("Converted " + str(os.path.basename(args.input)) + " to netCDF format")
 
 
 if __name__ == '__main__':
