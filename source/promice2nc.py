@@ -188,6 +188,7 @@ def promice2nc(args):
 	longwave_radiation_up.units = 'watt meter-2'
 	longwave_radiation_up.long_name = 'Longwave Radiation Up'
 	longwave_radiation_up.standard_name = 'upwelling_longwave_flux_in_air'
+	longwave_radiation_up.coordinates = 'longitude latitude'
 
 	cloudcover.units = '1'
 	cloudcover.long_name = 'Cloud Cover'
@@ -284,22 +285,27 @@ def promice2nc(args):
 	elevation.units = 'meter'
 	elevation.long_name = 'Elevation GPS'
 	#elevation.standard_name = ''
+	elevation.coordinates = 'longitude latitude'
 
 	hor_dil_prec.units = '1'
-	hor_dil_prec.long_name = 'Hor Dil of Prec GPS'
+	hor_dil_prec.long_name = 'Horizontal Dilution of Precision GPS'
 	#hor_dil_prec.standard_name = ''
+	hor_dil_prec.coordinates = 'longitude latitude'
 
 	logger_temp.units = 'kelvin'
 	logger_temp.long_name = 'Logger Temperature'
 	#logger_temp.standard_name = ''
+	logger_temp.coordinates = 'longitude latitude'
 
 	fan_current.units = 'ampere'
 	fan_current.long_name = 'Fan Current'
 	#fan_current.standard_name = ''
+	fan_current.coordinates = 'longitude latitude'
 
 	battery_voltage.units = 'volts'
 	battery_voltage.long_name = 'Battery Voltage'
 	battery_voltage.standard_name = 'battery_voltage'
+	battery_voltage.coordinates = 'longitude latitude'
 
 
 	ip_file = open(str(args.input), 'r')

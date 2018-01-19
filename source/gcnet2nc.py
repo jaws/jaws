@@ -299,6 +299,7 @@ def gcnet2nc(args):
 	battery_voltage.units = 'volts'
 	battery_voltage.long_name = 'Battery Voltage'
 	battery_voltage.standard_name = 'battery_voltage'
+	battery_voltage.coordinates = 'longitude latitude'
 
 	sw_down_max.units = 'watt meter-2'
 	sw_down_max.long_name = 'Shortwave Flux down max'
@@ -392,15 +393,19 @@ def gcnet2nc(args):
 
 	qc1.units = '1'
 	qc1.long_name = 'Quality Control variables 01-08'
+	qc1.coordinates = 'longitude latitude'
 
 	qc9.units = '1'
 	qc9.long_name = 'Quality Control variables 09-16'
+	qc9.coordinates = 'longitude latitude'
 
 	qc17.units = '1'
 	qc17.long_name = 'Quality Control variables 17-24'
+	qc17.coordinates = 'longitude latitude'
 
 	qc25.units = '1'
 	qc25.long_name = 'Quality Control variables 25-27'
+	qc25.coordinates = 'longitude latitude'
 
 	#date_derived.note = 'Created date from year and julian decimal time.'
 	
