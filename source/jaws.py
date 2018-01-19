@@ -30,7 +30,7 @@ def Main():
 	elif line[0] == '#':
 		aaws2nc.aaws2nc(args)
 
-	print("The file " + str(args.input) + " is converted into netCDF format.")
+	print("Converted " + str(args.input) + " to netCDF format")
 
 
 if __name__ == '__main__':

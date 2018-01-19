@@ -70,13 +70,7 @@ JAWS works with any Python distribution, and especially well with Anaconda and [
 
 ### Example
 
-Translating L2 ASCII formats into homogenized netCDF format:
-
-The current version can translate ASCII data from the GCNet, PROMICE and AAWS networks to netCDF format.
-
-The user provides the input file path. By default, the output file will be stored within the current directory with the network name (e.g. promice.nc). The user can optionally give their own output path/name.
-
-Execute this from the JAWS `source` directory:
+The current version can translate L2 ASCII data from the GCNet, PROMICE and AAWS networks to netCDF format. The user provides the input file path. By default, the output file will be stored within the current directory with the network name (e.g. promice.nc). The user can optionally give their own output path/name. Execute this from the JAWS `source` directory:
 
 ``` html
 $ python jaws.py ../sample_data/PROMICE_EGP_20160501.txt
