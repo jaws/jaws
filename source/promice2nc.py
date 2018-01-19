@@ -509,7 +509,7 @@ def promice2nc(args):
 	elif ('MIT') in os.path.basename(args.input):
 		latitude[0] =  65.6922
 		longitude[0] =  37.8280
-		station_name[0:5] = ['M','I','T']
+		station_name[0:3] = ['M','I','T']
 	elif ('NUK_K') in os.path.basename(args.input):
 		latitude[0] = 64.1623
 		longitude[0] = 51.3587
