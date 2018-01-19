@@ -63,19 +63,10 @@ Users should periodically update their local repositories to the current version
 $ git pull
 ```
 
-
 ### Pre-requisites 
 
 JAWS works with any Python distribution, and especially well with Anaconda and [Miniconda](https://conda.io/miniconda.html)
 * netCDF4: Install with `conda install netcdf4` or as instructed on the [webpage](unidata.github.io/netcdf4-python)
-<!--* astropy.io: Astropy is installed by default with the Anaconda Distribution. If you are using miniconda, you can execute following command to install it:
-
-```html
-$conda install astropy.io
-```
-
-More details can be found on its [webpage](http://docs.astropy.org/en/stable/install.html)
--->
 
 ### Example
 
@@ -115,27 +106,12 @@ Derive value-added data and metadata:
 ``` html
 $ jaws --L2=gcnet --solar_zenith_angles L2.ascii L3.nc
 ```
-
-* Should see similar log output to the following:
-``` html
-DEBUG : filemanager     Creating packet: './Example_data/AKUL232'
-DEBUG : filemanager     Dropping packet: './Example_data/AKUL232'
-DEBUG : filemanager     Creating packet: './Example_data/AKUL232'
-DEBUG : filemanager     Creating packet: 1
-DEBUG : filemanager     Creating packet: './Example_data/AKUL232.log'
-DEBUG : filemanager     Creating packet: './Example_data/AUPA299'
-DEBUG : filemanager     Dropping packet: './Example_data/AUPA299'
-DEBUG : filemanager     Creating packet: './Example_data/AUPA299'
-DEBUG : filemanager     Creating packet: 2
-```
 -->
 
 ___
 ## Credit
 
 This software is being developed by the University of California Irvine under NASA Advanced Information Systems Technology (AIST) Proposal and Project 80NSSC17K0540.
-
-
 
 ## Resources
 
@@ -149,11 +125,11 @@ This software is being developed by the University of California Irvine under NA
 
 See the [Wiki](https://github.com/jaws/jaws/wiki/) for full documentation, examples, operational details and other information.
 
-
 ## Bugs and Feedback
 
 For bugs, questions and discussions please use the [GitHub Issues](https://github.com/jaws/jaws/issues).
-
  
 ## Copyright and License
 
+Copyright (C) 2017--2018 Regents of the University of California.
+You may redistribute and/or modify JAWS under the terms of the Apache License, Version 2.0.
