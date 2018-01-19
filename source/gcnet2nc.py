@@ -34,6 +34,7 @@ def gcnet2nc(args):
 	
 	root_grp.title = 'Surface Radiation Data from Greenland Climate Network'
 	root_grp.source = 'Surface Observations'
+	root_grp.featureType = 'timeSeries'
 	root_grp.institution = 'Cooperative Institute for Research in Enviornmental Sciences'
 	root_grp.reference = 'http://cires.colorado.edu/science/groups/steffen/gcnet/'
 	root_grp.URL = 'http://cires.colorado.edu/science/groups/steffen/gcnet/'
@@ -137,6 +138,9 @@ def gcnet2nc(args):
 	day = root_grp.createVariable('day', 'i1', ('time',))
 	hour = root_grp.createVariable('hour', 'i1', ('time',))
 	
+
+	station_name.long_name = 'station name'
+	station_name.cf_role = 'timeseries_id'
 
 	latitude.units = 'degrees_north'
 	latitude.standard_name = 'latitude'

@@ -23,9 +23,10 @@ def promice2nc(args):
 	else:
 		root_grp = Dataset(op_file, 'w', format='NETCDF4')
 	
-	root_grp.station_name = os.path.basename(args.input)[0:5]
+	#root_grp.station_name = os.path.basename(args.input)[0:5]
 	root_grp.title = 'Weather Station Data'
 	root_grp.source = 'Surface Observations'
+	root_grp.featureType = 'timeSeries'
 	root_grp.institution = 'Programme for Monitoring of the Greenland Ice Sheet'
 	root_grp.reference = 'http://www.promice.dk/home.html'
 	root_grp.Conventions = 'CF-1.7'
@@ -86,7 +87,7 @@ def promice2nc(args):
 	battery_voltage = root_grp.createVariable('battery_voltage', 'f4', ('time',), fill_value = -999)
 	time_bounds = root_grp.createVariable('time_bounds', 'i4', ('time','nbnd'))
 	
-	station_name.long_name = 'name of station'
+	station_name.long_name = 'station name'
 	station_name.cf_role = 'timeseries_id'
 
 	latitude.units = 'degrees_north'
