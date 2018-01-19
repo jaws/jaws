@@ -45,7 +45,7 @@ def aaws2nc(args):
 	root_grp.data_type = 'q1h'
 
 	# dimension
-        stn_nm_lng_max=25
+    stn_nm_lng_max=25
 	root_grp.createDimension('time', None)
 	root_grp.createDimension('nbnd', 2)
 	root_grp.createDimension('stn_nm_lng_max', stn_nm_lng_max)

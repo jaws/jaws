@@ -41,7 +41,7 @@ def gcnet2nc(args):
 	root_grp.Conventions = 'CF-1.7'
 
 	# dimension
-        stn_nm_lng_max=25
+    stn_nm_lng_max=25
 	root_grp.createDimension('time', None)
 	root_grp.createDimension('nbnd', 2)
 	root_grp.createDimension('station', 1)
