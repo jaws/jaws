@@ -617,53 +617,53 @@ def gcnet2nc(args):
 		temp25[j] = columns[51]
 
 		columns[2] = float(columns[2])
-		if str(columns[2]-int(columns[2]))[1:5] == '.0':
+		if str(columns[2]-int(columns[2]))[1:4] == '.0':
 			hour[j] = 0
-		elif str(columns[2]-int(columns[2]))[1:5] in {'.0417', '.042'}:
+		elif str(columns[2]-int(columns[2]))[1:4] in {'.04'}:
 			hour[j] = 1
-		elif str(columns[2]-int(columns[2]))[1:5] in {'.0833', '.082'}:
+		elif str(columns[2]-int(columns[2]))[1:4] in {'.08'}:
 			hour[j] = 2
-		elif str(columns[2]-int(columns[2]))[1:5] in {'.125'}:
+		elif str(columns[2]-int(columns[2]))[1:4] in {'.12'}:
 			hour[j] = 3
-		elif str(columns[2]-int(columns[2]))[1:5] in {'.1667', '.167'}:
+		elif str(columns[2]-int(columns[2]))[1:4] in {'.16'}:
 			hour[j] = 4
-		elif str(columns[2]-int(columns[2]))[1:5] in {'.2083','.207'}:
+		elif str(columns[2]-int(columns[2]))[1:4] in {'.20'}:
 			hour[j] = 5
-		elif str(columns[2]-int(columns[2]))[1:5] in {'.25'}:
+		elif str(columns[2]-int(columns[2]))[1:4] in {'.25'}:
 			hour[j] = 6
-		elif str(columns[2]-int(columns[2]))[1:5] in {'.2917','.292'}:
+		elif str(columns[2]-int(columns[2]))[1:4] in {'.29'}:
 			hour[j] = 7
-		elif str(columns[2]-int(columns[2]))[1:5] in {'.3333','.332'}:
+		elif str(columns[2]-int(columns[2]))[1:4] in {'.33'}:
 			hour[j] = 8
-		elif str(columns[2]-int(columns[2]))[1:5] in {'.375'}:
+		elif str(columns[2]-int(columns[2]))[1:4] in {'.37'}:
 			hour[j] = 9
-		elif str(columns[2]-int(columns[2]))[1:5] in {'.4167','.417'}:
+		elif str(columns[2]-int(columns[2]))[1:4] in {'.41'}:
 			hour[j] = 10
-		elif str(columns[2]-int(columns[2]))[1:5] in {'.4583','.457'}:
+		elif str(columns[2]-int(columns[2]))[1:4] in {'.45'}:
 			hour[j] = 11
-		elif str(columns[2]-int(columns[2]))[1:5] in {'.5'}:
+		elif str(columns[2]-int(columns[2]))[1:4] in {'.5'}:
 			hour[j] = 12
-		elif str(columns[2]-int(columns[2]))[1:5] in {'.5417','.542'}:
+		elif str(columns[2]-int(columns[2]))[1:4] in {'.54'}:
 			hour[j] = 13
-		elif str(columns[2]-int(columns[2]))[1:5] in {'.5833','.582'}:
+		elif str(columns[2]-int(columns[2]))[1:4] in {'.58'}:
 			hour[j] = 14
-		elif str(columns[2]-int(columns[2]))[1:5] in {'.625'}:
+		elif str(columns[2]-int(columns[2]))[1:4] in {'.62'}:
 			hour[j] = 15
-		elif str(columns[2]-int(columns[2]))[1:5] in {'.6667','.667'}:
+		elif str(columns[2]-int(columns[2]))[1:4] in {'.66'}:
 			hour[j] = 16
-		elif str(columns[2]-int(columns[2]))[1:5] in {'.7083','.707'}:
+		elif str(columns[2]-int(columns[2]))[1:4] in {'.70'}:
 			hour[j] = 17
-		elif str(columns[2]-int(columns[2]))[1:5] in {'.75'}:
+		elif str(columns[2]-int(columns[2]))[1:4] in {'.75'}:
 			hour[j] = 18
-		elif str(columns[2]-int(columns[2]))[1:5] in {'.7917','.792'}:
+		elif str(columns[2]-int(columns[2]))[1:4] in {'.79'}:
 			hour[j] = 19
-		elif str(columns[2]-int(columns[2]))[1:5] in {'.8333','.832'}:
+		elif str(columns[2]-int(columns[2]))[1:4] in {'.83'}:
 			hour[j] = 20
-		elif str(columns[2]-int(columns[2]))[1:5] in {'.875'}:
+		elif str(columns[2]-int(columns[2]))[1:4] in {'.87'}:
 			hour[j] = 21
-		elif str(columns[2]-int(columns[2]))[1:5] in {'.9167','.917'}:
+		elif str(columns[2]-int(columns[2]))[1:4] in {'.91'}:
 			hour[j] = 22
-		elif str(columns[2]-int(columns[2]))[1:5] in {'.9583','.957'}:
+		elif str(columns[2]-int(columns[2]))[1:4] in {'.95'}:
 			hour[j] = 23
 		
 		j += 1
