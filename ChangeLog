@@ -1,3 +1,23 @@
+2018-01-19  Ajay Saini  <sainiak@uci.edu>
+
+	* MIT station_name array size corrected
+
+	* Changes to make compatible with Python 3
+
+	* Filename in print to take only basename not path
+
+	* Plot scripts can now be run from command line
+
+	* Added std deviation on top of mean of plots
+
+	* Automated plot labels to get month and year from data
+
+	* Added functionality to provide month from command line in plots
+
+	* Annual_cycle plot can now be run for leap years as well
+
+	* Added functionality to choose any variable from command line on which analysis need to be performed 
+
 2018-01-19  Charlie Zender  <zender@uci.edu>
 
 	* Use stn_nm_lng_max to dimension station_name character arrays
