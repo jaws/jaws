@@ -14,6 +14,7 @@ mpl.rc('axes', facecolor = 'white')
 parser = argparse.ArgumentParser()
 parser.add_argument("input", help="The PROMICE file you wish to convert to netCDF.", type=str)
 parser.add_argument('year', help = 'Month you want to select', type = int)
+parser.add_argument('var', help = 'variable you want to analyse', type = str)
 args = parser.parse_args()
 
 ds = xarray.open_dataset(args.input)
@@ -27,19 +28,19 @@ jdt = df['julian_decimal_time']
 
 df['temperature_tc_1'].replace([999.00], [245], inplace=True)
 
-temp_day_avg = df['temperature_tc_1'].groupby(jdt).mean()
-temp_day_max = df['temperature_tc_1'].groupby(jdt).max()
-temp_day_min = df['temperature_tc_1'].groupby(jdt).min()
+var_day_avg = df[args.var].groupby(jdt).mean()
+var_day_max = df[args.var].groupby(jdt).max()
+var_day_min = df[args.var].groupby(jdt).min()
 
 if year[0][0][0]%4 == 0:
 	days = range(1,367)
 else:
 	days = range(1,366)
 
-plt.plot(days,temp_day_avg, label='mean', color ='black')
-#plt.fill_between(days,temp_day_max, temp_day_min, label='max-min', facecolor='green', alpha=0.3)
-plt.plot(days,temp_day_max, label='max', color = 'darkseagreen')
-plt.plot(days,temp_day_min, label='min', color = 'lightskyblue')
+plt.plot(days,var_day_avg, label='mean', color ='black')
+#plt.fill_between(days,var_day_max, var_day_min, label='max-min', facecolor='green', alpha=0.3)
+plt.plot(days,var_day_max, label='max', color = 'darkseagreen')
+plt.plot(days,var_day_min, label='min', color = 'lightskyblue')
 plt.legend(loc='best')
 plt.xlabel('Day of year')
 plt.ylabel('Temperature [Kelvin]')

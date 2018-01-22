@@ -14,6 +14,7 @@ mpl.rc('axes', facecolor = 'white')
 parser = argparse.ArgumentParser()
 parser.add_argument("input", help="The PROMICE file you wish to convert to netCDF.", type=str)
 parser.add_argument('month', help = 'Month you want to select', type = int)
+parser.add_argument('var', help = 'variable you want to analyse', type = str)
 args = parser.parse_args()
 
 ds = xarray.open_dataset(args.input)
@@ -25,8 +26,8 @@ year = df['year']
 
 df['temperature_tc_1'].replace([999.00], [245], inplace=True)
 
-temp_tc_hour_avg = df['temperature_tc_1'].groupby(hour).mean()
-temp_tc_hour_sd = df['temperature_tc_1'].groupby(hour).std()
+var_hour_avg = df[args.var].groupby(hour).mean()
+var_hour_sd = df[args.var].groupby(hour).std()
 
 df['month'] = df['month'].astype(str)
 month = df['month']
@@ -70,7 +71,7 @@ elif month[0][0][0] == '12':
 
 hours = range(1,25)
 
-plt.errorbar(hours, temp_tc_hour_avg, yerr = temp_tc_hour_sd, fmt='--o', ecolor='k', capthick=5)
+plt.errorbar(hours, var_hour_avg, yerr = var_hour_sd, fmt='--o', ecolor='k', capthick=5)
 plt.legend(loc='best', fancybox=True, framealpha=0.3)
 plt.xticks(hours)
 plt.xlabel('Hour of the day')
