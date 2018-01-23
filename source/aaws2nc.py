@@ -85,7 +85,7 @@ def aaws2nc(args, op_file, root_grp):
 	
 	print("converting data...")
 
-	count =  sum(1 for line in open(args.input) if len(line.strip()) != 0) - 8
+	num_lines =  sum(1 for line in open(args.input) if len(line.strip()) != 0) - 8
 	#8 is the number of lines before the data starts in input file
 
 	i,j = 0,0

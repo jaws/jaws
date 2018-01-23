@@ -429,15 +429,15 @@ def gcnet2nc(args, op_file, root_grp):
 	
 	print("converting data...")
 
-	count =  sum(1 for line in open(args.input)) - 54
+	num_lines =  sum(1 for line in open(args.input)) - 54
 	#54 is the number of lines before the data starts in input file
 
 	i,j = 0,0
-	temp1 = [0]*count
-	temp9 = [0]*count
-	temp17 = [0]*count
-	temp25 = [0]*count
-	temp_jdt = [0]*count
+	temp1 = [0]*num_lines
+	temp9 = [0]*num_lines
+	temp17 = [0]*num_lines
+	temp25 = [0]*num_lines
+	temp_jdt = [0]*num_lines
 	ip_file = open(str(args.input), 'r')
 
 	while i < 54:

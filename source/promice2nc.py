@@ -329,7 +329,7 @@ def promice2nc(args, op_file, root_grp):
 
 	print("converting data...")
 
-	count =  sum(1 for line in open(args.input) if len(line.strip()) != 0) - 1
+	num_lines =  sum(1 for line in open(args.input) if len(line.strip()) != 0) - 1
 	#1 is the number of lines before the data starts in input file
 
 	j = 0
@@ -576,7 +576,7 @@ def promice2nc(args, op_file, root_grp):
 	
 	print("calculating time variable...")
 	k = 0
-	while k < count:
+	while k < num_lines:
 		if hour[k] == 0:
 			time[k] = ((date(year[k],month[k],day[k])-date(2007, 1, 1)).days)*86400
 			k += 1
@@ -651,7 +651,7 @@ def promice2nc(args, op_file, root_grp):
 			k += 1
 		
 	l = 0
-	while l < count:
+	while l < num_lines:
 		time_bounds[l] = (time[l], time[l]+3600)
 		l += 1
 
