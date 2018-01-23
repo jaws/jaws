@@ -1,7 +1,7 @@
 from datetime import date
 import os
 
-def promice2nc(args, op_file, root_grp):
+def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time, time_bounds):
 
 	#Global Attributes
 	root_grp.title = 'Weather Station Data'
@@ -11,17 +11,7 @@ def promice2nc(args, op_file, root_grp):
 	root_grp.reference = 'http://www.promice.dk/home.html'
 	root_grp.Conventions = 'CF-1.7'
 
-	# dimension
-	stn_nm_lng_max=25
-	root_grp.createDimension('stn_nm_lng_max', stn_nm_lng_max)
-	root_grp.createDimension('time', None)
-	root_grp.createDimension('nbnd', 2)
-	
 	# variables
-	station_name = root_grp.createVariable('station_name', 'S1', ('stn_nm_lng_max',))
-	latitude = root_grp.createVariable('latitude', 'f4')
-	longitude = root_grp.createVariable('longitude', 'f4')
-	time = root_grp.createVariable('time', 'i4', ('time',))
 	year = root_grp.createVariable('year', 'i4', ('time',))
 	month = root_grp.createVariable('month', 'i4', ('time',))
 	day = root_grp.createVariable('day', 'i4', ('time',))
@@ -66,7 +56,6 @@ def promice2nc(args, op_file, root_grp):
 	logger_temp = root_grp.createVariable('logger_temp', 'f4', ('time',), fill_value = -999)
 	fan_current = root_grp.createVariable('fan_current', 'f4', ('time',), fill_value = -999)
 	battery_voltage = root_grp.createVariable('battery_voltage', 'f4', ('time',), fill_value = -999)
-	time_bounds = root_grp.createVariable('time_bounds', 'i4', ('time','nbnd'))
 	
 	station_name.long_name = 'station name'
 	station_name.cf_role = 'timeseries_id'

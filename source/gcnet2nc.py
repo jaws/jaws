@@ -1,7 +1,7 @@
 from datetime import date
 import os
 
-def gcnet2nc(args, op_file, root_grp):
+def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, time_bounds):
 
 	#Global Attributes
 	root_grp.title = 'Surface Radiation Data from Greenland Climate Network'
@@ -12,19 +12,7 @@ def gcnet2nc(args, op_file, root_grp):
 	root_grp.URL = 'http://cires.colorado.edu/science/groups/steffen/gcnet/'
 	root_grp.Conventions = 'CF-1.7'
 
-	# dimension
-	stn_nm_lng_max=25
-	root_grp.createDimension('time', None)
-	root_grp.createDimension('nbnd', 2)
-	root_grp.createDimension('station', 1)
-	root_grp.createDimension('stn_nm_lng_max', stn_nm_lng_max)
-
 	# variables
-	station_name = root_grp.createVariable('station_name', 'S1', ('stn_nm_lng_max',))
-	latitude = root_grp.createVariable('latitude', 'f4')
-	longitude = root_grp.createVariable('longitude', 'f4')
-	time = root_grp.createVariable('time', 'i4', ('time',))
-	time_bounds = root_grp.createVariable('time_bounds', 'i4', ('time','nbnd'))
 	station_number = root_grp.createVariable('station_number', 'i1', ('station',))
 	year = root_grp.createVariable('year', 'i4', ('time',))
 	julian_decimal_time = root_grp.createVariable('julian_decimal_time', 'f4', ('time',))

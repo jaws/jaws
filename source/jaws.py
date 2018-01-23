@@ -38,6 +38,20 @@ def Main():
 		root_grp = Dataset(op_file, 'w', format='NETCDF4_CLASSIC')
 	else:
 		root_grp = Dataset(op_file, 'w', format='NETCDF4')
+
+	# dimension
+	stn_nm_lng_max=25
+	root_grp.createDimension('time', None)
+	root_grp.createDimension('nbnd', 2)
+	root_grp.createDimension('station', 1)
+	root_grp.createDimension('stn_nm_lng_max', stn_nm_lng_max)
+
+	# Common variables
+	station_name = root_grp.createVariable('station_name', 'S1', ('stn_nm_lng_max',))
+	latitude = root_grp.createVariable('latitude', 'f4')
+	longitude = root_grp.createVariable('longitude', 'f4')
+	time = root_grp.createVariable('time', 'i4', ('time',))
+	time_bounds = root_grp.createVariable('time_bounds', 'i4', ('time','nbnd'))
 	
 	######################################################################
 
@@ -45,13 +59,13 @@ def Main():
 		line = f.readline()
 
 	if line[0] == 'D':
-		gcnet2nc.gcnet2nc(args, op_file, root_grp)
+		gcnet2nc.gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, time_bounds)
 
 	elif line[0] == 'Y':
-		promice2nc.promice2nc(args, op_file, root_grp)
+		promice2nc.promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time, time_bounds)
 
 	elif line[0] == '#':
-		aaws2nc.aaws2nc(args, op_file, root_grp)
+		aaws2nc.aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, time_bounds)
 
 	print("Converted " + str(os.path.basename(args.input)) + " to netCDF format")
 

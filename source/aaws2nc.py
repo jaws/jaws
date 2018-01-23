@@ -1,7 +1,7 @@
 from datetime import date
 import os
 
-def aaws2nc(args, op_file, root_grp):
+def aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, time_bounds):
 
 	#Global Attributes
 	root_grp.source = 'surface observation'
@@ -13,18 +13,7 @@ def aaws2nc(args, op_file, root_grp):
 	root_grp.end_time = ''
 	root_grp.data_type = 'q1h'
 
-	# dimension
-	stn_nm_lng_max=25
-	root_grp.createDimension('time', None)
-	root_grp.createDimension('nbnd', 2)
-	root_grp.createDimension('stn_nm_lng_max', stn_nm_lng_max)
-	
 	# variables
-	latitude = root_grp.createVariable('latitude', 'f4')
-	longitude = root_grp.createVariable('longitude', 'f4')
-	station_name = root_grp.createVariable('station_name', 'S1', ('stn_nm_lng_max',))
-	time = root_grp.createVariable('time', 'i4', ('time',))
-	time_bounds = root_grp.createVariable('time_bounds', 'i4', ('time','nbnd'))
 	air_temp = root_grp.createVariable('air_temp', 'f4', ('time',), fill_value = -999)
 	vtempdiff = root_grp.createVariable('vtempdiff', 'f4', ('time',), fill_value = -999)
 	rh = root_grp.createVariable('rh', 'f4', ('time',), fill_value = -999)
