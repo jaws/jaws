@@ -1,5 +1,18 @@
 2018-01-19  Ajay Saini  <sainiak@uci.edu>
 
+	* Corrected calculation of hour in GCNET to accomodate different values after decimal in different files
+
+	* Common NC file setup code moved to jaws.py
+
+	* count variable calculation optimised using list comprehension
+
+	* Dimensions and common variables moved to jaws.py
+
+	* jaws 0.2 release procedure:
+	git tag -a 0.2 -m 'Pale Catshark: Conversion of GCNET, PROMICE and AAWS networks complete'; git push --tags
+
+2018-01-19  Ajay Saini  <sainiak@uci.edu>
+
 	* MIT station_name array size corrected
 
 	* Changes to make compatible with Python 3
