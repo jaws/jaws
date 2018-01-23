@@ -3,17 +3,6 @@ import os
 
 def aaws2nc(args, op_file, root_grp):
 
-	'''data = ascii.read(args.input)
-
-	f = open(args.input)
-	count = 0
-	for line in f:
-		if line[0] == '#':
-			continue
-		else:
-			count += 1
-	f.close()'''
-
 	#Global Attributes
 	root_grp.source = 'surface observation'
 	root_grp.featureType = 'timeSeries'
@@ -36,7 +25,6 @@ def aaws2nc(args, op_file, root_grp):
 	station_name = root_grp.createVariable('station_name', 'S1', ('stn_nm_lng_max',))
 	time = root_grp.createVariable('time', 'i4', ('time',))
 	time_bounds = root_grp.createVariable('time_bounds', 'i4', ('time','nbnd'))
-	#stamp = root_grp.createVariable('stamp', 'S20', ('time',))
 	air_temp = root_grp.createVariable('air_temp', 'f4', ('time',), fill_value = -999)
 	vtempdiff = root_grp.createVariable('vtempdiff', 'f4', ('time',), fill_value = -999)
 	rh = root_grp.createVariable('rh', 'f4', ('time',), fill_value = -999)
@@ -60,8 +48,6 @@ def aaws2nc(args, op_file, root_grp):
 	time.bounds = 'time_bounds'
 	time.calendar = 'standard'
 	
-	#stamp.long_name = 'Timestamp'
-
 	air_temp.units = 'kelvin'
 	air_temp.long_name = 'air temperature'
 	air_temp.standard_name = 'air_temperature'
@@ -97,6 +83,11 @@ def aaws2nc(args, op_file, root_grp):
 	wind_spd.coordinates = 'longitude latitude'
 	wind_spd.cell_methods = 'time: mean'
 	
+	print("converting data...")
+
+	count =  sum(1 for line in open(args.input) if len(line.strip()) != 0) - 8
+	#8 is the number of lines before the data starts in input file
+
 	i,j = 0,0
 	ip_file = open(str(args.input), 'r')
 
@@ -108,11 +99,6 @@ def aaws2nc(args, op_file, root_grp):
 	    
 	    line = line.strip()
 	    columns = line.split(',')
-	    
-	    '''if columns[0] == '':
-	    	 stamp[j] = 'n/a'
-	    else:
-	   		stamp[j] = columns[0]'''
 	    
 	    if columns[1] == '':
 	    	 air_temp[j] = -999
@@ -146,14 +132,7 @@ def aaws2nc(args, op_file, root_grp):
 	   		wind_spd[j] = columns[6]
 	   		j += 1
 
-	'''for i in data:
-		air_temp[:] = data['col2']
-		vtempdiff[:] = data['col3']
-		rh[:] = data['col4']
-		pressure[:] = data['col5']
-		wind_dir[:] = data['col6']
-		wind_spd[:] = data['col7']
-	'''	
+	
 	if args.station_name:
 		y = 0
 		while y < len(args.station_name):
