@@ -9,7 +9,6 @@ def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, t
 	root_grp.featureType = 'timeSeries'
 	root_grp.institution = 'Cooperative Institute for Research in Enviornmental Sciences'
 	root_grp.reference = 'http://cires.colorado.edu/science/groups/steffen/gcnet/'
-	root_grp.URL = 'http://cires.colorado.edu/science/groups/steffen/gcnet/'
 	root_grp.Conventions = 'CF-1.7'
 
 	# variables
