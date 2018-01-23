@@ -329,6 +329,9 @@ def promice2nc(args, op_file, root_grp):
 
 	print("converting data...")
 
+	count =  sum(1 for line in open(args.input) if len(line.strip()) != 0) - 1
+	#1 is the number of lines before the data starts in input file
+
 	j = 0
 
 	for line in ip_file:
@@ -570,17 +573,7 @@ def promice2nc(args, op_file, root_grp):
 			station_name[y] = args.station_name[y]
 			y += 1
 
-	f = open(args.input)
-	count = 0
-	for line in f:
-		if line[0] == 'Y':
-			continue
-		elif len(line.strip()) == 0:
-			continue
-		else:
-			count += 1
-	f.close()
-
+	
 	print("calculating time variable...")
 	k = 0
 	while k < count:
