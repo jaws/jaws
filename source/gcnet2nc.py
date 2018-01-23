@@ -1,8 +1,7 @@
-from netCDF4 import Dataset
 from datetime import date
 import os
 
-def gcnet2nc(args):
+def gcnet2nc(args, op_file, root_grp):
 
 	f = open(args.input)
 	count, a = 0, 0
@@ -13,25 +12,7 @@ def gcnet2nc(args):
 		count += 1
 	f.close()
 
-	# NC file setup
-	op_file = str((os.path.basename(args.input)).split('.')[0])+'.nc'
-	
-	if args.output:
-		op_file = str(args.output)
-
-	if args.format3 == 1:
-		root_grp = Dataset(op_file, 'w', format='NETCDF3_CLASSIC')
-	elif args.format4 == 1:
-		root_grp = Dataset(op_file, 'w', format='NETCDF4')
-	elif args.format5 == 1:
-		root_grp = Dataset(op_file, 'w', format='NETCDF3_64BIT_DATA')
-	elif args.format6 == 1:
-		root_grp = Dataset(op_file, 'w', format='NETCDF3_64BIT_OFFSET')
-	elif args.format7 == 1:
-		root_grp = Dataset(op_file, 'w', format='NETCDF4_CLASSIC')
-	else:
-		root_grp = Dataset(op_file, 'w', format='NETCDF4')
-	
+	#Global Attributes
 	root_grp.title = 'Surface Radiation Data from Greenland Climate Network'
 	root_grp.source = 'Surface Observations'
 	root_grp.featureType = 'timeSeries'

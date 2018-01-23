@@ -14,22 +14,43 @@ def Main():
 	parser.add_argument("-6", "--format6", "--6", "--64bit_offset", "--fl_fmt=64bit_offset", help="NETCDF3_64BIT_OFFSET", action="store_true")
 	parser.add_argument("-7", "--format7", "--7", "--fl_fmt=netcdf4_classic", help="NETCDF4_CLASSIC", action="store_true")
 	parser.add_argument("-s","--station_name", help = "name of station if you want to change")
-	#parser.add_argument("-f", "--format", help="netCDF format in which you want to store. Option '3' = NETCDF3_CLASSIC, '4' = NETCDF4, '5' = NETCDF3_64BIT_DATA, '6' = NETCDF3_64BIT_OFFSET, '7' = NETCDF4_CLASSIC", type=int)
 
 	args = parser.parse_args()
+
+	######################################################################
+
+	# NC file setup
+	op_file = str((os.path.basename(args.input)).split('.')[0])+'.nc'
+	
+	if args.output:
+		op_file = str(args.output)
+
+	if args.format3 == 1:
+		root_grp = Dataset(op_file, 'w', format='NETCDF3_CLASSIC')
+	elif args.format4 == 1:
+		root_grp = Dataset(op_file, 'w', format='NETCDF4')
+	elif args.format5 == 1:
+		root_grp = Dataset(op_file, 'w', format='NETCDF3_64BIT_DATA')
+	elif args.format6 == 1:
+		root_grp = Dataset(op_file, 'w', format='NETCDF3_64BIT_OFFSET')
+	elif args.format7 == 1:
+		root_grp = Dataset(op_file, 'w', format='NETCDF4_CLASSIC')
+	else:
+		root_grp = Dataset(op_file, 'w', format='NETCDF4')
+	
+	######################################################################
 
 	with open(str(args.input),'r') as f:
 		line = f.readline()
 
-
 	if line[0] == 'D':
-		gcnet2nc.gcnet2nc(args)
+		gcnet2nc.gcnet2nc(args, op_file, root_grp)
 
 	elif line[0] == 'Y':
-		promice2nc.promice2nc(args)
+		promice2nc.promice2nc(args, op_file, root_grp)
 
 	elif line[0] == '#':
-		aaws2nc.aaws2nc(args)
+		aaws2nc.aaws2nc(args, op_file, root_grp)
 
 	print("Converted " + str(os.path.basename(args.input)) + " to netCDF format")
 
