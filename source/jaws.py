@@ -3,6 +3,7 @@ import gcnet2nc
 import promice2nc
 import aaws2nc
 import os
+from netcdf4 import Dataset
 
 def Main():
 	parser = argparse.ArgumentParser()
