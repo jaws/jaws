@@ -3,15 +3,6 @@ import os
 
 def gcnet2nc(args, op_file, root_grp):
 
-	f = open(args.input)
-	count, a = 0, 0
-	while a < 54:
-		f.readline()
-		a += 1
-	for line in f:
-		count += 1
-	f.close()
-
 	#Global Attributes
 	root_grp.title = 'Surface Radiation Data from Greenland Climate Network'
 	root_grp.source = 'Surface Observations'
@@ -437,6 +428,10 @@ def gcnet2nc(args, op_file, root_grp):
 	#date_derived.note = 'Created date from year and julian decimal time.'
 	
 	print("converting data...")
+
+	count =  sum(1 for line in open(args.input)) - 54
+	#54 is the number of lines before the data starts in input file
+
 	i,j = 0,0
 	temp1 = [0]*count
 	temp9 = [0]*count
