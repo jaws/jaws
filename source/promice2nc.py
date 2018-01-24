@@ -1,7 +1,7 @@
 from datetime import date
 import os
 
-def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time, time_bounds):
+def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time, time_bounds, station_dict):
 
 	#Global Attributes
 	root_grp.title = 'Weather Station Data'
@@ -450,115 +450,68 @@ def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time,
 		j += 1
 
 
-	#station_name = args.input[0:5]
-	if args.station_name:
-		break
-	else:
 		if ('EGP') in os.path.basename(args.input):
-			latitude[0] = 75.6247
-			longitude[0] = 35.9748
-			station_name[0:3] = [s for s in 'EGP']
+			temp_stn = 'promice_egp'
 		elif ('KAN_B') in os.path.basename(args.input):
-			latitude[0] = 67.1252
-			longitude[0] = 50.1832
-			station_name[0:5] = [s for s in 'KAN_B']
+			temp_stn = 'promice_kanb'
 		elif ('KAN_L') in os.path.basename(args.input):
-			latitude[0] = 67.0955
-			longitude[0] = 49.9513
-			station_name[0:5] = [s for s in 'KAN_L']
+			temp_stn = 'promice_kanl'
 		elif ('KAN_M') in os.path.basename(args.input):
-			latitude[0] =  67.0670
-			longitude[0] = 48.8355
-			station_name[0:5] = [s for s in 'KAN_M']
+			temp_stn = 'promice_kanm'
 		elif ('KAN_U') in os.path.basename(args.input):
-			latitude[0] = 67.0003
-			longitude[0] = 47.0253
-			station_name[0:5] = [s for s in 'KAN_U']
+			temp_stn = 'promice_kanu'
 		elif ('KPC_L') in os.path.basename(args.input):
-			latitude[0] = 79.9108
-			longitude[0] = 24.0828
-			station_name[0:5] = [s for s in 'KPC_L']
+			temp_stn = 'promice_kpcl'
 		elif ('KPC_U') in os.path.basename(args.input):
-			latitude[0] = 79.8347
-			longitude[0] = 25.1662
-			station_name[0:5] = [s for s in 'KPC_U']
+			temp_stn = 'promice_kpcu'
 		elif ('MIT') in os.path.basename(args.input):
-			latitude[0] =  65.6922
-			longitude[0] =  37.8280
-			station_name[0:3] = [s for s in 'MIT']
+			temp_stn = 'promice_mit'
 		elif ('NUK_K') in os.path.basename(args.input):
-			latitude[0] = 64.1623
-			longitude[0] = 51.3587
-			station_name[0:5] = [s for s in 'NUK_K']
+			temp_stn = 'promice_nukk'
 		elif ('NUK_L') in os.path.basename(args.input):
-			latitude[0] = 64.4822
-			longitude[0] = 49.5358
-			station_name[0:5] = [s for s in 'NUK_L']
+			temp_stn = 'promice_nukl'
 		elif ('NUK_N') in os.path.basename(args.input):
-			latitude[0] = 64.9452
-			longitude[0] = 49.8850
-			station_name[0:5] = [s for s in 'NUK_N']
+			temp_stn = 'promice_nukn'
 		elif ('NUK_U') in os.path.basename(args.input):
-			latitude[0] = 64.5108
-			longitude[0] = 49.2692
-			station_name[0:5] = [s for s in 'NUK_U']
+			temp_stn = 'promice_nuku'
 		elif ('QAS_A') in os.path.basename(args.input):
-			latitude[0] =  61.2430
-			longitude[0] = 46.7328
-			station_name[0:5] = [s for s in 'QAS_A']
+			temp_stn = 'promice_qasa'
 		elif ('QAS_L') in os.path.basename(args.input):
-			latitude[0] = 61.0308
-			longitude[0] =  46.8493
-			station_name[0:5] = [s for s in 'QAS_L']
+			temp_stn = 'promice_qasl'
 		elif ('QAS_M') in os.path.basename(args.input):
-			latitude[0] = 61.0998
-			longitude[0] = 46.8330
-			station_name[0:5] = [s for s in 'QAS_M']
+			temp_stn = 'promice_qasm'
 		elif ('QAS_U') in os.path.basename(args.input):
-			latitude[0] = 61.1753
-			longitude[0] = 46.8195
-			station_name[0:5] = [s for s in 'QAS_U']
+			temp_stn = 'promice_qasu'
 		elif ('SCO_L') in os.path.basename(args.input):
-			latitude[0] =  72.2230
-			longitude[0] =  26.8182
-			station_name[0:5] = [s for s in 'SCO_L']
+			temp_stn = 'promice_scol'
 		elif ('SCO_U') in os.path.basename(args.input):
-			latitude[0] = 72.3933
-			longitude[0] = 27.2333
-			station_name[0:5] = [s for s in 'SCO_U']
+			temp_stn = 'promice_scou'
 		elif ('TAS_A') in os.path.basename(args.input):
-			latitude[0] = 65.7790
-			longitude[0] = 38.8995
-			station_name[0:5] = [s for s in 'TAS_A']
+			temp_stn = 'promice_tasa'
 		elif ('TAS_L') in os.path.basename(args.input):
-			latitude[0] = 65.6402
-			longitude[0] =  38.8987
-			station_name[0:5] = [s for s in 'TAS_L']
+			temp_stn = 'promice_tasl'
 		elif ('TAS_U') in os.path.basename(args.input):
-			latitude[0] =  65.6978
-			longitude[0] = 38.8668
-			station_name[0:5] = [s for s in 'TAS_U']
+			temp_stn = 'promice_tasu'
 		elif ('THU_L') in os.path.basename(args.input):
-			latitude[0] = 76.3998
-			longitude[0] = 68.2665
-			station_name[0:5] = [s for s in 'THU_L']
+			temp_stn = 'promice_thul'
 		elif ('THU_U') in os.path.basename(args.input):
-			latitude[0] =  76.4197
-			longitude[0] = 68.1463
-			station_name[0:5] = [s for s in 'THU_U']
+			temp_stn = 'promice_thuu'
 		elif ('UPE_L') in os.path.basename(args.input):
-			latitude[0] = 72.8932
-			longitude[0] =  54.2955
-			station_name[0:5] = [s for s in 'UPE_L']
+			temp_stn = 'promice_upel'
 		elif ('UPE_U') in os.path.basename(args.input):
-			latitude[0] = 72.8878
-			longitude[0] = 53.5783
-			station_name[0:5] = [s for s in 'UPE_U']
+			temp_stn = 'promice_upeu'
 		elif ('CEN') in os.path.basename(args.input):
-			latitude[0] = 0
-			longitude[0] = 0
-			station_name[0:5] = [s for s in 'CEN']
-	
+			temp_stn = 'promice_cen'
+
+	latitude[0] = (station_dict.get(temp_stn)[0])
+	longitude[0] = (station_dict.get(temp_stn)[1])
+
+	if args.station_name:
+		print('Default station name overrided by user provided station name')
+	else:
+		for y in range(0, len(station_dict.get(temp_stn)[2])): station_name[y] = (station_dict.get(temp_stn)[2])[y]
+
+
 	
 	print("calculating time variable...")
 	k = 0

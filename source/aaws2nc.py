@@ -1,7 +1,7 @@
 from datetime import date
 import os
 
-def aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, time_bounds):
+def aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, time_bounds, station_dict):
 
 	#Global Attributes
 	root_grp.source = 'surface observation'
@@ -123,7 +123,7 @@ def aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, ti
 
 	
 	if args.station_name:
-		break
+		print('Default station name overrided by user provided station name')
 	else:
 		f = open(args.input)
 		f.readline()
@@ -141,177 +141,122 @@ def aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, ti
 		break
 	f.close()
 
-
-	if x == ['AGO-4']:
-		latitude[0] = -82.010
-		longitude[0] = 96.760
-	elif x == ['Alexander Tall Tower!']:
-		latitude[0] = -79.012
-		longitude[0] = 170.723
-	elif x == ['Austin']:
-		latitude[0] = -75.995
-		longitude[0] = -87.470
-	elif x == ['Baldrick']:
-		latitude[0] = -82.774
-		longitude[0] = -13.054
-	elif x == ['Bear Peninsula']:
-		latitude[0] = -74.546
-		longitude[0] = -111.885
-	elif x == ['Byrd']:
-		latitude[0] = -80.011
-		longitude[0] = -119.438
-	elif x == ['Cape Bird']:
-		latitude[0] = -77.217
-		longitude[0] = 166.439
-	elif x == ['Cape Denison']:
-		latitude[0] = -67.009
-		longitude[0] = 142.664
-	elif x == ['Cape Hallett']:
-		latitude[0] = -72.190
-		longitude[0] = 170.160
-	elif x == ['D-10']:
-		latitude[0] = -66.705
-		longitude[0] = 139.841
-	elif x == ['D-47']:
-		latitude[0] = -67.385
-		longitude[0] = 138.729
-	elif x == ['D-85']:
-		latitude[0] = -70.426
-		longitude[0] = 134.149
-	elif x == ['Dismal Island']:
-		latitude[0] = -68.088
-		longitude[0] = -68.826
-	elif x == ['Dome C II']:
-		latitude[0] = -75.106
-		longitude[0] = 123.346
-	elif x == ['Dome Fuji']:
-		latitude[0] = -77.310
-		longitude[0] = 39.700
-	elif x == ['Elaine']:
-		latitude[0] = -83.094
-		longitude[0] = 174.285
-	elif x == ['Elizabeth']:
-		latitude[0] = -82.607
-		longitude[0] = -137.078
-	elif x == ['Emilia']:
-		latitude[0] = -78.426
-		longitude[0] = 173.186
-	elif x == ['Emma']:
-		latitude[0] = -83.997
-		longitude[0] = -175.047
-	elif x == ['Erin']:
-		latitude[0] = -84.902
-		longitude[0] = -128.860
-	elif x == ['Evans Knoll']:
-		latitude[0] = -74.850
-		longitude[0] = -100.404
-	elif x == ['Ferrell']:
-		latitude[0] = -77.803
-		longitude[0] = 170.817
-	elif x == ['Gill']:
-		latitude[0] = -79.879
-		longitude[0] = -178.565
-	elif x == ['Harry']:
-		latitude[0] = -83.005
-		longitude[0] = -121.407
-	elif x == ['Henry']:
-		latitude[0] = -89.001
-		longitude[0] = -0.391
-	elif x == ['Janet']:
-		latitude[0] = -77.174
-		longitude[0] = -123.390
-	elif x == ['JASE2007']:
-		latitude[0] = -75.888
-		longitude[0] = 25.834
-	elif x == ['Kathie']:
-		latitude[0] = -77.995
-		longitude[0] = -97.268
-	elif x == ['Kominko-Slade']:
-		latitude[0] = -79.466
-		longitude[0] = -112.106
-	elif x == ['Laurie II']:
-		latitude[0] = -77.439
-		longitude[0] = 170.750
-	elif x == ['Lettau']:
-		latitude[0] = -82.475
-		longitude[0] = -174.587
-	elif x == ['Linda']:
-		latitude[0] = -78.394
-		longitude[0] = 168.446
-	elif x == ['Lorne']:
-		latitude[0] = -78.195
-		longitude[0] = 170.028
-	elif x == ['Manuela']:
-		latitude[0] = -74.946
-		longitude[0] = 163.687
-	elif x == ['Marble Point']:
-		latitude[0] = -77.439
-		longitude[0] = 163.754
-	elif x == ['Marble Point II']:
-		latitude[0] = -77.439
-		longitude[0] = 163.759
-	elif x == ['Margaret']:
-		latitude[0] = -79.981
-		longitude[0] = -165.099
-	elif x == ['Marilyn']:
-		latitude[0] = -79.913
-		longitude[0] = 165.657
-	elif x == ['Minna Bluff']:
-		latitude[0] = -78.555
-		longitude[0] = 166.691
-	elif x == ['Mizuho']:
-		latitude[0] = -70.700
-		longitude[0] = 44.290
-	elif x == ['Nico']:
-		latitude[0] = -89.000
-		longitude[0] = 90.024
-	elif x == ['PANDA-South']:
-		latitude[0] = -82.325
-		longitude[0] = 75.989
-	elif x == ['Phoenix']:
-		latitude[0] = -77.948
-		longitude[0] = 166.758
-	elif x == ['Port Martin']:
-		latitude[0] = -66.820
-		longitude[0] = 141.390
-	elif x == ['Possession Island']:
-		latitude[0] = -71.891
-		longitude[0] = 171.210
-	elif x == ['Relay Station']:
-		latitude[0] = -74.017
-		longitude[0] = 43.062
-	elif x == ['Sabrina']:
-		latitude[0] = -84.247
-		longitude[0] = -170.068
-	elif x == ['Schwerdtfeger']:
-		latitude[0] = -79.816
-		longitude[0] = 170.358
-	elif x == ['Siple Dome']:
-		latitude[0] = -81.652
-		longitude[0] = -148.992
-	elif x == ['Theresa']:
-		latitude[0] = -84.602
-		longitude[0] = -115.841
-	elif x == ['Thurston Island']:
-		latitude[0] = -72.532
-		longitude[0] = -97.545
-	elif x == ['Vito']:
-		latitude[0] = -78.408
-		longitude[0] = 177.829
-	elif x == ['White Island']:
-		latitude[0] = -78.076
-		longitude[0] = 167.451
-	elif x == ['Whitlock']:
-		latitude[0] = -76.142
-		longitude[0] = 168.394
-	elif x == ['Willie Field']:
-		latitude[0] = -77.868
-		longitude[0] = 166.921
-	elif x == ['Windless Bight']:
-		latitude[0] = -77.728
-		longitude[0] = 167.676
+	print(x)
+	if x == 'AGO-4':
+		temp_stn = 'aaws_ago4'
+	elif x == 'Alexander Tall Tower!':
+		temp_stn = 'aaws_alexander'
+	elif x == 'Austin':
+		temp_stn = 'aaws_austin'
+	elif x == 'Baldrick':
+		temp_stn = 'aaws_baldrick'
+	elif x == 'Bear Peninsula':
+		temp_stn = 'aaws_bearpeninsula'
+	elif x == 'Byrd':
+		temp_stn = 'aaws_byrd'
+	elif x == 'Cape Bird':
+		temp_stn = 'aaws_capebird'
+	elif x == 'Cape Denison':
+		temp_stn = 'aaws_capedenison'
+	elif x == 'Cape Hallett':
+		temp_stn = 'aaws_capehallett'
+	elif x == 'D-10':
+		temp_stn = 'aaws_d10'
+	elif x == 'D-47':
+		temp_stn = 'aaws_d47'
+	elif x == 'D-85':
+		temp_stn = 'aaws_d85'
+	elif x == 'Dismal Island':
+		temp_stn = 'aaws_dismalisland'
+	elif x == 'Dome C II':
+		temp_stn = 'aaws_domecII'
+	elif x == 'Dome Fuji':
+		temp_stn = 'aaws_domefuji'
+	elif x == 'Elaine':
+		temp_stn = 'aaws_elaine'
+	elif x == 'Elizabeth':
+		temp_stn = 'aaws_elizabeth'
+	elif x == 'Emilia':
+		temp_stn = 'aaws_emilia'
+	elif x == 'Emma':
+		temp_stn = 'aaws_emma'
+	elif x == 'Erin':
+		temp_stn = 'aaws_erin'
+	elif x == 'Evans Knoll':
+		temp_stn = 'aaws_evansknoll'
+	elif x == 'Ferrell':
+		temp_stn = 'aaws_ferrell'
+	elif x == 'Gill':
+		temp_stn = 'aaws_gill'
+	elif x == 'Harry':
+		temp_stn = 'aaws_harry'
+	elif x == 'Henry':
+		temp_stn = 'aaws_henry'
+	elif x == 'Janet':
+		temp_stn = 'aaws_janet'
+	elif x == 'JASE2007':
+		temp_stn = 'aaws_jase2007'
+	elif x == 'Kathie':
+		temp_stn = 'aaws_kathie'
+	elif x == 'Kominko-Slade':
+		temp_stn = 'aaws_kominkoslade'
+	elif x == 'Laurie II':
+		temp_stn = 'aaws_laurieII'
+	elif x == 'Lettau':
+		temp_stn = 'aaws_lettau'
+	elif x == 'Linda':
+		temp_stn = 'aaws_linda'
+	elif x == 'Lorne':
+		temp_stn = 'aaws_lorne'
+	elif x == 'Manuela':
+		temp_stn = 'aaws_manuela'
+	elif x == 'Marble Point':
+		temp_stn = 'aaws_marblepoint'
+	elif x == 'Marble Point II':
+		temp_stn = 'aaws_marblepointII'
+	elif x == 'Margaret':
+		temp_stn = 'aaws_margaret'
+	elif x == 'Marilyn':
+		temp_stn = 'aaws_marilyn'
+	elif x == 'Minna Bluff':
+		temp_stn = 'aaws_minnabluff'
+	elif x == 'Mizuho':
+		temp_stn = 'aaws_mizuho'
+	elif x == 'Nico':
+		temp_stn = 'aaws_nico'
+	elif x == 'PANDA-South':
+		temp_stn = 'aaws_pandasouth'
+	elif x == 'Phoenix':
+		temp_stn = 'aaws_phoenix'
+	elif x == 'Port Martin':
+		temp_stn = 'aaws_portmartin'
+	elif x == 'Possession Island':
+		temp_stn = 'aaws_possessionisland'
+	elif x == 'Relay Station':
+		temp_stn = 'aaws_relaystation'
+	elif x == 'Sabrina':
+		temp_stn = 'aaws_sabrina'
+	elif x == 'Schwerdtfeger':
+		temp_stn = 'aaws_schwerdtfeger'
+	elif x == 'Siple Dome':
+		temp_stn = 'aaws_sipledome'
+	elif x == 'Theresa':
+		temp_stn = 'aaws_theresa'
+	elif x == 'Thurston Island':
+		temp_stn = 'aaws_thurstonisland'
+	elif x == 'Vito':
+		temp_stn = 'aaws_vito'
+	elif x == 'White Island':
+		temp_stn = 'aaws_whiteisland'
+	elif x == 'Whitlock':
+		temp_stn = 'aaws_whitlock'
+	elif x == 'Willie Field':
+		temp_stn = 'aaws_williefield'
+	elif x == 'Windless Bight':
+		temp_stn = 'aaws_windlessbight'
 	
-
+	latitude[0] = (station_dict.get(temp_stn)[0])
+	longitude[0] = (station_dict.get(temp_stn)[1])
 
 	f = open(args.input)
 	a,b = 0,0

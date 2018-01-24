@@ -1,7 +1,7 @@
 from datetime import date
 import os
 
-def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, time_bounds):
+def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, time_bounds, station_dict):
 
 	#Global Attributes
 	root_grp.title = 'Surface Radiation Data from Greenland Climate Network'
@@ -631,83 +631,52 @@ def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, t
 		
 		j += 1
 
+	if station_number[0] == 1:
+		temp_stn = 'gcnet_swiss'
+	elif station_number[0] == 2:
+		temp_stn = 'gcnet_crawford'
+	elif station_number[0] == 3:
+		temp_stn = 'gcnet_nasau'
+	elif station_number[0] == 4:
+		temp_stn = 'gcnet_gits'
+	elif station_number[0] == 5:
+		temp_stn = 'gcnet_humboldt'
+	elif station_number[0] == 6:
+		temp_stn = 'gcnet_summit'
+	elif station_number[0] == 7:
+		temp_stn = 'gcnet_tunun'
+	elif station_number[0] == 8:
+		temp_stn = 'gcnet_dye2'
+	elif station_number[0] == 9:
+		temp_stn = 'gcnet_jar'
+	elif station_number[0] == 10:
+		temp_stn = 'gcnet_saddle'
+	elif station_number[0] == 11:
+		temp_stn = 'gcnet_dome'
+	elif station_number[0] == 12:
+		temp_stn = 'gcnet_nasae'
+	elif station_number[0] == 13:
+		temp_stn = 'gcnet_cp2'
+	elif station_number[0] == 14:
+		temp_stn = 'gcnet_ngrip'
+	elif station_number[0] == 15:
+		temp_stn = 'gcnet_nasase'
+	elif station_number[0] == 16:
+		temp_stn = 'gcnet_kar'
+	elif station_number[0] == 17:
+		temp_stn = 'gcnet_jar2'
+	elif station_number[0] == 18:
+		temp_stn = 'gcnet_kulu'
+	
+	latitude[0] = (station_dict.get(temp_stn)[0])
+	longitude[0] = (station_dict.get(temp_stn)[1])
+
 	if args.station_name:
-		break
+		print('Default station name overrided by user provided station name')
 	else:
-		if station_number[0] == 1:
-			latitude[0] = 69.56833
-			longitude[0] = -49.31582
-			station_name[0:10] = [s for s in 'Swiss Camp']
-		elif station_number[0] == 2:
-			latitude[0] = 69.87975
-			longitude[0] = -46.98667
-			station_name[0:12] = [s for s in 'Crawford Pt.']
-		elif station_number[0] == 3:
-			latitude[0] = 73.84189
-			longitude[0] = -49.49831
-			station_name[0:6] = [s for s in 'NASA-U']
-		elif station_number[0] == 4:
-			latitude[0] = 77.13781
-			longitude[0] = -61.04113
-			station_name[0:4] = [s for s in 'GITS']
-		elif station_number[0] == 5:
-			latitude[0] = 78.5266
-			longitude[0] = -56.8305
-			station_name[0:8] = [s for s in 'Humboldt']
-		elif station_number[0] == 6:
-			latitude[0] = 72.57972
-			longitude[0] = -38.50454
-			station_name[0:6] = [s for s in 'Summit']
-		elif station_number[0] == 7:
-			latitude[0] = 78.01677
-			longitude[0] = -33.99387
-			station_name[0:6] = [s for s in 'TUNU-N']
-		elif station_number[0] == 8:
-			latitude[0] = 66.48001
-			longitude[0] = -46.27889
-			station_name[0:5] = [s for s in 'DYE-2']
-		elif station_number[0] == 9:
-			latitude[0] = 69.498358
-			longitude[0] = -49.68156
-			station_name[0:3] = [s for s in 'JAR']
-		elif station_number[0] == 10:
-			latitude[0] = 65.99947
-			longitude[0] = -44.50016
-			station_name[0:6] = [s for s in 'Saddle']
-		elif station_number[0] == 11:
-			latitude[0] = 63.14889
-			longitude[0] = -44.81717
-			station_name[0:10] = [s for s in 'South Dome']
-		elif station_number[0] == 12:
-			latitude[0] = 75.00000
-			longitude[0] = -29.99972
-			station_name[0:6] = [s for s in 'NASA-E']
-		elif station_number[0] == 13:
-			latitude[0] = 69.87968
-			longitude[0] = -46.98692
-			station_name[0:3] = [s for s in 'CP2']
-		elif station_number[0] == 14:
-			latitude[0] = 75.09975
-			longitude[0] = -42.33256
-			station_name[0:5] = [s for s in 'NGRIP']
-		elif station_number[0] == 15:
-			latitude[0] = 66.4797
-			longitude[0] = -42.5002
-			station_name[0:7] = [s for s in 'NASA-SE']
-		elif station_number[0] == 16:
-			latitude[0] = 69.69942
-			longitude[0] = -33.00058
-			station_name[0:3] = [s for s in 'KAR']
-		elif station_number[0] == 17:
-			latitude[0] = 69.42000
-			longitude[0] = -50.05750
-			station_name[0:5] = [s for s in 'JAR 2']
-		elif station_number[0] == 18:
-			latitude[0] = 65.75845
-			longitude[0] = -39.60177
-			station_name[0:4] = [s for s in 'KULU']
+		for y in range(0, len(station_dict.get(temp_stn)[2])): station_name[y] = (station_dict.get(temp_stn)[2])[y]
 	
-	
+
 	print("extracting quality control variables...")
 
 	qc1_str = [str(e) for e in temp1]
