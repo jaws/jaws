@@ -582,7 +582,7 @@ def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, t
 		columns[2] = float(columns[2])
 		if str(columns[2]-int(columns[2]))[1:4] == '.0':
 			hour[j] = 0
-		elif str(columns[2]-int(columns[2]))[1:4] in {'.04'}:
+		elif str(columns[2]-int(columns[2]))[1:4] in {'.04', '.05'}:
 			hour[j] = 1
 		elif str(columns[2]-int(columns[2]))[1:4] in {'.08'}:
 			hour[j] = 2
