@@ -52,7 +52,14 @@ def Main():
 	longitude = root_grp.createVariable('longitude', 'f4')
 	time = root_grp.createVariable('time', 'i4', ('time',))
 	time_bounds = root_grp.createVariable('time_bounds', 'i4', ('time','nbnd'))
-	
+
+
+	if args.station_name:
+		y = 0
+		while y < len(args.station_name):
+			station_name[y] = args.station_name[y]
+			y += 1
+
 	######################################################################
 
 	with open(str(args.input),'r') as f:

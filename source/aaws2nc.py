@@ -123,10 +123,7 @@ def aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, ti
 
 	
 	if args.station_name:
-		y = 0
-		while y < len(args.station_name):
-			station_name[y] = args.station_name[y]
-			y += 1
+		break
 	else:
 		f = open(args.input)
 		f.readline()
