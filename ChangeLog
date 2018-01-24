@@ -1,3 +1,16 @@
+2018-01-22  Ajay Saini  <sainiak@uci.edu>
+
+	* station_name retrieved using full names instead of single characters for all networks
+
+	* Code generalized for station_name provided through argument
+
+	* count variable calculation optimised using list comprehension
+
+	* Dictionary created to store lat, lon, and long_name for all stations of all networks. Values for variables are retrieved using this table
+
+	* CPU pegged during GCNET conversion for one station. Debugged time variable calculation and corrected the error.
+	
+
 2018-01-23  Charlie Zender  <zender@uci.edu>
 
 	* Add features to L3 value-added science list
