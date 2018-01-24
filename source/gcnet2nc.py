@@ -580,19 +580,19 @@ def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, t
 		temp25[j] = columns[51]
 
 		columns[2] = float(columns[2])
-		if str(columns[2]-int(columns[2]))[1:4] == '.0':
+		if str(columns[2]-int(columns[2]))[1:4] in {'.0', '.00', '.02','.99'}:
 			hour[j] = 0
 		elif str(columns[2]-int(columns[2]))[1:4] in {'.04', '.05'}:
 			hour[j] = 1
-		elif str(columns[2]-int(columns[2]))[1:4] in {'.08'}:
+		elif str(columns[2]-int(columns[2]))[1:4] in {'.08', '.07'}:
 			hour[j] = 2
-		elif str(columns[2]-int(columns[2]))[1:4] in {'.12'}:
+		elif str(columns[2]-int(columns[2]))[1:4] in {'.12', '.10'}:
 			hour[j] = 3
-		elif str(columns[2]-int(columns[2]))[1:4] in {'.16'}:
+		elif str(columns[2]-int(columns[2]))[1:4] in {'.16', '.15'}:
 			hour[j] = 4
 		elif str(columns[2]-int(columns[2]))[1:4] in {'.20'}:
 			hour[j] = 5
-		elif str(columns[2]-int(columns[2]))[1:4] in {'.25'}:
+		elif str(columns[2]-int(columns[2]))[1:4] in {'.25', '.24'}:
 			hour[j] = 6
 		elif str(columns[2]-int(columns[2]))[1:4] in {'.29'}:
 			hour[j] = 7
@@ -604,7 +604,7 @@ def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, t
 			hour[j] = 10
 		elif str(columns[2]-int(columns[2]))[1:4] in {'.45'}:
 			hour[j] = 11
-		elif str(columns[2]-int(columns[2]))[1:4] in {'.5'}:
+		elif str(columns[2]-int(columns[2]))[1:4] in {'.5', '.49'}:
 			hour[j] = 12
 		elif str(columns[2]-int(columns[2]))[1:4] in {'.54'}:
 			hour[j] = 13
@@ -614,9 +614,9 @@ def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, t
 			hour[j] = 15
 		elif str(columns[2]-int(columns[2]))[1:4] in {'.66'}:
 			hour[j] = 16
-		elif str(columns[2]-int(columns[2]))[1:4] in {'.70'}:
+		elif str(columns[2]-int(columns[2]))[1:4] in {'.70', '.71'}:
 			hour[j] = 17
-		elif str(columns[2]-int(columns[2]))[1:4] in {'.75'}:
+		elif str(columns[2]-int(columns[2]))[1:4] in {'.75', '.74'}:
 			hour[j] = 18
 		elif str(columns[2]-int(columns[2]))[1:4] in {'.79'}:
 			hour[j] = 19
