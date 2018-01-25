@@ -85,6 +85,38 @@ $ python ~/jaws/source/jaws.py -4 -o ~/AAWS_AGO-4_20161130.nc ~/jaws/sample_data
 ```
 
 where the argument to the optional `-o` is the user-defined output filename
+
+#### Analysis Example
+
+Currently, JAWS can be used to analyse the data for GCNet in multiple ways such as:
+
+i. Plotting monthly diurnal cycle to see hourly changes for any variable throughout the month.
+
+The user provides input file path, variable name (on which analysis needs to be done) and plot type (i.e. diurnal, monthly, annual or seasonal). Year and month are optional arguments.
+
+```
+$ python analysis.py file.nc temperature_tc_1 diurnal -y 2002 -m 5
+```
+
+ii. Avg, max and min values for each day of a month for any variable
+
+```
+$ python analysis.py file.nc temperature_cs500_1 monthly -y 2013 -m 2
+```
+
+iii. Annual cycle with daily mean, max and min
+
+```
+$ python analysis.py file.nc temperature_tc_1 annual -y 2016
+```
+
+iv. Climatological seasonal cycle showing variation for each month through multiple years
+
+```
+$ python analysis.py file.nc temperature_tc_1 seasonal
+```
+
+
 <!--
 Storing AWS-like data using DSG convention:
 ``` html
