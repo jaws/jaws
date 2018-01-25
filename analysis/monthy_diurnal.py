@@ -13,13 +13,18 @@ mpl.rc('axes', facecolor = 'white')
 
 parser = argparse.ArgumentParser()
 parser.add_argument("input", help="The PROMICE file you wish to convert to netCDF.", type=str)
-parser.add_argument('month', help = 'Month you want to select', type = int)
+parser.add_argument('-y', '--year', help = 'Year you want to select', type = int)
+parser.add_argument('-m', '--month', help = 'Month you want to select', type = int)
 parser.add_argument('var', help = 'variable you want to analyse', type = str)
 args = parser.parse_args()
 
 ds = xarray.open_dataset(args.input)
 df = ds.to_dataframe()
-df = df[df.month == args.month]
+
+if args.year:
+    df = df[df.year == args.year]
+if args.month:
+    df = df[df.month == args.month]
 
 hour = df['hour']
 year = df['year']
