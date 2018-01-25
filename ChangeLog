@@ -1,4 +1,16 @@
-2018-01-22  Ajay Saini  <sainiak@uci.edu>
+2018-01-24  Ajay Saini  <sainiak@uci.edu>
+
+	* Identified all unique post decimal values for julian time in hour calculation and corrected the code accordingly
+
+	* Added option to choose year and month for analysis plots
+
+	* Added more GCNet stations to the lat, long table
+
+	* Generealized code for all different analysis plot in a single file
+
+	* Updated Readme with analysis example
+
+2018-01-23  Ajay Saini  <sainiak@uci.edu>
 
 	* station_name retrieved using full names instead of single characters for all networks
 
