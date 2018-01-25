@@ -98,6 +98,8 @@ The user provides input file path, variable name (on which analysis needs to be 
 $ python analysis.py file.nc temperature_tc_1 diurnal -y 2002 -m 5
 ```
 
+![diurnal](./img/diurnal.png?raw=true)
+
 ii. Avg, max and min values for each day of a month for any variable
 
 ```
@@ -109,6 +111,8 @@ iii. Annual cycle with daily mean, max and min
 ```
 $ python analysis.py file.nc temperature_tc_1 annual -y 2016
 ```
+
+![annual](./img/annual.jpg?raw=true)
 
 iv. Climatological seasonal cycle showing variation for each month through multiple years
 
