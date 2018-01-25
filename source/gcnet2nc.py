@@ -667,6 +667,22 @@ def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, t
 		temp_stn = 'gcnet_jar2'
 	elif station_number[0] == 18:
 		temp_stn = 'gcnet_kulu'
+	elif station_number[0] == 19:
+		temp_stn = 'gcnet_jar3'
+	elif station_number[0] == 20:
+		temp_stn = 'gcnet_aurora'
+	elif station_number[0] == 21:
+		temp_stn = 'gcnet_petermanngl'
+	elif station_number[0] == 22:
+		temp_stn = 'gcnet_petermanela'
+	elif station_number[0] == 23:
+		temp_stn = 'gcnet_neem'
+	elif station_number[0] == 30:
+		temp_stn = 'gcnet_lar1'
+	elif station_number[0] == 31:
+		temp_stn = 'gcnet_lar2'
+	elif station_number[0] == 32:
+		temp_stn = 'gcnet_lar3'
 	
 	latitude[0] = (station_dict.get(temp_stn)[0])
 	longitude[0] = (station_dict.get(temp_stn)[1])
