@@ -106,6 +106,8 @@ ii. Avg, max and min values for each day of a month for any variable
 $ python analysis.py file.nc temperature_cs500_1 monthly -y 2013 -m 2
 ```
 
+![monthly](./img/monthly.png?raw=true)
+
 iii. Annual cycle with daily mean, max and min
 
 ```
@@ -119,6 +121,8 @@ iv. Climatological seasonal cycle showing variation for each month through multi
 ```
 $ python analysis.py file.nc temperature_tc_1 seasonal
 ```
+
+![seasonal](./img/seasonal.png?raw=true)
 
 
 <!--
