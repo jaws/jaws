@@ -128,7 +128,7 @@ def seasonal():
 
 if args.plot == 'diurnal':
 	diurnal()
-	plt.errorbar(hours, var_hour_avg, yerr = var_hour_sd, fmt='--o', ecolor='k', capthick=5)
+	plt.errorbar(hours, var_hour_avg, yerr = var_hour_sd, fmt='--o', ecolor='lightskyblue', color='k')
 	plt.xticks(hours)
 	plt.xlabel('Hour of the day')
 	plt.title('Diurnal cycle at Summit for {}-{}'.format(month[0][0][0],year[0][0][0]))
@@ -138,7 +138,7 @@ elif args.plot == 'values':
 	plt.plot(days,var_day_avg, label='mean', color ='black')
 	plt.fill_between(days,var_day_max, var_day_min, label='max-min', facecolor='darkseagreen', alpha=0.3)
 	plt.xticks(days)
-	plt.xlabel('Hour of the day')
+	plt.xlabel('Day of month')
 	plt.title('Temperature at Summit for {}-{}'.format(month[0][0][0],year[0][0][0]))
 
 elif args.plot == 'annual':
@@ -152,7 +152,7 @@ elif args.plot == 'annual':
 
 elif args.plot == 'seasonal':
 	seasonal()
-	plt.errorbar(months, var_month_avg, yerr = var_month_sd, fmt='--o', ecolor= 'lightskyblue', color='k', capthick=5, snap=True)
+	plt.errorbar(months, var_month_avg, yerr = var_month_sd, fmt='--o', ecolor= 'lightskyblue', color='k')
 	plt.xticks(months)
 	plt.xlabel('Month')
 	plt.title("Climatological seasonal cycle at Summit")
