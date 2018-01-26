@@ -52,6 +52,15 @@ def Main():
 	longitude = root_grp.createVariable('longitude', 'f4')
 	time = root_grp.createVariable('time', 'i4', ('time',))
 	time_bounds = root_grp.createVariable('time_bounds', 'i4', ('time','nbnd'))
+	sza = root_grp.createVariable('sza', 'f4', ('time',))
+
+	# Variable attributes
+	sza.units = 'degree'
+	sza.long_name = 'Solar Zenith Angle'
+	sza.standard_name = 'solar_zenith_angle'
+	sza.coordinates = 'longitude latitude'
+	sza.cell_methods = 'time: mean'
+
 
 
 	if args.station_name:
@@ -180,13 +189,13 @@ def Main():
 		line = f.readline()
 
 	if line[0] == 'D':
-		gcnet2nc.gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, time_bounds, station_dict)
+		gcnet2nc.gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, time_bounds, sza, station_dict)
 
 	elif line[0] == 'Y':
-		promice2nc.promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time, time_bounds, station_dict)
+		promice2nc.promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time, time_bounds, sza, station_dict)
 
 	elif line[0] == '#':
-		aaws2nc.aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, time_bounds, station_dict)
+		aaws2nc.aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, time_bounds, sza, station_dict)
 
 	print("Converted " + str(os.path.basename(args.input)) + " to netCDF format")
 

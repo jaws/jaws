@@ -1,7 +1,9 @@
 from datetime import date
 import os
+from sunposition import sunpos
+from datetime import datetime
 
-def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time, time_bounds, station_dict):
+def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time, time_bounds, sza, station_dict):
 
 	#Global Attributes
 	root_grp.title = 'Weather Station Data'
@@ -592,6 +594,8 @@ def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time,
 	l = 0
 	while l < num_lines:
 		time_bounds[l] = (time[l], time[l]+3600)
+		temp_date = datetime(year[l], month[l], day[l], hour[l])
+		sza[l] = sunpos(temp_date,latitude[0],longitude[0],0)[1]
 		l += 1
 
 	root_grp.close()
