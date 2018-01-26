@@ -2729,7 +2729,7 @@ def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, t
 	l = 0
 	while l < num_lines:
 		temp_datetime = datetime(year[l], month[l], day[l], hour[l])
-		sza[l] = sunpos(temp_date,latitude[0],longitude[0],0)[1]
+		sza[l] = sunpos(temp_datetime,latitude[0],longitude[0],0)[1]
 		l += 1
 
 	root_grp.close()
