@@ -669,7 +669,7 @@ def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, t
 			hour[j] = 9
 		elif str(columns[2]-int(columns[2]))[1:4] in {'.41'}:
 			hour[j] = 10
-		elif str(columns[2]-int(columns[2]))[1:4] in {'.45'}:
+		elif str(columns[2]-int(columns[2]))[1:4] in {'.45', '.48'}:
 			hour[j] = 11
 		elif str(columns[2]-int(columns[2]))[1:4] in {'.5', '.49'}:
 			hour[j] = 12
