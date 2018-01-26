@@ -1,7 +1,6 @@
-from datetime import date
 import os
 from sunposition import sunpos
-from datetime import datetime
+from datetime import date, datetime
 
 def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, time_bounds, sza, station_dict):
 
@@ -101,21 +100,6 @@ def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, t
 	hour = root_grp.createVariable('hour', 'i1', ('time',))
 	
 
-	station_name.long_name = 'station name'
-	station_name.cf_role = 'timeseries_id'
-
-	latitude.units = 'degrees_north'
-	latitude.standard_name = 'latitude'
-
-	longitude.units = 'degrees_east'
-	longitude.standard_name = 'longitude'
-
-	time.units = 'seconds since 1970-01-01 00:00:00'
-	time.long_name = 'time of measurement'
-	time.standard_name = 'time'
-	time.bounds = 'time_bounds'
-	time.calendar = 'noleap'
-	
 	station_number.units = '1'
 	station_number.long_name = 'Station Number'
 

@@ -1,7 +1,6 @@
-from datetime import date
 import os
 from sunposition import sunpos
-from datetime import datetime
+from datetime import date, datetime
 
 def aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, time_bounds, sza, station_dict):
 
@@ -23,21 +22,6 @@ def aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, ti
 	wind_dir = root_grp.createVariable('wind_dir', 'f4', ('time',), fill_value = -999)
 	wind_spd = root_grp.createVariable('wind_spd', 'f4', ('time',), fill_value = -999)
 		
-	
-	station_name.long_name = 'name of station'
-	station_name.cf_role = 'timeseries_id'
-
-	latitude.units = 'degrees_north'
-	latitude.standard_name = 'latitude'
-
-	longitude.units = 'degrees_east'
-	longitude.standard_name = 'longitude'
-
-	time.units = 'seconds since 1970-01-01T00:00:00Z'
-	time.long_name = 'time of measurement'
-	time.standard_name = 'time'
-	time.bounds = 'time_bounds'
-	time.calendar = 'standard'
 	
 	air_temp.units = 'kelvin'
 	air_temp.long_name = 'air temperature'
@@ -265,7 +249,7 @@ def aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, ti
 		f.readline()
 		a += 1
 	for line in f:
-		
+
 		temp_datetime = datetime(int(line[0:4]), int(line[5:7]), int(line[8:10]), int(line[11:13]))
 		sza[b] = sunpos(temp_datetime,latitude[0],longitude[0],0)[1]
 

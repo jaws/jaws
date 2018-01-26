@@ -55,6 +55,21 @@ def Main():
 	sza = root_grp.createVariable('sza', 'f4', ('time',))
 
 	# Variable attributes
+	station_name.long_name = 'Station Name'
+	station_name.cf_role = 'timeseries_id'
+
+	latitude.units = 'degrees_north'
+	latitude.standard_name = 'latitude'
+
+	longitude.units = 'degrees_east'
+	longitude.standard_name = 'longitude'
+
+	time.units = 'seconds since 1970-01-01 00:00:00'
+	time.long_name = 'time of measurement'
+	time.standard_name = 'time'
+	time.bounds = 'time_bounds'
+	time.calendar = 'noleap'
+	
 	sza.units = 'degree'
 	sza.long_name = 'Solar Zenith Angle'
 	sza.standard_name = 'solar_zenith_angle'

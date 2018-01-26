@@ -1,7 +1,6 @@
-from datetime import date
 import os
 from sunposition import sunpos
-from datetime import datetime
+from datetime import date, datetime
 
 def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time, time_bounds, sza, station_dict):
 
@@ -58,21 +57,6 @@ def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time,
 	logger_temp = root_grp.createVariable('logger_temp', 'f4', ('time',), fill_value = -999)
 	fan_current = root_grp.createVariable('fan_current', 'f4', ('time',), fill_value = -999)
 	battery_voltage = root_grp.createVariable('battery_voltage', 'f4', ('time',), fill_value = -999)
-	
-	station_name.long_name = 'station name'
-	station_name.cf_role = 'timeseries_id'
-
-	latitude.units = 'degrees_north'
-	latitude.standard_name = 'latitude'
-
-	longitude.units = 'degrees_east'
-	longitude.standard_name = 'longitude'
-
-	time.units = 'seconds since 1970-01-01 00:00:00'
-	time.long_name = 'time of measurement'
-	time.standard_name = 'time'
-	time.bounds = 'time_bounds'
-	time.calendar = 'standard'
 	
 	year.units = '1'
 	year.long_name = 'Year'
