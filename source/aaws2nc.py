@@ -1,5 +1,7 @@
 from datetime import date
 import os
+from sunposition import sunpos
+from datetime import datetime
 
 def aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, time_bounds, sza, station_dict):
 
