@@ -1,7 +1,7 @@
 from datetime import date
 import os
 
-def aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, time_bounds, station_dict):
+def aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, time_bounds, sza, station_dict):
 
 	#Global Attributes
 	root_grp.source = 'surface observation'
@@ -264,6 +264,10 @@ def aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, ti
 		f.readline()
 		a += 1
 	for line in f:
+		
+		temp_datetime = datetime(int(line[0:4]), int(line[5:7]), int(line[8:10]), int(line[11:13]))
+		sza[b] = sunpos(temp_datetime,latitude[0],longitude[0],0)[1]
+
 		time[b] = ((date(int(line[0:4]), int(line[5:7]), int(line[8:10])) - date(1970,1,1)).days)*86400
 		if line[11:13] == '00':
 			b += 1			
