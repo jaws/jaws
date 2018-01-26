@@ -68,7 +68,7 @@ def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time,
 	longitude.units = 'degrees_east'
 	longitude.standard_name = 'longitude'
 
-	time.units = 'seconds since 2007-01-01 00:00:00'
+	time.units = 'seconds since 1970-01-01 00:00:00'
 	time.long_name = 'time of measurement'
 	time.standard_name = 'time'
 	time.bounds = 'time_bounds'
@@ -519,76 +519,76 @@ def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time,
 	k = 0
 	while k < num_lines:
 		if hour[k] == 0:
-			time[k] = ((date(year[k],month[k],day[k])-date(2007, 1, 1)).days)*86400
+			time[k] = ((date(year[k],month[k],day[k])-date(1970, 1, 1)).days)*86400
 			k += 1
 		elif hour[k] == 1:
-			time[k] = ((date(year[k],month[k],day[k])-date(2007, 1, 1)).days)*86400 + (3600*1)
+			time[k] = ((date(year[k],month[k],day[k])-date(1970, 1, 1)).days)*86400 + (3600*1)
 			k += 1
 		elif hour[k] == 2:
-			time[k] = ((date(year[k],month[k],day[k])-date(2007, 1, 1)).days)*86400 + (3600*2)
+			time[k] = ((date(year[k],month[k],day[k])-date(1970, 1, 1)).days)*86400 + (3600*2)
 			k += 1
 		elif hour[k] == 3:
-			time[k] = ((date(year[k],month[k],day[k])-date(2007, 1, 1)).days)*86400 + (3600*3)
+			time[k] = ((date(year[k],month[k],day[k])-date(1970, 1, 1)).days)*86400 + (3600*3)
 			k += 1
 		elif hour[k] == 4:
-			time[k] = ((date(year[k],month[k],day[k])-date(2007, 1, 1)).days)*86400 + (3600*4)
+			time[k] = ((date(year[k],month[k],day[k])-date(1970, 1, 1)).days)*86400 + (3600*4)
 			k += 1
 		elif hour[k] == 5:
-			time[k] = ((date(year[k],month[k],day[k])-date(2007, 1, 1)).days)*86400 + (3600*5)
+			time[k] = ((date(year[k],month[k],day[k])-date(1970, 1, 1)).days)*86400 + (3600*5)
 			k += 1
 		elif hour[k] == 6:
-			time[k] = ((date(year[k],month[k],day[k])-date(2007, 1, 1)).days)*86400 + (3600*6)
+			time[k] = ((date(year[k],month[k],day[k])-date(1970, 1, 1)).days)*86400 + (3600*6)
 			k += 1
 		elif hour[k] == 7:
-			time[k] = ((date(year[k],month[k],day[k])-date(2007, 1, 1)).days)*86400 + (3600*7)
+			time[k] = ((date(year[k],month[k],day[k])-date(1970, 1, 1)).days)*86400 + (3600*7)
 			k += 1
 		elif hour[k] == 8:
-			time[k] = ((date(year[k],month[k],day[k])-date(2007, 1, 1)).days)*86400 + (3600*8)
+			time[k] = ((date(year[k],month[k],day[k])-date(1970, 1, 1)).days)*86400 + (3600*8)
 			k += 1
 		elif hour[k] == 9:
-			time[k] = ((date(year[k],month[k],day[k])-date(2007, 1, 1)).days)*86400 + (3600*9)
+			time[k] = ((date(year[k],month[k],day[k])-date(1970, 1, 1)).days)*86400 + (3600*9)
 			k += 1
 		elif hour[k] == 10:
-			time[k] = ((date(year[k],month[k],day[k])-date(2007, 1, 1)).days)*86400 + (3600*10)
+			time[k] = ((date(year[k],month[k],day[k])-date(1970, 1, 1)).days)*86400 + (3600*10)
 			k += 1
 		elif hour[k] == 11:
-			time[k] = ((date(year[k],month[k],day[k])-date(2007, 1, 1)).days)*86400 + (3600*11)
+			time[k] = ((date(year[k],month[k],day[k])-date(1970, 1, 1)).days)*86400 + (3600*11)
 			k += 1
 		elif hour[k] == 12:
-			time[k] = ((date(year[k],month[k],day[k])-date(2007, 1, 1)).days)*86400 + (3600*12)
+			time[k] = ((date(year[k],month[k],day[k])-date(1970, 1, 1)).days)*86400 + (3600*12)
 			k += 1
 		elif hour[k] == 13:
-			time[k] = ((date(year[k],month[k],day[k])-date(2007, 1, 1)).days)*86400 + (3600*13)
+			time[k] = ((date(year[k],month[k],day[k])-date(1970, 1, 1)).days)*86400 + (3600*13)
 			k += 1
 		elif hour[k] == 14:
-			time[k] = ((date(year[k],month[k],day[k])-date(2007, 1, 1)).days)*86400 + (3600*14)
+			time[k] = ((date(year[k],month[k],day[k])-date(1970, 1, 1)).days)*86400 + (3600*14)
 			k += 1
 		elif hour[k] == 15:
-			time[k] = ((date(year[k],month[k],day[k])-date(2007, 1, 1)).days)*86400 + (3600*15)
+			time[k] = ((date(year[k],month[k],day[k])-date(1970, 1, 1)).days)*86400 + (3600*15)
 			k += 1
 		elif hour[k] == 16:
-			time[k] = ((date(year[k],month[k],day[k])-date(2007, 1, 1)).days)*86400 + (3600*16)
+			time[k] = ((date(year[k],month[k],day[k])-date(1970, 1, 1)).days)*86400 + (3600*16)
 			k += 1
 		elif hour[k] == 17:
-			time[k] = ((date(year[k],month[k],day[k])-date(2007, 1, 1)).days)*86400 + (3600*17)
+			time[k] = ((date(year[k],month[k],day[k])-date(1970, 1, 1)).days)*86400 + (3600*17)
 			k += 1
 		elif hour[k] == 18:
-			time[k] = ((date(year[k],month[k],day[k])-date(2007, 1, 1)).days)*86400 + (3600*18)
+			time[k] = ((date(year[k],month[k],day[k])-date(1970, 1, 1)).days)*86400 + (3600*18)
 			k += 1
 		elif hour[k] == 19:
-			time[k] = ((date(year[k],month[k],day[k])-date(2007, 1, 1)).days)*86400 + (3600*19)
+			time[k] = ((date(year[k],month[k],day[k])-date(1970, 1, 1)).days)*86400 + (3600*19)
 			k += 1
 		elif hour[k] == 20:
-			time[k] = ((date(year[k],month[k],day[k])-date(2007, 1, 1)).days)*86400 + (3600*20)
+			time[k] = ((date(year[k],month[k],day[k])-date(1970, 1, 1)).days)*86400 + (3600*20)
 			k += 1
 		elif hour[k] == 21:
-			time[k] = ((date(year[k],month[k],day[k])-date(2007, 1, 1)).days)*86400 + (3600*21)
+			time[k] = ((date(year[k],month[k],day[k])-date(1970, 1, 1)).days)*86400 + (3600*21)
 			k += 1
 		elif hour[k] == 22:
-			time[k] = ((date(year[k],month[k],day[k])-date(2007, 1, 1)).days)*86400 + (3600*22)
+			time[k] = ((date(year[k],month[k],day[k])-date(1970, 1, 1)).days)*86400 + (3600*22)
 			k += 1
 		elif hour[k] == 23:
-			time[k] = ((date(year[k],month[k],day[k])-date(2007, 1, 1)).days)*86400 + (3600*23)
+			time[k] = ((date(year[k],month[k],day[k])-date(1970, 1, 1)).days)*86400 + (3600*23)
 			k += 1
 		
 	l = 0
