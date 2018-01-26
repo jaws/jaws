@@ -1,3 +1,15 @@
+2018-01-25  Ajay Saini  <sainiak@uci.edu>
+
+	* Used PySolar to calculate solar zenith angle in Python 3, worked on debugging for Python 2, later found that functions used in calculation aren't supported in Python 2 
+
+	* Explored other modules including SunPy, sun-position and PyEphem. Used sun-position to calculate sza as it worked well for all the stations and both Python versions
+
+	* In GCNet and PROMICE, changed time calculation to seconds since 1970 to make it common across all networks
+
+	* Generalized common variables' attributes
+
+	* Added attributes for derived quality control variables in GCNet
+
 2018-01-24  Ajay Saini  <sainiak@uci.edu>
 
 	* Identified all unique post decimal values for julian time in hour calculation and corrected the code accordingly
