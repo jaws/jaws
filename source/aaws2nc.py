@@ -143,7 +143,6 @@ def aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, ti
 		break
 	f.close()
 
-	print(x)
 	if x == 'AGO-4':
 		temp_stn = 'aaws_ago4'
 	elif x == 'Alexander Tall Tower!':
