@@ -1,7 +1,9 @@
 from datetime import date
 import os
+from sunposition import sunpos
+from datetime import datetime
 
-def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, time_bounds, station_dict):
+def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, time_bounds, sza, station_dict):
 
 	#Global Attributes
 	root_grp.title = 'Surface Radiation Data from Greenland Climate Network'
@@ -2724,5 +2726,10 @@ def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, t
 			month[n] = 12
 			n += 1
 		
+	l = 0
+	while l < num_lines:
+		temp_datetime = datetime(year[l], month[l], day[l], hour[l])
+		sza[l] = sunpos(temp_date,latitude[0],longitude[0],0)[1]
+		l += 1
 
 	root_grp.close()
