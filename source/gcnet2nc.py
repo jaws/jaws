@@ -738,7 +738,7 @@ def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, t
 		temp_stn = 'gcnet_jar3'
 	elif station_number[0] == 20:
 		temp_stn = 'gcnet_aurora'
-	elif station_number[0] == 21:
+	elif station_number[0] == 21 or 26:
 		temp_stn = 'gcnet_petermanngl'
 	elif station_number[0] == 22:
 		temp_stn = 'gcnet_petermanela'
