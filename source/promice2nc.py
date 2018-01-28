@@ -2,6 +2,9 @@ import os
 from sunposition import sunpos
 from datetime import date, datetime
 from math import sin, cos, sqrt, atan2, radians
+import warnings
+
+warnings.filterwarnings("ignore")
 
 def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time, time_bounds, sza, station_dict):
 
