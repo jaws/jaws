@@ -137,6 +137,8 @@ def aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, ti
 		temp_stn = 'aaws_baldrick'
 	elif x == 'Bear Peninsula':
 		temp_stn = 'aaws_bearpeninsula'
+	elif x == 'Bonaparte Point':
+		temp_stn = 'aaws_bonapartepoint'
 	elif x == 'Byrd':
 		temp_stn = 'aaws_byrd'
 	elif x == 'Cape Bird':
@@ -207,10 +209,14 @@ def aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, ti
 		temp_stn = 'aaws_minnabluff'
 	elif x == 'Mizuho':
 		temp_stn = 'aaws_mizuho'
+	elif x == 'Mount Siple':
+		temp_stn = 'aaws_mountsiple'
 	elif x == 'Nico':
 		temp_stn = 'aaws_nico'
 	elif x == 'PANDA-South':
 		temp_stn = 'aaws_pandasouth'
+	elif x == 'Pegasus North':
+		temp_stn = 'aaws_pegasusnorth'
 	elif x == 'Phoenix':
 		temp_stn = 'aaws_phoenix'
 	elif x == 'Port Martin':
