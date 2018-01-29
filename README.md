@@ -94,7 +94,7 @@ Currently, JAWS can be used to analyse the data for GCNet in multiple ways such 
 
 i. Plotting monthly diurnal cycle to see hourly changes for any variable throughout the month.
 
-The user provides input file path, variable name (on which analysis needs to be done) and plot type (i.e. diurnal, monthly, annual or seasonal). Year and month are optional arguments.
+The user provides input file path, variable name (on which analysis needs to be done) and plot type (i.e. diurnal, monthly, annual or seasonal). Year and month are optional arguments. If the input file contains data for only single year, then the user doesn't  need to provide the '-y' argument. Similar is the case for '-m' argument.
 
 ```
 $ python analysis.py file.nc temperature_tc_1 diurnal -y 2002 -m 5
@@ -112,6 +112,8 @@ $ python analysis.py file.nc temperature_cs500_1 monthly -y 2013 -m 2
 
 iii. Annual cycle with daily mean, max and min
 
+Since it is annual plot, user shouldn't provide the '-m' argument
+
 ```
 $ python analysis.py file.nc temperature_tc_1 annual -y 2016
 ```
@@ -119,6 +121,8 @@ $ python analysis.py file.nc temperature_tc_1 annual -y 2016
 ![annual](./img/annual.jpg?raw=true)
 
 iv. Climatological seasonal cycle showing variation for each month through multiple years
+
+Since it is seasonal plot, user shouldn't provide both '-y', '-m' argument.
 
 ```
 $ python analysis.py file.nc temperature_tc_1 seasonal

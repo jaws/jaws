@@ -1,3 +1,13 @@
+2018-01-26  Ajay Saini  <sainiak@uci.edu>
+
+	* Calculated GPS-derived ice velocity using haversine formula for stations that archive GPS position
+
+	* Downloaded and explored datasets from DMI and ASAIQ
+
+	* Some datasets didn't convert after new changes, debugged GCNet and AAWS code to make changes
+
+	* Updated instructions about optional arguments in analysis example section
+
 2018-01-25  Ajay Saini  <sainiak@uci.edu>
 
 	* Used PySolar to calculate solar zenith angle in Python 3, worked on debugging for Python 2, later found that functions used in calculation aren't supported in Python 2 

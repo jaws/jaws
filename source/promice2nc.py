@@ -1,6 +1,10 @@
 import os
 from sunposition import sunpos
 from datetime import date, datetime
+from math import sin, cos, sqrt, atan2, radians
+import warnings
+
+warnings.filterwarnings("ignore")
 
 def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time, time_bounds, sza, station_dict):
 
@@ -57,6 +61,7 @@ def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time,
 	logger_temp = root_grp.createVariable('logger_temp', 'f4', ('time',), fill_value = -999)
 	fan_current = root_grp.createVariable('fan_current', 'f4', ('time',), fill_value = -999)
 	battery_voltage = root_grp.createVariable('battery_voltage', 'f4', ('time',), fill_value = -999)
+	ice_velocity_GPS = root_grp.createVariable('ice_velocity_GPS', 'f4', ('time',), fill_value = -999)
 	
 	year.units = '1'
 	year.long_name = 'Year'
@@ -297,6 +302,11 @@ def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time,
 	battery_voltage.standard_name = 'battery_voltage'
 	battery_voltage.coordinates = 'longitude latitude'
 	battery_voltage.cell_methods = 'time: point'
+
+	ice_velocity_GPS.units = 'meter second-1'
+	ice_velocity_GPS.long_name = 'Ice velocity derived from GPS Lat and Long'
+	ice_velocity_GPS.coordinates = 'longitude latitude'
+	ice_velocity_GPS.cell_methods = 'time: mean'
 
 
 	ip_file = open(str(args.input), 'r')
@@ -581,5 +591,30 @@ def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time,
 		temp_date = datetime(year[l], month[l], day[l], hour[l])
 		sza[l] = sunpos(temp_date,latitude[0],longitude[0],0)[1]
 		l += 1
+
+#Calculating GPS-derived ice velocity
+	m,n = 0,1
+	R = 6373.0		#Approx radius of earth
+	while n < num_lines:
+		if (latitude_GPS[m] == -999 or latitude_GPS[m+1] == -999 or longitude_GPS[m] == -999 or longitude_GPS[m+1] == -999):
+			m += 1
+		else:
+			lat1 = radians(latitude_GPS[m])
+			lon1 = radians(longitude_GPS[m])
+			lat2 = radians(latitude_GPS[m+1])
+			lon2 = radians(longitude_GPS[m+1])
+
+			dlat = lat2 - lat1
+			dlon = lon2 - lon1
+
+			a = sin(dlat/2)**2 + cos(lat1) * cos(lat2) * sin(dlon/2)**2
+			c = 2 * atan2(sqrt(a), sqrt(1 - a))
+
+			distance = (R*c)*1000		#Multiplied by 1000 to convert km to meters
+
+			ice_velocity_GPS[m] = str(round(distance/3600, 4))		#Divided by 3600 because time change between 2 records is one hour
+			m += 1
+
+		n += 1
 
 	root_grp.close()
