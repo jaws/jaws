@@ -66,7 +66,9 @@ $ git pull
 ### Pre-requisites 
 
 JAWS works with any Python distribution, and especially well with Anaconda and [Miniconda](https://conda.io/miniconda.html)
-* netCDF4: Install with `conda install netcdf4` or as instructed on the [webpage](unidata.github.io/netcdf4-python)
+* netCDF4: Install with `conda install netcdf4` or as instructed at [webpage](unidata.github.io/netcdf4-python)
+* matplotlib: Install with `conda install matplotlib` or as instructed at [webpage](matplotlib.org)
+* xarray: Install with `conda install xarray` or as instructed at [webpage](xarray.pydata.org)
 
 ### Example
 
