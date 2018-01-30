@@ -20,70 +20,6 @@ def Main():
 
 	######################################################################
 
-	# NC file setup
-	op_file = str((os.path.basename(args.input)).split('.')[0])+'.nc'
-	
-	if args.output:
-		op_file = str(args.output)
-
-	if args.format3 == 1:
-		root_grp = Dataset(op_file, 'w', format='NETCDF3_CLASSIC')
-	elif args.format4 == 1:
-		root_grp = Dataset(op_file, 'w', format='NETCDF4')
-	elif args.format5 == 1:
-		root_grp = Dataset(op_file, 'w', format='NETCDF3_64BIT_DATA')
-	elif args.format6 == 1:
-		root_grp = Dataset(op_file, 'w', format='NETCDF3_64BIT_OFFSET')
-	elif args.format7 == 1:
-		root_grp = Dataset(op_file, 'w', format='NETCDF4_CLASSIC')
-	else:
-		root_grp = Dataset(op_file, 'w', format='NETCDF4')
-
-	# dimension
-	stn_nm_lng_max=25
-	root_grp.createDimension('time', None)
-	root_grp.createDimension('nbnd', 2)
-	root_grp.createDimension('station', 1)
-	root_grp.createDimension('stn_nm_lng_max', stn_nm_lng_max)
-
-	# Common variables
-	station_name = root_grp.createVariable('station_name', 'S1', ('stn_nm_lng_max',))
-	latitude = root_grp.createVariable('latitude', 'f4')
-	longitude = root_grp.createVariable('longitude', 'f4')
-	time = root_grp.createVariable('time', 'i4', ('time',))
-	time_bounds = root_grp.createVariable('time_bounds', 'i4', ('time','nbnd'))
-	sza = root_grp.createVariable('sza', 'f4', ('time',))
-
-	# Variable attributes
-	station_name.long_name = 'Station Name'
-	station_name.cf_role = 'timeseries_id'
-
-	latitude.units = 'degrees_north'
-	latitude.standard_name = 'latitude'
-
-	longitude.units = 'degrees_east'
-	longitude.standard_name = 'longitude'
-
-	time.units = 'seconds since 1970-01-01 00:00:00'
-	time.long_name = 'time of measurement'
-	time.standard_name = 'time'
-	time.bounds = 'time_bounds'
-	time.calendar = 'noleap'
-	
-	sza.units = 'degree'
-	sza.long_name = 'Solar Zenith Angle'
-	sza.standard_name = 'solar_zenith_angle'
-	sza.coordinates = 'longitude latitude'
-	sza.cell_methods = 'time: mean'
-
-
-
-	if args.station_name:
-		y = 0
-		while y < len(args.station_name):
-			station_name[y] = args.station_name[y]
-			y += 1
-
 	station_dict = {
 		'gcnet_swiss': [69.56833, -49.31582, 'Swiss Camp'],
 		'gcnet_crawford': [69.87975, -46.98667, 'Crawford Pt.'],
@@ -200,6 +136,127 @@ def Main():
 		'aaws_windlessbight': [-77.728, 167.676, 'Windless Bight']
 
 	}
+
+	# NC file setup
+	if args.output:
+		op_file = str(args.output)
+
+	else:
+		get_name = str((os.path.basename(args.input)).split('.')[0])
+		
+		if get_name == '01c':
+			op_file = list(station_dict.keys())[0] + '.nc' 
+		elif get_name == '02c':
+			op_file = list(station_dict.keys())[1] + '.nc' 
+		elif get_name == '03c':
+			op_file = list(station_dict.keys())[2] + '.nc' 
+		elif get_name == '04c':
+			op_file = list(station_dict.keys())[3] + '.nc' 
+		elif get_name == '05c':
+			op_file = list(station_dict.keys())[4] + '.nc' 
+		elif get_name == '06c':
+			op_file = list(station_dict.keys())[5] + '.nc' 
+		elif get_name == '07c':
+			op_file = list(station_dict.keys())[6] + '.nc' 
+		elif get_name == '08c':
+			op_file = list(station_dict.keys())[7] + '.nc' 
+		elif get_name == '09c':
+			op_file = list(station_dict.keys())[8] + '.nc' 
+		elif get_name == '10c':
+			op_file = list(station_dict.keys())[9] + '.nc' 
+		elif get_name == '11c':
+			op_file = list(station_dict.keys())[10] + '.nc' 
+		elif get_name == '12c':
+			op_file = list(station_dict.keys())[11] + '.nc' 
+		elif get_name == '13c':
+			op_file = list(station_dict.keys())[12] + '.nc' 
+		elif get_name == '14c':
+			op_file = list(station_dict.keys())[13] + '.nc' 
+		elif get_name == '15c':
+			op_file = list(station_dict.keys())[14] + '.nc' 
+		elif get_name == '16c':
+			op_file = list(station_dict.keys())[15] + '.nc' 
+		elif get_name == '17c':
+			op_file = list(station_dict.keys())[16] + '.nc' 
+		elif get_name == '18c':
+			op_file = list(station_dict.keys())[17] + '.nc' 
+		elif get_name == '19c':
+			op_file = list(station_dict.keys())[18] + '.nc' 
+		elif get_name == '20c':
+			op_file = list(station_dict.keys())[19] + '.nc' 
+		elif get_name == '21c':
+			op_file = list(station_dict.keys())[20] + '.nc' 
+		elif get_name == '22c':
+			op_file = list(station_dict.keys())[21] + '.nc' 
+		elif get_name == '23c':
+			op_file = list(station_dict.keys())[22] + '.nc' 
+		elif get_name == '30c':
+			op_file = list(station_dict.keys())[23] + '.nc' 
+		elif get_name == '31c':
+			op_file = list(station_dict.keys())[24] + '.nc' 
+		elif get_name == '32c':
+			op_file = list(station_dict.keys())[25] + '.nc'
+		else:
+			op_file = get_name + '.nc'
+	
+
+	if args.format3 == 1:
+		root_grp = Dataset(op_file, 'w', format='NETCDF3_CLASSIC')
+	elif args.format4 == 1:
+		root_grp = Dataset(op_file, 'w', format='NETCDF4')
+	elif args.format5 == 1:
+		root_grp = Dataset(op_file, 'w', format='NETCDF3_64BIT_DATA')
+	elif args.format6 == 1:
+		root_grp = Dataset(op_file, 'w', format='NETCDF3_64BIT_OFFSET')
+	elif args.format7 == 1:
+		root_grp = Dataset(op_file, 'w', format='NETCDF4_CLASSIC')
+	else:
+		root_grp = Dataset(op_file, 'w', format='NETCDF4')
+
+	# dimension
+	stn_nm_lng_max=25
+	root_grp.createDimension('time', None)
+	root_grp.createDimension('nbnd', 2)
+	root_grp.createDimension('station', 1)
+	root_grp.createDimension('stn_nm_lng_max', stn_nm_lng_max)
+
+	# Common variables
+	station_name = root_grp.createVariable('station_name', 'S1', ('stn_nm_lng_max',))
+	latitude = root_grp.createVariable('latitude', 'f4')
+	longitude = root_grp.createVariable('longitude', 'f4')
+	time = root_grp.createVariable('time', 'i4', ('time',))
+	time_bounds = root_grp.createVariable('time_bounds', 'i4', ('time','nbnd'))
+	sza = root_grp.createVariable('sza', 'f4', ('time',))
+
+	# Variable attributes
+	station_name.long_name = 'Station Name'
+	station_name.cf_role = 'timeseries_id'
+
+	latitude.units = 'degrees_north'
+	latitude.standard_name = 'latitude'
+
+	longitude.units = 'degrees_east'
+	longitude.standard_name = 'longitude'
+
+	time.units = 'seconds since 1970-01-01 00:00:00'
+	time.long_name = 'time of measurement'
+	time.standard_name = 'time'
+	time.bounds = 'time_bounds'
+	time.calendar = 'noleap'
+	
+	sza.units = 'degree'
+	sza.long_name = 'Solar Zenith Angle'
+	sza.standard_name = 'solar_zenith_angle'
+	sza.coordinates = 'longitude latitude'
+	sza.cell_methods = 'time: mean'
+
+
+
+	if args.station_name:
+		y = 0
+		while y < len(args.station_name):
+			station_name[y] = args.station_name[y]
+			y += 1
 
 	######################################################################
 
