@@ -61,7 +61,9 @@ def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time,
 	logger_temp = root_grp.createVariable('logger_temp', 'f4', ('time',), fill_value = -999)
 	fan_current = root_grp.createVariable('fan_current', 'f4', ('time',), fill_value = -999)
 	battery_voltage = root_grp.createVariable('battery_voltage', 'f4', ('time',), fill_value = -999)
-	ice_velocity_GPS = root_grp.createVariable('ice_velocity_GPS', 'f4', ('time',), fill_value = -999)
+	ice_velocity_GPS_total = root_grp.createVariable('ice_velocity_GPS_total', 'f4', ('time',), fill_value = -999)
+	ice_velocity_GPS_x = root_grp.createVariable('ice_velocity_GPS_x', 'f4', ('time',), fill_value = -999)
+	ice_velocity_GPS_y = root_grp.createVariable('ice_velocity_GPS_y', 'f4', ('time',), fill_value = -999)
 	
 	year.units = '1'
 	year.long_name = 'Year'
@@ -303,10 +305,22 @@ def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time,
 	battery_voltage.coordinates = 'longitude latitude'
 	battery_voltage.cell_methods = 'time: point'
 
-	ice_velocity_GPS.units = 'meter second-1'
-	ice_velocity_GPS.long_name = 'Ice velocity derived from GPS Lat and Long'
-	ice_velocity_GPS.coordinates = 'longitude latitude'
-	ice_velocity_GPS.cell_methods = 'time: mean'
+	ice_velocity_GPS_total.units = 'meter second-1'
+	ice_velocity_GPS_total.long_name = 'Ice velocity derived from GPS Lat and Long'
+	ice_velocity_GPS_total.coordinates = 'longitude latitude'
+	ice_velocity_GPS_total.cell_methods = 'time: mean'
+
+	ice_velocity_GPS_x.units = 'meter second-1'
+	ice_velocity_GPS_x.long_name = 'x-component of Ice velocity derived from GPS Lat and Long'
+	ice_velocity_GPS_x.standard_name = 'land_ice_surface_x_velocity'
+	ice_velocity_GPS_x.coordinates = 'longitude latitude'
+	ice_velocity_GPS_x.cell_methods = 'time: mean'
+
+	ice_velocity_GPS_y.units = 'meter second-1'
+	ice_velocity_GPS_y.long_name = 'y-component of Ice velocity derived from GPS Lat and Long'
+	ice_velocity_GPS_y.standard_name = 'land_ice_surface_y_velocity'
+	ice_velocity_GPS_y.coordinates = 'longitude latitude'
+	ice_velocity_GPS_y.cell_methods = 'time: mean'
 
 
 	ip_file = open(str(args.input), 'r')
@@ -593,7 +607,7 @@ def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time,
 		l += 1
 
 #Calculating GPS-derived ice velocity
-	m,n = 0,1
+	'''m,n = 0,1
 	R = 6373.0		#Approx radius of earth
 	while n < num_lines:
 		if (latitude_GPS[m] == -999 or latitude_GPS[m+1] == -999 or longitude_GPS[m] == -999 or longitude_GPS[m+1] == -999):
@@ -615,6 +629,40 @@ def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time,
 			ice_velocity_GPS[m] = str(round(distance/3600, 4))		#Divided by 3600 because time change between 2 records is one hour
 			m += 1
 
-		n += 1
+		n += 1'''
+
+	def ice_velocity(n,o):
+		m,p = 0,1
+		velocity = [0]*num_lines
+		R = 6373.0		#Approx radius of earth
+		while p < num_lines:
+			if (latitude_GPS[m] == -999 or longitude_GPS[m] == -999 or latitude_GPS[n] == -999 or longitude_GPS[o] == -999):
+				pass
+			else:
+				lat1 = radians(latitude_GPS[m])
+				lon1 = radians(longitude_GPS[m])
+				lat2 = radians(latitude_GPS[n])
+				lon2 = radians(longitude_GPS[o])
+
+				dlat = lat2 - lat1
+				dlon = lon2 - lon1
+
+				a = sin(dlat/2)**2 + cos(lat1) * cos(lat2) * sin(dlon/2)**2
+				c = 2 * atan2(sqrt(a), sqrt(1 - a))
+
+				distance = (R*c)*1000		#Multiplied by 1000 to convert km to meters
+
+				velocity[m] = str(round(distance/3600, 4))		#Divided by 3600 because time change between 2 records is one hour
+
+			m += 1
+			n += 1
+			o += 1
+			p += 1
+
+		return velocity[:]
+
+	ice_velocity_GPS_total[:] = ice_velocity(1,1)
+	ice_velocity_GPS_x[:] = ice_velocity(0,1)
+	ice_velocity_GPS_y[:] = ice_velocity(1,0)
 
 	root_grp.close()
