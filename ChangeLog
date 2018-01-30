@@ -1,3 +1,13 @@
+2018-01-29  Ajay Saini  <sainiak@uci.edu>
+
+	* Group meeting and bi-weekly JAWS meeting
+
+	* Computed x and y components of GPS-derived ice velocity
+
+	* Worked on debugging analysis plots, not working properly. Still in progress
+
+	* Looked for ways to provide reference for files from remote server(grele) and make it publicly available. Still in progress.
+
 2018-01-26  Ajay Saini  <sainiak@uci.edu>
 
 	* Calculated GPS-derived ice velocity using haversine formula for stations that archive GPS position
