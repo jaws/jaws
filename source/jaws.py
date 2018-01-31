@@ -7,8 +7,10 @@ from netCDF4 import Dataset
 
 def Main():
 	parser = argparse.ArgumentParser()
-	parser.add_argument("input", help="The PROMICE file you wish to convert to netCDF.", type=str)
-	parser.add_argument("-o", "--output", "--fl_out", help="Path where you want to store the output file", type=str)
+	parser.add_argument("input", nargs = '?', help="The PROMICE file you wish to convert to netCDF.", type=str)
+	parser.add_argument("output", nargs = '?', help="Path where you want to store the output file", type=str)
+	parser.add_argument("-i","--fl_in", help="The PROMICE file you wish to convert to netCDF.", type=str)
+	parser.add_argument("-o", "--fl_out", help="Path where you want to store the output file", type=str)
 	parser.add_argument("-3", "--format3", "--3", "--fl_fmt=classic", help="NETCDF3_CLASSIC", action="store_true")
 	parser.add_argument("-4", "--format4", "--4", "--netcdf4", "--fl_fmt=netcdf4", help="NETCDF4", action="store_true")
 	parser.add_argument("-5", "--format5", "--5", "--64bit_data", "--fl_fmt=64bit_data", "--fl_fmt=cdf5", help="NETCDF3_64BIT_DATA", action="store_true")
@@ -138,11 +140,11 @@ def Main():
 	}
 
 	# NC file setup
-	if args.output:
-		op_file = str(args.output)
+	if (args.output or args.fl_out):
+		op_file = str(args.output or args.fl_out)
 
 	else:
-		get_name = str((os.path.basename(args.input)).split('.')[0])
+		get_name = str((os.path.basename(args.input or args.fl_in)).split('.')[0])
 		
 		if get_name == '01c':
 			op_file = list(station_dict.keys())[0] + '.nc' 
@@ -260,7 +262,7 @@ def Main():
 
 	######################################################################
 
-	with open(str(args.input),'r') as f:
+	with open(str(args.input or args.fl_in),'r') as f:
 		line = f.readline()
 
 	if line[0] == 'D':
@@ -272,7 +274,7 @@ def Main():
 	elif line[0] == '#':
 		aaws2nc.aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, time_bounds, sza, station_dict)
 
-	print("Converted " + str(os.path.basename(args.input)) + " to netCDF format")
+	print("Converted " + str(os.path.basename(args.input or args.fl_in)) + " to netCDF format")
 
 
 if __name__ == '__main__':
