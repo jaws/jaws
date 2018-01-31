@@ -1,3 +1,15 @@
+2018-01-30  Ajay Saini  <sainiak@uci.edu>
+
+	* Output name for GCNet files will now be 'gcnet_station-name' if the input name of file is default of GCNet (e.g.: 01c.txt)
+
+	* Images moved to grele webserver and completely expunged from repository. Links updated in README.
+
+	* GCNet station names edited for all the raw files to have the convention 'networkname_stationname_startdate_enddate'. Changes made on grele and jaws.
+
+	* Worked on fixing canonical ordering. In progress
+
+	* News section added in README
+
 2018-01-29  Ajay Saini  <sainiak@uci.edu>
 
 	* Group meeting and bi-weekly JAWS meeting
