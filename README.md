@@ -3,6 +3,11 @@
 
 # Justified Automated Weather Station (JAWS) Software 
 ___
+## News
+
+2017/10/23: Version 0.1 released: Original scripts from Wenshan
+
+2018/01/22: Version 0.2 released: Conversion of GCNet, PROMICE and AAWS networks complete
 
 ## About
 
