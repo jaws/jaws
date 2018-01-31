@@ -1,4 +1,4 @@
-![Shark](./img/shark.jpg?raw=true)
+![Shark](http://grele.ess.uci.edu/jaws/img/shark.jpg)
 
 
 # Justified Automated Weather Station (JAWS) Software 
@@ -100,7 +100,7 @@ The user provides input file path, variable name (on which analysis needs to be 
 $ python analysis.py file.nc temperature_tc_1 diurnal -y 2002 -m 5
 ```
 
-![diurnal](./img/diurnal.png?raw=true)
+![diurnal](http://grele.ess.uci.edu/jaws/img/diurnal.png)
 
 ii. Avg, max and min values for each day of a month for any variable
 
@@ -108,7 +108,7 @@ ii. Avg, max and min values for each day of a month for any variable
 $ python analysis.py file.nc temperature_cs500_1 monthly -y 2013 -m 2
 ```
 
-![monthly](./img/monthly.png?raw=true)
+![monthly](http://grele.ess.uci.edu/jaws/img/monthly.png)
 
 iii. Annual cycle with daily mean, max and min
 
@@ -118,7 +118,7 @@ Since it is annual plot, user shouldn't provide the '-m' argument
 $ python analysis.py file.nc temperature_tc_1 annual -y 2016
 ```
 
-![annual](./img/annual.jpg?raw=true)
+![annual](http://grele.ess.uci.edu/jaws/img/annual.jpg)
 
 iv. Climatological seasonal cycle showing variation for each month through multiple years
 
@@ -128,7 +128,7 @@ Since it is seasonal plot, user shouldn't provide both '-y', '-m' argument.
 $ python analysis.py file.nc temperature_tc_1 seasonal
 ```
 
-![seasonal](./img/seasonal.png?raw=true)
+![seasonal](http://grele.ess.uci.edu/jaws/img/seasonal.png)
 
 
 <!--
