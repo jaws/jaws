@@ -703,7 +703,7 @@ def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, t
 	elif station_number[0] == 2:
 		temp_stn = 'gcnet_crawford'
 	elif station_number[0] == 3:
-		temp_stn = 'gcnet_nasau'
+		temp_stn = 'gcnet_nasa-u'
 	elif station_number[0] == 4:
 		temp_stn = 'gcnet_gits'
 	elif station_number[0] == 5:
@@ -711,7 +711,7 @@ def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, t
 	elif station_number[0] == 6:
 		temp_stn = 'gcnet_summit'
 	elif station_number[0] == 7:
-		temp_stn = 'gcnet_tunun'
+		temp_stn = 'gcnet_tunu-n'
 	elif station_number[0] == 8:
 		temp_stn = 'gcnet_dye2'
 	elif station_number[0] == 9:
@@ -721,13 +721,13 @@ def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, t
 	elif station_number[0] == 11:
 		temp_stn = 'gcnet_dome'
 	elif station_number[0] == 12:
-		temp_stn = 'gcnet_nasae'
+		temp_stn = 'gcnet_nasa-e'
 	elif station_number[0] == 13:
 		temp_stn = 'gcnet_cp2'
 	elif station_number[0] == 14:
 		temp_stn = 'gcnet_ngrip'
 	elif station_number[0] == 15:
-		temp_stn = 'gcnet_nasase'
+		temp_stn = 'gcnet_nasa-se'
 	elif station_number[0] == 16:
 		temp_stn = 'gcnet_kar'
 	elif station_number[0] == 17:
@@ -739,9 +739,9 @@ def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, t
 	elif station_number[0] == 20:
 		temp_stn = 'gcnet_aurora'
 	elif station_number[0] == 21 or 26:
-		temp_stn = 'gcnet_petermanngl'
+		temp_stn = 'gcnet_petermann-gl'
 	elif station_number[0] == 22:
-		temp_stn = 'gcnet_petermanela'
+		temp_stn = 'gcnet_peterman-ela'
 	elif station_number[0] == 23:
 		temp_stn = 'gcnet_neem'
 	elif station_number[0] == 30:
