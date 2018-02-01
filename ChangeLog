@@ -1,3 +1,15 @@
+2018-01-31  Ajay Saini  <sainiak@uci.edu>
+
+	* Canonical ordering fixed
+
+	* Error handling if no input provided
+
+	* Global attribute 'time_convention' added
+
+	* Station name to be retrieved frm input file in analysis.py
+
+	* Analysis plot debugged and working fine now
+
 2018-01-30  Ajay Saini  <sainiak@uci.edu>
 
 	* Output name for GCNet files will now be 'gcnet_station-name' if the input name of file is default of GCNet (e.g.: 01c.txt)
