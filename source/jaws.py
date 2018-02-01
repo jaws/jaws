@@ -4,6 +4,7 @@ import promice2nc
 import aaws2nc
 import os
 from netCDF4 import Dataset
+import sys
 
 def Main():
 	parser = argparse.ArgumentParser()
@@ -19,6 +20,12 @@ def Main():
 	parser.add_argument("-s","--station_name", help = "name of station if you want to change")
 
 	args = parser.parse_args()
+
+	if (args.input or args.fl_in):
+		pass
+	else:
+		print('Error: You failed to provide input file!')
+		sys.exit(1)
 
 	######################################################################
 
