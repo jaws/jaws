@@ -13,6 +13,8 @@ def aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, ti
 	root_grp.start_time = ''
 	root_grp.end_time = ''
 	root_grp.data_type = 'q1h'
+	root_grp.time_convention = "'time: point' variables match the time coordinate values exactly, whereas 'time: mean' variables are valid for the mean time within the time_bounds variable." + 
+	" e.g.: air_temp is continuously measured and then hourly-mean values are stored for each period contained in the time_bounds variable"
 
 	# variables
 	air_temp = root_grp.createVariable('air_temp', 'f4', ('time',), fill_value = -999)

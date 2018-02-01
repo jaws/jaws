@@ -11,6 +11,9 @@ def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, t
 	root_grp.institution = 'Cooperative Institute for Research in Enviornmental Sciences'
 	root_grp.reference = 'http://cires.colorado.edu/science/groups/steffen/gcnet/'
 	root_grp.Conventions = 'CF-1.7'
+	root_grp.time_convention = "'time: point' variables match the time coordinate values exactly, whereas 'time: mean' variables are valid for the mean time within the time_bounds variable." + 
+	" e.g.: battery_voltage is measured once per hour at the time stored in the 'time' coordinate." + 
+	" On the other hand, temperature_tc_1 is continuously measured and then hourly-mean values are stored for each period contained in the time_bounds variable"
 
 	# variables
 	station_number = root_grp.createVariable('station_number', 'i1', ('station',))
