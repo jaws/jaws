@@ -398,85 +398,85 @@ def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, t
 	qc25.long_name = 'Quality Control variables 25-27'
 	qc25.coordinates = 'longitude latitude'
 
-	qc_swdn.units = 1
+	qc_swdn.units = '1'
 	qc_swdn.long_name = 'Quality Control flag for Shortwave Flux down'
 
-	qc_swup.units = 1
+	qc_swup.units = '1'
 	qc_swup.long_name = 'Quality Control flag for Shortwave Flux up'
 
-	qc_netradiation.units = 1
+	qc_netradiation.units = '1'
 	qc_netradiation.long_name = 'Quality Control flag for Net Radiation'
 
-	qc_ttc1.units = 1
+	qc_ttc1.units = '1'
 	qc_ttc1.long_name = 'Quality Control flag for TC-1 Air Temperature'
 
-	qc_ttc2.units = 1
+	qc_ttc2.units = '1'
 	qc_ttc2.long_name = 'Quality Control flag for TC-2 Air Temperature'
 
-	qc_tcs1.units = 1
+	qc_tcs1.units = '1'
 	qc_tcs1.long_name = 'Quality Control flag for CS500-1 Air Temperature'
 
-	qc_tcs2.units = 1
+	qc_tcs2.units = '1'
 	qc_tcs2.long_name = 'Quality Control flag for CS500-2 Air Temperature'
 
-	qc_rh1.units = 1
+	qc_rh1.units = '1'
 	qc_rh1.long_name = 'Quality Control flag for Relative Humidity 1'
 
-	qc_rh2.units = 1
+	qc_rh2.units = '1'
 	qc_rh2.long_name = 'Quality Control flag for Relative Humidity 2'
 
-	qc_u1.units = 1
+	qc_u1.units = '1'
 	qc_u1.long_name = 'Quality Control flag for U1 Wind Speed'
 
-	qc_u2.units = 1
+	qc_u2.units = '1'
 	qc_u2.long_name = 'Quality Control flag for U2 Wind Speed'
 
-	qc_ud1.units = 1
+	qc_ud1.units = '1'
 	qc_ud1.long_name = 'Quality Control flag for U Direction 1'
 
-	qc_ud2.units = 1
+	qc_ud2.units = '1'
 	qc_ud2.long_name = 'Quality Control flag for U Direction 2'
 
-	qc_pressure.units = 1
+	qc_pressure.units = '1'
 	qc_pressure.long_name = 'Quality Control flag for Atmospheric Pressure'
 
-	qc_snowheight1.units = 1
+	qc_snowheight1.units = '1'
 	qc_snowheight1.long_name = 'Quality Control flag for Snow Height 1'
 
-	qc_snowheight2.units = 1
+	qc_snowheight2.units = '1'
 	qc_snowheight2.long_name = 'Quality Control flag for Snow Height 2'
 
-	qc_tsnow1.units = 1
+	qc_tsnow1.units = '1'
 	qc_tsnow1.long_name = 'Quality Control flag for T Snow 1'
 
-	qc_tsnow2.units = 1
+	qc_tsnow2.units = '1'
 	qc_tsnow2.long_name = 'Quality Control flag for T Snow 2'
 
-	qc_tsnow3.units = 1
+	qc_tsnow3.units = '1'
 	qc_tsnow3.long_name = 'Quality Control flag for T Snow 3'
 
-	qc_tsnow4.units = 1
+	qc_tsnow4.units = '1'
 	qc_tsnow4.long_name = 'Quality Control flag for T Snow 4'
 
-	qc_tsnow5.units = 1
+	qc_tsnow5.units = '1'
 	qc_tsnow5.long_name = 'Quality Control flag for T Snow 5'
 
-	qc_tsnow6.units = 1
+	qc_tsnow6.units = '1'
 	qc_tsnow6.long_name = 'Quality Control flag for T Snow 6'
 
-	qc_tsnow7.units = 1
+	qc_tsnow7.units = '1'
 	qc_tsnow7.long_name = 'Quality Control flag for T Snow 7'
 
-	qc_tsnow8.units = 1
+	qc_tsnow8.units = '1'
 	qc_tsnow8.long_name = 'Quality Control flag for T Snow 8'
 
-	qc_tsnow9.units = 1
+	qc_tsnow9.units = '1'
 	qc_tsnow9.long_name = 'Quality Control flag for T Snow 9'
 
-	qc_tsnow10.units = 1
+	qc_tsnow10.units = '1'
 	qc_tsnow10.long_name = 'Quality Control flag for T Snow 10'
 
-	qc_battery.units = 1
+	qc_battery.units = '1'
 	qc_battery.long_name = 'Quality Control flag for Battery Voltage'
 
 	#date_derived.note = 'Created date from year and julian decimal time.'
