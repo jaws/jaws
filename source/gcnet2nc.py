@@ -483,7 +483,7 @@ def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, t
 	
 	print("converting data...")
 
-	num_lines =  sum(1 for line in open(args.input or args.fl_in)) - 54
+	num_lines =  sum(1 for line in open(args.input_file or args.fl_in)) - 54
 	#54 is the number of lines before the data starts in input file
 
 	i,j = 0,0
@@ -492,7 +492,7 @@ def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, t
 	temp17 = [0]*num_lines
 	temp25 = [0]*num_lines
 	temp_jdt = [0]*num_lines
-	ip_file = open(str(args.input or args.fl_in), 'r')
+	ip_file = open(str(args.input_file or args.fl_in), 'r')
 
 	while i < 54:
 	    ip_file.readline()

@@ -60,11 +60,11 @@ def aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, ti
 	
 	print("converting data...")
 
-	num_lines =  sum(1 for line in open(args.input or args.fl_in) if len(line.strip()) != 0) - 8
+	num_lines =  sum(1 for line in open(args.input_file or args.fl_in) if len(line.strip()) != 0) - 8
 	#8 is the number of lines before the data starts in input file
 
 	i,j = 0,0
-	ip_file = open(str(args.input or args.fl_in), 'r')
+	ip_file = open(str(args.input_file or args.fl_in), 'r')
 
 	while i < 8:
 	    ip_file.readline()
@@ -111,7 +111,7 @@ def aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, ti
 	if args.station_name:
 		print('Default station name overrided by user provided station name')
 	else:
-		f = open(args.input or args.fl_in)
+		f = open(args.input_file or args.fl_in)
 		f.readline()
 		for line in f:
 			x = list(line[12:].strip('\n'))
@@ -120,7 +120,7 @@ def aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, ti
 		f.close()
 
 	
-	f = open(args.input or args.fl_in)
+	f = open(args.input_file or args.fl_in)
 	f.readline()
 	for line in f:
 		x = str(line[12:].strip('\n'))
@@ -249,7 +249,7 @@ def aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, ti
 	latitude[0] = (station_dict.get(temp_stn)[0])
 	longitude[0] = (station_dict.get(temp_stn)[1])
 
-	f = open(args.input or args.fl_in)
+	f = open(args.input_file or args.fl_in)
 	a,b = 0,0
 	while a < 8:
 		f.readline()
