@@ -15,9 +15,7 @@ def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time,
 	root_grp.institution = 'Programme for Monitoring of the Greenland Ice Sheet'
 	root_grp.reference = 'http://www.promice.dk/home.html'
 	root_grp.Conventions = 'CF-1.7'
-	root_grp.time_convention = "'time: point' variables match the time coordinate values exactly, whereas 'time: mean' variables are valid for the mean time within the time_bounds variable." + 
-	" e.g.: sensor_height is measured once per hour at the time stored in the 'time' coordinate." + 
-	" On the other hand, air_temperature is continuously measured and then hourly-mean values are stored for each period contained in the time_bounds variable"
+	root_grp.time_convention = "'time: point' variables match the time coordinate values exactly, whereas 'time: mean' variables are valid for the mean time within the time_bounds variable." + " e.g.: sensor_height is measured once per hour at the time stored in the 'time' coordinate." + " On the other hand, air_temperature is continuously measured and then hourly-mean values are stored for each period contained in the time_bounds variable"
 
 	# variables
 	year = root_grp.createVariable('year', 'i4', ('time',))
