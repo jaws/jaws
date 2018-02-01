@@ -131,7 +131,7 @@ if args.plot == 'diurnal':
 	plt.errorbar(hours, var_hour_avg, yerr = var_hour_sd, fmt='--o', ecolor='lightskyblue', color='k')
 	plt.xticks(hours)
 	plt.xlabel('Hour of the day')
-	plt.title('Diurnal cycle at Summit for {}-{}'.format(month[0][0][0],year[0][0][0]))
+	plt.title('Diurnal cycle at {} for {}-{}'.format(df.station_name[0][0][0], month[0][0][0], year[0][0][0]))
 
 elif args.plot == 'monthly':
 	values()
@@ -139,7 +139,7 @@ elif args.plot == 'monthly':
 	plt.fill_between(days,var_day_max, var_day_min, label='max-min', facecolor='darkseagreen', alpha=0.3)
 	plt.xticks(days)
 	plt.xlabel('Day of month')
-	plt.title('Temperature at Summit for {}-{}'.format(month[0][0][0],year[0][0][0]))
+	plt.title('Temperature at {} for {}-{}'.format(df.station_name[0][0][0], month[0][0][0], year[0][0][0]))
 
 elif args.plot == 'annual':
 	annual()
@@ -148,14 +148,14 @@ elif args.plot == 'annual':
 	plt.plot(days_year,var_jdt_max, label='max', color = 'darkseagreen')
 	plt.plot(days_year,var_jdt_min, label='min', color = 'lightskyblue')
 	plt.xlabel('Day of year')
-	plt.title('Temperature at Summit for {}'.format(year[0][0][0]))
+	plt.title('Temperature at {} for {}'.format(df.station_name[0][0][0], year[0][0][0]))
 
 elif args.plot == 'seasonal':
 	seasonal()
 	plt.errorbar(months, var_month_avg, yerr = var_month_sd, fmt='--o', ecolor= 'lightskyblue', color='k')
 	plt.xticks(months)
 	plt.xlabel('Month')
-	plt.title("Climatological seasonal cycle at Summit")
+	plt.title('Climatological seasonal cycle at {}'.format(df.station_name[0][0][0]))
 
 
 plt.legend(loc='best', fancybox=True, framealpha=0.3)
