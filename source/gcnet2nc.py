@@ -486,7 +486,14 @@ def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, t
 	#54 is the number of lines before the data starts in input file
 
 	i,j = 0,0
+	convert_temp = 273.15
+	convert_press = 100
 	check_na = 999.0
+
+	idx_stnnum, idx_year, idx_jdt, idx_swdn, idx_swup, idx_netrad, idx_tc1, idx_tc2, idx_cs1, idx_cs2, idx_rh1, idx_rh2, idx_windspd1, idx_windspd2, idx_dir1, idx_dir2 = range(16)
+	idx_atmospress, idx_snowht1, idx_snowht2, idx_tsnow1, idx_tsnow2, idx_tsnow3, idx_tsnow4, idx_tsnow5, idx_tsnow6, idx_tsnow7, idx_tsnow8, idx_tsnow9, idx_tsnow10, idx_batvolt, idx_swdnmax, idx_swupmax = range(16,32)
+	idx_netradmax, idx_maxtemp1, idx_maxtemp2, idx_mintemp1, idx_mintemp2, idx_maxwindspd1, idx_maxwindspd2, idx_sdwindspd1, idx_sdwindspd2, idx_reftemp, idx_windspd2m, idx_windspd10m, idx_sensorht1, idx_sensorht2, idx_albedo, idx_zenang = range(32,48)
+	idx_qc1, idx_qc9, idx_qc17, idx_qc25 = range(48,52)
 
 	temp1 = [0]*num_lines
 	temp9 = [0]*num_lines
@@ -506,148 +513,148 @@ def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, t
 		columns = line.split()
 		columns = [float(x) for x in columns]
 		
-		station_number[0] = columns[0]
-		year[j] = columns[1]
-		julian_decimal_time[j] = columns[2]
-		temp_jdt[j] = (columns[2])
-		sw_down[j] = columns[3]
-		sw_up[j] = columns[4]
-		net_radiation[j] = columns[5]
+		station_number[0] = columns[idx_stnnum]
+		year[j] = columns[idx_year]
+		julian_decimal_time[j] = columns[idx_jdt]
+		temp_jdt[j] = columns[idx_jdt]
+		sw_down[j] = columns[idx_swdn]
+		sw_up[j] = columns[idx_swup]
+		net_radiation[j] = columns[idx_netrad]
 		
-		if columns[6] == check_na:
-			temperature_tc_1[j] = columns[6]
+		if columns[idx_tc1] == check_na:
+			temperature_tc_1[j] = columns[idx_tc1]
 		else:
-			temperature_tc_1[j] = columns[6] + 273.15
+			temperature_tc_1[j] = columns[idx_tc1] + convert_temp
 
-		if columns[7] == check_na:
-			temperature_tc_2[j] = columns[7]
+		if columns[idx_tc2] == check_na:
+			temperature_tc_2[j] = columns[idx_tc2]
 		else:
-			temperature_tc_2[j] = columns[7] + 273.15
+			temperature_tc_2[j] = columns[idx_tc2] + convert_temp
 
-		if columns[8] == check_na:
-			temperature_cs500_1[j] = columns[8]
+		if columns[idx_cs1] == check_na:
+			temperature_cs500_1[j] = columns[idx_cs1]
 		else:
-			temperature_cs500_1[j] = columns[8] + 273.15
+			temperature_cs500_1[j] = columns[idx_cs1] + convert_temp
 
-		if columns[9] == check_na:
-			temperature_cs500_2[j] = columns[9]
+		if columns[idx_cs2] == check_na:
+			temperature_cs500_2[j] = columns[idx_cs2]
 		else:
-			temperature_cs500_2[j] = columns[9] + 273.15
+			temperature_cs500_2[j] = columns[idx_cs2] + convert_temp
 
-		relative_humidity_1[j] = columns[10]
-		relative_humidity_2[j] = columns[11]
-		u1_wind_speed[j] = columns[12]
-		u2_wind_speed[j] = columns[13]
-		u_direction_1[j] = columns[14]
-		u_direction_2[j] = columns[15]
+		relative_humidity_1[j] = columns[idx_rh1]
+		relative_humidity_2[j] = columns[idx_rh2]
+		u1_wind_speed[j] = columns[idx_windspd1]
+		u2_wind_speed[j] = columns[idx_windspd2]
+		u_direction_1[j] = columns[idx_dir1]
+		u_direction_2[j] = columns[idx_dir2]
 		
-		if columns[16] == check_na:
-			atmos_pressure[j] = columns[16]
+		if columns[idx_atmospress] == check_na:
+			atmos_pressure[j] = columns[idx_atmospress]
 		else:
-			atmos_pressure[j] = columns[16] * 100
+			atmos_pressure[j] = columns[idx_atmospress] * convert_press
 		
-		snow_height_1[j] = columns[17]
-		snow_height_2[j] = columns[18]
+		snow_height_1[j] = columns[idx_snowht1]
+		snow_height_2[j] = columns[idx_snowht2]
 		
-		if columns[19] == check_na:
-			t_snow_01[j] = columns[19]
+		if columns[idx_tsnow1] == check_na:
+			t_snow_01[j] = columns[idx_tsnow1]
 		else:
-			t_snow_01[j] = columns[19] + 273.15
+			t_snow_01[j] = columns[idx_tsnow1] + convert_temp
 
-		if columns[20] == check_na:
-			t_snow_02[j] = columns[20]
+		if columns[idx_tsnow2] == check_na:
+			t_snow_02[j] = columns[idx_tsnow2]
 		else:
-			t_snow_02[j] = columns[20] + 273.15
+			t_snow_02[j] = columns[idx_tsnow2] + convert_temp
 
-		if columns[21] == check_na:
-			t_snow_03[j] = columns[21]
+		if columns[idx_tsnow3] == check_na:
+			t_snow_03[j] = columns[idx_tsnow3]
 		else:
-			t_snow_03[j] = columns[2] + 273.15
+			t_snow_03[j] = columns[idx_tsnow3] + convert_temp
 		
-		if columns[22] == check_na:
-			t_snow_04[j] = columns[22]
+		if columns[idx_tsnow4] == check_na:
+			t_snow_04[j] = columns[idx_tsnow4]
 		else:
-			t_snow_04[j] = columns[22] + 273.15
+			t_snow_04[j] = columns[idx_tsnow4] + convert_temp
 		
-		if columns[23] == check_na:
-			t_snow_05[j] = columns[23]
+		if columns[idx_tsnow5] == check_na:
+			t_snow_05[j] = columns[idx_tsnow5]
 		else:
-			t_snow_05[j] = columns[23] + 273.15
+			t_snow_05[j] = columns[idx_tsnow5] + convert_temp
 		
-		if columns[24] == check_na:
-			t_snow_06[j] = columns[24]
+		if columns[idx_tsnow6] == check_na:
+			t_snow_06[j] = columns[idx_tsnow6]
 		else:
-			t_snow_06[j] = columns[24] + 273.15
+			t_snow_06[j] = columns[idx_tsnow6] + convert_temp
 		
-		if columns[25] == check_na:
-			t_snow_07[j] = columns[25]
+		if columns[idx_tsnow7] == check_na:
+			t_snow_07[j] = columns[idx_tsnow7]
 		else:
-			t_snow_07[j] = columns[25] + 273.15
+			t_snow_07[j] = columns[idx_tsnow7] + convert_temp
 		
-		if columns[26] == check_na:
-			t_snow_08[j] = columns[26]
+		if columns[idx_tsnow8] == check_na:
+			t_snow_08[j] = columns[idx_tsnow8]
 		else:
-			t_snow_08[j] = columns[26] + 273.15
+			t_snow_08[j] = columns[idx_tsnow8] + convert_temp
 		
-		if columns[27] == check_na:
-			t_snow_09[j] = columns[27]
+		if columns[idx_tsnow9] == check_na:
+			t_snow_09[j] = columns[idx_tsnow9]
 		else:
-			t_snow_09[j] = columns[27] + 273.15
+			t_snow_09[j] = columns[idx_tsnow9] + convert_temp
 		
-		if columns[28] == check_na:
-			t_snow_10[j] = columns[28]
+		if columns[idx_tsnow10] == check_na:
+			t_snow_10[j] = columns[idx_tsnow10]
 		else:
-			t_snow_10[j] = columns[28] + 273.15
+			t_snow_10[j] = columns[idx_tsnow10] + convert_temp
 		
-		battery_voltage[j] = columns[29]
-		sw_down_max[j] = columns[30]
-		sw_up_max[j] = columns[31]
-		net_radiation_max[j] = columns[32]
+		battery_voltage[j] = columns[idx_batvolt]
+		sw_down_max[j] = columns[idx_swdnmax]
+		sw_up_max[j] = columns[idx_swupmax]
+		net_radiation_max[j] = columns[idx_netradmax]
 		
-		if columns[33] == check_na:
-			max_air_temperature_1[j] = columns[33]
+		if columns[idx_maxtemp1] == check_na:
+			max_air_temperature_1[j] = columns[idx_maxtemp1]
 		else:
-			max_air_temperature_1[j] = columns[33] + 273.15
+			max_air_temperature_1[j] = columns[idx_maxtemp1] + convert_temp
 		
-		if columns[34] == check_na:
-			max_air_temperature_2[j] = columns[34]
+		if columns[idx_maxtemp2] == check_na:
+			max_air_temperature_2[j] = columns[idx_maxtemp2]
 		else:
-			max_air_temperature_2[j] = columns[34] + 273.15
+			max_air_temperature_2[j] = columns[idx_maxtemp2] + convert_temp
 		
-		if columns[35] == check_na:
-			min_air_temperature_1[j] = columns[35]
+		if columns[idx_mintemp1] == check_na:
+			min_air_temperature_1[j] = columns[idx_mintemp1]
 		else:
-			min_air_temperature_1[j] = columns[35] + 273.15
+			min_air_temperature_1[j] = columns[idx_mintemp1] + convert_temp
 		
-		if columns[36] == check_na:
-			min_air_temperature_2[j] = columns[36]
+		if columns[idx_mintemp2] == check_na:
+			min_air_temperature_2[j] = columns[idx_mintemp2]
 		else:
-			min_air_temperature_2[j] = columns[36] + 273.15
+			min_air_temperature_2[j] = columns[idx_mintemp2] + convert_temp
 		
-		max_windspeed_u1[j] = columns[37]
-		max_windspeed_u2[j] = columns[38]
-		stdev_windspeed_u1[j] = columns[39]
-		stdev_windspeed_u2[j] = columns[40]
+		max_windspeed_u1[j] = columns[idx_maxwindspd1]
+		max_windspeed_u2[j] = columns[idx_maxwindspd2]
+		stdev_windspeed_u1[j] = columns[idx_sdwindspd1]
+		stdev_windspeed_u2[j] = columns[idx_sdwindspd2]
 		
-		if columns[41] == check_na:
-			ref_temperature[j] = columns[41]
+		if columns[idx_reftemp] == check_na:
+			ref_temperature[j] = columns[idx_reftemp]
 		else:
-			ref_temperature[j] = columns[41] + 273.15
+			ref_temperature[j] = columns[idx_reftemp] + convert_temp
 		
-		windspeed_2m[j] = columns[42]
-		windspeed_10m[j] = columns[43]
-		wind_sensor_height_1[j] = columns[44]
-		wind_sensor_height_2[j] = columns[45]
-		albedo[j] = columns[46]
-		zenith_angle[j] = columns[47]
-		qc1[j] = columns[48]
-		temp1[j] = columns[48]
-		qc9[j] = columns[49]
-		temp9[j] = columns[49]
-		qc17[j] = columns[50]
-		temp17[j] = columns[50]
-		qc25[j] = columns[51]
-		temp25[j] = columns[51]
+		windspeed_2m[j] = columns[idx_windspd2m]
+		windspeed_10m[j] = columns[idx_windspd10m]
+		wind_sensor_height_1[j] = columns[idx_sensorht1]
+		wind_sensor_height_2[j] = columns[idx_sensorht1]
+		albedo[j] = columns[idx_albedo]
+		zenith_angle[j] = columns[idx_zenang]
+		qc1[j] = columns[idx_qc1]
+		temp1[j] = columns[idx_qc1]
+		qc9[j] = columns[idx_qc9]
+		temp9[j] = columns[idx_qc9]
+		qc17[j] = columns[idx_qc17]
+		temp17[j] = columns[idx_qc17]
+		qc25[j] = columns[idx_qc25]
+		temp25[j] = columns[idx_qc25]
 
 		if str(columns[2]-int(columns[2]))[1:4] in {'.0', '.00', '.02','.99'}:
 			hour[j] = 0
