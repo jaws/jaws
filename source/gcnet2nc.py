@@ -486,11 +486,14 @@ def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, t
 	#54 is the number of lines before the data starts in input file
 
 	i,j = 0,0
+	check_na = 999.0
+
 	temp1 = [0]*num_lines
 	temp9 = [0]*num_lines
 	temp17 = [0]*num_lines
 	temp25 = [0]*num_lines
 	temp_jdt = [0]*num_lines
+
 	ip_file = open(str(args.input_file or args.fl_in), 'r')
 
 	while i < 54:
@@ -501,34 +504,35 @@ def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, t
 	    
 		line = line.strip()
 		columns = line.split()
+		columns = [float(x) for x in columns]
 		
 		station_number[0] = columns[0]
 		year[j] = columns[1]
 		julian_decimal_time[j] = columns[2]
-		temp_jdt[j] = float(columns[2])
+		temp_jdt[j] = (columns[2])
 		sw_down[j] = columns[3]
 		sw_up[j] = columns[4]
 		net_radiation[j] = columns[5]
 		
-		if columns[6] in {'999.0','999.00','999.000','999.0000'}:
+		if columns[6] == check_na:
 			temperature_tc_1[j] = columns[6]
 		else:
-			temperature_tc_1[j] = float(columns[6]) + 273.15
+			temperature_tc_1[j] = columns[6] + 273.15
 
-		if columns[7] in {'999.0','999.00','999.000','999.0000'}:
+		if columns[7] == check_na:
 			temperature_tc_2[j] = columns[7]
 		else:
-			temperature_tc_2[j] = float(columns[7]) + 273.15
+			temperature_tc_2[j] = columns[7] + 273.15
 
-		if columns[8] in {'999.0','999.00','999.000','999.0000'}:
+		if columns[8] == check_na:
 			temperature_cs500_1[j] = columns[8]
 		else:
-			temperature_cs500_1[j] = float(columns[8]) + 273.15
+			temperature_cs500_1[j] = columns[8] + 273.15
 
-		if columns[9] in {'999.0','999.00','999.000','999.0000'}:
+		if columns[9] == check_na:
 			temperature_cs500_2[j] = columns[9]
 		else:
-			temperature_cs500_2[j] = float(columns[9]) + 273.15
+			temperature_cs500_2[j] = columns[9] + 273.15
 
 		relative_humidity_1[j] = columns[10]
 		relative_humidity_2[j] = columns[11]
@@ -537,98 +541,98 @@ def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, t
 		u_direction_1[j] = columns[14]
 		u_direction_2[j] = columns[15]
 		
-		if columns[16] in {'999.0','999.00','999.000','999.0000'}:
+		if columns[16] == check_na:
 			atmos_pressure[j] = columns[16]
 		else:
-			atmos_pressure[j] = float(columns[16]) * 100
+			atmos_pressure[j] = columns[16] * 100
 		
 		snow_height_1[j] = columns[17]
 		snow_height_2[j] = columns[18]
 		
-		if columns[19] in {'999.0','999.00','999.000','999.0000'}:
+		if columns[19] == check_na:
 			t_snow_01[j] = columns[19]
 		else:
-			t_snow_01[j] = float(columns[19]) + 273.15
+			t_snow_01[j] = columns[19] + 273.15
 
-		if columns[20] in {'999.0','999.00','999.000','999.0000'}:
+		if columns[20] == check_na:
 			t_snow_02[j] = columns[20]
 		else:
-			t_snow_02[j] = float(columns[20]) + 273.15
+			t_snow_02[j] = columns[20] + 273.15
 
-		if columns[21] in {'999.0','999.00','999.000','999.0000'}:
+		if columns[21] == check_na:
 			t_snow_03[j] = columns[21]
 		else:
-			t_snow_03[j] = float(columns[2]) + 273.15
+			t_snow_03[j] = columns[2] + 273.15
 		
-		if columns[22] in {'999.0','999.00','999.000','999.0000'}:
+		if columns[22] == check_na:
 			t_snow_04[j] = columns[22]
 		else:
-			t_snow_04[j] = float(columns[22]) + 273.15
+			t_snow_04[j] = columns[22] + 273.15
 		
-		if columns[23] in {'999.0','999.00','999.000','999.0000'}:
+		if columns[23] == check_na:
 			t_snow_05[j] = columns[23]
 		else:
-			t_snow_05[j] = float(columns[23]) + 273.15
+			t_snow_05[j] = columns[23] + 273.15
 		
-		if columns[24] in {'999.0','999.00','999.000','999.0000'}:
+		if columns[24] == check_na:
 			t_snow_06[j] = columns[24]
 		else:
-			t_snow_06[j] = float(columns[24]) + 273.15
+			t_snow_06[j] = columns[24] + 273.15
 		
-		if columns[25] in {'999.0','999.00','999.000','999.0000'}:
+		if columns[25] == check_na:
 			t_snow_07[j] = columns[25]
 		else:
-			t_snow_07[j] = float(columns[25]) + 273.15
+			t_snow_07[j] = columns[25] + 273.15
 		
-		if columns[26] in {'999.0','999.00','999.000','999.0000'}:
+		if columns[26] == check_na:
 			t_snow_08[j] = columns[26]
 		else:
-			t_snow_08[j] = float(columns[26]) + 273.15
+			t_snow_08[j] = columns[26] + 273.15
 		
-		if columns[27] in {'999.0','999.00','999.000','999.0000'}:
+		if columns[27] == check_na:
 			t_snow_09[j] = columns[27]
 		else:
-			t_snow_09[j] = float(columns[27]) + 273.15
+			t_snow_09[j] = columns[27] + 273.15
 		
-		if columns[28] in {'999.0','999.00','999.000','999.0000'}:
+		if columns[28] == check_na:
 			t_snow_10[j] = columns[28]
 		else:
-			t_snow_10[j] = float(columns[28]) + 273.15
+			t_snow_10[j] = columns[28] + 273.15
 		
 		battery_voltage[j] = columns[29]
 		sw_down_max[j] = columns[30]
 		sw_up_max[j] = columns[31]
 		net_radiation_max[j] = columns[32]
 		
-		if columns[33] in {'999.0','999.00','999.000','999.0000'}:
+		if columns[33] == check_na:
 			max_air_temperature_1[j] = columns[33]
 		else:
-			max_air_temperature_1[j] = float(columns[33]) + 273.15
+			max_air_temperature_1[j] = columns[33] + 273.15
 		
-		if columns[34] in {'999.0','999.00','999.000','999.0000'}:
+		if columns[34] == check_na:
 			max_air_temperature_2[j] = columns[34]
 		else:
-			max_air_temperature_2[j] = float(columns[34]) + 273.15
+			max_air_temperature_2[j] = columns[34] + 273.15
 		
-		if columns[35] in {'999.0','999.00','999.000','999.0000'}:
+		if columns[35] == check_na:
 			min_air_temperature_1[j] = columns[35]
 		else:
-			min_air_temperature_1[j] = float(columns[35]) + 273.15
+			min_air_temperature_1[j] = columns[35] + 273.15
 		
-		if columns[36] in {'999.0','999.00','999.000','999.0000'}:
+		if columns[36] == check_na:
 			min_air_temperature_2[j] = columns[36]
 		else:
-			min_air_temperature_2[j] = float(columns[36]) + 273.15
+			min_air_temperature_2[j] = columns[36] + 273.15
 		
 		max_windspeed_u1[j] = columns[37]
 		max_windspeed_u2[j] = columns[38]
 		stdev_windspeed_u1[j] = columns[39]
 		stdev_windspeed_u2[j] = columns[40]
 		
-		if columns[41] in {'999.0','999.00','999.000','999.0000'}:
+		if columns[41] == check_na:
 			ref_temperature[j] = columns[41]
 		else:
-			ref_temperature[j] = float(columns[41]) + 273.15
+			ref_temperature[j] = columns[41] + 273.15
 		
 		windspeed_2m[j] = columns[42]
 		windspeed_10m[j] = columns[43]
@@ -645,7 +649,6 @@ def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, t
 		qc25[j] = columns[51]
 		temp25[j] = columns[51]
 
-		columns[2] = float(columns[2])
 		if str(columns[2]-int(columns[2]))[1:4] in {'.0', '.00', '.02','.99'}:
 			hour[j] = 0
 		elif str(columns[2]-int(columns[2]))[1:4] in {'.04', '.05'}:
