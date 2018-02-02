@@ -1,6 +1,6 @@
 import os
 from sunposition import sunpos
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 
 def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, time_bounds, sza, station_dict):
 
