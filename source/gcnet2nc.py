@@ -658,76 +658,76 @@ def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, t
 		qc25[j] = columns[idx_qc25]
 		temp25[j] = columns[idx_qc25]
 
-		if str(columns[2]-int(columns[2]))[1:4] in {'.0', '.00', '.02','.99'}:
+		if (columns[idx_jdt]-int(columns[idx_jdt])) < .04 or (columns[idx_jdt]-int(columns[idx_jdt])) == .99:
 			hour[j] = 0
 			time[j] = time_calc(hour[j])
-		elif str(columns[2]-int(columns[2]))[1:4] in {'.04', '.05'}:
+		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .04 or (columns[idx_jdt]-int(columns[idx_jdt])) < .07:
 			hour[j] = 1
 			time[j] = time_calc(hour[j])
-		elif str(columns[2]-int(columns[2]))[1:4] in {'.08', '.07'}:
+		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .07 or (columns[idx_jdt]-int(columns[idx_jdt])) < .12:
 			hour[j] = 2
 			time[j] = time_calc(hour[j])
-		elif str(columns[2]-int(columns[2]))[1:4] in {'.12', '.10'}:
+		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .12 or (columns[idx_jdt]-int(columns[idx_jdt])) < .16:
 			hour[j] = 3
 			time[j] = time_calc(hour[j])
-		elif str(columns[2]-int(columns[2]))[1:4] in {'.16', '.15'}:
+		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .16 or (columns[idx_jdt]-int(columns[idx_jdt])) < .20:
 			hour[j] = 4
 			time[j] = time_calc(hour[j])
-		elif str(columns[2]-int(columns[2]))[1:4] in {'.20'}:
+		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .20 or (columns[idx_jdt]-int(columns[idx_jdt])) < .24:
 			hour[j] = 5
 			time[j] = time_calc(hour[j])
-		elif str(columns[2]-int(columns[2]))[1:4] in {'.25', '.24'}:
+		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .24 or (columns[idx_jdt]-int(columns[idx_jdt])) < .28:
 			hour[j] = 6
 			time[j] = time_calc(hour[j])
-		elif str(columns[2]-int(columns[2]))[1:4] in {'.29'}:
+		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .28 or (columns[idx_jdt]-int(columns[idx_jdt])) < .32:
 			hour[j] = 7
 			time[j] = time_calc(hour[j])
-		elif str(columns[2]-int(columns[2]))[1:4] in {'.33'}:
+		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .32 or (columns[idx_jdt]-int(columns[idx_jdt])) < .36:
 			hour[j] = 8
 			time[j] = time_calc(hour[j])
-		elif str(columns[2]-int(columns[2]))[1:4] in {'.37'}:
+		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .36 or (columns[idx_jdt]-int(columns[idx_jdt])) < .40:
 			hour[j] = 9
 			time[j] = time_calc(hour[j])
-		elif str(columns[2]-int(columns[2]))[1:4] in {'.41'}:
+		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .40 or (columns[idx_jdt]-int(columns[idx_jdt])) < .44:
 			hour[j] = 10
 			time[j] = time_calc(hour[j])
-		elif str(columns[2]-int(columns[2]))[1:4] in {'.45', '.48'}:
+		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .44 or (columns[idx_jdt]-int(columns[idx_jdt])) < .48:
 			hour[j] = 11
 			time[j] = time_calc(hour[j])
-		elif str(columns[2]-int(columns[2]))[1:4] in {'.5', '.49'}:
+		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .48 or (columns[idx_jdt]-int(columns[idx_jdt])) < .52:
 			hour[j] = 12
 			time[j] = time_calc(hour[j])
-		elif str(columns[2]-int(columns[2]))[1:4] in {'.54'}:
+		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .52 or (columns[idx_jdt]-int(columns[idx_jdt])) < .56:
 			hour[j] = 13
 			time[j] = time_calc(hour[j])
-		elif str(columns[2]-int(columns[2]))[1:4] in {'.58'}:
+		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .56 or (columns[idx_jdt]-int(columns[idx_jdt])) < .60:
 			hour[j] = 14
 			time[j] = time_calc(hour[j])
-		elif str(columns[2]-int(columns[2]))[1:4] in {'.62'}:
+		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .60 or (columns[idx_jdt]-int(columns[idx_jdt])) < .64:
 			hour[j] = 15
 			time[j] = time_calc(hour[j])
-		elif str(columns[2]-int(columns[2]))[1:4] in {'.66'}:
+		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .64 or (columns[idx_jdt]-int(columns[idx_jdt])) < .68:
 			hour[j] = 16
 			time[j] = time_calc(hour[j])
-		elif str(columns[2]-int(columns[2]))[1:4] in {'.70', '.71'}:
+		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .68 or (columns[idx_jdt]-int(columns[idx_jdt])) < .72:
 			hour[j] = 17
 			time[j] = time_calc(hour[j])
-		elif str(columns[2]-int(columns[2]))[1:4] in {'.75', '.74'}:
+		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .72 or (columns[idx_jdt]-int(columns[idx_jdt])) < .76:
 			hour[j] = 18
 			time[j] = time_calc(hour[j])
-		elif str(columns[2]-int(columns[2]))[1:4] in {'.79'}:
+		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .76 or (columns[idx_jdt]-int(columns[idx_jdt])) < .80:
 			hour[j] = 19
 			time[j] = time_calc(hour[j])
-		elif str(columns[2]-int(columns[2]))[1:4] in {'.83'}:
+		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .80 or (columns[idx_jdt]-int(columns[idx_jdt])) < .84:
 			hour[j] = 20
 			time[j] = time_calc(hour[j])
-		elif str(columns[2]-int(columns[2]))[1:4] in {'.87'}:
+		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .84 or (columns[idx_jdt]-int(columns[idx_jdt])) < .88:
 			hour[j] = 21
 			time[j] = time_calc(hour[j])
-		elif str(columns[2]-int(columns[2]))[1:4] in {'.91'}:
+		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .88 or (columns[idx_jdt]-int(columns[idx_jdt])) < .92:
 			hour[j] = 22
 			time[j] = time_calc(hour[j])
-		elif str(columns[2]-int(columns[2]))[1:4] in {'.95'}:
+		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .92 or (columns[idx_jdt]-int(columns[idx_jdt])) < .96:
 			hour[j] = 23
 			time[j] = time_calc(hour[j])
 		
