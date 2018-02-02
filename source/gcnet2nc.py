@@ -95,7 +95,6 @@ def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, t
 	qc_tsnow10 = root_grp.createVariable('qc_tsnow10', 'i1', ('time',))
 	qc_battery = root_grp.createVariable('qc_battery', 'i1', ('time',))
 	
-	#date_derived = root_grp.createVariable('date_derived', 'S10', ('time',))
 	month = root_grp.createVariable('month', 'i1', ('time',))
 	day = root_grp.createVariable('day', 'i1', ('time',))
 	hour = root_grp.createVariable('hour', 'i1', ('time',))
@@ -480,7 +479,6 @@ def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, t
 	qc_battery.units = '1'
 	qc_battery.long_name = 'Quality Control flag for Battery Voltage'
 
-	#date_derived.note = 'Created date from year and julian decimal time.'
 	
 	print("converting data...")
 
@@ -819,68 +817,8 @@ def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, t
 
 		k += 1
 	
-#############################################################################################################################################################
-	'''
-	qc1_str = ''.join(str(e) for e in qc1)
-	qc9_str = ''.join(str(e) for e in qc9)
-	qc17_str = ''.join(str(e) for e in qc17)
-	qc25_str = ''.join(str(e) for e in qc25)
 
 
-	a,b = 0,0
-	while a < 12183:
-		qc_swdn[a] = qc1_str[b]
-		qc_swup[a] = qc1_str[b+1]
-		qc_netradiation[a] = qc1_str[b+2]
-		qc_ttc1[a] = qc1_str[b+3]
-		qc_ttc2[a] = qc1_str[b+4]
-		qc_tcs1[a] = qc1_str[b+5]
-		qc_tcs2[a] = qc1_str[b+6]
-		qc_rh1[a] = qc1_str[b+7]
-
-		a += 1
-		b += 8
-
-	a,b = 0,0
-	while a < 12183:
-		qc_rh2[a] = qc9_str[b]
-		qc_u1[a] = qc9_str[b+1]
-		qc_u2[a] = qc9_str[b+2]
-		qc_ud1[a] = qc9_str[b+3]
-		qc_ud2[a] = qc9_str[b+4]
-		qc_pressure[a] = qc9_str[b+5]
-		qc_snowheight1[a] = qc9_str[b+6]
-		qc_snowheight2[a] = qc9_str[b+7]
-
-		a += 1
-		b += 8
-
-
-	a,b = 0,0
-	while a < 12183:
-		qc_tsnow1[a] = qc17_str[b]
-		qc_tsnow2[a] = qc17_str[b+1]
-		qc_tsnow3[a] = qc17_str[b+2]
-		qc_tsnow4[a] = qc17_str[b+3]
-		qc_tsnow5[a] = qc17_str[b+4]
-		qc_tsnow6[a] = qc17_str[b+5]
-		qc_tsnow7[a] = qc17_str[b+6]
-		qc_tsnow8[a] = qc17_str[b+7]
-
-		a += 1
-		b += 8
-
-
-	a,b = 0,0
-	while a < 12183:
-		qc_tsnow9[a] = qc25_str[b]
-		qc_tsnow10[a] = qc25_str[b+1]
-		qc_battery[a] = qc25_str[b+2]
-		
-		a += 1
-		b += 3
-	'''
-##################################################################################################################################################################
 	print("calculating time...")
 	m = 0
 	while m < len(temp_jdt):
@@ -957,12 +895,6 @@ def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, t
 			time[m] = ((date(year[m], 1, 1) - date(1970, 1, 1)).days + int(temp_jdt[m]))*86400 + (3600*23)
 			m += 1
 		
-	x = 0
-	while x < len(time):
-		time_bounds[x] = (time[x]-3600, time[x])
-		x += 1	
-		
-
 	print("calculating day and month...")
 	
 	def get_month_day(year, day, one_based=False):
@@ -972,15 +904,14 @@ def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, t
 		return dt.month, dt.day
 
 	n = 0
-	for item in temp_jdt:
+	while n < num_lines:
 		month[n] = get_month_day(int(year[n]), int(temp_jdt[n]), True)[0]
 		day[n] = get_month_day(int(year[n]), int(temp_jdt[n]), True)[1]
+		
+		time_bounds[n] = (time[n]-3600, time[n])
+		
+		temp_datetime = datetime(year[n], month[n], day[n], hour[n])
+		sza[n] = sunpos(temp_datetime,latitude[0],longitude[0],0)[1]
 		n += 1
 		
-	l = 0
-	while l < num_lines:
-		temp_datetime = datetime(year[l], month[l], day[l], hour[l])
-		sza[l] = sunpos(temp_datetime,latitude[0],longitude[0],0)[1]
-		l += 1
-
 	root_grp.close()
