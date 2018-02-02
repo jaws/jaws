@@ -1,3 +1,15 @@
+2018-02-01  Ajay Saini  <sainiak@uci.edu>
+
+	* Condensed calculation of day and month in GCNet
+
+	* time_calc function defined to calculate time
+
+	* Changed string matching of missing values to float
+
+	* Removed naked constants in GCNet
+
+	* Hour calculation uses numeric calculations instead of string
+
 2018-01-31  Ajay Saini  <sainiak@uci.edu>
 
 	* Canonical ordering fixed
