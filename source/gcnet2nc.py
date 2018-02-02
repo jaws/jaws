@@ -499,7 +499,6 @@ def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, t
 	temp9 = [0]*num_lines
 	temp17 = [0]*num_lines
 	temp25 = [0]*num_lines
-	temp_jdt = [0]*num_lines
 
 	ip_file = open(str(args.input_file or args.fl_in), 'r')
 
@@ -516,7 +515,6 @@ def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, t
 		station_number[0] = columns[idx_stnnum]
 		year[j] = columns[idx_year]
 		julian_decimal_time[j] = columns[idx_jdt]
-		temp_jdt[j] = columns[idx_jdt]
 		sw_down[j] = columns[idx_swdn]
 		sw_up[j] = columns[idx_swup]
 		net_radiation[j] = columns[idx_netrad]
@@ -831,78 +829,78 @@ def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, t
 
 	print("calculating time...")
 	m = 0
-	while m < len(temp_jdt):
+	while m < num_lines:
 		if hour[m] == 0:
-			time[m] = ((date(year[m], 1, 1) - date(1970, 1, 1)).days + int(temp_jdt[m]))*86400
+			time[m] = ((date(year[m], 1, 1) - date(1970, 1, 1)).days + int(julian_decimal_time[m]))*86400
 			m += 1
 		elif hour[m] == 1:
-			time[m] = ((date(year[m], 1, 1) - date(1970, 1, 1)).days + int(temp_jdt[m]))*86400 + (3600*1)
+			time[m] = ((date(year[m], 1, 1) - date(1970, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*1)
 			m += 1
 		elif hour[m] == 2:
-			time[m] = ((date(year[m], 1, 1) - date(1970, 1, 1)).days + int(temp_jdt[m]))*86400 + (3600*2)
+			time[m] = ((date(year[m], 1, 1) - date(1970, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*2)
 			m += 1
 		elif hour[m] == 3:
-			time[m] = ((date(year[m], 1, 1) - date(1970, 1, 1)).days + int(temp_jdt[m]))*86400 + (3600*3)
+			time[m] = ((date(year[m], 1, 1) - date(1970, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*3)
 			m += 1
 		elif hour[m] == 4:
-			time[m] = ((date(year[m], 1, 1) - date(1970, 1, 1)).days + int(temp_jdt[m]))*86400 + (3600*4)
+			time[m] = ((date(year[m], 1, 1) - date(1970, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*4)
 			m += 1
 		elif hour[m] == 5:
-			time[m] = ((date(year[m], 1, 1) - date(1970, 1, 1)).days + int(temp_jdt[m]))*86400 + (3600*5)
+			time[m] = ((date(year[m], 1, 1) - date(1970, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*5)
 			m += 1
 		elif hour[m] == 6:
-			time[m] = ((date(year[m], 1, 1) - date(1970, 1, 1)).days + int(temp_jdt[m]))*86400 + (3600*6)
+			time[m] = ((date(year[m], 1, 1) - date(1970, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*6)
 			m += 1
 		elif hour[m] == 7:
-			time[m] = ((date(year[m], 1, 1) - date(1970, 1, 1)).days + int(temp_jdt[m]))*86400 + (3600*7)
+			time[m] = ((date(year[m], 1, 1) - date(1970, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*7)
 			m += 1
 		elif hour[m] == 8:
-			time[m] = ((date(year[m], 1, 1) - date(1970, 1, 1)).days + int(temp_jdt[m]))*86400 + (3600*8)
+			time[m] = ((date(year[m], 1, 1) - date(1970, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*8)
 			m += 1
 		elif hour[m] == 9:
-			time[m] = ((date(year[m], 1, 1) - date(1970, 1, 1)).days + int(temp_jdt[m]))*86400 + (3600*9)
+			time[m] = ((date(year[m], 1, 1) - date(1970, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*9)
 			m += 1
 		elif hour[m] == 10:
-			time[m] = ((date(year[m], 1, 1) - date(1970, 1, 1)).days + int(temp_jdt[m]))*86400 + (3600*10)
+			time[m] = ((date(year[m], 1, 1) - date(1970, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*10)
 			m += 1
 		elif hour[m] == 11:
-			time[m] = ((date(year[m], 1, 1) - date(1970, 1, 1)).days + int(temp_jdt[m]))*86400 + (3600*11)
+			time[m] = ((date(year[m], 1, 1) - date(1970, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*11)
 			m += 1
 		elif hour[m] == 12:
-			time[m] = ((date(year[m], 1, 1) - date(1970, 1, 1)).days + int(temp_jdt[m]))*86400 + (3600*12)
+			time[m] = ((date(year[m], 1, 1) - date(1970, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*12)
 			m += 1
 		elif hour[m] == 13:
-			time[m] = ((date(year[m], 1, 1) - date(1970, 1, 1)).days + int(temp_jdt[m]))*86400 + (3600*13)
+			time[m] = ((date(year[m], 1, 1) - date(1970, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*13)
 			m += 1
 		elif hour[m] == 14:
-			time[m] = ((date(year[m], 1, 1) - date(1970, 1, 1)).days + int(temp_jdt[m]))*86400 + (3600*14)
+			time[m] = ((date(year[m], 1, 1) - date(1970, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*14)
 			m += 1
 		elif hour[m] == 15:
-			time[m] = ((date(year[m], 1, 1) - date(1970, 1, 1)).days + int(temp_jdt[m]))*86400 + (3600*15)
+			time[m] = ((date(year[m], 1, 1) - date(1970, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*15)
 			m += 1
 		elif hour[m] == 16:
-			time[m] = ((date(year[m], 1, 1) - date(1970, 1, 1)).days + int(temp_jdt[m]))*86400 + (3600*16)
+			time[m] = ((date(year[m], 1, 1) - date(1970, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*16)
 			m += 1
 		elif hour[m] == 17:
-			time[m] = ((date(year[m], 1, 1) - date(1970, 1, 1)).days + int(temp_jdt[m]))*86400 + (3600*17)
+			time[m] = ((date(year[m], 1, 1) - date(1970, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*17)
 			m += 1
 		elif hour[m] == 18:
-			time[m] = ((date(year[m], 1, 1) - date(1970, 1, 1)).days + int(temp_jdt[m]))*86400 + (3600*18)
+			time[m] = ((date(year[m], 1, 1) - date(1970, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*18)
 			m += 1
 		elif hour[m] == 19:
-			time[m] = ((date(year[m], 1, 1) - date(1970, 1, 1)).days + int(temp_jdt[m]))*86400 + (3600*19)
+			time[m] = ((date(year[m], 1, 1) - date(1970, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*19)
 			m += 1
 		elif hour[m] == 20:
-			time[m] = ((date(year[m], 1, 1) - date(1970, 1, 1)).days + int(temp_jdt[m]))*86400 + (3600*20)
+			time[m] = ((date(year[m], 1, 1) - date(1970, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*20)
 			m += 1
 		elif hour[m] == 21:
-			time[m] = ((date(year[m], 1, 1) - date(1970, 1, 1)).days + int(temp_jdt[m]))*86400 + (3600*21)
+			time[m] = ((date(year[m], 1, 1) - date(1970, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*21)
 			m += 1
 		elif hour[m] == 22:
-			time[m] = ((date(year[m], 1, 1) - date(1970, 1, 1)).days + int(temp_jdt[m]))*86400 + (3600*22)
+			time[m] = ((date(year[m], 1, 1) - date(1970, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*22)
 			m += 1
 		elif hour[m] == 23:
-			time[m] = ((date(year[m], 1, 1) - date(1970, 1, 1)).days + int(temp_jdt[m]))*86400 + (3600*23)
+			time[m] = ((date(year[m], 1, 1) - date(1970, 1, 1)).days + int(julian_decimal_time[m]))*86400 + (3600*23)
 			m += 1
 		
 	print("calculating day and month...")
@@ -915,8 +913,8 @@ def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, t
 
 	n = 0
 	while n < num_lines:
-		month[n] = get_month_day(int(year[n]), int(temp_jdt[n]), True)[0]
-		day[n] = get_month_day(int(year[n]), int(temp_jdt[n]), True)[1]
+		month[n] = get_month_day(int(year[n]), int(julian_decimal_time[n]), True)[0]
+		day[n] = get_month_day(int(year[n]), int(julian_decimal_time[n]), True)[1]
 		
 		time_bounds[n] = (time[n]-3600, time[n])
 		
