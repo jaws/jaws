@@ -326,6 +326,9 @@ def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time,
 
 	print("converting data...")
 
+	def lat_lon_gps(col_index):
+		return (round(float(int(columns[col_index])-((int(columns[col_index])/100)*100))/60, 2) + (int(columns[col_index])/100))
+
 	num_lines =  sum(1 for line in open(args.input_file or args.fl_in) if len(line.strip()) != 0) - 1
 	#1 is the number of lines before the data starts in input file
 
@@ -334,6 +337,11 @@ def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time,
 	convert_press = 100
 	convert_current = 1000
 	check_na = 999.0
+
+	idx_year, idx_month, idx_day, idx_hour, idx_dayofyear, idx_dayofcentury, idx_airpress, idx_airtemp, idx_airtemphygro, idx_rhwrtwater, idx_rh, idx_windspd, idx_winddir, idx_swdn, idx_swdncor = range(15)
+	idx_swup, idx_swupcor, idx_albedo, idx_lwdn, idx_lwup, idx_cloudcover, idx_surfacetemp, idx_htsensor, idx_htstakes, idx_depthpress, idx_depthpresscor, idx_icetemp1, idx_icetemp2, idx_icetemp3, idx_icetemp4 = range(15,30)
+	idx_icetemp5, idx_icetemp6, idx_icetemp7, idx_icetemp8, idx_tilteast, idx_tiltnorth, idx_timegps, idx_latgps, idx_longps, idx_elevation, idx_hordil, idx_loggertemp, idx_fancurrent, idx_batvolt = range(30, 44)
+
 
 	ip_file = open(str(args.input_file or args.fl_in), 'r')
 	ip_file.readline()
@@ -348,119 +356,119 @@ def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time,
 			columns = line.split()
 			columns = [float(x) for x in columns]
 			
-			year[j] = columns[0]
-			month[j] = columns[1]
-			day[j] = columns[2]
-			hour[j] = columns[3]
-			day_of_year[j] = columns[4]
-			day_of_century[j] = columns[5]
+			year[j] = columns[idx_year]
+			month[j] = columns[idx_month]
+			day[j] = columns[idx_day]
+			hour[j] = columns[idx_hour]
+			day_of_year[j] = columns[idx_dayofyear]
+			day_of_century[j] = columns[idx_dayofcentury]
 
-			if columns[6] == check_na:
-				air_pressure[j] = columns[6]
+			if columns[idx_airpress] == check_na:
+				air_pressure[j] = columns[idx_airpress]
 			else:
-				air_pressure[j] = columns[6] * convert_press
+				air_pressure[j] = columns[idx_airpress] * convert_press
 
-			if columns[7] == check_na:
-				air_temperature[j] = columns[7]
+			if columns[idx_airtemp] == check_na:
+				air_temperature[j] = columns[idx_airtemp]
 			else:
-				air_temperature[j] = columns[7] + convert_temp
+				air_temperature[j] = columns[idx_airtemp] + convert_temp
 
-			if columns[8] == check_na:
-				air_temperature_hygroclip[j] = columns[8]
+			if columns[idx_airtemphygro] == check_na:
+				air_temperature_hygroclip[j] = columns[idx_airtemphygro]
 			else:
-				air_temperature_hygroclip[j] = columns[8] + convert_temp
+				air_temperature_hygroclip[j] = columns[idx_airtemphygro] + convert_temp
 
-			relative_humidity_wrtwater[j] = columns[9]
-			relative_humidity[j] = columns[10]
-			wind_speed[j] = columns[11]
-			wind_direction[j] = columns[12]
-			shortwave_radiation_down[j] = columns[13]
-			shortwave_radiation_down_cor[j] = columns[14]
-			shortwave_radiation_up[j] = columns[15]
-			shortwave_radiation_up_cor[j] = columns[16]
-			albedo_theta[j] = columns[17]
-			longwave_radiation_down[j] = columns[18]
-			longwave_radiation_up[j] = columns[19]
-			cloudcover[j] = columns[20]
+			relative_humidity_wrtwater[j] = columns[idx_rhwrtwater]
+			relative_humidity[j] = columns[idx_rh]
+			wind_speed[j] = columns[idx_windspd]
+			wind_direction[j] = columns[idx_winddir]
+			shortwave_radiation_down[j] = columns[idx_swdn]
+			shortwave_radiation_down_cor[j] = columns[idx_swdncor]
+			shortwave_radiation_up[j] = columns[idx_swup]
+			shortwave_radiation_up_cor[j] = columns[idx_swupcor]
+			albedo_theta[j] = columns[idx_albedo]
+			longwave_radiation_down[j] = columns[idx_lwdn]
+			longwave_radiation_up[j] = columns[idx_lwup]
+			cloudcover[j] = columns[idx_cloudcover]
 
-			if columns[21] == check_na:
-				surface_temp[j] = columns[21]
+			if columns[idx_surfacetemp] == check_na:
+				surface_temp[j] = columns[idx_surfacetemp]
 			else:
-				surface_temp[j] = columns[21] + convert_temp
+				surface_temp[j] = columns[idx_surfacetemp] + convert_temp
 
-			height_sensor_boom[j] = columns[22]
-			height_stakes[j] = columns[23]
-			depth_pressure_transducer[j] = columns[24]
-			depth_pressure_transducer_cor[j] = columns[25]
+			height_sensor_boom[j] = columns[idx_htsensor]
+			height_stakes[j] = columns[idx_htstakes]
+			depth_pressure_transducer[j] = columns[idx_depthpress]
+			depth_pressure_transducer_cor[j] = columns[idx_depthpresscor]
 
-			if columns[26] == check_na:
-				ice_temp_01[j] = columns[26]
+			if columns[idx_icetemp1] == check_na:
+				ice_temp_01[j] = columns[idx_icetemp1]
 			else:
-				ice_temp_01[j] = columns[26] + convert_temp
+				ice_temp_01[j] = columns[idx_icetemp1] + convert_temp
 
-			if columns[27] == check_na:
-				ice_temp_02[j] = columns[27]
+			if columns[idx_icetemp2] == check_na:
+				ice_temp_02[j] = columns[idx_icetemp2]
 			else:
-				ice_temp_02[j] = columns[27] + convert_temp
+				ice_temp_02[j] = columns[idx_icetemp2] + convert_temp
 
-			if columns[28] == check_na:
-				ice_temp_03[j] = columns[28]
+			if columns[idx_icetemp3] == check_na:
+				ice_temp_03[j] = columns[idx_icetemp3]
 			else:
-				ice_temp_03[j] = columns[28] + convert_temp
+				ice_temp_03[j] = columns[idx_icetemp3] + convert_temp
 
-			if columns[29] == check_na:
-				ice_temp_04[j] = columns[29]
+			if columns[idx_icetemp4] == check_na:
+				ice_temp_04[j] = columns[idx_icetemp4]
 			else:
-				ice_temp_04[j] = columns[29] + convert_temp
+				ice_temp_04[j] = columns[idx_icetemp4] + convert_temp
 
-			if columns[30] == check_na:
-				ice_temp_05[j] = columns[30]
+			if columns[idx_icetemp5] == check_na:
+				ice_temp_05[j] = columns[idx_icetemp5]
 			else:
-				ice_temp_05[j] = columns[30] + convert_temp
+				ice_temp_05[j] = columns[idx_icetemp5] + convert_temp
 
-			if columns[31] == check_na:
-				ice_temp_06[j] = columns[31]
+			if columns[idx_icetemp6] == check_na:
+				ice_temp_06[j] = columns[idx_icetemp6]
 			else:
-				ice_temp_06[j] = columns[31] + convert_temp
+				ice_temp_06[j] = columns[idx_icetemp6] + convert_temp
 
-			if columns[32] == check_na:
-				ice_temp_07[j] = columns[32]
+			if columns[idx_icetemp7] == check_na:
+				ice_temp_07[j] = columns[idx_icetemp7]
 			else:
-				ice_temp_07[j] = columns[32] + convert_temp
+				ice_temp_07[j] = columns[idx_icetemp7] + convert_temp
 
-			if columns[33] == check_na:
-				ice_temp_08[j] = columns[33]
+			if columns[idx_icetemp8] == check_na:
+				ice_temp_08[j] = columns[idx_icetemp8]
 			else:
-				ice_temp_08[j] = columns[33] + convert_temp
+				ice_temp_08[j] = columns[idx_icetemp8] + convert_temp
 
-			tilt_east[j] = columns[34]
-			tilt_north[j] = columns[35]
-			time_GPS[j] = columns[36]
+			tilt_east[j] = columns[idx_tilteast]
+			tilt_north[j] = columns[idx_tiltnorth]
+			time_GPS[j] = columns[idx_timegps]
 			
-			if columns[37] == check_na:
-				latitude_GPS[j] = columns[37]
+			if columns[idx_latgps] == check_na:
+				latitude_GPS[j] = columns[idx_latgps]
 			else:
-				latitude_GPS[j] = (round(float(int(columns[37])-((int(columns[37])/100)*100))/60, 2) + (int(columns[37])/100))
+				latitude_GPS[j] = lat_lon_gps(idx_latgps)
 
-			if columns[38] == check_na:
-				longitude_GPS[j] = columns[38]
+			if columns[idx_longps] == check_na:
+				longitude_GPS[j] = columns[idx_longps]
 			else:
-				longitude_GPS[j] == (round(float(int(columns[38])-((int(columns[38])/100)*100))/60, 2) + (int(columns[38])/100))
+				longitude_GPS[j] == lat_lon_gps(idx_longps)
 			
-			elevation[j] = columns[39]
-			hor_dil_prec[j] = columns[40]
+			elevation[j] = columns[idx_elevation]
+			hor_dil_prec[j] = columns[idx_hordil]
 
-			if columns[41] == check_na:
-				logger_temp[j] = columns[41]
+			if columns[idx_loggertemp] == check_na:
+				logger_temp[j] = columns[idx_loggertemp]
 			else:
-				logger_temp[j] = columns[41] + convert_temp
+				logger_temp[j] = columns[idx_loggertemp] + convert_temp
 
-			if columns[42] == check_na:
-				fan_current[j] = columns[42]
+			if columns[idx_fancurrent] == check_na:
+				fan_current[j] = columns[idx_fancurrent]
 			else:
-				fan_current[j] = columns[42] / convert_current
+				fan_current[j] = columns[idx_fancurrent] / convert_current
 
-			battery_voltage[j] = columns[43]
+			battery_voltage[j] = columns[idx_batvolt]
 		j += 1
 
 
