@@ -8,10 +8,10 @@ import sys
 
 def Main():
 	parser = argparse.ArgumentParser()
-	parser.add_argument("input_file", nargs = '?', help="The PROMICE file you wish to convert to netCDF.", type=str)
-	parser.add_argument("output_file", nargs = '?', help="Path where you want to store the output file", type=str)
-	parser.add_argument("-i","--fl_in", "--input", help="The PROMICE file you wish to convert to netCDF.", type=str)
-	parser.add_argument("-o", "--fl_out", "--output", help="Path where you want to store the output file", type=str)
+	parser.add_argument("input_file", nargs = '?', help="Raw L2 data file to convert to netCDF", type=str)
+	parser.add_argument("output_file", nargs = '?', help="Output netCDF file", type=str)
+	parser.add_argument("-i","--fl_in", "--input", help="Raw L2 data file to convert to netCDF", type=str)
+	parser.add_argument("-o", "--fl_out", "--output", help="Output netCDF file", type=str)
 	parser.add_argument("-3", "--format3", "--3", "--fl_fmt=classic", help="NETCDF3_CLASSIC", action="store_true")
 	parser.add_argument("-4", "--format4", "--4", "--netcdf4", "--fl_fmt=netcdf4", help="NETCDF4", action="store_true")
 	parser.add_argument("-5", "--format5", "--5", "--64bit_data", "--fl_fmt=64bit_data", "--fl_fmt=cdf5", help="NETCDF3_64BIT_DATA", action="store_true")
