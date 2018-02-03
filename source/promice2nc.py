@@ -1,7 +1,7 @@
 import os
-from sunposition import sunpos
-from datetime import date, datetime
+from datetime import datetime
 from math import sin, cos, sqrt, atan2, radians
+from jaws import time_calc, solar
 import warnings
 
 warnings.filterwarnings("ignore")
@@ -326,10 +326,6 @@ def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time,
 
 	print("converting data...")
 
-	def time_calc_promice():
-		delta = datetime(year[j], month[j], day[j], hour[j])-datetime(1970, 1, 1)
-		return delta.total_seconds()
-
 	def lat_lon_gps(col_index):
 		return (round(float(int(columns[col_index])-((int(columns[col_index])/100)*100))/60, 2) + (int(columns[col_index])/100))
 
@@ -474,7 +470,7 @@ def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time,
 
 			battery_voltage[j] = columns[idx_batvolt]
 
-			time[j] = time_calc_promice()
+			time[j] = time_calc(year[j], month[j], day[j], hour[j])
 		j += 1
 
 
@@ -548,8 +544,7 @@ def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time,
 	while l < num_lines:
 		time_bounds[l] = (time[l], time[l]+3600)
 
-		temp_date = datetime(year[l], month[l], day[l], hour[l])
-		sza[l] = sunpos(temp_date,latitude[0],longitude[0],0)[1]
+		sza[l] = solar(year[l], month[l], day[l], hour[l], latitude[0], longitude[0])
 		l += 1
 
 #Calculating GPS-derived ice velocity

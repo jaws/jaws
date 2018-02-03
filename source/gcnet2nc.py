@@ -1,6 +1,6 @@
 import os
-from sunposition import sunpos
-from datetime import date, datetime, timedelta
+from datetime import datetime, timedelta
+from jaws import time_calc, solar
 
 def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, time_bounds, sza, station_dict):
 
@@ -482,10 +482,6 @@ def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, t
 	
 	print("converting data...")
 
-	def time_calc(x):
-		return ((date(year[j], 1, 1) - date(1970, 1, 1)).days + int(julian_decimal_time[j]))*86400 + (3600*x)
-
-
 	num_lines =  sum(1 for line in open(args.input_file or args.fl_in)) - 54
 	#54 is the number of lines before the data starts in input file
 
@@ -660,76 +656,52 @@ def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, t
 
 		if (columns[idx_jdt]-int(columns[idx_jdt])) < .04 or (columns[idx_jdt]-int(columns[idx_jdt])) == .99:
 			hour[j] = 0
-			time[j] = time_calc(hour[j])
 		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .04 and (columns[idx_jdt]-int(columns[idx_jdt])) < .07:
 			hour[j] = 1
-			time[j] = time_calc(hour[j])
 		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .07 and (columns[idx_jdt]-int(columns[idx_jdt])) < .12:
 			hour[j] = 2
-			time[j] = time_calc(hour[j])
 		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .12 and (columns[idx_jdt]-int(columns[idx_jdt])) < .16:
 			hour[j] = 3
-			time[j] = time_calc(hour[j])
 		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .16 and (columns[idx_jdt]-int(columns[idx_jdt])) < .20:
 			hour[j] = 4
-			time[j] = time_calc(hour[j])
 		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .20 and (columns[idx_jdt]-int(columns[idx_jdt])) < .24:
 			hour[j] = 5
-			time[j] = time_calc(hour[j])
 		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .24 and (columns[idx_jdt]-int(columns[idx_jdt])) < .28:
 			hour[j] = 6
-			time[j] = time_calc(hour[j])
 		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .28 and (columns[idx_jdt]-int(columns[idx_jdt])) < .32:
 			hour[j] = 7
-			time[j] = time_calc(hour[j])
 		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .32 and (columns[idx_jdt]-int(columns[idx_jdt])) < .36:
 			hour[j] = 8
-			time[j] = time_calc(hour[j])
 		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .36 and (columns[idx_jdt]-int(columns[idx_jdt])) < .40:
 			hour[j] = 9
-			time[j] = time_calc(hour[j])
 		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .40 and (columns[idx_jdt]-int(columns[idx_jdt])) < .44:
 			hour[j] = 10
-			time[j] = time_calc(hour[j])
 		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .44 and (columns[idx_jdt]-int(columns[idx_jdt])) < .48:
 			hour[j] = 11
-			time[j] = time_calc(hour[j])
 		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .48 and (columns[idx_jdt]-int(columns[idx_jdt])) < .52:
 			hour[j] = 12
-			time[j] = time_calc(hour[j])
 		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .52 and (columns[idx_jdt]-int(columns[idx_jdt])) < .56:
 			hour[j] = 13
-			time[j] = time_calc(hour[j])
 		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .56 and (columns[idx_jdt]-int(columns[idx_jdt])) < .60:
 			hour[j] = 14
-			time[j] = time_calc(hour[j])
 		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .60 and (columns[idx_jdt]-int(columns[idx_jdt])) < .64:
 			hour[j] = 15
-			time[j] = time_calc(hour[j])
 		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .64 and (columns[idx_jdt]-int(columns[idx_jdt])) < .68:
 			hour[j] = 16
-			time[j] = time_calc(hour[j])
 		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .68 and (columns[idx_jdt]-int(columns[idx_jdt])) < .72:
 			hour[j] = 17
-			time[j] = time_calc(hour[j])
 		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .72 and (columns[idx_jdt]-int(columns[idx_jdt])) < .76:
 			hour[j] = 18
-			time[j] = time_calc(hour[j])
 		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .76 and (columns[idx_jdt]-int(columns[idx_jdt])) < .80:
 			hour[j] = 19
-			time[j] = time_calc(hour[j])
 		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .80 and (columns[idx_jdt]-int(columns[idx_jdt])) < .84:
 			hour[j] = 20
-			time[j] = time_calc(hour[j])
 		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .84 and (columns[idx_jdt]-int(columns[idx_jdt])) < .88:
 			hour[j] = 21
-			time[j] = time_calc(hour[j])
 		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .88 and (columns[idx_jdt]-int(columns[idx_jdt])) < .92:
 			hour[j] = 22
-			time[j] = time_calc(hour[j])
 		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .92 and (columns[idx_jdt]-int(columns[idx_jdt])) < .96:
 			hour[j] = 23
-			time[j] = time_calc(hour[j])
 		
 		j += 1
 
@@ -868,10 +840,10 @@ def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, t
 		month[n] = get_month_day(int(year[n]), int(julian_decimal_time[n]), True)[0]
 		day[n] = get_month_day(int(year[n]), int(julian_decimal_time[n]), True)[1]
 		
+		time[n] = time_calc(year[n], month[n], day[n], hour[n])
 		time_bounds[n] = (time[n]-3600, time[n])
 		
-		temp_datetime = datetime(year[n], month[n], day[n], hour[n])
-		sza[n] = sunpos(temp_datetime,latitude[0],longitude[0],0)[1]
+		sza[n] = solar(year[n], month[n], day[n], hour[n], latitude[0], longitude[0])
 		n += 1
 		
 	root_grp.close()

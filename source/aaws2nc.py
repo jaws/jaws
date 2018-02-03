@@ -1,6 +1,6 @@
 import os
-from sunposition import sunpos
-from datetime import date, datetime
+from datetime import datetime
+from jaws import time_calc, solar
 
 def aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, time_bounds, sza, station_dict):
 
@@ -206,10 +206,6 @@ def aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, ti
 	
 	print("converting data...")
 
-	def time_calc_aaws():
-		delta = datetime(year[j], month[j], day[j], hour[j])-datetime(1970, 1, 1)
-		return delta.total_seconds()
-
 	num_lines =  sum(1 for line in open(args.input_file or args.fl_in) if len(line.strip()) != 0) - 8
 	#8 is the number of lines before the data starts in input file
 
@@ -266,11 +262,10 @@ def aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, ti
 		day[j] = int(line[8:10])
 		hour[j] = int(line[11:13])
 
-		time[j] = time_calc_aaws()
+		time[j] = time_calc(year[j], month[j], day[j], hour[j])
 		time_bounds[j] = (time[j]-3600, time[j])
 
-		temp_datetime = datetime(year[j], month[j], day[j], hour[j])
-		sza[j] = sunpos(temp_datetime,latitude[0],longitude[0],0)[1]
+		sza[j] = solar(year[j], month[j], day[j], hour[j], latitude[0], longitude[0])
 		
 		j += 1
 
