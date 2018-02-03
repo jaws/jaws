@@ -72,7 +72,7 @@ def aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, ti
 	wind_spd.cell_methods = 'time: mean'
 	
 	
-	print('Retrieving Latitude and Longitude')
+	print('retrieving latitude and longitude...')
 	
 	f = open(args.input_file or args.fl_in)
 	f.readline()
@@ -228,17 +228,6 @@ def aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, ti
 	
 		line = line.strip()
 		columns = line.split(',')
-		
-		year[j] = int(line[0:4])
-		month[j] = int(line[5:7])
-		day[j] = int(line[8:10])
-		hour[j] = int(line[11:13])
-
-		time[j] = time_calc_aaws()
-		time_bounds[j] = (time[j]-3600, time[j])
-
-		temp_datetime = datetime(year[j], month[j], day[j], hour[j])
-		sza[j] = sunpos(temp_datetime,latitude[0],longitude[0],0)[1]
 
 		if columns[1] == '':
 			air_temp[j] = check_na
@@ -267,12 +256,25 @@ def aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, ti
 		
 		if columns[6] == '':
 			wind_spd[j] = check_na
-			j += 1
 		else:
 			wind_spd[j] = columns[6]
-			j += 1
+		
+		year[j] = int(line[0:4])
+		month[j] = int(line[5:7])
+		day[j] = int(line[8:10])
+		hour[j] = int(line[11:13])
+
+		time[j] = time_calc_aaws()
+		time_bounds[j] = (time[j]-3600, time[j])
+
+		temp_datetime = datetime(year[j], month[j], day[j], hour[j])
+		sza[j] = sunpos(temp_datetime,latitude[0],longitude[0],0)[1]
+		
+		j += 1
 
 	
+	print('retrieving station name...')
+
 	if args.station_name:
 		print('Default station name overrided by user provided station name')
 	else:
