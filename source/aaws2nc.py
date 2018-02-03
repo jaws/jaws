@@ -206,6 +206,10 @@ def aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, ti
 	
 	print("converting data...")
 
+	def time_calc_aaws():
+		delta = datetime(year[j], month[j], day[j], hour[j])-datetime(1970, 1, 1)
+		return delta.total_seconds()
+
 	num_lines =  sum(1 for line in open(args.input_file or args.fl_in) if len(line.strip()) != 0) - 8
 	#8 is the number of lines before the data starts in input file
 
@@ -229,6 +233,9 @@ def aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, ti
 		month[j] = int(line[5:7])
 		day[j] = int(line[8:10])
 		hour[j] = int(line[11:13])
+
+		time[j] = time_calc_aaws()
+		time_bounds[j] = (time[j]-3600, time[j])
 
 		temp_datetime = datetime(year[j], month[j], day[j], hour[j])
 		sza[j] = sunpos(temp_datetime,latitude[0],longitude[0],0)[1]
@@ -277,94 +284,5 @@ def aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, ti
 			break
 		f.close()
 
-	
-	f = open(args.input_file or args.fl_in)
-	a,b = 0,0
-	while a < 8:
-		f.readline()
-		a += 1
-	for line in f:
-
-		temp_datetime = datetime(int(line[0:4]), int(line[5:7]), int(line[8:10]), int(line[11:13]))
-		sza[b] = sunpos(temp_datetime,latitude[0],longitude[0],0)[1]
-
-		time[b] = ((date(int(line[0:4]), int(line[5:7]), int(line[8:10])) - date(1970,1,1)).days)*86400
-		if line[11:13] == '00':
-			b += 1			
-		elif line[11:13] == '01':
-			time[b] += (3600*1)
-			b += 1
-		elif line[11:13] == '02':
-			time[b] += (3600*2)
-			b += 1
-		elif line[11:13] == '03':
-			time[b] += (3600*3)
-			b += 1
-		elif line[11:13] == '04':
-			time[b] += (3600*4)
-			b += 1
-		elif line[11:13] =='05':
-			time[b] += (3600*5)
-			b += 1
-		elif line[11:13] == '06':
-			time[b] += (3600*6)
-			b += 1
-		elif line[11:13] == '07':
-			time[b] += (3600*7)
-			b += 1
-		elif line[11:13] == '08':
-			time[b] += (3600*8)
-			b += 1
-		elif line[11:13] == '09':
-			time[b] += (3600*9)
-			b += 1
-		elif line[11:13] == '10':
-			time[b] += (3600*10)
-			b += 1
-		elif line[11:13] == '11':
-			time[b] += (3600*11)
-			b += 1
-		elif line[11:13] == '12':
-			time[b] += (3600*12)
-			b += 1
-		elif line[11:13] == '13':
-			time[b] += (3600*13)
-			b += 1
-		elif line[11:13] == '14':
-			time[b] += (3600*14)
-			b += 1
-		elif line[11:13] == '15':
-			time[b] += (3600*15)
-			b += 1
-		elif line[11:13] == '16':
-			time[b] += (3600*16)
-			b += 1
-		elif line[11:13] == '17':
-			time[b] += (3600*17)
-			b += 1
-		elif line[11:13] == '18':
-			time[b] += (3600*18)
-			b += 1
-		elif line[11:13] == '19':
-			time[b] += (3600*19)
-			b += 1
-		elif line[11:13] == '20':
-			time[b] += (3600*20)
-			b += 1
-		elif line[11:13] == '21':
-			time[b] += (3600*21)
-			b += 1
-		elif line[11:13] == '22':
-			time[b] += (3600*22)
-			b += 1
-		elif line[11:13] == '23':
-			time[b] += (3600*23)
-			b += 1
-	f.close()
-
-	c = 0
-	while c < len(time):
-		time_bounds[c] = (time[c]-3600, time[c])
-		c += 1
-		
+			
 	root_grp.close()
