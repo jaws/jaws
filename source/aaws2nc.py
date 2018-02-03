@@ -16,6 +16,11 @@ def aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, ti
 	root_grp.time_convention = "'time: point' variables match the time coordinate values exactly, whereas 'time: mean' variables are valid for the mean time within the time_bounds variable." + " e.g.: air_temp is continuously measured and then hourly-mean values are stored for each period contained in the time_bounds variable"
 
 	# variables
+	year = root_grp.createVariable('year', 'f4', ('time',))
+	month = root_grp.createVariable('month', 'f4', ('time',))
+	day = root_grp.createVariable('day', 'f4', ('time',))
+	hour = root_grp.createVariable('hour', 'f4', ('time',))
+
 	air_temp = root_grp.createVariable('air_temp', 'f4', ('time',), fill_value = -999)
 	vtempdiff = root_grp.createVariable('vtempdiff', 'f4', ('time',), fill_value = -999)
 	rh = root_grp.createVariable('rh', 'f4', ('time',), fill_value = -999)
@@ -23,7 +28,14 @@ def aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, ti
 	wind_dir = root_grp.createVariable('wind_dir', 'f4', ('time',), fill_value = -999)
 	wind_spd = root_grp.createVariable('wind_spd', 'f4', ('time',), fill_value = -999)
 		
-	
+	year.long_name = 'Year'
+
+	month.long_name = 'Month of year'
+
+	day.long_name = 'Day of month'
+
+	hour.long_name = 'Hour of day'
+
 	air_temp.units = 'kelvin'
 	air_temp.long_name = 'air temperature'
 	air_temp.standard_name = 'air_temperature'
@@ -59,6 +71,8 @@ def aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, ti
 	wind_spd.coordinates = 'longitude latitude'
 	wind_spd.cell_methods = 'time: mean'
 	
+	
+	print('Retrieving Latitude and Longitude')
 	
 	f = open(args.input_file or args.fl_in)
 	f.readline()
@@ -211,7 +225,12 @@ def aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, ti
 		line = line.strip()
 		columns = line.split(',')
 		
-		temp_datetime = datetime(int(line[0:4]), int(line[5:7]), int(line[8:10]), int(line[11:13]))
+		year[j] = int(line[0:4])
+		month[j] = int(line[5:7])
+		day[j] = int(line[8:10])
+		hour[j] = int(line[11:13])
+
+		temp_datetime = datetime(year[j], month[j], day[j], hour[j])
 		sza[j] = sunpos(temp_datetime,latitude[0],longitude[0],0)[1]
 
 		if columns[1] == '':
