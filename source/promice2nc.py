@@ -478,57 +478,60 @@ def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time,
 		j += 1
 
 
-		if ('EGP') in os.path.basename(args.input_file or args.fl_in):
+
+		k = os.path.basename(args.input_file or args.fl_in)
+
+		if ('EGP') in k:
 			temp_stn = 'promice_egp'
-		elif ('KAN_B') in os.path.basename(args.input_file or args.fl_in):
+		elif ('KAN_B') in k:
 			temp_stn = 'promice_kanb'
-		elif ('KAN_L') in os.path.basename(args.input_file or args.fl_in):
+		elif ('KAN_L') in k:
 			temp_stn = 'promice_kanl'
-		elif ('KAN_M') in os.path.basename(args.input_file or args.fl_in):
+		elif ('KAN_M') in k:
 			temp_stn = 'promice_kanm'
-		elif ('KAN_U') in os.path.basename(args.input_file or args.fl_in):
+		elif ('KAN_U') in k:
 			temp_stn = 'promice_kanu'
-		elif ('KPC_L') in os.path.basename(args.input_file or args.fl_in):
+		elif ('KPC_L') in k:
 			temp_stn = 'promice_kpcl'
-		elif ('KPC_U') in os.path.basename(args.input_file or args.fl_in):
+		elif ('KPC_U') in k:
 			temp_stn = 'promice_kpcu'
-		elif ('MIT') in os.path.basename(args.input_file or args.fl_in):
+		elif ('MIT') in k:
 			temp_stn = 'promice_mit'
-		elif ('NUK_K') in os.path.basename(args.input_file or args.fl_in):
+		elif ('NUK_K') in k:
 			temp_stn = 'promice_nukk'
-		elif ('NUK_L') in os.path.basename(args.input_file or args.fl_in):
+		elif ('NUK_L') in k:
 			temp_stn = 'promice_nukl'
-		elif ('NUK_N') in os.path.basename(args.input_file or args.fl_in):
+		elif ('NUK_N') in k:
 			temp_stn = 'promice_nukn'
-		elif ('NUK_U') in os.path.basename(args.input_file or args.fl_in):
+		elif ('NUK_U') in k:
 			temp_stn = 'promice_nuku'
-		elif ('QAS_A') in os.path.basename(args.input_file or args.fl_in):
+		elif ('QAS_A') in k:
 			temp_stn = 'promice_qasa'
-		elif ('QAS_L') in os.path.basename(args.input_file or args.fl_in):
+		elif ('QAS_L') in k:
 			temp_stn = 'promice_qasl'
-		elif ('QAS_M') in os.path.basename(args.input_file or args.fl_in):
+		elif ('QAS_M') in k:
 			temp_stn = 'promice_qasm'
-		elif ('QAS_U') in os.path.basename(args.input_file or args.fl_in):
+		elif ('QAS_U') in k:
 			temp_stn = 'promice_qasu'
-		elif ('SCO_L') in os.path.basename(args.input_file or args.fl_in):
+		elif ('SCO_L') in k:
 			temp_stn = 'promice_scol'
-		elif ('SCO_U') in os.path.basename(args.input_file or args.fl_in):
+		elif ('SCO_U') in k:
 			temp_stn = 'promice_scou'
-		elif ('TAS_A') in os.path.basename(args.input_file or args.fl_in):
+		elif ('TAS_A') in k:
 			temp_stn = 'promice_tasa'
-		elif ('TAS_L') in os.path.basename(args.input_file or args.fl_in):
+		elif ('TAS_L') in k:
 			temp_stn = 'promice_tasl'
-		elif ('TAS_U') in os.path.basename(args.input_file or args.fl_in):
+		elif ('TAS_U') in k:
 			temp_stn = 'promice_tasu'
-		elif ('THU_L') in os.path.basename(args.input_file or args.fl_in):
+		elif ('THU_L') in k:
 			temp_stn = 'promice_thul'
-		elif ('THU_U') in os.path.basename(args.input_file or args.fl_in):
+		elif ('THU_U') in k:
 			temp_stn = 'promice_thuu'
-		elif ('UPE_L') in os.path.basename(args.input_file or args.fl_in):
+		elif ('UPE_L') in k:
 			temp_stn = 'promice_upel'
-		elif ('UPE_U') in os.path.basename(args.input_file or args.fl_in):
+		elif ('UPE_U') in k:
 			temp_stn = 'promice_upeu'
-		elif ('CEN') in os.path.basename(args.input_file or args.fl_in):
+		elif ('CEN') in k:
 			temp_stn = 'promice_cen'
 
 	latitude[0] = (station_dict.get(temp_stn)[0])
