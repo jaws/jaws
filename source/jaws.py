@@ -1,7 +1,7 @@
 import os, sys
 import argparse
-from datetime import datetime
 from netCDF4 import Dataset
+import gcnet2nc, promice2nc, aaws2nc
 	
 def Main():
 	parser = argparse.ArgumentParser()
