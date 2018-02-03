@@ -217,6 +217,8 @@ def aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, ti
 	convert_temp = 273.15
 	convert_press = 100
 	check_na = -999.0
+
+	idx_airtemp, idx_vtempdiff, idx_rh, idx_press, idx_winddir, idx_winspd = range(1,7)
 	
 	ip_file = open(str(args.input_file or args.fl_in), 'r')
 
@@ -229,35 +231,35 @@ def aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, ti
 		line = line.strip()
 		columns = line.split(',')
 
-		if columns[1] == '':
+		if columns[idx_airtemp] == '':
 			air_temp[j] = check_na
 		else:
-			air_temp[j] = float(columns[1]) + convert_temp
+			air_temp[j] = float(columns[idx_airtemp]) + convert_temp
 		
-		if columns[2] == '':
+		if columns[idx_vtempdiff] == '':
 			vtempdiff[j] = check_na
 		else:
-			vtempdiff[j] = columns[2]
+			vtempdiff[j] = columns[idx_vtempdiff]
 		
-		if columns[3] == '':
+		if columns[idx_rh] == '':
 			rh[j] = check_na
 		else:
-			rh[j] = columns[3]
+			rh[j] = columns[idx_rh]
 		
-		if columns[4] == '':
+		if columns[idx_press] == '':
 			pressure[j] = check_na
 		else:
-			pressure[j] = float(columns[4]) * convert_press
+			pressure[j] = float(columns[idx_press]) * convert_press
 		
-		if columns[5] == '':
+		if columns[idx_winddir] == '':
 			wind_dir[j] = check_na
 		else:
-			wind_dir[j] = columns[5]
+			wind_dir[j] = columns[idx_winddir]
 		
-		if columns[6] == '':
+		if columns[idx_winspd] == '':
 			wind_spd[j] = check_na
 		else:
-			wind_spd[j] = columns[6]
+			wind_spd[j] = columns[idx_winspd]
 		
 		year[j] = int(line[0:4])
 		month[j] = int(line[5:7])
