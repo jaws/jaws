@@ -340,7 +340,7 @@ def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time,
 	convert_temp = 273.15
 	convert_press = 100
 	convert_current = 1000
-	check_na = 999.0
+	check_na = -999.0
 
 	idx_year, idx_month, idx_day, idx_hour, idx_dayofyear, idx_dayofcentury, idx_airpress, idx_airtemp, idx_airtemphygro, idx_rhwrtwater, idx_rh, idx_windspd, idx_winddir, idx_swdn, idx_swdncor = range(15)
 	idx_swup, idx_swupcor, idx_albedo, idx_lwdn, idx_lwup, idx_cloudcover, idx_surfacetemp, idx_htsensor, idx_htstakes, idx_depthpress, idx_depthpresscor, idx_icetemp1, idx_icetemp2, idx_icetemp3, idx_icetemp4 = range(15,30)
@@ -544,7 +544,7 @@ def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time,
 	l = 0
 	while l < num_lines:
 		time_bounds[l] = (time[l], time[l]+3600)
-		
+
 		temp_date = datetime(year[l], month[l], day[l], hour[l])
 		sza[l] = sunpos(temp_date,latitude[0],longitude[0],0)[1]
 		l += 1
