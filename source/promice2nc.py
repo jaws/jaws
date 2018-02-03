@@ -1,7 +1,7 @@
 import os
 from datetime import datetime
 from math import sin, cos, sqrt, atan2, radians
-from jaws import time_calc, solar
+from common import time_calc, solar
 import warnings
 
 warnings.filterwarnings("ignore")

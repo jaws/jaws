@@ -1,6 +1,6 @@
 import os
 from datetime import datetime
-from jaws import time_calc, solar
+from common import time_calc, solar
 
 def aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, time_bounds, sza, station_dict):
 
