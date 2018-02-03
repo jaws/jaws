@@ -1,3 +1,17 @@
+2018-02-02  Ajay Saini  <sainiak@uci.edu>
+
+	* Changed string matching to float in PROMICE and AAWS
+
+	* Removed naked constants in GCNet in PROMICE and AAWS
+
+	* time and time_bounds calculation changed in PROMICE and AAWS
+
+	* Created and calculated new variables year, month, day, hour in AAWS
+
+	* time_calc(for calculating time) and solar(for calculating solar zenith angle) common functions defined in common.py
+
+	* Rearranged code
+
 2018-02-01  Ajay Saini  <sainiak@uci.edu>
 
 	* Condensed calculation of day and month in GCNet
