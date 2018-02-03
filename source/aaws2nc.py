@@ -59,71 +59,6 @@ def aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, ti
 	wind_spd.coordinates = 'longitude latitude'
 	wind_spd.cell_methods = 'time: mean'
 	
-	print("converting data...")
-
-	num_lines =  sum(1 for line in open(args.input_file or args.fl_in) if len(line.strip()) != 0) - 8
-	#8 is the number of lines before the data starts in input file
-
-	i,j = 0,0
-	convert_temp = 273.15
-	convert_press = 100
-	check_na = -999.0
-	
-	ip_file = open(str(args.input_file or args.fl_in), 'r')
-
-	while i < 8:
-	    ip_file.readline()
-	    i += 1
-
-	for line in ip_file:
-	    
-	    line = line.strip()
-	    columns = line.split(',')
-	    
-	    if columns[1] == '':
-	    	 air_temp[j] = check_na
-	    else:
-	   		air_temp[j] = float(columns[1]) + convert_temp
-	    
-	    if columns[2] == '':
-	    	 vtempdiff[j] = check_na
-	    else:
-	   		vtempdiff[j] = columns[2]
-	    
-	    if columns[3] == '':
-	    	 rh[j] = check_na
-	    else:
-	   		rh[j] = columns[3]
-	    
-	    if columns[4] == '':
-	    	 pressure[j] = check_na
-	    else:
-	   		pressure[j] = float(columns[4]) * convert_press
-	    
-	    if columns[5] == '':
-	    	 wind_dir[j] = check_na
-	    else:
-	   		wind_dir[j] = columns[5]
-	    
-	    if columns[6] == '':
-	    	 wind_spd[j] = check_na
-	    	 j += 1
-	    else:
-	   		wind_spd[j] = columns[6]
-	   		j += 1
-
-	
-	if args.station_name:
-		print('Default station name overrided by user provided station name')
-	else:
-		f = open(args.input_file or args.fl_in)
-		f.readline()
-		for line in f:
-			x = list(line[12:].strip('\n'))
-			station_name[0:len(x)] = x
-			break
-		f.close()
-
 	
 	f = open(args.input_file or args.fl_in)
 	f.readline()
@@ -254,6 +189,76 @@ def aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, ti
 	latitude[0] = (station_dict.get(temp_stn)[0])
 	longitude[0] = (station_dict.get(temp_stn)[1])
 
+	
+	print("converting data...")
+
+	num_lines =  sum(1 for line in open(args.input_file or args.fl_in) if len(line.strip()) != 0) - 8
+	#8 is the number of lines before the data starts in input file
+
+	i,j = 0,0
+	convert_temp = 273.15
+	convert_press = 100
+	check_na = -999.0
+	
+	ip_file = open(str(args.input_file or args.fl_in), 'r')
+
+	while i < 8:
+		ip_file.readline()
+		i += 1
+
+	for line in ip_file:
+	
+		line = line.strip()
+		columns = line.split(',')
+		
+		temp_datetime = datetime(int(line[0:4]), int(line[5:7]), int(line[8:10]), int(line[11:13]))
+		sza[j] = sunpos(temp_datetime,latitude[0],longitude[0],0)[1]
+
+		if columns[1] == '':
+			air_temp[j] = check_na
+		else:
+			air_temp[j] = float(columns[1]) + convert_temp
+		
+		if columns[2] == '':
+			vtempdiff[j] = check_na
+		else:
+			vtempdiff[j] = columns[2]
+		
+		if columns[3] == '':
+			rh[j] = check_na
+		else:
+			rh[j] = columns[3]
+		
+		if columns[4] == '':
+			pressure[j] = check_na
+		else:
+			pressure[j] = float(columns[4]) * convert_press
+		
+		if columns[5] == '':
+			wind_dir[j] = check_na
+		else:
+			wind_dir[j] = columns[5]
+		
+		if columns[6] == '':
+			wind_spd[j] = check_na
+			j += 1
+		else:
+			wind_spd[j] = columns[6]
+			j += 1
+
+	
+	if args.station_name:
+		print('Default station name overrided by user provided station name')
+	else:
+		f = open(args.input_file or args.fl_in)
+		f.readline()
+		for line in f:
+			x = list(line[12:].strip('\n'))
+			station_name[0:len(x)] = x
+			break
+		f.close()
+
+	
 	f = open(args.input_file or args.fl_in)
 	a,b = 0,0
 	while a < 8:
