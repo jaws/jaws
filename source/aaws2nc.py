@@ -65,6 +65,10 @@ def aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, ti
 	#8 is the number of lines before the data starts in input file
 
 	i,j = 0,0
+	convert_temp = 273.15
+	convert_press = 100
+	check_na = -999.0
+	
 	ip_file = open(str(args.input_file or args.fl_in), 'r')
 
 	while i < 8:
@@ -77,32 +81,32 @@ def aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, ti
 	    columns = line.split(',')
 	    
 	    if columns[1] == '':
-	    	 air_temp[j] = -999
+	    	 air_temp[j] = check_na
 	    else:
-	   		air_temp[j] = float(columns[1]) + 273.15
+	   		air_temp[j] = float(columns[1]) + convert_temp
 	    
 	    if columns[2] == '':
-	    	 vtempdiff[j] = -999
+	    	 vtempdiff[j] = check_na
 	    else:
 	   		vtempdiff[j] = columns[2]
 	    
 	    if columns[3] == '':
-	    	 rh[j] = -999
+	    	 rh[j] = check_na
 	    else:
 	   		rh[j] = columns[3]
 	    
 	    if columns[4] == '':
-	    	 pressure[j] = -999
+	    	 pressure[j] = check_na
 	    else:
-	   		pressure[j] = float(columns[4]) * 100
+	   		pressure[j] = float(columns[4]) * convert_press
 	    
 	    if columns[5] == '':
-	    	 wind_dir[j] = -999
+	    	 wind_dir[j] = check_na
 	    else:
 	   		wind_dir[j] = columns[5]
 	    
 	    if columns[6] == '':
-	    	 wind_spd[j] = -999
+	    	 wind_spd[j] = check_na
 	    	 j += 1
 	    else:
 	   		wind_spd[j] = columns[6]
