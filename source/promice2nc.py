@@ -326,6 +326,10 @@ def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time,
 
 	print("converting data...")
 
+	def time_calc_promice():
+		delta = datetime(year[j], month[j], day[j], hour[j])-datetime(1970, 1, 1)
+		return delta.total_seconds()
+
 	def lat_lon_gps(col_index):
 		return (round(float(int(columns[col_index])-((int(columns[col_index])/100)*100))/60, 2) + (int(columns[col_index])/100))
 
@@ -469,6 +473,8 @@ def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time,
 				fan_current[j] = columns[idx_fancurrent] / convert_current
 
 			battery_voltage[j] = columns[idx_batvolt]
+
+			time[j] = time_calc_promice()
 		j += 1
 
 
@@ -535,85 +541,10 @@ def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time,
 
 
 	
-	print("calculating time variable...")
-	k = 0
-	while k < num_lines:
-		if hour[k] == 0:
-			time[k] = ((date(year[k],month[k],day[k])-date(1970, 1, 1)).days)*86400
-			k += 1
-		elif hour[k] == 1:
-			time[k] = ((date(year[k],month[k],day[k])-date(1970, 1, 1)).days)*86400 + (3600*1)
-			k += 1
-		elif hour[k] == 2:
-			time[k] = ((date(year[k],month[k],day[k])-date(1970, 1, 1)).days)*86400 + (3600*2)
-			k += 1
-		elif hour[k] == 3:
-			time[k] = ((date(year[k],month[k],day[k])-date(1970, 1, 1)).days)*86400 + (3600*3)
-			k += 1
-		elif hour[k] == 4:
-			time[k] = ((date(year[k],month[k],day[k])-date(1970, 1, 1)).days)*86400 + (3600*4)
-			k += 1
-		elif hour[k] == 5:
-			time[k] = ((date(year[k],month[k],day[k])-date(1970, 1, 1)).days)*86400 + (3600*5)
-			k += 1
-		elif hour[k] == 6:
-			time[k] = ((date(year[k],month[k],day[k])-date(1970, 1, 1)).days)*86400 + (3600*6)
-			k += 1
-		elif hour[k] == 7:
-			time[k] = ((date(year[k],month[k],day[k])-date(1970, 1, 1)).days)*86400 + (3600*7)
-			k += 1
-		elif hour[k] == 8:
-			time[k] = ((date(year[k],month[k],day[k])-date(1970, 1, 1)).days)*86400 + (3600*8)
-			k += 1
-		elif hour[k] == 9:
-			time[k] = ((date(year[k],month[k],day[k])-date(1970, 1, 1)).days)*86400 + (3600*9)
-			k += 1
-		elif hour[k] == 10:
-			time[k] = ((date(year[k],month[k],day[k])-date(1970, 1, 1)).days)*86400 + (3600*10)
-			k += 1
-		elif hour[k] == 11:
-			time[k] = ((date(year[k],month[k],day[k])-date(1970, 1, 1)).days)*86400 + (3600*11)
-			k += 1
-		elif hour[k] == 12:
-			time[k] = ((date(year[k],month[k],day[k])-date(1970, 1, 1)).days)*86400 + (3600*12)
-			k += 1
-		elif hour[k] == 13:
-			time[k] = ((date(year[k],month[k],day[k])-date(1970, 1, 1)).days)*86400 + (3600*13)
-			k += 1
-		elif hour[k] == 14:
-			time[k] = ((date(year[k],month[k],day[k])-date(1970, 1, 1)).days)*86400 + (3600*14)
-			k += 1
-		elif hour[k] == 15:
-			time[k] = ((date(year[k],month[k],day[k])-date(1970, 1, 1)).days)*86400 + (3600*15)
-			k += 1
-		elif hour[k] == 16:
-			time[k] = ((date(year[k],month[k],day[k])-date(1970, 1, 1)).days)*86400 + (3600*16)
-			k += 1
-		elif hour[k] == 17:
-			time[k] = ((date(year[k],month[k],day[k])-date(1970, 1, 1)).days)*86400 + (3600*17)
-			k += 1
-		elif hour[k] == 18:
-			time[k] = ((date(year[k],month[k],day[k])-date(1970, 1, 1)).days)*86400 + (3600*18)
-			k += 1
-		elif hour[k] == 19:
-			time[k] = ((date(year[k],month[k],day[k])-date(1970, 1, 1)).days)*86400 + (3600*19)
-			k += 1
-		elif hour[k] == 20:
-			time[k] = ((date(year[k],month[k],day[k])-date(1970, 1, 1)).days)*86400 + (3600*20)
-			k += 1
-		elif hour[k] == 21:
-			time[k] = ((date(year[k],month[k],day[k])-date(1970, 1, 1)).days)*86400 + (3600*21)
-			k += 1
-		elif hour[k] == 22:
-			time[k] = ((date(year[k],month[k],day[k])-date(1970, 1, 1)).days)*86400 + (3600*22)
-			k += 1
-		elif hour[k] == 23:
-			time[k] = ((date(year[k],month[k],day[k])-date(1970, 1, 1)).days)*86400 + (3600*23)
-			k += 1
-		
 	l = 0
 	while l < num_lines:
 		time_bounds[l] = (time[l], time[l]+3600)
+		
 		temp_date = datetime(year[l], month[l], day[l], hour[l])
 		sza[l] = sunpos(temp_date,latitude[0],longitude[0],0)[1]
 		l += 1
