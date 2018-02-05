@@ -489,6 +489,8 @@ def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, t
 	convert_temp = 273.15
 	convert_press = 100
 	check_na = 999.0
+	hour_exception = 0.99
+	hour_conversion = (100/4)		#Divided by 4 because each hour value is a multiple of 4 and then multiplied by 100 to convert decimal to integer
 
 	idx_stnnum, idx_year, idx_jdt, idx_swdn, idx_swup, idx_netrad, idx_tc1, idx_tc2, idx_cs1, idx_cs2, idx_rh1, idx_rh2, idx_windspd1, idx_windspd2, idx_dir1, idx_dir2 = range(16)
 	idx_atmospress, idx_snowht1, idx_snowht2, idx_tsnow1, idx_tsnow2, idx_tsnow3, idx_tsnow4, idx_tsnow5, idx_tsnow6, idx_tsnow7, idx_tsnow8, idx_tsnow9, idx_tsnow10, idx_batvolt, idx_swdnmax, idx_swupmax = range(16,32)
@@ -654,54 +656,12 @@ def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, t
 		qc25[j] = columns[idx_qc25]
 		temp25[j] = columns[idx_qc25]
 
-		if (columns[idx_jdt]-int(columns[idx_jdt])) < .04 or (columns[idx_jdt]-int(columns[idx_jdt])) == .99:
+		temp_hour = (columns[idx_jdt]-int(columns[idx_jdt]))
+
+		if temp_hour == hour_exception:
 			hour[j] = 0
-		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .04 and (columns[idx_jdt]-int(columns[idx_jdt])) < .07:
-			hour[j] = 1
-		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .07 and (columns[idx_jdt]-int(columns[idx_jdt])) < .12:
-			hour[j] = 2
-		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .12 and (columns[idx_jdt]-int(columns[idx_jdt])) < .16:
-			hour[j] = 3
-		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .16 and (columns[idx_jdt]-int(columns[idx_jdt])) < .20:
-			hour[j] = 4
-		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .20 and (columns[idx_jdt]-int(columns[idx_jdt])) < .24:
-			hour[j] = 5
-		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .24 and (columns[idx_jdt]-int(columns[idx_jdt])) < .28:
-			hour[j] = 6
-		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .28 and (columns[idx_jdt]-int(columns[idx_jdt])) < .32:
-			hour[j] = 7
-		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .32 and (columns[idx_jdt]-int(columns[idx_jdt])) < .36:
-			hour[j] = 8
-		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .36 and (columns[idx_jdt]-int(columns[idx_jdt])) < .40:
-			hour[j] = 9
-		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .40 and (columns[idx_jdt]-int(columns[idx_jdt])) < .44:
-			hour[j] = 10
-		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .44 and (columns[idx_jdt]-int(columns[idx_jdt])) < .48:
-			hour[j] = 11
-		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .48 and (columns[idx_jdt]-int(columns[idx_jdt])) < .52:
-			hour[j] = 12
-		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .52 and (columns[idx_jdt]-int(columns[idx_jdt])) < .56:
-			hour[j] = 13
-		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .56 and (columns[idx_jdt]-int(columns[idx_jdt])) < .60:
-			hour[j] = 14
-		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .60 and (columns[idx_jdt]-int(columns[idx_jdt])) < .64:
-			hour[j] = 15
-		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .64 and (columns[idx_jdt]-int(columns[idx_jdt])) < .68:
-			hour[j] = 16
-		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .68 and (columns[idx_jdt]-int(columns[idx_jdt])) < .72:
-			hour[j] = 17
-		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .72 and (columns[idx_jdt]-int(columns[idx_jdt])) < .76:
-			hour[j] = 18
-		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .76 and (columns[idx_jdt]-int(columns[idx_jdt])) < .80:
-			hour[j] = 19
-		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .80 and (columns[idx_jdt]-int(columns[idx_jdt])) < .84:
-			hour[j] = 20
-		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .84 and (columns[idx_jdt]-int(columns[idx_jdt])) < .88:
-			hour[j] = 21
-		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .88 and (columns[idx_jdt]-int(columns[idx_jdt])) < .92:
-			hour[j] = 22
-		elif (columns[idx_jdt]-int(columns[idx_jdt])) >= .92 and (columns[idx_jdt]-int(columns[idx_jdt])) < .96:
-			hour[j] = 23
+		else:
+			hour[j] = int(temp_hour*hour_conversion)
 		
 		j += 1
 
