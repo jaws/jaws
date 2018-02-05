@@ -577,7 +577,7 @@ def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time,
 		velocity = [0]*num_lines
 		R = 6373.0		#Approx radius of earth
 		while p < num_lines:
-			if (latitude_GPS[m] == -999 or longitude_GPS[m] == -999 or latitude_GPS[n] == -999 or longitude_GPS[o] == -999):
+			if (latitude_GPS[m] == check_na or longitude_GPS[m] == check_na or latitude_GPS[n] == check_na or longitude_GPS[o] == check_na):
 				pass
 			else:
 				lat1 = radians(latitude_GPS[m])
