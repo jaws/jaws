@@ -567,13 +567,14 @@ def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, t
 	temp25[:] = [v for v in df['idx_qc25']]
 
 	print('calculating hour...')
-	while i < len(julian_decimal_time):
+	hour[:] = [int(x) for x in [round((v-int(v)),3)*hour_conversion for v in df['idx_jdt']]]
+	'''while i < len(julian_decimal_time):
 		temp_hour[i] = round(julian_decimal_time[i]-int(julian_decimal_time[i]),3)
 		if temp_hour[i] == hour_exception:
 			hour[i] = 0
 		else:
 			hour[i] = int(temp_hour[i]*hour_conversion)
-		i += 1
+		i += 1'''
 		
 
 	print('retrieving lat and lon...')
