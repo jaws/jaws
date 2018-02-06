@@ -492,179 +492,91 @@ def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, t
 	hour_exception = 0.99
 	hour_conversion = (100/4)		#Divided by 4 because each hour value is a multiple of 4 and then multiplied by 100 to convert decimal to integer
 
-	idx_stnnum, idx_year, idx_jdt, idx_swdn, idx_swup, idx_netrad, idx_tc1, idx_tc2, idx_cs1, idx_cs2, idx_rh1, idx_rh2, idx_windspd1, idx_windspd2, idx_dir1, idx_dir2 = range(16)
-	idx_atmospress, idx_snowht1, idx_snowht2, idx_tsnow1, idx_tsnow2, idx_tsnow3, idx_tsnow4, idx_tsnow5, idx_tsnow6, idx_tsnow7, idx_tsnow8, idx_tsnow9, idx_tsnow10, idx_batvolt, idx_swdnmax, idx_swupmax = range(16,32)
-	idx_netradmax, idx_maxtemp1, idx_maxtemp2, idx_mintemp1, idx_mintemp2, idx_maxwindspd1, idx_maxwindspd2, idx_sdwindspd1, idx_sdwindspd2, idx_reftemp, idx_windspd2m, idx_windspd10m, idx_sensorht1, idx_sensorht2, idx_albedo, idx_zenang = range(32,48)
-	idx_qc1, idx_qc9, idx_qc17, idx_qc25 = range(48,52)
-
+	column_names = ['idx_stnnum', 'idx_year', 'idx_jdt', 'idx_swdn', 'idx_swup', 'idx_netrad', 'idx_tc1', 'idx_tc2', 'idx_cs1', 'idx_cs2', 'idx_rh1', 'idx_rh2', 'idx_windspd1', 'idx_windspd2', 'idx_dir1', 'idx_dir2', 'idx_atmospress', 'idx_snowht1', 'idx_snowht2', 'idx_tsnow1', 'idx_tsnow2', 'idx_tsnow3', 'idx_tsnow4', 'idx_tsnow5', 'idx_tsnow6', 'idx_tsnow7', 'idx_tsnow8', 'idx_tsnow9', 'idx_tsnow10', 'idx_batvolt', 'idx_swdnmax', 'idx_swupmax', 'idx_netradmax', 'idx_maxtemp1', 'idx_maxtemp2', 'idx_mintemp1', 'idx_mintemp2', 'idx_maxwindspd1', 'idx_maxwindspd2', 'idx_sdwindspd1', 'idx_sdwindspd2', 'idx_reftemp', 'idx_windspd2m', 'idx_windspd10m', 'idx_sensorht1', 'idx_sensorht2', 'idx_albedo', 'idx_zenang', 'idx_qc1', 'idx_qc9', 'idx_qc17', 'idx_qc25']
+	
+	temp_hour = [0]*num_lines
 	temp1 = [0]*num_lines
 	temp9 = [0]*num_lines
 	temp17 = [0]*num_lines
 	temp25 = [0]*num_lines
 
-	ip_file = open(str(args.input_file or args.fl_in), 'r')
+	df = pd.read_csv(args.input_file or args.fl_in, delim_whitespace=True, skiprows=54, skip_blank_lines=True, header=None, names = column_names)
+	df.loc[:,['idx_tc1', 'idx_tc2', 'idx_cs1', 'idx_cs2', 'idx_tsnow1', 'idx_tsnow2', 'idx_tsnow3', 'idx_tsnow4', 'idx_tsnow5', 'idx_tsnow6', 'idx_tsnow7', 'idx_tsnow8', 'idx_tsnow9', 'idx_tsnow10', 'idx_maxtemp1', 'idx_maxtemp2', 'idx_mintemp1', 'idx_mintemp2', 'idx_reftemp']] += convert_temp
+	df.loc[:,'idx_atmospress'] *= convert_press
+	df = df.where((pd.notnull(df)), 999)
+	
+	
+	for v in df['idx_stnnum']:
+		station_number[:] = v
+		break
+	year[:] = [v for v in df['idx_year']]
+	julian_decimal_time[:] = [v for v in df['idx_jdt']]
+	sw_down[:] = [v for v in df['idx_swdn']]
+	sw_up[:] = [v for v in df['idx_swup']]
+	net_radiation[:] = [v for v in df['idx_netrad']]
+	temperature_tc_1[:] = [v for v in df['idx_tc1']]
+	temperature_tc_2[:] = [v for v in df['idx_tc2']]
+	temperature_cs500_1[:] = [v for v in df['idx_cs1']]
+	temperature_cs500_2[:] = [v for v in df['idx_cs2']]
+	relative_humidity_1[:] = [v for v in df['idx_rh1']]
+	relative_humidity_2[:] = [v for v in df['idx_rh2']]
+	u1_wind_speed[:] = [v for v in df['idx_windspd1']]
+	u2_wind_speed[:] = [v for v in df['idx_windspd2']]
+	u_direction_1[:] = [v for v in df['idx_dir1']]
+	u_direction_2[:] = [v for v in df['idx_dir2']]
+	atmos_pressure[:] = [v for v in df['idx_atmospress']]
+	snow_height_1[:] = [v for v in df['idx_snowht1']]
+	snow_height_2[:] = [v for v in df['idx_snowht2']]
+	t_snow_01[:] = [v for v in df['idx_tsnow1']]
+	t_snow_02[:] = [v for v in df['idx_tsnow2']]
+	t_snow_03[:] = [v for v in df['idx_tsnow3']]
+	t_snow_04[:] = [v for v in df['idx_tsnow4']]
+	t_snow_05[:] = [v for v in df['idx_tsnow5']]
+	t_snow_06[:] = [v for v in df['idx_tsnow6']]
+	t_snow_07[:] = [v for v in df['idx_tsnow7']]
+	t_snow_08[:] = [v for v in df['idx_tsnow8']]
+	t_snow_09[:] = [v for v in df['idx_tsnow9']]
+	t_snow_10[:] = [v for v in df['idx_tsnow10']]
+	battery_voltage[:] = [v for v in df['idx_batvolt']]
+	sw_down_max[:] = [v for v in df['idx_swdnmax']]
+	sw_up_max[:] = [v for v in df['idx_swupmax']]
+	net_radiation_max[:] = [v for v in df['idx_netradmax']]
+	max_air_temperature_1[:] = [v for v in df['idx_maxtemp1']]
+	max_air_temperature_2[:] = [v for v in df['idx_maxtemp2']]
+	min_air_temperature_1[:] = [v for v in df['idx_mintemp1']]
+	min_air_temperature_2[:] = [v for v in df['idx_mintemp2']]
+	max_windspeed_u1[:] = [v for v in df['idx_maxwindspd1']]
+	max_windspeed_u2[:] = [v for v in df['idx_maxwindspd2']]
+	stdev_windspeed_u1[:] = [v for v in df['idx_sdwindspd1']]
+	stdev_windspeed_u2[:] = [v for v in df['idx_sdwindspd2']]
+	ref_temperature[:] = [v for v in df['idx_reftemp']]
+	windspeed_2m[:] = [v for v in df['idx_windspd2m']]
+	windspeed_10m[:] = [v for v in df['idx_windspd10m']]
+	wind_sensor_height_1[:] = [v for v in df['idx_sensorht1']]
+	wind_sensor_height_2[:] = [v for v in df['idx_sensorht2']]
+	albedo[:] = [v for v in df['idx_albedo']]
+	zenith_angle[:] = [v for v in df['idx_zenang']]
+	qc1[:] = [v for v in df['idx_qc1']]
+	qc9[:] = [v for v in df['idx_qc9']]
+	qc17[:] = [v for v in df['idx_qc17']]
+	qc25[:] = [v for v in df['idx_qc25']]
+	
+	temp1[:] = [v for v in df['idx_qc1']]
+	temp9[:] = [v for v in df['idx_qc9']]
+	temp17[:] = [v for v in df['idx_qc17']]
+	temp25[:] = [v for v in df['idx_qc25']]
 
-	while i < 54:
-	    ip_file.readline()
-	    i += 1
+	print('calculating hour...')
+	while i < len(julian_decimal_time):
+		temp_hour[i] = round(julian_decimal_time[i]-int(julian_decimal_time[i]),3)
+		if temp_hour[i] == hour_exception:
+			hour[i] = 0
+		else:
+			hour[i] = int(temp_hour[i]*hour_conversion)
+		i += 1
+		
 
-	for line in ip_file:
-	    
-		line = line.strip()
-		columns = line.split()
-		columns = [float(x) for x in columns]
-		
-		station_number[0] = columns[idx_stnnum]
-		year[j] = columns[idx_year]
-		julian_decimal_time[j] = columns[idx_jdt]
-		sw_down[j] = columns[idx_swdn]
-		sw_up[j] = columns[idx_swup]
-		net_radiation[j] = columns[idx_netrad]
-		
-		if columns[idx_tc1] == check_na:
-			temperature_tc_1[j] = columns[idx_tc1]
-		else:
-			temperature_tc_1[j] = columns[idx_tc1] + convert_temp
-
-		if columns[idx_tc2] == check_na:
-			temperature_tc_2[j] = columns[idx_tc2]
-		else:
-			temperature_tc_2[j] = columns[idx_tc2] + convert_temp
-
-		if columns[idx_cs1] == check_na:
-			temperature_cs500_1[j] = columns[idx_cs1]
-		else:
-			temperature_cs500_1[j] = columns[idx_cs1] + convert_temp
-
-		if columns[idx_cs2] == check_na:
-			temperature_cs500_2[j] = columns[idx_cs2]
-		else:
-			temperature_cs500_2[j] = columns[idx_cs2] + convert_temp
-
-		relative_humidity_1[j] = columns[idx_rh1]
-		relative_humidity_2[j] = columns[idx_rh2]
-		u1_wind_speed[j] = columns[idx_windspd1]
-		u2_wind_speed[j] = columns[idx_windspd2]
-		u_direction_1[j] = columns[idx_dir1]
-		u_direction_2[j] = columns[idx_dir2]
-		
-		if columns[idx_atmospress] == check_na:
-			atmos_pressure[j] = columns[idx_atmospress]
-		else:
-			atmos_pressure[j] = columns[idx_atmospress] * convert_press
-		
-		snow_height_1[j] = columns[idx_snowht1]
-		snow_height_2[j] = columns[idx_snowht2]
-		
-		if columns[idx_tsnow1] == check_na:
-			t_snow_01[j] = columns[idx_tsnow1]
-		else:
-			t_snow_01[j] = columns[idx_tsnow1] + convert_temp
-
-		if columns[idx_tsnow2] == check_na:
-			t_snow_02[j] = columns[idx_tsnow2]
-		else:
-			t_snow_02[j] = columns[idx_tsnow2] + convert_temp
-
-		if columns[idx_tsnow3] == check_na:
-			t_snow_03[j] = columns[idx_tsnow3]
-		else:
-			t_snow_03[j] = columns[idx_tsnow3] + convert_temp
-		
-		if columns[idx_tsnow4] == check_na:
-			t_snow_04[j] = columns[idx_tsnow4]
-		else:
-			t_snow_04[j] = columns[idx_tsnow4] + convert_temp
-		
-		if columns[idx_tsnow5] == check_na:
-			t_snow_05[j] = columns[idx_tsnow5]
-		else:
-			t_snow_05[j] = columns[idx_tsnow5] + convert_temp
-		
-		if columns[idx_tsnow6] == check_na:
-			t_snow_06[j] = columns[idx_tsnow6]
-		else:
-			t_snow_06[j] = columns[idx_tsnow6] + convert_temp
-		
-		if columns[idx_tsnow7] == check_na:
-			t_snow_07[j] = columns[idx_tsnow7]
-		else:
-			t_snow_07[j] = columns[idx_tsnow7] + convert_temp
-		
-		if columns[idx_tsnow8] == check_na:
-			t_snow_08[j] = columns[idx_tsnow8]
-		else:
-			t_snow_08[j] = columns[idx_tsnow8] + convert_temp
-		
-		if columns[idx_tsnow9] == check_na:
-			t_snow_09[j] = columns[idx_tsnow9]
-		else:
-			t_snow_09[j] = columns[idx_tsnow9] + convert_temp
-		
-		if columns[idx_tsnow10] == check_na:
-			t_snow_10[j] = columns[idx_tsnow10]
-		else:
-			t_snow_10[j] = columns[idx_tsnow10] + convert_temp
-		
-		battery_voltage[j] = columns[idx_batvolt]
-		sw_down_max[j] = columns[idx_swdnmax]
-		sw_up_max[j] = columns[idx_swupmax]
-		net_radiation_max[j] = columns[idx_netradmax]
-		
-		if columns[idx_maxtemp1] == check_na:
-			max_air_temperature_1[j] = columns[idx_maxtemp1]
-		else:
-			max_air_temperature_1[j] = columns[idx_maxtemp1] + convert_temp
-		
-		if columns[idx_maxtemp2] == check_na:
-			max_air_temperature_2[j] = columns[idx_maxtemp2]
-		else:
-			max_air_temperature_2[j] = columns[idx_maxtemp2] + convert_temp
-		
-		if columns[idx_mintemp1] == check_na:
-			min_air_temperature_1[j] = columns[idx_mintemp1]
-		else:
-			min_air_temperature_1[j] = columns[idx_mintemp1] + convert_temp
-		
-		if columns[idx_mintemp2] == check_na:
-			min_air_temperature_2[j] = columns[idx_mintemp2]
-		else:
-			min_air_temperature_2[j] = columns[idx_mintemp2] + convert_temp
-		
-		max_windspeed_u1[j] = columns[idx_maxwindspd1]
-		max_windspeed_u2[j] = columns[idx_maxwindspd2]
-		stdev_windspeed_u1[j] = columns[idx_sdwindspd1]
-		stdev_windspeed_u2[j] = columns[idx_sdwindspd2]
-		
-		if columns[idx_reftemp] == check_na:
-			ref_temperature[j] = columns[idx_reftemp]
-		else:
-			ref_temperature[j] = columns[idx_reftemp] + convert_temp
-		
-		windspeed_2m[j] = columns[idx_windspd2m]
-		windspeed_10m[j] = columns[idx_windspd10m]
-		wind_sensor_height_1[j] = columns[idx_sensorht1]
-		wind_sensor_height_2[j] = columns[idx_sensorht1]
-		albedo[j] = columns[idx_albedo]
-		zenith_angle[j] = columns[idx_zenang]
-		qc1[j] = columns[idx_qc1]
-		temp1[j] = columns[idx_qc1]
-		qc9[j] = columns[idx_qc9]
-		temp9[j] = columns[idx_qc9]
-		qc17[j] = columns[idx_qc17]
-		temp17[j] = columns[idx_qc17]
-		qc25[j] = columns[idx_qc25]
-		temp25[j] = columns[idx_qc25]
-
-		temp_hour = (columns[idx_jdt]-int(columns[idx_jdt]))
-
-		if temp_hour == hour_exception:
-			hour[j] = 0
-		else:
-			hour[j] = int(temp_hour*hour_conversion)
-		
-		j += 1
-
+	print('retrieving lat and lon...')
 	if station_number[0] == 1:
 		temp_stn = 'gcnet_swiss'
 	elif station_number[0] == 2:
@@ -787,7 +699,7 @@ def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, t
 	
 
 	
-	print("calculating day and month...")
+	print("calculating date and time...")
 	
 	def get_month_day(year, day, one_based=False):
 		if one_based:  # if Jan 1st is 1 instead of 0
