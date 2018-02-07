@@ -394,6 +394,7 @@ def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time,
 
 
 	print('calculating time and sza...')
+	idx_latgps,idx_longps = 37,38
 	ip_file = open(str(args.input_file or args.fl_in), 'r')
 	ip_file.readline()
 
