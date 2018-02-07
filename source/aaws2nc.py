@@ -231,8 +231,8 @@ def aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, ti
 	column_names = ['idx_timestamp', 'idx_airtemp', 'idx_vtempdiff', 'idx_rh', 'idx_press', 'idx_winddir', 'idx_winspd']
 
 	df = pd.read_csv(args.input_file or args.fl_in, skiprows=8, skip_blank_lines=True, header=None, names = column_names)
-	df.loc[:,1] += convert_temp
-	df.loc[:,4] += convert_press
+	df.loc[:,'idx_airtemp'] += convert_temp
+	df.loc[:,'idx_press'] *= convert_press
 	df =  df.where((pd.notnull(df)), check_na)
 
 	air_temp[:] = get_data(df['idx_airtemp'])
