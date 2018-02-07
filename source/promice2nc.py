@@ -1,7 +1,8 @@
 import os
 from datetime import datetime
 from math import sin, cos, sqrt, atan2, radians
-from common import time_calc, solar
+from common import time_calc, solar, get_data
+import pandas as pd
 import warnings
 
 warnings.filterwarnings("ignore")
@@ -336,13 +337,63 @@ def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time,
 	convert_temp = 273.15
 	convert_press = 100
 	convert_current = 1000
-	check_na = -999.0
+	check_na = -999
 
-	idx_year, idx_month, idx_day, idx_hour, idx_dayofyear, idx_dayofcentury, idx_airpress, idx_airtemp, idx_airtemphygro, idx_rhwrtwater, idx_rh, idx_windspd, idx_winddir, idx_swdn, idx_swdncor = range(15)
-	idx_swup, idx_swupcor, idx_albedo, idx_lwdn, idx_lwup, idx_cloudcover, idx_surfacetemp, idx_htsensor, idx_htstakes, idx_depthpress, idx_depthpresscor, idx_icetemp1, idx_icetemp2, idx_icetemp3, idx_icetemp4 = range(15,30)
-	idx_icetemp5, idx_icetemp6, idx_icetemp7, idx_icetemp8, idx_tilteast, idx_tiltnorth, idx_timegps, idx_latgps, idx_longps, idx_elevation, idx_hordil, idx_loggertemp, idx_fancurrent, idx_batvolt = range(30, 44)
+	column_names = ['idx_year', 'idx_month', 'idx_day', 'idx_hour', 'idx_dayofyear', 'idx_dayofcentury', 'idx_airpress', 'idx_airtemp', 'idx_airtemphygro', 'idx_rhwrtwater', 'idx_rh', 'idx_windspd', 'idx_winddir', 'idx_swdn', 'idx_swdncor', 'idx_swup', 'idx_swupcor', 'idx_albedo', 'idx_lwdn', 'idx_lwup', 'idx_cloudcover', 'idx_surfacetemp', 'idx_htsensor', 'idx_htstakes', 'idx_depthpress', 'idx_depthpresscor', 'idx_icetemp1', 'idx_icetemp2', 'idx_icetemp3', 'idx_icetemp4', 'idx_icetemp5', 'idx_icetemp6', 'idx_icetemp7', 'idx_icetemp8', 'idx_tilteast', 'idx_tiltnorth', 'idx_timegps', 'idx_latgps', 'idx_longps', 'idx_elevation', 'idx_hordil', 'idx_loggertemp', 'idx_fancurrent', 'idx_batvolt']
+
+	df = pd.read_csv(args.input_file or args.fl_in, skiprows=1, skip_blank_lines=True, header=None, names = column_names)
+	df.loc[:,['idx_airtemp','idx_airtemphygro','idx_surfacetemp','idx_icetemp1','idx_icetemp2','idx_icetemp3','idx_icetemp4','idx_icetemp5','idx_icetemp6','idx_icetemp7','idx_icetemp8','idx_loggertemp']] += convert_temp
+	df.loc[:,['idx_airpress']] *= convert_press
+	df.loc[:,[]] /= convert_current
+	df =  df.where((pd.notnull(df)), check_na)
+
+	year[:] = get_data(df['idx_year'])
+	month[:] = get_data(df['idx_month'])
+	day[:] = get_data(df['idx_day'])
+	hour[:] = get_data(df['idx_hour'])
+	day_of_year[:] = get_data(df['idx_dayofyear'])
+	day_of_century[:] = get_data(df['idx_dayofcentury'])
+	air_pressure[:] = get_data(df['idx_airpress'])
+	air_temperature[:] = get_data(df['idx_airtemp'])
+	air_temperature_hygroclip[:] = get_data(df['idx_airtemphygro'])
+	relative_humidity_wrtwater[:] = get_data(df['idx_rhwrtwater'])
+	relative_humidity[:] = get_data(df['idx_rh'])
+	wind_speed[:] = get_data(df['idx_windspd'])
+	wind_direction[:] = get_data(df['idx_winddir'])
+	shortwave_radiation_down[:] = get_data(df['idx_swdn'])
+	shortwave_radiation_down_cor[:] = get_data(df['idx_swdncor'])
+	shortwave_radiation_up[:] = get_data(df['idx_swup'])
+	shortwave_radiation_up_cor[:] = get_data(df['idx_swupcor'])
+	albedo_theta[:] = get_data(df['idx_albedo'])
+	longwave_radiation_down[:] = get_data(df['idx_lwdn'])
+	longwave_radiation_up[:] = get_data(df['idx_lwup'])
+	cloudcover[:] = get_data(df['idx_cloudcover'])
+	surface_temp[:] = get_data(df['idx_surfacetemp'])
+	height_sensor_boom[:] = get_data(df['idx_htsensor'])
+	height_stakes[:] = get_data(df['idx_htstakes'])
+	depth_pressure_transducer[:] = get_data(df['idx_depthpress'])
+	depth_pressure_transducer_cor[:] = get_data(df['idx_depthpresscor'])
+	ice_temp_01[:] = get_data(df['idx_icetemp1'])
+	ice_temp_02[:] = get_data(df['idx_icetemp2'])
+	ice_temp_03[:] = get_data(df['idx_icetemp3'])
+	ice_temp_04[:] = get_data(df['idx_icetemp4'])
+	ice_temp_05[:] = get_data(df['idx_icetemp5'])
+	ice_temp_06[:] = get_data(df['idx_icetemp6'])
+	ice_temp_07[:] = get_data(df['idx_icetemp7'])
+	ice_temp_08[:] = get_data(df['idx_icetemp8'])
+	tilt_east[:] = get_data(df['idx_tilteast'])
+	tilt_north[:] = get_data(df['idx_tiltnorth'])
+	time_GPS[:] = get_data(df['idx_timegps'])
+	#latitude_GPS[:] = get_data(df['idx_latgps'])
+	#longitude_GPS[:] = get_data(df['idx_longps'])
+	elevation[:] = get_data(df['idx_elevation'])
+	hor_dil_prec[:] = get_data(df['idx_hordil'])
+	logger_temp[:] = get_data(df['idx_loggertemp'])
+	fan_current[:] = get_data(df['idx_fancurrent'])
+	battery_voltage[:] = get_data(df['idx_batvolt'])
 
 
+	print('calculating time and sza...')
 	ip_file = open(str(args.input_file or args.fl_in), 'r')
 	ip_file.readline()
 
@@ -356,95 +407,6 @@ def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time,
 			columns = line.split()
 			columns = [float(x) for x in columns]
 			
-			year[j] = columns[idx_year]
-			month[j] = columns[idx_month]
-			day[j] = columns[idx_day]
-			hour[j] = columns[idx_hour]
-			day_of_year[j] = columns[idx_dayofyear]
-			day_of_century[j] = columns[idx_dayofcentury]
-
-			if columns[idx_airpress] == check_na:
-				air_pressure[j] = columns[idx_airpress]
-			else:
-				air_pressure[j] = columns[idx_airpress] * convert_press
-
-			if columns[idx_airtemp] == check_na:
-				air_temperature[j] = columns[idx_airtemp]
-			else:
-				air_temperature[j] = columns[idx_airtemp] + convert_temp
-
-			if columns[idx_airtemphygro] == check_na:
-				air_temperature_hygroclip[j] = columns[idx_airtemphygro]
-			else:
-				air_temperature_hygroclip[j] = columns[idx_airtemphygro] + convert_temp
-
-			relative_humidity_wrtwater[j] = columns[idx_rhwrtwater]
-			relative_humidity[j] = columns[idx_rh]
-			wind_speed[j] = columns[idx_windspd]
-			wind_direction[j] = columns[idx_winddir]
-			shortwave_radiation_down[j] = columns[idx_swdn]
-			shortwave_radiation_down_cor[j] = columns[idx_swdncor]
-			shortwave_radiation_up[j] = columns[idx_swup]
-			shortwave_radiation_up_cor[j] = columns[idx_swupcor]
-			albedo_theta[j] = columns[idx_albedo]
-			longwave_radiation_down[j] = columns[idx_lwdn]
-			longwave_radiation_up[j] = columns[idx_lwup]
-			cloudcover[j] = columns[idx_cloudcover]
-
-			if columns[idx_surfacetemp] == check_na:
-				surface_temp[j] = columns[idx_surfacetemp]
-			else:
-				surface_temp[j] = columns[idx_surfacetemp] + convert_temp
-
-			height_sensor_boom[j] = columns[idx_htsensor]
-			height_stakes[j] = columns[idx_htstakes]
-			depth_pressure_transducer[j] = columns[idx_depthpress]
-			depth_pressure_transducer_cor[j] = columns[idx_depthpresscor]
-
-			if columns[idx_icetemp1] == check_na:
-				ice_temp_01[j] = columns[idx_icetemp1]
-			else:
-				ice_temp_01[j] = columns[idx_icetemp1] + convert_temp
-
-			if columns[idx_icetemp2] == check_na:
-				ice_temp_02[j] = columns[idx_icetemp2]
-			else:
-				ice_temp_02[j] = columns[idx_icetemp2] + convert_temp
-
-			if columns[idx_icetemp3] == check_na:
-				ice_temp_03[j] = columns[idx_icetemp3]
-			else:
-				ice_temp_03[j] = columns[idx_icetemp3] + convert_temp
-
-			if columns[idx_icetemp4] == check_na:
-				ice_temp_04[j] = columns[idx_icetemp4]
-			else:
-				ice_temp_04[j] = columns[idx_icetemp4] + convert_temp
-
-			if columns[idx_icetemp5] == check_na:
-				ice_temp_05[j] = columns[idx_icetemp5]
-			else:
-				ice_temp_05[j] = columns[idx_icetemp5] + convert_temp
-
-			if columns[idx_icetemp6] == check_na:
-				ice_temp_06[j] = columns[idx_icetemp6]
-			else:
-				ice_temp_06[j] = columns[idx_icetemp6] + convert_temp
-
-			if columns[idx_icetemp7] == check_na:
-				ice_temp_07[j] = columns[idx_icetemp7]
-			else:
-				ice_temp_07[j] = columns[idx_icetemp7] + convert_temp
-
-			if columns[idx_icetemp8] == check_na:
-				ice_temp_08[j] = columns[idx_icetemp8]
-			else:
-				ice_temp_08[j] = columns[idx_icetemp8] + convert_temp
-
-			tilt_east[j] = columns[idx_tilteast]
-			tilt_north[j] = columns[idx_tiltnorth]
-			time_GPS[j] = columns[idx_timegps]
-			
 			if columns[idx_latgps] == check_na:
 				latitude_GPS[j] = columns[idx_latgps]
 			else:
@@ -455,26 +417,15 @@ def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time,
 			else:
 				longitude_GPS[j] == lat_lon_gps(idx_longps)
 			
-			elevation[j] = columns[idx_elevation]
-			hor_dil_prec[j] = columns[idx_hordil]
-
-			if columns[idx_loggertemp] == check_na:
-				logger_temp[j] = columns[idx_loggertemp]
-			else:
-				logger_temp[j] = columns[idx_loggertemp] + convert_temp
-
-			if columns[idx_fancurrent] == check_na:
-				fan_current[j] = columns[idx_fancurrent]
-			else:
-				fan_current[j] = columns[idx_fancurrent] / convert_current
-
-			battery_voltage[j] = columns[idx_batvolt]
-
 			time[j] = time_calc(year[j], month[j], day[j], hour[j])
+			time_bounds[j] = (time[j], time[j]+3600)
+
+			sza[j] = solar(year[j], month[j], day[j], hour[j], latitude[0], longitude[0])
+
 		j += 1
+		
 
-
-
+		print('retrieving lat and lon...')
 		k = os.path.basename(args.input_file or args.fl_in)
 
 		if ('EGP') in k:
@@ -540,12 +491,12 @@ def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time,
 
 
 	
-	l = 0
+	'''l = 0
 	while l < num_lines:
 		time_bounds[l] = (time[l], time[l]+3600)
 
 		sza[l] = solar(year[l], month[l], day[l], hour[l], latitude[0], longitude[0])
-		l += 1
+		l += 1'''
 
 #Calculating GPS-derived ice velocity
 	'''m,n = 0,1
@@ -572,6 +523,7 @@ def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time,
 
 		n += 1'''
 
+	print('calculating ice velocity...')
 	def ice_velocity(n,o):
 		m,p = 0,1
 		velocity = [0]*num_lines
