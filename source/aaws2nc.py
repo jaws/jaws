@@ -1,6 +1,7 @@
 import os
 from datetime import datetime
 from common import time_calc, solar
+import pandas as pd
 
 def aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, time_bounds, sza, station_dict):
 
@@ -204,18 +205,46 @@ def aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, ti
 	longitude[0] = (station_dict.get(temp_stn)[1])
 
 	
+	print('retrieving station name...')
+
+	if args.station_name:
+		print('Default station name overrided by user provided station name')
+	else:
+		f = open(args.input_file or args.fl_in)
+		f.readline()
+		for line in f:
+			x = list(line[12:].strip('\n'))
+			station_name[0:len(x)] = x
+			break
+		f.close()
+
+	
 	print("converting data...")
 
 	num_lines =  sum(1 for line in open(args.input_file or args.fl_in) if len(line.strip()) != 0) - 8
 	#8 is the number of lines before the data starts in input file
 
-	i,j = 0,0
 	convert_temp = 273.15
 	convert_press = 100
-	check_na = -999.0
+	check_na = -999
 
-	idx_airtemp, idx_vtempdiff, idx_rh, idx_press, idx_winddir, idx_winspd = range(1,7)
+	column_names = ['idx_timestamp', 'idx_airtemp', 'idx_vtempdiff', 'idx_rh', 'idx_press', 'idx_winddir', 'idx_winspd']
+
+	df = pd.read_csv(args.input_file or args.fl_in, skiprows=8, skip_blank_lines=True, header=None, names = column_names)
+	df.loc[:,1] += convert_temp
+	df.loc[:,4] += convert_press
+	df =  df.where((pd.notnull(df)), check_na)
+
+	air_temp[:] = [v for v in df['idx_airtemp']]
+	vtempdiff[:] = [v for v in df['idx_vtempdiff']]
+	rh[:] = [v for v in df['idx_rh']]
+	pressure[:] = [v for v in df['idx_press']]
+	wind_dir[:] = [v for v in df['idx_winddir']]
+	wind_spd[:] = [v for v in df['idx_winspd']]
 	
+	
+	print('calculating date and time...')
+	i,j = 0,0
 	ip_file = open(str(args.input_file or args.fl_in), 'r')
 
 	while i < 8:
@@ -225,37 +254,6 @@ def aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, ti
 	for line in ip_file:
 	
 		line = line.strip()
-		columns = line.split(',')
-
-		if columns[idx_airtemp] == '':
-			air_temp[j] = check_na
-		else:
-			air_temp[j] = float(columns[idx_airtemp]) + convert_temp
-		
-		if columns[idx_vtempdiff] == '':
-			vtempdiff[j] = check_na
-		else:
-			vtempdiff[j] = columns[idx_vtempdiff]
-		
-		if columns[idx_rh] == '':
-			rh[j] = check_na
-		else:
-			rh[j] = columns[idx_rh]
-		
-		if columns[idx_press] == '':
-			pressure[j] = check_na
-		else:
-			pressure[j] = float(columns[idx_press]) * convert_press
-		
-		if columns[idx_winddir] == '':
-			wind_dir[j] = check_na
-		else:
-			wind_dir[j] = columns[idx_winddir]
-		
-		if columns[idx_winspd] == '':
-			wind_spd[j] = check_na
-		else:
-			wind_spd[j] = columns[idx_winspd]
 		
 		year[j] = int(line[0:4])
 		month[j] = int(line[5:7])
@@ -270,18 +268,5 @@ def aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, ti
 		j += 1
 
 	
-	print('retrieving station name...')
-
-	if args.station_name:
-		print('Default station name overrided by user provided station name')
-	else:
-		f = open(args.input_file or args.fl_in)
-		f.readline()
-		for line in f:
-			x = list(line[12:].strip('\n'))
-			station_name[0:len(x)] = x
-			break
-		f.close()
-
 			
 	root_grp.close()
