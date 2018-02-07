@@ -2,6 +2,7 @@ import os
 from datetime import datetime, timedelta
 from common import time_calc, solar, get_data
 import pandas as pd
+import numpy as np
 
 def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, time_bounds, sza, station_dict):
 
@@ -502,9 +503,10 @@ def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, t
 	temp25 = [0]*num_lines
 
 	df = pd.read_csv(args.input_file or args.fl_in, delim_whitespace=True, skiprows=54, skip_blank_lines=True, header=None, names = column_names)
+	df.replace(check_na, np.nan, inplace=True)
 	df.loc[:,['idx_tc1', 'idx_tc2', 'idx_cs1', 'idx_cs2', 'idx_tsnow1', 'idx_tsnow2', 'idx_tsnow3', 'idx_tsnow4', 'idx_tsnow5', 'idx_tsnow6', 'idx_tsnow7', 'idx_tsnow8', 'idx_tsnow9', 'idx_tsnow10', 'idx_maxtemp1', 'idx_maxtemp2', 'idx_mintemp1', 'idx_mintemp2', 'idx_reftemp']] += convert_temp
 	df.loc[:,'idx_atmospress'] *= convert_press
-	df = df.where((pd.notnull(df)), 999)
+	df = df.where((pd.notnull(df)), check_na)
 	
 	
 	for v in df['idx_stnnum']:
