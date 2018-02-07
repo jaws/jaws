@@ -1,6 +1,7 @@
 import os
 from datetime import datetime, timedelta
 from common import time_calc, solar
+import pandas as pd
 
 def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, time_bounds, sza, station_dict):
 
