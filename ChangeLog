@@ -1,3 +1,17 @@
+2018-02-06  Ajay Saini  <sainiak@uci.edu>
+
+	* GCNet - Hour calculation made faster
+
+	* AAWS- using pandas to convert the data
+
+	* Common function defined to get data from the raw files
+
+	* GCNet - implemented another approach for calculating quality control variables but not much runtime difference. Will ask on SO tommorow
+
+	* PROMICE - using pandas to convert the data
+
+	* Read xarray documentation and best practices
+
 2018-02-05  Ajay Saini  <sainiak@uci.edu>
 
 	* GCNet - Used pandas to copy data from ascii file, runtime decreased by huge factor. Work in progress, need to implement for calculated variables.
