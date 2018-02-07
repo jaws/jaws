@@ -1,6 +1,6 @@
 import os
 from datetime import datetime
-from common import time_calc, solar
+from common import time_calc, solar, get_data
 import pandas as pd
 
 def aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, time_bounds, sza, station_dict):
@@ -235,12 +235,12 @@ def aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, ti
 	df.loc[:,4] += convert_press
 	df =  df.where((pd.notnull(df)), check_na)
 
-	air_temp[:] = [v for v in df['idx_airtemp']]
-	vtempdiff[:] = [v for v in df['idx_vtempdiff']]
-	rh[:] = [v for v in df['idx_rh']]
-	pressure[:] = [v for v in df['idx_press']]
-	wind_dir[:] = [v for v in df['idx_winddir']]
-	wind_spd[:] = [v for v in df['idx_winspd']]
+	air_temp[:] = get_data(df['idx_airtemp'])
+	vtempdiff[:] = get_data(df['idx_vtempdiff'])
+	rh[:] = get_data(df['idx_rh'])
+	pressure[:] = get_data(df['idx_press'])
+	wind_dir[:] = get_data(df['idx_winddir'])
+	wind_spd[:] = get_data(df['idx_winspd'])
 	
 	
 	print('calculating date and time...')

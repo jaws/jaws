@@ -1,6 +1,6 @@
 import os
 from datetime import datetime, timedelta
-from common import time_calc, solar
+from common import time_calc, solar, get_data
 import pandas as pd
 
 def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, time_bounds, sza, station_dict):
@@ -510,62 +510,62 @@ def gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, t
 	for v in df['idx_stnnum']:
 		station_number[:] = v
 		break
-	year[:] = [v for v in df['idx_year']]
-	julian_decimal_time[:] = [v for v in df['idx_jdt']]
-	sw_down[:] = [v for v in df['idx_swdn']]
-	sw_up[:] = [v for v in df['idx_swup']]
-	net_radiation[:] = [v for v in df['idx_netrad']]
-	temperature_tc_1[:] = [v for v in df['idx_tc1']]
-	temperature_tc_2[:] = [v for v in df['idx_tc2']]
-	temperature_cs500_1[:] = [v for v in df['idx_cs1']]
-	temperature_cs500_2[:] = [v for v in df['idx_cs2']]
-	relative_humidity_1[:] = [v for v in df['idx_rh1']]
-	relative_humidity_2[:] = [v for v in df['idx_rh2']]
-	u1_wind_speed[:] = [v for v in df['idx_windspd1']]
-	u2_wind_speed[:] = [v for v in df['idx_windspd2']]
-	u_direction_1[:] = [v for v in df['idx_dir1']]
-	u_direction_2[:] = [v for v in df['idx_dir2']]
-	atmos_pressure[:] = [v for v in df['idx_atmospress']]
-	snow_height_1[:] = [v for v in df['idx_snowht1']]
-	snow_height_2[:] = [v for v in df['idx_snowht2']]
-	t_snow_01[:] = [v for v in df['idx_tsnow1']]
-	t_snow_02[:] = [v for v in df['idx_tsnow2']]
-	t_snow_03[:] = [v for v in df['idx_tsnow3']]
-	t_snow_04[:] = [v for v in df['idx_tsnow4']]
-	t_snow_05[:] = [v for v in df['idx_tsnow5']]
-	t_snow_06[:] = [v for v in df['idx_tsnow6']]
-	t_snow_07[:] = [v for v in df['idx_tsnow7']]
-	t_snow_08[:] = [v for v in df['idx_tsnow8']]
-	t_snow_09[:] = [v for v in df['idx_tsnow9']]
-	t_snow_10[:] = [v for v in df['idx_tsnow10']]
-	battery_voltage[:] = [v for v in df['idx_batvolt']]
-	sw_down_max[:] = [v for v in df['idx_swdnmax']]
-	sw_up_max[:] = [v for v in df['idx_swupmax']]
-	net_radiation_max[:] = [v for v in df['idx_netradmax']]
-	max_air_temperature_1[:] = [v for v in df['idx_maxtemp1']]
-	max_air_temperature_2[:] = [v for v in df['idx_maxtemp2']]
-	min_air_temperature_1[:] = [v for v in df['idx_mintemp1']]
-	min_air_temperature_2[:] = [v for v in df['idx_mintemp2']]
-	max_windspeed_u1[:] = [v for v in df['idx_maxwindspd1']]
-	max_windspeed_u2[:] = [v for v in df['idx_maxwindspd2']]
-	stdev_windspeed_u1[:] = [v for v in df['idx_sdwindspd1']]
-	stdev_windspeed_u2[:] = [v for v in df['idx_sdwindspd2']]
-	ref_temperature[:] = [v for v in df['idx_reftemp']]
-	windspeed_2m[:] = [v for v in df['idx_windspd2m']]
-	windspeed_10m[:] = [v for v in df['idx_windspd10m']]
-	wind_sensor_height_1[:] = [v for v in df['idx_sensorht1']]
-	wind_sensor_height_2[:] = [v for v in df['idx_sensorht2']]
-	albedo[:] = [v for v in df['idx_albedo']]
-	zenith_angle[:] = [v for v in df['idx_zenang']]
-	qc1[:] = [v for v in df['idx_qc1']]
-	qc9[:] = [v for v in df['idx_qc9']]
-	qc17[:] = [v for v in df['idx_qc17']]
-	qc25[:] = [v for v in df['idx_qc25']]
+	year[:] = get_data(df['idx_year'])
+	julian_decimal_time[:] = get_data(df['idx_jdt'])
+	sw_down[:] = get_data(df['idx_swdn'])
+	sw_up[:] = get_data(df['idx_swup'])
+	net_radiation[:] = get_data(df['idx_netrad'])
+	temperature_tc_1[:] = get_data(df['idx_tc1'])
+	temperature_tc_2[:] = get_data(df['idx_tc2'])
+	temperature_cs500_1[:] = get_data(df['idx_cs1'])
+	temperature_cs500_2[:] = get_data(df['idx_cs2'])
+	relative_humidity_1[:] = get_data(df['idx_rh1'])
+	relative_humidity_2[:] = get_data(df['idx_rh2'])
+	u1_wind_speed[:] = get_data(df['idx_windspd1'])
+	u2_wind_speed[:] = get_data(df['idx_windspd2'])
+	u_direction_1[:] = get_data(df['idx_dir1'])
+	u_direction_2[:] = get_data(df['idx_dir2'])
+	atmos_pressure[:] = get_data(df['idx_atmospress'])
+	snow_height_1[:] = get_data(df['idx_snowht1'])
+	snow_height_2[:] = get_data(df['idx_snowht2'])
+	t_snow_01[:] = get_data(df['idx_tsnow1'])
+	t_snow_02[:] = get_data(df['idx_tsnow2'])
+	t_snow_03[:] = get_data(df['idx_tsnow3'])
+	t_snow_04[:] = get_data(df['idx_tsnow4'])
+	t_snow_05[:] = get_data(df['idx_tsnow5'])
+	t_snow_06[:] = get_data(df['idx_tsnow6'])
+	t_snow_07[:] = get_data(df['idx_tsnow7'])
+	t_snow_08[:] = get_data(df['idx_tsnow8'])
+	t_snow_09[:] = get_data(df['idx_tsnow9'])
+	t_snow_10[:] = get_data(df['idx_tsnow10'])
+	battery_voltage[:] = get_data(df['idx_batvolt'])
+	sw_down_max[:] = get_data(df['idx_swdnmax'])
+	sw_up_max[:] = get_data(df['idx_swupmax'])
+	net_radiation_max[:] = get_data(df['idx_netradmax'])
+	max_air_temperature_1[:] = get_data(df['idx_maxtemp1'])
+	max_air_temperature_2[:] = get_data(df['idx_maxtemp2'])
+	min_air_temperature_1[:] = get_data(df['idx_mintemp1'])
+	min_air_temperature_2[:] = get_data(df['idx_mintemp2'])
+	max_windspeed_u1[:] = get_data(df['idx_maxwindspd1'])
+	max_windspeed_u2[:] = get_data(df['idx_maxwindspd2'])
+	stdev_windspeed_u1[:] = get_data(df['idx_sdwindspd1'])
+	stdev_windspeed_u2[:] = get_data(df['idx_sdwindspd2'])
+	ref_temperature[:] = get_data(df['idx_reftemp'])
+	windspeed_2m[:] = get_data(df['idx_windspd2m'])
+	windspeed_10m[:] = get_data(df['idx_windspd10m'])
+	wind_sensor_height_1[:] = get_data(df['idx_sensorht1'])
+	wind_sensor_height_2[:] = get_data(df['idx_sensorht2'])
+	albedo[:] = get_data(df['idx_albedo'])
+	zenith_angle[:] = get_data(df['idx_zenang'])
+	qc1[:] = get_data(df['idx_qc1'])
+	qc9[:] = get_data(df['idx_qc9'])
+	qc17[:] = get_data(df['idx_qc17'])
+	qc25[:] = get_data(df['idx_qc25'])
 	
-	temp1[:] = [v for v in df['idx_qc1']]
-	temp9[:] = [v for v in df['idx_qc9']]
-	temp17[:] = [v for v in df['idx_qc17']]
-	temp25[:] = [v for v in df['idx_qc25']]
+	temp1[:] = get_data(df['idx_qc1'])
+	temp9[:] = get_data(df['idx_qc9'])
+	temp17[:] = get_data(df['idx_qc17'])
+	temp25[:] = get_data(df['idx_qc25'])
 
 	print('calculating hour...')
 	hour[:] = [int(x) for x in [round((v-int(v)),3)*hour_conversion for v in df['idx_jdt']]]
