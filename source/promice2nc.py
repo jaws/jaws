@@ -426,61 +426,61 @@ def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time,
 		j += 1
 		
 
-		print('retrieving lat and lon...')
-		k = os.path.basename(args.input_file or args.fl_in)
+	print('retrieving lat and lon...')
+	k = os.path.basename(args.input_file or args.fl_in)
 
-		if ('EGP') in k:
-			temp_stn = 'promice_egp'
-		elif ('KAN_B') in k:
-			temp_stn = 'promice_kanb'
-		elif ('KAN_L') in k:
-			temp_stn = 'promice_kanl'
-		elif ('KAN_M') in k:
-			temp_stn = 'promice_kanm'
-		elif ('KAN_U') in k:
-			temp_stn = 'promice_kanu'
-		elif ('KPC_L') in k:
-			temp_stn = 'promice_kpcl'
-		elif ('KPC_U') in k:
-			temp_stn = 'promice_kpcu'
-		elif ('MIT') in k:
-			temp_stn = 'promice_mit'
-		elif ('NUK_K') in k:
-			temp_stn = 'promice_nukk'
-		elif ('NUK_L') in k:
-			temp_stn = 'promice_nukl'
-		elif ('NUK_N') in k:
-			temp_stn = 'promice_nukn'
-		elif ('NUK_U') in k:
-			temp_stn = 'promice_nuku'
-		elif ('QAS_A') in k:
-			temp_stn = 'promice_qasa'
-		elif ('QAS_L') in k:
-			temp_stn = 'promice_qasl'
-		elif ('QAS_M') in k:
-			temp_stn = 'promice_qasm'
-		elif ('QAS_U') in k:
-			temp_stn = 'promice_qasu'
-		elif ('SCO_L') in k:
-			temp_stn = 'promice_scol'
-		elif ('SCO_U') in k:
-			temp_stn = 'promice_scou'
-		elif ('TAS_A') in k:
-			temp_stn = 'promice_tasa'
-		elif ('TAS_L') in k:
-			temp_stn = 'promice_tasl'
-		elif ('TAS_U') in k:
-			temp_stn = 'promice_tasu'
-		elif ('THU_L') in k:
-			temp_stn = 'promice_thul'
-		elif ('THU_U') in k:
-			temp_stn = 'promice_thuu'
-		elif ('UPE_L') in k:
-			temp_stn = 'promice_upel'
-		elif ('UPE_U') in k:
-			temp_stn = 'promice_upeu'
-		elif ('CEN') in k:
-			temp_stn = 'promice_cen'
+	if ('EGP') in k:
+		temp_stn = 'promice_egp'
+	elif ('KAN_B') in k:
+		temp_stn = 'promice_kanb'
+	elif ('KAN_L') in k:
+		temp_stn = 'promice_kanl'
+	elif ('KAN_M') in k:
+		temp_stn = 'promice_kanm'
+	elif ('KAN_U') in k:
+		temp_stn = 'promice_kanu'
+	elif ('KPC_L') in k:
+		temp_stn = 'promice_kpcl'
+	elif ('KPC_U') in k:
+		temp_stn = 'promice_kpcu'
+	elif ('MIT') in k:
+		temp_stn = 'promice_mit'
+	elif ('NUK_K') in k:
+		temp_stn = 'promice_nukk'
+	elif ('NUK_L') in k:
+		temp_stn = 'promice_nukl'
+	elif ('NUK_N') in k:
+		temp_stn = 'promice_nukn'
+	elif ('NUK_U') in k:
+		temp_stn = 'promice_nuku'
+	elif ('QAS_A') in k:
+		temp_stn = 'promice_qasa'
+	elif ('QAS_L') in k:
+		temp_stn = 'promice_qasl'
+	elif ('QAS_M') in k:
+		temp_stn = 'promice_qasm'
+	elif ('QAS_U') in k:
+		temp_stn = 'promice_qasu'
+	elif ('SCO_L') in k:
+		temp_stn = 'promice_scol'
+	elif ('SCO_U') in k:
+		temp_stn = 'promice_scou'
+	elif ('TAS_A') in k:
+		temp_stn = 'promice_tasa'
+	elif ('TAS_L') in k:
+		temp_stn = 'promice_tasl'
+	elif ('TAS_U') in k:
+		temp_stn = 'promice_tasu'
+	elif ('THU_L') in k:
+		temp_stn = 'promice_thul'
+	elif ('THU_U') in k:
+		temp_stn = 'promice_thuu'
+	elif ('UPE_L') in k:
+		temp_stn = 'promice_upel'
+	elif ('UPE_U') in k:
+		temp_stn = 'promice_upeu'
+	elif ('CEN') in k:
+		temp_stn = 'promice_cen'
 
 	latitude[0] = (station_dict.get(temp_stn)[0])
 	longitude[0] = (station_dict.get(temp_stn)[1])
