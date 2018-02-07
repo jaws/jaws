@@ -341,7 +341,7 @@ def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time,
 
 	column_names = ['idx_year', 'idx_month', 'idx_day', 'idx_hour', 'idx_dayofyear', 'idx_dayofcentury', 'idx_airpress', 'idx_airtemp', 'idx_airtemphygro', 'idx_rhwrtwater', 'idx_rh', 'idx_windspd', 'idx_winddir', 'idx_swdn', 'idx_swdncor', 'idx_swup', 'idx_swupcor', 'idx_albedo', 'idx_lwdn', 'idx_lwup', 'idx_cloudcover', 'idx_surfacetemp', 'idx_htsensor', 'idx_htstakes', 'idx_depthpress', 'idx_depthpresscor', 'idx_icetemp1', 'idx_icetemp2', 'idx_icetemp3', 'idx_icetemp4', 'idx_icetemp5', 'idx_icetemp6', 'idx_icetemp7', 'idx_icetemp8', 'idx_tilteast', 'idx_tiltnorth', 'idx_timegps', 'idx_latgps', 'idx_longps', 'idx_elevation', 'idx_hordil', 'idx_loggertemp', 'idx_fancurrent', 'idx_batvolt']
 
-	df = pd.read_csv(args.input_file or args.fl_in, skiprows=1, skip_blank_lines=True, header=None, names = column_names)
+	df = pd.read_csv(args.input_file or args.fl_in, delim_whitespace=True, skiprows=1, skip_blank_lines=True, header=None, names = column_names)
 	df.loc[:,['idx_airtemp','idx_airtemphygro','idx_surfacetemp','idx_icetemp1','idx_icetemp2','idx_icetemp3','idx_icetemp4','idx_icetemp5','idx_icetemp6','idx_icetemp7','idx_icetemp8','idx_loggertemp']] += convert_temp
 	df.loc[:,['idx_airpress']] *= convert_press
 	df.loc[:,[]] /= convert_current
