@@ -205,7 +205,7 @@ def Main():
 		else:
 			op_file = get_name + '.nc'
 	
-
+	'''
 	if args.format3 == 1:
 		root_grp = Dataset(op_file, 'w', format='NETCDF3_CLASSIC')
 	elif args.format4 == 1:
@@ -255,7 +255,7 @@ def Main():
 	sza.standard_name = 'solar_zenith_angle'
 	sza.coordinates = 'longitude latitude'
 	sza.cell_methods = 'time: mean'
-
+	
 
 
 	if args.station_name:
@@ -263,6 +263,12 @@ def Main():
 		while y < len(args.station_name):
 			station_name[y] = args.station_name[y]
 			y += 1
+	'''
+
+	if args.station_name:
+		station_name = args.station_name
+	else:
+		station_name = ''
 
 	######################################################################
 
@@ -276,7 +282,7 @@ def Main():
 		promice2nc.promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time, time_bounds, sza, station_dict)
 
 	elif line[0] == '#':
-		aaws2nc.aaws2nc(args, op_file, root_grp, station_name, latitude, longitude, time, time_bounds, sza, station_dict)
+		aaws2nc.aaws2nc(args, op_file, station_dict, station_name)
 
 	print("Converted " + str(os.path.basename(args.input_file or args.fl_in)) + " to netCDF format")
 
