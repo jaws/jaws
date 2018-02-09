@@ -1,6 +1,7 @@
 import pandas as pd
 import xarray as xr
-from common import time_calc, solar, get_data
+import datetime
+from sunposition import sunpos
 
 def aaws2nc(args, op_file, station_dict, station_name):
 
@@ -169,42 +170,20 @@ def aaws2nc(args, op_file, station_dict, station_name):
 	
 	num_lines =  sum(1 for line in open(args.input_file or args.fl_in) if len(line.strip()) != 0) - 8
 	
-	i,j = 0,0
+	i = 0
 	
-	year = [0]*num_lines
-	month = [0]*num_lines
-	day = [0]*num_lines
-	hour = [0]*num_lines
 	time = [0]*num_lines
 	time_bounds = [0]*num_lines
 	sza = [0]*num_lines
 
-	ip_file = open(str(args.input_file or args.fl_in), 'r')
+	with open(args.input_file or args.fl_in, "r") as infile:
+		for line in infile.readlines()[8:]:
+			temp_dtime = (datetime.datetime.strptime(line.strip().split(",")[0]), '%Y-%m-%dT%H:%M:%SZ')
+			time[i] = (temp_dtime-datetime.datetime(1970, 1, 1)).total_seconds()
+			time_bounds[i] = (time[i]-3600, time[i])
+			sza[i] = sunpos(temp_dtime,latitude,longitude,0)[1]
+			i += 1
 
-	while i < 8:
-		ip_file.readline()
-		i += 1
-
-	for line in ip_file:
-	
-		line = line.strip()
-		
-		year[j] = int(line[0:4])
-		month[j] = int(line[5:7])
-		day[j] = int(line[8:10])
-		hour[j] = int(line[11:13])
-
-		time[j] = time_calc(year[j], month[j], day[j], hour[j])
-		time_bounds[j] = (time[j]-3600, time[j])
-
-		sza[j] = solar(year[j], month[j], day[j], hour[j], latitude, longitude)
-		
-		j += 1
-
-	ds['year'] = (('time'),year)
-	ds['month'] = (('time'),month)
-	ds['day'] = (('time'),day)
-	ds['hour'] = (('time'),hour)
 	ds['time'] = (('time'),time)
 	ds['time_bounds'] = (('time', 'nbnd'),time_bounds)
 	ds['sza'] = (('time'),sza)
@@ -221,15 +200,11 @@ def aaws2nc(args, op_file, station_dict, station_name):
 	ds['pressure'].attrs= {'units':'pascal', 'long_name':'air pressure', 'standard_name':'air_pressure', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
 	ds['wind_dir'].attrs= {'units':'degree', 'long_name':'wind direction', 'standard_name':'wind_from_direction', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
 	ds['wind_spd'].attrs= {'units':'meter second-1', 'long_name':'wind speed', 'standard_name':'wind_speed', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
-	ds['year'].attrs= {'long_name':'Year'}
-	ds['month'].attrs = {'long_name':'Month of year'}
-	ds['day'].attrs = {'long_name':'Day of month'}
-	ds['hour'].attrs = {'long_name':'Hour of day'}
+	ds['time'].attrs= {'units':'seconds since 1970-01-01 00:00:00', 'long_name':'time of measurement',	'standard_name':'time', 'bounds':'time_bounds', 'calendar':'noleap'}
+	ds['sza'].attrs= {'units':'degree', 'long_name':'Solar Zenith Angle', 'standard_name':'solar_zenith_angle', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
 	ds['station_name'].attrs= {'long_name':'Station Name', 'cf_role':'timeseries_id'}
 	ds['latitude'].attrs= {'units':'degrees_north', 'standard_name':'latitude'}
 	ds['longitude'].attrs= {'units':'degrees_east', 'standard_name':'longitude'}
-	ds['time'].attrs= {'units':'seconds since 1970-01-01 00:00:00', 'long_name':'time of measurement',	'standard_name':'time', 'bounds':'time_bounds', 'calendar':'noleap'}
-	ds['sza'].attrs= {'units':'degree', 'long_name':'Solar Zenith Angle', 'standard_name':'solar_zenith_angle', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
 	
 
 	encoding = {'air_temp': {'_FillValue': check_na},
@@ -238,15 +213,11 @@ def aaws2nc(args, op_file, station_dict, station_name):
 				'pressure': {'_FillValue': check_na},
 				'wind_dir': {'_FillValue': check_na},
 				'wind_spd': {'_FillValue': check_na},
-				'year': {'_FillValue': False},
-				'month': {'_FillValue': False},
-				'day': {'_FillValue': False},
-				'hour': {'_FillValue': False},
-				'latitude': {'_FillValue': False},
-				'longitude': {'_FillValue': False},
 				'time': {'_FillValue': False},
 				'time_bounds': {'_FillValue': False},
-				'sza': {'_FillValue': False}
+				'sza': {'_FillValue': False},
+				'latitude': {'_FillValue': False},
+				'longitude': {'_FillValue': False}
 				}
 
 
