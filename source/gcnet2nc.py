@@ -25,6 +25,9 @@ def gcnet2nc(args, op_file, station_dict, station_name):
 	df.loc[:,'atmos_pressure'] *= convert_press
 	df = df.where((pd.notnull(df)), check_na)
 	
+	station_number = df['station_number'][0]
+	df.drop('station_number', axis=1, inplace=True)
+
 	ds = xr.Dataset.from_dataframe(df)
 	ds = ds.drop('time')
 	
@@ -102,57 +105,57 @@ def gcnet2nc(args, op_file, station_dict, station_name):
 
 	
 	print('retrieving lat and lon...')
-	if df['station_number'][0] == 1:
+	if station_number == 1:
 		temp_stn = 'gcnet_swiss'
-	elif df['station_number'][0] == 2:
+	elif station_number == 2:
 		temp_stn = 'gcnet_crawford'
-	elif df['station_number'][0] == 3:
+	elif station_number == 3:
 		temp_stn = 'gcnet_nasa-u'
-	elif df['station_number'][0] == 4:
+	elif station_number == 4:
 		temp_stn = 'gcnet_gits'
-	elif df['station_number'][0] == 5:
+	elif station_number == 5:
 		temp_stn = 'gcnet_humboldt'
-	elif df['station_number'][0] == 6:
+	elif station_number == 6:
 		temp_stn = 'gcnet_summit'
-	elif df['station_number'][0] == 7:
+	elif station_number == 7:
 		temp_stn = 'gcnet_tunu-n'
-	elif df['station_number'][0] == 8:
+	elif station_number == 8:
 		temp_stn = 'gcnet_dye2'
-	elif df['station_number'][0] == 9:
+	elif station_number == 9:
 		temp_stn = 'gcnet_jar'
-	elif df['station_number'][0] == 10:
+	elif station_number == 10:
 		temp_stn = 'gcnet_saddle'
-	elif df['station_number'][0] == 11:
+	elif station_number == 11:
 		temp_stn = 'gcnet_dome'
-	elif df['station_number'][0] == 12:
+	elif station_number == 12:
 		temp_stn = 'gcnet_nasa-e'
-	elif df['station_number'][0] == 13:
+	elif station_number == 13:
 		temp_stn = 'gcnet_cp2'
-	elif df['station_number'][0] == 14:
+	elif station_number == 14:
 		temp_stn = 'gcnet_ngrip'
-	elif df['station_number'][0] == 15:
+	elif station_number == 15:
 		temp_stn = 'gcnet_nasa-se'
-	elif df['station_number'][0] == 16:
+	elif station_number == 16:
 		temp_stn = 'gcnet_kar'
-	elif df['station_number'][0] == 17:
+	elif station_number == 17:
 		temp_stn = 'gcnet_jar2'
-	elif df['station_number'][0] == 18:
+	elif station_number == 18:
 		temp_stn = 'gcnet_kulu'
-	elif df['station_number'][0] == 19:
+	elif station_number == 19:
 		temp_stn = 'gcnet_jar3'
-	elif df['station_number'][0] == 20:
+	elif station_number == 20:
 		temp_stn = 'gcnet_aurora'
-	elif df['station_number'][0] == 21 or 26:
+	elif station_number == 21 or 26:
 		temp_stn = 'gcnet_petermann-gl'
-	elif df['station_number'][0] == 22:
+	elif station_number == 22:
 		temp_stn = 'gcnet_peterman-ela'
-	elif df['station_number'][0] == 23:
+	elif station_number == 23:
 		temp_stn = 'gcnet_neem'
-	elif df['station_number'][0] == 30:
+	elif station_number == 30:
 		temp_stn = 'gcnet_lar1'
-	elif df['station_number'][0] == 31:
+	elif station_number == 31:
 		temp_stn = 'gcnet_lar2'
-	elif df['station_number'][0] == 32:
+	elif station_number == 32:
 		temp_stn = 'gcnet_lar3'
 	
 	latitude = station_dict.get(temp_stn)[0]
@@ -193,6 +196,7 @@ def gcnet2nc(args, op_file, station_dict, station_name):
 	ds['time'] = (('time'),time)
 	ds['time_bounds'] = (('time', 'nbnd'),time_bounds)
 	ds['sza'] = (('time'),sza)
+	ds['station_number'] = ((),station_number)
 	ds['station_name'] = ((),station_name)
 	ds['latitude'] = ((),latitude)
 	ds['longitude'] = ((),longitude)
