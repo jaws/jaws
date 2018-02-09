@@ -276,7 +276,7 @@ def Main():
 		line = f.readline()
 
 	if line[0] == 'D':
-		gcnet2nc.gcnet2nc(args, op_file, root_grp, station_name, latitude, longitude, time, time_bounds, sza, station_dict)
+		gcnet2nc.gcnet2nc(args, op_file, station_dict, station_name)
 
 	elif line[0] == 'Y':
 		promice2nc.promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time, time_bounds, sza, station_dict)
