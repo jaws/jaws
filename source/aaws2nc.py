@@ -160,12 +160,7 @@ def aaws2nc(args, op_file, station_dict, station_name):
 	if args.station_name:
 		print('Default station name overrided by user provided station name')
 	else:
-		f = open(args.input_file or args.fl_in)
-		f.readline()
-		for line in f:
-			station_name = line[12:].strip('\n')
-			break
-		f.close()
+		station_name = x
 
 
 	print('calculating date and time...')
