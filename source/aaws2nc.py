@@ -178,7 +178,7 @@ def aaws2nc(args, op_file, station_dict, station_name):
 
 	with open(args.input_file or args.fl_in, "r") as infile:
 		for line in infile.readlines()[8:]:
-			temp_dtime = (datetime.datetime.strptime(line.strip().split(",")[0]), '%Y-%m-%dT%H:%M:%SZ')
+			temp_dtime = datetime.datetime.strptime(line.strip().split(",")[0], '%Y-%m-%dT%H:%M:%SZ')
 			time[i] = (temp_dtime-datetime.datetime(1970, 1, 1)).total_seconds()
 			time_bounds[i] = (time[i]-3600, time[i])
 			sza[i] = sunpos(temp_dtime,latitude,longitude,0)[1]
