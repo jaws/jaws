@@ -1,3 +1,13 @@
+2018-02-08  Ajay Saini  <sainiak@uci.edu>
+
+	* AAWS- time calculation condensed
+
+	* Implemented xarray to write the data for GCNet
+
+	* GCNet- quality control variables' calculation condensed
+
+	* GCNet- Resolved issue of qc_25 variable error
+
 2018-02-07  Ajay Saini  <sainiak@uci.edu>
 
 	* Implemented xarray to write the data for AAWS
