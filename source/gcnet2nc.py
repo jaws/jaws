@@ -24,7 +24,8 @@ def gcnet2nc(args, op_file, station_dict, station_name):
 	df.loc[:,['temperature_tc_1', 'temperature_tc_2', 'temperature_cs500_1', 'temperature_cs500_2', 't_snow_01', 't_snow_02', 't_snow_03', 't_snow_04', 't_snow_05', 't_snow_06', 't_snow_07', 't_snow_08', 't_snow_09', 't_snow_10', 'max_air_temperature_1', 'max_air_temperature_2', 'min_air_temperature_1', 'min_air_temperature_2', 'ref_temperature']] += convert_temp
 	df.loc[:,'atmos_pressure'] *= convert_press
 	df = df.where((pd.notnull(df)), check_na)
-	
+	df['qc25'] = df['qc25'].astype(int)			#In the above steps value 999 gets converted to 999.0, so convert it back to int
+
 	station_number = df['station_number'][0]
 	df.drop('station_number', axis=1, inplace=True)
 
