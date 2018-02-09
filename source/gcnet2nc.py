@@ -6,19 +6,21 @@ from common import time_calc, solar
 
 def gcnet2nc(args, op_file, station_dict, station_name):
 
+	header_lines = 54
 	convert_temp = 273.15
 	convert_press = 100
 	check_na = 999.0
-	last_hour = 23
 	hour_conversion = (100/4)		#Divided by 4 because each hour value is a multiple of 4 and then multiplied by 100 to convert decimal to integer
-
+	last_hour = 23
+	seconds_in_hour = 3600
+	
 	column_names = ['station_number', 'year', 'julian_decimal_time', 'sw_down', 'sw_up', 'net_radiation', 'temperature_tc_1', 'temperature_tc_2', 'temperature_cs500_1', 'temperature_cs500_2', 'relative_humidity_1', 'relative_humidity_2', 
 	'u1_wind_speed', 'u2_wind_speed', 'u_direction_1', 'u_direction_2', 'atmos_pressure', 'snow_height_1', 'snow_height_2', 't_snow_01', 't_snow_02', 't_snow_03', 't_snow_04', 't_snow_05', 't_snow_06', 't_snow_07', 't_snow_08', 't_snow_09', 't_snow_10', 
 	'battery_voltage', 'sw_down_max', 'sw_up_max', 'net_radiation_max', 'max_air_temperature_1', 'max_air_temperature_2', 'min_air_temperature_1', 'min_air_temperature_2', 'max_windspeed_u1', 'max_windspeed_u2', 'stdev_windspeed_u1', 'stdev_windspeed_u2', 
 	'ref_temperature', 'windspeed_2m', 'windspeed_10m', 'wind_sensor_height_1', 'wind_sensor_height_2', 'albedo', 'zenith_angle', 'qc1', 'qc9', 'qc17', 'qc25']
 
 	
-	df = pd.read_csv(args.input_file or args.fl_in, delim_whitespace=True, skiprows=54, skip_blank_lines=True, header=None, names = column_names)
+	df = pd.read_csv(args.input_file or args.fl_in, delim_whitespace=True, skiprows=header_lines, skip_blank_lines=True, header=None, names = column_names)
 	df.index.name = 'time'
 	df.replace(check_na, np.nan, inplace=True)
 	df.loc[:,['temperature_tc_1', 'temperature_tc_2', 'temperature_cs500_1', 'temperature_cs500_2', 't_snow_01', 't_snow_02', 't_snow_03', 't_snow_04', 't_snow_05', 't_snow_06', 't_snow_07', 't_snow_08', 't_snow_09', 't_snow_10', 'max_air_temperature_1', 'max_air_temperature_2', 'min_air_temperature_1', 'min_air_temperature_2', 'ref_temperature']] += convert_temp
@@ -32,7 +34,7 @@ def gcnet2nc(args, op_file, station_dict, station_name):
 	ds = xr.Dataset.from_dataframe(df)
 	ds = ds.drop('time')
 	
-	num_lines =  sum(1 for line in open(args.input_file or args.fl_in)) - 54
+	num_lines =  sum(1 for line in open(args.input_file or args.fl_in)) - header_lines
 	
 	print('calculating quality control variables...')
 	temp1 = [list(map(int, i)) for i in zip(*map(str, df['qc1']))]
@@ -179,7 +181,7 @@ def gcnet2nc(args, op_file, station_dict, station_name):
 		if hour[i] > last_hour:
 			hour[i] = 0
 		i += 1
-	
+
 	print("calculating time and sza...")
 	
 	def get_month_day(year, day, one_based=False):
@@ -194,7 +196,7 @@ def gcnet2nc(args, op_file, station_dict, station_name):
 		day[n] = get_month_day(int(df['year'][n]), int(df['julian_decimal_time'][n]), True)[1]
 		
 		time[n] = time_calc(df['year'][n], month[n], day[n], hour[n])
-		time_bounds[n] = (time[n]-3600, time[n])
+		time_bounds[n] = (time[n]-seconds_in_hour, time[n])
 		
 		sza[n] = solar(df['year'][n], month[n], day[n], hour[n], latitude, longitude)
 		n += 1

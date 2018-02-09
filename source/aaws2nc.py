@@ -5,13 +5,15 @@ from sunposition import sunpos
 
 def aaws2nc(args, op_file, station_dict, station_name):
 
+	header_lines = 8
 	convert_temp = 273.15
 	convert_press = 100
 	check_na = -999
+	seconds_in_hour = 3600
 
 	column_names = ['timestamp', 'air_temp', 'vtempdiff', 'rh', 'pressure', 'wind_dir', 'wind_spd']
 
-	df = pd.read_csv(args.input_file or args.fl_in, skiprows=8, skip_blank_lines=True, header=None, names = column_names)
+	df = pd.read_csv(args.input_file or args.fl_in, skiprows = header_lines, skip_blank_lines=True, header=None, names = column_names)
 	df.index.name = 'time'
 	df.loc[:,'air_temp'] += convert_temp
 	df.loc[:,'pressure'] *= convert_press
@@ -168,7 +170,7 @@ def aaws2nc(args, op_file, station_dict, station_name):
 
 	print('calculating date and time...')
 	
-	num_lines =  sum(1 for line in open(args.input_file or args.fl_in) if len(line.strip()) != 0) - 8
+	num_lines =  sum(1 for line in open(args.input_file or args.fl_in) if len(line.strip()) != 0) - header_lines
 	
 	i = 0
 	
@@ -177,10 +179,10 @@ def aaws2nc(args, op_file, station_dict, station_name):
 	sza = [0]*num_lines
 
 	with open(args.input_file or args.fl_in, "r") as infile:
-		for line in infile.readlines()[8:]:
+		for line in infile.readlines()[header_lines:]:
 			temp_dtime = datetime.datetime.strptime(line.strip().split(",")[0], '%Y-%m-%dT%H:%M:%SZ')
 			time[i] = (temp_dtime-datetime.datetime(1970, 1, 1)).total_seconds()
-			time_bounds[i] = (time[i]-3600, time[i])
+			time_bounds[i] = (time[i]-seconds_in_hour, time[i])
 			sza[i] = sunpos(temp_dtime,latitude,longitude,0)[1]
 			i += 1
 
