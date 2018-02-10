@@ -1,5 +1,15 @@
 2018-02-08  Ajay Saini  <sainiak@uci.edu>
 
+	* Hour exception adjusted in GCNet
+
+	* Implemented xarray to write the data for PROMICE
+
+	* GCNet- station number made scalar
+
+	* Naked constatns removed in GCNet and AAWS
+
+2018-02-08  Ajay Saini  <sainiak@uci.edu>
+
 	* AAWS- time calculation condensed
 
 	* Implemented xarray to write the data for GCNet
