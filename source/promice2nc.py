@@ -4,398 +4,43 @@ from math import sin, cos, sqrt, atan2, radians
 from common import time_calc, solar, get_data
 import pandas as pd
 import numpy as np
+import xarray as xr
 import warnings
 
 warnings.filterwarnings("ignore")
 
 def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time, time_bounds, sza, station_dict):
 
-	#Global Attributes
-	root_grp.title = 'Weather Station Data'
-	root_grp.source = 'Surface Observations'
-	root_grp.featureType = 'timeSeries'
-	root_grp.institution = 'Programme for Monitoring of the Greenland Ice Sheet'
-	root_grp.reference = 'http://www.promice.dk/home.html'
-	root_grp.Conventions = 'CF-1.7'
-	root_grp.time_convention = "'time: point' variables match the time coordinate values exactly, whereas 'time: mean' variables are valid for the mean time within the time_bounds variable." + " e.g.: sensor_height is measured once per hour at the time stored in the 'time' coordinate." + " On the other hand, air_temperature is continuously measured and then hourly-mean values are stored for each period contained in the time_bounds variable"
-
-	# variables
-	year = root_grp.createVariable('year', 'i4', ('time',))
-	month = root_grp.createVariable('month', 'i4', ('time',))
-	day = root_grp.createVariable('day', 'i4', ('time',))
-	hour = root_grp.createVariable('hour', 'i4', ('time',))
-	day_of_year = root_grp.createVariable('day_of_year', 'i4', ('time',))
-	day_of_century = root_grp.createVariable('day_of_century', 'i4', ('time',))
-	air_pressure = root_grp.createVariable('air_pressure', 'f4', ('time',), fill_value = -999)
-	air_temperature = root_grp.createVariable('air_temperature', 'f4', ('time',), fill_value = -999)
-	air_temperature_hygroclip = root_grp.createVariable('air_temperature_hygroclip', 'f4', ('time',), fill_value = -999)
-	relative_humidity_wrtwater = root_grp.createVariable('relative_humidity_wrtwater', 'f4', ('time',), fill_value = -999)
-	relative_humidity = root_grp.createVariable('relative_humidity', 'f4', ('time',), fill_value = -999)
-	wind_speed = root_grp.createVariable('wind_speed', 'f4', ('time',), fill_value = -999)
-	wind_direction = root_grp.createVariable('wind_direction', 'f4', ('time',), fill_value = -999)
-	shortwave_radiation_down = root_grp.createVariable('shortwave_radiation_down', 'f4', ('time',), fill_value = -999)
-	shortwave_radiation_down_cor = root_grp.createVariable('shortwave_radiation_down_cor', 'f4', ('time',), fill_value = -999)
-	shortwave_radiation_up = root_grp.createVariable('shortwave_radiation_up', 'f4', ('time',), fill_value = -999)
-	shortwave_radiation_up_cor = root_grp.createVariable('shortwave_radiation_up_cor', 'f4', ('time',), fill_value = -999)
-	albedo_theta = root_grp.createVariable('albedo_theta', 'f4', ('time',), fill_value = -999)
-	longwave_radiation_down = root_grp.createVariable('longwave_radiation_down', 'f4', ('time',), fill_value = -999)
-	longwave_radiation_up = root_grp.createVariable('longwave_radiation_up', 'f4', ('time',), fill_value = -999)
-	cloudcover = root_grp.createVariable('cloudcover', 'f4', ('time',), fill_value = -999)
-	surface_temp = root_grp.createVariable('surface_temp', 'f4', ('time',), fill_value = -999)
-	height_sensor_boom = root_grp.createVariable('height_sensor_boom', 'f4', ('time',), fill_value = -999)
-	height_stakes = root_grp.createVariable('height_stakes', 'f4', ('time',), fill_value = -999)
-	depth_pressure_transducer = root_grp.createVariable('depth_pressure_transducer', 'f4', ('time',), fill_value = -999)
-	depth_pressure_transducer_cor = root_grp.createVariable('depth_pressure_transducer_cor', 'f4', ('time',), fill_value = -999)
-	ice_temp_01 = root_grp.createVariable('ice_temp_01', 'f4', ('time',), fill_value = -999)
-	ice_temp_02 = root_grp.createVariable('ice_temp_02', 'f4', ('time',), fill_value = -999)
-	ice_temp_03 = root_grp.createVariable('ice_temp_03', 'f4', ('time',), fill_value = -999)
-	ice_temp_04 = root_grp.createVariable('ice_temp_04', 'f4', ('time',), fill_value = -999)
-	ice_temp_05 = root_grp.createVariable('ice_temp_05', 'f4', ('time',), fill_value = -999)
-	ice_temp_06 = root_grp.createVariable('ice_temp_06', 'f4', ('time',), fill_value = -999)
-	ice_temp_07 = root_grp.createVariable('ice_temp_07', 'f4', ('time',), fill_value = -999)
-	ice_temp_08 = root_grp.createVariable('ice_temp_08', 'f4', ('time',), fill_value = -999)
-	tilt_east = root_grp.createVariable('tilt_east', 'f4', ('time',), fill_value = -999)
-	tilt_north = root_grp.createVariable('tilt_north', 'f4', ('time',), fill_value = -999)
-	time_GPS = root_grp.createVariable('time_GPS', 'i4', ('time',), fill_value = -999)
-	latitude_GPS = root_grp.createVariable('latitude_GPS', 'f4', ('time',), fill_value = -999)
-	longitude_GPS = root_grp.createVariable('longitude_GPS', 'f4', ('time',), fill_value = -999)
-	elevation = root_grp.createVariable('elevation', 'f4', ('time',), fill_value = -999)
-	hor_dil_prec = root_grp.createVariable('hor_dil_prec', 'f4', ('time',), fill_value = -999)
-	logger_temp = root_grp.createVariable('logger_temp', 'f4', ('time',), fill_value = -999)
-	fan_current = root_grp.createVariable('fan_current', 'f4', ('time',), fill_value = -999)
-	battery_voltage = root_grp.createVariable('battery_voltage', 'f4', ('time',), fill_value = -999)
-	ice_velocity_GPS_total = root_grp.createVariable('ice_velocity_GPS_total', 'f4', ('time',), fill_value = -999)
-	ice_velocity_GPS_x = root_grp.createVariable('ice_velocity_GPS_x', 'f4', ('time',), fill_value = -999)
-	ice_velocity_GPS_y = root_grp.createVariable('ice_velocity_GPS_y', 'f4', ('time',), fill_value = -999)
-	
-	year.units = '1'
-	year.long_name = 'Year'
-
-	month.units = '1'
-	month.long_name = 'Month of Year'
-	
-	day.units = '1'
-	day.long_name = 'Day of Month'
-	
-	hour.units = '1'
-	hour.long_name = 'Hour of Day(UTC)'
-	
-	day_of_year.units = '1'
-	day_of_year.long_name = 'Day of Year'
-	
-	day_of_century.units = '1'
-	day_of_century.long_name = 'Day of Century'
-	
-	air_pressure.units = 'pascal'
-	air_pressure.long_name = 'Air Pressure'
-	air_pressure.standard_name = 'air_pressure'
-	air_pressure.coordinates = 'longitude latitude'
-	air_pressure.cell_methods = 'time: mean'
-
-	air_temperature.units = 'kelvin'
-	air_temperature.long_name = 'Air Temperature'
-	air_temperature.standard_name = 'air_temperature'
-	air_temperature.coordinates = 'longitude latitude'
-	air_temperature.cell_methods = 'time: mean'
-	
-	air_temperature_hygroclip.units = 'kelvin'
-	air_temperature_hygroclip.long_name = 'Air Temperature HygroClip'
-	air_temperature_hygroclip.standard_name = 'air_temperature'
-	air_temperature_hygroclip.coordinates = 'longitude latitude'
-	air_temperature_hygroclip.cell_methods = 'time: mean'
-
-	relative_humidity_wrtwater.units = '1'
-	relative_humidity_wrtwater.long_name = 'Relative Humidity wrt Water'
-	relative_humidity_wrtwater.standard_name = 'relative_humidity'
-	relative_humidity_wrtwater.coordinates = 'longitude latitude'
-	relative_humidity_wrtwater.cell_methods = 'time: mean'
-
-	relative_humidity.units = '1'
-	relative_humidity.long_name = 'Relative Humidity'
-	relative_humidity.standard_name = 'relative_humidity'
-	relative_humidity.coordinates = 'longitude latitude'
-	relative_humidity.cell_methods = 'time: mean'
-
-	wind_speed.units = 'meter second-1'
-	wind_speed.long_name = 'Wind Speed'
-	wind_speed.standard_name = 'wind_speed'
-	wind_speed.coordinates = 'longitude latitude'
-	wind_speed.cell_methods = 'time: mean'
-
-	wind_direction.units = 'degree'
-	wind_direction.long_name = 'Wind Direction'
-	wind_direction.standard_name = 'wind_from_direction'
-	wind_direction.coordinates = 'longitude latitude'
-	wind_direction.cell_methods = 'time: mean'
-
-	shortwave_radiation_down.units = 'watt meter-2'
-	shortwave_radiation_down.long_name = 'Shortwave Radiation Down'
-	shortwave_radiation_down.standard_name = 'downwelling_shortwave_flux_in_air'
-	shortwave_radiation_down.coordinates = 'longitude latitude'
-	shortwave_radiation_down.cell_methods = 'time: mean'
-
-	shortwave_radiation_down_cor.units = 'watt meter-2'
-	shortwave_radiation_down_cor.long_name = 'Shortwave Radiation Down Cor'
-	shortwave_radiation_down_cor.standard_name = 'downwelling_shortwave_flux_in_air'
-	shortwave_radiation_down_cor.coordinates = 'longitude latitude'
-	shortwave_radiation_down_cor.cell_methods = 'time: mean'
-
-	shortwave_radiation_up.units = 'watt meter-2'
-	shortwave_radiation_up.long_name = 'Shortwave Radiation Up'
-	shortwave_radiation_up.standard_name = 'upwelling_shortwave_flux_in_air'
-	shortwave_radiation_up.coordinates = 'longitude latitude'
-	shortwave_radiation_up.cell_methods = 'time: mean'
-
-	shortwave_radiation_up_cor.units = 'watt meter-2'
-	shortwave_radiation_up_cor.long_name = 'Shortwave Radiation Up Cor'
-	shortwave_radiation_up_cor.standard_name = 'upwelling_shortwave_flux_in_air'
-	shortwave_radiation_up_cor.coordinates = 'longitude latitude'
-	shortwave_radiation_up_cor.cell_methods = 'time: mean'
-
-	albedo_theta.units = '1'
-	albedo_theta.long_name = 'Albedo_theta<70d'
-	albedo_theta.standard_name = 'surface_albedo'
-	albedo_theta.coordinates = 'longitude latitude'
-	albedo_theta.cell_methods = 'time: mean'
-
-	longwave_radiation_down.units = 'watt meter-2'
-	longwave_radiation_down.long_name = 'Longwave Radiation Down'
-	longwave_radiation_down.standard_name = 'downwelling_longwave_flux_in_air'
-	longwave_radiation_down.coordinates = 'longitude latitude'
-	longwave_radiation_down.cell_methods = 'time: mean'
-
-	longwave_radiation_up.units = 'watt meter-2'
-	longwave_radiation_up.long_name = 'Longwave Radiation Up'
-	longwave_radiation_up.standard_name = 'upwelling_longwave_flux_in_air'
-	longwave_radiation_up.coordinates = 'longitude latitude'
-	longwave_radiation_up.cell_methods = 'time: mean'
-
-	cloudcover.units = '1'
-	cloudcover.long_name = 'Cloud Cover'
-	#cloudcover.standard_name = ''
-	cloudcover.coordinates = 'longitude latitude'
-	cloudcover.cell_methods = 'time: mean'
-
-	surface_temp.units = 'kelvin'
-	surface_temp.long_name = 'Surface Temperature'
-	surface_temp.standard_name = 'surface_temperature'
-	surface_temp.coordinates = 'longitude latitude'
-	surface_temp.cell_methods = 'time: mean'
-
-	height_sensor_boom.units = 'meter'
-	height_sensor_boom.long_name = 'Height Sensor Boom'
-	#height_sensor_boom.standard_name = ''
-	height_sensor_boom.coordinates = 'longitude latitude'
-	height_sensor_boom.cell_methods = 'time: point'
-
-	height_stakes.units = 'meter'
-	height_stakes.long_name = 'Height Stakes'
-	#height_stakes.standard_name = ''
-	height_stakes.coordinates = 'longitude latitude'
-	height_stakes.cell_methods = 'time: point'
-
-	depth_pressure_transducer.units = 'meter'
-	depth_pressure_transducer.long_name = 'Depth Pressure Transducer'
-	#depth_pressure_transducer.standard_name = ''
-	depth_pressure_transducer.coordinates = 'longitude latitude'
-	depth_pressure_transducer.cell_methods = 'time: point'
-
-	depth_pressure_transducer_cor.units = 'meter'
-	depth_pressure_transducer_cor.long_name = 'Depth Pressure Transducer Cor'
-	#depth_pressure_transducer_cor.standard_name = ''
-	depth_pressure_transducer_cor.coordinates = 'longitude latitude'
-	depth_pressure_transducer_cor.cell_methods = 'time: point'
-
-	ice_temp_01.units = 'kelvin'
-	ice_temp_01.long_name = 'Ice Temperature 1'
-	ice_temp_01.standard_name = 'land_ice_temperature'
-	ice_temp_01.coordinates = 'longitude latitude'
-	ice_temp_01.cell_methods = 'time: mean'
-
-	ice_temp_02.units = 'kelvin'
-	ice_temp_02.long_name = 'Ice Temperature 2'
-	ice_temp_02.standard_name = 'land_ice_temperature'
-	ice_temp_02.coordinates = 'longitude latitude'
-	ice_temp_02.cell_methods = 'time: mean'
-	
-	ice_temp_03.units = 'kelvin'
-	ice_temp_03.long_name = 'Ice Temperature 3'
-	ice_temp_03.standard_name = 'land_ice_temperature'
-	ice_temp_03.coordinates = 'longitude latitude'
-	ice_temp_03.cell_methods = 'time: mean'
-	
-	ice_temp_04.units = 'kelvin'
-	ice_temp_04.long_name = 'Ice Temperature 4'
-	ice_temp_04.standard_name = 'land_ice_temperature'
-	ice_temp_04.coordinates = 'longitude latitude'
-	ice_temp_04.cell_methods = 'time: mean'
-
-	ice_temp_05.units = 'kelvin'
-	ice_temp_05.long_name = 'Ice Temperature 5'
-	ice_temp_05.standard_name = 'land_ice_temperature'
-	ice_temp_05.coordinates = 'longitude latitude'
-	ice_temp_05.cell_methods = 'time: mean'
-
-	ice_temp_06.units = 'kelvin'
-	ice_temp_06.long_name = 'IceTemperature6'
-	ice_temp_06.standard_name = 'land_ice_temperature'
-	ice_temp_06.coordinates = 'longitude latitude'
-	ice_temp_06.cell_methods = 'time: mean'
-
-	ice_temp_07.units = 'kelvin'
-	ice_temp_07.long_name = 'Ice Temperature 7'
-	ice_temp_07.standard_name = 'land_ice_temperature'
-	ice_temp_07.coordinates = 'longitude latitude'
-	ice_temp_07.cell_methods = 'time: mean'
-
-	ice_temp_08.units = 'kelvin'
-	ice_temp_08.long_name = 'Ice Temperature 8'
-	ice_temp_08.standard_name = 'land_ice_temperature'
-	ice_temp_08.coordinates = 'longitude latitude'
-	ice_temp_08.cell_methods = 'time: mean'
-
-	tilt_east.units = 'degree'
-	tilt_east.long_name = 'Tilt to East'
-	#tilt_east.standard_name = ''
-	tilt_east.coordinates = 'longitude latitude'
-	tilt_east.cell_methods = 'time: point'
-
-	tilt_north.units = 'degree'
-	tilt_north.long_name = 'Tilt to North'
-	#tilt_north.standard_name = ''
-	tilt_north.coordinates = 'longitude latitude'
-	tilt_north.cell_methods = 'time: point'
-
-	time_GPS.units = 'UTC'
-	time_GPS.long_name = 'Time GPS(hhmmssUTC)'
-	time_GPS.standard_name = 'time'
-
-	latitude_GPS.units = 'degrees_north'
-	latitude_GPS.long_name = 'Latitude GPS'
-	latitude_GPS.standard_name = 'latitude'
-
-	longitude_GPS.units = 'degrees_east'
-	longitude_GPS.long_name = 'Longitude GPS'
-	longitude_GPS.standard_name = 'longitude'
-
-	elevation.units = 'meter'
-	elevation.long_name = 'Elevation GPS'
-	#elevation.standard_name = ''
-	elevation.coordinates = 'longitude latitude'
-	elevation.cell_methods = 'time: point'
-
-	hor_dil_prec.units = '1'
-	hor_dil_prec.long_name = 'Horizontal Dilution of Precision GPS'
-	#hor_dil_prec.standard_name = ''
-	hor_dil_prec.coordinates = 'longitude latitude'
-	hor_dil_prec.cell_methods = 'time: point'
-
-	logger_temp.units = 'kelvin'
-	logger_temp.long_name = 'Logger Temperature'
-	#logger_temp.standard_name = ''
-	logger_temp.coordinates = 'longitude latitude'
-	logger_temp.cell_methods = 'time: point'
-
-	fan_current.units = 'ampere'
-	fan_current.long_name = 'Fan Current'
-	#fan_current.standard_name = ''
-	fan_current.coordinates = 'longitude latitude'
-	fan_current.cell_methods = 'time: point'
-
-	battery_voltage.units = 'volts'
-	battery_voltage.long_name = 'Battery Voltage'
-	battery_voltage.standard_name = 'battery_voltage'
-	battery_voltage.coordinates = 'longitude latitude'
-	battery_voltage.cell_methods = 'time: point'
-
-	ice_velocity_GPS_total.units = 'meter second-1'
-	ice_velocity_GPS_total.long_name = 'Ice velocity derived from GPS Lat and Long'
-	ice_velocity_GPS_total.coordinates = 'longitude latitude'
-	ice_velocity_GPS_total.cell_methods = 'time: mean'
-
-	ice_velocity_GPS_x.units = 'meter second-1'
-	ice_velocity_GPS_x.long_name = 'x-component of Ice velocity derived from GPS Lat and Long'
-	ice_velocity_GPS_x.standard_name = 'land_ice_surface_x_velocity'
-	ice_velocity_GPS_x.coordinates = 'longitude latitude'
-	ice_velocity_GPS_x.cell_methods = 'time: mean'
-
-	ice_velocity_GPS_y.units = 'meter second-1'
-	ice_velocity_GPS_y.long_name = 'y-component of Ice velocity derived from GPS Lat and Long'
-	ice_velocity_GPS_y.standard_name = 'land_ice_surface_y_velocity'
-	ice_velocity_GPS_y.coordinates = 'longitude latitude'
-	ice_velocity_GPS_y.cell_methods = 'time: mean'
-
-
-	print("converting data...")
-
-	def lat_lon_gps(col_index):
-		return (round(float(int(columns[col_index])-((int(columns[col_index])/100)*100))/60, 2) + (int(columns[col_index])/100))
-
-	num_lines =  sum(1 for line in open(args.input_file or args.fl_in) if len(line.strip()) != 0) - 1
-	#1 is the number of lines before the data starts in input file
-
-	j = 0
+	header_lines = 1
 	convert_temp = 273.15
 	convert_press = 100
 	convert_current = 1000
 	check_na = -999
 
-	column_names = ['idx_year', 'idx_month', 'idx_day', 'idx_hour', 'idx_dayofyear', 'idx_dayofcentury', 'idx_airpress', 'idx_airtemp', 'idx_airtemphygro', 'idx_rhwrtwater', 'idx_rh', 'idx_windspd', 'idx_winddir', 'idx_swdn', 'idx_swdncor', 'idx_swup', 'idx_swupcor', 'idx_albedo', 'idx_lwdn', 'idx_lwup', 'idx_cloudcover', 'idx_surfacetemp', 'idx_htsensor', 'idx_htstakes', 'idx_depthpress', 'idx_depthpresscor', 'idx_icetemp1', 'idx_icetemp2', 'idx_icetemp3', 'idx_icetemp4', 'idx_icetemp5', 'idx_icetemp6', 'idx_icetemp7', 'idx_icetemp8', 'idx_tilteast', 'idx_tiltnorth', 'idx_timegps', 'idx_latgps', 'idx_longps', 'idx_elevation', 'idx_hordil', 'idx_loggertemp', 'idx_fancurrent', 'idx_batvolt']
+	column_names = ['year', 'month', 'day', 'hour', 'day_of_year', 'day_of_century', 'air_pressure', 'air_temperature', 'air_temperature_hygroclip', 'relative_humidity_wrtwater', 'relative_humidity', 'wind_speed', 'wind_direction', 
+	'shortwave_radiation_down', 'shortwave_radiation_down_cor', 'shortwave_radiation_up', 'shortwave_radiation_up_cor', 'albedo_theta', 'longwave_radiation_down', 'longwave_radiation_up', 'cloudcover', 'surface_temp', 'height_sensor_boom', 
+	'height_stakes', 'depth_pressure_transducer', 'depth_pressure_transducer_cor', 'ice_temp_01', 'ice_temp_02', 'ice_temp_03', 'ice_temp_04', 'ice_temp_05', 'ice_temp_06', 'ice_temp_07', 'ice_temp_08', 'tilt_east', 'tilt_north', 
+	'time_GPS', 'latitude_GPS', 'longitude_GPS', 'elevation', 'hor_dil_prec', 'logger_temp', 'fan_current', 'battery_voltage']
 
-	df = pd.read_csv(args.input_file or args.fl_in, delim_whitespace=True, skiprows=1, skip_blank_lines=True, header=None, names = column_names)
+	df = pd.read_csv(args.input_file or args.fl_in, delim_whitespace=True, skiprows=header_lines, skip_blank_lines=True, header=None, names = column_names)
 	df.replace(check_na, np.nan, inplace=True)
-	df.loc[:,['idx_airtemp','idx_airtemphygro','idx_surfacetemp','idx_icetemp1','idx_icetemp2','idx_icetemp3','idx_icetemp4','idx_icetemp5','idx_icetemp6','idx_icetemp7','idx_icetemp8','idx_loggertemp']] += convert_temp
-	df.loc[:,['idx_airpress']] *= convert_press
-	df.loc[:,[]] /= convert_current
+	df.loc[:,['air_temperature','air_temperature_hygroclip','surface_temp','ice_temp_01','ice_temp_02','ice_temp_03','ice_temp_04','ice_temp_05','ice_temp_06','ice_temp_07','ice_temp_08','logger_temp']] += convert_temp
+	df.loc[:,['air_pressure']] *= convert_press
+	df.loc[:,['fan_current']] /= convert_current
 	df =  df.where((pd.notnull(df)), check_na)
 
-	year[:] = get_data(df['idx_year'])
-	month[:] = get_data(df['idx_month'])
-	day[:] = get_data(df['idx_day'])
-	hour[:] = get_data(df['idx_hour'])
-	day_of_year[:] = get_data(df['idx_dayofyear'])
-	day_of_century[:] = get_data(df['idx_dayofcentury'])
-	air_pressure[:] = get_data(df['idx_airpress'])
-	air_temperature[:] = get_data(df['idx_airtemp'])
-	air_temperature_hygroclip[:] = get_data(df['idx_airtemphygro'])
-	relative_humidity_wrtwater[:] = get_data(df['idx_rhwrtwater'])
-	relative_humidity[:] = get_data(df['idx_rh'])
-	wind_speed[:] = get_data(df['idx_windspd'])
-	wind_direction[:] = get_data(df['idx_winddir'])
-	shortwave_radiation_down[:] = get_data(df['idx_swdn'])
-	shortwave_radiation_down_cor[:] = get_data(df['idx_swdncor'])
-	shortwave_radiation_up[:] = get_data(df['idx_swup'])
-	shortwave_radiation_up_cor[:] = get_data(df['idx_swupcor'])
-	albedo_theta[:] = get_data(df['idx_albedo'])
-	longwave_radiation_down[:] = get_data(df['idx_lwdn'])
-	longwave_radiation_up[:] = get_data(df['idx_lwup'])
-	cloudcover[:] = get_data(df['idx_cloudcover'])
-	surface_temp[:] = get_data(df['idx_surfacetemp'])
-	height_sensor_boom[:] = get_data(df['idx_htsensor'])
-	height_stakes[:] = get_data(df['idx_htstakes'])
-	depth_pressure_transducer[:] = get_data(df['idx_depthpress'])
-	depth_pressure_transducer_cor[:] = get_data(df['idx_depthpresscor'])
-	ice_temp_01[:] = get_data(df['idx_icetemp1'])
-	ice_temp_02[:] = get_data(df['idx_icetemp2'])
-	ice_temp_03[:] = get_data(df['idx_icetemp3'])
-	ice_temp_04[:] = get_data(df['idx_icetemp4'])
-	ice_temp_05[:] = get_data(df['idx_icetemp5'])
-	ice_temp_06[:] = get_data(df['idx_icetemp6'])
-	ice_temp_07[:] = get_data(df['idx_icetemp7'])
-	ice_temp_08[:] = get_data(df['idx_icetemp8'])
-	tilt_east[:] = get_data(df['idx_tilteast'])
-	tilt_north[:] = get_data(df['idx_tiltnorth'])
-	time_GPS[:] = get_data(df['idx_timegps'])
-	#latitude_GPS[:] = get_data(df['idx_latgps'])
-	#longitude_GPS[:] = get_data(df['idx_longps'])
-	elevation[:] = get_data(df['idx_elevation'])
-	hor_dil_prec[:] = get_data(df['idx_hordil'])
-	logger_temp[:] = get_data(df['idx_loggertemp'])
-	fan_current[:] = get_data(df['idx_fancurrent'])
-	battery_voltage[:] = get_data(df['idx_batvolt'])
-
+	ds = xr.Dataset.from_dataframe(df)
+	ds = ds.drop('time')
+	
+	num_lines =  sum(1 for line in open(args.input_file or args.fl_in) if len(line.strip()) != 0) - header_lines
+	
 
 	print('calculating time and sza...')
+	
+	def lat_lon_gps(col_index):
+		return (round(float(int(columns[col_index])-((int(columns[col_index])/100)*100))/60, 2) + (int(columns[col_index])/100))
+
+	
 	idx_latgps,idx_longps = 37,38
 	ip_file = open(str(args.input_file or args.fl_in), 'r')
 	ip_file.readline()
@@ -427,7 +72,7 @@ def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time,
 
 		j += 1
 		
-
+	
 	print('retrieving lat and lon...')
 	k = os.path.basename(args.input_file or args.fl_in)
 
@@ -484,47 +129,14 @@ def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time,
 	elif ('CEN') in k:
 		temp_stn = 'promice_cen'
 
-	latitude[0] = (station_dict.get(temp_stn)[0])
-	longitude[0] = (station_dict.get(temp_stn)[1])
+	latitude = (station_dict.get(temp_stn)[0])
+	longitude = (station_dict.get(temp_stn)[1])
 
 	if args.station_name:
 		print('Default station name overrided by user provided station name')
 	else:
-		for y in range(0, len(station_dict.get(temp_stn)[2])): station_name[y] = (station_dict.get(temp_stn)[2])[y]
+		station_name = station_dict.get(temp_stn)[2]
 
-
-	
-	'''l = 0
-	while l < num_lines:
-		time_bounds[l] = (time[l], time[l]+3600)
-
-		sza[l] = solar(year[l], month[l], day[l], hour[l], latitude[0], longitude[0])
-		l += 1'''
-
-#Calculating GPS-derived ice velocity
-	'''m,n = 0,1
-	R = 6373.0		#Approx radius of earth
-	while n < num_lines:
-		if (latitude_GPS[m] == -999 or latitude_GPS[m+1] == -999 or longitude_GPS[m] == -999 or longitude_GPS[m+1] == -999):
-			m += 1
-		else:
-			lat1 = radians(latitude_GPS[m])
-			lon1 = radians(longitude_GPS[m])
-			lat2 = radians(latitude_GPS[m+1])
-			lon2 = radians(longitude_GPS[m+1])
-
-			dlat = lat2 - lat1
-			dlon = lon2 - lon1
-
-			a = sin(dlat/2)**2 + cos(lat1) * cos(lat2) * sin(dlon/2)**2
-			c = 2 * atan2(sqrt(a), sqrt(1 - a))
-
-			distance = (R*c)*1000		#Multiplied by 1000 to convert km to meters
-
-			ice_velocity_GPS[m] = str(round(distance/3600, 4))		#Divided by 3600 because time change between 2 records is one hour
-			m += 1
-
-		n += 1'''
 
 	print('calculating ice velocity...')
 	def ice_velocity(n,o):
@@ -561,4 +173,137 @@ def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time,
 	ice_velocity_GPS_x[:] = ice_velocity(0,1)
 	ice_velocity_GPS_y[:] = ice_velocity(1,0)
 
-	root_grp.close()
+	ds['ice_velocity_GPS_total'] = (('time'),ice_velocity_GPS_total)
+	ds['ice_velocity_GPS_x'] = (('time'),ice_velocity_GPS_x)
+	ds['ice_velocity_GPS_y'] = (('time'),ice_velocity_GPS_y)
+	ds['time'] = (('time'),time)
+	ds['time_bounds'] = (('time'),time_bounds)
+	ds['sza'] = (('time'),sza)
+	ds['station_name'] = ((),station_name)
+	ds['latitude'] = ((),latitude)
+	ds['longitude'] = ((),longitude)
+	
+	ds.attrs = {'title':'Weather Station Data', 'source':'Surface Observations', 'featureType':'timeSeries', 'institution':'Programme for Monitoring of the Greenland Ice Sheet', 
+	'reference':'http://www.promice.dk/home.html', 'Conventions':'CF-1.7', 'time_convention':"'time: point' variables match the time coordinate values exactly, whereas 'time: mean' variables are valid for the mean time within the time_bounds variable." + " e.g.: battery_voltage is measured once per hour at the time stored in the 'time' coordinate." + 	" On the other hand, temperature_tc_1 is continuously measured and then hourly-mean values are stored for each period contained in the time_bounds variable"}
+
+	ds['year'].attrs = {'units':'1', 'long_name':'Year'}
+	ds['month'].attrs = {'units':'1', 'long_name':'Month of Year'}
+	ds['day'].attrs = {'units':'1', 'long_name':'Day of Month'}
+	ds['hour'].attrs = {'units':'1', 'long_name':'Hour of Day(UTC)'}
+	ds['day_of_year'].attrs = {'units':'1', 'long_name':'Day of Year'}
+	ds['day_of_century'].attrs = {'units':'1', 'long_name':'Day of Century'}
+	ds['air_pressure'].attrs = {'units':'pascal', 'long_name':'Air Pressure', 'standard_name':'air_pressure', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
+	ds['air_temperature'].attrs = {'units':'kelvin', 'long_name':'Air Temperature', 'standard_name':'air_temperature', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
+	ds['air_temperature_hygroclip'].attrs = {'units':'kelvin', 'long_name':'Air Temperature HygroClip', 'standard_name':'air_temperature', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
+	ds['relative_humidity_wrtwater'].attrs = {'units':'1', 'long_name':'Relative Humidity wrt Water', 'standard_name':'relative_humidity', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
+	ds['relative_humidity'].attrs = {'units':'1', 'long_name':'Relative Humidity', 'standard_name':'relative_humidity', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
+	ds['wind_speed'].attrs = {'units':'meter second-1', 'long_name':'Wind Speed', 'standard_name':'wind_speed', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
+	ds['wind_direction'].attrs = {'units':'degree', 'long_name':'Wind Direction', 'standard_name':'wind_from_direction', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
+	ds['shortwave_radiation_down'].attrs = {'units':'watt meter-2', 'long_name':'Shortwave Radiation Down', 'standard_name':'downwelling_shortwave_flux_in_air', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
+	ds['shortwave_radiation_down_cor'].attrs = {'units':'watt meter-2', 'long_name':'Shortwave Radiation Down Cor', 'standard_name':'downwelling_shortwave_flux_in_air', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
+	ds['shortwave_radiation_up'].attrs = {'units':'watt meter-2', 'long_name':'Shortwave Radiation Up', 'standard_name':'upwelling_shortwave_flux_in_air', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
+	ds['shortwave_radiation_up_cor'].attrs = {'units':'watt meter-2', 'long_name':'Shortwave Radiation Up Cor', 'standard_name':'upwelling_shortwave_flux_in_air', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
+	ds['albedo_theta'].attrs = {'units':'1', 'long_name':'Albedo_theta<70d', 'standard_name':'surface_albedo', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
+	ds['longwave_radiation_down'].attrs = {'units':'watt meter-2', 'long_name':'Longwave Radiation Down', 'standard_name':'downwelling_longwave_flux_in_air', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
+	ds['longwave_radiation_up'].attrs = {'units':'watt meter-2', 'long_name':'Longwave Radiation Up', 'standard_name':'upwelling_longwave_flux_in_air', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
+	ds['cloudcover'].attrs = {'units':'1', 'long_name':'Cloud Cover', 'standard_name':'', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
+	ds['surface_temp'].attrs = {'units':'kelvin', 'long_name':'Surface Temperature', 'standard_name':'surface_temperature', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
+	ds['height_sensor_boom'].attrs = {'units':'meter', 'long_name':'Height Sensor Boom', 'standard_name':'', 'coordinates':'longitude latitude', 'cell_methods':'time: point'}
+	ds['height_stakes'].attrs = {'units':'meter', 'long_name':'Height Stakes', 'standard_name':'', 'coordinates':'longitude latitude', 'cell_methods':'time: point'}
+	ds['depth_pressure_transducer'].attrs = {'units':'meter', 'long_name':'Depth Pressure Transducer', 'standard_name':'', 'coordinates':'longitude latitude', 'cell_methods':'time: point'}
+	ds['depth_pressure_transducer_cor'].attrs = {'units':'meter', 'long_name':'Depth Pressure Transducer Cor', 'standard_name':'', 'coordinates':'longitude latitude', 'cell_methods':'time: point'}
+	ds['ice_temp_01'].attrs = {'units':'kelvin', 'long_name':'Ice Temperature 1', 'standard_name':'land_ice_temperature', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
+	ds['ice_temp_02'].attrs = {'units':'kelvin', 'long_name':'Ice Temperature 2', 'standard_name':'land_ice_temperature', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
+	ds['ice_temp_03'].attrs = {'units':'kelvin', 'long_name':'Ice Temperature 3', 'standard_name':'land_ice_temperature', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
+	ds['ice_temp_04'].attrs = {'units':'kelvin', 'long_name':'Ice Temperature 4', 'standard_name':'land_ice_temperature', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
+	ds['ice_temp_05'].attrs = {'units':'kelvin', 'long_name':'Ice Temperature 5', 'standard_name':'land_ice_temperature', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
+	ds['ice_temp_06'].attrs = {'units':'kelvin', 'long_name':'Ice Temperature 6', 'standard_name':'land_ice_temperature', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
+	ds['ice_temp_07'].attrs = {'units':'kelvin', 'long_name':'Ice Temperature 7', 'standard_name':'land_ice_temperature', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
+	ds['ice_temp_08'].attrs = {'units':'kelvin', 'long_name':'Ice Temperature 8', 'standard_name':'land_ice_temperature', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
+	ds['tilt_east'].attrs = {'units':'degree', 'long_name':'Tilt to East', 'standard_name':'', 'coordinates':'longitude latitude', 'cell_methods':'time: point'}
+	ds['tilt_north'].attrs = {'units':'degree', 'long_name':'Tilt to North', 'standard_name':'', 'coordinates':'longitude latitude', 'cell_methods':'time: point'}
+	ds['time_GPS'].attrs = {'units':'UTC', 'long_name':'Time GPS(hhmmssUTC)', 'standard_name':'time'}
+	ds['latitude_GPS'].attrs = {'units':'degrees_north', 'long_name':'Latitude GPS', 'standard_name':'latitude'}
+	ds['longitude_GPS'].attrs = {'units':'degrees_east', 'long_name':'Longitude GPS', 'standard_name':'longitude'}
+	ds['elevation'].attrs = {'units':'meter', 'long_name':'Elevation GPS', 'standard_name':'', 'coordinates':'longitude latitude', 'cell_methods':'time: point'}
+	ds['hor_dil_prec'].attrs = {'units':'1', 'long_name':'Horizontal Dilution of Precision GPS', 'standard_name':'', 'coordinates':'longitude latitude', 'cell_methods':'time: point'}
+	ds['logger_temp'].attrs = {'units':'kelvin', 'long_name':'Logger Temperature', 'standard_name':'', 'coordinates':'longitude latitude', 'cell_methods':'time: point'}
+	ds['fan_current'].attrs = {'units':'ampere', 'long_name':'Fan Current', 'standard_name':'', 'coordinates':'longitude latitude', 'cell_methods':'time: point'}
+	ds['battery_voltage'].attrs = {'units':'volts', 'long_name':'Battery Voltage', 'standard_name':'battery_voltage', 'coordinates':'longitude latitude', 'cell_methods':'time: point'}
+	ds['ice_velocity_GPS_total'].attrs = {'units':'meter second-1', 'long_name':'Ice velocity derived from GPS Lat and Long', 'standard_name':'', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
+	ds['ice_velocity_GPS_x'].attrs = {'units':'meter second-1', 'long_name':'x-component of Ice velocity derived from GPS Lat and Long', 'standard_name':'land_ice_surface_x_velocity', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
+	ds['ice_velocity_GPS_y'].attrs = {'units':'meter second-1', 'long_name':'y-component of Ice velocity derived from GPS Lat and Long', 'standard_name':'land_ice_surface_y_velocity', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
+	ds['time'].attrs= {'units':'seconds since 1970-01-01 00:00:00', 'long_name':'time of measurement',	'standard_name':'time', 'bounds':'time_bounds', 'calendar':'noleap'}
+	ds['sza'].attrs= {'units':'degree', 'long_name':'Solar Zenith Angle', 'standard_name':'solar_zenith_angle', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
+	ds['station_name'].attrs= {'long_name':'Station Name', 'cf_role':'timeseries_id'}
+	ds['latitude'].attrs= {'units':'degrees_north', 'standard_name':'latitude'}
+	ds['longitude'].attrs= {'units':'degrees_east', 'standard_name':'longitude'}
+	
+
+	encoding = {'year': {'_FillValue': False},
+				'month': {'_FillValue': False},
+				'day': {'_FillValue': False},
+				'hour': {'_FillValue': False},
+				'day_of_year': {'_FillValue': False},
+				'day_of_century': {'_FillValue': False},
+				'air_pressure': {'_FillValue': check_na},
+				'air_temperature': {'_FillValue': check_na},
+				'air_temperature_hygroclip': {'_FillValue': check_na},
+				'relative_humidity_wrtwater': {'_FillValue': check_na},
+				'relative_humidity': {'_FillValue': check_na},
+				'wind_speed': {'_FillValue': check_na},
+				'wind_direction': {'_FillValue': check_na},
+				'shortwave_radiation_down': {'_FillValue': check_na},
+				'shortwave_radiation_down_cor': {'_FillValue': check_na},
+				'shortwave_radiation_up': {'_FillValue': check_na},
+				'shortwave_radiation_up_cor': {'_FillValue': check_na},
+				'albedo_theta': {'_FillValue': check_na},
+				'longwave_radiation_down': {'_FillValue': check_na},
+				'longwave_radiation_up': {'_FillValue': check_na},
+				'cloudcover': {'_FillValue': check_na},
+				'surface_temp': {'_FillValue': check_na},
+				'height_sensor_boom': {'_FillValue': check_na},
+				'height_stakes': {'_FillValue': check_na},
+				'depth_pressure_transducer': {'_FillValue': check_na},
+				'depth_pressure_transducer_cor': {'_FillValue': check_na},
+				'ice_temp_01': {'_FillValue': check_na},
+				'ice_temp_02': {'_FillValue': check_na},
+				'ice_temp_03': {'_FillValue': check_na},
+				'ice_temp_04': {'_FillValue': check_na},
+				'ice_temp_05': {'_FillValue': check_na},
+				'ice_temp_06': {'_FillValue': check_na},
+				'ice_temp_07': {'_FillValue': check_na},
+				'ice_temp_08': {'_FillValue': check_na},
+				'tilt_east': {'_FillValue': check_na},
+				'tilt_north': {'_FillValue': check_na},
+				'time_GPS': {'_FillValue': check_na},
+				'latitude_GPS': {'_FillValue': check_na},
+				'longitude_GPS': {'_FillValue': check_na},
+				'elevation': {'_FillValue': check_na},
+				'hor_dil_prec': {'_FillValue': check_na},
+				'logger_temp': {'_FillValue': check_na},
+				'fan_current': {'_FillValue': check_na},
+				'battery_voltage': {'_FillValue': check_na},
+				'ice_velocity_GPS_total': {'_FillValue': check_na},
+				'ice_velocity_GPS_x': {'_FillValue': check_na},
+				'ice_velocity_GPS_y': {'_FillValue': check_na},
+				'time': {'_FillValue': False},
+				'time_bounds': {'_FillValue': False},
+				'sza': {'_FillValue': False},
+				'latitude': {'_FillValue': False},
+				'longitude': {'_FillValue': False}
+				}
+
+
+	if args.format3 == 1:
+		ds.to_netcdf(op_file, format = 'NETCDF3_CLASSIC', unlimited_dims={'time':True}, encoding = encoding)
+	elif args.format4 == 1:
+		ds.to_netcdf(op_file, format = 'NETCDF4', unlimited_dims={'time':True}, encoding = encoding)
+	elif args.format5 == 1:
+		ds.to_netcdf(op_file, format = 'NETCDF3_64BIT', unlimited_dims={'time':True}, encoding = encoding)
+	elif args.format6 == 1:
+		ds.to_netcdf(op_file, format = 'NETCDF3_64BIT', unlimited_dims={'time':True}, encoding = encoding)
+	elif args.format7 == 1:
+		ds.to_netcdf(op_file, format = 'NETCDF4_CLASSIC', unlimited_dims={'time':True}, encoding = encoding)
+	else:
+		ds.to_netcdf(op_file, unlimited_dims={'time':True}, encoding = encoding)
