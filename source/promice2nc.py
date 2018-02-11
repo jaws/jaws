@@ -35,44 +35,6 @@ def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time,
 	num_lines =  sum(1 for line in open(args.input_file or args.fl_in) if len(line.strip()) != 0) - header_lines
 	
 
-	print('calculating time and sza...')
-	
-	def lat_lon_gps(col_index):
-		return (round(float(int(columns[col_index])-((int(columns[col_index])/100)*100))/60, 2) + (int(columns[col_index])/100))
-
-	
-	idx_latgps,idx_longps = 37,38
-	ip_file = open(str(args.input_file or args.fl_in), 'r')
-	ip_file.readline()
-
-	for line in ip_file:
-
-		if len(line.strip()) == 0:
-			continue
-		
-		else:
-			line = line.strip()
-			columns = line.split()
-			columns = [float(x) for x in columns]
-			
-			if columns[idx_latgps] == check_na:
-				latitude_GPS[j] = columns[idx_latgps]
-			else:
-				latitude_GPS[j] = lat_lon_gps(idx_latgps)
-
-			if columns[idx_longps] == check_na:
-				longitude_GPS[j] = columns[idx_longps]
-			else:
-				longitude_GPS[j] == lat_lon_gps(idx_longps)
-			
-			time[j] = time_calc(year[j], month[j], day[j], hour[j])
-			time_bounds[j] = (time[j], time[j]+3600)
-
-			sza[j] = solar(year[j], month[j], day[j], hour[j], latitude[0], longitude[0])
-
-		j += 1
-		
-	
 	print('retrieving lat and lon...')
 	k = os.path.basename(args.input_file or args.fl_in)
 
@@ -138,6 +100,35 @@ def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time,
 		station_name = station_dict.get(temp_stn)[2]
 
 
+	print('calculating time and sza...')
+	
+	def lat_lon_gps(col_index):
+		return (round(float(int(col_index)-((int(col_index)/100)*100))/60, 4) + (int(col_index)/100))
+
+	
+	time, time_bounds, sza = [0]*num_lines, [0]*num_lines, [0]*num_lines
+	i = 0
+
+	while i < num_lines:
+		if df['latitude_GPS'][i] == check_na:
+			pass
+		else:
+			df['latitude_GPS'][i] = lat_lon_gps(df['latitude_GPS'][i])
+
+		if df['longitude_GPS'][i] == check_na:
+			pass
+		else:
+			df['longitude_GPS'][i] = lat_lon_gps(df['longitude_GPS'][i])
+
+		
+		time[j] = time_calc(df['year'][j], df['month'][j], df['day'][j], df['hour'][j])
+		time_bounds[j] = (time[j], time[j]+3600)
+
+		sza[j] = solar(df['year'][j], df['month'][j], df['day'][j], df['hour'][j], latitude, longitude)
+
+	j += 1
+		
+	
 	print('calculating ice velocity...')
 	def ice_velocity(n,o):
 		m,p = 0,1
