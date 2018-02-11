@@ -135,13 +135,13 @@ def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time,
 		velocity = [0]*num_lines
 		R = 6373.0		#Approx radius of earth
 		while p < num_lines:
-			if (latitude_GPS[m] == check_na or longitude_GPS[m] == check_na or latitude_GPS[n] == check_na or longitude_GPS[o] == check_na):
-				pass
+			if (df['latitude_GPS'][m] == check_na or df['longitude_GPS'][m] == check_na or df['latitude_GPS'][n] == check_na or df['longitude_GPS'][o] == check_na):
+				velocity[m] = check_na
 			else:
-				lat1 = radians(latitude_GPS[m])
-				lon1 = radians(longitude_GPS[m])
-				lat2 = radians(latitude_GPS[n])
-				lon2 = radians(longitude_GPS[o])
+				lat1 = radians(df['latitude_GPS'][m])
+				lon1 = radians(df['longitude_GPS'][m])
+				lat2 = radians(df['latitude_GPS'][n])
+				lon2 = radians(df['longitude_GPS'][o])
 
 				dlat = lat2 - lat1
 				dlon = lon2 - lon1
@@ -151,7 +151,7 @@ def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time,
 
 				distance = (R*c)*1000		#Multiplied by 1000 to convert km to meters
 
-				velocity[m] = str(round(distance/3600, 4))		#Divided by 3600 because time change between 2 records is one hour
+				velocity[m] = round(distance/3600, 4)		#Divided by 3600 because time change between 2 records is one hour
 
 			m += 1
 			n += 1
@@ -160,6 +160,8 @@ def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time,
 
 		return velocity[:]
 
+	ice_velocity_GPS_total, ice_velocity_GPS_x, ice_velocity_GPS_y = [0]*num_lines, [0]*num_lines, [0]*num_lines
+	
 	ice_velocity_GPS_total[:] = ice_velocity(1,1)
 	ice_velocity_GPS_x[:] = ice_velocity(0,1)
 	ice_velocity_GPS_y[:] = ice_velocity(1,0)
