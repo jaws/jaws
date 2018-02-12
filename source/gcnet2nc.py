@@ -2,7 +2,8 @@ import pandas as pd
 import numpy as np
 import xarray as xr
 from datetime import datetime, timedelta
-from common import time_calc, solar
+from sunposition import sunpos
+import pytz
 
 def gcnet2nc(args, op_file, station_dict, station_name):
 
@@ -184,22 +185,14 @@ def gcnet2nc(args, op_file, station_dict, station_name):
 
 	print("calculating time and sza...")
 	
-	def get_month_day(year, day, one_based=False):
-		if one_based:  # if Jan 1st is 1 instead of 0
-			day -= 1
-		dt = datetime(year, 1, 1) + timedelta(days=day)
-		return dt.month, dt.day
-
-	n = 0
-	while n < num_lines:
-		month[n] = get_month_day(int(df['year'][n]), int(df['julian_decimal_time'][n]), True)[0]
-		day[n] = get_month_day(int(df['year'][n]), int(df['julian_decimal_time'][n]), True)[1]
+	j = 0
+	while j < num_lines:
+		dt = datetime.strptime("%s %s %s" % (df['year'][j], int(df['julian_decimal_time'][j]), hour[j]), "%Y %j %H").replace(tzinfo = pytz.utc)		
+		time[j] = dt.timestamp()
+		time_bounds[j] = (time[j]-seconds_in_hour, time[j])
 		
-		time[n] = time_calc(df['year'][n], month[n], day[n], hour[n])
-		time_bounds[n] = (time[n]-seconds_in_hour, time[n])
-		
-		sza[n] = solar(df['year'][n], month[n], day[n], hour[n], latitude, longitude)
-		n += 1
+		sza[j] = sunpos(dt,latitude,longitude,0)[1]
+		j += 1
 	
 
 	ds['time'] = (('time'),time)
