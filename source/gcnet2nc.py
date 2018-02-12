@@ -1,9 +1,9 @@
 import pandas as pd
 import numpy as np
 import xarray as xr
-from datetime import datetime, timedelta
+from datetime import datetime
+from pytz import timezone
 from sunposition import sunpos
-import pytz
 
 def gcnet2nc(args, op_file, station_dict, station_name):
 
@@ -187,8 +187,8 @@ def gcnet2nc(args, op_file, station_dict, station_name):
 	
 	j = 0
 	while j < num_lines:
-		dt = datetime.strptime("%s %s %s" % (df['year'][j], int(df['julian_decimal_time'][j]), hour[j]), "%Y %j %H").replace(tzinfo = pytz.utc)		
-		time[j] = dt.timestamp()
+		dt = datetime.strptime("%s %s %s" % (df['year'][j], int(df['julian_decimal_time'][j]), hour[j]), "%Y %j %H").replace(tzinfo = timezone('UTC'))		
+		time[j] = (dt-(datetime(1970,1,1)).replace(tzinfo = timezone('UTC'))).total_seconds()
 		time_bounds[j] = (time[j]-seconds_in_hour, time[j])
 		
 		sza[j] = sunpos(dt,latitude,longitude,0)[1]
