@@ -1,4 +1,18 @@
-2018-02-08  Ajay Saini  <sainiak@uci.edu>
+2018-02-11  Ajay Saini  <sainiak@uci.edu>
+
+	* PROMICE- lat_lon_GPS calculation corrected
+
+	* PROMICE- ice_velocity_GPS calculation corrected
+
+	* Variables intialization code restructured
+
+	* GCNet- time recalculated using strptime to reduce runtime
+
+	* Time calculation made compatible with Python 2
+
+	* Worked on making lat_lon_GPS conversion faster. Still in progress
+
+2018-02-09  Ajay Saini  <sainiak@uci.edu>
 
 	* Hour exception adjusted in GCNet
 
