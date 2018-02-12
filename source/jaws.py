@@ -2,6 +2,7 @@ import os, sys
 import argparse
 from netCDF4 import Dataset
 import gcnet2nc, promice2nc, aaws2nc
+from collections import OrderedDict
 	
 def Main():
 	parser = argparse.ArgumentParser()
@@ -142,6 +143,23 @@ def Main():
 		'aaws_windlessbight': [-77.728, 167.676, 'Windless Bight']
 
 	}
+
+	order_of_keys = ['gcnet_swiss', 'gcnet_crawford', 'gcnet_nasa-u', 'gcnet_gits', 'gcnet_humboldt', 'gcnet_summit', 'gcnet_tunu-n', 'gcnet_dye2', 'gcnet_jar', 
+	'gcnet_saddle', 'gcnet_dome', 'gcnet_nasa-e', 'gcnet_cp2', 'gcnet_ngrip', 'gcnet_nasa-se', 'gcnet_kar', 'gcnet_jar2', 'gcnet_kulu', 'gcnet_jar3', 'gcnet_aurora', 
+	'gcnet_petermann-gl', 'gcnet_peterman-ela', 'gcnet_neem', 'gcnet_lar1', 'gcnet_lar2', 'gcnet_lar3', 
+	'promice_egp', 'promice_kanb', 'promice_kanl', 'promice_kanm', 'promice_kanu', 'promice_kpcl', 'promice_kpcu', 'promice_mit', 'promice_nukk', 'promice_nukl', 
+	'promice_nukn', 'promice_nuku', 'promice_qasa', 'promice_qasl', 'promice_qasm', 'promice_qasu', 'promice_scol', 'promice_scou', 'promice_tasa', 'promice_tasl', 
+	'promice_tasu', 'promice_thul', 'promice_thuu', 'promice_upel', 'promice_upeu', 'promice_cen', 
+	'aaws_ago4', 'aaws_alexander', 'aaws_austin', 'aaws_baldrick', 'aaws_bearpeninsula', 'aaws_bonapartepoint', 'aaws_byrd', 'aaws_capebird', 'aaws_capedenison', 
+	'aaws_capehallett', 'aaws_d10', 'aaws_d47', 'aaws_d85', 'aaws_dismalisland', 'aaws_domecII', 'aaws_domefuji', 'aaws_elaine', 'aaws_elizabeth', 'aaws_emilia', 
+	'aaws_emma', 'aaws_erin', 'aaws_evansknoll', 'aaws_ferrell', 'aaws_gill', 'aaws_harry', 'aaws_henry', 'aaws_janet', 'aaws_jase2007', 'aaws_kathie', 
+	'aaws_kominkoslade', 'aaws_laurieII', 'aaws_lettau', 'aaws_linda', 'aaws_lorne', 'aaws_manuela', 'aaws_marblepoint', 'aaws_marblepointII', 'aaws_margaret', 
+	'aaws_marilyn', 'aaws_minnabluff', 'aaws_mizuho', 'aaws_mountsiple', 'aaws_nico', 'aaws_pandasouth', 'aaws_pegasusnorth', 'aaws_phoenix', 'aaws_portmartin', 
+	'aaws_possessionisland', 'aaws_relaystation', 'aaws_sabrina', 'aaws_schwerdtfeger', 'aaws_sipledome', 'aaws_theresa', 'aaws_thurstonisland', 'aaws_vito', 
+	'aaws_whiteisland', 'aaws_whitlock', 'aaws_williefield', 'aaws_windlessbight']
+
+	list_of_tuples = [(key, station_dict[key]) for key in order_of_keys]
+	station_dict = OrderedDict(list_of_tuples)
 
 	# NC file setup
 	if (args.output_file or args.fl_out):
