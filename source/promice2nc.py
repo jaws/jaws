@@ -125,12 +125,12 @@ def promice2nc(args, op_file, station_dict, station_name):
 			df['longitude_GPS'][i] = lat_lon_gps(df['longitude_GPS'][i])
 
 		
-		time[j] = time_calc(df['year'][j], df['month'][j], df['day'][j], df['hour'][j])
-		time_bounds[j] = (time[j], time[j]+seconds_in_hour)
+		time[i] = time_calc(df['year'][i], df['month'][i], df['day'][i], df['hour'][i])
+		time_bounds[i] = (time[i], time[i]+seconds_in_hour)
 
-		sza[j] = solar(df['year'][j], df['month'][j], df['day'][j], df['hour'][j], latitude, longitude)
+		sza[i] = solar(df['year'][i], df['month'][i], df['day'][i], df['hour'][i], latitude, longitude)
 
-	j += 1
+	i += 1
 		
 	
 	print('calculating ice velocity...')
