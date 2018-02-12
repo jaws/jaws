@@ -172,7 +172,7 @@ def promice2nc(args, op_file, station_dict, station_name):
 	ds['ice_velocity_GPS_x'] = (('time'),ice_velocity_GPS_x)
 	ds['ice_velocity_GPS_y'] = (('time'),ice_velocity_GPS_y)
 	ds['time'] = (('time'),time)
-	ds['time_bounds'] = (('time'),time_bounds)
+	ds['time_bounds'] = (('time', 'nbnd'),time_bounds)
 	ds['sza'] = (('time'),sza)
 	ds['station_name'] = ((),station_name)
 	ds['latitude'] = ((),latitude)
