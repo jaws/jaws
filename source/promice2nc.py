@@ -179,7 +179,7 @@ def promice2nc(args, op_file, station_dict, station_name):
 	ds['longitude'] = ((),longitude)
 	
 	ds.attrs = {'title':'Weather Station Data', 'source':'Surface Observations', 'featureType':'timeSeries', 'institution':'Programme for Monitoring of the Greenland Ice Sheet', 
-	'reference':'http://www.promice.dk/home.html', 'Conventions':'CF-1.7', 'time_convention':"'time: point' variables match the time coordinate values exactly, whereas 'time: mean' variables are valid for the mean time within the time_bounds variable." + " e.g.: battery_voltage is measured once per hour at the time stored in the 'time' coordinate." + 	" On the other hand, temperature_tc_1 is continuously measured and then hourly-mean values are stored for each period contained in the time_bounds variable"}
+	'reference':'http://www.promice.dk/home.html', 'Conventions':'CF-1.7', 'time_convention':"'time: point' variables match the time coordinate values exactly, whereas 'time: mean' variables are valid for the mean time within the time_bounds variable." + " e.g.: elevation is measured once per hour at the time stored in the 'time' coordinate." + 	" On the other hand, air_temperature is continuously measured and then hourly-mean values are stored for each period contained in the time_bounds variable"}
 
 	ds['year'].attrs = {'units':'1', 'long_name':'Year'}
 	ds['month'].attrs = {'units':'1', 'long_name':'Month of Year'}
