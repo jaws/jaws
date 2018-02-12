@@ -9,7 +9,7 @@ import warnings
 
 warnings.filterwarnings("ignore")
 
-def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time, time_bounds, sza, station_dict):
+def promice2nc(args, op_file, station_dict, station_name):
 
 	header_lines = 1
 	convert_temp = 273.15

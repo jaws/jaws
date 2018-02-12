@@ -279,7 +279,7 @@ def Main():
 		gcnet2nc.gcnet2nc(args, op_file, station_dict, station_name)
 
 	elif line[0] == 'Y':
-		promice2nc.promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time, time_bounds, sza, station_dict)
+		promice2nc.promice2nc(args, op_file, station_dict, station_name)
 
 	elif line[0] == '#':
 		aaws2nc.aaws2nc(args, op_file, station_dict, station_name)
