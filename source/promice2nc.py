@@ -130,7 +130,7 @@ def promice2nc(args, op_file, station_dict, station_name):
 
 		sza[i] = solar(df['year'][i], df['month'][i], df['day'][i], df['hour'][i], latitude, longitude)
 
-	i += 1
+		i += 1
 		
 	
 	print('calculating ice velocity...')
