@@ -13,7 +13,7 @@ def gcnet2nc(args, op_file, station_dict, station_name):
 	hour_conversion = (100/4)		#Divided by 4 because each hour value is a multiple of 4 and then multiplied by 100 to convert decimal to integer
 	last_hour = 23
 	seconds_in_hour = 3600
-	
+
 	column_names = ['station_number', 'year', 'julian_decimal_time', 'sw_down', 'sw_up', 'net_radiation', 'temperature_tc_1', 'temperature_tc_2', 'temperature_cs500_1', 'temperature_cs500_2', 'relative_humidity_1', 'relative_humidity_2', 
 	'u1_wind_speed', 'u2_wind_speed', 'u_direction_1', 'u_direction_2', 'atmos_pressure', 'snow_height_1', 'snow_height_2', 't_snow_01', 't_snow_02', 't_snow_03', 't_snow_04', 't_snow_05', 't_snow_06', 't_snow_07', 't_snow_08', 't_snow_09', 't_snow_10', 
 	'battery_voltage', 'sw_down_max', 'sw_up_max', 'net_radiation_max', 'max_air_temperature_1', 'max_air_temperature_2', 'min_air_temperature_1', 'min_air_temperature_2', 'max_windspeed_u1', 'max_windspeed_u2', 'stdev_windspeed_u1', 'stdev_windspeed_u2', 
@@ -36,17 +36,18 @@ def gcnet2nc(args, op_file, station_dict, station_name):
 	
 	num_lines =  sum(1 for line in open(args.input_file or args.fl_in)) - header_lines
 	
+	# Intializing variables
+	qc_swdn, qc_swup, qc_netradiation, qc_ttc1, qc_ttc2, qc_tcs1, qc_tcs2, qc_rh1, qc_rh2, qc_u1, qc_u2, qc_ud1, qc_ud2, qc_pressure, qc_snowheight1, qc_snowheight2, qc_tsnow1, qc_tsnow2, qc_tsnow3, qc_tsnow4, qc_tsnow5, qc_tsnow6, qc_tsnow7, qc_tsnow8, qc_tsnow9, qc_tsnow10, qc_battery = ([0]*num_lines for x in range(27))
+
+	hour, month, day, time, time_bounds, sza = ([0]*num_lines for x in range(6))
+
 	print('calculating quality control variables...')
 	temp1 = [list(map(int, i)) for i in zip(*map(str, df['qc1']))]
 	temp9 = [list(map(int, i)) for i in zip(*map(str, df['qc9']))]
 	temp17 = [list(map(int, i)) for i in zip(*map(str, df['qc17']))]
 	temp25 = [list(map(int, i)) for i in zip(*map(str, df['qc25']))]
 
-	qc_swdn, qc_swup, qc_netradiation, qc_ttc1, qc_ttc2, qc_tcs1, qc_tcs2, qc_rh1 = [0]*num_lines, [0]*num_lines, [0]*num_lines, [0]*num_lines, [0]*num_lines, [0]*num_lines, [0]*num_lines, [0]*num_lines
-	qc_rh2, qc_u1, qc_u2, qc_ud1, qc_ud2, qc_pressure, qc_snowheight1, qc_snowheight2 = [0]*num_lines, [0]*num_lines, [0]*num_lines, [0]*num_lines, [0]*num_lines, [0]*num_lines, [0]*num_lines, [0]*num_lines
-	qc_tsnow1, qc_tsnow2, qc_tsnow3, qc_tsnow4, qc_tsnow5, qc_tsnow6, qc_tsnow7, qc_tsnow8 = [0]*num_lines, [0]*num_lines, [0]*num_lines, [0]*num_lines, [0]*num_lines, [0]*num_lines, [0]*num_lines, [0]*num_lines
-	qc_tsnow9, qc_tsnow10, qc_battery = [0]*num_lines, [0]*num_lines, [0]*num_lines
-
+	
 	qc_swdn[:] = temp1[0]
 	qc_swup[:] = temp1[1]
 	qc_netradiation[:] = temp1[2]
@@ -171,7 +172,6 @@ def gcnet2nc(args, op_file, station_dict, station_name):
 
 	
 
-	hour, month, day, time, time_bounds, sza = [0]*num_lines, [0]*num_lines, [0]*num_lines, [0]*num_lines, [0]*num_lines, [0]*num_lines
 	
 	print('calculating hour...')
 	hour[:] = [int(x) for x in [round((v-int(v)),3)*hour_conversion for v in df['julian_decimal_time']]]

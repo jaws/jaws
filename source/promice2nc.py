@@ -16,6 +16,7 @@ def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time,
 	convert_press = 100
 	convert_current = 1000
 	check_na = -999
+	seconds_in_hour = 3600
 
 	column_names = ['year', 'month', 'day', 'hour', 'day_of_year', 'day_of_century', 'air_pressure', 'air_temperature', 'air_temperature_hygroclip', 'relative_humidity_wrtwater', 'relative_humidity', 'wind_speed', 'wind_direction', 
 	'shortwave_radiation_down', 'shortwave_radiation_down_cor', 'shortwave_radiation_up', 'shortwave_radiation_up_cor', 'albedo_theta', 'longwave_radiation_down', 'longwave_radiation_up', 'cloudcover', 'surface_temp', 'height_sensor_boom', 
@@ -34,7 +35,10 @@ def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time,
 	
 	num_lines =  sum(1 for line in open(args.input_file or args.fl_in) if len(line.strip()) != 0) - header_lines
 	
+	# Intializing variables
+	time, time_bounds, sza, velocity, ice_velocity_GPS_total, ice_velocity_GPS_x, ice_velocity_GPS_y = ([0]*num_lines for x in range(7))
 
+	
 	print('retrieving lat and lon...')
 	k = os.path.basename(args.input_file or args.fl_in)
 
@@ -106,7 +110,6 @@ def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time,
 		return (round(float(int(col_index)-((int(col_index)/100)*100))/60, 4) + (int(col_index)/100))
 
 	
-	time, time_bounds, sza = [0]*num_lines, [0]*num_lines, [0]*num_lines
 	i = 0
 
 	while i < num_lines:
@@ -122,7 +125,7 @@ def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time,
 
 		
 		time[j] = time_calc(df['year'][j], df['month'][j], df['day'][j], df['hour'][j])
-		time_bounds[j] = (time[j], time[j]+3600)
+		time_bounds[j] = (time[j], time[j]+seconds_in_hour)
 
 		sza[j] = solar(df['year'][j], df['month'][j], df['day'][j], df['hour'][j], latitude, longitude)
 
@@ -132,7 +135,6 @@ def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time,
 	print('calculating ice velocity...')
 	def ice_velocity(n,o):
 		m,p = 0,1
-		velocity = [0]*num_lines
 		R = 6373.0		#Approx radius of earth
 		while p < num_lines:
 			if (df['latitude_GPS'][m] == check_na or df['longitude_GPS'][m] == check_na or df['latitude_GPS'][n] == check_na or df['longitude_GPS'][o] == check_na):
@@ -151,7 +153,7 @@ def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time,
 
 				distance = (R*c)*1000		#Multiplied by 1000 to convert km to meters
 
-				velocity[m] = round(distance/3600, 4)		#Divided by 3600 because time change between 2 records is one hour
+				velocity[m] = round(distance/seconds_in_hour, 4)		#Divided by 3600 because time change between 2 records is one hour
 
 			m += 1
 			n += 1
@@ -160,7 +162,6 @@ def promice2nc(args, op_file, root_grp, station_name, latitude, longitude, time,
 
 		return velocity[:]
 
-	ice_velocity_GPS_total, ice_velocity_GPS_x, ice_velocity_GPS_y = [0]*num_lines, [0]*num_lines, [0]*num_lines
 	
 	ice_velocity_GPS_total[:] = ice_velocity(1,1)
 	ice_velocity_GPS_x[:] = ice_velocity(0,1)

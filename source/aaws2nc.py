@@ -23,6 +23,11 @@ def aaws2nc(args, op_file, station_dict, station_name):
 	ds = ds.drop('time')
 
 
+	# Intializing variables
+	num_lines =  sum(1 for line in open(args.input_file or args.fl_in) if len(line.strip()) != 0) - header_lines
+	time, time_bounds, sza = ([0]*num_lines for x in range(3))
+	
+	
 	print('retrieving latitude and longitude...')
 	
 	f = open(args.input_file or args.fl_in)
@@ -165,14 +170,8 @@ def aaws2nc(args, op_file, station_dict, station_name):
 
 	print('calculating date and time...')
 	
-	num_lines =  sum(1 for line in open(args.input_file or args.fl_in) if len(line.strip()) != 0) - header_lines
-	
 	i = 0
 	
-	time = [0]*num_lines
-	time_bounds = [0]*num_lines
-	sza = [0]*num_lines
-
 	with open(args.input_file or args.fl_in, "r") as infile:
 		for line in infile.readlines()[header_lines:]:
 			temp_dtime = datetime.datetime.strptime(line.strip().split(",")[0], '%Y-%m-%dT%H:%M:%SZ')
