@@ -36,41 +36,41 @@ def month_name():
 
 	df['month'] = df['month'].astype(str)
 	month = df['month']
-	if month[0][0][0] == '1':
-	    month[0][0][0] = 'Jan'
+	if month[0][0] == '1':
+	    month[0][0] = 'Jan'
 	    days = range(1,32)
-	elif month[0][0][0] == '2':
-	    month[0][0][0] = 'Feb'
+	elif month[0][0] == '2':
+	    month[0][0] = 'Feb'
 	    days = range(1,29)
-	elif month[0][0][0] == '3':
-	    month[0][0][0] = 'Mar'
+	elif month[0][0] == '3':
+	    month[0][0] = 'Mar'
 	    days = range(1,32)
-	elif month[0][0][0] == '4':
-	    month[0][0][0] = 'Apr'
+	elif month[0][0] == '4':
+	    month[0][0] = 'Apr'
 	    days = range(1,31)
-	elif month[0][0][0] == '5':
-	    month[0][0][0] = 'May'
+	elif month[0][0] == '5':
+	    month[0][0] = 'May'
 	    days = range(1,32)
-	elif month[0][0][0] == '6':
-	    month[0][0][0] = 'Jun'
+	elif month[0][0] == '6':
+	    month[0][0] = 'Jun'
 	    days = range(1,31)
-	elif month[0][0][0] == '7':
-	    month[0][0][0] = 'Jul'
+	elif month[0][0] == '7':
+	    month[0][0] = 'Jul'
 	    days = range(1,32)
-	elif month[0][0][0] == '8':
-	    month[0][0][0] = 'Aug'
+	elif month[0][0] == '8':
+	    month[0][0] = 'Aug'
 	    days = range(1,32)
-	elif month[0][0][0] == '9':
-	    month[0][0][0] = 'Sep'
+	elif month[0][0] == '9':
+	    month[0][0] = 'Sep'
 	    days = range(1,31)
-	elif month[0][0][0] == '10':
-	    month[0][0][0] = 'Oct'
+	elif month[0][0] == '10':
+	    month[0][0] = 'Oct'
 	    days = range(1,32)
-	elif month[0][0][0] == '11':
-	    month[0][0][0] = 'Nov'
+	elif month[0][0] == '11':
+	    month[0][0] = 'Nov'
 	    days = range(1,31)
-	elif month[0][0][0] == '12':
-	    month[0][0][0] = 'Dec'
+	elif month[0][0] == '12':
+	    month[0][0] = 'Dec'
 	    days = range(1,32)
 
 	return month, days
@@ -107,7 +107,7 @@ def annual():
 	var_jdt_max = df[args.var].groupby(jdt).max()
 	var_jdt_min = df[args.var].groupby(jdt).min()
 
-	if year[0][0][0]%4 == 0:
+	if year[0][0]%4 == 0:
 		days_year = range(1,367)
 	else:
 		days_year = range(1,366)
@@ -131,7 +131,7 @@ if args.plot == 'diurnal':
 	plt.errorbar(hours, var_hour_avg, yerr = var_hour_sd, fmt='--o', ecolor='lightskyblue', color='k')
 	plt.xticks(hours)
 	plt.xlabel('Hour of the day')
-	plt.title('Diurnal cycle at {} for {}-{}'.format(df.station_name[0][0][0], month[0][0][0], year[0][0][0]))
+	plt.title('Diurnal cycle at {} for {}-{}'.format(df.station_name[0][0], month[0][0], year[0][0]))
 
 elif args.plot == 'monthly':
 	monthly()
@@ -139,7 +139,7 @@ elif args.plot == 'monthly':
 	plt.fill_between(days,var_day_max, var_day_min, label='max-min', facecolor='darkseagreen', alpha=0.3)
 	plt.xticks(days)
 	plt.xlabel('Day of month')
-	plt.title('Temperature at {} for {}-{}'.format(df.station_name[0][0][0], month[0][0][0], year[0][0][0]))
+	plt.title('Temperature at {} for {}-{}'.format(df.station_name[0][0], month[0][0], year[0][0]))
 
 elif args.plot == 'annual':
 	annual()
@@ -148,14 +148,14 @@ elif args.plot == 'annual':
 	plt.plot(days_year,var_jdt_max, label='max', color = 'darkseagreen')
 	plt.plot(days_year,var_jdt_min, label='min', color = 'lightskyblue')
 	plt.xlabel('Day of year')
-	plt.title('Temperature at {} for {}'.format(df.station_name[0][0][0], year[0][0][0]))
+	plt.title('Temperature at {} for {}'.format(df.station_name[0][0], year[0][0]))
 
 elif args.plot == 'seasonal':
 	seasonal()
 	plt.errorbar(months, var_month_avg, yerr = var_month_sd, fmt='--o', ecolor= 'lightskyblue', color='k')
 	plt.xticks(months)
 	plt.xlabel('Month')
-	plt.title('Climatological seasonal cycle at {}'.format(df.station_name[0][0][0]))
+	plt.title('Climatological seasonal cycle at {}'.format(df.station_name[0][0]))
 
 
 plt.legend(loc='best', fancybox=True, framealpha=0.3)
