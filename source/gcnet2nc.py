@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 import xarray as xr
-from datetime import datetime
+from datetime import datetime, timedelta
 from pytz import timezone
 from sunposition import sunpos
 
@@ -194,6 +194,26 @@ def gcnet2nc(args, op_file, station_dict, station_name):
 		sza[j] = sunpos(dt,latitude,longitude,0)[1]
 		j += 1
 	
+
+	if args.analysis:
+		print('calculating month and day...')
+		def get_month_day(year, day, one_based=False):
+			if one_based:  # if Jan 1st is 1 instead of 0
+				day -= 1
+			dt = datetime(year, 1, 1) + timedelta(days=day)
+			return dt.month, dt.day
+
+		j = 0
+		while j < num_lines:
+			month[j] = get_month_day(int(df['year'][j]), int(df['julian_decimal_time'][j]), True)[0]
+			day[j] = get_month_day(int(df['year'][j]), int(df['julian_decimal_time'][j]), True)[1]
+			j += 1
+
+
+		ds['hour'] = (('time'),hour)
+		ds['month'] = (('time'),month)
+		ds['day'] = (('time'),day)
+
 
 	ds['time'] = (('time'),time)
 	ds['time_bounds'] = (('time', 'nbnd'),time_bounds)

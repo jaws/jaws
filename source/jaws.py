@@ -16,6 +16,7 @@ def Main():
 	parser.add_argument("-6", "--format6", "--6", "--64bit_offset", "--fl_fmt=64bit_offset", help="NETCDF3_64BIT_OFFSET", action="store_true")
 	parser.add_argument("-7", "--format7", "--7", "--fl_fmt=netcdf4_classic", help="NETCDF4_CLASSIC", action="store_true")
 	parser.add_argument("-s","--station_name", help = "name of station if you want to change")
+	parser.add_argument("-a","--analysis", help = "Extra variables ('month', 'day' and 'hour') will be derived for further analysis. It will take more time", action="store_true")
 
 	args = parser.parse_args()
 
