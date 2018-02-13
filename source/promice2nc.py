@@ -45,53 +45,53 @@ def promice2nc(args, op_file, station_dict, station_name):
 
 	if ('EGP') in k:
 		temp_stn = 'promice_egp'
-	elif ('KAN_B') in k:
+	elif ('KAN_B') or ('Kangerlussuaq-B') in k:
 		temp_stn = 'promice_kanb'
-	elif ('KAN_L') in k:
+	elif ('KAN_L') or ('Kangerlussuaq-L') in k:
 		temp_stn = 'promice_kanl'
-	elif ('KAN_M') in k:
+	elif ('KAN_M') or ('Kangerlussuaq-M') in k:
 		temp_stn = 'promice_kanm'
-	elif ('KAN_U') in k:
+	elif ('KAN_U') or ('Kangerlussuaq-U') in k:
 		temp_stn = 'promice_kanu'
-	elif ('KPC_L') in k:
+	elif ('KPC_L') or ('KronprinsChristianland-L') in k:
 		temp_stn = 'promice_kpcl'
-	elif ('KPC_U') in k:
+	elif ('KPC_U') or ('KronprinsChristianland-U') in k:
 		temp_stn = 'promice_kpcu'
 	elif ('MIT') in k:
 		temp_stn = 'promice_mit'
-	elif ('NUK_K') in k:
+	elif ('NUK_K') or ('Nuuk-K') in k:
 		temp_stn = 'promice_nukk'
-	elif ('NUK_L') in k:
+	elif ('NUK_L') or ('Nuuk-L') in k:
 		temp_stn = 'promice_nukl'
-	elif ('NUK_N') in k:
+	elif ('NUK_N') or ('Nuuk-N') in k:
 		temp_stn = 'promice_nukn'
-	elif ('NUK_U') in k:
+	elif ('NUK_U') or ('Nuuk-U') in k:
 		temp_stn = 'promice_nuku'
-	elif ('QAS_A') in k:
+	elif ('QAS_A') or ('Qassimiut-A') in k:
 		temp_stn = 'promice_qasa'
-	elif ('QAS_L') in k:
+	elif ('QAS_L') or ('Qassimiut-L') in k:
 		temp_stn = 'promice_qasl'
-	elif ('QAS_M') in k:
+	elif ('QAS_M') or ('Qassimiut-M') in k:
 		temp_stn = 'promice_qasm'
-	elif ('QAS_U') in k:
+	elif ('QAS_U') or ('Qassimiut-U') in k:
 		temp_stn = 'promice_qasu'
-	elif ('SCO_L') in k:
+	elif ('SCO_L') or ('Scoresbysund-L') in k:
 		temp_stn = 'promice_scol'
-	elif ('SCO_U') in k:
+	elif ('SCO_U') or ('Scoresbysund-U') in k:
 		temp_stn = 'promice_scou'
-	elif ('TAS_A') in k:
+	elif ('TAS_A') or ('Tasiilaq-A') in k:
 		temp_stn = 'promice_tasa'
-	elif ('TAS_L') in k:
+	elif ('TAS_L') or ('Tasiilaq-L') in k:
 		temp_stn = 'promice_tasl'
-	elif ('TAS_U') in k:
+	elif ('TAS_U') or ('Tasiilaq-U') in k:
 		temp_stn = 'promice_tasu'
-	elif ('THU_L') in k:
+	elif ('THU_L') or ('ThuleAirbase-L') in k:
 		temp_stn = 'promice_thul'
-	elif ('THU_U') in k:
+	elif ('THU_U') or ('ThuleAirbase-U') in k:
 		temp_stn = 'promice_thuu'
-	elif ('UPE_L') in k:
+	elif ('UPE_L') or ('Upernavik-L') in k:
 		temp_stn = 'promice_upel'
-	elif ('UPE_U') in k:
+	elif ('UPE_U') or ('Upernavik-U') in k:
 		temp_stn = 'promice_upeu'
 	elif ('CEN') in k:
 		temp_stn = 'promice_cen'
