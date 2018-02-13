@@ -13,7 +13,7 @@ mpl.rc('axes', facecolor = 'white')
 parser = argparse.ArgumentParser()
 parser.add_argument("input", help="netCDF file you wish to plot.", type=str)
 parser.add_argument('var', help = 'variable you want to analyse', type = str)
-parser.add_argument('plot', help = "plot type e.g.- diurnal, values, annual, seasonal", type = str)
+parser.add_argument('plot', help = "plot type e.g.- diurnal, monthly, annual, seasonal", type = str)
 parser.add_argument('-y', '--year', help = 'Year you want to select', type = int)
 parser.add_argument('-m', '--month', help = 'Month you want to select', type = int)
 args = parser.parse_args()
@@ -87,7 +87,7 @@ def diurnal():
 
 	return var_hour_avg, var_hour_sd, hours
 
-def values():
+def monthly():
 	global var_day_avg, var_day_max, var_day_min
 	
 	month_name()
@@ -134,7 +134,7 @@ if args.plot == 'diurnal':
 	plt.title('Diurnal cycle at {} for {}-{}'.format(df.station_name[0][0][0], month[0][0][0], year[0][0][0]))
 
 elif args.plot == 'monthly':
-	values()
+	monthly()
 	plt.plot(days,var_day_avg, label='mean', color ='black')
 	plt.fill_between(days,var_day_max, var_day_min, label='max-min', facecolor='darkseagreen', alpha=0.3)
 	plt.xticks(days)
