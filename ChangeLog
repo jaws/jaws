@@ -1,3 +1,15 @@
+2018-02-12  Ajay Saini  <sainiak@uci.edu>
+
+	* station_dict made ordered to be compatible with Python 2
+
+	* analysis - indexing corrected
+
+	* Added functionality to choose timezone from command line
+
+	* Added new argument 'analysis' to calculate day and month in GCNet, only if user wants to do further analysis
+
+	* Plot errors corrected, all plots are now running
+
 2018-02-11  Ajay Saini  <sainiak@uci.edu>
 
 	* PROMICE- lat_lon_GPS calculation corrected
