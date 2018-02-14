@@ -1,10 +1,11 @@
-import os
-from datetime import datetime
-from math import sin, cos, sqrt, atan2, radians
-from common import time_calc, solar, get_data
 import pandas as pd
 import numpy as np
 import xarray as xr
+import os
+from datetime import datetime
+from pytz import timezone
+from sunposition import sunpos
+from math import sin, cos, sqrt, atan2, radians
 import warnings
 
 warnings.filterwarnings("ignore")
@@ -125,10 +126,11 @@ def promice2nc(args, op_file, station_dict, station_name):
 			df['longitude_GPS'][i] = lat_lon_gps(df['longitude_GPS'][i])
 
 		
-		time[i] = time_calc(df['year'][i], df['month'][i], df['day'][i], df['hour'][i])
+		temp_dtime = datetime(df['year'][i], df['month'][i], df['day'][i], df['hour'][i]).replace(tzinfo = timezone(args.timezone))
+		time[i] = (temp_dtime-(datetime(1970,1,1)).replace(tzinfo = timezone(args.timezone))).total_seconds()
 		time_bounds[i] = (time[i], time[i]+seconds_in_hour)
 
-		sza[i] = solar(df['year'][i], df['month'][i], df['day'][i], df['hour'][i], latitude, longitude)
+		sza[i] = sunpos(temp_dtime,latitude,longitude,0)[1]
 
 		i += 1
 
