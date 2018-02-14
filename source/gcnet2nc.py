@@ -312,7 +312,8 @@ def gcnet2nc(args, op_file, station_dict, station_name):
 	ds['longitude'].attrs= {'units':'degrees_east', 'standard_name':'longitude'}
 	
 
-	encoding = {'sw_down': {'_FillValue': check_na},
+	encoding = {'julian_decimal_time': {'_FillValue': False},
+				'sw_down': {'_FillValue': check_na},
 				'sw_up': {'_FillValue': check_na},
 				'net_radiation': {'_FillValue': check_na},
 				'temperature_tc_1': {'_FillValue': check_na},
