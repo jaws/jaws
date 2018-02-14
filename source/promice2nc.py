@@ -106,25 +106,29 @@ def promice2nc(args, op_file, station_dict, station_name):
 		station_name = station_dict.get(temp_stn)[2]
 
 
-	print('calculating time and sza...')
+	print('converting lat_GPS and lon_GPS...')
 	
-	def lat_lon_gps(col_index):
-		return (round(float(int(col_index)-((int(col_index)/100)*100))/60, 4) + (int(col_index)/100))
+	def lat_lon_gps(coords):
+		deg = np.floor(coords / 100)
+		minutes = np.floor(((coords / 100) - deg) * 100)
+		seconds = (((coords / 100) - deg) * 100 - minutes) * 100
+		return round(deg + minutes / 60 + seconds / 3600, 4)
 
+	# Exclude NAs
+	logic1 = df.latitude_GPS != check_na
+	logic2 = df.longitude_GPS != check_na
+	df1 = df[logic1]
+	df2 = df[logic2]
+
+	df.latitude_GPS = lat_lon_gps(df1.latitude_GPS)
+	df.longitude_GPS = lat_lon_gps(df2.longitude_GPS)
+	
+
+	print('calculating time and sza...')
 	
 	i = 0
 
 	while i < num_lines:
-		if df['latitude_GPS'][i] == check_na:
-			pass
-		else:
-			df['latitude_GPS'][i] = lat_lon_gps(df['latitude_GPS'][i])
-
-		if df['longitude_GPS'][i] == check_na:
-			pass
-		else:
-			df['longitude_GPS'][i] = lat_lon_gps(df['longitude_GPS'][i])
-
 		
 		temp_dtime = datetime(df['year'][i], df['month'][i], df['day'][i], df['hour'][i]).replace(tzinfo = timezone(args.timezone))
 		time[i] = (temp_dtime-(datetime(1970,1,1)).replace(tzinfo = timezone(args.timezone))).total_seconds()
