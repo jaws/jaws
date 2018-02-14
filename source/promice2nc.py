@@ -112,7 +112,7 @@ def promice2nc(args, op_file, station_dict, station_name):
 		deg = np.floor(coords / 100)
 		minutes = np.floor(((coords / 100) - deg) * 100)
 		seconds = (((coords / 100) - deg) * 100 - minutes) * 100
-		return round(deg + minutes / 60 + seconds / 3600, 4)
+		return deg + minutes / 60 + seconds / 3600
 
 	# Exclude NAs
 	logic1 = df.latitude_GPS != check_na
