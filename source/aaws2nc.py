@@ -9,8 +9,8 @@ def aaws2nc(args, op_file, station_dict, station_name):
 	header_lines = 8
 	convert_temp = 273.15
 	convert_press = 100
-	check_na = -999
 	seconds_in_hour = 3600
+	fillvalue_double = 9.969209968386869e+36
 
 	column_names = ['timestamp', 'air_temp', 'vtempdiff', 'rh', 'pressure', 'wind_dir', 'wind_spd']
 
@@ -18,7 +18,7 @@ def aaws2nc(args, op_file, station_dict, station_name):
 	df.index.name = 'time'
 	df.loc[:,'air_temp'] += convert_temp
 	df.loc[:,'pressure'] *= convert_press
-	#df =  df.where((pd.notnull(df)), check_na)
+	df =  df.where((pd.notnull(df)), fillvalue_double)
 
 	ds = xr.Dataset.from_dataframe(df)
 	ds = ds.drop('time')
@@ -204,12 +204,12 @@ def aaws2nc(args, op_file, station_dict, station_name):
 	ds['longitude'].attrs= {'units':'degrees_east', 'standard_name':'longitude'}
 	
 
-	encoding = {'air_temp': {'_FillValue': check_na},
-				'vtempdiff': {'_FillValue': check_na},
-				'rh': {'_FillValue': check_na},
-				'pressure': {'_FillValue': check_na},
-				'wind_dir': {'_FillValue': check_na},
-				'wind_spd': {'_FillValue': check_na},
+	encoding = {'air_temp': {'_FillValue': fillvalue_double},
+				'vtempdiff': {'_FillValue': fillvalue_double},
+				'rh': {'_FillValue': fillvalue_double},
+				'pressure': {'_FillValue': fillvalue_double},
+				'wind_dir': {'_FillValue': fillvalue_double},
+				'wind_spd': {'_FillValue': fillvalue_double},
 				'time': {'_FillValue': False},
 				'time_bounds': {'_FillValue': False},
 				'sza': {'_FillValue': False},
