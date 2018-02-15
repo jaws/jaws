@@ -33,9 +33,9 @@ def promice2nc(args, op_file, station_dict, station_name, convert_temp, convert_
 	ds = xr.Dataset.from_dataframe(df)
 	ds = ds.drop('time')
 	
-	num_lines =  sum(1 for line in open(args.input_file or args.fl_in) if len(line.strip()) != 0) - header_lines
 	
 	# Intializing variables
+	num_lines =  df['year'].size
 	time, time_bounds, sza, velocity, ice_velocity_GPS_total, ice_velocity_GPS_x, ice_velocity_GPS_y = ([0]*num_lines for x in range(7))
 
 	

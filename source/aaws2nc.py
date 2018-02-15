@@ -22,7 +22,7 @@ def aaws2nc(args, op_file, station_dict, station_name, convert_temp, convert_pre
 
 
 	# Intializing variables
-	num_lines =  sum(1 for line in open(args.input_file or args.fl_in) if len(line.strip()) != 0) - header_lines
+	num_lines =  df['timestamp'].size
 	time, time_bounds, sza = ([0]*num_lines for x in range(3))
 	
 	

@@ -34,9 +34,9 @@ def gcnet2nc(args, op_file, station_dict, station_name, convert_temp, convert_pr
 	ds = xr.Dataset.from_dataframe(df)
 	ds = ds.drop('time')
 	
-	num_lines =  sum(1 for line in open(args.input_file or args.fl_in)) - header_lines
 	
 	# Intializing variables
+	num_lines =  df['year'].size
 	qc_swdn, qc_swup, qc_netradiation, qc_ttc1, qc_ttc2, qc_tcs1, qc_tcs2, qc_rh1, qc_rh2, qc_u1, qc_u2, qc_ud1, qc_ud2, qc_pressure, qc_snowheight1, qc_snowheight2, qc_tsnow1, qc_tsnow2, qc_tsnow3, qc_tsnow4, qc_tsnow5, qc_tsnow6, qc_tsnow7, qc_tsnow8, qc_tsnow9, qc_tsnow10, qc_battery = ([0]*num_lines for x in range(27))
 
 	hour, month, day, time, time_bounds, sza = ([0]*num_lines for x in range(6))
