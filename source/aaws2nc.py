@@ -7,11 +7,11 @@ from common import write_data
 
 def aaws2nc(args, op_file, station_dict, station_name, convert_temp, convert_press, seconds_in_hour, fillvalue_double):
 
-	header_lines = 8
+	header_rows = 8
 
 	column_names = ['timestamp', 'air_temp', 'vtempdiff', 'rh', 'pressure', 'wind_dir', 'wind_spd']
 
-	df = pd.read_csv(args.input_file or args.fl_in, skiprows = header_lines, skip_blank_lines=True, header=None, names = column_names)
+	df = pd.read_csv(args.input_file or args.fl_in, skiprows = header_rows, skip_blank_lines=True, header=None, names = column_names)
 	df.index.name = 'time'
 	df.loc[:,'air_temp'] += convert_temp
 	df.loc[:,'pressure'] *= convert_press
@@ -22,8 +22,8 @@ def aaws2nc(args, op_file, station_dict, station_name, convert_temp, convert_pre
 
 
 	# Intializing variables
-	num_lines =  df['timestamp'].size
-	time, time_bounds, sza = ([0]*num_lines for x in range(3))
+	num_rows =  df['timestamp'].size
+	time, time_bounds, sza = ([0]*num_rows for x in range(3))
 	
 	
 	print('retrieving latitude and longitude...')
@@ -171,7 +171,7 @@ def aaws2nc(args, op_file, station_dict, station_name, convert_temp, convert_pre
 	i = 0
 	
 	with open(args.input_file or args.fl_in, "r") as infile:
-		for line in infile.readlines()[header_lines:]:
+		for line in infile.readlines()[header_rows:]:
 			temp_dtime = datetime.datetime.strptime(line.strip().split(",")[0], '%Y-%m-%dT%H:%M:%SZ').replace(tzinfo = timezone(args.timezone))
 			time[i] = (temp_dtime-datetime.datetime(1970, 1, 1).replace(tzinfo = timezone(args.timezone))).total_seconds()
 			time_bounds[i] = (time[i]-seconds_in_hour, time[i])

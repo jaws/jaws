@@ -13,7 +13,7 @@ warnings.filterwarnings("ignore")
 
 def promice2nc(args, op_file, station_dict, station_name, convert_temp, convert_press, seconds_in_hour, fillvalue_double):
 
-	header_lines = 1
+	header_rows = 1
 	convert_current = 1000
 	check_na = -999
 
@@ -22,7 +22,7 @@ def promice2nc(args, op_file, station_dict, station_name, convert_temp, convert_
 	'height_stakes', 'depth_pressure_transducer', 'depth_pressure_transducer_cor', 'ice_temp_01', 'ice_temp_02', 'ice_temp_03', 'ice_temp_04', 'ice_temp_05', 'ice_temp_06', 'ice_temp_07', 'ice_temp_08', 'tilt_east', 'tilt_north', 
 	'time_GPS', 'latitude_GPS', 'longitude_GPS', 'elevation', 'hor_dil_prec', 'logger_temp', 'fan_current', 'battery_voltage']
 
-	df = pd.read_csv(args.input_file or args.fl_in, delim_whitespace=True, skiprows=header_lines, skip_blank_lines=True, header=None, names = column_names)
+	df = pd.read_csv(args.input_file or args.fl_in, delim_whitespace=True, skiprows=header_rows, skip_blank_lines=True, header=None, names = column_names)
 	df.index.name = 'time'
 	df.replace(check_na, np.nan, inplace=True)
 	df.loc[:,['air_temperature','air_temperature_hygroclip','surface_temp','ice_temp_01','ice_temp_02','ice_temp_03','ice_temp_04','ice_temp_05','ice_temp_06','ice_temp_07','ice_temp_08','logger_temp']] += convert_temp
@@ -35,8 +35,8 @@ def promice2nc(args, op_file, station_dict, station_name, convert_temp, convert_
 	
 	
 	# Intializing variables
-	num_lines =  df['year'].size
-	time, time_bounds, sza, velocity, ice_velocity_GPS_total, ice_velocity_GPS_x, ice_velocity_GPS_y = ([0]*num_lines for x in range(7))
+	num_rows =  df['year'].size
+	time, time_bounds, sza, velocity, ice_velocity_GPS_total, ice_velocity_GPS_x, ice_velocity_GPS_y = ([0]*num_rows for x in range(7))
 
 	
 	print('retrieving lat and lon...')
@@ -126,7 +126,7 @@ def promice2nc(args, op_file, station_dict, station_name, convert_temp, convert_
 	
 	i = 0
 
-	while i < num_lines:
+	while i < num_rows:
 		
 		temp_dtime = datetime(df['year'][i], df['month'][i], df['day'][i], df['hour'][i]).replace(tzinfo = timezone(args.timezone))
 		time[i] = (temp_dtime-(datetime(1970,1,1)).replace(tzinfo = timezone(args.timezone))).total_seconds()
@@ -141,7 +141,7 @@ def promice2nc(args, op_file, station_dict, station_name, convert_temp, convert_
 	def ice_velocity(n,o):
 		m,p = 0,1
 		R = 6373.0		#Approx radius of earth
-		while p < num_lines:
+		while p < num_rows:
 			if (df['latitude_GPS'][m] == fillvalue_double or df['longitude_GPS'][m] == fillvalue_double or df['latitude_GPS'][n] == fillvalue_double or df['longitude_GPS'][o] == fillvalue_double):
 				velocity[m] = fillvalue_double
 			else:

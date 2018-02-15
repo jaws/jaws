@@ -8,7 +8,7 @@ from common import write_data
 
 def gcnet2nc(args, op_file, station_dict, station_name, convert_temp, convert_press, seconds_in_hour, fillvalue_double):
 
-	header_lines = 54
+	header_rows = 54
 	check_na = 999.0
 	hour_conversion = (100/4)		#Divided by 4 because each hour value is a multiple of 4 and then multiplied by 100 to convert decimal to integer
 	last_hour = 23
@@ -19,7 +19,7 @@ def gcnet2nc(args, op_file, station_dict, station_name, convert_temp, convert_pr
 	'ref_temperature', 'windspeed_2m', 'windspeed_10m', 'wind_sensor_height_1', 'wind_sensor_height_2', 'albedo', 'zenith_angle', 'qc1', 'qc9', 'qc17', 'qc25']
 
 	
-	df = pd.read_csv(args.input_file or args.fl_in, delim_whitespace=True, skiprows=header_lines, skip_blank_lines=True, header=None, names = column_names)
+	df = pd.read_csv(args.input_file or args.fl_in, delim_whitespace=True, skiprows=header_rows, skip_blank_lines=True, header=None, names = column_names)
 	df.index.name = 'time'
 	df['qc25'] = df['qc25'].astype(str)			# To avoid 999 values marked as N/A
 	df.replace(check_na, np.nan, inplace=True)
@@ -36,10 +36,10 @@ def gcnet2nc(args, op_file, station_dict, station_name, convert_temp, convert_pr
 	
 	
 	# Intializing variables
-	num_lines =  df['year'].size
-	qc_swdn, qc_swup, qc_netradiation, qc_ttc1, qc_ttc2, qc_tcs1, qc_tcs2, qc_rh1, qc_rh2, qc_u1, qc_u2, qc_ud1, qc_ud2, qc_pressure, qc_snowheight1, qc_snowheight2, qc_tsnow1, qc_tsnow2, qc_tsnow3, qc_tsnow4, qc_tsnow5, qc_tsnow6, qc_tsnow7, qc_tsnow8, qc_tsnow9, qc_tsnow10, qc_battery = ([0]*num_lines for x in range(27))
+	num_rows =  df['year'].size
+	qc_swdn, qc_swup, qc_netradiation, qc_ttc1, qc_ttc2, qc_tcs1, qc_tcs2, qc_rh1, qc_rh2, qc_u1, qc_u2, qc_ud1, qc_ud2, qc_pressure, qc_snowheight1, qc_snowheight2, qc_tsnow1, qc_tsnow2, qc_tsnow3, qc_tsnow4, qc_tsnow5, qc_tsnow6, qc_tsnow7, qc_tsnow8, qc_tsnow9, qc_tsnow10, qc_battery = ([0]*num_rows for x in range(27))
 
-	hour, month, day, time, time_bounds, sza = ([0]*num_lines for x in range(6))
+	hour, month, day, time, time_bounds, sza = ([0]*num_rows for x in range(6))
 
 	print('calculating quality control variables...')
 	temp1 = [list(map(int, i)) for i in zip(*map(str, df['qc1']))]
@@ -177,7 +177,7 @@ def gcnet2nc(args, op_file, station_dict, station_name, convert_temp, convert_pr
 	hour[:] = [int(x) for x in [round((v-int(v)),3)*hour_conversion for v in df['julian_decimal_time']]]
 	
 	i = 0
-	while i < num_lines:
+	while i < num_rows:
 		if hour[i] > last_hour:
 			hour[i] = 0
 		i += 1
@@ -185,7 +185,7 @@ def gcnet2nc(args, op_file, station_dict, station_name, convert_temp, convert_pr
 	print("calculating time and sza...")
 	
 	j = 0
-	while j < num_lines:
+	while j < num_rows:
 		dt = datetime.strptime("%s %s %s" % (df['year'][j], int(df['julian_decimal_time'][j]), hour[j]), "%Y %j %H").replace(tzinfo = timezone(args.timezone))		
 		time[j] = (dt-(datetime(1970,1,1)).replace(tzinfo = timezone(args.timezone))).total_seconds()
 		time_bounds[j] = (time[j]-seconds_in_hour, time[j])
@@ -203,7 +203,7 @@ def gcnet2nc(args, op_file, station_dict, station_name, convert_temp, convert_pr
 			return dt.month, dt.day
 
 		j = 0
-		while j < num_lines:
+		while j < num_rows:
 			month[j] = get_month_day(int(df['year'][j]), int(df['julian_decimal_time'][j]), True)[0]
 			day[j] = get_month_day(int(df['year'][j]), int(df['julian_decimal_time'][j]), True)[1]
 			j += 1
