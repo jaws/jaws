@@ -1,6 +1,6 @@
 import pandas as pd
 import xarray as xr
-import datetime
+from datetime import datetime
 import pytz
 from sunposition import sunpos
 from common import write_data
@@ -175,7 +175,7 @@ def aaws2nc(args, op_file, station_dict, station_name, convert_temp, convert_pre
 	
 	with open(args.input_file or args.fl_in, "r") as infile:
 		for line in infile.readlines()[header_rows:]:
-			temp_dtime = datetime.datetime.strptime(line.strip().split(",")[0], '%Y-%m-%dT%H:%M:%SZ')
+			temp_dtime = datetime.strptime(line.strip().split(",")[0], '%Y-%m-%dT%H:%M:%SZ')
 			temp_dtime = tz.localize(temp_dtime.replace(tzinfo=None))		
 			time[i] = (temp_dtime-dtime_1970).total_seconds()
 			

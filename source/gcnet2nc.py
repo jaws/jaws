@@ -174,30 +174,32 @@ def gcnet2nc(args, op_file, station_dict, station_name, convert_temp, convert_pr
 
 	
 	print('calculating hour...')
-	hour[:] = [int(x) for x in [round((v-int(v)),3)*hour_conversion for v in df['julian_decimal_time']]]
+	hour[:] = [int(x) for x in [round((y-int(y)),3)*hour_conversion for y in df['julian_decimal_time']]]
 	
-	i = 0
-	while i < num_rows:
-		if hour[i] > last_hour:
-			hour[i] = 0
-		i += 1
+	z = 0
+	while z < num_rows:
+		if hour[z] > last_hour:
+			hour[z] = 0
+		z += 1
 
 	print("calculating time and sza...")
 	
 	tz = pytz.timezone(args.timezone)
 	dtime_1970 = datetime(1970,1,1)
 	dtime_1970 = tz.localize(dtime_1970.replace(tzinfo=None))
-	j = 0
-	while j < num_rows:
-		temp_dtime = datetime.strptime("%s %s %s" % (df['year'][j], int(df['julian_decimal_time'][j]), hour[j]), "%Y %j %H")
+	i = 0
+
+	while i < num_rows:
+		
+		temp_dtime = datetime.strptime("%s %s %s" % (df['year'][i], int(df['julian_decimal_time'][i]), hour[i]), "%Y %j %H")
 		temp_dtime = tz.localize(temp_dtime.replace(tzinfo=None))
-		time[j] = (temp_dtime-dtime_1970).total_seconds()
+		time[i] = (temp_dtime-dtime_1970).total_seconds()
 		
-		time_bounds[j] = (time[j]-seconds_in_hour, time[j])
+		time_bounds[i] = (time[i]-seconds_in_hour, time[i])
 		
-		sza[j] = sunpos(temp_dtime,latitude,longitude,0)[1]
+		sza[i] = sunpos(temp_dtime,latitude,longitude,0)[1]
 		
-		j += 1
+		i += 1
 	
 
 	if args.analysis:
