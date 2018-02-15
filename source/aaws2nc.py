@@ -1,7 +1,7 @@
 import pandas as pd
 import xarray as xr
 import datetime
-from pytz import timezone
+import pytz
 from sunposition import sunpos
 from common import write_data
 
@@ -166,16 +166,23 @@ def aaws2nc(args, op_file, station_dict, station_name, convert_temp, convert_pre
 		station_name = x
 
 
-	print('calculating date and time...')
+	print('calculating time and sza...')
 	
+	tz = pytz.timezone(args.timezone)
+	dtime_1970 = datetime(1970,1,1)
+	dtime_1970 = tz.localize(dtime_1970.replace(tzinfo=None))
 	i = 0
 	
 	with open(args.input_file or args.fl_in, "r") as infile:
 		for line in infile.readlines()[header_rows:]:
-			temp_dtime = datetime.datetime.strptime(line.strip().split(",")[0], '%Y-%m-%dT%H:%M:%SZ').replace(tzinfo = timezone(args.timezone))
-			time[i] = (temp_dtime-datetime.datetime(1970, 1, 1).replace(tzinfo = timezone(args.timezone))).total_seconds()
+			temp_dtime = datetime.datetime.strptime(line.strip().split(",")[0], '%Y-%m-%dT%H:%M:%SZ')
+			temp_dtime = tz.localize(temp_dtime.replace(tzinfo=None))		
+			time[i] = (temp_dtime-dtime_1970).total_seconds()
+			
 			time_bounds[i] = (time[i]-seconds_in_hour, time[i])
+			
 			sza[i] = sunpos(temp_dtime,latitude,longitude,0)[1]
+			
 			i += 1
 
 	ds['time'] = (('time'),time)

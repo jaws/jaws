@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import xarray as xr
 from datetime import datetime, timedelta
-from pytz import timezone
+import pytz
 from sunposition import sunpos
 from common import write_data
 
@@ -184,13 +184,19 @@ def gcnet2nc(args, op_file, station_dict, station_name, convert_temp, convert_pr
 
 	print("calculating time and sza...")
 	
+	tz = pytz.timezone(args.timezone)
+	dtime_1970 = datetime(1970,1,1)
+	dtime_1970 = tz.localize(dtime_1970.replace(tzinfo=None))
 	j = 0
 	while j < num_rows:
-		dt = datetime.strptime("%s %s %s" % (df['year'][j], int(df['julian_decimal_time'][j]), hour[j]), "%Y %j %H").replace(tzinfo = timezone(args.timezone))		
-		time[j] = (dt-(datetime(1970,1,1)).replace(tzinfo = timezone(args.timezone))).total_seconds()
+		temp_dtime = datetime.strptime("%s %s %s" % (df['year'][j], int(df['julian_decimal_time'][j]), hour[j]), "%Y %j %H")
+		temp_dtime = tz.localize(temp_dtime.replace(tzinfo=None))
+		time[j] = (temp_dtime-dtime_1970).total_seconds()
+		
 		time_bounds[j] = (time[j]-seconds_in_hour, time[j])
 		
-		sza[j] = sunpos(dt,latitude,longitude,0)[1]
+		sza[j] = sunpos(temp_dtime,latitude,longitude,0)[1]
+		
 		j += 1
 	
 

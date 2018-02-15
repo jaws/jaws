@@ -3,7 +3,7 @@ import numpy as np
 import xarray as xr
 import os
 from datetime import datetime
-from pytz import timezone
+import pytz
 from sunposition import sunpos
 from math import sin, cos, sqrt, atan2, radians
 from common import write_data
@@ -124,12 +124,17 @@ def promice2nc(args, op_file, station_dict, station_name, convert_temp, convert_
 
 	print('calculating time and sza...')
 	
+	tz = pytz.timezone(args.timezone)
+	dtime_1970 = datetime(1970,1,1)
+	dtime_1970 = tz.localize(dtime_1970.replace(tzinfo=None))
 	i = 0
 
 	while i < num_rows:
 		
-		temp_dtime = datetime(df['year'][i], df['month'][i], df['day'][i], df['hour'][i]).replace(tzinfo = timezone(args.timezone))
-		time[i] = (temp_dtime-(datetime(1970,1,1)).replace(tzinfo = timezone(args.timezone))).total_seconds()
+		temp_dtime = datetime(df['year'][i], df['month'][i], df['day'][i], df['hour'][i])
+		temp_dtime = tz.localize(temp_dtime.replace(tzinfo=None))		
+		time[i] = (temp_dtime-dtime_1970).total_seconds()
+		
 		time_bounds[i] = (time[i], time[i]+seconds_in_hour)
 
 		sza[i] = sunpos(temp_dtime,latitude,longitude,0)[1]
