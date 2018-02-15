@@ -1,3 +1,15 @@
+2018-02-14  Ajay Saini  <sainiak@uci.edu>
+
+	* Added the default netCDF _FillValue for all variables
+
+	* Functionalized data writing code
+
+	* Common variables moved to jaws.py
+
+	* num_lines calculation changed
+
+	* Used localize function from pytz to correct timezone calculations
+
 2018-02-13  Ajay Saini  <sainiak@uci.edu>
 
 	* Resolved bug related to timezone
