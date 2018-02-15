@@ -14,6 +14,7 @@ def gcnet2nc(args, op_file, station_dict, station_name):
 	hour_conversion = (100/4)		#Divided by 4 because each hour value is a multiple of 4 and then multiplied by 100 to convert decimal to integer
 	last_hour = 23
 	seconds_in_hour = 3600
+	fillvalue_double = 9.969209968386869e+36
 
 	column_names = ['station_number', 'year', 'julian_decimal_time', 'sw_down', 'sw_up', 'net_radiation', 'temperature_tc_1', 'temperature_tc_2', 'temperature_cs500_1', 'temperature_cs500_2', 'relative_humidity_1', 'relative_humidity_2', 
 	'u1_wind_speed', 'u2_wind_speed', 'u_direction_1', 'u_direction_2', 'atmos_pressure', 'snow_height_1', 'snow_height_2', 't_snow_01', 't_snow_02', 't_snow_03', 't_snow_04', 't_snow_05', 't_snow_06', 't_snow_07', 't_snow_08', 't_snow_09', 't_snow_10', 
@@ -23,11 +24,12 @@ def gcnet2nc(args, op_file, station_dict, station_name):
 	
 	df = pd.read_csv(args.input_file or args.fl_in, delim_whitespace=True, skiprows=header_lines, skip_blank_lines=True, header=None, names = column_names)
 	df.index.name = 'time'
+	df['qc25'] = df['qc25'].astype(str)			# To avoid 999 values marked as N/A
 	df.replace(check_na, np.nan, inplace=True)
 	df.loc[:,['temperature_tc_1', 'temperature_tc_2', 'temperature_cs500_1', 'temperature_cs500_2', 't_snow_01', 't_snow_02', 't_snow_03', 't_snow_04', 't_snow_05', 't_snow_06', 't_snow_07', 't_snow_08', 't_snow_09', 't_snow_10', 'max_air_temperature_1', 'max_air_temperature_2', 'min_air_temperature_1', 'min_air_temperature_2', 'ref_temperature']] += convert_temp
 	df.loc[:,'atmos_pressure'] *= convert_press
-	df = df.where((pd.notnull(df)), check_na)
-	df['qc25'] = df['qc25'].astype(int)			#In the above steps value 999 gets converted to 999.0, so convert it back to int
+	df = df.where((pd.notnull(df)), fillvalue_double)
+	df['qc25'] = df['qc25'].astype(int)			#Convert it back to int
 
 	station_number = df['station_number'][0]
 	df.drop('station_number', axis=1, inplace=True)
@@ -313,51 +315,51 @@ def gcnet2nc(args, op_file, station_dict, station_name):
 	
 
 	encoding = {'julian_decimal_time': {'_FillValue': False},
-				'sw_down': {'_FillValue': check_na},
-				'sw_up': {'_FillValue': check_na},
-				'net_radiation': {'_FillValue': check_na},
-				'temperature_tc_1': {'_FillValue': check_na},
-				'temperature_tc_2': {'_FillValue': check_na},
-				'temperature_cs500_1': {'_FillValue': check_na},
-				'temperature_cs500_2': {'_FillValue': check_na},
-				'relative_humidity_1': {'_FillValue': check_na},
-				'relative_humidity_2': {'_FillValue': check_na},
-				'u1_wind_speed': {'_FillValue': check_na},
-				'u2_wind_speed': {'_FillValue': check_na},
-				'u_direction_1': {'_FillValue': check_na},
-				'u_direction_2': {'_FillValue': check_na},
-				'atmos_pressure': {'_FillValue': check_na},
-				'snow_height_1': {'_FillValue': check_na},
-				'snow_height_2': {'_FillValue': check_na},
-				't_snow_01': {'_FillValue': check_na},
-				't_snow_02': {'_FillValue': check_na},
-				't_snow_03': {'_FillValue': check_na},
-				't_snow_04': {'_FillValue': check_na},
-				't_snow_05': {'_FillValue': check_na},
-				't_snow_06': {'_FillValue': check_na},
-				't_snow_07': {'_FillValue': check_na},
-				't_snow_08': {'_FillValue': check_na},
-				't_snow_09': {'_FillValue': check_na},
-				't_snow_10': {'_FillValue': check_na},
-				'battery_voltage': {'_FillValue': check_na},
-				'sw_down_max': {'_FillValue': check_na},
-				'sw_up_max': {'_FillValue': check_na},
-				'net_radiation_max': {'_FillValue': check_na},
-				'max_air_temperature_1': {'_FillValue': check_na},
-				'max_air_temperature_2': {'_FillValue': check_na},
-				'min_air_temperature_1': {'_FillValue': check_na},
-				'min_air_temperature_2': {'_FillValue': check_na},
-				'max_windspeed_u1': {'_FillValue': check_na},
-				'max_windspeed_u2': {'_FillValue': check_na},
-				'stdev_windspeed_u1': {'_FillValue': check_na},
-				'stdev_windspeed_u2': {'_FillValue': check_na},
-				'ref_temperature': {'_FillValue': check_na},
-				'windspeed_2m': {'_FillValue': check_na},
-				'windspeed_10m': {'_FillValue': check_na},
-				'wind_sensor_height_1': {'_FillValue': check_na},
-				'wind_sensor_height_2': {'_FillValue': check_na},
-				'albedo': {'_FillValue': check_na},
-				'zenith_angle': {'_FillValue': check_na},
+				'sw_down': {'_FillValue': fillvalue_double},
+				'sw_up': {'_FillValue': fillvalue_double},
+				'net_radiation': {'_FillValue': fillvalue_double},
+				'temperature_tc_1': {'_FillValue': fillvalue_double},
+				'temperature_tc_2': {'_FillValue': fillvalue_double},
+				'temperature_cs500_1': {'_FillValue': fillvalue_double},
+				'temperature_cs500_2': {'_FillValue': fillvalue_double},
+				'relative_humidity_1': {'_FillValue': fillvalue_double},
+				'relative_humidity_2': {'_FillValue': fillvalue_double},
+				'u1_wind_speed': {'_FillValue': fillvalue_double},
+				'u2_wind_speed': {'_FillValue': fillvalue_double},
+				'u_direction_1': {'_FillValue': fillvalue_double},
+				'u_direction_2': {'_FillValue': fillvalue_double},
+				'atmos_pressure': {'_FillValue': fillvalue_double},
+				'snow_height_1': {'_FillValue': fillvalue_double},
+				'snow_height_2': {'_FillValue': fillvalue_double},
+				't_snow_01': {'_FillValue': fillvalue_double},
+				't_snow_02': {'_FillValue': fillvalue_double},
+				't_snow_03': {'_FillValue': fillvalue_double},
+				't_snow_04': {'_FillValue': fillvalue_double},
+				't_snow_05': {'_FillValue': fillvalue_double},
+				't_snow_06': {'_FillValue': fillvalue_double},
+				't_snow_07': {'_FillValue': fillvalue_double},
+				't_snow_08': {'_FillValue': fillvalue_double},
+				't_snow_09': {'_FillValue': fillvalue_double},
+				't_snow_10': {'_FillValue': fillvalue_double},
+				'battery_voltage': {'_FillValue': fillvalue_double},
+				'sw_down_max': {'_FillValue': fillvalue_double},
+				'sw_up_max': {'_FillValue': fillvalue_double},
+				'net_radiation_max': {'_FillValue': fillvalue_double},
+				'max_air_temperature_1': {'_FillValue': fillvalue_double},
+				'max_air_temperature_2': {'_FillValue': fillvalue_double},
+				'min_air_temperature_1': {'_FillValue': fillvalue_double},
+				'min_air_temperature_2': {'_FillValue': fillvalue_double},
+				'max_windspeed_u1': {'_FillValue': fillvalue_double},
+				'max_windspeed_u2': {'_FillValue': fillvalue_double},
+				'stdev_windspeed_u1': {'_FillValue': fillvalue_double},
+				'stdev_windspeed_u2': {'_FillValue': fillvalue_double},
+				'ref_temperature': {'_FillValue': fillvalue_double},
+				'windspeed_2m': {'_FillValue': fillvalue_double},
+				'windspeed_10m': {'_FillValue': fillvalue_double},
+				'wind_sensor_height_1': {'_FillValue': fillvalue_double},
+				'wind_sensor_height_2': {'_FillValue': fillvalue_double},
+				'albedo': {'_FillValue': fillvalue_double},
+				'zenith_angle': {'_FillValue': fillvalue_double},
 				'time': {'_FillValue': False},
 				'time_bounds': {'_FillValue': False},
 				'sza': {'_FillValue': False},
