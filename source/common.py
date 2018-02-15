@@ -1,13 +1,13 @@
-from sunposition import sunpos
-from datetime import datetime
-
-def get_data(dataframe_column):
-	return [v for v in dataframe_column]
-	
-def time_calc(year,month,day,hour):
-	delta = datetime(year,month,day,hour)-datetime(1970, 1, 1)
-	return delta.total_seconds()
-
-def solar(year,month,day,hour,lat,lon):
-	temp_datetime = datetime(year,month,day,hour)
-	return sunpos(temp_datetime,lat,lon,0)[1]
+def write_data(args, ds, op_file, encoding):
+	if args.format3 == 1:
+		ds.to_netcdf(op_file, format = 'NETCDF3_CLASSIC', unlimited_dims={'time':True}, encoding = encoding)
+	elif args.format4 == 1:
+		ds.to_netcdf(op_file, format = 'NETCDF4', unlimited_dims={'time':True}, encoding = encoding)
+	elif args.format5 == 1:
+		ds.to_netcdf(op_file, format = 'NETCDF3_64BIT', unlimited_dims={'time':True}, encoding = encoding)
+	elif args.format6 == 1:
+		ds.to_netcdf(op_file, format = 'NETCDF3_64BIT', unlimited_dims={'time':True}, encoding = encoding)
+	elif args.format7 == 1:
+		ds.to_netcdf(op_file, format = 'NETCDF4_CLASSIC', unlimited_dims={'time':True}, encoding = encoding)
+	else:
+		ds.to_netcdf(op_file, unlimited_dims={'time':True}, encoding = encoding)
