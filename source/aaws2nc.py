@@ -5,13 +5,9 @@ from pytz import timezone
 from sunposition import sunpos
 from common import write_data
 
-def aaws2nc(args, op_file, station_dict, station_name):
+def aaws2nc(args, op_file, station_dict, station_name, convert_temp, convert_press, seconds_in_hour, fillvalue_double):
 
 	header_lines = 8
-	convert_temp = 273.15
-	convert_press = 100
-	seconds_in_hour = 3600
-	fillvalue_double = 9.969209968386869e+36
 
 	column_names = ['timestamp', 'air_temp', 'vtempdiff', 'rh', 'pressure', 'wind_dir', 'wind_spd']
 

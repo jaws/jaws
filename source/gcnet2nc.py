@@ -6,16 +6,12 @@ from pytz import timezone
 from sunposition import sunpos
 from common import write_data
 
-def gcnet2nc(args, op_file, station_dict, station_name):
+def gcnet2nc(args, op_file, station_dict, station_name, convert_temp, convert_press, seconds_in_hour, fillvalue_double):
 
 	header_lines = 54
-	convert_temp = 273.15
-	convert_press = 100
 	check_na = 999.0
 	hour_conversion = (100/4)		#Divided by 4 because each hour value is a multiple of 4 and then multiplied by 100 to convert decimal to integer
 	last_hour = 23
-	seconds_in_hour = 3600
-	fillvalue_double = 9.969209968386869e+36
 
 	column_names = ['station_number', 'year', 'julian_decimal_time', 'sw_down', 'sw_up', 'net_radiation', 'temperature_tc_1', 'temperature_tc_2', 'temperature_cs500_1', 'temperature_cs500_2', 'relative_humidity_1', 'relative_humidity_2', 
 	'u1_wind_speed', 'u2_wind_speed', 'u_direction_1', 'u_direction_2', 'atmos_pressure', 'snow_height_1', 'snow_height_2', 't_snow_01', 't_snow_02', 't_snow_03', 't_snow_04', 't_snow_05', 't_snow_06', 't_snow_07', 't_snow_08', 't_snow_09', 't_snow_10', 

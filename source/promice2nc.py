@@ -11,15 +11,11 @@ import warnings
 
 warnings.filterwarnings("ignore")
 
-def promice2nc(args, op_file, station_dict, station_name):
+def promice2nc(args, op_file, station_dict, station_name, convert_temp, convert_press, seconds_in_hour, fillvalue_double):
 
 	header_lines = 1
-	convert_temp = 273.15
-	convert_press = 100
 	convert_current = 1000
 	check_na = -999
-	seconds_in_hour = 3600
-	fillvalue_double = 9.969209968386869e+36
 
 	column_names = ['year', 'month', 'day', 'hour', 'day_of_year', 'day_of_century', 'air_pressure', 'air_temperature', 'air_temperature_hygroclip', 'relative_humidity_wrtwater', 'relative_humidity', 'wind_speed', 'wind_direction', 
 	'shortwave_radiation_down', 'shortwave_radiation_down_cor', 'shortwave_radiation_up', 'shortwave_radiation_up_cor', 'albedo_theta', 'longwave_radiation_down', 'longwave_radiation_up', 'cloudcover', 'surface_temp', 'height_sensor_boom', 

@@ -225,84 +225,31 @@ def Main():
 		else:
 			op_file = get_name + '.nc'
 	
-	'''
-	if args.format3 == 1:
-		root_grp = Dataset(op_file, 'w', format='NETCDF3_CLASSIC')
-	elif args.format4 == 1:
-		root_grp = Dataset(op_file, 'w', format='NETCDF4')
-	elif args.format5 == 1:
-		root_grp = Dataset(op_file, 'w', format='NETCDF3_64BIT_DATA')
-	elif args.format6 == 1:
-		root_grp = Dataset(op_file, 'w', format='NETCDF3_64BIT_OFFSET')
-	elif args.format7 == 1:
-		root_grp = Dataset(op_file, 'w', format='NETCDF4_CLASSIC')
-	else:
-		root_grp = Dataset(op_file, 'w', format='NETCDF4')
-
-	# dimension
-	stn_nm_lng_max=25
-	root_grp.createDimension('time', None)
-	root_grp.createDimension('nbnd', 2)
-	root_grp.createDimension('station', 1)
-	root_grp.createDimension('stn_nm_lng_max', stn_nm_lng_max)
-
-	# Common variables
-	station_name = root_grp.createVariable('station_name', 'S1', ('stn_nm_lng_max',))
-	latitude = root_grp.createVariable('latitude', 'f4')
-	longitude = root_grp.createVariable('longitude', 'f4')
-	time = root_grp.createVariable('time', 'i4', ('time',))
-	time_bounds = root_grp.createVariable('time_bounds', 'i4', ('time','nbnd'))
-	sza = root_grp.createVariable('sza', 'f4', ('time',))
-
-	# Variable attributes
-	station_name.long_name = 'Station Name'
-	station_name.cf_role = 'timeseries_id'
-
-	latitude.units = 'degrees_north'
-	latitude.standard_name = 'latitude'
-
-	longitude.units = 'degrees_east'
-	longitude.standard_name = 'longitude'
-
-	time.units = 'seconds since 1970-01-01 00:00:00'
-	time.long_name = 'time of measurement'
-	time.standard_name = 'time'
-	time.bounds = 'time_bounds'
-	time.calendar = 'noleap'
 	
-	sza.units = 'degree'
-	sza.long_name = 'Solar Zenith Angle'
-	sza.standard_name = 'solar_zenith_angle'
-	sza.coordinates = 'longitude latitude'
-	sza.cell_methods = 'time: mean'
-	
-
-
-	if args.station_name:
-		y = 0
-		while y < len(args.station_name):
-			station_name[y] = args.station_name[y]
-			y += 1
-	'''
-
 	if args.station_name:
 		station_name = args.station_name
 	else:
 		station_name = ''
 
+
+	convert_temp = 273.15
+	convert_press = 100
+	seconds_in_hour = 3600
+	fillvalue_double = 9.969209968386869e+36
+	
 	######################################################################
 
 	with open(str(args.input_file or args.fl_in),'r') as f:
 		line = f.readline()
 
 	if line[0] == 'D':
-		gcnet2nc.gcnet2nc(args, op_file, station_dict, station_name)
+		gcnet2nc.gcnet2nc(args, op_file, station_dict, station_name, convert_temp, convert_press, seconds_in_hour, fillvalue_double)
 
 	elif line[0] == 'Y':
-		promice2nc.promice2nc(args, op_file, station_dict, station_name)
+		promice2nc.promice2nc(args, op_file, station_dict, station_name, convert_temp, convert_press, seconds_in_hour, fillvalue_double)
 
 	elif line[0] == '#':
-		aaws2nc.aaws2nc(args, op_file, station_dict, station_name)
+		aaws2nc.aaws2nc(args, op_file, station_dict, station_name, convert_temp, convert_press, seconds_in_hour, fillvalue_double)
 
 	print("Converted " + str(os.path.basename(args.input_file or args.fl_in)) + " to netCDF format")
 
