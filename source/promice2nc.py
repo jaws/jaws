@@ -18,6 +18,7 @@ def promice2nc(args, op_file, station_dict, station_name):
 	convert_current = 1000
 	check_na = -999
 	seconds_in_hour = 3600
+	fillvalue_double = 9.969209968386869e+36
 
 	column_names = ['year', 'month', 'day', 'hour', 'day_of_year', 'day_of_century', 'air_pressure', 'air_temperature', 'air_temperature_hygroclip', 'relative_humidity_wrtwater', 'relative_humidity', 'wind_speed', 'wind_direction', 
 	'shortwave_radiation_down', 'shortwave_radiation_down_cor', 'shortwave_radiation_up', 'shortwave_radiation_up_cor', 'albedo_theta', 'longwave_radiation_down', 'longwave_radiation_up', 'cloudcover', 'surface_temp', 'height_sensor_boom', 
@@ -30,7 +31,7 @@ def promice2nc(args, op_file, station_dict, station_name):
 	df.loc[:,['air_temperature','air_temperature_hygroclip','surface_temp','ice_temp_01','ice_temp_02','ice_temp_03','ice_temp_04','ice_temp_05','ice_temp_06','ice_temp_07','ice_temp_08','logger_temp']] += convert_temp
 	df.loc[:,['air_pressure']] *= convert_press
 	df.loc[:,['fan_current']] /= convert_current
-	df =  df.where((pd.notnull(df)), check_na)
+	df =  df.where((pd.notnull(df)), fillvalue_double)
 
 	ds = xr.Dataset.from_dataframe(df)
 	ds = ds.drop('time')
@@ -115,8 +116,8 @@ def promice2nc(args, op_file, station_dict, station_name):
 		return deg + minutes / 60 + seconds / 3600
 
 	# Exclude NAs
-	logic1 = df.latitude_GPS != check_na
-	logic2 = df.longitude_GPS != check_na
+	logic1 = df.latitude_GPS != fillvalue_double
+	logic2 = df.longitude_GPS != fillvalue_double
 	df1 = df[logic1]
 	df2 = df[logic2]
 
@@ -144,8 +145,8 @@ def promice2nc(args, op_file, station_dict, station_name):
 		m,p = 0,1
 		R = 6373.0		#Approx radius of earth
 		while p < num_lines:
-			if (df['latitude_GPS'][m] == check_na or df['longitude_GPS'][m] == check_na or df['latitude_GPS'][n] == check_na or df['longitude_GPS'][o] == check_na):
-				velocity[m] = check_na
+			if (df['latitude_GPS'][m] == fillvalue_double or df['longitude_GPS'][m] == fillvalue_double or df['latitude_GPS'][n] == fillvalue_double or df['longitude_GPS'][o] == fillvalue_double):
+				velocity[m] = fillvalue_double
 			else:
 				lat1 = radians(df['latitude_GPS'][m])
 				lon1 = radians(df['longitude_GPS'][m])
@@ -247,47 +248,47 @@ def promice2nc(args, op_file, station_dict, station_name):
 				'hour': {'_FillValue': False},
 				'day_of_year': {'_FillValue': False},
 				'day_of_century': {'_FillValue': False},
-				'air_pressure': {'_FillValue': check_na},
-				'air_temperature': {'_FillValue': check_na},
-				'air_temperature_hygroclip': {'_FillValue': check_na},
-				'relative_humidity_wrtwater': {'_FillValue': check_na},
-				'relative_humidity': {'_FillValue': check_na},
-				'wind_speed': {'_FillValue': check_na},
-				'wind_direction': {'_FillValue': check_na},
-				'shortwave_radiation_down': {'_FillValue': check_na},
-				'shortwave_radiation_down_cor': {'_FillValue': check_na},
-				'shortwave_radiation_up': {'_FillValue': check_na},
-				'shortwave_radiation_up_cor': {'_FillValue': check_na},
-				'albedo_theta': {'_FillValue': check_na},
-				'longwave_radiation_down': {'_FillValue': check_na},
-				'longwave_radiation_up': {'_FillValue': check_na},
-				'cloudcover': {'_FillValue': check_na},
-				'surface_temp': {'_FillValue': check_na},
-				'height_sensor_boom': {'_FillValue': check_na},
-				'height_stakes': {'_FillValue': check_na},
-				'depth_pressure_transducer': {'_FillValue': check_na},
-				'depth_pressure_transducer_cor': {'_FillValue': check_na},
-				'ice_temp_01': {'_FillValue': check_na},
-				'ice_temp_02': {'_FillValue': check_na},
-				'ice_temp_03': {'_FillValue': check_na},
-				'ice_temp_04': {'_FillValue': check_na},
-				'ice_temp_05': {'_FillValue': check_na},
-				'ice_temp_06': {'_FillValue': check_na},
-				'ice_temp_07': {'_FillValue': check_na},
-				'ice_temp_08': {'_FillValue': check_na},
-				'tilt_east': {'_FillValue': check_na},
-				'tilt_north': {'_FillValue': check_na},
-				'time_GPS': {'_FillValue': check_na},
-				'latitude_GPS': {'_FillValue': check_na},
-				'longitude_GPS': {'_FillValue': check_na},
-				'elevation': {'_FillValue': check_na},
-				'hor_dil_prec': {'_FillValue': check_na},
-				'logger_temp': {'_FillValue': check_na},
-				'fan_current': {'_FillValue': check_na},
-				'battery_voltage': {'_FillValue': check_na},
-				'ice_velocity_GPS_total': {'_FillValue': check_na},
-				'ice_velocity_GPS_x': {'_FillValue': check_na},
-				'ice_velocity_GPS_y': {'_FillValue': check_na},
+				'air_pressure': {'_FillValue': fillvalue_double},
+				'air_temperature': {'_FillValue': fillvalue_double},
+				'air_temperature_hygroclip': {'_FillValue': fillvalue_double},
+				'relative_humidity_wrtwater': {'_FillValue': fillvalue_double},
+				'relative_humidity': {'_FillValue': fillvalue_double},
+				'wind_speed': {'_FillValue': fillvalue_double},
+				'wind_direction': {'_FillValue': fillvalue_double},
+				'shortwave_radiation_down': {'_FillValue': fillvalue_double},
+				'shortwave_radiation_down_cor': {'_FillValue': fillvalue_double},
+				'shortwave_radiation_up': {'_FillValue': fillvalue_double},
+				'shortwave_radiation_up_cor': {'_FillValue': fillvalue_double},
+				'albedo_theta': {'_FillValue': fillvalue_double},
+				'longwave_radiation_down': {'_FillValue': fillvalue_double},
+				'longwave_radiation_up': {'_FillValue': fillvalue_double},
+				'cloudcover': {'_FillValue': fillvalue_double},
+				'surface_temp': {'_FillValue': fillvalue_double},
+				'height_sensor_boom': {'_FillValue': fillvalue_double},
+				'height_stakes': {'_FillValue': fillvalue_double},
+				'depth_pressure_transducer': {'_FillValue': fillvalue_double},
+				'depth_pressure_transducer_cor': {'_FillValue': fillvalue_double},
+				'ice_temp_01': {'_FillValue': fillvalue_double},
+				'ice_temp_02': {'_FillValue': fillvalue_double},
+				'ice_temp_03': {'_FillValue': fillvalue_double},
+				'ice_temp_04': {'_FillValue': fillvalue_double},
+				'ice_temp_05': {'_FillValue': fillvalue_double},
+				'ice_temp_06': {'_FillValue': fillvalue_double},
+				'ice_temp_07': {'_FillValue': fillvalue_double},
+				'ice_temp_08': {'_FillValue': fillvalue_double},
+				'tilt_east': {'_FillValue': fillvalue_double},
+				'tilt_north': {'_FillValue': fillvalue_double},
+				'time_GPS': {'_FillValue': fillvalue_double},
+				'latitude_GPS': {'_FillValue': fillvalue_double},
+				'longitude_GPS': {'_FillValue': fillvalue_double},
+				'elevation': {'_FillValue': fillvalue_double},
+				'hor_dil_prec': {'_FillValue': fillvalue_double},
+				'logger_temp': {'_FillValue': fillvalue_double},
+				'fan_current': {'_FillValue': fillvalue_double},
+				'battery_voltage': {'_FillValue': fillvalue_double},
+				'ice_velocity_GPS_total': {'_FillValue': fillvalue_double},
+				'ice_velocity_GPS_x': {'_FillValue': fillvalue_double},
+				'ice_velocity_GPS_y': {'_FillValue': fillvalue_double},
 				'time': {'_FillValue': False},
 				'time_bounds': {'_FillValue': False},
 				'sza': {'_FillValue': False},
