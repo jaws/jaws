@@ -1,3 +1,15 @@
+2018-02-15  Ajay Saini  <sainiak@uci.edu>
+
+	* Changed the command line arguments according to NCO documentation
+
+	* Print helpful error messages when input file does not exist
+
+	* IMAU raw files (both antartica and greenland) placed on grele at /users/sainiak/data/jaws/imau/raw/
+
+	* Worked on converting IMAU data. Still in progress
+
+	* Read about invoking automatic testing and conda packaging
+
 2018-02-14  Ajay Saini  <sainiak@uci.edu>
 
 	* Added the default netCDF _FillValue for all variables
