@@ -1,3 +1,11 @@
+2018-02-21  Ajay Saini  <sainiak@uci.edu>
+
+	* Global constants moved to common.py
+
+	* Added functionality to change fillvalue_double from command line
+
+	* Data types changed for all networks
+
 2018-02-15  Ajay Saini  <sainiak@uci.edu>
 
 	* Changed the command line arguments according to NCO documentation
