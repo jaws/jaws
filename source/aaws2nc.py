@@ -218,12 +218,12 @@ def aaws2nc(args, op_file, station_dict, station_name):
 	ds['longitude'].attrs= {'units':'degrees_east', 'standard_name':'longitude'}
 	
 
-	encoding = {'air_temp': {'_FillValue': fillvalue_double},
-				'vtempdiff': {'_FillValue': fillvalue_double},
-				'rh': {'_FillValue': fillvalue_double},
-				'pressure': {'_FillValue': fillvalue_double},
-				'wind_dir': {'_FillValue': fillvalue_double},
-				'wind_spd': {'_FillValue': fillvalue_double},
+	encoding = {'air_temp': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
+				'vtempdiff': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
+				'rh': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
+				'pressure': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
+				'wind_dir': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
+				'wind_spd': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
 				'time': {'_FillValue': False},
 				'time_bounds': {'_FillValue': False},
 				'sza': {'_FillValue': False},
