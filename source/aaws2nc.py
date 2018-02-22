@@ -12,10 +12,10 @@ def aaws2nc(args, op_file, station_dict, station_name):
 	convert_press = common.convert_press
 	seconds_in_hour = common.seconds_in_hour
 	
-	if args.fillvalue_double:
-		fillvalue_double = args.fillvalue_double
+	if args.fillvalue_float:
+		fillvalue_float = args.fillvalue_float
 	else:
-		fillvalue_double = common.fillvalue_double
+		fillvalue_float = common.fillvalue_float
 	
 	header_rows = 8
 
@@ -25,7 +25,7 @@ def aaws2nc(args, op_file, station_dict, station_name):
 	df.index.name = 'time'
 	df.loc[:,'air_temp'] += convert_temp
 	df.loc[:,'pressure'] *= convert_press
-	df =  df.where((pd.notnull(df)), fillvalue_double)
+	df =  df.where((pd.notnull(df)), fillvalue_float)
 
 	ds = xr.Dataset.from_dataframe(df)
 	ds = ds.drop('time')
@@ -218,12 +218,12 @@ def aaws2nc(args, op_file, station_dict, station_name):
 	ds['longitude'].attrs= {'units':'degrees_east', 'standard_name':'longitude'}
 	
 
-	encoding = {'air_temp': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'vtempdiff': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'rh': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'pressure': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'wind_dir': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'wind_spd': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
+	encoding = {'air_temp': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'vtempdiff': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'rh': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'pressure': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'wind_dir': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'wind_spd': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
 				'time': {'_FillValue': False},
 				'time_bounds': {'_FillValue': False},
 				'sza': {'_FillValue': False},

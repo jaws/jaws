@@ -18,10 +18,10 @@ def promice2nc(args, op_file, station_dict, station_name):
 	convert_press = common.convert_press
 	seconds_in_hour = common.seconds_in_hour
 	
-	if args.fillvalue_double:
-		fillvalue_double = args.fillvalue_double
+	if args.fillvalue_float:
+		fillvalue_float = args.fillvalue_float
 	else:
-		fillvalue_double = common.fillvalue_double
+		fillvalue_float = common.fillvalue_float
 	
 	header_rows = 1
 	convert_current = 1000
@@ -38,7 +38,7 @@ def promice2nc(args, op_file, station_dict, station_name):
 	df.loc[:,['air_temperature','air_temperature_hygroclip','surface_temp','ice_temp_01','ice_temp_02','ice_temp_03','ice_temp_04','ice_temp_05','ice_temp_06','ice_temp_07','ice_temp_08','logger_temp']] += convert_temp
 	df.loc[:,['air_pressure']] *= convert_press
 	df.loc[:,['fan_current']] /= convert_current
-	df =  df.where((pd.notnull(df)), fillvalue_double)
+	df =  df.where((pd.notnull(df)), fillvalue_float)
 
 	ds = xr.Dataset.from_dataframe(df)
 	ds = ds.drop('time')
@@ -123,8 +123,8 @@ def promice2nc(args, op_file, station_dict, station_name):
 		return deg + minutes / 60 + seconds / 3600
 
 	# Exclude NAs
-	logic1 = df.latitude_GPS != fillvalue_double
-	logic2 = df.longitude_GPS != fillvalue_double
+	logic1 = df.latitude_GPS != fillvalue_float
+	logic2 = df.longitude_GPS != fillvalue_float
 	df1 = df[logic1]
 	df2 = df[logic2]
 
@@ -157,8 +157,8 @@ def promice2nc(args, op_file, station_dict, station_name):
 		m,p = 0,1
 		R = 6373.0		#Approx radius of earth
 		while p < num_rows:
-			if (df['latitude_GPS'][m] == fillvalue_double or df['longitude_GPS'][m] == fillvalue_double or df['latitude_GPS'][n] == fillvalue_double or df['longitude_GPS'][o] == fillvalue_double):
-				velocity[m] = fillvalue_double
+			if (df['latitude_GPS'][m] == fillvalue_float or df['longitude_GPS'][m] == fillvalue_float or df['latitude_GPS'][n] == fillvalue_float or df['longitude_GPS'][o] == fillvalue_float):
+				velocity[m] = fillvalue_float
 			else:
 				lat1 = radians(df['latitude_GPS'][m])
 				lon1 = radians(df['longitude_GPS'][m])
@@ -260,47 +260,47 @@ def promice2nc(args, op_file, station_dict, station_name):
 				'hour': {'_FillValue': False, 'dtype': 'i2'},
 				'day_of_year': {'_FillValue': False, 'dtype': 'i2'},
 				'day_of_century': {'_FillValue': False, 'dtype': 'i4'},
-				'air_pressure': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'air_temperature': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'air_temperature_hygroclip': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'relative_humidity_wrtwater': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'relative_humidity': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'wind_speed': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'wind_direction': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'shortwave_radiation_down': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'shortwave_radiation_down_cor': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'shortwave_radiation_up': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'shortwave_radiation_up_cor': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'albedo_theta': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'longwave_radiation_down': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'longwave_radiation_up': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'cloudcover': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'surface_temp': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'height_sensor_boom': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'height_stakes': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'depth_pressure_transducer': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'depth_pressure_transducer_cor': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'ice_temp_01': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'ice_temp_02': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'ice_temp_03': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'ice_temp_04': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'ice_temp_05': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'ice_temp_06': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'ice_temp_07': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'ice_temp_08': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'tilt_east': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'tilt_north': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'time_GPS': {'_FillValue': fillvalue_double},
-				'latitude_GPS': {'_FillValue': fillvalue_double},
-				'longitude_GPS': {'_FillValue': fillvalue_double},
-				'elevation': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'hor_dil_prec': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'logger_temp': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'fan_current': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'battery_voltage': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'ice_velocity_GPS_total': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'ice_velocity_GPS_x': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'ice_velocity_GPS_y': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
+				'air_pressure': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'air_temperature': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'air_temperature_hygroclip': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'relative_humidity_wrtwater': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'relative_humidity': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'wind_speed': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'wind_direction': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'shortwave_radiation_down': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'shortwave_radiation_down_cor': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'shortwave_radiation_up': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'shortwave_radiation_up_cor': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'albedo_theta': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'longwave_radiation_down': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'longwave_radiation_up': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'cloudcover': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'surface_temp': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'height_sensor_boom': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'height_stakes': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'depth_pressure_transducer': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'depth_pressure_transducer_cor': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'ice_temp_01': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'ice_temp_02': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'ice_temp_03': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'ice_temp_04': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'ice_temp_05': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'ice_temp_06': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'ice_temp_07': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'ice_temp_08': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'tilt_east': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'tilt_north': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'time_GPS': {'_FillValue': fillvalue_float},
+				'latitude_GPS': {'_FillValue': fillvalue_float},
+				'longitude_GPS': {'_FillValue': fillvalue_float},
+				'elevation': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'hor_dil_prec': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'logger_temp': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'fan_current': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'battery_voltage': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'ice_velocity_GPS_total': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'ice_velocity_GPS_x': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'ice_velocity_GPS_y': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
 				'time': {'_FillValue': False},
 				'time_bounds': {'_FillValue': False},
 				'sza': {'_FillValue': False},

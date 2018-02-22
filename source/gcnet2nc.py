@@ -13,10 +13,10 @@ def gcnet2nc(args, op_file, station_dict, station_name):
 	convert_press = common.convert_press
 	seconds_in_hour = common.seconds_in_hour
 	
-	if args.fillvalue_double:
-		fillvalue_double = args.fillvalue_double
+	if args.fillvalue_float:
+		fillvalue_float = args.fillvalue_float
 	else:
-		fillvalue_double = common.fillvalue_double
+		fillvalue_float = common.fillvalue_float
 
 	header_rows = 54
 	check_na = 999.0
@@ -35,7 +35,7 @@ def gcnet2nc(args, op_file, station_dict, station_name):
 	df.replace(check_na, np.nan, inplace=True)
 	df.loc[:,['temperature_tc_1', 'temperature_tc_2', 'temperature_cs500_1', 'temperature_cs500_2', 't_snow_01', 't_snow_02', 't_snow_03', 't_snow_04', 't_snow_05', 't_snow_06', 't_snow_07', 't_snow_08', 't_snow_09', 't_snow_10', 'max_air_temperature_1', 'max_air_temperature_2', 'min_air_temperature_1', 'min_air_temperature_2', 'ref_temperature']] += convert_temp
 	df.loc[:,'atmos_pressure'] *= convert_press
-	df = df.where((pd.notnull(df)), fillvalue_double)
+	df = df.where((pd.notnull(df)), fillvalue_float)
 	df['qc25'] = df['qc25'].astype(int)			#Convert it back to int
 
 	station_number = df['station_number'][0]
@@ -332,51 +332,51 @@ def gcnet2nc(args, op_file, station_dict, station_name):
 	encoding = {'station_number': {'dtype': 'i2'},
 				'year': {'dtype': 'i2'},
 				'julian_decimal_time': {'_FillValue': False, 'dtype': 'f4'},
-				'sw_down': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'sw_up': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'net_radiation': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'temperature_tc_1': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'temperature_tc_2': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'temperature_cs500_1': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'temperature_cs500_2': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'relative_humidity_1': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'relative_humidity_2': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'u1_wind_speed': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'u2_wind_speed': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'u_direction_1': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'u_direction_2': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'atmos_pressure': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'snow_height_1': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'snow_height_2': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				't_snow_01': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				't_snow_02': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				't_snow_03': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				't_snow_04': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				't_snow_05': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				't_snow_06': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				't_snow_07': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				't_snow_08': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				't_snow_09': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				't_snow_10': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'battery_voltage': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'sw_down_max': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'sw_up_max': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'net_radiation_max': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'max_air_temperature_1': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'max_air_temperature_2': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'min_air_temperature_1': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'min_air_temperature_2': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'max_windspeed_u1': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'max_windspeed_u2': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'stdev_windspeed_u1': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'stdev_windspeed_u2': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'ref_temperature': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'windspeed_2m': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'windspeed_10m': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'wind_sensor_height_1': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'wind_sensor_height_2': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'albedo': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
-				'zenith_angle': {'_FillValue': fillvalue_double, 'dtype': 'f4'},
+				'sw_down': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'sw_up': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'net_radiation': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'temperature_tc_1': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'temperature_tc_2': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'temperature_cs500_1': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'temperature_cs500_2': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'relative_humidity_1': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'relative_humidity_2': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'u1_wind_speed': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'u2_wind_speed': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'u_direction_1': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'u_direction_2': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'atmos_pressure': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'snow_height_1': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'snow_height_2': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				't_snow_01': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				't_snow_02': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				't_snow_03': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				't_snow_04': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				't_snow_05': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				't_snow_06': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				't_snow_07': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				't_snow_08': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				't_snow_09': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				't_snow_10': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'battery_voltage': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'sw_down_max': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'sw_up_max': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'net_radiation_max': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'max_air_temperature_1': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'max_air_temperature_2': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'min_air_temperature_1': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'min_air_temperature_2': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'max_windspeed_u1': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'max_windspeed_u2': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'stdev_windspeed_u1': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'stdev_windspeed_u2': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'ref_temperature': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'windspeed_2m': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'windspeed_10m': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'wind_sensor_height_1': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'wind_sensor_height_2': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'albedo': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
+				'zenith_angle': {'_FillValue': fillvalue_float, 'dtype': 'f4'},
 				'qc1': {'dtype': 'i4'},
 				'qc9': {'dtype': 'i4'},
 				'qc17': {'dtype': 'i4'},

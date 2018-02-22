@@ -18,7 +18,7 @@ def Main():
 	parser.add_argument("-a","--analysis", help = "For GCNet, extra variables ('month', 'day' and 'hour') will be derived for further analysis. It will take more time", action="store_true")
 	parser.add_argument("-s","--station_name", help = "Override default station name", type=str)
 	parser.add_argument("-t","--timezone", help = "Change the timezone, default is UTC", default='UTC', type=str)
-	parser.add_argument("-f","--fillvalue_double", help = "Override default fillvalue_double", type=int)
+	parser.add_argument("-f","--fillvalue_float", help = "Override default float _FillValue", type=float)
 
 	args = parser.parse_args()
 

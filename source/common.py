@@ -2,6 +2,7 @@ convert_temp = 273.15
 convert_press = 100
 seconds_in_hour = 3600
 fillvalue_double = 9.969209968386869e+36
+fillvalue_float = 9.96921e+36
 
 def write_data(args, ds, op_file, encoding):
 	if args.format3 == 1:
