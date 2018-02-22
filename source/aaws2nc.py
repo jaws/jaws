@@ -4,9 +4,15 @@ from datetime import datetime
 import pytz
 from sunposition import sunpos
 from common import write_data
+import common
 
-def aaws2nc(args, op_file, station_dict, station_name, convert_temp, convert_press, seconds_in_hour, fillvalue_double):
+def aaws2nc(args, op_file, station_dict, station_name):
 
+	convert_temp = common.convert_temp
+	convert_press = common.convert_press
+	seconds_in_hour = common.seconds_in_hour
+	fillvalue_double = common.fillvalue_double
+	
 	header_rows = 8
 
 	column_names = ['timestamp', 'air_temp', 'vtempdiff', 'rh', 'pressure', 'wind_dir', 'wind_spd']

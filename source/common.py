@@ -1,3 +1,8 @@
+convert_temp = 273.15
+convert_press = 100
+seconds_in_hour = 3600
+fillvalue_double = 9.969209968386869e+36
+
 def write_data(args, ds, op_file, encoding):
 	if args.format3 == 1:
 		ds.to_netcdf(op_file, format = 'NETCDF3_CLASSIC', unlimited_dims={'time':True}, encoding = encoding)
@@ -11,3 +16,4 @@ def write_data(args, ds, op_file, encoding):
 		ds.to_netcdf(op_file, format = 'NETCDF4_CLASSIC', unlimited_dims={'time':True}, encoding = encoding)
 	else:
 		ds.to_netcdf(op_file, unlimited_dims={'time':True}, encoding = encoding)
+

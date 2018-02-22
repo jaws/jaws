@@ -5,9 +5,15 @@ from datetime import datetime, timedelta
 import pytz
 from sunposition import sunpos
 from common import write_data
+import common
 
-def gcnet2nc(args, op_file, station_dict, station_name, convert_temp, convert_press, seconds_in_hour, fillvalue_double):
+def gcnet2nc(args, op_file, station_dict, station_name):
 
+	convert_temp = common.convert_temp
+	convert_press = common.convert_press
+	seconds_in_hour = common.seconds_in_hour
+	fillvalue_double = common.fillvalue_double
+	
 	header_rows = 54
 	check_na = 999.0
 	hour_conversion = (100/4)		#Divided by 4 because each hour value is a multiple of 4 and then multiplied by 100 to convert decimal to integer
@@ -190,7 +196,7 @@ def gcnet2nc(args, op_file, station_dict, station_name, convert_temp, convert_pr
 	i = 0
 
 	while i < num_rows:
-		
+
 		temp_dtime = datetime.strptime("%s %s %s" % (df['year'][i], int(df['julian_decimal_time'][i]), hour[i]), "%Y %j %H")
 		temp_dtime = tz.localize(temp_dtime.replace(tzinfo=None))
 		time[i] = (temp_dtime-dtime_1970).total_seconds()

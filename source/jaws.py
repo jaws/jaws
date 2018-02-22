@@ -234,24 +234,19 @@ def Main():
 		station_name = ''
 
 
-	convert_temp = 273.15
-	convert_press = 100
-	seconds_in_hour = 3600
-	fillvalue_double = 9.969209968386869e+36
-	
 	######################################################################
 
 	with open(str(args.input_file or args.fl_in),'r') as f:
 		line = f.readline()
 
 	if line[0] == 'D':
-		gcnet2nc.gcnet2nc(args, op_file, station_dict, station_name, convert_temp, convert_press, seconds_in_hour, fillvalue_double)
+		gcnet2nc.gcnet2nc(args, op_file, station_dict, station_name)
 
 	elif line[0] == 'Y':
-		promice2nc.promice2nc(args, op_file, station_dict, station_name, convert_temp, convert_press, seconds_in_hour, fillvalue_double)
+		promice2nc.promice2nc(args, op_file, station_dict, station_name)
 
 	elif line[0] == '#':
-		aaws2nc.aaws2nc(args, op_file, station_dict, station_name, convert_temp, convert_press, seconds_in_hour, fillvalue_double)
+		aaws2nc.aaws2nc(args, op_file, station_dict, station_name)
 
 	print("Converted " + str(os.path.basename(args.input_file or args.fl_in)) + " to netCDF format")
 

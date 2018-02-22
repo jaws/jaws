@@ -7,12 +7,18 @@ import pytz
 from sunposition import sunpos
 from math import sin, cos, sqrt, atan2, radians
 from common import write_data
+import common
 import warnings
 
 warnings.filterwarnings("ignore")
 
-def promice2nc(args, op_file, station_dict, station_name, convert_temp, convert_press, seconds_in_hour, fillvalue_double):
+def promice2nc(args, op_file, station_dict, station_name):
 
+	convert_temp = common.convert_temp
+	convert_press = common.convert_press
+	seconds_in_hour = common.seconds_in_hour
+	fillvalue_double = common.fillvalue_double
+	
 	header_rows = 1
 	convert_current = 1000
 	check_na = -999
