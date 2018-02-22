@@ -9,7 +9,7 @@ import common
 
 def gcnet2nc(args, op_file, station_dict, station_name):
 
-	convert_temp = common.convert_temp
+	freezing_point_temp = common.freezing_point_temp
 	convert_press = common.convert_press
 	seconds_in_hour = common.seconds_in_hour
 	
@@ -33,7 +33,7 @@ def gcnet2nc(args, op_file, station_dict, station_name):
 	df.index.name = 'time'
 	df['qc25'] = df['qc25'].astype(str)			# To avoid 999 values marked as N/A
 	df.replace(check_na, np.nan, inplace=True)
-	df.loc[:,['temperature_tc_1', 'temperature_tc_2', 'temperature_cs500_1', 'temperature_cs500_2', 't_snow_01', 't_snow_02', 't_snow_03', 't_snow_04', 't_snow_05', 't_snow_06', 't_snow_07', 't_snow_08', 't_snow_09', 't_snow_10', 'max_air_temperature_1', 'max_air_temperature_2', 'min_air_temperature_1', 'min_air_temperature_2', 'ref_temperature']] += convert_temp
+	df.loc[:,['temperature_tc_1', 'temperature_tc_2', 'temperature_cs500_1', 'temperature_cs500_2', 't_snow_01', 't_snow_02', 't_snow_03', 't_snow_04', 't_snow_05', 't_snow_06', 't_snow_07', 't_snow_08', 't_snow_09', 't_snow_10', 'max_air_temperature_1', 'max_air_temperature_2', 'min_air_temperature_1', 'min_air_temperature_2', 'ref_temperature']] += freezing_point_temp
 	df.loc[:,'atmos_pressure'] *= convert_press
 	df = df.where((pd.notnull(df)), fillvalue_float)
 	df['qc25'] = df['qc25'].astype(int)			#Convert it back to int

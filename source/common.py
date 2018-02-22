@@ -1,4 +1,4 @@
-convert_temp = 273.15
+freezing_point_temp = 273.15
 convert_press = 100
 seconds_in_hour = 3600
 fillvalue_double = 9.969209968386869e+36
