@@ -6,8 +6,8 @@ from collections import OrderedDict
 	
 def Main():
 	parser = argparse.ArgumentParser()
-	parser.add_argument("input_file", nargs = '?', help="Raw L2 data file to convert to netCDF (or use -i switch)", type=str)
-	parser.add_argument("output_file", nargs = '?', help="Output netCDF file (or use -o switch)", type=str)
+	parser.add_argument("input_file", nargs = '?', help="Raw L2 data file to convert to netCDF (or use -i option)", type=str)
+	parser.add_argument("output_file", nargs = '?', help="Output netCDF file (or use -o option)", type=str)
 	parser.add_argument("-i","--fl_in", "--input", help="Raw L2 data file to convert to netCDF (or use first positional argument)", type=str)
 	parser.add_argument("-o", "--fl_out", "--output", help="Output netCDF file (or use last positional argument)", type=str)
 	parser.add_argument("-3", "--format3", "--3", "--fl_fmt=classic", help="Output file in netCDF3 CLASSIC (32-bit offset) storage format", action="store_true")
@@ -18,6 +18,7 @@ def Main():
 	parser.add_argument("-a","--analysis", help = "For GCNet, extra variables ('month', 'day' and 'hour') will be derived for further analysis. It will take more time", action="store_true")
 	parser.add_argument("-s","--station_name", help = "Override default station name", type=str)
 	parser.add_argument("-t","--timezone", help = "Change the timezone, default is UTC", default='UTC', type=str)
+	parser.add_argument("-f","--fillvalue_double", help = "Override default fillvalue_double", type=int)
 
 	args = parser.parse_args()
 

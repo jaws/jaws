@@ -17,7 +17,11 @@ def promice2nc(args, op_file, station_dict, station_name):
 	convert_temp = common.convert_temp
 	convert_press = common.convert_press
 	seconds_in_hour = common.seconds_in_hour
-	fillvalue_double = common.fillvalue_double
+	
+	if args.fillvalue_double:
+		fillvalue_double = args.fillvalue_double
+	else:
+		fillvalue_double = common.fillvalue_double
 	
 	header_rows = 1
 	convert_current = 1000
