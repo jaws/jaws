@@ -15,7 +15,7 @@ warnings.filterwarnings("ignore")
 def promice2nc(args, op_file, station_dict, station_name):
 
 	freezing_point_temp = common.freezing_point_temp
-	convert_press = common.convert_press
+	pascal_per_millibar = common.pascal_per_millibar
 	seconds_in_hour = common.seconds_in_hour
 	
 	if args.fillvalue_float:
@@ -36,7 +36,7 @@ def promice2nc(args, op_file, station_dict, station_name):
 	df.index.name = 'time'
 	df.replace(check_na, np.nan, inplace=True)
 	df.loc[:,['air_temperature','air_temperature_hygroclip','surface_temp','ice_temp_01','ice_temp_02','ice_temp_03','ice_temp_04','ice_temp_05','ice_temp_06','ice_temp_07','ice_temp_08','logger_temp']] += freezing_point_temp
-	df.loc[:,['air_pressure']] *= convert_press
+	df.loc[:,['air_pressure']] *= pascal_per_millibar
 	df.loc[:,['fan_current']] /= convert_current
 	df =  df.where((pd.notnull(df)), fillvalue_float)
 

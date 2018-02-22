@@ -9,7 +9,7 @@ import common
 def aaws2nc(args, op_file, station_dict, station_name):
 
 	freezing_point_temp = common.freezing_point_temp
-	convert_press = common.convert_press
+	pascal_per_millibar = common.pascal_per_millibar
 	seconds_in_hour = common.seconds_in_hour
 	
 	if args.fillvalue_float:
@@ -24,7 +24,7 @@ def aaws2nc(args, op_file, station_dict, station_name):
 	df = pd.read_csv(args.input_file or args.fl_in, skiprows = header_rows, skip_blank_lines=True, header=None, names = column_names)
 	df.index.name = 'time'
 	df.loc[:,'air_temp'] += freezing_point_temp
-	df.loc[:,'pressure'] *= convert_press
+	df.loc[:,'pressure'] *= pascal_per_millibar
 	df =  df.where((pd.notnull(df)), fillvalue_float)
 
 	ds = xr.Dataset.from_dataframe(df)
