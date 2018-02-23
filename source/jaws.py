@@ -33,6 +33,7 @@ def Main():
 	######################################################################
 
 	station_dict = {
+		'blank': [],
 		'gcnet_swiss': [69.56833, -49.31582, 'Swiss Camp'],
 		'gcnet_crawford': [69.87975, -46.98667, 'Crawford Pt.'],
 		'gcnet_nasa-u': [73.84189, -49.49831, 'NASA-U'],
@@ -149,7 +150,7 @@ def Main():
 
 	}
 
-	order_of_keys = ['gcnet_swiss', 'gcnet_crawford', 'gcnet_nasa-u', 'gcnet_gits', 'gcnet_humboldt', 'gcnet_summit', 'gcnet_tunu-n', 'gcnet_dye2', 'gcnet_jar', 
+	order_of_keys = ['blank', 'gcnet_swiss', 'gcnet_crawford', 'gcnet_nasa-u', 'gcnet_gits', 'gcnet_humboldt', 'gcnet_summit', 'gcnet_tunu-n', 'gcnet_dye2', 'gcnet_jar', 
 	'gcnet_saddle', 'gcnet_dome', 'gcnet_nasa-e', 'gcnet_cp2', 'gcnet_ngrip', 'gcnet_nasa-se', 'gcnet_kar', 'gcnet_jar2', 'gcnet_kulu', 'gcnet_jar3', 'gcnet_aurora', 
 	'gcnet_petermann-gl', 'gcnet_peterman-ela', 'gcnet_neem', 'gcnet_lar1', 'gcnet_lar2', 'gcnet_lar3', 
 	'promice_egp', 'promice_kanb', 'promice_kanl', 'promice_kanm', 'promice_kanu', 'promice_kpcl', 'promice_kpcu', 'promice_mit', 'promice_nukk', 'promice_nukl', 
