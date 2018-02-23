@@ -1,3 +1,17 @@
+2018-02-22  Ajay Saini  <sainiak@uci.edu>
+
+	* Added _Fillvalue for float data type
+
+	* PROMICE- gps variables data-types changed
+
+	* Renamed global constants like convert_temp
+
+	* analysis.py - print meaningful error messages and restructured code
+
+	* analysis.py - month changed to month_derived to avoid conflict
+
+	* jaws.py - op_file code condensed and optimized
+
 2018-02-21  Ajay Saini  <sainiak@uci.edu>
 
 	* Global constants moved to common.py
@@ -5,6 +19,8 @@
 	* Added functionality to change fillvalue_double from command line
 
 	* Data types changed for all networks
+
+	* JAWS bi-weekly meeting
 
 2018-02-15  Ajay Saini  <sainiak@uci.edu>
 
