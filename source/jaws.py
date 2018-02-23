@@ -173,59 +173,19 @@ def Main():
 	else:
 		get_name = str((os.path.basename(args.input_file or args.fl_in)).split('.')[0])
 		
-		if get_name == '01c':
-			op_file = list(station_dict.keys())[0] + '.nc' 
-		elif get_name == '02c':
-			op_file = list(station_dict.keys())[1] + '.nc' 
-		elif get_name == '03c':
-			op_file = list(station_dict.keys())[2] + '.nc' 
-		elif get_name == '04c':
-			op_file = list(station_dict.keys())[3] + '.nc' 
-		elif get_name == '05c':
-			op_file = list(station_dict.keys())[4] + '.nc' 
-		elif get_name == '06c':
-			op_file = list(station_dict.keys())[5] + '.nc' 
-		elif get_name == '07c':
-			op_file = list(station_dict.keys())[6] + '.nc' 
-		elif get_name == '08c':
-			op_file = list(station_dict.keys())[7] + '.nc' 
-		elif get_name == '09c':
-			op_file = list(station_dict.keys())[8] + '.nc' 
-		elif get_name == '10c':
-			op_file = list(station_dict.keys())[9] + '.nc' 
-		elif get_name == '11c':
-			op_file = list(station_dict.keys())[10] + '.nc' 
-		elif get_name == '12c':
-			op_file = list(station_dict.keys())[11] + '.nc' 
-		elif get_name == '13c':
-			op_file = list(station_dict.keys())[12] + '.nc' 
-		elif get_name == '14c':
-			op_file = list(station_dict.keys())[13] + '.nc' 
-		elif get_name == '15c':
-			op_file = list(station_dict.keys())[14] + '.nc' 
-		elif get_name == '16c':
-			op_file = list(station_dict.keys())[15] + '.nc' 
-		elif get_name == '17c':
-			op_file = list(station_dict.keys())[16] + '.nc' 
-		elif get_name == '18c':
-			op_file = list(station_dict.keys())[17] + '.nc' 
-		elif get_name == '19c':
-			op_file = list(station_dict.keys())[18] + '.nc' 
-		elif get_name == '20c':
-			op_file = list(station_dict.keys())[19] + '.nc' 
-		elif get_name == '21c':
-			op_file = list(station_dict.keys())[20] + '.nc' 
-		elif get_name == '22c':
-			op_file = list(station_dict.keys())[21] + '.nc' 
-		elif get_name == '23c':
-			op_file = list(station_dict.keys())[22] + '.nc' 
-		elif get_name == '30c':
-			op_file = list(station_dict.keys())[23] + '.nc' 
-		elif get_name == '31c':
-			op_file = list(station_dict.keys())[24] + '.nc' 
-		elif get_name == '32c':
-			op_file = list(station_dict.keys())[25] + '.nc'
-		else:
+		try: 
+			get_name_int = int(get_name[:2])
+			if get_name_int > 0 and get_name_int < 24:
+				op_file = list(station_dict.keys())[get_name_int] + '.nc'
+			elif get_name == '30c':
+				op_file = list(station_dict.keys())[24] + '.nc' 
+			elif get_name == '31c':
+				op_file = list(station_dict.keys())[25] + '.nc' 
+			elif get_name == '32c':
+				op_file = list(station_dict.keys())[26] + '.nc'
+			else:
+				op_file = get_name + '.nc'
+		except:
 			op_file = get_name + '.nc'
 	
 	
