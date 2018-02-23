@@ -322,7 +322,7 @@ def gcnet2nc(args, op_file, station_dict, station_name):
 	ds['qc_tsnow9'].attrs= {'units':'1', 'long_name':'Quality Control flag for T Snow 9'}
 	ds['qc_tsnow10'].attrs= {'units':'1', 'long_name':'Quality Control flag for T Snow 10'}
 	ds['qc_battery'].attrs= {'units':'1', 'long_name':'Quality Control flag for Battery Voltage'}
-	ds['time'].attrs= {'units':'seconds since 1970-01-01 00:00:00', 'long_name':'time of measurement',	'standard_name':'time', 'bounds':'time_bounds', 'calendar':'noleap'}
+	ds['time'].attrs= {'units':'seconds since 1970-01-01 00:00:00', 'long_name':'time of measurement',	'standard_name':'time', 'bounds':'time_bounds', 'calendar':'leap'}
 	ds['sza'].attrs= {'units':'degree', 'long_name':'Solar Zenith Angle', 'standard_name':'solar_zenith_angle', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
 	ds['station_name'].attrs= {'long_name':'Station Name', 'cf_role':'timeseries_id'}
 	ds['latitude'].attrs= {'units':'degrees_north', 'standard_name':'latitude'}
