@@ -52,8 +52,8 @@ df[args.var].replace([999.00], [245], inplace=True)
 
 global month, days
 
-df['month'] = df['month'].astype(str)
-month = df['month']
+df['month_derived'] = df['month'].astype(str)
+month = df['month_derived']
 if month[0][0] == '1':
 	month[0][0] = 'Jan'
 	days = range(1,32)
