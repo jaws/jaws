@@ -119,66 +119,30 @@ def gcnet2nc(args, op_file, station_dict, station_name):
 
 	
 	print('retrieving lat and lon...')
-	if station_number == 1:
-		temp_stn = 'gcnet_swiss'
-	elif station_number == 2:
-		temp_stn = 'gcnet_crawford'
-	elif station_number == 3:
-		temp_stn = 'gcnet_nasa-u'
-	elif station_number == 4:
-		temp_stn = 'gcnet_gits'
-	elif station_number == 5:
-		temp_stn = 'gcnet_humboldt'
-	elif station_number == 6:
-		temp_stn = 'gcnet_summit'
-	elif station_number == 7:
-		temp_stn = 'gcnet_tunu-n'
-	elif station_number == 8:
-		temp_stn = 'gcnet_dye2'
-	elif station_number == 9:
-		temp_stn = 'gcnet_jar'
-	elif station_number == 10:
-		temp_stn = 'gcnet_saddle'
-	elif station_number == 11:
-		temp_stn = 'gcnet_dome'
-	elif station_number == 12:
-		temp_stn = 'gcnet_nasa-e'
-	elif station_number == 13:
-		temp_stn = 'gcnet_cp2'
-	elif station_number == 14:
-		temp_stn = 'gcnet_ngrip'
-	elif station_number == 15:
-		temp_stn = 'gcnet_nasa-se'
-	elif station_number == 16:
-		temp_stn = 'gcnet_kar'
-	elif station_number == 17:
-		temp_stn = 'gcnet_jar2'
-	elif station_number == 18:
-		temp_stn = 'gcnet_kulu'
-	elif station_number == 19:
-		temp_stn = 'gcnet_jar3'
-	elif station_number == 20:
-		temp_stn = 'gcnet_aurora'
-	elif station_number == 21 or 26:
-		temp_stn = 'gcnet_petermann-gl'
-	elif station_number == 22:
-		temp_stn = 'gcnet_peterman-ela'
-	elif station_number == 23:
-		temp_stn = 'gcnet_neem'
-	elif station_number == 30:
-		temp_stn = 'gcnet_lar1'
-	elif station_number == 31:
-		temp_stn = 'gcnet_lar2'
-	elif station_number == 32:
-		temp_stn = 'gcnet_lar3'
-	
-	latitude = station_dict.get(temp_stn)[0]
-	longitude = station_dict.get(temp_stn)[1]
+	try:
+		if station_number == 30:
+			temp_stn = 'gcnet_lar1'
+		elif station_number == 31:
+			temp_stn = 'gcnet_lar2'
+		elif station_number == 32:
+			temp_stn = 'gcnet_lar3'
+		
+		latitude = station_dict.get(temp_stn)[0]
+		longitude = station_dict.get(temp_stn)[1]
 
-	if args.station_name:
-		print('Default station name overrided by user provided station name')
-	else:
-		station_name = station_dict.get(temp_stn)[2]
+		if args.station_name:
+			print('Default station name overrided by user provided station name')
+		else:
+			station_name = station_dict.get(temp_stn)[2]
+
+	except:
+		latitude = list(station_dict.values())[station_number][0]
+		longitude = list(station_dict.values())[station_number][1]
+
+		if args.station_name:
+			print('Default station name overrided by user provided station name')
+		else:
+			station_name = list(station_dict.values())[station_number][2]
 
 	
 
