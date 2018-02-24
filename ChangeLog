@@ -1,3 +1,15 @@
+2018-02-23  Ajay Saini  <sainiak@uci.edu>
+
+	* Resolved issue of unsynchronized time
+
+	* lat and lon calculation optimized for GCNet and AAWS
+
+	* station_dict- order of keys updated
+
+	* Tried different methods on making netCDF4 files use strings not character arrays, nothing worked. Asked question on SO
+
+	* corrected longitude values
+
 2018-02-22  Ajay Saini  <sainiak@uci.edu>
 
 	* Added _Fillvalue for float data type
