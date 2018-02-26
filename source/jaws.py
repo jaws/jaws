@@ -15,7 +15,7 @@ def Main():
 	parser.add_argument("-5", "--format5", "--5", "--fl_fmt=64bit_data", help="Output file in netCDF3 64-bit data (i.e., CDF5, PnetCDF) storage format", action="store_true")
 	parser.add_argument("-6", "--format6", "--6", "--64", "--fl_fmt=64bit_offset", help="Output file in netCDF3 64-bit offset storage format", action="store_true")
 	parser.add_argument("-7", "--format7", "--7", "--fl_fmt=netcdf4_classic", help="Output file in netCDF4 CLASSIC format (3+4=7)", action="store_true")
-	parser.add_argument("-a","--analysis", help = "For GCNet, extra variables ('month', 'day' and 'hour') will be derived for further analysis. It will take more time", action="store_true")
+	parser.add_argument("-d","--derive_times", help = "For GCNet, extra variables ('month', 'day' and 'hour') will be derived for further analysis. It will take more time", action="store_true")
 	parser.add_argument("-s","--station_name", help = "Override default station name", type=str)
 	parser.add_argument("-t","--timezone", help = "Change the timezone, default is UTC", default='UTC', type=str)
 	parser.add_argument("-f","--fillvalue_float", help = "Override default float _FillValue", type=float)
