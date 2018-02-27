@@ -51,6 +51,36 @@ def gcnet2nc(args, op_file, station_dict, station_name):
 
 	hour, month, day, time, time_bounds, sza = ([0]*num_rows for x in range(6))
 
+	
+	if args.debuglevels > 2:
+		print('Retrieving latitude, longitude and station name')
+
+	try:
+		if station_number == 30:
+			temp_stn = 'gcnet_lar1'
+		elif station_number == 31:
+			temp_stn = 'gcnet_lar2'
+		elif station_number == 32:
+			temp_stn = 'gcnet_lar3'
+		
+		latitude = station_dict.get(temp_stn)[0]
+		longitude = station_dict.get(temp_stn)[1]
+
+		if args.station_name:
+			print('Default station name overrided by user provided station name')
+		else:
+			station_name = station_dict.get(temp_stn)[2]
+
+	except:
+		latitude = list(station_dict.values())[station_number][0]
+		longitude = list(station_dict.values())[station_number][1]
+
+		if args.station_name:
+			print('Default station name overrided by user provided station name')
+		else:
+			station_name = list(station_dict.values())[station_number][2]
+
+
 	print('calculating quality control variables...')
 	temp1 = [list(map(int, i)) for i in zip(*map(str, df['qc1']))]
 	temp9 = [list(map(int, i)) for i in zip(*map(str, df['qc9']))]
@@ -117,34 +147,6 @@ def gcnet2nc(args, op_file, station_dict, station_name):
 	ds['qc_tsnow10'] = (('time',qc_tsnow10))
 	ds['qc_battery'] = (('time',qc_battery))
 
-	
-	print('retrieving lat and lon...')
-	try:
-		if station_number == 30:
-			temp_stn = 'gcnet_lar1'
-		elif station_number == 31:
-			temp_stn = 'gcnet_lar2'
-		elif station_number == 32:
-			temp_stn = 'gcnet_lar3'
-		
-		latitude = station_dict.get(temp_stn)[0]
-		longitude = station_dict.get(temp_stn)[1]
-
-		if args.station_name:
-			print('Default station name overrided by user provided station name')
-		else:
-			station_name = station_dict.get(temp_stn)[2]
-
-	except:
-		latitude = list(station_dict.values())[station_number][0]
-		longitude = list(station_dict.values())[station_number][1]
-
-		if args.station_name:
-			print('Default station name overrided by user provided station name')
-		else:
-			station_name = list(station_dict.values())[station_number][2]
-
-	
 
 	
 	print('calculating hour...')

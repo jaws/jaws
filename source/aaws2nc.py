@@ -36,7 +36,8 @@ def aaws2nc(args, op_file, station_dict, station_name):
 	time, time_bounds, sza = ([0]*num_rows for x in range(3))
 	
 	
-	print('retrieving latitude and longitude...')
+	if args.debuglevels > 2:
+		print('Retrieving latitude, longitude and station name')
 	
 	f = open(args.input_file or args.fl_in)
 	f.readline()
@@ -49,8 +50,6 @@ def aaws2nc(args, op_file, station_dict, station_name):
 	longitude = (station_dict.get(x)[1])
 
 	
-	print('retrieving station name...')
-
 	if args.station_name:
 		print('Default station name overrided by user provided station name')
 	else:

@@ -49,7 +49,9 @@ def promice2nc(args, op_file, station_dict, station_name):
 	time, time_bounds, sza, velocity, ice_velocity_GPS_total, ice_velocity_GPS_x, ice_velocity_GPS_y = ([0]*num_rows for x in range(7))
 
 	
-	print('retrieving lat and lon...')
+	if args.debuglevels > 2:
+		print('Retrieving latitude, longitude and station name')
+
 	k = os.path.basename(args.input_file or args.fl_in)
 
 	if ('EGP') in k:
