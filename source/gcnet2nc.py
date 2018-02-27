@@ -167,10 +167,10 @@ def gcnet2nc(args, op_file, station_dict, station_name):
 
 		try:
 			temp_dtime = datetime.strptime("%s %s %s" % (df['year'][i], int(df['julian_decimal_time'][i]), hour[i]), "%Y %j %H")
+			temp_dtime = tz.localize(temp_dtime.replace(tzinfo=None))
+			time[i] = (temp_dtime-dtime_1970).total_seconds()
 		except:
-			df.drop(df.index[i]) 		#Drop rows having julian_decimal_time > 366
-		temp_dtime = tz.localize(temp_dtime.replace(tzinfo=None))
-		time[i] = (temp_dtime-dtime_1970).total_seconds()
+			time[i] = time[i-1] 		#Assign time of previous row, if julian_decimal_time > 366
 		
 		time_bounds[i] = (time[i]-seconds_in_hour, time[i])
 		
