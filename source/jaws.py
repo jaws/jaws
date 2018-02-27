@@ -212,7 +212,8 @@ def Main():
 	elif line[0] == '#':
 		aaws2nc.aaws2nc(args, op_file, station_dict, station_name, start_time)
 
-	print("Converted " + str(os.path.basename(args.input_file or args.fl_in)) + " to netCDF format")
+	if args.debuglevels > 1:
+		print("Converted " + str(os.path.basename(args.input_file or args.fl_in)) + " to {}".format(op_file))
 
 
 if __name__ == '__main__':
