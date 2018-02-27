@@ -22,7 +22,7 @@ def Main():
 	parser.add_argument("-s","--station_name", help = "Override default station name", type=str)
 	parser.add_argument("-t","--timezone", help = "Change the timezone, default is UTC", default='UTC', type=str)
 	parser.add_argument("-f","--fillvalue_float", help = "Override default float _FillValue", type=float)
-	parser.add_argument("-dl","--debuglevels", help = "Levels of verbosity", type=int)
+	parser.add_argument("-D","--dbg_lvl","--debuglevel", help = "Debug-level is lvl", type=int)
 
 	args = parser.parse_args()
 
