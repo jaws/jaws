@@ -213,10 +213,10 @@ def Main():
 		aaws2nc.aaws2nc(args, op_file, station_dict, station_name)
 
 	######################################################################
-	if args.debuglevel > 0:
+	if args.dbg_lvl > 0:
 		print('Elapsed time: {}'.format(datetime.now()-start_time))
 
-	if args.debuglevel > 1:
+	if args.dbg_lvl > 1:
 		print("Converted " + str(os.path.basename(args.input_file or args.fl_in)) + " to {}".format(op_file))
 
 

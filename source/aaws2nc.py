@@ -36,7 +36,7 @@ def aaws2nc(args, op_file, station_dict, station_name):
 	time, time_bounds, sza = ([0]*num_rows for x in range(3))
 	
 	
-	if args.debuglevel > 2:
+	if args.dbg_lvl > 2:
 		print('Retrieving latitude, longitude and station name')
 	
 	f = open(args.input_file or args.fl_in)
