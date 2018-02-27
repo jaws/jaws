@@ -204,13 +204,17 @@ def Main():
 		line = f.readline()
 
 	if line[0] == 'D':
-		gcnet2nc.gcnet2nc(args, op_file, station_dict, station_name, start_time)
+		gcnet2nc.gcnet2nc(args, op_file, station_dict, station_name)
 
 	elif line[0] == 'Y':
-		promice2nc.promice2nc(args, op_file, station_dict, station_name, start_time)
+		promice2nc.promice2nc(args, op_file, station_dict, station_name)
 
 	elif line[0] == '#':
-		aaws2nc.aaws2nc(args, op_file, station_dict, station_name, start_time)
+		aaws2nc.aaws2nc(args, op_file, station_dict, station_name)
+
+	######################################################################
+	if args.debuglevels > 0:
+		print('Elapsed time: {}'.format(datetime.now()-start_time))
 
 	if args.debuglevels > 1:
 		print("Converted " + str(os.path.basename(args.input_file or args.fl_in)) + " to {}".format(op_file))
