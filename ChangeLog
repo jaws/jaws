@@ -1,3 +1,15 @@
+2018-02-26  Ajay Saini  <sainiak@uci.edu>
+
+	* Resolved error in gcnet_grip having julian_decimal_time value of 367. Generalized for any value greater than 366.
+
+	* Option '-a/--analysis' renamed to '-d/--derive_times'
+
+	* Worked on conda package
+
+	* Added new argument '-D/--dbg_lvl'
+
+	* Level 1 and 2 done. Rest in progress
+
 2018-02-23  Ajay Saini  <sainiak@uci.edu>
 
 	* Resolved issue of unsynchronized time
