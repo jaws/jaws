@@ -12,7 +12,7 @@ import warnings
 
 warnings.filterwarnings("ignore")
 
-def promice2nc(args, op_file, station_dict, station_name):
+def promice2nc(args, op_file, station_dict, station_name, start_time):
 
 	freezing_point_temp = common.freezing_point_temp
 	pascal_per_millibar = common.pascal_per_millibar
@@ -310,3 +310,6 @@ def promice2nc(args, op_file, station_dict, station_name):
 
 
 	write_data(args, ds, op_file, encoding)
+
+	if args.debuglevels > 0:
+		print('Elapsed time: {}'.format(datetime.now()-start_time))

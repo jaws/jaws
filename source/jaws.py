@@ -3,8 +3,11 @@ import argparse
 from netCDF4 import Dataset
 import gcnet2nc, promice2nc, aaws2nc
 from collections import OrderedDict
-	
+from datetime import datetime
+
 def Main():
+	start_time = datetime.now()
+	
 	parser = argparse.ArgumentParser()
 	parser.add_argument("input_file", nargs = '?', help="Raw L2 data file to convert to netCDF (or use -i option)", type=str)
 	parser.add_argument("output_file", nargs = '?', help="Output netCDF file (or use -o option)", type=str)
@@ -19,6 +22,7 @@ def Main():
 	parser.add_argument("-s","--station_name", help = "Override default station name", type=str)
 	parser.add_argument("-t","--timezone", help = "Change the timezone, default is UTC", default='UTC', type=str)
 	parser.add_argument("-f","--fillvalue_float", help = "Override default float _FillValue", type=float)
+	parser.add_argument("-dl","--debuglevels", help = "Levels of verbosity", type=int)
 
 	args = parser.parse_args()
 
@@ -200,13 +204,13 @@ def Main():
 		line = f.readline()
 
 	if line[0] == 'D':
-		gcnet2nc.gcnet2nc(args, op_file, station_dict, station_name)
+		gcnet2nc.gcnet2nc(args, op_file, station_dict, station_name, start_time)
 
 	elif line[0] == 'Y':
-		promice2nc.promice2nc(args, op_file, station_dict, station_name)
+		promice2nc.promice2nc(args, op_file, station_dict, station_name, start_time)
 
 	elif line[0] == '#':
-		aaws2nc.aaws2nc(args, op_file, station_dict, station_name)
+		aaws2nc.aaws2nc(args, op_file, station_dict, station_name, start_time)
 
 	print("Converted " + str(os.path.basename(args.input_file or args.fl_in)) + " to netCDF format")
 
