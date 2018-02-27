@@ -52,7 +52,7 @@ def gcnet2nc(args, op_file, station_dict, station_name):
 	hour, month, day, time, time_bounds, sza = ([0]*num_rows for x in range(6))
 
 	
-	if args.debuglevels > 2:
+	if args.debuglevel > 2:
 		print('Retrieving latitude, longitude and station name')
 
 	try:
