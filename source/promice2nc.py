@@ -6,7 +6,7 @@ from datetime import datetime
 import pytz
 from sunposition import sunpos
 from math import sin, cos, sqrt, atan2, radians
-from common import write_data
+from common import write_data, time_common
 import common
 import warnings
 

@@ -3,7 +3,7 @@ import xarray as xr
 from datetime import datetime
 import pytz
 from sunposition import sunpos
-from common import write_data
+from common import write_data, time_common
 import common
 
 def aaws2nc(args, op_file, station_dict, station_name):
