@@ -114,7 +114,9 @@ def gcnet2nc(args, op_file, station_dict, station_name):
 		i += 1
 	
 
-	print('calculating quality control variables...')
+	if args.dbg_lvl > 4:
+		print('Calculating quality control variables')
+
 	temp1 = [list(map(int, i)) for i in zip(*map(str, df['qc1']))]
 	temp9 = [list(map(int, i)) for i in zip(*map(str, df['qc9']))]
 	temp17 = [list(map(int, i)) for i in zip(*map(str, df['qc17']))]

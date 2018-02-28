@@ -137,7 +137,8 @@ def promice2nc(args, op_file, station_dict, station_name):
 		i += 1
 
 	
-	print('converting lat_GPS and lon_GPS...')
+	if args.dbg_lvl > 4:
+		print('Converting lat_GPS and lon_GPS')
 	
 	def lat_lon_gps(coords):
 		deg = np.floor(coords / 100)
