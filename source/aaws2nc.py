@@ -56,7 +56,8 @@ def aaws2nc(args, op_file, station_dict, station_name):
 		station_name = x
 
 
-	print('calculating time and sza...')
+	if args.dbg_lvl > 3:
+		print('Calculating time and sza')
 	
 	tz = pytz.timezone(args.timezone)
 	dtime_1970 = datetime(1970,1,1)

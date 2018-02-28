@@ -116,25 +116,8 @@ def promice2nc(args, op_file, station_dict, station_name):
 		station_name = station_dict.get(temp_stn)[2]
 
 
-	print('converting lat_GPS and lon_GPS...')
-	
-	def lat_lon_gps(coords):
-		deg = np.floor(coords / 100)
-		minutes = np.floor(((coords / 100) - deg) * 100)
-		seconds = (((coords / 100) - deg) * 100 - minutes) * 100
-		return deg + minutes / 60 + seconds / 3600
-
-	# Exclude NAs
-	logic1 = df.latitude_GPS != fillvalue_float
-	logic2 = df.longitude_GPS != fillvalue_float
-	df1 = df[logic1]
-	df2 = df[logic2]
-
-	df.latitude_GPS = lat_lon_gps(df1.latitude_GPS)
-	df.longitude_GPS = lat_lon_gps(df2.longitude_GPS)
-	
-
-	print('calculating time and sza...')
+	if args.dbg_lvl > 3:
+		print('Calculating time and sza')
 	
 	tz = pytz.timezone(args.timezone)
 	dtime_1970 = datetime(1970,1,1)
@@ -154,6 +137,24 @@ def promice2nc(args, op_file, station_dict, station_name):
 		i += 1
 
 	
+	print('converting lat_GPS and lon_GPS...')
+	
+	def lat_lon_gps(coords):
+		deg = np.floor(coords / 100)
+		minutes = np.floor(((coords / 100) - deg) * 100)
+		seconds = (((coords / 100) - deg) * 100 - minutes) * 100
+		return deg + minutes / 60 + seconds / 3600
+
+	# Exclude NAs
+	logic1 = df.latitude_GPS != fillvalue_float
+	logic2 = df.longitude_GPS != fillvalue_float
+	df1 = df[logic1]
+	df2 = df[logic2]
+
+	df.latitude_GPS = lat_lon_gps(df1.latitude_GPS)
+	df.longitude_GPS = lat_lon_gps(df2.longitude_GPS)
+	
+
 	print('calculating ice velocity...')
 	def ice_velocity(n,o):
 		m,p = 0,1

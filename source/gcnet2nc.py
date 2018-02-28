@@ -81,6 +81,39 @@ def gcnet2nc(args, op_file, station_dict, station_name):
 			station_name = list(station_dict.values())[station_number][2]
 
 
+	if args.dbg_lvl > 3:
+		print('Calculating time and sza')
+	
+	hour[:] = [int(x) for x in [round((y-int(y)),3)*hour_conversion for y in df['julian_decimal_time']]]
+	
+	z = 0
+	while z < num_rows:
+		if hour[z] > last_hour:
+			hour[z] = 0
+		z += 1
+
+	
+	tz = pytz.timezone(args.timezone)
+	dtime_1970 = datetime(1970,1,1)
+	dtime_1970 = tz.localize(dtime_1970.replace(tzinfo=None))
+	i = 0
+
+	while i < num_rows:
+
+		try:
+			temp_dtime = datetime.strptime("%s %s %s" % (df['year'][i], int(df['julian_decimal_time'][i]), hour[i]), "%Y %j %H")
+			temp_dtime = tz.localize(temp_dtime.replace(tzinfo=None))
+			time[i] = (temp_dtime-dtime_1970).total_seconds()
+		except:
+			time[i] = time[i-1] 		#Assign time of previous row, if julian_decimal_time > 366
+		
+		time_bounds[i] = (time[i]-seconds_in_hour, time[i])
+		
+		sza[i] = sunpos(temp_dtime,latitude,longitude,0)[1]
+		
+		i += 1
+	
+
 	print('calculating quality control variables...')
 	temp1 = [list(map(int, i)) for i in zip(*map(str, df['qc1']))]
 	temp9 = [list(map(int, i)) for i in zip(*map(str, df['qc9']))]
@@ -149,38 +182,6 @@ def gcnet2nc(args, op_file, station_dict, station_name):
 
 
 	
-	print('calculating hour...')
-	hour[:] = [int(x) for x in [round((y-int(y)),3)*hour_conversion for y in df['julian_decimal_time']]]
-	
-	z = 0
-	while z < num_rows:
-		if hour[z] > last_hour:
-			hour[z] = 0
-		z += 1
-
-	print("calculating time and sza...")
-	
-	tz = pytz.timezone(args.timezone)
-	dtime_1970 = datetime(1970,1,1)
-	dtime_1970 = tz.localize(dtime_1970.replace(tzinfo=None))
-	i = 0
-
-	while i < num_rows:
-
-		try:
-			temp_dtime = datetime.strptime("%s %s %s" % (df['year'][i], int(df['julian_decimal_time'][i]), hour[i]), "%Y %j %H")
-			temp_dtime = tz.localize(temp_dtime.replace(tzinfo=None))
-			time[i] = (temp_dtime-dtime_1970).total_seconds()
-		except:
-			time[i] = time[i-1] 		#Assign time of previous row, if julian_decimal_time > 366
-		
-		time_bounds[i] = (time[i]-seconds_in_hour, time[i])
-		
-		sza[i] = sunpos(temp_dtime,latitude,longitude,0)[1]
-		
-		i += 1
-	
-
 	if args.derive_times:
 		print('calculating month and day...')
 		def get_month_day(year, day, one_based=False):
