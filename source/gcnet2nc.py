@@ -184,8 +184,10 @@ def gcnet2nc(args, op_file, station_dict, station_name):
 
 
 	
+	if args.dbg_lvl > 5 and args.derive_times:
+		print('Calculating month and day')
+		
 	if args.derive_times:
-		print('calculating month and day...')
 		def get_month_day(year, day, one_based=False):
 			if one_based:  # if Jan 1st is 1 instead of 0
 				day -= 1

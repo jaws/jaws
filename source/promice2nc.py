@@ -156,7 +156,9 @@ def promice2nc(args, op_file, station_dict, station_name):
 	df.longitude_GPS = lat_lon_gps(df2.longitude_GPS)
 	
 
-	print('calculating ice velocity...')
+	if args.dbg_lvl > 5:
+		print('Calculating ice velocity')
+
 	def ice_velocity(n,o):
 		m,p = 0,1
 		R = 6373.0		#Approx radius of earth
