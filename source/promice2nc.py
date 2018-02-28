@@ -119,9 +119,7 @@ def promice2nc(args, op_file, station_dict, station_name):
 	if args.dbg_lvl > 3:
 		print('Calculating time and sza')
 	
-	tz = pytz.timezone(args.timezone)
-	dtime_1970 = datetime(1970,1,1)
-	dtime_1970 = tz.localize(dtime_1970.replace(tzinfo=None))
+	dtime_1970, tz = time_common(args.timezone)
 	i = 0
 
 	while i < num_rows:
