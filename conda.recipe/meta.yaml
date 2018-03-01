@@ -1,0 +1,24 @@
+package:
+  name: jaws
+  version: "0.2"
+
+source:
+  path: ../
+
+requirements:
+  build:
+    - python
+    - setuptools
+  run:
+    - python
+    - pandas
+    - numpy
+    - xarray
+    - pytz
+    - netcdf4
+    - matplotlib
+
+about:
+  home: https://github.com/jaws/jaws
+  license: BSD
+  #license_file: LICENSE
