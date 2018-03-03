@@ -1,6 +1,6 @@
 package:
   name: jaws
-  version: "0.2"
+  version: "0.2.1"
 
 source:
   path: ../
@@ -20,5 +20,5 @@ requirements:
 
 about:
   home: https://github.com/jaws/jaws
-  license: BSD
-  #license_file: LICENSE
+  license: Apache License, Version 2.0
+  license_file: LICENSE
