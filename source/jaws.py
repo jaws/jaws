@@ -1,6 +1,5 @@
 import os, sys
 import argparse
-from netCDF4 import Dataset
 import gcnet2nc, promice2nc, aaws2nc
 from collections import OrderedDict
 from datetime import datetime
