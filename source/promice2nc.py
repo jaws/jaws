@@ -309,7 +309,8 @@ def promice2nc(args, op_file, station_dict, station_name):
 				'time_bounds': {'_FillValue': False},
 				'sza': {'_FillValue': False},
 				'latitude': {'_FillValue': False},
-				'longitude': {'_FillValue': False}
+				'longitude': {'_FillValue': False},
+				'station_name': {'dtype': 'unicode'}
 				}
 
 
