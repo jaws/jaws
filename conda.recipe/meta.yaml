@@ -3,12 +3,27 @@ package:
   version: "0.2.1"
 
 source:
-  path: ../
+  path: ../source/
+
+build:
+  entry_points:
+    - jaws = jaws:main
+    - aaws2nc = aaws2nc:aaws2nc
+    - common = common:write_data
+    - gcnet2nc = gcnet2nc:gcnet2nc
+    - promice2nc = promice2nc:promice2nc
+    - sunposition = sunposition:main
 
 requirements:
   build:
     - python
     - setuptools
+    - pandas
+    - numpy
+    - xarray
+    - pytz
+    - netcdf4
+    - matplotlib
   run:
     - python
     - pandas
