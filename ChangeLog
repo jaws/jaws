@@ -1,3 +1,19 @@
+2018-03-02  Ajay Saini  <sainiak@uci.edu>
+
+	* 'unicode' data type added in encoding for text-valued variables to use strings not character arrays for netCDF4 files 
+
+	* LICENSE file added
+
+	* Added new fields in setup.py file to provide package description
+
+	* entry_points added in meta.yaml file to include scripts
+
+2018-03-01  Ajay Saini  <sainiak@uci.edu>
+
+	* Worked on conda package to include executables
+
+	* Learnt about packaging python scripts
+
 2018-02-28  Ajay Saini  <sainiak@uci.edu>
 
 	* Conda package created locally, still working on it
