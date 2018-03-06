@@ -52,61 +52,37 @@ def promice2nc(args, op_file, station_dict, station_name):
 	if args.dbg_lvl > 2:
 		print('Retrieving latitude, longitude and station name')
 
-	k = os.path.basename(args.input_file or args.fl_in)
+	promice_dict = dict.fromkeys(['EGP'], 'promice_egp')
+	promice_dict.update(dict.fromkeys(['KAN-B', 'Kangerlussuaq-B'], 'promice_kanb'))
+	promice_dict.update(dict.fromkeys(['KAN-L', 'Kangerlussuaq-L'], 'promice_kanl'))
+	promice_dict.update(dict.fromkeys(['KAN-M', 'Kangerlussuaq-M'], 'promice_kanm'))
+	promice_dict.update(dict.fromkeys(['KAN-U', 'Kangerlussuaq-U'], 'promice_kanu'))
+	promice_dict.update(dict.fromkeys(['KPC-L', 'KronprinsChristianland-L'], 'promice_kpcl'))
+	promice_dict.update(dict.fromkeys(['KPC-U', 'KronprinsChristianland-U'], 'promice_kpcu'))
+	promice_dict.update(dict.fromkeys(['MIT'], 'promice_mit'))
+	promice_dict.update(dict.fromkeys(['NUK-K', 'Nuuk-K'], 'promice_nukk'))
+	promice_dict.update(dict.fromkeys(['NUK-L', 'Nuuk-L'], 'promice_nukl'))
+	promice_dict.update(dict.fromkeys(['NUK-N', 'Nuuk-N'], 'promice_nukn'))
+	promice_dict.update(dict.fromkeys(['NUK-U', 'Nuuk-U'], 'promice_nuku'))
+	promice_dict.update(dict.fromkeys(['QAS-A', 'Qassimiut-A'], 'promice_qasa'))
+	promice_dict.update(dict.fromkeys(['QAS-L', 'Qassimiut-L'], 'promice_qasl'))
+	promice_dict.update(dict.fromkeys(['QAS-M', 'Qassimiut-M'], 'promice_qasm'))
+	promice_dict.update(dict.fromkeys(['QAS-U', 'Qassimiut-U'], 'promice_qasu'))
+	promice_dict.update(dict.fromkeys(['SCO-L', 'Scoresbysund-L'], 'promice_scol'))
+	promice_dict.update(dict.fromkeys(['SCO-U', 'Scoresbysund-U'], 'promice_scou'))
+	promice_dict.update(dict.fromkeys(['TAS-A', 'Tasiilaq-A'], 'promice_tasa'))
+	promice_dict.update(dict.fromkeys(['TAS-L', 'Tasiilaq-L'], 'promice_tasl'))
+	promice_dict.update(dict.fromkeys(['TAS-U', 'Tasiilaq-U'], 'promice_tasu'))
+	promice_dict.update(dict.fromkeys(['THU-L', 'ThuleAirbase-L'], 'promice_thul'))
+	promice_dict.update(dict.fromkeys(['THU-U', 'ThuleAirbase-U'], 'promice_thuu'))
+	promice_dict.update(dict.fromkeys(['UPE-L', 'Upernavik-L'], 'promice_upel'))
+	promice_dict.update(dict.fromkeys(['UPE-U', 'Upernavik-U'], 'promice_upeu'))
+	promice_dict.update(dict.fromkeys(['CEN'], 'promice_cen'))
 
-	if ('EGP') in k:
-		temp_stn = 'promice_egp'
-	elif ('KAN_B') or ('Kangerlussuaq-B') in k:
-		temp_stn = 'promice_kanb'
-	elif ('KAN_L') or ('Kangerlussuaq-L') in k:
-		temp_stn = 'promice_kanl'
-	elif ('KAN_M') or ('Kangerlussuaq-M') in k:
-		temp_stn = 'promice_kanm'
-	elif ('KAN_U') or ('Kangerlussuaq-U') in k:
-		temp_stn = 'promice_kanu'
-	elif ('KPC_L') or ('KronprinsChristianland-L') in k:
-		temp_stn = 'promice_kpcl'
-	elif ('KPC_U') or ('KronprinsChristianland-U') in k:
-		temp_stn = 'promice_kpcu'
-	elif ('MIT') in k:
-		temp_stn = 'promice_mit'
-	elif ('NUK_K') or ('Nuuk-K') in k:
-		temp_stn = 'promice_nukk'
-	elif ('NUK_L') or ('Nuuk-L') in k:
-		temp_stn = 'promice_nukl'
-	elif ('NUK_N') or ('Nuuk-N') in k:
-		temp_stn = 'promice_nukn'
-	elif ('NUK_U') or ('Nuuk-U') in k:
-		temp_stn = 'promice_nuku'
-	elif ('QAS_A') or ('Qassimiut-A') in k:
-		temp_stn = 'promice_qasa'
-	elif ('QAS_L') or ('Qassimiut-L') in k:
-		temp_stn = 'promice_qasl'
-	elif ('QAS_M') or ('Qassimiut-M') in k:
-		temp_stn = 'promice_qasm'
-	elif ('QAS_U') or ('Qassimiut-U') in k:
-		temp_stn = 'promice_qasu'
-	elif ('SCO_L') or ('Scoresbysund-L') in k:
-		temp_stn = 'promice_scol'
-	elif ('SCO_U') or ('Scoresbysund-U') in k:
-		temp_stn = 'promice_scou'
-	elif ('TAS_A') or ('Tasiilaq-A') in k:
-		temp_stn = 'promice_tasa'
-	elif ('TAS_L') or ('Tasiilaq-L') in k:
-		temp_stn = 'promice_tasl'
-	elif ('TAS_U') or ('Tasiilaq-U') in k:
-		temp_stn = 'promice_tasu'
-	elif ('THU_L') or ('ThuleAirbase-L') in k:
-		temp_stn = 'promice_thul'
-	elif ('THU_U') or ('ThuleAirbase-U') in k:
-		temp_stn = 'promice_thuu'
-	elif ('UPE_L') or ('Upernavik-L') in k:
-		temp_stn = 'promice_upel'
-	elif ('UPE_U') or ('Upernavik-U') in k:
-		temp_stn = 'promice_upeu'
-	elif ('CEN') in k:
-		temp_stn = 'promice_cen'
-
+	k = os.path.basename(args.input_file or args.fl_in).split('_')[1]
+	k = os.path.splitext(k)[0]
+	temp_stn = promice_dict[k]
+	
 	latitude = (station_dict.get(temp_stn)[0])
 	longitude = (station_dict.get(temp_stn)[1])
 
