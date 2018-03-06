@@ -1,3 +1,11 @@
+2018-03-05  Ajay Saini  <sainiak@uci.edu>
+
+	* PROMICE- created new dictionary to store station_names; latitude and longitude to hash values from promice_dict 
+
+	* Work in progress on unit-tests
+
+	* Debug level argument details added
+
 2018-03-02  Ajay Saini  <sainiak@uci.edu>
 
 	* 'unicode' data type added in encoding for text-valued variables to use strings not character arrays for netCDF4 files 
