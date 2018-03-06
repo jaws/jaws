@@ -23,6 +23,16 @@ def Main():
 	parser.add_argument("-f","--fillvalue_float", help = "Override default float _FillValue", type=float)
 	parser.add_argument("-D","--dbg_lvl","--debuglevel", help = "Debug-level is lvl", default=0, type=int)
 
+	'''
+	 /* Argument --debuglevel in increasing levels of verbosity */
+    jaws_dbg_quiet, /* 0 */ Quiet all non-error messages
+    jaws_dbg_std,   /* 1 */ Elapsed time
+    jaws_dbg_fl,    /* 2 */ Input/Output Filepaths
+    jaws_dbg_coords,/* 3 */ lat, lon, stn_name
+    jaws_dbg_time,  /* 4 */ time and sza
+    jaws_dbg_var1,  /* 5 */ For GCNet- quality control variables, For PROMICE- lat_GPS, lon_GPS
+    jaws_dbg_var2,  /* 6 */ For GCNet- month and day, For PROMICE- ice_velocity
+    '''
 	args = parser.parse_args()
 
 	if (args.input_file or args.fl_in):
