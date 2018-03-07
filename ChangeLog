@@ -1,3 +1,9 @@
+2018-03-06  Ajay Saini  <sainiak@uci.edu>
+
+	* Worked on test cases for jaws as well as individual modules
+
+	* Tests completed for jaws.py to check format options works correctly as well as station_name option
+
 2018-03-05  Ajay Saini  <sainiak@uci.edu>
 
 	* PROMICE- created new dictionary to store station_names; latitude and longitude to hash values from promice_dict 
