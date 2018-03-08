@@ -2,6 +2,7 @@ import unittest
 import tempfile
 import netCDF4
 import os.path
+import os
 
 import subprocess
 
@@ -15,6 +16,9 @@ def convert(infile, *args):
 
     It then reads the output data and returns it as an netCDF4 object.
     """
+    # change the current working directory
+    os.chdir(os.path.dirname(os.path.realpath(__file__)))
+    
     # check that the input file exists
     if not os.path.isfile(infile):
         raise FileNotFoundError
@@ -26,11 +30,15 @@ def convert(infile, *args):
     jawargs = [infile, outfile.name] + list(args)
 
     # run the jaws command
-    subprocess.call(['python3', '../source/jaws.py'] + jawargs)
+    subprocess.call(['python', '../source/jaws.py'] + jawargs)
 
     # read the result of the call.
     # if the file was malformed or not converted correctly
     # this will rise an error and the test will fail.
+    with open(outfile.name, 'rb') as stream:
+        if not stream.read():
+            raise RuntimeError('Output File is Empty')
+
     return netCDF4.Dataset(outfile.name)
 
 
