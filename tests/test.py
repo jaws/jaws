@@ -73,3 +73,49 @@ class TestJaws(unittest.TestCase):
         self.assertEqual(station, 'TestStation')
 
 
+class TestAAWS(unittest.TestCase):
+    """
+    Test AAWS.
+
+    This class test the correct conversion of the AAWS format. This involves
+    converting multiple sample AAWS input files, and checking that the
+    output values are what's expected.
+    """
+
+    def test_sample1(self):
+        """
+        Test the sample input file.
+        """
+        convert('../sample_data/AAWS_AGO-4_20161130.txt')
+
+
+class TestGCNet(unittest.TestCase):
+    """
+    Test GCNet.
+
+    See the docstring for TestAAWS for details.
+    """
+
+    def test_sample1(self):
+        """
+        Test the sample input file.
+        """
+        convert('../sample_data/GCNET_Summit_20140601.txt')
+
+
+class TestPROMICE(unittest.TestCase):
+    """
+    Test PROMICE.
+
+    See the docstring for TestAAWS for details.
+    """
+
+    def test_sample1(self):
+        """
+        Test the sample input file.
+        """
+        convert('../sample_data/PROMICE_EGP_20160501.txt')
+
+
+if __name__ == '__main__':
+    unittest.main(verbosity=1)
