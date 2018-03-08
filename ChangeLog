@@ -1,3 +1,11 @@
+2018-03-07  Ajay Saini  <sainiak@uci.edu>
+
+	* Tests completed to check conversion of files for individual modules
+
+	* Tests made compatible with all platforms and python versions
+
+	* Working to refactor and functionalize code, to define more tests
+
 2018-03-06  Ajay Saini  <sainiak@uci.edu>
 
 	* Worked on test cases for jaws as well as individual modules
