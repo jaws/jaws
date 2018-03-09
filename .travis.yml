@@ -10,6 +10,10 @@ python:
   - "3.6"
 
 install:
+    - pip install pandas
+    - pip install numpy
+    - pip install xarray
+    - pip install pytz
     - pip install netCDF4
 
 script:
