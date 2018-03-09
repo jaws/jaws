@@ -17,4 +17,4 @@ install:
     - pip install netCDF4
 
 script:
-    - python tests/test.py
+    - python test.py
