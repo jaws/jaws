@@ -24,7 +24,7 @@ def convert(infile, *args):
         raise FileNotFoundError
 
     # make a temporary output file
-    outfile = tempfile.NamedTemporaryFile(suffix='.nc', delete=True)
+    outfile = tempfile.NamedTemporaryFile(suffix='.nc', delete=False)
 
     # generate command line arguments for jaws
     jawargs = [infile, outfile.name] + list(args)
@@ -58,19 +58,19 @@ class TestJaws(unittest.TestCase):
 
     def test_format4(self):
         """Test that --format4 option works correctly."""
-        nc = convert('../samples/AAWS_AGO-4_20161130.txt', '-4')
+        nc = convert('../sample_data/AAWS_AGO-4_20161130.txt', '-4')
         self.assertEqual(nc.file_format, 'NETCDF4')
 
     def test_format5(self):
         """Test that --format5 option works correctly."""
-        nc = convert('../samples/AAWS_AGO-4_20161130.txt', '-5')
+        nc = convert('../sample_data/AAWS_AGO-4_20161130.txt', '-5')
         self.assertEqual(nc.file_format, 'NETCDF3_64BIT_OFFSET')
 
     def test_station_name(self):
         """Test overriding default station name."""
-        nc = convert('../samples/AAWS_AGO-4_20161130.txt', '-s', 'TestStation')
-        station = nc.variables['station_name'].getValue()
-        self.assertEqual(station, 'TestStation')
+        nc = convert('../sample_data/AAWS_AGO-4_20161130.txt', '-s', 'TestStation')
+        station = nc.variables['station_name'][:]
+        self.assertEqual(''.join(station), 'TestStation')
 
 
 class TestAAWS(unittest.TestCase):
