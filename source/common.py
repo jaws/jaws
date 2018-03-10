@@ -28,3 +28,7 @@ def write_data(args, ds, op_file, encoding):
 	else:
 		ds.to_netcdf(op_file, unlimited_dims={'time':True}, encoding = encoding)
 
+def relative_path(path):
+	"""Get relative path based on the location of this file."""
+	this_dir = os.path.dirname(os.path.realpath(__file__))
+	return os.path.join(this_dir, path)
