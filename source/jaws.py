@@ -83,6 +83,28 @@ def parse_args(args):
     return get_parser().parse_args(args)
 
 
+def get_stations():
+    """Read stations.txt and parse it into an ordered dict."""
+    with open(relative_path('resources/stations.txt')) as stream:
+        stations = stream.read().split('\n')
+
+    # remove blank lines
+    stations = [i.strip() for i in stations if i.strip()]
+    ordered = collections.OrderedDict(blank=[])
+
+    errmsg = 'stations.txt is corrupted or malformed and could not be parsed.'
+    for station in stations:
+        match = re.match('(.+) +(-?[0-9.]+) + (-?[0-9.]+) *(.*)$', station)
+        if not match:
+            raise RuntimeError(errmsg)
+        name, lon, lat, name2 = match.groups()
+        lon, lat = float(lon), float(lat)
+        name2 = name2.strip()
+        value = [lon, lat, name2] if name2 else [lon, lat]
+        ordered[name.strip()] = value
+
+    return ordered
+
 def Main():
 	start_time = datetime.now()
 	
