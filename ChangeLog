@@ -1,4 +1,16 @@
-2018-03-07  Ajay Saini  <sainiak@uci.edu>
+2018-03-09  Ajay Saini  <sainiak@uci.edu>
+
+	* Created new function for argument parsing
+
+	* Define function to get relative path based on location of file
+
+	* Move station_dict data to resources/stations.txt
+
+	* Add function to read and parse stations.txt file
+
+	* Worked on Interim Report presentation
+
+2018-03-08  Ajay Saini  <sainiak@uci.edu>
 
 	* Configured `jaws` with Travis-CI
 
@@ -37,6 +49,8 @@
 	* Added new fields in setup.py file to provide package description
 
 	* entry_points added in meta.yaml file to include scripts
+
+	* git tag -a 0.2.1 -m 'Panama Catshark: Implementing xarray and pandas'; git push --tags
 
 2018-03-01  Ajay Saini  <sainiak@uci.edu>
 
