@@ -105,6 +105,24 @@ def get_stations():
 
 	return ordered
 
+def get_input_file(args):
+	"""
+	Retrieve the input file.
+
+	If no input file is specified, show error message and exit.
+	"""
+	if args.input_file:
+		return args.input_file
+	if args.fl_in:
+		return args.fl_in
+	print('Error: You failed to provide input file!\n')
+	get_parser().print_help()
+	print('\n')
+	print(
+		'Post questions, suggestions, patches at https://github.com/jaws/jaws')
+	sys.exit(1)
+
+
 def Main():
 	start_time = datetime.now()
 	
