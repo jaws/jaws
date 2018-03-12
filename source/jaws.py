@@ -123,6 +123,35 @@ def get_input_file(args):
 	sys.exit(1)
 
 
+def get_output_file(args, input_file, stations):
+	"""
+	Retrieve the output file.
+
+	If the file isn't specified explicitly via command line arguments,
+	construct the output file based on the input file.
+	"""
+	if args.output_file:
+		return args.output_file
+	if args.fl_out:
+		return args.fl_out
+
+	basename = os.path.basename(input_file).split('.')[0]
+	try:
+		name_number = int(basename[:2])
+	except ValueError:
+		return basename + '.nc'
+
+	stations = list(stations.keys())
+	if 0 < name_number < 24:
+		basename = stations[name_number]
+	elif basename[2:] == 'c':
+		basename = stations[name_number - 6]
+	else:
+		pass
+
+	return basename + '.nc'
+
+
 def Main():
 	start_time = datetime.now()
 	
