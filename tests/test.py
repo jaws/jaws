@@ -4,6 +4,8 @@ import netCDF4
 import os.path
 import os
 
+import jaws
+
 import subprocess
 
 
@@ -14,14 +16,17 @@ def convert(infile, *args):
     This is a helper function used by other tests. It takes in a filename
     and any command line arguments, and uses them to run jaws.py.
 
-    It then reads the output data and returns it as an netCDF4 object.
+    Returns the NamedTemporaryFile object containing the output.
     """
     # change the current working directory
     os.chdir(os.path.dirname(os.path.realpath(__file__)))
     
     # check that the input file exists
     if not os.path.isfile(infile):
-        raise FileNotFoundError
+        try:
+            raise FileNotFoundError
+        except NameError:  # python2
+            raise IOError
 
     # make a temporary output file
     outfile = tempfile.NamedTemporaryFile(suffix='.nc', delete=False)
@@ -39,7 +44,14 @@ def convert(infile, *args):
         if not stream.read():
             raise RuntimeError('Output File is Empty')
 
+    return outfile
+
+
+def convert_to_dataset(input_file, *args):
+    """Converts the file and loads the results into a netCDF4 Dataset."""
+    outfile = convert(input_file, *args)
     return netCDF4.Dataset(outfile.name)
+
 
 
 class TestJaws(unittest.TestCase):
@@ -53,22 +65,22 @@ class TestJaws(unittest.TestCase):
 
     def test_format3(self):
         """Test that --format3 option works correctly."""
-        nc = convert('../sample_data/AAWS_AGO-4_20161130.txt', '-3')
+        nc = convert_to_dataset('../sample_data/AAWS_AGO-4_20161130.txt', '-3')
         self.assertEqual(nc.file_format, 'NETCDF3_CLASSIC')
 
     def test_format4(self):
         """Test that --format4 option works correctly."""
-        nc = convert('../sample_data/AAWS_AGO-4_20161130.txt', '-4')
+        nc = convert_to_dataset('../sample_data/AAWS_AGO-4_20161130.txt', '-4')
         self.assertEqual(nc.file_format, 'NETCDF4')
 
     def test_format5(self):
         """Test that --format5 option works correctly."""
-        nc = convert('../sample_data/AAWS_AGO-4_20161130.txt', '-5')
+        nc = convert_to_dataset('../sample_data/AAWS_AGO-4_20161130.txt', '-5')
         self.assertEqual(nc.file_format, 'NETCDF3_64BIT_OFFSET')
 
     def test_station_name(self):
         """Test overriding default station name."""
-        nc = convert('../sample_data/AAWS_AGO-4_20161130.txt', '-s', 'TestStation')
+        nc = convert_to_dataset('../sample_data/AAWS_AGO-4_20161130.txt', '-s', 'TestStation')
         station = nc.variables['station_name'][:]
         self.assertEqual(''.join(station), 'TestStation')
 
