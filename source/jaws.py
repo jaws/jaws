@@ -152,6 +152,28 @@ def get_output_file(args, input_file, stations):
 	return basename + '.nc'
 
 
+def dispatch_converter(args, input_file, output_file, stations):
+	"""
+	Call the converter corresponding to the given format.
+
+	Reads the first character of the input file, and uses it to guess the
+	format of the input file and dispatch the right converter.
+	"""
+	with open(input_file) as stream:
+		char = stream.readline()[0]
+
+	converters = {
+		'D': gcnet2nc.gcnet2nc,
+		'Y': promice2nc.promice2nc,
+		'#': aaws2nc.aaws2nc}
+
+	errmsg = 'Conversion failed: unsupported input file format.'
+	if char in converters:
+		converters[char](args, output_file, stations, args.station_name)
+	else:
+		raise RuntimeError(errmsg)
+
+
 def Main():
 	start_time = datetime.now()
 	
