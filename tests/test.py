@@ -4,6 +4,8 @@ import netCDF4
 import os.path
 import os
 
+import sys
+sys.path.append('../source/')
 import jaws
 
 import subprocess
@@ -84,6 +86,64 @@ class TestJaws(unittest.TestCase):
         station = nc.variables['station_name'][:]
         self.assertEqual(''.join(station), 'TestStation')
 
+
+class TestInputOutputArguments(unittest.TestCase):
+    """
+    Test command line arguments for input and output files.
+
+    Ensures that both positional and keyword notation is supported,
+    and that the output file is constructed correctly if not explicitly
+    specified.
+    """
+    def filetest(self, args, assert_input=None, assert_output=None):
+        """Helper method that performs the specified assertions."""
+        args = jaws.parse_args(list(args))
+        input_file = jaws.get_input_file(args)
+        if assert_input:
+            self.assertEqual(input_file, assert_input)
+        if assert_output:
+            stations = jaws.get_stations()
+            output_file = jaws.get_output_file(args, input_file, stations)
+            self.assertEqual(output_file, assert_output)
+
+    def test_input_positional(self):
+        self.filetest(['test_input.txt'], assert_input='test_input.txt')
+
+    def test_input_optional(self):
+        self.filetest(['--input', 'test_input.txt'],
+                      assert_input='test_input.txt')
+
+    def test_output_positional(self):
+        self.filetest(['test_input.txt', 'test_output.txt'],
+                      assert_output='test_output.txt')
+
+    def test_output_optional(self):
+        self.filetest(['test_input.txt', '--fl_out', 'test_output.txt'],
+                      assert_output='test_output.txt')
+
+    def test_output_omitted_simple(self):
+        """
+        Test generation of omitted output file.
+
+        In the simplest case, the output file has the same name as the
+        input file, but with the extension changed to .nc.
+        """
+        self.filetest(['test_file.txt'], assert_output='test_file.nc')
+
+    def test_output_omitted_numeral_1(self):
+        """
+        Test omitted output file with numeric-prefixed input file.
+
+        If the input file is prefixed with number between 1 and 24,
+        then the output file's name is taken from the station list.
+        """
+        self.filetest(['04_test_file.txt'], assert_output='gcnet_gits.nc')
+
+    def test_output_omitted_numeral_2(self):
+        self.filetest(['11_test_file.txt'], assert_output='gcnet_dome.nc')
+
+    def test_output_omitted_c_suffix(self):
+        self.filetest(['31c.txt'], assert_output='gcnet_lar2.nc')
 
 class TestAAWS(unittest.TestCase):
     """
