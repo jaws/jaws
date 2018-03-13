@@ -1,8 +1,13 @@
 import os, sys
 import argparse
+import collections
+import re
+
 import gcnet2nc, promice2nc, aaws2nc
-from collections import OrderedDict
 from datetime import datetime
+
+from common import relative_path
+
 
 def get_parser():
 	parser = argparse.ArgumentParser()
