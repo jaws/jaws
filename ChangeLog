@@ -1,3 +1,13 @@
+2018-03-12  Ajay Saini  <sainiak@uci.edu>
+
+	* Defined function to get input file from args
+
+	* Created function to get output filename
+
+	* Added a dedicated dispatch function which decides which converter to call
+
+	* Working on writing more tests
+
 2018-03-09  Ajay Saini  <sainiak@uci.edu>
 
 	* Created new function for argument parsing
