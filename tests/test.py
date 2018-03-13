@@ -145,6 +145,27 @@ class TestInputOutputArguments(unittest.TestCase):
     def test_output_omitted_c_suffix(self):
         self.filetest(['31c.txt'], assert_output='gcnet_lar2.nc')
 
+
+
+class TestConverter(unittest.TestCase):
+    """Parent class for Converter testers."""
+
+    def check_output(self, input_file, output_sample):
+        """
+        Check that output matches known value.
+
+        Converts input_file, and compares the results of the conversion to the
+        contents of output_sample, which is a known good conversion of the
+        input file.
+        """
+        with open(output_sample, 'rb') as stream:
+            reference = stream.read()
+        output_file = convert(input_file)
+        with open(output_file.name, 'rb') as stream:
+            data = stream.read()
+        self.assertEqual(data, reference)
+
+
 class TestAAWS(unittest.TestCase):
     """
     Test AAWS.
