@@ -179,7 +179,7 @@ class TestAAWS(TestConverter):
         """
         Test the first sample input file.
         """
-        self.check_output('../sample_data/AAWS_AGO-4_20161130.txt', '../sample_data/AAWS_AGO-4_20161130.nc')
+        self.check_output('../sample_data/AAWS_AGO-4_20161130.txt', '../sample_data/converted/AAWS_AGO-4_20161130.nc')
 
 
 class TestGCNet(TestConverter):
@@ -193,7 +193,7 @@ class TestGCNet(TestConverter):
         """
         Test the first sample input file.
         """
-        self.check_output('../sample_data/GCNET_Summit_20140601.txt', '../sample_data/GCNET_Summit_20140601.nc')
+        self.check_output('../sample_data/GCNET_Summit_20140601.txt', '../sample_data/converted/GCNET_Summit_20140601.nc')
 
 
 class TestPROMICE(TestConverter):
@@ -207,7 +207,7 @@ class TestPROMICE(TestConverter):
         """
         Test the first sample input file.
         """
-        self.check_output('../sample_data/PROMICE_EGP_20160501.txt', '../sample_data/PROMICE_EGP_20160501.nc')
+        self.check_output('../sample_data/PROMICE_EGP_20160501.txt', '../sample_data/converted/PROMICE_EGP_20160501.nc')
 
 
 if __name__ == '__main__':
