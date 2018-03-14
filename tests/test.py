@@ -166,7 +166,7 @@ class TestConverter(unittest.TestCase):
         self.assertEqual(data, reference)
 
 
-class TestAAWS(unittest.TestCase):
+class TestAAWS(TestConverter):
     """
     Test AAWS.
 
@@ -175,40 +175,40 @@ class TestAAWS(unittest.TestCase):
     output values are what's expected.
     """
 
-    def test_sample1(self):
+    def test_reference_sample(self):
         """
-        Test the sample input file.
+        Test the first sample input file.
         """
-        convert('../sample_data/AAWS_AGO-4_20161130.txt')
+        self.check_output('../sample_data/AAWS_AGO-4_20161130.txt', '../sample_data/AAWS_AGO-4_20161130.nc')
 
 
-class TestGCNet(unittest.TestCase):
+class TestGCNet(TestConverter):
     """
     Test GCNet.
 
     See the docstring for TestAAWS for details.
     """
 
-    def test_sample1(self):
+    def test_reference_sample(self):
         """
-        Test the sample input file.
+        Test the first sample input file.
         """
-        convert('../sample_data/GCNET_Summit_20140601.txt')
+        self.check_output('../sample_data/GCNET_Summit_20140601.txt', '../sample_data/GCNET_Summit_20140601.nc')
 
 
-class TestPROMICE(unittest.TestCase):
+class TestPROMICE(TestConverter):
     """
     Test PROMICE.
 
     See the docstring for TestAAWS for details.
     """
 
-    def test_sample1(self):
+    def test_reference_sample(self):
         """
-        Test the sample input file.
+        Test the first sample input file.
         """
-        convert('../sample_data/PROMICE_EGP_20160501.txt')
+        self.check_output('../sample_data/PROMICE_EGP_20160501.txt', '../sample_data/PROMICE_EGP_20160501.nc')
 
 
 if __name__ == '__main__':
-    unittest.main(verbosity=1)
+    unittest.main(verbosity=3)
