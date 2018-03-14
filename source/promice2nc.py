@@ -178,7 +178,7 @@ def promice2nc(args, op_file, station_dict, station_name):
 	ds['longitude'] = ((),longitude)
 	
 	ds.attrs = {'title':'Weather Station Data', 'source':'Surface Observations', 'featureType':'timeSeries', 'institution':'Programme for Monitoring of the Greenland Ice Sheet', 
-	'reference':'http://www.promice.dk/home.html', 'Conventions':'CF-1.7', 'time_convention':"'time: point' variables match the time coordinate values exactly, whereas 'time: mean' variables are valid for the mean time within the time_bounds variable." + " e.g.: elevation is measured once per hour at the time stored in the 'time' coordinate." + 	" On the other hand, air_temperature is continuously measured and then hourly-mean values are stored for each period contained in the time_bounds variable"}
+	            'reference':'http://www.promice.dk/home.html', 'Conventions':'CF-1.7', 'time_convention':"'time: point' variables are valid for exactly the time value stored in the time coordinate, whereas 'time: mean' variables are valid for the mean time within the time_bounds variable." + " For example, elevation was measured once per hour at the time stored in the 'time' coordinate." + 	" On the other hand, air_temperature was continually measured at high frequency and then averaged over each period contained in the time_bounds variable into the stored hourly-mean values."}
 
 	ds['year'].attrs = {'units':'1', 'long_name':'Year'}
 	ds['month'].attrs = {'units':'1', 'long_name':'Month of Year'}
@@ -227,11 +227,11 @@ def promice2nc(args, op_file, station_dict, station_name):
 	ds['ice_velocity_GPS_total'].attrs = {'units':'meter second-1', 'long_name':'Ice velocity derived from GPS Lat and Long', 'standard_name':'', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
 	ds['ice_velocity_GPS_x'].attrs = {'units':'meter second-1', 'long_name':'x-component of Ice velocity derived from GPS Lat and Long', 'standard_name':'land_ice_surface_x_velocity', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
 	ds['ice_velocity_GPS_y'].attrs = {'units':'meter second-1', 'long_name':'y-component of Ice velocity derived from GPS Lat and Long', 'standard_name':'land_ice_surface_y_velocity', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
-	ds['time'].attrs= {'units':'seconds since 1970-01-01 00:00:00', 'long_name':'time of measurement',	'standard_name':'time', 'bounds':'time_bounds', 'calendar':'leap'}
+	ds['time'].attrs= {'units':'seconds since 1970-01-01 00:00:00', 'long_name':'Time',	'standard_name':'time', 'bounds':'time_bounds', 'calendar':'leap'}
 	ds['sza'].attrs= {'units':'degree', 'long_name':'Solar Zenith Angle', 'standard_name':'solar_zenith_angle', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
 	ds['station_name'].attrs= {'long_name':'Station Name', 'cf_role':'timeseries_id'}
-	ds['latitude'].attrs= {'units':'degrees_north', 'standard_name':'latitude'}
-	ds['longitude'].attrs= {'units':'degrees_east', 'standard_name':'longitude'}
+	ds['latitude'].attrs= {'units':'degrees_north', 'long_name':'Latitude', 'standard_name':'latitude'}
+	ds['longitude'].attrs= {'units':'degrees_east', 'long_name':'Longitude', 'standard_name':'longitude'}
 	
 
 	encoding = {'year': {'_FillValue': False, 'dtype': 'i2'},

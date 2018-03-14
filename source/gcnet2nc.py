@@ -213,7 +213,7 @@ def gcnet2nc(args, op_file, station_dict, station_name):
 	ds['longitude'] = ((),longitude)
 
 	ds.attrs = {'title':'Surface Radiation Data from Greenland Climate Network', 'source':'Surface Observations', 'featureType':'timeSeries', 'institution':'Cooperative Institute for Research in Enviornmental Sciences', 
-	'reference':'http://cires.colorado.edu/science/groups/steffen/gcnet/', 'Conventions':'CF-1.7', 'time_convention':"'time: point' variables match the time coordinate values exactly, whereas 'time: mean' variables are valid for the mean time within the time_bounds variable." + " e.g.: battery_voltage is measured once per hour at the time stored in the 'time' coordinate." + 	" On the other hand, temperature_tc_1 is continuously measured and then hourly-mean values are stored for each period contained in the time_bounds variable"}
+	            'reference':'http://cires.colorado.edu/science/groups/steffen/gcnet/', 'Conventions':'CF-1.7', 'time_convention':"'time: point' variables are valid for exactly the time value stored in the time coordinate, whereas 'time: mean' variables are valid for the mean time within the time_bounds variable." + " For example, battery_voltage was measured once per hour at the time stored in the 'time' coordinate." + 	" On the other hand, temperature_tc_1 was continually measured at high frequency and then averaged over each period contained in the time_bounds variable into the stored hourly-mean values."}
 
 	ds['station_number'].attrs= {'units':'1', 'long_name':'Station Number'}
 	ds['year'].attrs= {'units':'1', 'long_name':'Year'}
@@ -294,11 +294,11 @@ def gcnet2nc(args, op_file, station_dict, station_name):
 	ds['qc_tsnow9'].attrs= {'units':'1', 'long_name':'Quality Control flag for T Snow 9'}
 	ds['qc_tsnow10'].attrs= {'units':'1', 'long_name':'Quality Control flag for T Snow 10'}
 	ds['qc_battery'].attrs= {'units':'1', 'long_name':'Quality Control flag for Battery Voltage'}
-	ds['time'].attrs= {'units':'seconds since 1970-01-01 00:00:00', 'long_name':'time of measurement',	'standard_name':'time', 'bounds':'time_bounds', 'calendar':'leap'}
+	ds['time'].attrs= {'units':'seconds since 1970-01-01 00:00:00', 'long_name':'Time',	'standard_name':'time', 'bounds':'time_bounds', 'calendar':'leap'}
 	ds['sza'].attrs= {'units':'degree', 'long_name':'Solar Zenith Angle', 'standard_name':'solar_zenith_angle', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
 	ds['station_name'].attrs= {'long_name':'Station Name', 'cf_role':'timeseries_id'}
-	ds['latitude'].attrs= {'units':'degrees_north', 'standard_name':'latitude'}
-	ds['longitude'].attrs= {'units':'degrees_east', 'standard_name':'longitude'}
+	ds['latitude'].attrs= {'units':'degrees_north', 'long_name':'Latitude', 'standard_name':'latitude'}
+	ds['longitude'].attrs= {'units':'degrees_east', 'long_name':'Longitude', 'standard_name':'longitude'}
 	
 
 	encoding = {'station_number': {'dtype': 'i2'},

@@ -1,3 +1,11 @@
+2018-03-14  Charlie Zender  <zender@uci.edu>
+
+	* Change time long_name to Time
+
+	* Add long_name to latitude/longitude
+
+	* Reword time_convention
+
 2018-03-12  Ajay Saini  <sainiak@uci.edu>
 
 	* Defined function to get input file from args
