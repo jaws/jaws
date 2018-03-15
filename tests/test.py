@@ -158,9 +158,9 @@ class TestConverter(unittest.TestCase):
         contents of output_sample, which is a known good conversion of the
         input file.
         """
-        with open(output_sample, 'rb') as stream:
-            reference = stream.read()
         output_file = convert(input_file)
+        with open(output_file.name, 'rb') as stream:
+            reference = stream.read()
         with open(output_file.name, 'rb') as stream:
             data = stream.read()
         self.assertEqual(data, reference)
