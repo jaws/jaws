@@ -1,0 +1,303 @@
+{
+  "station_number": {
+    "dtype": "i2"
+  },
+  "year": {
+    "dtype": "i2"
+  },
+  "julian_decimal_time": {
+    "_FillValue": false,
+    "dtype": "f4"
+  },
+  "sw_down": {
+    "_FillValue": "FILL",
+    "dtype": "f4"
+  },
+  "sw_up": {
+    "_FillValue": "FILL",
+    "dtype": "f4"
+  },
+  "net_radiation": {
+    "_FillValue": "FILL",
+    "dtype": "f4"
+  },
+  "temperature_tc_1": {
+    "_FillValue": "FILL",
+    "dtype": "f4"
+  },
+  "temperature_tc_2": {
+    "_FillValue": "FILL",
+    "dtype": "f4"
+  },
+  "temperature_cs500_1": {
+    "_FillValue": "FILL",
+    "dtype": "f4"
+  },
+  "temperature_cs500_2": {
+    "_FillValue": "FILL",
+    "dtype": "f4"
+  },
+  "relative_humidity_1": {
+    "_FillValue": "FILL",
+    "dtype": "f4"
+  },
+  "relative_humidity_2": {
+    "_FillValue": "FILL",
+    "dtype": "f4"
+  },
+  "u1_wind_speed": {
+    "_FillValue": "FILL",
+    "dtype": "f4"
+  },
+  "u2_wind_speed": {
+    "_FillValue": "FILL",
+    "dtype": "f4"
+  },
+  "u_direction_1": {
+    "_FillValue": "FILL",
+    "dtype": "f4"
+  },
+  "u_direction_2": {
+    "_FillValue": "FILL",
+    "dtype": "f4"
+  },
+  "atmos_pressure": {
+    "_FillValue": "FILL",
+    "dtype": "f4"
+  },
+  "snow_height_1": {
+    "_FillValue": "FILL",
+    "dtype": "f4"
+  },
+  "snow_height_2": {
+    "_FillValue": "FILL",
+    "dtype": "f4"
+  },
+  "t_snow_01": {
+    "_FillValue": "FILL",
+    "dtype": "f4"
+  },
+  "t_snow_02": {
+    "_FillValue": "FILL",
+    "dtype": "f4"
+  },
+  "t_snow_03": {
+    "_FillValue": "FILL",
+    "dtype": "f4"
+  },
+  "t_snow_04": {
+    "_FillValue": "FILL",
+    "dtype": "f4"
+  },
+  "t_snow_05": {
+    "_FillValue": "FILL",
+    "dtype": "f4"
+  },
+  "t_snow_06": {
+    "_FillValue": "FILL",
+    "dtype": "f4"
+  },
+  "t_snow_07": {
+    "_FillValue": "FILL",
+    "dtype": "f4"
+  },
+  "t_snow_08": {
+    "_FillValue": "FILL",
+    "dtype": "f4"
+  },
+  "t_snow_09": {
+    "_FillValue": "FILL",
+    "dtype": "f4"
+  },
+  "t_snow_10": {
+    "_FillValue": "FILL",
+    "dtype": "f4"
+  },
+  "battery_voltage": {
+    "_FillValue": "FILL",
+    "dtype": "f4"
+  },
+  "sw_down_max": {
+    "_FillValue": "FILL",
+    "dtype": "f4"
+  },
+  "sw_up_max": {
+    "_FillValue": "FILL",
+    "dtype": "f4"
+  },
+  "net_radiation_max": {
+    "_FillValue": "FILL",
+    "dtype": "f4"
+  },
+  "max_air_temperature_1": {
+    "_FillValue": "FILL",
+    "dtype": "f4"
+  },
+  "max_air_temperature_2": {
+    "_FillValue": "FILL",
+    "dtype": "f4"
+  },
+  "min_air_temperature_1": {
+    "_FillValue": "FILL",
+    "dtype": "f4"
+  },
+  "min_air_temperature_2": {
+    "_FillValue": "FILL",
+    "dtype": "f4"
+  },
+  "max_windspeed_u1": {
+    "_FillValue": "FILL",
+    "dtype": "f4"
+  },
+  "max_windspeed_u2": {
+    "_FillValue": "FILL",
+    "dtype": "f4"
+  },
+  "stdev_windspeed_u1": {
+    "_FillValue": "FILL",
+    "dtype": "f4"
+  },
+  "stdev_windspeed_u2": {
+    "_FillValue": "FILL",
+    "dtype": "f4"
+  },
+  "ref_temperature": {
+    "_FillValue": "FILL",
+    "dtype": "f4"
+  },
+  "windspeed_2m": {
+    "_FillValue": "FILL",
+    "dtype": "f4"
+  },
+  "windspeed_10m": {
+    "_FillValue": "FILL",
+    "dtype": "f4"
+  },
+  "wind_sensor_height_1": {
+    "_FillValue": "FILL",
+    "dtype": "f4"
+  },
+  "wind_sensor_height_2": {
+    "_FillValue": "FILL",
+    "dtype": "f4"
+  },
+  "albedo": {
+    "_FillValue": "FILL",
+    "dtype": "f4"
+  },
+  "zenith_angle": {
+    "_FillValue": "FILL",
+    "dtype": "f4"
+  },
+  "qc1": {
+    "dtype": "i4"
+  },
+  "qc9": {
+    "dtype": "i4"
+  },
+  "qc17": {
+    "dtype": "i4"
+  },
+  "qc25": {
+    "dtype": "i4"
+  },
+  "qc_swdn": {
+    "dtype": "i1"
+  },
+  "qc_swup": {
+    "dtype": "i1"
+  },
+  "qc_netradiation": {
+    "dtype": "i1"
+  },
+  "qc_ttc1": {
+    "dtype": "i1"
+  },
+  "qc_ttc2": {
+    "dtype": "i1"
+  },
+  "qc_tcs1": {
+    "dtype": "i1"
+  },
+  "qc_tcs2": {
+    "dtype": "i1"
+  },
+  "qc_rh1": {
+    "dtype": "i1"
+  },
+  "qc_rh2": {
+    "dtype": "i1"
+  },
+  "qc_u1": {
+    "dtype": "i1"
+  },
+  "qc_u2": {
+    "dtype": "i1"
+  },
+  "qc_ud1": {
+    "dtype": "i1"
+  },
+  "qc_ud2": {
+    "dtype": "i1"
+  },
+  "qc_pressure": {
+    "dtype": "i1"
+  },
+  "qc_snowheight1": {
+    "dtype": "i1"
+  },
+  "qc_snowheight2": {
+    "dtype": "i1"
+  },
+  "qc_tsnow1": {
+    "dtype": "i1"
+  },
+  "qc_tsnow2": {
+    "dtype": "i1"
+  },
+  "qc_tsnow3": {
+    "dtype": "i1"
+  },
+  "qc_tsnow4": {
+    "dtype": "i1"
+  },
+  "qc_tsnow5": {
+    "dtype": "i1"
+  },
+  "qc_tsnow6": {
+    "dtype": "i1"
+  },
+  "qc_tsnow7": {
+    "dtype": "i1"
+  },
+  "qc_tsnow8": {
+    "dtype": "i1"
+  },
+  "qc_tsnow9": {
+    "dtype": "i1"
+  },
+  "qc_tsnow10": {
+    "dtype": "i1"
+  },
+  "qc_battery": {
+    "dtype": "i1"
+  },
+  "time": {
+    "_FillValue": false
+  },
+  "time_bounds": {
+    "_FillValue": false
+  },
+  "sza": {
+    "_FillValue": false
+  },
+  "latitude": {
+    "_FillValue": false
+  },
+  "longitude": {
+    "_FillValue": false
+  },
+  "station_name": {
+    "dtype": "unicode"
+  }
+}
