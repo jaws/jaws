@@ -1,3 +1,11 @@
+2018-03-12  Ajay Saini  <sainiak@uci.edu>
+
+	* Work in progress on debugging file matching error in jaws.py
+
+	* Added overview and plots in slides
+
+	* Worked on conda package
+
 2018-03-14  Charlie Zender  <zender@uci.edu>
 
 	* Change time long_name to Time
@@ -5,6 +13,16 @@
 	* Add long_name to latitude/longitude
 
 	* Reword time_convention
+
+2018-03-13  Ajay Saini  <sainiak@uci.edu>
+
+	* created function 'convert_to_dataset' for testing
+
+	* Added tests for input/output file parsing/generation
+
+	* Define parent class for converter testers
+
+	* sample converted files added
 
 2018-03-12  Ajay Saini  <sainiak@uci.edu>
 
