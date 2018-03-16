@@ -1,0 +1,47 @@
+{
+  "timestamp": {
+    "dtype": "unicode"
+  },
+  "air_temp": {
+    "_FillValue": "FILL",
+    "dtype": "f4"
+  },
+  "vtempdiff": {
+    "_FillValue": "FILL",
+    "dtype": "f4"
+  },
+  "rh": {
+    "_FillValue": "FILL",
+    "dtype": "f4"
+  },
+  "pressure": {
+    "_FillValue": "FILL",
+    "dtype": "f4"
+  },
+  "wind_dir": {
+    "_FillValue": "FILL",
+    "dtype": "f4"
+  },
+  "wind_spd": {
+    "_FillValue": "FILL",
+    "dtype": "f4"
+  },
+  "time": {
+    "_FillValue": false
+  },
+  "time_bounds": {
+    "_FillValue": false
+  },
+  "sza": {
+    "_FillValue": false
+  },
+  "latitude": {
+    "_FillValue": false
+  },
+  "longitude": {
+    "_FillValue": false
+  },
+  "station_name": {
+    "dtype": "unicode"
+  }
+}
