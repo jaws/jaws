@@ -1,4 +1,7 @@
+import json
 import os
+
+import collections
 import pytz
 from datetime import datetime
 
@@ -7,6 +10,22 @@ pascal_per_millibar = 100
 seconds_in_hour = 3600
 fillvalue_double = 9.969209968386869e+36
 fillvalue_float = 9.96921e+36
+
+def get_encoding(name, fillvalue):
+	path = relative_path('resources/{}/encoding.json'.format(name))
+	with open(path) as stream:
+		data = json.load(stream)
+
+	def recursive_fill(data):
+		for k, v in data.items():
+			if k == '_FillValue' and v == 'FILL':
+				data[k] = fillvalue
+			elif isinstance(v, dict):
+				recursive_fill(v)
+
+	recursive_fill(data)
+	return data
+
 
 def time_common(tzone):
 	tz = pytz.timezone(tzone)
