@@ -82,9 +82,9 @@
     "coordinates": "longitude latitude"
   },
   "relative_humidity_2": {
-    "units": "1",
     "long_name": "Relative Humidity 2",
     "standard_name": "realtive_humidity",
+    "units": "1",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
   },

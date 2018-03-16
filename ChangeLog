@@ -1,4 +1,18 @@
-2018-03-12  Ajay Saini  <sainiak@uci.edu>
+2018-03-15  Ajay Saini  <sainiak@uci.edu>
+
+	* Moved encoding for all networks to json files
+
+	* Created common function get_encoding to retrieve encoding from respective json files
+
+	* Moved attributes for all networks to ds.json files
+
+	* Created common function load_ds_attrs to retrieve attributes from respective json files
+
+	* Re-ordered attributes (Closed issue #66)
+
+	* Captilazed value of long_name attributes (Closed issue #67)
+
+2018-03-14  Ajay Saini  <sainiak@uci.edu>
 
 	* Work in progress on debugging file matching error in jaws.py
 
