@@ -11,3 +11,7 @@ monthly_diurnal.ipynb
 monthly_values.ipynb
 annual_cycle.ipynb
 climatological_seasonal_cycle.ipynb
+
+source/common.pyc
+source/jaws.pyc
+source/sunposition.pyc
