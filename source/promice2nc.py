@@ -177,63 +177,7 @@ def promice2nc(args, op_file, station_dict, station_name):
 	ds['latitude'] = ((),latitude)
 	ds['longitude'] = ((),longitude)
 	
-	ds.attrs = {'title':'Weather Station Data', 'source':'Surface Observations', 'featureType':'timeSeries', 'institution':'Programme for Monitoring of the Greenland Ice Sheet', 
-	            'reference':'http://www.promice.dk/home.html', 'Conventions':'CF-1.7', 'time_convention':"'time: point' variables are valid for exactly the time value stored in the time coordinate, whereas 'time: mean' variables are valid for the mean time within the time_bounds variable." + " For example, elevation was measured once per hour at the time stored in the 'time' coordinate." + 	" On the other hand, air_temperature was continually measured at high frequency and then averaged over each period contained in the time_bounds variable into the stored hourly-mean values."}
-
-	ds['year'].attrs = {'units':'1', 'long_name':'Year'}
-	ds['month'].attrs = {'units':'1', 'long_name':'Month of Year'}
-	ds['day'].attrs = {'units':'1', 'long_name':'Day of Month'}
-	ds['hour'].attrs = {'units':'1', 'long_name':'Hour of Day(UTC)'}
-	ds['day_of_year'].attrs = {'units':'1', 'long_name':'Day of Year'}
-	ds['day_of_century'].attrs = {'units':'1', 'long_name':'Day of Century'}
-	ds['air_pressure'].attrs = {'units':'pascal', 'long_name':'Air Pressure', 'standard_name':'air_pressure', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
-	ds['air_temperature'].attrs = {'units':'kelvin', 'long_name':'Air Temperature', 'standard_name':'air_temperature', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
-	ds['air_temperature_hygroclip'].attrs = {'units':'kelvin', 'long_name':'Air Temperature HygroClip', 'standard_name':'air_temperature', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
-	ds['relative_humidity_wrtwater'].attrs = {'units':'1', 'long_name':'Relative Humidity wrt Water', 'standard_name':'relative_humidity', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
-	ds['relative_humidity'].attrs = {'units':'1', 'long_name':'Relative Humidity', 'standard_name':'relative_humidity', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
-	ds['wind_speed'].attrs = {'units':'meter second-1', 'long_name':'Wind Speed', 'standard_name':'wind_speed', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
-	ds['wind_direction'].attrs = {'units':'degree', 'long_name':'Wind Direction', 'standard_name':'wind_from_direction', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
-	ds['shortwave_radiation_down'].attrs = {'units':'watt meter-2', 'long_name':'Shortwave Radiation Down', 'standard_name':'downwelling_shortwave_flux_in_air', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
-	ds['shortwave_radiation_down_cor'].attrs = {'units':'watt meter-2', 'long_name':'Shortwave Radiation Down Cor', 'standard_name':'downwelling_shortwave_flux_in_air', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
-	ds['shortwave_radiation_up'].attrs = {'units':'watt meter-2', 'long_name':'Shortwave Radiation Up', 'standard_name':'upwelling_shortwave_flux_in_air', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
-	ds['shortwave_radiation_up_cor'].attrs = {'units':'watt meter-2', 'long_name':'Shortwave Radiation Up Cor', 'standard_name':'upwelling_shortwave_flux_in_air', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
-	ds['albedo_theta'].attrs = {'units':'1', 'long_name':'Albedo_theta<70d', 'standard_name':'surface_albedo', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
-	ds['longwave_radiation_down'].attrs = {'units':'watt meter-2', 'long_name':'Longwave Radiation Down', 'standard_name':'downwelling_longwave_flux_in_air', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
-	ds['longwave_radiation_up'].attrs = {'units':'watt meter-2', 'long_name':'Longwave Radiation Up', 'standard_name':'upwelling_longwave_flux_in_air', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
-	ds['cloudcover'].attrs = {'units':'1', 'long_name':'Cloud Cover', 'standard_name':'', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
-	ds['surface_temp'].attrs = {'units':'kelvin', 'long_name':'Surface Temperature', 'standard_name':'surface_temperature', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
-	ds['height_sensor_boom'].attrs = {'units':'meter', 'long_name':'Height Sensor Boom', 'standard_name':'', 'coordinates':'longitude latitude', 'cell_methods':'time: point'}
-	ds['height_stakes'].attrs = {'units':'meter', 'long_name':'Height Stakes', 'standard_name':'', 'coordinates':'longitude latitude', 'cell_methods':'time: point'}
-	ds['depth_pressure_transducer'].attrs = {'units':'meter', 'long_name':'Depth Pressure Transducer', 'standard_name':'', 'coordinates':'longitude latitude', 'cell_methods':'time: point'}
-	ds['depth_pressure_transducer_cor'].attrs = {'units':'meter', 'long_name':'Depth Pressure Transducer Cor', 'standard_name':'', 'coordinates':'longitude latitude', 'cell_methods':'time: point'}
-	ds['ice_temp_01'].attrs = {'units':'kelvin', 'long_name':'Ice Temperature 1', 'standard_name':'land_ice_temperature', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
-	ds['ice_temp_02'].attrs = {'units':'kelvin', 'long_name':'Ice Temperature 2', 'standard_name':'land_ice_temperature', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
-	ds['ice_temp_03'].attrs = {'units':'kelvin', 'long_name':'Ice Temperature 3', 'standard_name':'land_ice_temperature', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
-	ds['ice_temp_04'].attrs = {'units':'kelvin', 'long_name':'Ice Temperature 4', 'standard_name':'land_ice_temperature', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
-	ds['ice_temp_05'].attrs = {'units':'kelvin', 'long_name':'Ice Temperature 5', 'standard_name':'land_ice_temperature', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
-	ds['ice_temp_06'].attrs = {'units':'kelvin', 'long_name':'Ice Temperature 6', 'standard_name':'land_ice_temperature', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
-	ds['ice_temp_07'].attrs = {'units':'kelvin', 'long_name':'Ice Temperature 7', 'standard_name':'land_ice_temperature', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
-	ds['ice_temp_08'].attrs = {'units':'kelvin', 'long_name':'Ice Temperature 8', 'standard_name':'land_ice_temperature', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
-	ds['tilt_east'].attrs = {'units':'degree', 'long_name':'Tilt to East', 'standard_name':'', 'coordinates':'longitude latitude', 'cell_methods':'time: point'}
-	ds['tilt_north'].attrs = {'units':'degree', 'long_name':'Tilt to North', 'standard_name':'', 'coordinates':'longitude latitude', 'cell_methods':'time: point'}
-	ds['time_GPS'].attrs = {'units':'UTC', 'long_name':'Time GPS(hhmmssUTC)', 'standard_name':'time'}
-	ds['latitude_GPS'].attrs = {'units':'degrees_north', 'long_name':'Latitude GPS', 'standard_name':'latitude'}
-	ds['longitude_GPS'].attrs = {'units':'degrees_east', 'long_name':'Longitude GPS', 'standard_name':'longitude'}
-	ds['elevation'].attrs = {'units':'meter', 'long_name':'Elevation GPS', 'standard_name':'', 'coordinates':'longitude latitude', 'cell_methods':'time: point'}
-	ds['hor_dil_prec'].attrs = {'units':'1', 'long_name':'Horizontal Dilution of Precision GPS', 'standard_name':'', 'coordinates':'longitude latitude', 'cell_methods':'time: point'}
-	ds['logger_temp'].attrs = {'units':'kelvin', 'long_name':'Logger Temperature', 'standard_name':'', 'coordinates':'longitude latitude', 'cell_methods':'time: point'}
-	ds['fan_current'].attrs = {'units':'ampere', 'long_name':'Fan Current', 'standard_name':'', 'coordinates':'longitude latitude', 'cell_methods':'time: point'}
-	ds['battery_voltage'].attrs = {'units':'volts', 'long_name':'Battery Voltage', 'standard_name':'battery_voltage', 'coordinates':'longitude latitude', 'cell_methods':'time: point'}
-	ds['ice_velocity_GPS_total'].attrs = {'units':'meter second-1', 'long_name':'Ice velocity derived from GPS Lat and Long', 'standard_name':'', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
-	ds['ice_velocity_GPS_x'].attrs = {'units':'meter second-1', 'long_name':'x-component of Ice velocity derived from GPS Lat and Long', 'standard_name':'land_ice_surface_x_velocity', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
-	ds['ice_velocity_GPS_y'].attrs = {'units':'meter second-1', 'long_name':'y-component of Ice velocity derived from GPS Lat and Long', 'standard_name':'land_ice_surface_y_velocity', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
-	ds['time'].attrs= {'units':'seconds since 1970-01-01 00:00:00', 'long_name':'Time',	'standard_name':'time', 'bounds':'time_bounds', 'calendar':'leap'}
-	ds['sza'].attrs= {'units':'degree', 'long_name':'Solar Zenith Angle', 'standard_name':'solar_zenith_angle', 'coordinates':'longitude latitude', 'cell_methods':'time: mean'}
-	ds['station_name'].attrs= {'long_name':'Station Name', 'cf_role':'timeseries_id'}
-	ds['latitude'].attrs= {'units':'degrees_north', 'long_name':'Latitude', 'standard_name':'latitude'}
-	ds['longitude'].attrs= {'units':'degrees_east', 'long_name':'Longitude', 'standard_name':'longitude'}
-	
-
+	common.load_ds_attrs('promice', ds)
 	encoding = common.get_encoding('promice', fillvalue_float)
 
 	write_data(args, ds, op_file, encoding)

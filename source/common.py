@@ -27,6 +27,19 @@ def get_encoding(name, fillvalue):
 	return data
 
 
+def load_ds_attrs(name, ds):
+	path = relative_path('resources/{}/ds.json'.format(name))
+	with open(path) as stream:
+		data = stream.read()
+
+	decoder = json.JSONDecoder(object_pairs_hook=collections.OrderedDict)
+	attr_dict = decoder.decode(data)
+
+	ds.attrs = attr_dict.pop('attrs')
+	for key, value in attr_dict.items():
+		ds[key].attrs = value
+
+
 def time_common(tzone):
 	tz = pytz.timezone(tzone)
 	dtime_1970 = datetime(1970,1,1)
