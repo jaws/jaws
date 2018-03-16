@@ -487,10 +487,12 @@
     "cf_role": "timeseries_id"
   },
   "latitude": {
+    "long_name": "Latitude",
     "standard_name": "latitude",
     "units": "degrees_north"
   },
   "longitude": {
+    "long_name": "Longitude",
     "standard_name": "longitude",
     "units": "degrees_east"
   }
