@@ -1,0 +1,497 @@
+{
+  "attrs": {
+    "title": "Surface Radiation Data from Greenland Climate Network",
+    "source": "Surface Observations",
+    "featureType": "timeSeries",
+    "institution": "Cooperative Institute for Research in Enviornmental Sciences",
+    "reference": "http://cires.colorado.edu/science/groups/steffen/gcnet/",
+    "Conventions": "CF-1.7",
+    "time_convention": "'time: point' variables are valid for exactly the time value stored in the time coordinate, whereas 'time: mean' variables are valid for the mean time within the time_bounds variable. For example, battery_voltage was measured once per hour at the time stored in the 'time' coordinate. On the other hand, temperature_tc_1 was continually measured at high frequency and then averaged over each period contained in the time_bounds variable into the stored hourly-mean values."
+  },
+  "station_number": {
+    "long_name": "Station Number",
+    "units": "1"
+  },
+  "year": {
+    "long_name": "Year",
+    "units": "1"
+  },
+  "julian_decimal_time": {
+    "long_name": "Julian Decimal Time",
+    "units": "decimal time",
+    "note": "For each year, time starts at 1.0000 and ends at 365.9999."
+  },
+  "sw_down": {
+    "long_name": "Shortwave Flux Down",
+    "standard_name": "downwelling_shortwave_flux_in_air",
+    "units": "watt meter-2",
+    "cell_methods": "time: mean",
+    "coordinates": "longitude latitude"
+  },
+  "sw_up": {
+    "long_name": "Shortwave Flux Up",
+    "standard_name": "upwelling_shortwave_flux_in_air",
+    "units": "watt meter-2",
+    "cell_methods": "time: mean",
+    "coordinates": "longitude latitude"
+  },
+  "net_radiation": {
+    "long_name": "Net Radiation",
+    "standard_name": "surface_net_downward_radiative_flux",
+    "units": "watt meter-2",
+    "cell_methods": "time: mean",
+    "coordinates": "longitude latitude"
+  },
+  "temperature_tc_1": {
+    "long_name": "TC-1 Air Temperature",
+    "standard_name": "air_temperature",
+    "units": "kelvin",
+    "cell_methods": "time: mean",
+    "coordinates": "longitude latitude",
+    "note": "air temperature from TC sensor"
+  },
+  "temperature_tc_2": {
+    "long_name": "TC-2 Air Temperature",
+    "standard_name": "air_temperature",
+    "units": "kelvin",
+    "cell_methods": "time: mean",
+    "coordinates": "longitude latitude",
+    "note": "air temperature from TC sensor"
+  },
+  "temperature_cs500_1": {
+    "long_name": "CS500-1 Air Temperature",
+    "standard_name": "air_temperature",
+    "units": "kelvin",
+    "cell_methods": "time: mean",
+    "coordinates": "longitude latitude",
+    "note": "air temperature from CS500 sensor"
+  },
+  "temperature_cs500_2": {
+    "long_name": "CS500-2 Air Temperature",
+    "standard_name": "air_temperature",
+    "units": "kelvin",
+    "cell_methods": "time: mean",
+    "coordinates": "longitude latitude",
+    "note": "air temperature from CS500 sensor"
+  },
+  "relative_humidity_1": {
+    "long_name": "Relative Humidity 1",
+    "standard_name": "realtive_humidity",
+    "units": "1",
+    "cell_methods": "time: mean",
+    "coordinates": "longitude latitude"
+  },
+  "relative_humidity_2": {
+    "units": "1",
+    "long_name": "Relative Humidity 2",
+    "standard_name": "realtive_humidity",
+    "cell_methods": "time: mean",
+    "coordinates": "longitude latitude"
+  },
+  "u1_wind_speed": {
+    "long_name": "U1 Wind Speed",
+    "standard_name": "wind_speed",
+    "units": "meter second-1",
+    "cell_methods": "time: mean",
+    "coordinates": "longitude latitude"
+  },
+  "u2_wind_speed": {
+    "long_name": "U2 Wind Speed",
+    "standard_name": "wind_speed",
+    "units": "meter second-1",
+    "cell_methods": "time: mean",
+    "coordinates": "longitude latitude"
+  },
+  "u_direction_1": {
+    "long_name": "U Direction 1",
+    "standard_name": "wind_from_direction",
+    "units": "degree",
+    "cell_methods": "time: mean",
+    "coordinates": "longitude latitude"
+  },
+  "u_direction_2": {
+    "long_name": "U Direction 2",
+    "standard_name": "wind_from_direction",
+    "units": "degree",
+    "cell_methods": "time: mean",
+    "coordinates": "longitude latitude"
+  },
+  "atmos_pressure": {
+    "long_name": "Atmospheric Pressure",
+    "standard_name": "surface_air_pressure",
+    "units": "pascal",
+    "cell_methods": "time: mean",
+    "coordinates": "longitude latitude"
+  },
+  "snow_height_1": {
+    "long_name": "Snow Height 1",
+    "standard_name": "snow_height",
+    "units": "meter",
+    "cell_methods": "time: mean",
+    "coordinates": "longitude latitude"
+  },
+  "snow_height_2": {
+    "long_name": "Snow Height 2",
+    "standard_name": "snow_height",
+    "units": "meter",
+    "cell_methods": "time: mean",
+    "coordinates": "longitude latitude"
+  },
+  "t_snow_01": {
+    "long_name": "T Snow 1",
+    "standard_name": "",
+    "units": "kelvin",
+    "cell_methods": "time: mean",
+    "coordinates": "longitude latitude"
+  },
+  "t_snow_02": {
+    "long_name": "T Snow 2",
+    "standard_name": "",
+    "units": "kelvin",
+    "cell_methods": "time: mean",
+    "coordinates": "longitude latitude"
+  },
+  "t_snow_03": {
+    "long_name": "T Snow 3",
+    "standard_name": "",
+    "units": "kelvin",
+    "cell_methods": "time: mean",
+    "coordinates": "longitude latitude"
+  },
+  "t_snow_04": {
+    "long_name": "T Snow 4",
+    "standard_name": "",
+    "units": "kelvin",
+    "cell_methods": "time: mean",
+    "coordinates": "longitude latitude"
+  },
+  "t_snow_05": {
+    "long_name": "T Snow 5",
+    "standard_name": "",
+    "units": "kelvin",
+    "cell_methods": "time: mean",
+    "coordinates": "longitude latitude"
+  },
+  "t_snow_06": {
+    "long_name": "T Snow 6",
+    "standard_name": "",
+    "units": "kelvin",
+    "cell_methods": "time: mean",
+    "coordinates": "longitude latitude"
+  },
+  "t_snow_07": {
+    "long_name": "T Snow 7",
+    "standard_name": "",
+    "units": "kelvin",
+    "cell_methods": "time: mean",
+    "coordinates": "longitude latitude"
+  },
+  "t_snow_08": {
+    "long_name": "T Snow 8",
+    "standard_name": "",
+    "units": "kelvin",
+    "cell_methods": "time: mean",
+    "coordinates": "longitude latitude"
+  },
+  "t_snow_09": {
+    "long_name": "T Snow 9",
+    "standard_name": "",
+    "units": "kelvin",
+    "cell_methods": "time: mean",
+    "coordinates": "longitude latitude"
+  },
+  "t_snow_10": {
+    "long_name": "T Snow 10",
+    "standard_name": "",
+    "units": "kelvin",
+    "cell_methods": "time: mean",
+    "coordinates": "longitude latitude"
+  },
+  "battery_voltage": {
+    "long_name": "Battery Voltage",
+    "standard_name": "battery_voltage",
+    "units": "volts",
+    "cell_methods": "time: mean",
+    "coordinates": "longitude latitude"
+  },
+  "sw_down_max": {
+    "long_name": "Shortwave Flux Down Max",
+    "standard_name": "maximum_downwelling_shortwave_flux_in_air",
+    "units": "watt meter-2",
+    "cell_methods": "time: mean",
+    "coordinates": "longitude latitude"
+  },
+  "sw_up_max": {
+    "long_name": "Shortwave Flux Up Max",
+    "standard_name": "maximum_upwelling_shortwave_flux_in_air",
+    "units": "watt meter-2",
+    "cell_methods": "time: mean",
+    "coordinates": "longitude latitude"
+  },
+  "net_radiation_max": {
+    "long_name": "Net Radiation Max",
+    "standard_name": "maximum_net_radiation",
+    "units": "watt meter-2",
+    "cell_methods": "time: mean",
+    "coordinates": "longitude latitude"
+  },
+  "max_air_temperature_1": {
+    "long_name": "Max Air Temperature 1",
+    "standard_name": "air_temperature",
+    "units": "kelvin",
+    "cell_methods": "time: mean",
+    "coordinates": "longitude latitude"
+  },
+  "max_air_temperature_2": {
+    "long_name": "Max Air Temperature 2",
+    "standard_name": "air_temperature",
+    "units": "kelvin",
+    "cell_methods": "time: mean",
+    "coordinates": "longitude latitude"
+  },
+  "min_air_temperature_1": {
+    "long_name": "Min Air Temperature 1",
+    "standard_name": "air_temperature",
+    "units": "kelvin",
+    "cell_methods": "time: mean",
+    "coordinates": "longitude latitude"
+  },
+  "min_air_temperature_2": {
+    "long_name": "Min Air Temperature 2",
+    "standard_name": "air_temperature",
+    "units": "kelvin",
+    "cell_methods": "time: mean",
+    "coordinates": "longitude latitude"
+  },
+  "max_windspeed_u1": {
+    "long_name": "Max Windspeed-U1",
+    "standard_name": "wind_speed",
+    "units": "meter second-1",
+    "cell_methods": "time: mean",
+    "coordinates": "longitude latitude"
+  },
+  "max_windspeed_u2": {
+    "long_name": "Max Windspeed-U2",
+    "standard_name": "wind_speed",
+    "units": "meter second-1",
+    "cell_methods": "time: mean",
+    "coordinates": "longitude latitude"
+  },
+  "stdev_windspeed_u1": {
+    "long_name": "StdDev Windspeed-U1",
+    "standard_name": "wind_speed",
+    "units": "meter second-1",
+    "cell_methods": "time: mean",
+    "coordinates": "longitude latitude"
+  },
+  "stdev_windspeed_u2": {
+    "long_name": "StdDev Windspeed-U2",
+    "standard_name": "wind_speed",
+    "units": "meter second-1",
+    "cell_methods": "time: mean",
+    "coordinates": "longitude latitude"
+  },
+  "ref_temperature": {
+    "long_name": "Reference Temperature",
+    "standard_name": "Need to ask network manager about long name",
+    "units": "kelvin",
+    "cell_methods": "time: mean",
+    "coordinates": "longitude latitude"
+  },
+  "windspeed_2m": {
+    "long_name": "Windspeed@2m",
+    "standard_name": "wind_speed",
+    "units": "meter second-1",
+    "cell_methods": "time: mean",
+    "coordinates": "longitude latitude"
+  },
+  "windspeed_10m": {
+    "long_name": "Windspeed@10m",
+    "standard_name": "wind_speed",
+    "units": "meter second-1",
+    "cell_methods": "time: mean",
+    "coordinates": "longitude latitude"
+  },
+  "wind_sensor_height_1": {
+    "long_name": "Wind Sensor Height 1",
+    "standard_name": "",
+    "units": "meter",
+    "cell_methods": "time: mean",
+    "coordinates": "longitude latitude"
+  },
+  "wind_sensor_height_2": {
+    "long_name": "Wind Sensor Height 2",
+    "standard_name": "",
+    "units": "meter",
+    "cell_methods": "time: mean",
+    "coordinates": "longitude latitude"
+  },
+  "albedo": {
+    "long_name": "Albedo",
+    "standard_name": "surface_albedo",
+    "units": "1",
+    "cell_methods": "time: mean",
+    "coordinates": "longitude latitude"
+  },
+  "zenith_angle": {
+    "long_name": "Zenith Angle",
+    "standard_name": "solar_zenith_angle",
+    "units": "degree",
+    "cell_methods": "time: mean",
+    "coordinates": "longitude latitude"
+  },
+  "qc1": {
+    "long_name": "Quality Control variables 01-08",
+    "units": "1",
+    "coordinates": "longitude latitude"
+  },
+  "qc9": {
+    "long_name": "Quality Control variables 09-16",
+    "units": "1",
+    "coordinates": "longitude latitude"
+  },
+  "qc17": {
+    "long_name": "Quality Control variables 17-24",
+    "units": "1",
+    "coordinates": "longitude latitude"
+  },
+  "qc25": {
+    "long_name": "Quality Control variables 25-27",
+    "units": "1",
+    "coordinates": "longitude latitude"
+  },
+  "qc_swdn": {
+    "long_name": "Quality Control flag for Shortwave Flux Down",
+    "units": "1"
+  },
+  "qc_swup": {
+    "long_name": "Quality Control flag for Shortwave Flux Up",
+    "units": "1"
+  },
+  "qc_netradiation": {
+    "long_name": "Quality Control flag for Net Radiation",
+    "units": "1"
+  },
+  "qc_ttc1": {
+    "long_name": "Quality Control flag for TC-1 Air Temperature",
+    "units": "1"
+  },
+  "qc_ttc2": {
+    "long_name": "Quality Control flag for TC-2 Air Temperature",
+    "units": "1"
+  },
+  "qc_tcs1": {
+    "long_name": "Quality Control flag for CS500-1 Air Temperature",
+    "units": "1"
+  },
+  "qc_tcs2": {
+    "long_name": "Quality Control flag for CS500-2 Air Temperature",
+    "units": "1"
+  },
+  "qc_rh1": {
+    "long_name": "Quality Control flag for Relative Humidity 1",
+    "units": "1"
+  },
+  "qc_rh2": {
+    "long_name": "Quality Control flag for Relative Humidity 2",
+    "units": "1"
+  },
+  "qc_u1": {
+    "long_name": "Quality Control flag for U1 Wind Speed",
+    "units": "1"
+  },
+  "qc_u2": {
+    "long_name": "Quality Control flag for U2 Wind Speed",
+    "units": "1"
+  },
+  "qc_ud1": {
+    "long_name": "Quality Control flag for U Direction 1",
+    "units": "1"
+  },
+  "qc_ud2": {
+    "long_name": "Quality Control flag for U Direction 2",
+    "units": "1"
+  },
+  "qc_pressure": {
+    "long_name": "Quality Control flag for Atmospheric Pressure",
+    "units": "1"
+  },
+  "qc_snowheight1": {
+    "long_name": "Quality Control flag for Snow Height 1",
+    "units": "1"
+  },
+  "qc_snowheight2": {
+    "long_name": "Quality Control flag for Snow Height 2",
+    "units": "1"
+  },
+  "qc_tsnow1": {
+    "long_name": "Quality Control flag for T Snow 1",
+    "units": "1"
+  },
+  "qc_tsnow2": {
+    "long_name": "Quality Control flag for T Snow 2",
+    "units": "1"
+  },
+  "qc_tsnow3": {
+    "long_name": "Quality Control flag for T Snow 3",
+    "units": "1"
+  },
+  "qc_tsnow4": {
+    "long_name": "Quality Control flag for T Snow 4",
+    "units": "1"
+  },
+  "qc_tsnow5": {
+    "long_name": "Quality Control flag for T Snow 5",
+    "units": "1"
+  },
+  "qc_tsnow6": {
+    "long_name": "Quality Control flag for T Snow 6",
+    "units": "1"
+  },
+  "qc_tsnow7": {
+    "long_name": "Quality Control flag for T Snow 7",
+    "units": "1"
+  },
+  "qc_tsnow8": {
+    "long_name": "Quality Control flag for T Snow 8",
+    "units": "1"
+  },
+  "qc_tsnow9": {
+    "long_name": "Quality Control flag for T Snow 9",
+    "units": "1"
+  },
+  "qc_tsnow10": {
+    "long_name": "Quality Control flag for T Snow 10",
+    "units": "1"
+  },
+  "qc_battery": {
+    "long_name": "Quality Control flag for Battery Voltage",
+    "units": "1"
+  },
+  "time": {
+    "long_name": "Time",
+    "standard_name": "time",
+    "units": "seconds since 1970-01-01 00:00:00",
+    "bounds": "time_bounds",
+    "calendar": "leap"
+  },
+  "sza": {
+    "long_name": "Solar Zenith Angle",
+    "standard_name": "solar_zenith_angle",
+    "units": "degree",
+    "cell_methods": "time: mean",
+    "coordinates": "longitude latitude"
+  },
+  "station_name": {
+    "long_name": "Station Name",
+    "cf_role": "timeseries_id"
+  },
+  "latitude": {
+    "standard_name": "latitude",
+    "units": "degrees_north"
+  },
+  "longitude": {
+    "standard_name": "longitude",
+    "units": "degrees_east"
+  }
+}
