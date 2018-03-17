@@ -29,10 +29,5 @@ setup(
         "Topic :: Software Development :: Libraries :: Python Modules",
         "Operating System :: OS Independent"],
 
-    entry_points={  # Optional
-        'jaws': [
-            'jaws=jaws:main',
-        ],
-    },
-    install_requires=['pandas', 'numpy', 'xarray', 'pytz', 'matplotlib']
+    install_requires=['pandas', 'numpy', 'xarray', 'pytz', 'matplotlib', 'netCDF4']
 )
