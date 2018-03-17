@@ -29,5 +29,5 @@ setup(
         "Topic :: Software Development :: Libraries :: Python Modules",
         "Operating System :: OS Independent"],
 
-    install_requires=['pandas', 'numpy', 'xarray', 'pytz', 'matplotlib', 'netCDF4']
+    install_requires=['pandas', 'numpy', 'xarray', 'pytz', 'matplotlib', 'netcdf4']
 )
