@@ -3,16 +3,7 @@ package:
   version: "0.2.1"
 
 source:
-  path: ../source/
-
-build:
-  entry_points:
-    - jaws = jaws:main
-    - aaws2nc = aaws2nc:aaws2nc
-    - common = common:write_data
-    - gcnet2nc = gcnet2nc:gcnet2nc
-    - promice2nc = promice2nc:promice2nc
-    - sunposition = sunposition:main
+  path: ../
 
 requirements:
   build:
@@ -24,6 +15,7 @@ requirements:
     - pytz
     - netcdf4
     - matplotlib
+    - netcdf4
   run:
     - python
     - pandas
@@ -32,6 +24,7 @@ requirements:
     - pytz
     - netcdf4
     - matplotlib
+    - netcdf4
 
 about:
   home: https://github.com/jaws/jaws
