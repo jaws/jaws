@@ -1,3 +1,11 @@
+2018-03-16  Ajay Saini  <sainiak@uci.edu>
+
+	* Conda package created and uploaded to anaconda.org
+
+	* Working on more tests
+
+	* Worked on Interim Report presentation
+
 2018-03-15  Ajay Saini  <sainiak@uci.edu>
 
 	* Moved encoding for all networks to json files
