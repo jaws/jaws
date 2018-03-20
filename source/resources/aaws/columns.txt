@@ -1,0 +1,7 @@
+timestamp
+air_temp
+vtempdiff
+rh
+pressure
+wind_dir
+wind_spd
