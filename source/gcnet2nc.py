@@ -7,6 +7,29 @@ from sunposition import sunpos
 from common import write_data, time_common
 import common
 
+def init_dataframe(args, input_file):
+	check_na = 999.0
+
+	df = common.load_dataframe('gcnet', input_file, 54, delim_whitespace=True)
+	df.index.name = 'time'
+	df['qc25'] = df['qc25'].astype(str)  # To avoid 999 values marked as N/A
+	df.replace(check_na, np.nan, inplace=True)
+
+	temperature_keys = [
+		'temperature_tc_1', 'temperature_tc_2', 'temperature_cs500_1',
+		'temperature_cs500_2', 't_snow_01', 't_snow_02', 't_snow_03',
+		't_snow_04', 't_snow_05', 't_snow_06', 't_snow_07', 't_snow_08',
+		't_snow_09', 't_snow_10', 'max_air_temperature_1',
+		'max_air_temperature_2', 'min_air_temperature_1',
+		'min_air_temperature_2', 'ref_temperature']
+	df.loc[:, temperature_keys] += common.freezing_point_temp
+	df.loc[:, 'atmos_pressure'] *= common.pascal_per_millibar
+	df = df.where((pd.notnull(df)), get_fillvalue(args))
+	df['qc25'] = df['qc25'].astype(int)  # Convert it back to int
+
+	return df
+
+
 def gcnet2nc(args, op_file, station_dict, station_name):
 
 	freezing_point_temp = common.freezing_point_temp
