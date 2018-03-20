@@ -1,15 +1,35 @@
-import json
 import os
+import json
+import pandas as pd
 
 import collections
 import pytz
 from datetime import datetime
+
+###############################################################################
 
 freezing_point_temp = 273.15
 pascal_per_millibar = 100
 seconds_in_hour = 3600
 fillvalue_double = 9.969209968386869e+36
 fillvalue_float = 9.96921e+36
+
+###############################################################################
+
+def load_dataframe(name, input_file, header_rows, **kwargs):
+	path = relative_path('resources/{}/columns.txt'.format(name))
+	with open(path) as stream:
+		columns = stream.read().split('\n')
+	columns = [i.strip() for i in columns if i.strip()]
+
+	return pd.read_csv(
+		input_file,
+		skiprows=header_rows,
+		skip_blank_lines=True,
+		header=None,
+		names=columns,
+		**kwargs)
+
 
 def get_encoding(name, fillvalue):
 	path = relative_path('resources/{}/encoding.json'.format(name))
