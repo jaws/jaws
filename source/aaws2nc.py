@@ -23,6 +23,15 @@ def init_dataframe(args, input_file):
 	return df
 
 
+def get_station(args, input_file, stations):
+	with open(input_file) as stream:
+		stream.readline()
+		name = stream.readline()[12:]
+	name = name.strip('\n\r')
+	lat, lon, new_name = common.parse_station(args, stations[name])
+	return lat, lon, new_name or name
+
+
 def aaws2nc(args, op_file, station_dict, station_name):
 
 	freezing_point_temp = common.freezing_point_temp
