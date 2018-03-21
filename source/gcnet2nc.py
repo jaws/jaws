@@ -1,11 +1,11 @@
-import pandas as pd
-import numpy as np
-import xarray as xr
 from datetime import datetime, timedelta
-import pytz
-from sunposition import sunpos
-from common import write_data, time_common
+
+import numpy as np
+import pandas as pd
+import xarray as xr
+
 import common
+from sunposition import sunpos
 
 def get_fillvalue(args):
 	if args.fillvalue_float:
@@ -70,7 +70,7 @@ def get_time_and_sza(args, dataframe, longitude, latitude):
 	hour = [round(i - int(i), 3) * hour_conversion for i in hour]
 	hour = [int(h) if int(h) <= last_hour else 0 for h in hour]
 
-	dtime_1970, tz = time_common(args.timezone)
+	dtime_1970, tz = common.time_common(args.timezone)
 
 	for idx in range(num_rows):
 		time_year = dataframe['year'][idx]
@@ -147,4 +147,4 @@ def gcnet2nc(args, input_file, output_file, stations):
 	common.load_dataset_attributes('gcnet', ds)
 	encoding = common.get_encoding('gcnet', get_fillvalue(args))
 
-	write_data(args, ds, output_file, encoding)
+	common.write_data(args, ds, output_file, encoding)
