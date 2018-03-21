@@ -7,6 +7,12 @@ from sunposition import sunpos
 from common import write_data, time_common
 import common
 
+def get_fillvalue(args):
+	if args.fillvalue_float:
+		return args.fillvalue_float
+	return common.fillvalue_float
+
+
 def init_dataframe(args, input_file):
 	check_na = 999.0
 
