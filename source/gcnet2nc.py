@@ -101,6 +101,15 @@ def get_month_day(year, day, one_based=False):
 	return dt.month, dt.day
 
 
+def derive_times(dataframe, month, day):
+	num_rows = dataframe['year'].size
+	for idx in range(num_rows):
+		month[idx], day[idx] = get_month_day(
+			int(dataframe['year'][idx]),
+			int(dataframe['julian_decimal_time'][idx]),
+			True)
+
+
 
 def gcnet2nc(args, op_file, station_dict, station_name):
 
