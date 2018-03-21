@@ -35,6 +35,19 @@ def init_dataframe(args, input_file):
 
 	return df
 
+def get_station(args, input_file, stations):
+	df = common.load_dataframe('gcnet', input_file, 54, delim_whitespace=True)
+	station_number = df['station_number'][0]
+
+	if 30 <= station_number <= 32:
+		name = 'gcnet_lar{}'.format(station_number - 29)
+		station = stations[name]
+	else:
+		station = list(stations.values())[station_number]
+
+	return common.parse_station(args, station)
+
+
 
 def gcnet2nc(args, op_file, station_dict, station_name):
 
