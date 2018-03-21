@@ -1,0 +1,37 @@
+{
+  "qc1": [
+    "qc_swdn",
+    "qc_swup",
+    "qc_netradiation",
+    "qc_ttc1",
+    "qc_ttc2",
+    "qc_tcs1",
+    "qc_tcs2",
+    "qc_rh1"
+  ],
+  "qc9": [
+    "qc_rh2",
+    "qc_u1",
+    "qc_u2",
+    "qc_ud1",
+    "qc_ud2",
+    "qc_pressure",
+    "qc_snowheight1",
+    "qc_snowheight2"
+  ],
+  "qc17": [
+    "qc_tsnow1",
+    "qc_tsnow2",
+    "qc_tsnow3",
+    "qc_tsnow4",
+    "qc_tsnow5",
+    "qc_tsnow6",
+    "qc_tsnow7",
+    "qc_tsnow8"
+  ],
+  "qc25": [
+    "qc_tsnow9",
+    "qc_tsnow10",
+    "qc_battery"
+  ]
+}
