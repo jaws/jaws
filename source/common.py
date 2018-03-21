@@ -63,6 +63,11 @@ def read_ordered_json(path):
 		return decoder.decode(stream.read())
 
 
+def log(args, level, message):
+	if args.dbg_lvl > level:
+		print(message)
+
+
 def parse_station(args, station):
 	if len(station) == 3:
 		latitude, longitude, name = station
