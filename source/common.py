@@ -59,6 +59,17 @@ def load_ds_attrs(name, ds):
 	for key, value in attr_dict.items():
 		ds[key].attrs = value
 
+def parse_station(args, station):
+	if len(station) == 3:
+		latitude, longitude, name = station
+	else:
+		latitude, longitude = station
+		name = None
+	if args.station_name:
+		print('Default station name overrided by user provided station name')
+		name = args.station_name
+	return latitude, longitude, name
+
 
 def time_common(tzone):
 	tz = pytz.timezone(tzone)
