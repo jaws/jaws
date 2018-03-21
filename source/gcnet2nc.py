@@ -48,6 +48,14 @@ def get_station(args, input_file, stations):
 	return common.parse_station(args, station)
 
 
+def fill_dataset_quality_control(dataframe, dataset):
+	keys = common.read_ordered_json('resources/gcnet/quality_control.json')
+	for key, attributes in keys.items():
+		values = [list(map(int, i)) for i in zip(*map(str, dataframe[key]))]
+		for attr, value in zip(attributes, values):
+			dataset[attr] = 'time', value
+
+
 
 def gcnet2nc(args, op_file, station_dict, station_name):
 
