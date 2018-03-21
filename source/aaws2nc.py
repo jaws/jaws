@@ -13,6 +13,16 @@ def get_fillvalue(args):
 	return common.fillvalue_float
 
 
+def init_dataframe(args, input_file):
+	df = common.load_dataframe('aaws', input_file, 8)
+	df.index.name = 'time'
+	df.loc[:, 'air_temp'] += common.freezing_point_temp
+	df.loc[:, 'pressure'] *= common.pascal_per_millibar
+	df = df.where((pd.notnull(df)), get_fillvalue(args))
+
+	return df
+
+
 def aaws2nc(args, op_file, station_dict, station_name):
 
 	freezing_point_temp = common.freezing_point_temp
