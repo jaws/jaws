@@ -1,3 +1,23 @@
+2018-03-20  Ajay Saini  <sainiak@uci.edu>
+
+	* Created column names file in resources directory of each network
+
+	* common.py: Defined function load_dataframe
+
+	* GCNet- init_dataframe function to get df from common.py
+
+	* GCNet- defined function to get _FillValue
+
+	* GCNet- defined function to get station_name
+
+	* GCNet- created json file for quality control variables
+	
+	* common.py- defined function to parse lat, lon, stn name
+	
+	* function load_ds_attrs split into load_dataset_attributes and read_ordered_json
+	
+	* GCNet- defined function to split quality control variables
+
 2018-03-19  Ajay Saini  <sainiak@uci.edu>
 
 	* Work in progress on analysis scripts
