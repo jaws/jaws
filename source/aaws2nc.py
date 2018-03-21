@@ -6,6 +6,13 @@ from sunposition import sunpos
 from common import write_data, time_common
 import common
 
+
+def get_fillvalue(args):
+	if args.fillvalue_float:
+		return args.fillvalue_float
+	return common.fillvalue_float
+
+
 def aaws2nc(args, op_file, station_dict, station_name):
 
 	freezing_point_temp = common.freezing_point_temp
