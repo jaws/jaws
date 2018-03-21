@@ -175,7 +175,7 @@ def dispatch_converter(args, input_file, output_file, stations):
 
 	errmsg = 'Conversion failed: unsupported input file format.'
 	if char in converters:
-		converters[char](args, output_file, stations, args.station_name)
+		converters[char](args, input_file, output_file, stations)
 	else:
 		raise RuntimeError(errmsg)
 
