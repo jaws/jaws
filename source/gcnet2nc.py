@@ -56,6 +56,44 @@ def fill_dataset_quality_control(dataframe, dataset):
 			dataset[attr] = 'time', value
 
 
+def get_time_and_sza(args, dataframe, longitude, latitude):
+	# Divided by 4 because each hour value is a multiple of 4
+	# and then multiplied by 100 to convert decimal to integer
+	hour_conversion = 100 / 4
+	last_hour = 23
+	seconds_in_hour = common.seconds_in_hour
+	num_rows = dataframe['year'].size
+
+	month, day, time, time_bounds, sza = ([0] * num_rows for _ in range(5))
+
+	hour = dataframe['julian_decimal_time']
+	hour = [round(i - int(i), 3) * hour_conversion for i in hour]
+	hour = [int(h) if int(h) <= last_hour else 0 for h in hour]
+
+	dtime_1970, tz = time_common(args.timezone)
+
+	for idx in range(num_rows):
+		time_year = dataframe['year'][idx]
+		time_j = int(dataframe['julian_decimal_time'][idx])
+		time_hour = hour[idx]
+
+		temp_dtime = '{} {} {}'.format(time_year, time_j, time_hour)
+		temp_dtime = datetime.strptime(temp_dtime, "%Y %j %H")
+		temp_dtime = tz.localize(temp_dtime.replace(tzinfo=None))
+
+		if time_j <= 366:
+			time[idx] = (temp_dtime - dtime_1970).total_seconds()
+		else:
+			# Assign time of previous row, if julian_decimal_time > 366
+			time[idx] = time[idx - 1]
+
+		time_bounds[idx] = (time[idx] - seconds_in_hour, time[idx])
+
+		sza[idx] = sunpos(temp_dtime, latitude, longitude, 0)[1]
+
+	return hour, month, day, time, time_bounds, sza
+
+
 
 def gcnet2nc(args, op_file, station_dict, station_name):
 
