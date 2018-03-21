@@ -47,17 +47,21 @@ def get_encoding(name, fillvalue):
 	return data
 
 
-def load_ds_attrs(name, ds):
-	path = relative_path('resources/{}/ds.json'.format(name))
-	with open(path) as stream:
-		data = stream.read()
-
-	decoder = json.JSONDecoder(object_pairs_hook=collections.OrderedDict)
-	attr_dict = decoder.decode(data)
+def load_dataset_attributes(name, ds):
+	path = 'resources/{}/ds.json'.format(name)
+	attr_dict = read_ordered_json(path)
 
 	ds.attrs = attr_dict.pop('attrs')
 	for key, value in attr_dict.items():
 		ds[key].attrs = value
+
+
+def read_ordered_json(path):
+	path = relative_path(path)
+	decoder = json.JSONDecoder(object_pairs_hook=collections.OrderedDict)
+	with open(path) as stream:
+		return decoder.decode(stream.read())
+
 
 def parse_station(args, station):
 	if len(station) == 3:
