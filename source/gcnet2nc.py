@@ -94,6 +94,13 @@ def get_time_and_sza(args, dataframe, longitude, latitude):
 	return hour, month, day, time, time_bounds, sza
 
 
+def get_month_day(year, day, one_based=False):
+	if one_based:  # if Jan 1st is 1 instead of 0
+		day -= 1
+	dt = datetime(year, 1, 1) + timedelta(days=day)
+	return dt.month, dt.day
+
+
 
 def gcnet2nc(args, op_file, station_dict, station_name):
 
