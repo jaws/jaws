@@ -1,10 +1,10 @@
+from datetime import datetime
+
 import pandas as pd
 import xarray as xr
-from datetime import datetime
-import pytz
-from sunposition import sunpos
-from common import write_data, time_common
+
 import common
+from sunposition import sunpos
 
 
 def get_fillvalue(args):
@@ -33,7 +33,7 @@ def get_station(args, input_file, stations):
 
 
 def get_time_and_sza(args, input_file, latitude, longitude):
-	dtime_1970, tz = time_common(args.timezone)
+	dtime_1970, tz = common.time_common(args.timezone)
 	header_rows = 8
 
 	with open(input_file) as stream:
@@ -76,4 +76,4 @@ def aaws2nc(args, input_file, output_file, stations):
 	common.load_dataset_attributes('aaws', ds)
 	encoding = common.get_encoding('aaws', get_fillvalue(args))
 
-	write_data(args, ds, output_file, encoding)
+	common.write_data(args, ds, output_file, encoding)
