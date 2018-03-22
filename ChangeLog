@@ -1,5 +1,27 @@
 2018-03-20  Ajay Saini  <sainiak@uci.edu>
 
+	* GCNet- defined function get_time_and_sza
+
+	* GCNet- moved function get_month_day outside of gcnet2nc
+
+	* GCNet- defined function derive_times
+
+	* common.py- defined function log to keep track of debugging messages
+
+	* GCNet- updated gcnet2nc to get values from newly defined functions
+
+	* AAWS- defined function get_fillvalue
+	
+	* AAWS- defined function init_dataframe to get df from common.py
+	
+	* AAWS- defined function get_station
+	
+	* AAWS- defined function get_time_and_sza
+
+	* AAWS- updated aaws2nc to get values from newly defined functions
+
+2018-03-20  Ajay Saini  <sainiak@uci.edu>
+
 	* Created column names file in resources directory of each network
 
 	* common.py: Defined function load_dataframe
