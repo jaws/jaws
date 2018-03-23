@@ -1,4 +1,24 @@
-2018-03-20  Ajay Saini  <sainiak@uci.edu>
+2018-03-22  Ajay Saini  <sainiak@uci.edu>
+
+	* PROMICE- defined function get_fillvalue
+	
+	* PROMICE- defined function init_dataframe to get df from common.py
+	
+	* PROMICE- Added aliases.txt file having different station names
+
+	* PROMICE- defined function get_station
+	
+	* PROMICE- defined function get_time_and_sza
+
+	* PROMICE- defined function get_ice_velocity
+
+	* PROMICE- defined function fill_ice_velocity
+
+	* PROMICE- defined function convert_coordinates for lat_GPS and lon_GPS
+
+	* PROMICE- updated promice2nc to get values from newly defined functions
+
+2018-03-21  Ajay Saini  <sainiak@uci.edu>
 
 	* GCNet- defined function get_time_and_sza
 
