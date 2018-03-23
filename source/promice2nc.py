@@ -36,6 +36,24 @@ def init_dataframe(args, input_file):
 	return df
 
 
+def get_station(args, input_file, stations):
+	path = 'resources/promice/aliases.txt'
+	aliases = {}
+	with open(common.relative_path(path)) as stream:
+		for line in stream.readlines():
+			if not line.strip():
+				continue
+			bits = re.split('[,:]', line)
+			bits = [i.strip() for i in bits if i.strip()]
+			for b in bits[:-1]:
+				aliases[b] = bits[-1]
+
+	filename = os.path.basename(input_file)
+	for key, value in aliases.items():
+		if key in filename:
+			return common.parse_station(args, stations[value])
+
+
 def promice2nc(args, op_file, station_dict, station_name):
 
 	freezing_point_temp = common.freezing_point_temp
