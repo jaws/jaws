@@ -112,6 +112,15 @@ def get_ice_velocity(args, dataframe, delta_x, delta_y):
 	return velocity
 
 
+def fill_ice_velocity(args, dataframe, dataset):
+	params = (
+		('ice_velocity_GPS_total', 1, 1),
+		('ice_velocity_GPS_x', 0, 1),
+		('ice_velocity_GPS_y', 1, 0))
+	for key, x, y in params:
+		dataset[key] = 'time', get_ice_velocity(args, dataframe, x, y)
+
+
 def promice2nc(args, op_file, station_dict, station_name):
 
 	freezing_point_temp = common.freezing_point_temp
