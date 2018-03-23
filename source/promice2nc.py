@@ -121,6 +121,22 @@ def fill_ice_velocity(args, dataframe, dataset):
 		dataset[key] = 'time', get_ice_velocity(args, dataframe, x, y)
 
 
+def convert_coordinates(args, dataframe):
+	# Exclude NAs
+	fillvalue = get_fillvalue(args)
+	df1 = dataframe[dataframe.latitude_GPS != fillvalue]
+	df2 = dataframe[dataframe.longitude_GPS != fillvalue]
+
+	def lat_lon_gps(coords):
+		deg = np.floor(coords / 100)
+		minutes = np.floor(((coords / 100) - deg) * 100)
+		seconds = (((coords / 100) - deg) * 100 - minutes) * 100
+		return deg + minutes / 60 + seconds / 3600
+
+	dataframe.latitude_GPS = lat_lon_gps(df1.latitude_GPS)
+	dataframe.longitude_GPS = lat_lon_gps(df2.longitude_GPS)
+
+
 def promice2nc(args, op_file, station_dict, station_name):
 
 	freezing_point_temp = common.freezing_point_temp
