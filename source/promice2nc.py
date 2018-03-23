@@ -54,6 +54,25 @@ def get_station(args, input_file, stations):
 			return common.parse_station(args, stations[value])
 
 
+def get_time_and_sza(args, dataframe, longitude, latitude):
+	dtime_1970, tz = common.time_common(args.timezone)
+
+	num_rows = dataframe['year'].size
+	time, time_bounds, sza = ([0] * num_rows for _ in range(3))
+
+	for idx in range(num_rows):
+		keys = ('year', 'month', 'day', 'hour')
+		dtime = datetime(*[dataframe[k][idx] for k in keys])
+		dtime = tz.localize(dtime.replace(tzinfo=None))
+
+		time[idx] = (dtime - dtime_1970).total_seconds()
+		time_bounds[idx] = (time[idx], time[idx] + common.seconds_in_hour)
+
+		sza[idx] = sunpos(dtime, latitude, longitude, 0)[1]
+
+	return time, time_bounds, sza
+
+
 def promice2nc(args, op_file, station_dict, station_name):
 
 	freezing_point_temp = common.freezing_point_temp
