@@ -12,6 +12,12 @@ import warnings
 
 warnings.filterwarnings("ignore")
 
+def get_fillvalue(args):
+	if args.fillvalue_float:
+		return args.fillvalue_float
+	return common.fillvalue_float
+
+
 def promice2nc(args, op_file, station_dict, station_name):
 
 	freezing_point_temp = common.freezing_point_temp
