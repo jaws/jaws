@@ -31,7 +31,7 @@ def load_dataframe(name, input_file, header_rows, **kwargs):
 		**kwargs)
 
 
-def get_encoding(name, fillvalue):
+def get_encoding(name, fillvalue, comp_level):
 	path = relative_path('resources/{}/encoding.json'.format(name))
 	with open(path) as stream:
 		data = json.load(stream)
@@ -40,6 +40,8 @@ def get_encoding(name, fillvalue):
 		for k, v in data.items():
 			if k == '_FillValue' and v == 'FILL':
 				data[k] = fillvalue
+			elif k == 'complevel' and v == 'COMP':
+				data[k] = comp_level
 			elif isinstance(v, dict):
 				recursive_fill(v)
 

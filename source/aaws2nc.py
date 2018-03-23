@@ -73,7 +73,9 @@ def aaws2nc(args, input_file, output_file, stations):
 	ds['latitude'] = tuple(), latitude
 	ds['longitude'] = tuple(), longitude
 
+	comp_level = args.compression
+	
 	common.load_dataset_attributes('aaws', ds)
-	encoding = common.get_encoding('aaws', get_fillvalue(args))
+	encoding = common.get_encoding('aaws', get_fillvalue(args), comp_level)
 
 	common.write_data(args, ds, output_file, encoding)
