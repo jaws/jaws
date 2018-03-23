@@ -18,6 +18,24 @@ def get_fillvalue(args):
 	return common.fillvalue_float
 
 
+def init_dataframe(args, input_file):
+	convert_current = 1000
+	check_na = -999
+
+	df = common.load_dataframe('promice', input_file, 1, delim_whitespace=True)
+	df.index.name = 'time'
+	df.replace(check_na, np.nan, inplace=True)
+	df.loc[:, ['air_temperature', 'air_temperature_hygroclip', 'surface_temp',
+			   'ice_temp_01', 'ice_temp_02', 'ice_temp_03', 'ice_temp_04',
+			   'ice_temp_05', 'ice_temp_06', 'ice_temp_07', 'ice_temp_08',
+			   'logger_temp']] += common.freezing_point_temp
+	df.loc[:, ['air_pressure']] *= common.pascal_per_millibar
+	df.loc[:, ['fan_current']] /= convert_current
+	df = df.where((pd.notnull(df)), get_fillvalue(args))
+
+	return df
+
+
 def promice2nc(args, op_file, station_dict, station_name):
 
 	freezing_point_temp = common.freezing_point_temp
