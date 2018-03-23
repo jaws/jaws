@@ -73,6 +73,45 @@ def get_time_and_sza(args, dataframe, longitude, latitude):
 	return time, time_bounds, sza
 
 
+def get_ice_velocity(args, dataframe, delta_x, delta_y):
+	num_rows = dataframe['year'].size
+	R = 6373.0  # Approx radius of earth
+	fillvalue = get_fillvalue(args)
+
+	velocity = []
+	for idx in range(num_rows - 1):
+		if any(i == fillvalue for i in (
+				dataframe['latitude_GPS'][idx],
+				dataframe['longitude_GPS'][idx],
+				dataframe['latitude_GPS'][delta_x],
+				dataframe['longitude_GPS'][delta_y])):
+			velocity.append(fillvalue)
+		else:
+			lat1 = radians(dataframe['latitude_GPS'][idx])
+			lon1 = radians(dataframe['longitude_GPS'][idx])
+			lat2 = radians(dataframe['latitude_GPS'][delta_x])
+			lon2 = radians(dataframe['longitude_GPS'][delta_y])
+
+			dlat = lat2 - lat1
+			dlon = lon2 - lon1
+
+			a = (sin(dlat / 2) ** 2 +
+				 cos(lat1) * cos(lat2) * sin(dlon / 2) ** 2)
+			c = 2 * atan2(sqrt(a), sqrt(1 - a))
+
+			# Multiplied by 1000 to convert km to meters
+			distance = (R * c) * 1000
+			# Divided by 3600 because time change
+			# between 2 records is one hour
+			velocity.append(round(distance / common.seconds_in_hour, 4))
+
+		delta_x += 1
+		delta_y += 1
+
+	velocity.append(0)
+	return velocity
+
+
 def promice2nc(args, op_file, station_dict, station_name):
 
 	freezing_point_temp = common.freezing_point_temp
