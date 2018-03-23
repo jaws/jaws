@@ -1,0 +1,26 @@
+EGP:                                promice_egp
+KAN-B, Kangerlussuaq-B:             promice_kanb
+KAN-L, Kangerlussuaq-L:             promice_kanl
+KAN-M, Kangerlussuaq-M:             promice_kanm
+KAN-U, Kangerlussuaq-U:             promice_kanu
+KPC-L, KronprinsChristianland-L:    promice_kpcl
+KPC-U, KronprinsChristianland-U:    promice_kpcu
+MIT:                                promice_mit
+NUK-K, Nuuk-K:                      promice_nukk
+NUK-L, Nuuk-L:                      promice_nukl
+NUK-N, Nuuk-N:                      promice_nukn
+NUK-U, Nuuk-U:                      promice_nuku
+QAS-A, Qassimiut-A:                 promice_qasa
+QAS-L, Qassimiut-L:                 promice_qasl
+QAS-M, Qassimiut-M:                 promice_qasm
+QAS-U, Qassimiut-U:                 promice_qasu
+SCO-L, Scoresbysund-L:              promice_scol
+SCO-U, Scoresbysund-U:              promice_scou
+TAS-A, Tasiilaq-A:                  promice_tasa
+TAS-L, Tasiilaq-L:                  promice_tasl
+TAS-U, Tasiilaq-U:                  promice_tasu
+THU-L, ThuleAirbase-L:              promice_thul
+THU-U, ThuleAirbase-U:              promice_thuu
+UPE-L, Upernavik-L:                 promice_upel
+UPE-U, Upernavik-U:                 promice_upeu
+CEN:                                promice_cen
