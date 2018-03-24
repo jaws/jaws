@@ -4,42 +4,64 @@
   },
   "air_temp": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "vtempdiff": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "rh": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "pressure": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "wind_dir": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "wind_spd": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "time": {
-    "_FillValue": false
+    "_FillValue": false,
+    "zlib": true,
+    "complevel": "COMP"
   },
   "time_bounds": {
-    "_FillValue": false
+    "_FillValue": false,
+    "zlib": true,
+    "complevel": "COMP"
   },
   "sza": {
-    "_FillValue": false
+    "_FillValue": false,
+    "zlib": true,
+    "complevel": "COMP"
   },
   "latitude": {
-    "_FillValue": false
+    "_FillValue": false,
+    "zlib": true,
+    "complevel": "COMP"
   },
   "longitude": {
-    "_FillValue": false
+    "_FillValue": false,
+    "zlib": true,
+    "complevel": "COMP"
   },
   "station_name": {
     "dtype": "unicode"
