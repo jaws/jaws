@@ -1,301 +1,469 @@
 {
   "station_number": {
-    "dtype": "i2"
+    "dtype": "i2",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "year": {
-    "dtype": "i2"
+    "dtype": "i2",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "julian_decimal_time": {
     "_FillValue": false,
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "sw_down": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "sw_up": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "net_radiation": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "temperature_tc_1": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "temperature_tc_2": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "temperature_cs500_1": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "temperature_cs500_2": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "relative_humidity_1": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "relative_humidity_2": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "u1_wind_speed": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "u2_wind_speed": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "u_direction_1": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "u_direction_2": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "atmos_pressure": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "snow_height_1": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "snow_height_2": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "t_snow_01": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "t_snow_02": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "t_snow_03": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "t_snow_04": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "t_snow_05": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "t_snow_06": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "t_snow_07": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "t_snow_08": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "t_snow_09": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "t_snow_10": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "battery_voltage": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "sw_down_max": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "sw_up_max": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "net_radiation_max": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "max_air_temperature_1": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "max_air_temperature_2": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "min_air_temperature_1": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "min_air_temperature_2": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "max_windspeed_u1": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "max_windspeed_u2": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "stdev_windspeed_u1": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "stdev_windspeed_u2": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "ref_temperature": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "windspeed_2m": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "windspeed_10m": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "wind_sensor_height_1": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "wind_sensor_height_2": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "albedo": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "zenith_angle": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "qc1": {
-    "dtype": "i4"
+    "dtype": "i4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "qc9": {
-    "dtype": "i4"
+    "dtype": "i4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "qc17": {
-    "dtype": "i4"
+    "dtype": "i4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "qc25": {
-    "dtype": "i4"
+    "dtype": "i4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "qc_swdn": {
-    "dtype": "i1"
+    "dtype": "i1",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "qc_swup": {
-    "dtype": "i1"
+    "dtype": "i1",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "qc_netradiation": {
-    "dtype": "i1"
+    "dtype": "i1",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "qc_ttc1": {
-    "dtype": "i1"
+    "dtype": "i1",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "qc_ttc2": {
-    "dtype": "i1"
+    "dtype": "i1",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "qc_tcs1": {
-    "dtype": "i1"
+    "dtype": "i1",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "qc_tcs2": {
-    "dtype": "i1"
+    "dtype": "i1",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "qc_rh1": {
-    "dtype": "i1"
+    "dtype": "i1",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "qc_rh2": {
-    "dtype": "i1"
+    "dtype": "i1",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "qc_u1": {
-    "dtype": "i1"
+    "dtype": "i1",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "qc_u2": {
-    "dtype": "i1"
+    "dtype": "i1",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "qc_ud1": {
-    "dtype": "i1"
+    "dtype": "i1",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "qc_ud2": {
-    "dtype": "i1"
+    "dtype": "i1",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "qc_pressure": {
-    "dtype": "i1"
+    "dtype": "i1",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "qc_snowheight1": {
-    "dtype": "i1"
+    "dtype": "i1",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "qc_snowheight2": {
-    "dtype": "i1"
+    "dtype": "i1",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "qc_tsnow1": {
-    "dtype": "i1"
+    "dtype": "i1",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "qc_tsnow2": {
-    "dtype": "i1"
+    "dtype": "i1",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "qc_tsnow3": {
-    "dtype": "i1"
+    "dtype": "i1",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "qc_tsnow4": {
-    "dtype": "i1"
+    "dtype": "i1",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "qc_tsnow5": {
-    "dtype": "i1"
+    "dtype": "i1",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "qc_tsnow6": {
-    "dtype": "i1"
+    "dtype": "i1",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "qc_tsnow7": {
-    "dtype": "i1"
+    "dtype": "i1",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "qc_tsnow8": {
-    "dtype": "i1"
+    "dtype": "i1",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "qc_tsnow9": {
-    "dtype": "i1"
+    "dtype": "i1",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "qc_tsnow10": {
-    "dtype": "i1"
+    "dtype": "i1",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "qc_battery": {
-    "dtype": "i1"
+    "dtype": "i1",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "time": {
-    "_FillValue": false
+    "_FillValue": false,
+    "zlib": true,
+    "complevel": "COMP"
   },
   "time_bounds": {
-    "_FillValue": false
+    "_FillValue": false,
+    "zlib": true,
+    "complevel": "COMP"
   },
   "sza": {
-    "_FillValue": false
+    "_FillValue": false,
+    "zlib": true,
+    "complevel": "COMP"
   },
   "latitude": {
-    "_FillValue": false
+    "_FillValue": false,
+    "zlib": true,
+    "complevel": "COMP"
   },
   "longitude": {
-    "_FillValue": false
+    "_FillValue": false,
+    "zlib": true,
+    "complevel": "COMP"
   },
   "station_name": {
     "dtype": "unicode"
