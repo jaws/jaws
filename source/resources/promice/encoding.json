@@ -1,206 +1,310 @@
 {
   "year": {
     "_FillValue": false,
-    "dtype": "i2"
+    "dtype": "i2",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "month": {
     "_FillValue": false,
-    "dtype": "i2"
+    "dtype": "i2",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "day": {
     "_FillValue": false,
-    "dtype": "i2"
+    "dtype": "i2",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "hour": {
     "_FillValue": false,
-    "dtype": "i2"
+    "dtype": "i2",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "day_of_year": {
     "_FillValue": false,
-    "dtype": "i2"
+    "dtype": "i2",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "day_of_century": {
     "_FillValue": false,
-    "dtype": "i4"
+    "dtype": "i4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "air_pressure": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "air_temperature": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "air_temperature_hygroclip": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "relative_humidity_wrtwater": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "relative_humidity": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "wind_speed": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "wind_direction": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "shortwave_radiation_down": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "shortwave_radiation_down_cor": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "shortwave_radiation_up": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "shortwave_radiation_up_cor": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "albedo_theta": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "longwave_radiation_down": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "longwave_radiation_up": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "cloudcover": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "surface_temp": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "height_sensor_boom": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "height_stakes": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "depth_pressure_transducer": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "depth_pressure_transducer_cor": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "ice_temp_01": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "ice_temp_02": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "ice_temp_03": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "ice_temp_04": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "ice_temp_05": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "ice_temp_06": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "ice_temp_07": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "ice_temp_08": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "tilt_east": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "tilt_north": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "time_GPS": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "latitude_GPS": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "longitude_GPS": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "elevation": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "hor_dil_prec": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "logger_temp": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "fan_current": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "battery_voltage": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "ice_velocity_GPS_total": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "ice_velocity_GPS_x": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "ice_velocity_GPS_y": {
     "_FillValue": "FILL",
-    "dtype": "f4"
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   },
   "time": {
-    "_FillValue": false
+    "_FillValue": false,
+    "zlib": true,
+    "complevel": "COMP"
   },
   "time_bounds": {
-    "_FillValue": false
+    "_FillValue": false,
+    "zlib": true,
+    "complevel": "COMP"
   },
   "sza": {
-    "_FillValue": false
+    "_FillValue": false,
+    "zlib": true,
+    "complevel": "COMP"
   },
   "latitude": {
-    "_FillValue": false
+    "_FillValue": false,
+    "zlib": true,
+    "complevel": "COMP"
   },
   "longitude": {
-    "_FillValue": false
+    "_FillValue": false,
+    "zlib": true,
+    "complevel": "COMP"
   },
   "station_name": {
     "dtype": "unicode"
