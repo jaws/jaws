@@ -77,11 +77,11 @@ def get_time_and_sza(args, dataframe, longitude, latitude):
 		time_j = int(dataframe['julian_decimal_time'][idx])
 		time_hour = hour[idx]
 
-		temp_dtime = '{} {} {}'.format(time_year, time_j, time_hour)
-		temp_dtime = datetime.strptime(temp_dtime, "%Y %j %H")
-		temp_dtime = tz.localize(temp_dtime.replace(tzinfo=None))
-
 		if time_j <= 366:
+			temp_dtime = '{} {} {}'.format(time_year, time_j, time_hour)
+			temp_dtime = datetime.strptime(temp_dtime, "%Y %j %H")
+			temp_dtime = tz.localize(temp_dtime.replace(tzinfo=None))
+
 			time[idx] = (temp_dtime - dtime_1970).total_seconds()
 		else:
 			# Assign time of previous row, if julian_decimal_time > 366
