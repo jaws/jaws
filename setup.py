@@ -5,7 +5,7 @@ https://github.com/pypa/sampleproject
 """
 
 # Always prefer setuptools over distutils
-from setuptools import setup, find_packages, Extension
+from setuptools import setup, find_packages
 
 setup(
     name="jaws",
@@ -14,6 +14,7 @@ setup(
     url='https://github.com/jaws/jaws',
     author='Ajay Saini',
     author_email='ajcse1@gmail.com',
+    packages=find_packages(),
     platforms=["any"],
     keywords=['xarray', 'netcdf', 'pandas', 'data', 'science', 'network', 'meteorology', 'climate', 'automated', 'weather', 'stations'],
     # See https://pypi.python.org/pypi?%3Aaction=list_classifiers
