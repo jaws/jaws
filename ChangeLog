@@ -1,3 +1,21 @@
+2018-03-27  Ajay Saini  <sainiak@uci.edu>
+
+	* Debug in progress for conda package
+	
+	* Changed calender attribute to 'standard' in time variable for all networks
+
+2018-03-26  Ajay Saini  <sainiak@uci.edu>
+
+	* Conda package built but having errors while instatlling. Debugging it
+
+	* Slides for interim review updated
+
+2018-03-23  Ajay Saini  <sainiak@uci.edu>
+
+	* Added new command line argument compression
+	
+	* GCNet- time calculation corrected for jdt>365
+
 2018-03-22  Ajay Saini  <sainiak@uci.edu>
 
 	* PROMICE- defined function get_fillvalue
