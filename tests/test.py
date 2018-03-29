@@ -94,7 +94,7 @@ class TestJaws(unittest.TestCase):
     def test_all_options(self):
         """Test overriding default station name."""
         nc = convert_to_dataset('../sample_data/AAWS_AGO-4_20161130.txt', '-3', '-d', '-s', 'TestStation', '-t' ,'America/Los_Angeles', '-D', '1', '-c', '5')
-        self.assertEqual(nc)
+        self.assertTrue(nc)
 
 
 class TestInputOutputArguments(unittest.TestCase):
