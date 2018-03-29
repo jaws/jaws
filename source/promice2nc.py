@@ -164,7 +164,7 @@ def promice2nc(args, input_file, output_file, stations):
 	ds['latitude'] = tuple(), latitude
 	ds['longitude'] = tuple(), longitude
 
-	comp_level = args.compression
+	comp_level = args.dfl_lvl
 	
 	common.load_dataset_attributes('promice', ds)
 	encoding = common.get_encoding('promice', get_fillvalue(args), comp_level)

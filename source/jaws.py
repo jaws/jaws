@@ -70,8 +70,8 @@ def get_parser():
 		"-D", "--dbg_lvl", "--debuglevel",
 		help="Debug-level is lvl", default=0, type=int)
 	parser.add_argument(
-		"-c", "--compression",
-		help="Compression level", default=0, type=int)
+		"-L", "--dfl_lvl", "--dfl", "--deflate",
+		help="Lempel-Ziv deflation/compression (lvl=0..9) for netCDF4 output", default=0, type=int)
 	
 	'''
 	
