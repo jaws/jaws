@@ -86,6 +86,11 @@ class TestJaws(unittest.TestCase):
         station = nc.variables['station_name'][:]
         self.assertEqual(''.join(station), 'TestStation')
 
+    def test_compression(self):
+        """Test overriding default station name."""
+        nc = convert_to_dataset('../sample_data/AAWS_AGO-4_20161130.txt', '-c', '5')
+        self.assertTrue(nc)
+
 
 class TestInputOutputArguments(unittest.TestCase):
     """
