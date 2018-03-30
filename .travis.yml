@@ -17,3 +17,5 @@ install:
 script:
     - cd tests
     - python test.py
+    - conda build conda.recipe
+    - conda install your-package --use-local
