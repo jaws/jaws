@@ -1,0 +1,15 @@
+#!/bin/sh
+# Purpose: Call Python script jaws.py with all arguments
+
+# Usage:
+# jaws [options] [fl_in] [fl_out]
+# where
+# option = Any JAWS option
+# fl_in = Input file
+# fl_out = Output file
+# Example:
+# jaws -3 in.nc out.nc
+# Equivalent to:
+# python jaws.py -3 in.nc out.nc
+
+python jaws.py "${@}"
