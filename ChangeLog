@@ -1,7 +1,11 @@
+2018-03-30  Charlie Zender  <zender@uci.edu>
+
+	* Add shell command jaws to invoke jaws.py
+
 2018-03-27  Ajay Saini  <sainiak@uci.edu>
 
 	* Debug in progress for conda package
-	
+
 	* Changed calender attribute to 'standard' in time variable for all networks
 
 2018-03-26  Ajay Saini  <sainiak@uci.edu>
@@ -13,19 +17,19 @@
 2018-03-23  Ajay Saini  <sainiak@uci.edu>
 
 	* Added new command line argument compression
-	
+
 	* GCNet- time calculation corrected for jdt>365
 
 2018-03-22  Ajay Saini  <sainiak@uci.edu>
 
 	* PROMICE- defined function get_fillvalue
-	
+
 	* PROMICE- defined function init_dataframe to get df from common.py
-	
+
 	* PROMICE- Added aliases.txt file having different station names
 
 	* PROMICE- defined function get_station
-	
+
 	* PROMICE- defined function get_time_and_sza
 
 	* PROMICE- defined function get_ice_velocity
@@ -49,11 +53,11 @@
 	* GCNet- updated gcnet2nc to get values from newly defined functions
 
 	* AAWS- defined function get_fillvalue
-	
+
 	* AAWS- defined function init_dataframe to get df from common.py
-	
+
 	* AAWS- defined function get_station
-	
+
 	* AAWS- defined function get_time_and_sza
 
 	* AAWS- updated aaws2nc to get values from newly defined functions
@@ -71,11 +75,11 @@
 	* GCNet- defined function to get station_name
 
 	* GCNet- created json file for quality control variables
-	
+
 	* common.py- defined function to parse lat, lon, stn name
-	
+
 	* function load_ds_attrs split into load_dataset_attributes and read_ordered_json
-	
+
 	* GCNet- defined function to split quality control variables
 
 2018-03-19  Ajay Saini  <sainiak@uci.edu>
@@ -184,7 +188,7 @@
 
 2018-03-02  Ajay Saini  <sainiak@uci.edu>
 
-	* 'unicode' data type added in encoding for text-valued variables to use strings not character arrays for netCDF4 files 
+	* 'unicode' data type added in encoding for text-valued variables to use strings not character arrays for netCDF4 files
 
 	* LICENSE file added
 
@@ -487,7 +491,6 @@
 	* Dictionary created to store lat, lon, and long_name for all stations of all networks. Values for variables are retrieved using this table
 
 	* CPU pegged during GCNET conversion for one station. Debugged time variable calculation and corrected the error.
-	
 
 2018-01-23  Charlie Zender  <zender@uci.edu>
 
@@ -705,37 +708,37 @@
 2017-12-31  Ajay Saini  <sainiak@uci.edu>
 
 	* Added variable 'station_name' to aaws2nc and promice2nc
-	
+
 	* Removed nrows argument
-	
+
 	* Added functionality to automatically count timesteps in the dataset
-	
+
 	* Corrected the time calculation function in gcnet2nc.py
 
 2017-12-30  Ajay Saini  <sainiak@uci.edu>
 
 	* Created master list of variables that need standard names
-	
+
 	* gcnet2nc.py, promice2nc.py: Edited op_file to name it as ip_file.nc
-	
+
 	* jaws.py: edited the parser function to take input accordingly
 
 2017-12-29  Ajay Saini  <sainiak@uci.edu>
 
 	* aaws2nc.py: astropy.io to write data properly in nc format
-	
+
 	* Added sample one-day datasets of GCNET, PROMICE, AAWS
 
 2017-12-26  Ajay Saini  <sainiak@uci.edu>
 
 	* Completed NASA SATERN learning assignment
-	
+
 	* aaws: Collected data and created variables with their units and standard names
 
 2017-12-25  Ajay Saini  <sainiak@uci.edu>
 
 	* Restructured the source directory and created jaws.py as main function
-	
+
 	* gcnet2nc.py and promice2nc.py scripts respectively for GCNET and PROMICE networks
 
 2017-12-24  Ajay Saini  <sainiak@uci.edu>
@@ -789,5 +792,5 @@
 2017-10-09  Ajay Saini  <sainiak@uci.edu>
 
 	* Initial commit
-	
+
 	* README.md: Instructions about jaws
