@@ -2,6 +2,22 @@
 
 	* Add shell command jaws to invoke jaws.py
 
+2018-03-29  Ajay Saini  <sainiak@uci.edu>
+
+	* Add data_files in setup.py()
+
+	* Downgrade to Anaconda 4.4.0 to build conda package successfuly. Install command: conda install jaws jaws
+
+	* git tag -a 0.2.3 -m 'Shorttail Lanternshark: Compression support'; git push --tags
+
+2018-03-28  Ajay Saini  <sainiak@uci.edu>
+
+	* Add test for compression
+
+	* Add test for all options together
+
+	* Rename compression option as '-L/--dfl_lvl/--dfl/--deflate' (acc to NCO)
+
 2018-03-27  Ajay Saini  <sainiak@uci.edu>
 
 	* Debug in progress for conda package
@@ -19,6 +35,8 @@
 	* Added new command line argument compression
 
 	* GCNet- time calculation corrected for jdt>365
+
+	* git tag -a 0.2.2 -m 'Green Lanternshark: Restructured code and separated static information in new directory source/resources'; git push --tags
 
 2018-03-22  Ajay Saini  <sainiak@uci.edu>
 
