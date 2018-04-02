@@ -26,11 +26,10 @@ install:
   - conda info -a
 
   # Replace dep1 dep2 ... with your dependencies
-  - conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION pandas numpy xarray pytz netCDF4
+  - conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION pandas numpy xarray pytz netCDF4 conda-build
   - source activate test-environment
-  - conda install conda-build
   - conda build conda.recipe
-  - conda install --use-local jaws
+  - conda install -n test-environment --use-local jaws
 
 script:
     - cd tests
