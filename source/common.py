@@ -76,9 +76,9 @@ def parse_station(args, station):
 	else:
 		latitude, longitude = station
 		name = None
-	if args.station_name:
+	if args.stn_nm:
 		print('Default station name overrided by user provided station name')
-		name = args.station_name
+		name = args.stn_nm
 	return latitude, longitude, name
 
 

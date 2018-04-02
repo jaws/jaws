@@ -8,8 +8,8 @@ from sunposition import sunpos
 
 
 def get_fillvalue(args):
-	if args.fillvalue_float:
-		return args.fillvalue_float
+	if args.fll_val_flt:
+		return args.fll_val_flt
 	return common.fillvalue_float
 
 
@@ -33,7 +33,7 @@ def get_station(args, input_file, stations):
 
 
 def get_time_and_sza(args, input_file, latitude, longitude):
-	dtime_1970, tz = common.time_common(args.timezone)
+	dtime_1970, tz = common.time_common(args.tz)
 	header_rows = 8
 
 	with open(input_file) as stream:

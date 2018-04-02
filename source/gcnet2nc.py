@@ -8,8 +8,8 @@ import common
 from sunposition import sunpos
 
 def get_fillvalue(args):
-	if args.fillvalue_float:
-		return args.fillvalue_float
+	if args.fll_val_flt:
+		return args.fll_val_flt
 	return common.fillvalue_float
 
 
@@ -70,7 +70,7 @@ def get_time_and_sza(args, dataframe, longitude, latitude):
 	hour = [round(i - int(i), 3) * hour_conversion for i in hour]
 	hour = [int(h) if int(h) <= last_hour else 0 for h in hour]
 
-	dtime_1970, tz = common.time_common(args.timezone)
+	dtime_1970, tz = common.time_common(args.tz)
 
 	for idx in range(num_rows):
 		time_year = dataframe['year'][idx]
@@ -129,7 +129,7 @@ def gcnet2nc(args, input_file, output_file, stations):
 	common.log(args, 4, 'Calculating quality control variables')
 	fill_dataset_quality_control(df, ds)
 
-	if args.derive_times:
+	if args.drv_tm:
 		common.log(args, 5, 'Calculating month and day')
 		derive_times(df, month, day)
 		ds['hour'] = 'time', hour
