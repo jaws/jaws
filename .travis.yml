@@ -30,7 +30,7 @@ install:
   - source activate test-environment
   - conda install conda-build
   - conda build conda.recipe
-  - conda install jaws --use-local
+  - conda install --use-local jaws
 
 script:
     - cd tests
