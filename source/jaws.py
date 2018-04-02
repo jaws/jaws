@@ -51,23 +51,23 @@ def get_parser():
 		help="Output file in netCDF4 CLASSIC format (3+4=7)",
 		action="store_true")
 	parser.add_argument(
-		"-d", "--derive_times",
+		"-d", "--drv_tm", "--derive_times",
 		help=("For GCNet, extra variables ('month', 'day' and 'hour')"
 			  " will be derived for further analysis. It will take more time"),
 		action="store_true")
 	parser.add_argument(
-		"-s", "--station_name",
+		"-s", "--stn_nm", "--station_name",
 		help="Override default station name",
 		type=str)
 	parser.add_argument(
-		"-t", "--timezone",
+		"-t", "--tz", "--timezone",
 		help="Change the timezone, default is UTC",
 		default='UTC', type=str)
 	parser.add_argument(
-		"-f", "--fillvalue_float",
+		"-f", "--fll_val_flt", "--fillvalue_float",
 		help="Override default float _FillValue", type=float)
 	parser.add_argument(
-		"-D", "--dbg_lvl", "--debuglevel",
+		"-D", "--dbg_lvl", "--debug_level",
 		help="Debug-level is lvl", default=0, type=int)
 	parser.add_argument(
 		"-L", "--dfl_lvl", "--dfl", "--deflate",
