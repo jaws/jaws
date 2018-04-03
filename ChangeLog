@@ -1,3 +1,15 @@
+2018-04-02  Ajay Saini  <sainiak@uci.edu>
+
+	* Install with conda instead of pip in Travis
+
+	* Update code with new long name of args
+
+	* Install jaws script in conda bin directory
+
+	* Avoid setuptools to install dependencies
+
+	* Debug conda-forge build
+
 2018-03-30  Charlie Zender  <zender@uci.edu>
 
 	* Add shell command jaws to invoke jaws.py
