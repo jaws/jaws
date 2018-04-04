@@ -1,4 +1,4 @@
-![Shark](http://grele.ess.uci.edu/jaws/img/shark.jpg)
+![Shark](http://grele.ess.uci.edu/jaws/img/shark.png)
 
 
 # Justified Automated Weather Station (JAWS) Software 
@@ -127,7 +127,7 @@ Since it is annual plot, user shouldn't provide the '-m' argument
 $ python analysis.py file.nc temperature_tc_1 annual -y 2016
 ```
 
-![annual](http://grele.ess.uci.edu/jaws/img/annual.jpg)
+![annual](http://grele.ess.uci.edu/jaws/img/annual.png)
 
 iv. Climatological seasonal cycle showing variation for each month through multiple years
 
