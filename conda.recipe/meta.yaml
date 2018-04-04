@@ -1,6 +1,8 @@
+{% set version = "dev" %}
+
 package:
   name: jaws
-  version: "0.2.1"
+  version: {{ version }}
 
 source:
   path: ../
@@ -9,22 +11,14 @@ requirements:
   build:
     - python
     - setuptools
-    - pandas
-    - numpy
-    - xarray
-    - pytz
-    - netcdf4
-    - matplotlib
-    - netcdf4
   run:
     - python
     - pandas
-    - numpy
+    - numpy >=1.11
     - xarray
     - pytz
     - netcdf4
     - matplotlib
-    - netcdf4
 
 about:
   home: https://github.com/jaws/jaws
