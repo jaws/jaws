@@ -2,6 +2,8 @@
 
 
 # Justified Automated Weather Station (JAWS) Software 
+
+[![Build status](https://ci.appveyor.com/api/projects/status/gt0r8jlo5iarqv55?svg=true)](https://ci.appveyor.com/project/ajcse1/jaws)
 ___
 ## News
 
