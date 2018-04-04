@@ -3,6 +3,7 @@
 
 # Justified Automated Weather Station (JAWS) Software 
 
+[![Build Status](https://travis-ci.org/jaws/jaws.svg?branch=master)](https://travis-ci.org/jaws/jaws)
 [![Build status](https://ci.appveyor.com/api/projects/status/gt0r8jlo5iarqv55?svg=true)](https://ci.appveyor.com/project/ajcse1/jaws)
 ___
 ## News
