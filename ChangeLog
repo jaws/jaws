@@ -1,3 +1,21 @@
+2018-04-03  Ajay Saini  <sainiak@uci.edu>
+
+	* Appveyor integrate with 'jaws'
+
+	* Add Appveyor badge to homepage
+
+	* Add Travis badge to homepage
+
+	* Remove environments with CONDA_NPY: 114
+
+	* Remove python 3.5 from Travis
+
+	* Update images on homepage
+
+	* Update version and build requirements
+
+	* Work in progress on plots
+
 2018-04-02  Ajay Saini  <sainiak@uci.edu>
 
 	* Install with conda instead of pip in Travis
