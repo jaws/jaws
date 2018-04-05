@@ -33,7 +33,7 @@ def get_station(args, input_file, stations):
 
 
 def get_time_and_sza(args, input_file, latitude, longitude, dataframe):
-	num_rows = dataframe['year'].size
+	num_rows = dataframe['timestamp'].size
 	year, month, day, hour, day_of_year = ([0] * num_rows for _ in range(5))
 	idx = 0
 
