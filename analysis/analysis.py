@@ -129,8 +129,11 @@ def monthly():
 def annual():
 	global var_jdt_avg, var_jdt_max, var_jdt_min
 	
-	df['julian_decimal_time'] = df['julian_decimal_time'].astype(int)
-	jdt = df['julian_decimal_time']
+	try:
+		df['julian_decimal_time'] = df['julian_decimal_time'].astype(int)
+		jdt = df['julian_decimal_time']
+	except:
+		jdt = df['day_of_year']
 	var_jdt_avg = df[args.var].groupby(jdt).mean()
 	var_jdt_max = df[args.var].groupby(jdt).max()
 	var_jdt_min = df[args.var].groupby(jdt).min()
