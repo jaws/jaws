@@ -188,6 +188,6 @@ elif args.plot == 'seasonal':
 
 
 plt.legend(loc='best', fancybox=True, framealpha=0.3)
-plt.ylabel('Temperature [Kelvin]')
+plt.ylabel('{} [{}]'.format(ds[args.var].long_name, ds[args.var].units))
 
 plt.show()
