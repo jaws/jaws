@@ -54,7 +54,7 @@ def get_time_and_sza(args, input_file, latitude, longitude, dataframe):
 			month[idx] = dtime.month
 			day[idx] = dtime.day
 			hour[idx] = dtime.hour
-			day_of_year[idx] = dtime.day_of_year
+			day_of_year[idx] = dtime.timetuple().tm_yday
 
 			idx += 1
 
