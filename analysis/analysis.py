@@ -127,20 +127,20 @@ def monthly():
 	return var_day_avg, var_day_max, var_day_min
 
 def annual():
-	global var_jdt_avg, var_jdt_max, var_jdt_min
+	global var_doy_avg, var_doy_max, var_doy_min
 	
 	try:
-		df['julian_decimal_time'] = df['julian_decimal_time'].astype(int)
-		jdt = df['julian_decimal_time']
+		df['day_of_year'] = df['julian_decimal_time'].astype(int)	#GCNet
+		doy = df['day_of_year']
 	except:
-		jdt = df['day_of_year']
-	var_jdt_avg = df[args.var].groupby(jdt).mean()
-	var_jdt_max = df[args.var].groupby(jdt).max()
-	var_jdt_min = df[args.var].groupby(jdt).min()
+		doy = df['day_of_year']
+	var_doy_avg = df[args.var].groupby(doy).mean()
+	var_doy_max = df[args.var].groupby(doy).max()
+	var_doy_min = df[args.var].groupby(doy).min()
 
-	check_error(var_jdt_avg, days_year)
+	check_error(var_doy_avg, days_year)
 
-	return var_jdt_avg, var_jdt_max, var_jdt_min, days_year
+	return var_doy_avg, var_doy_max, var_doy_min, days_year
 
 def seasonal():
 	global var_month_avg, var_month_sd
@@ -172,10 +172,10 @@ elif args.plot == 'monthly':
 
 elif args.plot == 'annual':
 	annual()
-	plt.plot(days_year,var_jdt_avg, label='mean', color ='black')
-	#plt.fill_between(days_year,var_jdt_max, var_jdt_min, label='max-min', facecolor='green', alpha=0.3)
-	plt.plot(days_year,var_jdt_max, label='max', color = 'darkseagreen')
-	plt.plot(days_year,var_jdt_min, label='min', color = 'lightskyblue')
+	plt.plot(days_year,var_doy_avg, label='mean', color ='black')
+	#plt.fill_between(days_year,var_doy_max, var_doy_min, label='max-min', facecolor='green', alpha=0.3)
+	plt.plot(days_year,var_doy_max, label='max', color = 'darkseagreen')
+	plt.plot(days_year,var_doy_min, label='min', color = 'lightskyblue')
 	plt.xlabel('Day of year')
 	plt.title('Temperature at {} for {}'.format(df.station_name[0][0], year[0][0]))
 
