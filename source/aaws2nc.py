@@ -32,7 +32,11 @@ def get_station(args, input_file, stations):
 	return lat, lon, new_name or name
 
 
-def get_time_and_sza(args, input_file, latitude, longitude):
+def get_time_and_sza(args, input_file, latitude, longitude, dataframe):
+	num_rows = dataframe['year'].size
+	year, month, day, hour, day_of_year = ([0] * num_rows for _ in range(5))
+	idx = 0
+
 	dtime_1970, tz = common.time_common(args.tz)
 	header_rows = 8
 
@@ -45,13 +49,22 @@ def get_time_and_sza(args, input_file, latitude, longitude):
 		dtime = datetime.strptime(dtime, '%Y-%m-%dT%H:%M:%SZ')
 		dtime = tz.localize(dtime.replace(tzinfo=None))
 
+		if args.drv_tm:
+			year[idx] = dtime.year
+			month[idx] = dtime.month
+			day[idx] = dtime.day
+			hour[idx] = dtime.hour
+			day_of_year[idx] = dtime.day_of_year
+
+			idx += 1
+
 		seconds = (dtime - dtime_1970).total_seconds()
 		time.append(seconds)
 		bounds.append((seconds - common.seconds_in_hour, seconds))
 
 		sza.append(sunpos(dtime, latitude, longitude, 0)[1])
 
-	return time, bounds, sza
+	return time, bounds, sza, year, month, day, hour, day_of_year
 
 
 def aaws2nc(args, input_file, output_file, stations):
@@ -64,7 +77,17 @@ def aaws2nc(args, input_file, output_file, stations):
 
 	common.log(args, 3, 'Calculating time and sza')
 	time, time_bounds, sza = get_time_and_sza(
-		args, input_file, latitude, longitude)
+		args, input_file, latitude, longitude, df)[:3]
+
+	if args.drv_tm:
+		common.log(args, 5, 'Calculating month and day')
+		year, month, day, hour, day_of_year = get_time_and_sza(
+		args, input_file, latitude, longitude, df)[3:]
+		ds['year'] = 'time', year
+		ds['month'] = 'time', month
+		ds['day'] = 'time', day
+		ds['hour'] = 'time', hour
+		ds['day_of_year'] = 'time', day_of_year
 
 	ds['time'] = 'time', time
 	ds['time_bounds'] = ('time', 'nbnd'), time_bounds
