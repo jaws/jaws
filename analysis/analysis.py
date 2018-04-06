@@ -94,7 +94,7 @@ elif month[0][0] == '12':
 
 global hours, days_year, months
 
-hours = range(1,25)
+hours = range(0,24)
 
 if year[0][0]%4 == 0:
 	days_year = range(1,367)
