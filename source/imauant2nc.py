@@ -7,6 +7,12 @@ import xarray as xr
 import common
 from sunposition import sunpos
 
+def get_fillvalue(args):
+	if args.fll_val_flt:
+		return args.fll_val_flt
+	return common.fillvalue_float
+
+
 def init_dataframe(args, input_file):
 	check_na = -9999
 
