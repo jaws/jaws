@@ -1,0 +1,216 @@
+{
+  "year": {
+    "_FillValue": false,
+    "dtype": "i2",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "day_of_year": {
+    "_FillValue": false,
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "hour": {
+    "_FillValue": false,
+    "dtype": "i2",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "wind_dir": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "wind_spd": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "wind_spd_max": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "sw_in": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "sw_ref": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "lw_in": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "lw_out": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "temp_cnr1": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "air_temp": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "rh": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "air_pressure": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "sonic_alt": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "snow_temp_1a": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "snow_temp_2a": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "snow_temp_3a": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "snow_temp_4a": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "snow_temp_5a": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "snow_temp_1b": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "snow_temp_2b": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "snow_temp_3b": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "snow_temp_4b": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "snow_temp_5b": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "hoeka_inc": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "hoekb_inc": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "battery_voltage": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "temp_logger": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "sum_interpolate": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "quality_parameter": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "time": {
+    "_FillValue": false,
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "time_bounds": {
+    "_FillValue": false,
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "sza": {
+    "_FillValue": false,
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "latitude": {
+    "_FillValue": false,
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "longitude": {
+    "_FillValue": false,
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "station_name": {
+    "dtype": "unicode"
+  }
+}
