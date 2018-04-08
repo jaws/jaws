@@ -31,3 +31,14 @@ def init_dataframe(args, input_file):
 
 	return df
 
+def imauant2nc(args, input_file, output_file, stations):
+	df = init_dataframe(args, input_file)
+	ds = xr.Dataset.from_dataframe(df)
+	ds = ds.drop('time')
+
+	comp_level = args.dfl_lvl
+	
+	common.load_dataset_attributes('imauant', ds)
+	encoding = common.get_encoding('imauant', get_fillvalue(args), comp_level)
+
+	common.write_data(args, ds, output_file, encoding)
