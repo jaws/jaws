@@ -31,6 +31,13 @@ def init_dataframe(args, input_file):
 
 	return df
 
+def get_station(args, input_file, stations):
+	filename = os.path.basename(input_file)
+	name = filename[4:9]
+	lat, lon, new_name = common.parse_station(args, stations[name])
+	return lat, lon, new_name
+
+
 def get_time_and_sza(args, dataframe, longitude, latitude):
 	# Divided by 4 because each hour value is a multiple of 4
 	# and then multiplied by 100 to convert decimal to integer
