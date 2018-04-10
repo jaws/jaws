@@ -31,6 +31,44 @@ def init_dataframe(args, input_file):
 
 	return df
 
+def get_time_and_sza(args, dataframe, longitude, latitude):
+	# Divided by 4 because each hour value is a multiple of 4
+	# and then multiplied by 100 to convert decimal to integer
+	hour_conversion = 100 / 4
+	last_hour = 23
+	seconds_in_hour = common.seconds_in_hour
+	num_rows = dataframe['year'].size
+
+	month, day, time, time_bounds, sza = ([0] * num_rows for _ in range(5))
+
+	hour = dataframe['day_of_year']
+	hour = [round(i - int(i), 3) * hour_conversion for i in hour]
+	hour = [int(h) if int(h) <= last_hour else 0 for h in hour]
+
+	dtime_1970, tz = common.time_common(args.tz)
+
+	for idx in range(num_rows):
+		time_year = dataframe['year'][idx]
+		time_j = int(dataframe['day_of_year'][idx])
+		time_hour = hour[idx]
+
+		if time_j <= 366:
+			temp_dtime = '{} {} {}'.format(time_year, time_j, time_hour)
+			temp_dtime = datetime.strptime(temp_dtime, "%Y %j %H")
+			temp_dtime = tz.localize(temp_dtime.replace(tzinfo=None))
+
+			time[idx] = (temp_dtime - dtime_1970).total_seconds()
+		else:
+			# Assign time of previous row, if day_of_year > 366
+			time[idx] = time[idx - 1]
+
+		time_bounds[idx] = (time[idx] - seconds_in_hour, time[idx])
+
+		sza[idx] = sunpos(temp_dtime, latitude, longitude, 0)[1]
+
+	return hour, month, day, time, time_bounds, sza
+
+
 def imauant2nc(args, input_file, output_file, stations):
 	df = init_dataframe(args, input_file)
 	ds = xr.Dataset.from_dataframe(df)
