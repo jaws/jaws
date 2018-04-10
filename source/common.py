@@ -89,6 +89,13 @@ def time_common(tzone):
 	
 	return dtime_1970, tz
 
+def get_month_day(year, day, one_based=False):
+	if one_based:  # if Jan 1st is 1 instead of 0
+		day -= 1
+	dt = datetime(year, 1, 1) + timedelta(days=day)
+	return dt.month, dt.day
+
+
 def write_data(args, ds, op_file, encoding):
 	if args.format3 == 1:
 		ds.to_netcdf(op_file, format = 'NETCDF3_CLASSIC', unlimited_dims={'time':True}, encoding = encoding)

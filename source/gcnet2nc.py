@@ -94,17 +94,10 @@ def get_time_and_sza(args, dataframe, longitude, latitude):
 	return hour, month, day, time, time_bounds, sza
 
 
-def get_month_day(year, day, one_based=False):
-	if one_based:  # if Jan 1st is 1 instead of 0
-		day -= 1
-	dt = datetime(year, 1, 1) + timedelta(days=day)
-	return dt.month, dt.day
-
-
 def derive_times(dataframe, month, day):
 	num_rows = dataframe['year'].size
 	for idx in range(num_rows):
-		month[idx], day[idx] = get_month_day(
+		month[idx], day[idx] = common.get_month_day(
 			int(dataframe['year'][idx]),
 			int(dataframe['julian_decimal_time'][idx]),
 			True)
