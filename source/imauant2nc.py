@@ -81,6 +81,13 @@ def imauant2nc(args, input_file, output_file, stations):
 	ds = xr.Dataset.from_dataframe(df)
 	ds = ds.drop('time')
 
+	common.log(args, 2, 'Retrieving latitude, longitude and station name')
+	latitude, longitude, station_name = get_station(args, input_file, stations)
+
+	ds['station_name'] = tuple(), station_name
+	ds['latitude'] = tuple(), latitude
+	ds['longitude'] = tuple(), longitude
+
 	comp_level = args.dfl_lvl
 	
 	common.load_dataset_attributes('imauant', ds)
