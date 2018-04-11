@@ -94,6 +94,13 @@ def imauant2nc(args, input_file, output_file, stations):
 	common.log(args, 2, 'Retrieving latitude, longitude and station name')
 	latitude, longitude, station_name = get_station(args, input_file, stations)
 
+	common.log(args, 3, 'Calculating time and sza')
+	hour, month, day, time, time_bounds, sza = get_time_and_sza(
+		args, df, longitude, latitude)
+
+	ds['time'] = 'time', time
+	ds['time_bounds'] = ('time', 'nbnd'), time_bounds
+	ds['sza'] = 'time', sza
 	ds['station_name'] = tuple(), station_name
 	ds['latitude'] = tuple(), latitude
 	ds['longitude'] = tuple(), longitude
