@@ -11,7 +11,7 @@
     "zlib": true,
     "complevel": "COMP"
   },
-  "hour_*_100": {
+  "hour_mult_100": {
     "_FillValue": false,
     "dtype": "i2",
     "zlib": true,

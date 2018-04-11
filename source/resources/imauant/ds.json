@@ -15,7 +15,7 @@
     "long_name": "Day of Year",
     "units": "1"
   },
-  "hour_*_100": {
+  "hour_mult_100": {
     "long_name": "Hour of Day multiplied by 100",
     "units": "1"
   },
