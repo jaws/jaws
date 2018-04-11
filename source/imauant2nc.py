@@ -11,7 +11,7 @@ from sunposition import sunpos
 def init_dataframe(args, input_file):
 	check_na = -9999
 
-	df = common.load_dataframe('imauant', input_file, 0)
+	df = common.load_dataframe('imau/ant', input_file, 0)
 	df.index.name = 'time'
 	df.replace(check_na, np.nan, inplace=True)
 
@@ -109,7 +109,7 @@ def imauant2nc(args, input_file, output_file, stations):
 
 	comp_level = args.dfl_lvl
 	
-	common.load_dataset_attributes('imauant', ds)
-	encoding = common.get_encoding('imauant', common.get_fillvalue(args), comp_level)
+	common.load_dataset_attributes('imau/ant', ds)
+	encoding = common.get_encoding('imau/ant', common.get_fillvalue(args), comp_level)
 
 	common.write_data(args, ds, output_file, encoding)
