@@ -1,6 +1,6 @@
 year
 day_of_year
-hour
+hour_*_100
 wind_dir
 wind_spd
 wind_spd_max
