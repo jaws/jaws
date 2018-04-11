@@ -8,18 +8,19 @@ import xarray as xr
 import common
 from sunposition import sunpos
 
-def init_dataframe(args, input_file):
+def init_dataframe(args, input_file, sub_type):
 	check_na = -9999
 
-	df = common.load_dataframe('imau/ant', input_file, 0)
+	df = common.load_dataframe(sub_type, input_file, 0)
 	df.index.name = 'time'
 	df.replace(check_na, np.nan, inplace=True)
 
-	temperature_keys = [
-		'temp_cnr1', 'air_temp', 
+	if sub_type == 'imau/ant':
+		temperature_keys = ['temp_cnr1', 'air_temp', 
 		'snow_temp_1a', 'snow_temp_2a', 'snow_temp_3a', 'snow_temp_4a', 'snow_temp_5a',
 		'snow_temp_1b', 'snow_temp_2b', 'snow_temp_3b', 'snow_temp_4b', 'snow_temp_5b',
 		'temp_logger']
+	
 	df.loc[:, temperature_keys] += common.freezing_point_temp
 	df.loc[:, 'air_pressure'] *= common.pascal_per_millibar
 	df = df.where((pd.notnull(df)), common.get_fillvalue(args))
@@ -82,7 +83,20 @@ def derive_times(dataframe, month, day):
 
 
 def imau2nc(args, input_file, output_file, stations):
-	df = init_dataframe(args, input_file)
+	with open(input_file) as stream:
+		line = stream.readline()
+		var_count = len(line.split(','))
+	
+	errmsg = 'Unknown sub-type of IMAU network. Antarctic stations have 31 columns while Greenland stations have 35. Your dataset has {} columns.'.format(var_count)
+	if var_count == 31:
+		sub_type = 'imau/ant'
+	elif var_count == 35:
+		sub_type = 'imau/grl'
+	else:
+		raise RuntimeError(errmsg)
+
+
+	df = init_dataframe(args, input_file, sub_type)
 	ds = xr.Dataset.from_dataframe(df)
 	ds = ds.drop('time')
 
@@ -109,7 +123,7 @@ def imau2nc(args, input_file, output_file, stations):
 
 	comp_level = args.dfl_lvl
 	
-	common.load_dataset_attributes('imau/ant', ds)
-	encoding = common.get_encoding('imau/ant', common.get_fillvalue(args), comp_level)
+	common.load_dataset_attributes(sub_type, ds)
+	encoding = common.get_encoding(sub_type, common.get_fillvalue(args), comp_level)
 
 	common.write_data(args, ds, output_file, encoding)
