@@ -4,7 +4,7 @@ import argparse
 import collections
 import re
 
-import gcnet2nc, promice2nc, aaws2nc
+import gcnet2nc, promice2nc, aaws2nc, imauant2nc
 from datetime import datetime
 
 from common import relative_path
@@ -174,7 +174,9 @@ def dispatch_converter(args, input_file, output_file, stations):
 	converters = {
 		'D': gcnet2nc.gcnet2nc,
 		'Y': promice2nc.promice2nc,
-		'#': aaws2nc.aaws2nc}
+		'#': aaws2nc.aaws2nc,
+		'1': imauant2nc.imauant2nc,
+		'2': imauant2nc.imauant2nc}
 
 	errmsg = 'Conversion failed: unsupported input file format.'
 	if char in converters:
