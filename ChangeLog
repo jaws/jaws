@@ -1,8 +1,85 @@
+2018-04-10  Ajay Saini  <sainiak@uci.edu>
+
+	* IMAUant- define get_station function
+
+	* IMAUant- get latitude, longitude and station_name
+
+	* Move function get_month_day to common.py
+
+	* IMAUant- define derive_times function
+
+	* IMAUant- get time, time_bounds and sza
+	
+	* IMAUant- get month and day
+
+	* Ignore all .pyc files
+
+	* Call imauant2nc in dispatch_converter
+
+	* IMAUant- rename 'hour' to 'hour_mult_100' to avoid conflict
+
+	* Move function get_fillvalue to common.py
+
+	* Create new directory source/resources/imau/ant
+
+	* Move all files from source/resources/imauant/ to source/resources/imau/ant/
+
+	* Remove imauant directory
+
+	* Rename imauant to imau/ant to find correct path for files
+	
+	* Rename function imauant2nc to imau2nc
+
+	* Rename script imauant2nc.py to imau2nc.py
+
+	* Detect sub-type of IMAU network based on number of columns in input file
+
+
+2018-04-09  Ajay Saini  <sainiak@uci.edu>
+
+	* IMAUant- define get_time_and_sza function
+
+	* IMAUant- rename hour_of_day to hour
+
+	* Work on conda-forge package
+
+2018-04-08  Ajay Saini  <sainiak@uci.edu>
+
+	* Add IMAUant stations to lat/lon list
+
+2018-04-07  Ajay Saini  <sainiak@uci.edu>
+
+	* IMAUant column names defined
+
+	* Remove imau2nc.py
+
+	* IMAUant- define init_dataframe function
+
+	* IMAUant- define get_fillvalue function
+
+	* IMAUant- update column names
+
+	* IMAUant- add ds.json
+
+	* IMAUant- add encoding.json
+
+	* IMAUant- add function imaunt2nc
+
+2018-04-05  Ajay Saini  <sainiak@uci.edu>
+
+	* Correct column name for num_rows calculation
+
+	* Calculate day_of_year from timestamp
+
+	* Hour range from 0-23
+
+	* Work on conda-forge package
+
 2018-04-04  Ajay Saini  <sainiak@uci.edu>
 
 	* Add 'day_of_year' variable for PROMICE annual plot analysis
 
-	* Replace jdt with doy(day_of_year) for standard name across all networks
+	* Replace jdt with doy(day_of_year) in analysis.py for standard name across all networks
 
 	* Use ylabel from input file
 
