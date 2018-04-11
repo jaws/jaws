@@ -2,16 +2,10 @@ aist_gcnet.txt
 EGP_hour.txt
 AWS14_SWdata_Wenshan.txt
 
-source/aaws2nc.pyc
-source/gcnet2nc.pyc
-source/promice2nc.pyc
+*.pyc
 img/
 summit_plot.ipynb
 monthly_diurnal.ipynb
 monthly_values.ipynb
 annual_cycle.ipynb
 climatological_seasonal_cycle.ipynb
-
-source/common.pyc
-source/jaws.pyc
-source/sunposition.pyc
