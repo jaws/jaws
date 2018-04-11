@@ -15,12 +15,6 @@ import warnings
 
 warnings.filterwarnings("ignore")
 
-def get_fillvalue(args):
-	if args.fll_val_flt:
-		return args.fll_val_flt
-	return common.fillvalue_float
-
-
 def init_dataframe(args, input_file):
 	convert_current = 1000
 	check_na = -999
@@ -34,7 +28,7 @@ def init_dataframe(args, input_file):
 			   'logger_temp']] += common.freezing_point_temp
 	df.loc[:, ['air_pressure']] *= common.pascal_per_millibar
 	df.loc[:, ['fan_current']] /= convert_current
-	df = df.where((pd.notnull(df)), get_fillvalue(args))
+	df = df.where((pd.notnull(df)), common.get_fillvalue(args))
 
 	return df
 
@@ -79,7 +73,7 @@ def get_time_and_sza(args, dataframe, longitude, latitude):
 def get_ice_velocity(args, dataframe, delta_x, delta_y):
 	num_rows = dataframe['year'].size
 	R = 6373.0  # Approx radius of earth
-	fillvalue = get_fillvalue(args)
+	fillvalue = common.get_fillvalue(args)
 
 	velocity = []
 	for idx in range(num_rows - 1):
@@ -126,7 +120,7 @@ def fill_ice_velocity(args, dataframe, dataset):
 
 def convert_coordinates(args, dataframe):
 	# Exclude NAs
-	fillvalue = get_fillvalue(args)
+	fillvalue = common.get_fillvalue(args)
 	df1 = dataframe[dataframe.latitude_GPS != fillvalue]
 	df2 = dataframe[dataframe.longitude_GPS != fillvalue]
 
@@ -167,6 +161,6 @@ def promice2nc(args, input_file, output_file, stations):
 	comp_level = args.dfl_lvl
 	
 	common.load_dataset_attributes('promice', ds)
-	encoding = common.get_encoding('promice', get_fillvalue(args), comp_level)
+	encoding = common.get_encoding('promice', common.get_fillvalue(args), comp_level)
 
 	common.write_data(args, ds, output_file, encoding)

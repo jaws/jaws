@@ -16,6 +16,12 @@ fillvalue_float = 9.96921e+36
 
 ###############################################################################
 
+def get_fillvalue(args):
+	if args.fll_val_flt:
+		return args.fll_val_flt
+	return fillvalue_float
+
+
 def load_dataframe(name, input_file, header_rows, **kwargs):
 	path = relative_path('resources/{}/columns.txt'.format(name))
 	with open(path) as stream:

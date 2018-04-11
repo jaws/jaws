@@ -8,12 +8,6 @@ import xarray as xr
 import common
 from sunposition import sunpos
 
-def get_fillvalue(args):
-	if args.fll_val_flt:
-		return args.fll_val_flt
-	return common.fillvalue_float
-
-
 def init_dataframe(args, input_file):
 	check_na = -9999
 
@@ -28,7 +22,7 @@ def init_dataframe(args, input_file):
 		'temp_logger']
 	df.loc[:, temperature_keys] += common.freezing_point_temp
 	df.loc[:, 'air_pressure'] *= common.pascal_per_millibar
-	df = df.where((pd.notnull(df)), get_fillvalue(args))
+	df = df.where((pd.notnull(df)), common.get_fillvalue(args))
 
 	return df
 
@@ -116,6 +110,6 @@ def imauant2nc(args, input_file, output_file, stations):
 	comp_level = args.dfl_lvl
 	
 	common.load_dataset_attributes('imauant', ds)
-	encoding = common.get_encoding('imauant', get_fillvalue(args), comp_level)
+	encoding = common.get_encoding('imauant', common.get_fillvalue(args), comp_level)
 
 	common.write_data(args, ds, output_file, encoding)

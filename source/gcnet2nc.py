@@ -7,12 +7,6 @@ import xarray as xr
 import common
 from sunposition import sunpos
 
-def get_fillvalue(args):
-	if args.fll_val_flt:
-		return args.fll_val_flt
-	return common.fillvalue_float
-
-
 def init_dataframe(args, input_file):
 	check_na = 999.0
 
@@ -30,7 +24,7 @@ def init_dataframe(args, input_file):
 		'min_air_temperature_2', 'ref_temperature']
 	df.loc[:, temperature_keys] += common.freezing_point_temp
 	df.loc[:, 'atmos_pressure'] *= common.pascal_per_millibar
-	df = df.where((pd.notnull(df)), get_fillvalue(args))
+	df = df.where((pd.notnull(df)), common.get_fillvalue(args))
 	df['qc25'] = df['qc25'].astype(int)  # Convert it back to int
 
 	return df
@@ -140,6 +134,6 @@ def gcnet2nc(args, input_file, output_file, stations):
 	comp_level = args.dfl_lvl
 	
 	common.load_dataset_attributes('gcnet', ds)
-	encoding = common.get_encoding('gcnet', get_fillvalue(args), comp_level)
+	encoding = common.get_encoding('gcnet', common.get_fillvalue(args), comp_level)
 
 	common.write_data(args, ds, output_file, encoding)
