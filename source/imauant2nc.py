@@ -76,6 +76,16 @@ def get_time_and_sza(args, dataframe, longitude, latitude):
 	return hour, month, day, time, time_bounds, sza
 
 
+def derive_times(dataframe, month, day):
+	num_rows = dataframe['year'].size
+	for idx in range(num_rows):
+		month[idx], day[idx] = common.get_month_day(
+			int(dataframe['year'][idx]),
+			int(dataframe['day_of_year'][idx]),
+			True)
+
+
+
 def imauant2nc(args, input_file, output_file, stations):
 	df = init_dataframe(args, input_file)
 	ds = xr.Dataset.from_dataframe(df)
