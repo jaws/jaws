@@ -81,7 +81,7 @@ def derive_times(dataframe, month, day):
 
 
 
-def imauant2nc(args, input_file, output_file, stations):
+def imau2nc(args, input_file, output_file, stations):
 	df = init_dataframe(args, input_file)
 	ds = xr.Dataset.from_dataframe(df)
 	ds = ds.drop('time')
