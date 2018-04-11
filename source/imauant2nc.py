@@ -98,6 +98,13 @@ def imauant2nc(args, input_file, output_file, stations):
 	hour, month, day, time, time_bounds, sza = get_time_and_sza(
 		args, df, longitude, latitude)
 
+	if args.drv_tm:
+		common.log(args, 5, 'Calculating month and day')
+		derive_times(df, month, day)
+		ds['hour'] = 'time', hour
+		ds['month'] = 'time', month
+		ds['day'] = 'time', day
+
 	ds['time'] = 'time', time
 	ds['time_bounds'] = ('time', 'nbnd'), time_bounds
 	ds['sza'] = 'time', sza
