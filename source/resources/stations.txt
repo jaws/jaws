@@ -112,22 +112,22 @@ Whitlock                -76.142       168.394
 Willie Field            -77.868       166.921
 Windless Bight          -77.728       167.676
 
-aws01                   -71.9         3.08        NARE9697 site A
-aws02                   -72.25        2.88        NARE9697 site C
-aws03                   -74.98        15.0        NARE9697 site M
-aws04                   -72.75       -15.48       SWEDARP9798 Rampen
-aws05                   -73.1        -13.16       SWEDARP9798 Wasa/Aboa
-aws06                   -74.47       -11.52       SWEDARP9798 Svea
-aws07                   -74.57       -11.05       Scharffenbergbotnen
-aws08                   -76.0        -8.05        SWEDARP9798 Camp Victoria
-aws09                   -75.0         0.0         DML05/Kohnen
-aws10                   -79.57       -45.78       Berkner Island
-aws11                   -71.16       -6.8         Halvfarryggen
-aws12                   -78.65        35.63       Plateau Station B
-aws13                   -82.12        55.03       Pole of inaccessibility
-aws14                   -67.02       -61.5        Larsen C North
-aws15                   -67.57       -62.15       Larsen C South
-aws16                   -71.95        23.33       Princess Elisabeth station
-aws17                   -65.93       -61.85       Scar Inlet, Larsen B
-aws18                   -66.4        -63.37       Larsen C West
-aws19                   -70.95        26.27       King Baudoin Ice Shelf
+ant_aws01                   -71.9         3.08        NARE9697 site A
+ant_aws02                   -72.25        2.88        NARE9697 site C
+ant_aws03                   -74.98        15.0        NARE9697 site M
+ant_aws04                   -72.75       -15.48       SWEDARP9798 Rampen
+ant_aws05                   -73.1        -13.16       SWEDARP9798 Wasa/Aboa
+ant_aws06                   -74.47       -11.52       SWEDARP9798 Svea
+ant_aws07                   -74.57       -11.05       Scharffenbergbotnen
+ant_aws08                   -76.0        -8.05        SWEDARP9798 Camp Victoria
+ant_aws09                   -75.0         0.0         DML05/Kohnen
+ant_aws10                   -79.57       -45.78       Berkner Island
+ant_aws11                   -71.16       -6.8         Halvfarryggen
+ant_aws12                   -78.65        35.63       Plateau Station B
+ant_aws13                   -82.12        55.03       Pole of inaccessibility
+ant_aws14                   -67.02       -61.5        Larsen C North
+ant_aws15                   -67.57       -62.15       Larsen C South
+ant_aws16                   -71.95        23.33       Princess Elisabeth station
+ant_aws17                   -65.93       -61.85       Scar Inlet, Larsen B
+ant_aws18                   -66.4        -63.37       Larsen C West
+ant_aws19                   -70.95        26.27       King Baudoin Ice Shelf
