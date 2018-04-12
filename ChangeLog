@@ -1,3 +1,17 @@
+2018-04-11  Ajay Saini  <sainiak@uci.edu>
+
+	* Add columns for IMAU-grl
+
+	* Add ds.json for IMAU-grl
+
+	* Add encoding.json for IMAU-grl
+
+	* Add temperature_keys for IMAU-grl
+
+	* IMAU conversion complete for both Antarctic and Greenland stations
+	
+	* Work on building conda-forge package and setting path for ENV variable
+
 2018-04-10  Ajay Saini  <sainiak@uci.edu>
 
 	* IMAUant- define get_station function
