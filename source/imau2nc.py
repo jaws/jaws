@@ -34,7 +34,7 @@ def init_dataframe(args, input_file, sub_type):
 
 def get_station(args, input_file, stations):
 	filename = os.path.basename(input_file)
-	name = filename[4:9]
+	name = filename[:9]
 	lat, lon, new_name = common.parse_station(args, stations[name])
 	return lat, lon, new_name
 
