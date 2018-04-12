@@ -21,6 +21,11 @@ def init_dataframe(args, input_file, sub_type):
 		'snow_temp_1b', 'snow_temp_2b', 'snow_temp_3b', 'snow_temp_4b', 'snow_temp_5b',
 		'temp_logger']
 	
+	elif sub_type == 'imau/grl':
+		temperature_keys = ['temp_cnr1', 'air_temp2', 'air_temp6', 
+		'snow_temp_1', 'snow_temp_2', 'snow_temp_3', 'snow_temp_4', 'snow_temp_5',
+		'datalogger']
+	
 	df.loc[:, temperature_keys] += common.freezing_point_temp
 	df.loc[:, 'air_pressure'] *= common.pascal_per_millibar
 	df = df.where((pd.notnull(df)), common.get_fillvalue(args))
