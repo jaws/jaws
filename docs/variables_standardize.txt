@@ -1,0 +1,7 @@
+GCNet						PROMICE						AAWS					IMAU
+julian_decimal_time			day_of_year											day_of_year
+temperature_tc_1			air_temperature				air_temp				air_temp
+relative_humidity_1			relative_humidity			rh						rh
+u1_wind_speed				wind_speed					wind_spd				wind_spd
+u_direction_1				wind_direction				wind_dir				wind_dir
+atmos_pressure				air_pressure				pressure				air_pressure
