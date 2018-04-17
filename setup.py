@@ -9,7 +9,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="jaws",
-    version='0.2.1',
+    version='0.2.6',
     description='Software to convert idiosyncratic ASCII formats to netCDF formats',
     url='https://github.com/jaws/jaws',
     author='Ajay Saini',
