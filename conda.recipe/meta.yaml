@@ -11,6 +11,12 @@ requirements:
   build:
     - python
     - setuptools
+    - pandas
+    - numpy >=1.11
+    - xarray
+    - pytz
+    - netcdf4
+    - matplotlib
   run:
     - python
     - pandas
