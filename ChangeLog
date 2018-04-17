@@ -1,3 +1,43 @@
+2018-04-16  Ajay Saini  <sainiak@uci.edu>
+
+	* Define function start to be called in entry_points
+
+	* Update entry_points in setup.py
+
+	* Update build scripts to avoid creating separate directory for non-python files
+
+	* Update build requirements in meta.yaml
+
+	* Update import of modules for conda install
+	
+	* Update version in setup.py
+
+	* git tag -a 0.2.6 -m 'Atlantic Ghost Catshark: 'jaws' shell script calls jaws.py, entry_points defined in setup.py'; git push --tags
+
+2018-04-15  Ajay Saini  <sainiak@uci.edu>
+
+	* Skip copying jaws script from build.sh
+
+	* Add list of variable names to be standardized
+
+2018-04-14  Ajay Saini  <sainiak@uci.edu>
+
+	* Remove __init__.py from top level directory
+
+	* Move source/jaws shell script to bin/jaws
+
+	* Add entry_points to setup.py
+
+	* git tag -a 0.2.5 -m 'Spined Pygmy Shark: IMAU (ant and grl) conversion complete'; git push --tags
+
+2018-04-12  Ajay Saini  <sainiak@uci.edu>
+
+	* Rename IMAU-ant stations
+
+	* Add IMAU-grl stations
+
+	* Update variable to get station name from filename
+
 2018-04-11  Ajay Saini  <sainiak@uci.edu>
 
 	* Add columns for IMAU-grl
@@ -88,6 +128,8 @@
 	* Hour range from 0-23
 
 	* Work on conda-forge package
+
+	* git tag -a 0.2.4 -m 'African Lanternshark: Conda install, Appveyor, plot accept generic files'; git push --tags
 
 2018-04-04  Ajay Saini  <sainiak@uci.edu>
 
