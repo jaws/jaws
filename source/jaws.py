@@ -202,5 +202,5 @@ def main(args):
 		print(msg)
 
 
-if __name__ == '__main__':
+def start():
 	main(parse_args(sys.argv[1:]))
