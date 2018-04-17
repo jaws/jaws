@@ -8,8 +8,8 @@ import numpy as np
 import pandas as pd
 import xarray as xr
 
-import common
-from sunposition import sunpos
+from source import common
+from source import sunposition
 
 import warnings
 
@@ -65,7 +65,7 @@ def get_time_and_sza(args, dataframe, longitude, latitude):
 		time[idx] = (dtime - dtime_1970).total_seconds()
 		time_bounds[idx] = (time[idx], time[idx] + common.seconds_in_hour)
 
-		sza[idx] = sunpos(dtime, latitude, longitude, 0)[1]
+		sza[idx] = sunposition.sunpos(dtime, latitude, longitude, 0)[1]
 
 	return time, time_bounds, sza
 

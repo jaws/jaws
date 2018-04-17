@@ -3,8 +3,8 @@ from datetime import datetime
 import pandas as pd
 import xarray as xr
 
-import common
-from sunposition import sunpos
+from source import common
+from source import sunposition
 
 
 def init_dataframe(args, input_file):
@@ -56,7 +56,7 @@ def get_time_and_sza(args, input_file, latitude, longitude, dataframe):
 		time.append(seconds)
 		bounds.append((seconds - common.seconds_in_hour, seconds))
 
-		sza.append(sunpos(dtime, latitude, longitude, 0)[1])
+		sza.append(sunposition.sunpos(dtime, latitude, longitude, 0)[1])
 
 	return time, bounds, sza, year, month, day, hour, day_of_year
 

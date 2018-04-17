@@ -4,8 +4,8 @@ import numpy as np
 import pandas as pd
 import xarray as xr
 
-import common
-from sunposition import sunpos
+from source import common
+from source import sunposition
 
 def init_dataframe(args, input_file):
 	check_na = 999.0
@@ -83,7 +83,7 @@ def get_time_and_sza(args, dataframe, longitude, latitude):
 
 		time_bounds[idx] = (time[idx] - seconds_in_hour, time[idx])
 
-		sza[idx] = sunpos(temp_dtime, latitude, longitude, 0)[1]
+		sza[idx] = sunposition.sunpos(temp_dtime, latitude, longitude, 0)[1]
 
 	return hour, month, day, time, time_bounds, sza
 

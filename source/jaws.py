@@ -4,10 +4,10 @@ import argparse
 import collections
 import re
 
-import gcnet2nc, promice2nc, aaws2nc, imau2nc
+from source import gcnet2nc, promice2nc, aaws2nc, imau2nc
 from datetime import datetime
 
-from common import relative_path
+from source import common
 
 
 def get_parser():
@@ -94,7 +94,7 @@ def parse_args(args):
 
 def get_stations():
 	"""Read stations.txt and parse it into an ordered dict."""
-	with open(relative_path('resources/stations.txt')) as stream:
+	with open(common.relative_path('resources/stations.txt')) as stream:
 		stations = stream.read().split('\n')
 
 	# remove blank lines
