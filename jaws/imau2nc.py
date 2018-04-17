@@ -5,8 +5,8 @@ import numpy as np
 import pandas as pd
 import xarray as xr
 
-from source import common
-from source import sunposition
+from jaws import common
+from jaws import sunposition
 
 def init_dataframe(args, input_file, sub_type):
 	check_na = -9999

@@ -8,8 +8,8 @@ import numpy as np
 import pandas as pd
 import xarray as xr
 
-from source import common
-from source import sunposition
+from jaws import common
+from jaws import sunposition
 
 import warnings
 
