@@ -45,6 +45,6 @@ setup(
     install_requires=['pandas', 'numpy', 'xarray', 'pytz', 'matplotlib', 'netcdf4'],
 
     entry_points = {
-        'console_scripts': ['jaws=source.jaws:main'],
+        'console_scripts': ['jaws=source.jaws:start'],
     }
 )
