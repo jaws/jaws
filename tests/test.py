@@ -5,7 +5,7 @@ import os.path
 import os
 
 import sys
-sys.path.append('../source/')
+sys.path.append('../jaws/')
 import jaws
 
 import subprocess
@@ -37,7 +37,7 @@ def convert(infile, *args):
     jawargs = [infile, outfile.name] + list(args)
 
     # run the jaws command
-    subprocess.call(['python', '../source/jaws.py'] + jawargs)
+    subprocess.call(['python', '../jaws/jaws.py'] + jawargs)
 
     # read the result of the call.
     # if the file was malformed or not converted correctly
