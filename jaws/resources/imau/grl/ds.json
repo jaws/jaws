@@ -70,7 +70,7 @@
   },
   "sw_out": {
     "long_name": "Calibrated Shortwave Outgoing Radiation",
-    "standard_name": "downwelling_shortwave_flux_in_air",
+    "standard_name": "upwelling_shortwave_flux_in_air",
     "units": "watt meter-2",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -84,14 +84,14 @@
   },
   "lw_out": {
     "long_name": "Calibrated Longwave Outgoing Radiation",
-    "standard_name": "downwelling_longwave_flux_in_air",
+    "standard_name": "upwelling_longwave_flux_in_air",
     "units": "watt meter-2",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
   },
   "temp_cnr1": {
     "long_name": "Temperature of Radiation Sensor CNR1",
-    "standard_name": "air_temperature",
+    "standard_name": "",
     "units": "kelvin",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -175,35 +175,35 @@
   },
   "snow_temp_1": {
     "long_name": "Snow Temperature 1",
-    "standard_name": "",
+    "standard_name": "temperature_in_surface_snow",
     "units": "kelvin",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
   },
   "snow_temp_2": {
     "long_name": "Snow Temperature 2",
-    "standard_name": "",
+    "standard_name": "temperature_in_surface_snow",
     "units": "kelvin",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
   },
   "snow_temp_3": {
     "long_name": "Snow Temperature 3",
-    "standard_name": "",
+    "standard_name": "temperature_in_surface_snow",
     "units": "kelvin",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
   },
   "snow_temp_4": {
     "long_name": "Snow Temperature 4",
-    "standard_name": "",
+    "standard_name": "temperature_in_surface_snow",
     "units": "kelvin",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
   },
   "snow_temp_5": {
     "long_name": "Snow Temperature 5",
-    "standard_name": "",
+    "standard_name": "temperature_in_surface_snow",
     "units": "kelvin",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"

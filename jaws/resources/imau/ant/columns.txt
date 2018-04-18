@@ -5,7 +5,7 @@ wind_dir
 wind_spd
 wind_spd_max
 sw_in
-sw_ref
+sw_out
 lw_in
 lw_out
 temp_cnr1

@@ -47,9 +47,9 @@
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
   },
-  "sw_ref": {
+  "sw_out": {
     "long_name": "Shortwave Radiation Reference",
-    "standard_name": "downwelling_shortwave_flux_in_air",
+    "standard_name": "upwelling_shortwave_flux_in_air",
     "units": "watt meter-2",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -63,14 +63,14 @@
   },
   "lw_out": {
     "long_name": "Calibrated Longwave Outgoing Radiation",
-    "standard_name": "downwelling_longwave_flux_in_air",
+    "standard_name": "upwelling_longwave_flux_in_air",
     "units": "watt meter-2",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
   },
   "temp_cnr1": {
     "long_name": "Kipp Internal Temperature",
-    "standard_name": "air_temperature",
+    "standard_name": "",
     "units": "kelvin",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -105,70 +105,70 @@
   },
   "snow_temp_1a": {
     "long_name": "T1a Snow Temperature",
-    "standard_name": "",
+    "standard_name": "temperature_in_surface_snow",
     "units": "kelvin",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
   },
   "snow_temp_2a": {
     "long_name": "T2a Snow Temperature",
-    "standard_name": "",
+    "standard_name": "temperature_in_surface_snow",
     "units": "kelvin",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
   },
   "snow_temp_3a": {
     "long_name": "T3a Snow Temperature",
-    "standard_name": "",
+    "standard_name": "temperature_in_surface_snow",
     "units": "kelvin",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
   },
   "snow_temp_4a": {
     "long_name": "T4a Snow Temperature",
-    "standard_name": "",
+    "standard_name": "temperature_in_surface_snow",
     "units": "kelvin",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
   },
   "snow_temp_5a": {
     "long_name": "T5a Snow Temperature",
-    "standard_name": "",
+    "standard_name": "temperature_in_surface_snow",
     "units": "kelvin",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
   },
   "snow_temp_1b": {
     "long_name": "T1b Snow Temperature",
-    "standard_name": "",
+    "standard_name": "temperature_in_surface_snow",
     "units": "kelvin",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
   },
   "snow_temp_2b": {
     "long_name": "T2b Snow Temperature",
-    "standard_name": "",
+    "standard_name": "temperature_in_surface_snow",
     "units": "kelvin",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
   },
   "snow_temp_3b": {
     "long_name": "T3b Snow Temperature",
-    "standard_name": "",
+    "standard_name": "temperature_in_surface_snow",
     "units": "kelvin",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
   },
   "snow_temp_4b": {
     "long_name": "T4b Snow Temperature",
-    "standard_name": "",
+    "standard_name": "temperature_in_surface_snow",
     "units": "kelvin",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
   },
   "snow_temp_5b": {
     "long_name": "T5b Snow Temperature",
-    "standard_name": "",
+    "standard_name": "temperature_in_surface_snow",
     "units": "kelvin",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -196,7 +196,7 @@
   },
   "temp_logger": {
     "long_name": "Internal Temperature Logger",
-    "standard_name": "air_temperature",
+    "standard_name": "",
     "units": "kelvin",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
