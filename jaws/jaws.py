@@ -4,10 +4,12 @@ import argparse
 import collections
 import re
 
-from jaws import gcnet2nc, promice2nc, aaws2nc, imau2nc
 from datetime import datetime
 
-from jaws import common
+try:
+	from jaws import gcnet2nc, promice2nc, aaws2nc, imau2nc, common
+except:
+	import gcnet2nc, promice2nc, aaws2nc, imau2nc, common
 
 
 def get_parser():

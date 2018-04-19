@@ -4,8 +4,11 @@ import numpy as np
 import pandas as pd
 import xarray as xr
 
-from jaws import common
-from jaws import sunposition
+try:
+	from jaws import common, sunposition
+except:
+	import common, sunposition
+
 
 def init_dataframe(args, input_file):
 	check_na = 999.0
