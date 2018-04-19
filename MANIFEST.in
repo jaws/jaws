@@ -1,1 +1,6 @@
 include jaws/resources/*
+include jaws/resources/aaws/*
+include jaws/resources/gcnet/*
+include jaws/resources/imau/ant/*
+include jaws/resources/imau/grl/*
+include jaws/resources/promice/*
