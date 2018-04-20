@@ -8,9 +8,11 @@
 ___
 ## News
 
-2017/10/23: Version 0.1 released: Original scripts from Wenshan
+2018/04/18: Version 0.3 released: Conda installable
 
 2018/01/22: Version 0.2 released: Conversion of GCNet, PROMICE and AAWS networks complete
+
+2017/10/23: Version 0.1 released: Original scripts from Wenshan
 
 ## About
 
@@ -41,7 +43,7 @@ ___
 ### Linux/unix/win
 #### Requirements:
 * writable directory
-* [Anaconda] (https://conda.io/docs/user-guide/install/index.html) or [Miniconda](https://conda.io/miniconda.html)
+* [Anaconda](https://conda.io/docs/user-guide/install/index.html) or [Miniconda](https://conda.io/miniconda.html)
 * installed unzip package
 
 From within a writable directory, run the following command:
