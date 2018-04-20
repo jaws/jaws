@@ -37,21 +37,20 @@ Include value-added L3 features like the Retrospective, Iterative, Geometry-Base
 Provide a scriptable API to extend the initial L2-to-L3 conversion to newer AWS-like networks and instruments.
 
 ___
-<!--
 ## Installation
 ### Linux/unix/win
 #### Requirements:
 * writable directory
-* anaconda/miniconda
+* [Anaconda] (https://conda.io/docs/user-guide/install/index.html) or [Miniconda](https://conda.io/miniconda.html)
 * installed unzip package
 
 From within a writable directory, run the following command:
 ``` html
 $ conda install -c conda-forge jaws
 ```
--->
 
-## Obtaining and Running JAWS
+___
+## Obtaining JAWS
 
 First-time users can execute this to copy JAWS to their local machines:
 
@@ -71,6 +70,7 @@ Users should periodically update their local repositories to the current version
 $ git pull
 ```
 
+<!--
 ### Pre-requisites 
 
 JAWS works with any Python distribution, and especially well with Anaconda and [Miniconda](https://conda.io/miniconda.html)
@@ -78,28 +78,29 @@ JAWS works with any Python distribution, and especially well with Anaconda and [
 * netCDF4: Install with `conda install netcdf4` or as instructed [here](http://unidata.github.io/netcdf4-python)
 * pandas: Install with `conda install pandas` or as instructed [here](http://pandas.pydata.org)
 * xarray: Install with `conda install xarray` or as instructed [here](http://xarray.pydata.org)
+-->
 
 ### Example
 
-The current version can translate L2 ASCII data from the GCNet, PROMICE and AAWS networks to netCDF format. The user provides the input file path. By default, the output file will be stored within the current directory with the network name (e.g. promice.nc). The user can optionally give their own output path/name. Execute this from the JAWS `source` directory:
+The current version can translate L2 ASCII data from the GCNet, PROMICE, AAWS and IMAU networks to netCDF format. The user provides the input file path. By default, the output file will be stored within the current directory with the network name (e.g. promice.nc). The user can optionally give their own output path/name. Execute this to get output file in current directory:
 
 ``` html
-$ python jaws.py ../sample_data/PROMICE_EGP_20160501.txt
+$ jaws sample_data/PROMICE_EGP_20160501.txt
 ```
 
-or from anywhere, by specifying longer paths, and with options:
+or by specifying longer paths, and with options:
 
 ``` html
-$ python ~/jaws/source/jaws.py -4 -o ~/PROMICE_EGP_20160501.nc ~/jaws/sample_data/PROMICE_EGP_20160501.txt
-$ python ~/jaws/source/jaws.py -4 -o ~/GCNET_Summit_20140601.nc ~/jaws/sample_data/GCNET_Summit_20140601.txt
-$ python ~/jaws/source/jaws.py -4 -o ~/AAWS_AGO-4_20161130.nc ~/jaws/sample_data/AAWS_AGO-4_20161130.txt
+$ jaws -4 -o ~/PROMICE_EGP_20160501.nc ~/jaws/sample_data/PROMICE_EGP_20160501.txt
+$ jaws -4 -o ~/GCNET_Summit_20140601.nc ~/jaws/sample_data/GCNET_Summit_20140601.txt
+$ jaws -4 -o ~/AAWS_AGO-4_20161130.nc ~/jaws/sample_data/AAWS_AGO-4_20161130.txt
 ```
 
 where the argument to the optional `-o` is the user-defined output filename
 
 #### Analysis Example
 
-Currently, JAWS can be used to analyse the data for GCNet in multiple ways such as:
+JAWS can be used to analyse the data in multiple ways such as:
 
 i. Plotting monthly diurnal cycle to see hourly changes for any variable throughout the month.
 
