@@ -1,3 +1,43 @@
+2018-04-19  Ajay Saini  <sainiak@uci.edu>
+
+	* Correct import statements for Python2
+
+	* if __name__ == '__main__' in jaws.py
+
+	* git tag -a 0.3.2 -m 'alpha02: import statements compatible with python2'; git push --tags
+
+	* Update installation instructions and example
+
+2018-04-18  Ajay Saini  <sainiak@uci.edu>
+
+	* Rename IMAU sample files
+
+	* Update IMAU variable, long_name and standard_name
+
+	* Add MANIFEST.in to include package data
+
+	* Add sub-directories of resources to MANIFEST.in
+
+	* Released version 0.3 "Whale Shark": JAWS installable via conda-forge
+
+	* Remove old individual analysis scripts (annual_cycle.py, climatological_seasonal_cycle.py, monthy_diurnal.py, monthy_values.py)
+	
+	* Move analysis.py to jaws/jaws to make it available in conda package
+
+	* git tag -a 0.3.1 -m 'alpha01: Remove unnecessary directories'; git push --tags
+
+2018-04-17  Ajay Saini  <sainiak@uci.edu>
+
+	* Rename source directory as jaws
+
+	* Replace source with jaws in import statements
+
+	* Replace source with jaws in test.py
+
+	* Update data_files in setup.py
+
+	* git tag -a 0.2.7 -m 'Broadnose Catshark: source directory renamed as jaws'; git push --tags
+
 2018-04-16  Ajay Saini  <sainiak@uci.edu>
 
 	* Define function start to be called in entry_points
