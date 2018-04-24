@@ -54,7 +54,7 @@
     "coordinates": "longitude latitude"
   },
   "relative_humidity_wrtwater": {
-    "long_name": "Relative Humidity wrt Water",
+    "long_name": "Relative Humidity with regard to Water",
     "standard_name": "relative_humidity",
     "units": "1",
     "cell_methods": "time: mean",
