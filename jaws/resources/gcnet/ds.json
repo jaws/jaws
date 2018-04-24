@@ -139,70 +139,70 @@
   },
   "t_snow_01": {
     "long_name": "T Snow 1",
-    "standard_name": "",
+    "standard_name": "temperature_in_surface_snow",
     "units": "kelvin",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
   },
   "t_snow_02": {
     "long_name": "T Snow 2",
-    "standard_name": "",
+    "standard_name": "temperature_in_surface_snow",
     "units": "kelvin",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
   },
   "t_snow_03": {
     "long_name": "T Snow 3",
-    "standard_name": "",
+    "standard_name": "temperature_in_surface_snow",
     "units": "kelvin",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
   },
   "t_snow_04": {
     "long_name": "T Snow 4",
-    "standard_name": "",
+    "standard_name": "temperature_in_surface_snow",
     "units": "kelvin",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
   },
   "t_snow_05": {
     "long_name": "T Snow 5",
-    "standard_name": "",
+    "standard_name": "temperature_in_surface_snow",
     "units": "kelvin",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
   },
   "t_snow_06": {
     "long_name": "T Snow 6",
-    "standard_name": "",
+    "standard_name": "temperature_in_surface_snow",
     "units": "kelvin",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
   },
   "t_snow_07": {
     "long_name": "T Snow 7",
-    "standard_name": "",
+    "standard_name": "temperature_in_surface_snow",
     "units": "kelvin",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
   },
   "t_snow_08": {
     "long_name": "T Snow 8",
-    "standard_name": "",
+    "standard_name": "temperature_in_surface_snow",
     "units": "kelvin",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
   },
   "t_snow_09": {
     "long_name": "T Snow 9",
-    "standard_name": "",
+    "standard_name": "temperature_in_surface_snow",
     "units": "kelvin",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
   },
   "t_snow_10": {
     "long_name": "T Snow 10",
-    "standard_name": "",
+    "standard_name": "temperature_in_surface_snow",
     "units": "kelvin",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
