@@ -131,8 +131,8 @@
     "coordinates": "longitude latitude"
   },
   "cloudcover": {
-    "long_name": "Cloud Cover",
-    "standard_name": "",
+    "long_name": "Estimated Cloud Cover",
+    "standard_name": "cloud_area_fraction",
     "units": "1",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
