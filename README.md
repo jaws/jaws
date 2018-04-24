@@ -51,6 +51,12 @@ From within a writable directory, run the following command:
 $ conda install -c conda-forge jaws
 ```
 
+Users should periodically update *JAWS* to the latest version using:
+```html
+$ conda update jaws
+```
+
+<!--
 ___
 ## Obtaining JAWS
 
@@ -72,7 +78,6 @@ Users should periodically update their local repositories to the current version
 $ git pull
 ```
 
-<!--
 ### Pre-requisites 
 
 JAWS works with any Python distribution, and especially well with Anaconda and [Miniconda](https://conda.io/miniconda.html)
@@ -84,18 +89,24 @@ JAWS works with any Python distribution, and especially well with Anaconda and [
 
 ### Example
 
-The current version can translate L2 ASCII data from the GCNet, PROMICE, AAWS and IMAU networks to netCDF format. The user provides the input file path. By default, the output file will be stored within the current directory with the network name (e.g. promice.nc). The user can optionally give their own output path/name. Execute this to get output file in current directory:
+The current version can translate L2 ASCII data from the following networks to netCDF format: 
+* Antarctic Automatic Weather Stations (AAWS): Sample raw file can be downloaded from ![here](http://grele.ess.uci.edu/jaws/sample_data/AAWS_AGO-4_20161130.txt)
+* Greenland Climate Network (GCNet): Sample raw file can be downloaded from ![here](http://grele.ess.uci.edu/jaws/sample_data/GCNet_Summit_20140601.txt)
+* Institute for Marine and Atmospheric Research (IMAU): Sample raw file for Antarctic stations can be downloaded from ![here](http://grele.ess.uci.edu/jaws/sample_data/ant_aws17IMAU_20150101.txt) and for Greenland stations can be downloaded from ![here](http://grele.ess.uci.edu/jaws/sample_data/grl_aws05IMAU_19930901.txt)
+* Programme for Monitoring of the Greenland Ice Sheet (PROMICE): Sample raw file can be downloaded from ![here](http://grele.ess.uci.edu/jaws/sample_data/PROMICE_EGP_20160501.txt)
+
+The user provides the input file path. By default, the output file will be stored within the current directory with same name as of input file (e.g. PROMICE_EGP_20160501.nc). The user can optionally give their own output path/name. Execute this to get output file in current directory:
 
 ``` html
-$ jaws sample_data/PROMICE_EGP_20160501.txt
+$ jaws ~/Downloads/PROMICE_EGP_20160501.txt
 ```
 
 or by specifying longer paths, and with options:
 
 ``` html
-$ jaws -4 -o ~/PROMICE_EGP_20160501.nc ~/jaws/sample_data/PROMICE_EGP_20160501.txt
-$ jaws -4 -o ~/GCNET_Summit_20140601.nc ~/jaws/sample_data/GCNET_Summit_20140601.txt
-$ jaws -4 -o ~/AAWS_AGO-4_20161130.nc ~/jaws/sample_data/AAWS_AGO-4_20161130.txt
+$ jaws -4 -o ~/Desktop/PROMICE_EGP_20160501.nc ~/Downloads/PROMICE_EGP_20160501.txt
+$ jaws -4 -o ~/Desktop/GCNET_Summit_20140601.nc ~/Downloads/GCNET_Summit_20140601.txt
+$ jaws -4 -o ~/Desktop/AAWS_AGO-4_20161130.nc ~/Downloads/AAWS_AGO-4_20161130.txt
 ```
 
 where the argument to the optional `-o` is the user-defined output filename
@@ -169,10 +180,12 @@ This software is being developed by the University of California Irvine under NA
 
 ## Resources
 
-* [API Reference](https://github.com/jaws/jaws/blob/master/API.md)
 * [Release Notes](https://github.com/jaws/jaws/releases)
 * [Gallery](https://github.com/jaws/jaws/wiki/Gallery)
+<!--
+* [API Reference](https://github.com/jaws/jaws/blob/master/API.md)
 * [Examples](https://)
+-->
 
 
 ## Full Documentation
