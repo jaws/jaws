@@ -90,9 +90,9 @@ JAWS works with any Python distribution, and especially well with Anaconda and [
 ### Example
 
 The current version can translate L2 ASCII data from the following networks to netCDF format: 
-* Antarctic Automatic Weather Stations (AAWS): Sample raw file can be downloaded from [here](http://grele.ess.uci.edu/jaws/sample_data/AAWS_AGO-4_20161130.txt)
+* Antarctic Automatic Weather Stations (AAWS): Sample raw file can be downloaded from [here](http://grele.ess.uci.edu/jaws/sample_data/AAWS_AGO-4_20161130.txt). Righht click on the link and select "Save link as".
 * Greenland Climate Network (GCNet): Sample raw file can be downloaded from [here](http://grele.ess.uci.edu/jaws/sample_data/GCNet_Summit_20140601.txt)
-* Institute for Marine and Atmospheric Research (IMAU): Sample raw file for Antarctic stations can be downloaded from [here](http://grele.ess.uci.edu/jaws/sample_data/ant_aws17IMAU_20150101.txt) and for Greenland stations can be downloaded from ![here](http://grele.ess.uci.edu/jaws/sample_data/grl_aws05IMAU_19930901.txt)
+* Institute for Marine and Atmospheric Research (IMAU): Sample raw file for Antarctic stations can be downloaded from [here](http://grele.ess.uci.edu/jaws/sample_data/ant_aws17IMAU_20150101.txt) and for Greenland stations can be downloaded from [here](http://grele.ess.uci.edu/jaws/sample_data/grl_aws05IMAU_19930901.txt)
 * Programme for Monitoring of the Greenland Ice Sheet (PROMICE): Sample raw file can be downloaded from [here](http://grele.ess.uci.edu/jaws/sample_data/PROMICE_EGP_20160501.txt)
 
 The user provides the input file path. By default, the output file will be stored within the current directory with same name as of input file (e.g. PROMICE_EGP_20160501.nc). The user can optionally give their own output path/name. Execute this to get output file in current directory:

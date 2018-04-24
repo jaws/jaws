@@ -1,3 +1,13 @@
+2018-04-23  Ajay Saini  <sainiak@uci.edu>
+
+	* Remove 'Obtaining JAWS' section and update example with links for sample input files
+
+	* PROMICE- update long_name of relative_humidity_wrtwater
+
+	* PROMICE- update long_name and standard_name of cloud_cover
+
+	* GCNet- Add standard name for all variables having snow temperature
+
 2018-04-19  Ajay Saini  <sainiak@uci.edu>
 
 	* Correct import statements for Python2
