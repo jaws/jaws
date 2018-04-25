@@ -89,7 +89,7 @@
     "coordinates": "longitude latitude"
   },
   "shortwave_radiation_down_cor": {
-    "long_name": "Shortwave Radiation Down Cor",
+    "long_name": "Tilt corrected Shortwave Radiation Down using 'tilt_east' and 'tilt_north'",
     "standard_name": "downwelling_shortwave_flux_in_air",
     "units": "watt meter-2",
     "cell_methods": "time: mean",
@@ -103,7 +103,7 @@
     "coordinates": "longitude latitude"
   },
   "shortwave_radiation_up_cor": {
-    "long_name": "Shortwave Radiation Up Cor",
+    "long_name": "Tilt corrected Shortwave Radiation Up using 'tilt_east' and 'tilt_north'",
     "standard_name": "upwelling_shortwave_flux_in_air",
     "units": "watt meter-2",
     "cell_methods": "time: mean",
@@ -166,7 +166,7 @@
     "coordinates": "longitude latitude"
   },
   "depth_pressure_transducer_cor": {
-    "long_name": "Depth Pressure Transducer Cor",
+    "long_name": "Corrected Depth Pressure Transducer",
     "standard_name": "",
     "units": "meter",
     "cell_methods": "time: point",
