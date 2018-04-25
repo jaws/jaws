@@ -90,7 +90,7 @@ JAWS works with any Python distribution, and especially well with Anaconda and [
 ### Example
 
 The current version can translate L2 ASCII data from the following networks to netCDF format: 
-* Antarctic Automatic Weather Stations (AAWS): Sample raw file can be downloaded from [here](http://grele.ess.uci.edu/jaws/sample_data/AAWS_AGO-4_20161130.txt). Righht click on the link and select "Save link as".
+* Antarctic Automatic Weather Stations (AAWS): Sample raw file can be downloaded from [here](http://grele.ess.uci.edu/jaws/sample_data/AAWS_AGO-4_20161130.txt). Right click on the link and select "Save link as".
 * Greenland Climate Network (GCNet): Sample raw file can be downloaded from [here](http://grele.ess.uci.edu/jaws/sample_data/GCNet_Summit_20140601.txt)
 * Institute for Marine and Atmospheric Research (IMAU): Sample raw file for Antarctic stations can be downloaded from [here](http://grele.ess.uci.edu/jaws/sample_data/ant_aws17IMAU_20150101.txt) and for Greenland stations can be downloaded from [here](http://grele.ess.uci.edu/jaws/sample_data/grl_aws05IMAU_19930901.txt)
 * Programme for Monitoring of the Greenland Ice Sheet (PROMICE): Sample raw file can be downloaded from [here](http://grele.ess.uci.edu/jaws/sample_data/PROMICE_EGP_20160501.txt)
@@ -105,7 +105,7 @@ or by specifying longer paths, and with options:
 
 ``` html
 $ jaws -4 -o ~/Desktop/PROMICE_EGP_20160501.nc ~/Downloads/PROMICE_EGP_20160501.txt
-$ jaws -4 -o ~/Desktop/GCNET_Summit_20140601.nc ~/Downloads/GCNET_Summit_20140601.txt
+$ jaws -4 -o ~/Desktop/GCNet_Summit_20140601.nc ~/Downloads/GCNet_Summit_20140601.txt
 $ jaws -4 -o ~/Desktop/AAWS_AGO-4_20161130.nc ~/Downloads/AAWS_AGO-4_20161130.txt
 ```
 
