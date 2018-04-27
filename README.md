@@ -5,6 +5,14 @@
 
 [![Build Status](https://travis-ci.org/jaws/jaws.svg?branch=master)](https://travis-ci.org/jaws/jaws)
 [![Build status](https://ci.appveyor.com/api/projects/status/gt0r8jlo5iarqv55?svg=true)](https://ci.appveyor.com/project/ajcse1/jaws)
+
+[![Anaconda-Server Badge](https://anaconda.org/conda-forge/jaws/badges/installer/conda.svg)](https://conda.anaconda.org/conda-forge)
+[![Anaconda-Server Badge](https://anaconda.org/conda-forge/jaws/badges/version.svg)](https://anaconda.org/conda-forge/jaws)
+[![Anaconda-Server Badge](https://anaconda.org/conda-forge/jaws/badges/latest_release_date.svg)](https://anaconda.org/conda-forge/jaws)
+[![Anaconda-Server Badge](https://anaconda.org/conda-forge/jaws/badges/platforms.svg)](https://anaconda.org/conda-forge/jaws)
+[![Anaconda-Server Badge](https://anaconda.org/conda-forge/jaws/badges/license.svg)](https://anaconda.org/conda-forge/jaws)
+[![Anaconda-Server Badge](https://anaconda.org/conda-forge/jaws/badges/downloads.svg)](https://anaconda.org/conda-forge/jaws)
+
 ___
 ## News
 
