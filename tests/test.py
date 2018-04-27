@@ -203,7 +203,7 @@ class TestGCNet(TestConverter):
         """
         Test the first sample input file.
         """
-        self.check_output('../sample_data/GCNET_Summit_20140601.txt', '../sample_data/converted/GCNET_Summit_20140601.nc')
+        self.check_output('../sample_data/GCNet_Summit_20140601.txt', '../sample_data/converted/GCNet_Summit_20140601.nc')
 
 
 class TestPROMICE(TestConverter):
