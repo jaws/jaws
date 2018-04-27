@@ -23,7 +23,8 @@ such as solar zenith angle and tilt correction.
 
 Q. Where will be the primary data archive? (Required)
 
-The primary data archive is fxm.
+The JAWS project does not itself measure or archive any data.
+The primary data archive is with the AWS network providers.
 
 Q. What real-time provision?
 
