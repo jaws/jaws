@@ -1,0 +1,20 @@
+Q. Please outline, if applicable, any planned exchange of information between users and providers; including activities, services, decisions, etc. (of particular relevant for social scientists):
+(i) User relevant aspects: 
+(ii) Provider relevant aspects:
+
+Q. Regional emphasis:
+Select from options- (i)Northern hemisphere (ii) Southern hemisphere
+
+Q. Key deliverables (Required)
+
+Q. Where will be the primary data archive? (Required)
+
+Q. What real-time provision?
+
+Q. Timeline(s) (for individual activities of the project (campaign(s), experiment(s), simulation(s), etc.)).
+If yes, for each timeline provide the following:
+Location, Latitude, Longitude, Activity, Start Date, End Date
+
+Q. Funding information
+
+Q. Other Information
