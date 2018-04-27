@@ -1,13 +1,29 @@
 Q. Please outline, if applicable, any planned exchange of information between users and providers; including activities, services, decisions, etc. (of particular relevant for social scientists):
-(i) User relevant aspects: 
+(i) User relevant aspects:
+
+The users of JAWS are AWS network managers and data curators who wish
+to distribute their data in JAWS format, and end-users who wish to use
+to use JAWS to augment or analyze data they received in JAWS format.
+
 (ii) Provider relevant aspects:
+
+The JAWS project coordinates software development and cross-network
+issues, such as naming and metadata conventions.
 
 Q. Regional emphasis:
 Select from options- (i)Northern hemisphere (ii) Southern hemisphere
 
+Both
+
 Q. Key deliverables (Required)
 
+JAWS provides an easily installable Python software stack to convert
+raw L2 ASCII data into L3 netCDF format, with value-added fields
+such as solar zenith angle and tilt correction.
+
 Q. Where will be the primary data archive? (Required)
+
+The primary data archive is fxm.
 
 Q. What real-time provision?
 
@@ -16,5 +32,8 @@ If yes, for each timeline provide the following:
 Location, Latitude, Longitude, Activity, Start Date, End Date
 
 Q. Funding information
+
+JAWS is funded by the NASA Advanced Information Systems Technology
+(AIST) Program (80NSSC17K0540)
 
 Q. Other Information
