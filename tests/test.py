@@ -3,6 +3,7 @@ import tempfile
 import netCDF4
 import os.path
 import os
+import matplotlib
 
 import sys
 sys.path.append('../jaws/')
