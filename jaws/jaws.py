@@ -7,9 +7,9 @@ import re
 from datetime import datetime
 
 try:
-	from jaws import gcnet2nc, promice2nc, aaws2nc, imau2nc, common
+	from jaws import gcnet2nc, promice2nc, aaws2nc, imau2nc, common, analysis
 except:
-	import gcnet2nc, promice2nc, aaws2nc, imau2nc, common
+	import gcnet2nc, promice2nc, aaws2nc, imau2nc, common, analysis
 
 
 def get_parser():
@@ -87,6 +87,20 @@ def get_parser():
 	jaws_dbg_var2,  /* 6 */ For GCNet- month and day, For PROMICE- ice_velocity
 	
 	'''
+
+	parser.add_argument(
+		'-a', '--anl', '--analysis', 
+		help = "plot type e.g.- diurnal, monthly, annual, seasonal", type = str)
+	parser.add_argument(
+		'-v', '--var', '--variable', 
+		help = 'variable you want to analyse', type = str)
+	parser.add_argument(
+		'-y', '--anl_yr', '--analysis_year', 
+		help = 'Year you want to select', type = int)
+	parser.add_argument(
+		'-m','--anl_mth', '--analysis_month', 
+		help = 'Month you want to select', type = int)
+
 	return parser
 
 
@@ -187,6 +201,14 @@ def dispatch_converter(args, input_file, output_file, stations):
 		raise RuntimeError(errmsg)
 
 def main(args):
+	"""
+	First check if this is an analysis task.
+	If yes, exit after generating plots.
+	"""
+	if args.anl:
+		analysis.main(args)
+	sys.exit(1)
+
 	start_time = datetime.now()
 
 	stations = get_stations()
