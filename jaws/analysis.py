@@ -98,7 +98,7 @@ def check_error(var_x, var_y):
 		sys.exit(1)
 
 
-def diurnal():
+def diurnal(args):
 	global var_hour_avg, var_hour_sd
 	
 	hour = df['hour']
@@ -110,7 +110,7 @@ def diurnal():
 	return var_hour_avg, var_hour_sd, hours
 
 
-def monthly():
+def monthly(args):
 	global var_day_avg, var_day_max, var_day_min
 	
 	day = df['day']
@@ -123,7 +123,7 @@ def monthly():
 	return var_day_avg, var_day_max, var_day_min
 
 
-def annual():
+def annual(args):
 	global var_doy_avg, var_doy_max, var_doy_min
 	
 	try:
@@ -140,7 +140,7 @@ def annual():
 	return var_doy_avg, var_doy_max, var_doy_min, days_year
 
 
-def seasonal():
+def seasonal(args):
 	global var_month_avg, var_month_sd
 
 	month = df['month']
@@ -156,14 +156,14 @@ def main(args):
 	setup(args)
 	
 	if args.plot == 'diurnal':
-		diurnal()
+		diurnal(args)
 		plt.errorbar(hours, var_hour_avg, yerr = var_hour_sd, fmt='--o', ecolor='lightskyblue', color='k')
 		plt.xticks(hours)
 		plt.xlabel('Hour of the day')
 		plt.title('Diurnal cycle at {} for {}-{}'.format(df.station_name[0][0], month[0][0], year[0][0]))
 
 	elif args.plot == 'monthly':
-		monthly()
+		monthly(args)
 		plt.plot(days,var_day_avg, label='mean', color ='black')
 		plt.fill_between(days,var_day_max, var_day_min, label='max-min', facecolor='darkseagreen', alpha=0.3)
 		plt.xticks(days)
@@ -171,7 +171,7 @@ def main(args):
 		plt.title('Temperature at {} for {}-{}'.format(df.station_name[0][0], month[0][0], year[0][0]))
 
 	elif args.plot == 'annual':
-		annual()
+		annual(args)
 		plt.plot(days_year,var_doy_avg, label='mean', color ='black')
 		#plt.fill_between(days_year,var_doy_max, var_doy_min, label='max-min', facecolor='green', alpha=0.3)
 		plt.plot(days_year,var_doy_max, label='max', color = 'darkseagreen')
@@ -180,7 +180,7 @@ def main(args):
 		plt.title('Temperature at {} for {}'.format(df.station_name[0][0], year[0][0]))
 
 	elif args.plot == 'seasonal':
-		seasonal()
+		seasonal(args)
 		plt.errorbar(months, var_month_avg, yerr = var_month_sd, fmt='--o', ecolor= 'lightskyblue', color='k')
 		plt.xticks(months)
 		plt.xlabel('Month')
