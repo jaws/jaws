@@ -87,6 +87,20 @@ def get_parser():
 	jaws_dbg_var2,  /* 6 */ For GCNet- month and day, For PROMICE- ice_velocity
 	
 	'''
+
+	parser.add_argument(
+		'-a', '--anl', '--analysis', 
+		help = "plot type e.g.- diurnal, monthly, annual, seasonal", type = str)
+	parser.add_argument(
+		'-v', '--var', '--variable', 
+		help = 'variable you want to analyse', type = str)
+	parser.add_argument(
+		'-y', '--anl_yr', '--analysis_year', 
+		help = 'Year you want to select', type = int)
+	parser.add_argument(
+		'-m','--anl_mth', '--analysis_month', 
+		help = 'Month you want to select', type = int)
+
 	return parser
 
 

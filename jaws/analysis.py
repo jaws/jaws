@@ -11,13 +11,6 @@ mpl.rc('axes.spines', top = False, right = False)
 mpl.rc('axes', grid = False)
 mpl.rc('axes', facecolor = 'white')
 
-parser = argparse.ArgumentParser()
-parser.add_argument("input", help="netCDF file you wish to plot.", type=str)
-parser.add_argument('var', help = 'variable you want to analyse', type = str)
-parser.add_argument('plot', help = "plot type e.g.- diurnal, monthly, annual, seasonal", type = str)
-parser.add_argument('-y', '--year', help = 'Year you want to select', type = int)
-parser.add_argument('-m', '--month', help = 'Month you want to select', type = int)
-args = parser.parse_args()
 
 ds = xarray.open_dataset(args.input)
 df = ds.to_dataframe()
