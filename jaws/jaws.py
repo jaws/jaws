@@ -7,9 +7,9 @@ import re
 from datetime import datetime
 
 try:
-	from jaws import gcnet2nc, promice2nc, aaws2nc, imau2nc, common
+	from jaws import gcnet2nc, promice2nc, aaws2nc, imau2nc, common, analysis
 except:
-	import gcnet2nc, promice2nc, aaws2nc, imau2nc, common
+	import gcnet2nc, promice2nc, aaws2nc, imau2nc, common, analysis
 
 
 def get_parser():
@@ -201,6 +201,14 @@ def dispatch_converter(args, input_file, output_file, stations):
 		raise RuntimeError(errmsg)
 
 def main(args):
+	"""
+	First check if this is an analysis task.
+	If yes, exit after generating plots.
+	"""
+	if args.anl:
+		analysis.main(args)
+	sys.exit(1)
+
 	start_time = datetime.now()
 
 	stations = get_stations()
