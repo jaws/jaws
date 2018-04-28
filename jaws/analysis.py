@@ -5,25 +5,84 @@ import matplotlib.pyplot as plt
 import argparse
 import sys
 
-mpl.rc('figure', figsize = (15, 10))
-mpl.rc('font', size = 12)
-mpl.rc('axes.spines', top = False, right = False)
-mpl.rc('axes', grid = False)
-mpl.rc('axes', facecolor = 'white')
+def setup(args):
+	mpl.rc('figure', figsize = (15, 10))
+	mpl.rc('font', size = 12)
+	mpl.rc('axes.spines', top = False, right = False)
+	mpl.rc('axes', grid = False)
+	mpl.rc('axes', facecolor = 'white')
+
+	global ds, df
+	ds = xarray.open_dataset(args.input)
+	df = ds.to_dataframe()
+
+	if args.anl_yr:
+		df = df[df.year == args.anl_yr]
+	if args.anl_mth:
+		df = df[df.month == args.anl_mth]
+
+	if df.size == 0:
+		print('ERROR: Provide a valid year and month')
+		sys.exit(1)
+
+	global year
+	year = df['year']
+
+	#df[args.var].replace([999.00], [245], inplace=True)
+
+	global month, days
+
+	df['month_derived'] = df['month'].astype(str)
+	month = df['month_derived']
+	if month[0][0] == '1':
+		month[0][0] = 'Jan'
+		days = range(1,32)
+	elif month[0][0] == '2':
+		month[0][0] = 'Feb'
+		days = range(1,29)
+	elif month[0][0] == '3':
+		month[0][0] = 'Mar'
+		days = range(1,32)
+	elif month[0][0] == '4':
+		month[0][0] = 'Apr'
+		days = range(1,31)
+	elif month[0][0] == '5':
+		month[0][0] = 'May'
+		days = range(1,32)
+	elif month[0][0] == '6':
+		month[0][0] = 'Jun'
+		days = range(1,31)
+	elif month[0][0] == '7':
+		month[0][0] = 'Jul'
+		days = range(1,32)
+	elif month[0][0] == '8':
+		month[0][0] = 'Aug'
+		days = range(1,32)
+	elif month[0][0] == '9':
+		month[0][0] = 'Sep'
+		days = range(1,31)
+	elif month[0][0] == '10':
+		month[0][0] = 'Oct'
+		days = range(1,32)
+	elif month[0][0] == '11':
+		month[0][0] = 'Nov'
+		days = range(1,31)
+	elif month[0][0] == '12':
+		month[0][0] = 'Dec'
+		days = range(1,32)
 
 
-ds = xarray.open_dataset(args.input)
-df = ds.to_dataframe()
+	global hours, days_year, months
 
-if args.year:
-    df = df[df.year == args.year]
-if args.month:
-    df = df[df.month == args.month]
+	hours = range(0,24)
 
-if df.size == 0:
-	print('ERROR: Provide a valid year and month')
-	parser.print_help()
-	sys.exit(1)
+	if year[0][0]%4 == 0:
+		days_year = range(1,367)
+	else:
+		days_year = range(1,366)
+
+	months = range(1,13)
+
 
 def check_error(var_x, var_y):
 	if len(var_x) != len(var_y):
@@ -36,65 +95,8 @@ def check_error(var_x, var_y):
 		elif var_y == months:
 			print('ERROR: Provide data for all the months')
 		
-		parser.print_help()
 		sys.exit(1)
 
-year = df['year']
-
-df[args.var].replace([999.00], [245], inplace=True)
-
-global month, days
-
-df['month_derived'] = df['month'].astype(str)
-month = df['month_derived']
-if month[0][0] == '1':
-	month[0][0] = 'Jan'
-	days = range(1,32)
-elif month[0][0] == '2':
-	month[0][0] = 'Feb'
-	days = range(1,29)
-elif month[0][0] == '3':
-	month[0][0] = 'Mar'
-	days = range(1,32)
-elif month[0][0] == '4':
-	month[0][0] = 'Apr'
-	days = range(1,31)
-elif month[0][0] == '5':
-	month[0][0] = 'May'
-	days = range(1,32)
-elif month[0][0] == '6':
-	month[0][0] = 'Jun'
-	days = range(1,31)
-elif month[0][0] == '7':
-	month[0][0] = 'Jul'
-	days = range(1,32)
-elif month[0][0] == '8':
-	month[0][0] = 'Aug'
-	days = range(1,32)
-elif month[0][0] == '9':
-	month[0][0] = 'Sep'
-	days = range(1,31)
-elif month[0][0] == '10':
-	month[0][0] = 'Oct'
-	days = range(1,32)
-elif month[0][0] == '11':
-	month[0][0] = 'Nov'
-	days = range(1,31)
-elif month[0][0] == '12':
-	month[0][0] = 'Dec'
-	days = range(1,32)
-
-
-global hours, days_year, months
-
-hours = range(0,24)
-
-if year[0][0]%4 == 0:
-	days_year = range(1,367)
-else:
-	days_year = range(1,366)
-
-months = range(1,13)
 
 def diurnal():
 	global var_hour_avg, var_hour_sd
@@ -107,6 +109,7 @@ def diurnal():
 
 	return var_hour_avg, var_hour_sd, hours
 
+
 def monthly():
 	global var_day_avg, var_day_max, var_day_min
 	
@@ -118,6 +121,7 @@ def monthly():
 	check_error(var_day_avg, days)
 
 	return var_day_avg, var_day_max, var_day_min
+
 
 def annual():
 	global var_doy_avg, var_doy_max, var_doy_min
@@ -134,6 +138,7 @@ def annual():
 	check_error(var_doy_avg, days_year)
 
 	return var_doy_avg, var_doy_max, var_doy_min, days_year
+
 
 def seasonal():
 	global var_month_avg, var_month_sd
