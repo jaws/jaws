@@ -32,4 +32,5 @@ install:
 
 script:
     - cd tests
+    - pip install matplotlib
     - python test.py
