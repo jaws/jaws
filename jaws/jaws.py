@@ -207,7 +207,7 @@ def main(args):
 	"""
 	if args.anl:
 		analysis.main(args)
-	sys.exit(1)
+		sys.exit(1)
 
 	start_time = datetime.now()
 
