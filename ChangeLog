@@ -1,3 +1,37 @@
+2018-04-30  Ajay Saini  <sainiak@uci.edu>
+
+	* pip install matplotlib in travis.yaml
+
+	* indent correction for sys.exit
+
+	* git tag -a 0.3.4 -m 'beta01: analysis.py called from jaws'; git push --tags
+
+2018-04-27  Ajay Saini  <sainiak@uci.edu>
+
+	* Rename GCNET to GCNet
+
+	* Add new badges on Homepage
+
+	* Rename and move analysis args to jaws.py
+
+	* setup function defined in analysis.py
+
+	* main function defined in analysis.py and called in jaws.py
+
+	* provide args as argument to each plot function
+
+	* Rename args.plot and args.input in analysis.py
+
+	* Import matplotlib in test.py
+
+2018-04-24  Ajay Saini  <sainiak@uci.edu>
+
+	* PROMICE- update long_name of shortwave_radiation_down_cor, shortwave_radiation_up_cor and depth_pressure_transducer_cor
+
+	* Add jaws.bat script to call jaws from command line in Windows
+
+	* git tag -a 0.3.3 -m 'alpha03: Add jaws.bat script for Windows'; git push --tags
+
 2018-04-23  Ajay Saini  <sainiak@uci.edu>
 
 	* Remove 'Obtaining JAWS' section and update example with links for sample input files

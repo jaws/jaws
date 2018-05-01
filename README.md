@@ -121,14 +121,20 @@ where the argument to the optional `-o` is the user-defined output filename
 
 #### Analysis Example
 
+To perform analysis, the raw data should be converted to netCDF format using '-d/--drv_tm/--derive_times' flag. e.g.:
+
+``` html
+$ jaws -d ~/Downloads/GCNet_Summit.txt
+```
+
 JAWS can be used to analyse the data in multiple ways such as:
 
 i. Plotting monthly diurnal cycle to see hourly changes for any variable throughout the month.
 
-The user provides input file path, variable name (on which analysis needs to be done) and plot type (i.e. diurnal, monthly, annual or seasonal). Year and month are optional arguments. If the input file contains data for only single year, then the user doesn't  need to provide the '-y' argument. Similar is the case for '-m' argument.
+The user provides input file path, variable name (on which analysis needs to be done) and analysis type (i.e. diurnal, monthly, annual or seasonal). Year and month are optional arguments. If the input file contains data for only single year, then the user doesn't  need to provide the '-y' argument. Similar is the case for '-m' argument.
 
 ```
-$ python analysis.py file.nc temperature_tc_1 diurnal -y 2002 -m 5
+$ jaws -a diurnal -v temperature_tc_1 -y 2002 -m 5 gcnet_summit.nc
 ```
 
 ![diurnal](http://grele.ess.uci.edu/jaws/img/diurnal.png)
@@ -136,7 +142,7 @@ $ python analysis.py file.nc temperature_tc_1 diurnal -y 2002 -m 5
 ii. Avg, max and min values for each day of a month for any variable
 
 ```
-$ python analysis.py file.nc temperature_cs500_1 monthly -y 2013 -m 2
+$ jaws --anl=monthly --var=temperature_cs500_1 --anl_yr=2013 --anl_mth=2 gcnet_summit.nc
 ```
 
 ![monthly](http://grele.ess.uci.edu/jaws/img/monthly.png)
@@ -146,7 +152,7 @@ iii. Annual cycle with daily mean, max and min
 Since it is annual plot, user shouldn't provide the '-m' argument
 
 ```
-$ python analysis.py file.nc temperature_tc_1 annual -y 2016
+$ jaws --analysis=annual --variable=temperature_tc_1 --analysis_year=2016 gcnet_summit.nc
 ```
 
 ![annual](http://grele.ess.uci.edu/jaws/img/annual.png)
@@ -156,7 +162,7 @@ iv. Climatological seasonal cycle showing variation for each month through multi
 Since it is seasonal plot, user shouldn't provide both '-y', '-m' argument.
 
 ```
-$ python analysis.py file.nc temperature_tc_1 seasonal
+$ jaws -a seasonal -v temperature_tc_1 gcnet_summit.nc
 ```
 
 ![seasonal](http://grele.ess.uci.edu/jaws/img/seasonal.png)
