@@ -59,9 +59,9 @@ From within a writable directory, run the following command:
 $ conda install -c conda-forge jaws
 ```
 
-Users should periodically update *JAWS* to the latest version using:
+Users should periodically update JAWS to the latest version using:
 ```html
-$ conda update jaws
+$ conda update -c conda-forge jaws
 ```
 
 <!--
