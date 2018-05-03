@@ -51,15 +51,25 @@ ___
 ### Linux/unix/win
 #### Requirements:
 * writable directory
-* [Anaconda](https://conda.io/docs/user-guide/install/index.html) or [Miniconda](https://conda.io/miniconda.html)
 * installed unzip package
 
 From within a writable directory, run the following command:
+``` html
+$ pip install jaws
+```
+or
+
+If you are using [Anaconda](https://conda.io/docs/user-guide/install/index.html) or [Miniconda](https://conda.io/miniconda.html) distribution, run the following command:
 ``` html
 $ conda install -c conda-forge jaws
 ```
 
 Users should periodically update JAWS to the latest version using:
+```html
+$ pip install jaws --upgrade
+```
+or
+
 ```html
 $ conda update -c conda-forge jaws
 ```
