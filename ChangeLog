@@ -1,3 +1,11 @@
+2018-05-02  Ajay Saini  <sainiak@uci.edu>
+
+	* Add long_description in setup.py
+
+	* Transfer of ownership from Andrey Popp for jaws pip package
+
+	* Package released on PyPI. JAWS can now be installed using `pip install jaws`
+
 2018-04-30  Ajay Saini  <sainiak@uci.edu>
 
 	* pip install matplotlib in travis.yaml
@@ -5,6 +13,10 @@
 	* indent correction for sys.exit
 
 	* git tag -a 0.3.4 -m 'beta01: analysis.py called from jaws'; git push --tags
+
+	* Update analysis instructions on homepage
+
+	* conda update command corrected
 
 2018-04-27  Ajay Saini  <sainiak@uci.edu>
 
