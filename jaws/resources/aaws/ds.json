@@ -11,12 +11,14 @@
   "air_temp": {
     "long_name": "Air Temperature",
     "standard_name": "air_temperature",
+    "original_name": "air_temp",
     "units": "kelvin",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
   },
   "vtempdiff": {
     "long_name": "Vertical Temperature Differential",
+    "original_name": "vtempdiff",
     "units": "1",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -24,6 +26,7 @@
   "rh": {
     "long_name": "Relative Humidity",
     "standard_name": "relative_humidity",
+    "original_name": "rh",
     "units": "1",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -31,6 +34,7 @@
   "pressure": {
     "long_name": "Air Pressure",
     "standard_name": "air_pressure",
+    "original_name": "pressure",
     "units": "pascal",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -38,6 +42,7 @@
   "wind_dir": {
     "long_name": "Wind Direction",
     "standard_name": "wind_from_direction",
+    "original_name": "wind_dir",
     "units": "degree",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -45,6 +50,7 @@
   "wind_spd": {
     "long_name": "Wind Speed",
     "standard_name": "wind_speed",
+    "original_name": "wind_spd",
     "units": "meter second-1",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
