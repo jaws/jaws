@@ -9,19 +9,23 @@
   },
   "year": {
     "long_name": "Year",
+    "original_name": "year",
     "units": "1"
   },
   "day_of_year": {
     "long_name": "Day of Year",
+    "original_name": "doy + decimal hours",
     "units": "1"
   },
   "hour_mult_100": {
     "long_name": "Hour of Day multiplied by 100",
+    "original_name": "hhmm (hours minutes)",
     "units": "1"
   },
   "wind_spd2": {
     "long_name": "Wind Speed 2",
     "standard_name": "wind_speed",
+    "original_name": "u2 wind speed",
     "units": "meter second-1",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -29,6 +33,7 @@
   "wind_spd6": {
     "long_name": "Wind Speed 6",
     "standard_name": "wind_speed",
+    "original_name": "u6",
     "units": "meter second-1",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -36,6 +41,7 @@
   "wind_spd2_max": {
     "long_name": "Wind Speed 2 Maximum",
     "standard_name": "wind_speed",
+    "original_name": "umax2",
     "units": "meter second-1",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -43,6 +49,7 @@
   "wind_spd6_max": {
     "long_name": "Wind Speed 6 Maximum",
     "standard_name": "wind_speed",
+    "original_name": "umax6",
     "units": "meter second-1",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -50,6 +57,7 @@
   "wind_dir2": {
     "long_name": "Wind Direction 2",
     "standard_name": "wind_from_direction",
+    "original_name": "dd2 wind direction",
     "units": "degree",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -57,6 +65,7 @@
   "wind_dir6": {
     "long_name": "Wind Direction 6",
     "standard_name": "wind_from_direction",
+    "original_name": "dd6",
     "units": "degree",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -64,6 +73,7 @@
   "sw_in": {
     "long_name": "Calibrated Shortwave Incoming Radiation ",
     "standard_name": "downwelling_shortwave_flux_in_air",
+    "original_name": "Sin short wave incoming radiation",
     "units": "watt meter-2",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -71,6 +81,7 @@
   "sw_out": {
     "long_name": "Calibrated Shortwave Outgoing Radiation",
     "standard_name": "upwelling_shortwave_flux_in_air",
+    "original_name": "Sout",
     "units": "watt meter-2",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -78,6 +89,7 @@
   "lw_in": {
     "long_name": "Calibrated Longwave Incoming Radiation",
     "standard_name": "downwelling_longwave_flux_in_air",
+    "original_name": "Lin longwave incoming radiation",
     "units": "watt meter-2",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -85,6 +97,7 @@
   "lw_out": {
     "long_name": "Calibrated Longwave Outgoing Radiation",
     "standard_name": "upwelling_longwave_flux_in_air",
+    "original_name": "Lout",
     "units": "watt meter-2",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -92,6 +105,7 @@
   "temp_cnr1": {
     "long_name": "Temperature of Radiation Sensor CNR1",
     "standard_name": "",
+    "original_name": "T of the radiation sensor CNR1",
     "units": "kelvin",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -99,6 +113,7 @@
   "air_temp2": {
     "long_name": "Air Temperature 2",
     "standard_name": "air_temperature",
+    "original_name": "T2 air temperature",
     "units": "kelvin",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -106,6 +121,7 @@
   "air_temp6": {
     "long_name": "Air Temperature 6",
     "standard_name": "air_temperature",
+    "original_name": "T6",
     "units": "kelvin",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -113,6 +129,7 @@
   "rh2": {
     "long_name": "Relative Humidity 2",
     "standard_name": "relative_humidity",
+    "original_name": "Rh2 relative humidity",
     "units": "1",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -120,6 +137,7 @@
   "rh6": {
     "long_name": "Relative Humidity 6",
     "standard_name": "relative_humidity",
+    "original_name": "Rh6",
     "units": "1",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -127,6 +145,7 @@
   "air_pressure": {
     "long_name": "Air Pressure",
     "standard_name": "air_pressure",
+    "original_name": "P",
     "units": "pascal",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -134,6 +153,7 @@
   "sensor_height1": {
     "long_name": "Height 1 Acoustic Sensor above the Surface (attached to pole fixed in ice)",
     "standard_name": "",
+    "original_name": "height1 height acoustic sensor above the surface (attached to pole fixed in ice)",
     "units": "meter",
     "cell_methods": "time: point",
     "coordinates": "longitude latitude"
@@ -141,6 +161,7 @@
   "sensor_height2": {
     "long_name": "Height 2 Acoustic Sensor above the Surface (attached to pole fixed in ice)",
     "standard_name": "",
+    "original_name": "height2",
     "units": "meter",
     "cell_methods": "time: point",
     "coordinates": "longitude latitude"
@@ -148,6 +169,7 @@
   "quality_parameter": {
     "long_name": "Data Quality Parameter",
     "standard_name": "",
+    "original_name": "data quality number",
     "units": "1",
     "cell_methods": "time: point",
     "coordinates": "longitude latitude"
@@ -155,6 +177,7 @@
   "height1": {
     "long_name": "",
     "standard_name": "",
+    "original_name": "2height1",
     "units": "meter",
     "cell_methods": "time: point",
     "coordinates": "longitude latitude"
@@ -162,6 +185,7 @@
   "height2": {
     "long_name": "",
     "standard_name": "",
+    "original_name": "2height2",
     "units": "meter",
     "cell_methods": "time: point",
     "coordinates": "longitude latitude"
@@ -169,6 +193,7 @@
   "height3": {
     "long_name": "",
     "standard_name": "",
+    "original_name": "2height3",
     "units": "meter",
     "cell_methods": "time: point",
     "coordinates": "longitude latitude"
@@ -176,6 +201,7 @@
   "snow_temp_1": {
     "long_name": "Snow Temperature 1",
     "standard_name": "temperature_in_surface_snow",
+    "original_name": "Tsnow1",
     "units": "kelvin",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -183,6 +209,7 @@
   "snow_temp_2": {
     "long_name": "Snow Temperature 2",
     "standard_name": "temperature_in_surface_snow",
+    "original_name": "Tsnow2",
     "units": "kelvin",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -190,6 +217,7 @@
   "snow_temp_3": {
     "long_name": "Snow Temperature 3",
     "standard_name": "temperature_in_surface_snow",
+    "original_name": "Tsnow3",
     "units": "kelvin",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -197,6 +225,7 @@
   "snow_temp_4": {
     "long_name": "Snow Temperature 4",
     "standard_name": "temperature_in_surface_snow",
+    "original_name": "Tsnow4",
     "units": "kelvin",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -204,6 +233,7 @@
   "snow_temp_5": {
     "long_name": "Snow Temperature 5",
     "standard_name": "temperature_in_surface_snow",
+    "original_name": "Tsnow5",
     "units": "kelvin",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -211,6 +241,7 @@
   "tilt_angle_1": {
     "long_name": "CNR1 Tilt Angle 1",
     "standard_name": "",
+    "original_name": "tilt angle CNR1 1",
     "units": "",
     "cell_methods": "time: point",
     "coordinates": "longitude latitude"
@@ -218,6 +249,7 @@
   "tilt_angle_2": {
     "long_name": "CNR1 Tilt Angle 2",
     "standard_name": "",
+    "original_name": "tilt angle CNR1 2",
     "units": "",
     "cell_methods": "time: point",
     "coordinates": "longitude latitude"
@@ -225,6 +257,7 @@
   "battery_voltage": {
     "long_name": "Voltage Logger Battery and the number 100 is included one time step before the time of visit",
     "standard_name": "battery_voltage",
+    "original_name": "voltage logger battery AND the number 100 is included one time step before the time of visit",
     "units": "volts",
     "cell_methods": "time: point",
     "coordinates": "longitude latitude"
@@ -232,6 +265,7 @@
   "compass": {
     "long_name": "Compass with respect to N",
     "standard_name": "",
+    "original_name": "compass with respect to N",
     "units": "1",
     "cell_methods": "time: point",
     "coordinates": "longitude latitude"
@@ -239,6 +273,7 @@
   "datalogger": {
     "long_name": "T datalogger",
     "standard_name": "",
+    "original_name": "T datalogger",
     "units": "",
     "cell_methods": "time: ",
     "coordinates": "longitude latitude"

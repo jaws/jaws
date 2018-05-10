@@ -10,31 +10,38 @@
   },
   "year": {
     "long_name": "Year",
+    "original_name": "Year",
     "units": "1"
   },
   "month": {
     "long_name": "Month of Year",
+    "original_name": "MonthOfYear",
     "units": "1"
   },
   "day": {
     "long_name": "Day of Month",
+    "original_name": "DayOfMonth",
     "units": "1"
   },
   "hour": {
     "long_name": "Hour of Day(UTC)",
+    "original_name": "HourOfDay(UTC)",
     "units": "1"
   },
   "day_of_year": {
     "long_name": "Day of Year",
+    "original_name": "DayOfYear",
     "units": "1"
   },
   "day_of_century": {
     "long_name": "Day of Century",
+    "original_name": "DayOfCentury",
     "units": "1"
   },
   "air_pressure": {
     "long_name": "Air Pressure",
     "standard_name": "air_pressure",
+    "original_name": "AirPressure",
     "units": "pascal",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -42,6 +49,7 @@
   "air_temperature": {
     "long_name": "Air Temperature",
     "standard_name": "air_temperature",
+    "original_name": "AirTemperature",
     "units": "kelvin",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -49,6 +57,7 @@
   "air_temperature_hygroclip": {
     "long_name": "Air Temperature HygroClip",
     "standard_name": "air_temperature",
+    "original_name": "AirTemperatureHygroClip",
     "units": "kelvin",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -56,6 +65,7 @@
   "relative_humidity_wrtwater": {
     "long_name": "Relative Humidity with regard to Water",
     "standard_name": "relative_humidity",
+    "original_name": "RelativeHumidity_wrtWater",
     "units": "1",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -63,6 +73,7 @@
   "relative_humidity": {
     "long_name": "Relative Humidity",
     "standard_name": "relative_humidity",
+    "original_name": "RelativeHumidity",
     "units": "1",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -70,6 +81,7 @@
   "wind_speed": {
     "long_name": "Wind Speed",
     "standard_name": "wind_speed",
+    "original_name": "WindSpeed",
     "units": "meter second-1",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -77,6 +89,7 @@
   "wind_direction": {
     "long_name": "Wind Direction",
     "standard_name": "wind_from_direction",
+    "original_name": "WindDirection",
     "units": "degree",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -84,6 +97,7 @@
   "shortwave_radiation_down": {
     "long_name": "Shortwave Radiation Down",
     "standard_name": "downwelling_shortwave_flux_in_air",
+    "original_name": "ShortwaveRadiationDown",
     "units": "watt meter-2",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -91,6 +105,7 @@
   "shortwave_radiation_down_cor": {
     "long_name": "Tilt corrected Shortwave Radiation Down using 'tilt_east' and 'tilt_north'",
     "standard_name": "downwelling_shortwave_flux_in_air",
+    "original_name": "ShortwaveRadiationDown_Cor",
     "units": "watt meter-2",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -98,6 +113,7 @@
   "shortwave_radiation_up": {
     "long_name": "Shortwave Radiation Up",
     "standard_name": "upwelling_shortwave_flux_in_air",
+    "original_name": "ShortwaveRadiationUp",
     "units": "watt meter-2",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -105,6 +121,7 @@
   "shortwave_radiation_up_cor": {
     "long_name": "Tilt corrected Shortwave Radiation Up using 'tilt_east' and 'tilt_north'",
     "standard_name": "upwelling_shortwave_flux_in_air",
+    "original_name": "ShortwaveRadiationUp_Cor",
     "units": "watt meter-2",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -112,6 +129,7 @@
   "albedo_theta": {
     "long_name": "Albedo_theta<70d",
     "standard_name": "surface_albedo",
+    "original_name": "Albedo_theta<70d",
     "units": "1",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -119,6 +137,7 @@
   "longwave_radiation_down": {
     "long_name": "Longwave Radiation Down",
     "standard_name": "downwelling_longwave_flux_in_air",
+    "original_name": "LongwaveRadiationDown",
     "units": "watt meter-2",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -126,6 +145,7 @@
   "longwave_radiation_up": {
     "long_name": "Longwave Radiation Up",
     "standard_name": "upwelling_longwave_flux_in_air",
+    "original_name": "LongwaveRadiationUp",
     "units": "watt meter-2",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -133,6 +153,7 @@
   "cloudcover": {
     "long_name": "Estimated Cloud Cover",
     "standard_name": "cloud_area_fraction",
+    "original_name": "CloudCover",
     "units": "1",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -140,6 +161,7 @@
   "surface_temp": {
     "long_name": "Surface Temperature",
     "standard_name": "surface_temperature",
+    "original_name": "SurfaceTemperature",
     "units": "kelvin",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -147,6 +169,7 @@
   "height_sensor_boom": {
     "long_name": "Height Sensor Boom",
     "standard_name": "",
+    "original_name": "HeightSensorBoom",
     "units": "meter",
     "cell_methods": "time: point",
     "coordinates": "longitude latitude"
@@ -154,6 +177,7 @@
   "height_stakes": {
     "long_name": "Height Stakes",
     "standard_name": "",
+    "original_name": "HeightStakes",
     "units": "meter",
     "cell_methods": "time: point",
     "coordinates": "longitude latitude"
@@ -161,6 +185,7 @@
   "depth_pressure_transducer": {
     "long_name": "Depth Pressure Transducer",
     "standard_name": "",
+    "original_name": "DepthPressureTransducer",
     "units": "meter",
     "cell_methods": "time: point",
     "coordinates": "longitude latitude"
@@ -168,6 +193,7 @@
   "depth_pressure_transducer_cor": {
     "long_name": "Corrected Depth Pressure Transducer",
     "standard_name": "",
+    "original_name": "DepthPressureTransducer_Cor",
     "units": "meter",
     "cell_methods": "time: point",
     "coordinates": "longitude latitude"
@@ -175,6 +201,7 @@
   "ice_temp_01": {
     "long_name": "Ice Temperature 1",
     "standard_name": "land_ice_temperature",
+    "original_name": "IceTemperature1",
     "units": "kelvin",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -182,6 +209,7 @@
   "ice_temp_02": {
     "long_name": "Ice Temperature 2",
     "standard_name": "land_ice_temperature",
+    "original_name": "IceTemperature2",
     "units": "kelvin",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -189,6 +217,7 @@
   "ice_temp_03": {
     "long_name": "Ice Temperature 3",
     "standard_name": "land_ice_temperature",
+    "original_name": "IceTemperature3",
     "units": "kelvin",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -196,6 +225,7 @@
   "ice_temp_04": {
     "long_name": "Ice Temperature 4",
     "standard_name": "land_ice_temperature",
+    "original_name": "IceTemperature4",
     "units": "kelvin",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -203,6 +233,7 @@
   "ice_temp_05": {
     "long_name": "Ice Temperature 5",
     "standard_name": "land_ice_temperature",
+    "original_name": "IceTemperature5",
     "units": "kelvin",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -210,6 +241,7 @@
   "ice_temp_06": {
     "long_name": "Ice Temperature 6",
     "standard_name": "land_ice_temperature",
+    "original_name": "IceTemperature6",
     "units": "kelvin",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -217,6 +249,7 @@
   "ice_temp_07": {
     "long_name": "Ice Temperature 7",
     "standard_name": "land_ice_temperature",
+    "original_name": "IceTemperature7",
     "units": "kelvin",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -224,6 +257,7 @@
   "ice_temp_08": {
     "long_name": "Ice Temperature 8",
     "standard_name": "land_ice_temperature",
+    "original_name": "IceTemperature8",
     "units": "kelvin",
     "cell_methods": "time: mean",
     "coordinates": "longitude latitude"
@@ -231,6 +265,7 @@
   "tilt_east": {
     "long_name": "Tilt to East",
     "standard_name": "",
+    "original_name": "TiltToEast",
     "units": "degree",
     "cell_methods": "time: point",
     "coordinates": "longitude latitude"
@@ -238,6 +273,7 @@
   "tilt_north": {
     "long_name": "Tilt to North",
     "standard_name": "",
+    "original_name": "TiltToNorth",
     "units": "degree",
     "cell_methods": "time: point",
     "coordinates": "longitude latitude"
@@ -245,21 +281,25 @@
   "time_GPS": {
     "long_name": "Time GPS(hhmmssUTC)",
     "standard_name": "time",
+    "original_name": "TimeGPS",
     "units": "UTC"
   },
   "latitude_GPS": {
     "long_name": "Latitude GPS",
     "standard_name": "latitude",
+    "original_name": "LatitudeGPS",
     "units": "degrees_north"
   },
   "longitude_GPS": {
     "long_name": "Longitude GPS",
     "standard_name": "longitude",
+    "original_name": "LongitudeGPS",
     "units": "degrees_east"
   },
   "elevation": {
     "long_name": "Elevation GPS",
     "standard_name": "",
+    "original_name": "ElevationGPS",
     "units": "meter",
     "cell_methods": "time: point",
     "coordinates": "longitude latitude"
@@ -267,6 +307,7 @@
   "hor_dil_prec": {
     "long_name": "Horizontal Dilution of Precision GPS",
     "standard_name": "",
+    "original_name": "HorDilOfPrecGPS",
     "units": "1",
     "cell_methods": "time: point",
     "coordinates": "longitude latitude"
@@ -274,6 +315,7 @@
   "logger_temp": {
     "long_name": "Logger Temperature",
     "standard_name": "",
+    "original_name": "LoggerTemperature",
     "units": "kelvin",
     "cell_methods": "time: point",
     "coordinates": "longitude latitude"
@@ -281,6 +323,7 @@
   "fan_current": {
     "long_name": "Fan Current",
     "standard_name": "",
+    "original_name": "FanCurrent",
     "units": "ampere",
     "cell_methods": "time: point",
     "coordinates": "longitude latitude"
@@ -288,6 +331,7 @@
   "battery_voltage": {
     "long_name": "Battery Voltage",
     "standard_name": "battery_voltage",
+    "original_name": "BatteryVoltage",
     "units": "volts",
     "cell_methods": "time: point",
     "coordinates": "longitude latitude"
