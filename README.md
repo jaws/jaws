@@ -48,30 +48,37 @@ Provide a scriptable API to extend the initial L2-to-L3 conversion to newer AWS-
 
 ___
 ## Installation
-### Linux/unix/win
+
 #### Requirements:
-* writable directory
-* installed unzip package
+ * Python 2.7, 3.5, or 3.6 (as of version 0.3.4)
 
-From within a writable directory, run the following command:
-``` html
-$ pip install jaws
-```
-or
+#### Installing pre-built binaries with conda (Linux, Mac OSX, and Windows)
 
-If you are using [Anaconda](https://conda.io/docs/user-guide/install/index.html) or [Miniconda](https://conda.io/miniconda.html) distribution, run the following command:
+By far the simplest and recommended way to install `JAWS` is using [conda](https://conda.io/docs/) (which is the wonderful package manager that comes with [Anaconda](https://conda.io/docs/user-guide/install/index.html) or [Miniconda](https://conda.io/miniconda.html) distribution).
+
+You can install `JAWS` and all its dependencies with:
 ``` html
 $ conda install -c conda-forge jaws
 ```
 
+#### Installing from source
+
+If you do not use conda, you can install `JAWS` from source with:
+``` html
+$ pip install jaws
+```
+(which will download the latest stable release from the [PyPI repository](https://pypi.org/) and trigger the build process.)
+
+#### Update
+
 Users should periodically update JAWS to the latest version using:
 ```html
-$ pip install jaws --upgrade
+$ conda update -c conda-forge jaws
 ```
 or
 
 ```html
-$ conda update -c conda-forge jaws
+$ pip install jaws --upgrade
 ```
 
 <!--
@@ -113,6 +120,13 @@ The current version can translate L2 ASCII data from the following networks to n
 * Institute for Marine and Atmospheric Research (IMAU): Sample raw file for Antarctic stations can be downloaded from [here](http://grele.ess.uci.edu/jaws/sample_data/ant_aws17IMAU_20150101.txt) and for Greenland stations can be downloaded from [here](http://grele.ess.uci.edu/jaws/sample_data/grl_aws05IMAU_19930901.txt)
 * Programme for Monitoring of the Greenland Ice Sheet (PROMICE): Sample raw file can be downloaded from [here](http://grele.ess.uci.edu/jaws/sample_data/PROMICE_EGP_20160501.txt)
 
+```
+Note:
+
+For PROMICE, input file name must contain station name. e.g. 'PROMICE_KAN-B.txt' or 'KAN-B.txt' or 'Kangerlussuaq-B_abc.txt', etc.
+
+For IMAU, input file name must start with network type(i.e. 'ant' or 'grl'), followed by a underscore and then station number. e.g. 'ant_aws01.txt' or 'ant_aws15_123.txt' or 'grl_aws21abc.txt', etc.
+```
 The user provides the input file path. By default, the output file will be stored within the current directory with same name as of input file (e.g. PROMICE_EGP_20160501.nc). The user can optionally give their own output path/name. Execute this to get output file in current directory:
 
 ``` html
@@ -128,6 +142,19 @@ $ jaws -4 -o ~/Desktop/AAWS_AGO-4_20161130.nc ~/Downloads/AAWS_AGO-4_20161130.tx
 ```
 
 where the argument to the optional `-o` is the user-defined output filename
+
+
+#### Value Added Information
+
+In addition to input variables, `JAWS` provides following variables in output netCDF file to make data more useful:
+
+ * time (seconds since 1970-01-01 00:00:00)
+ * time_bounds
+ * sza (solar zenith angle)
+ * latitude
+ * longitude
+ * ice_gps_velocity_x, ice_gps_velocity_y, ice_gps_velocity_total (For stations that archive GPS position)
+ * year, month, day, hour (if '-d/--drv_tm/--derive_times' flag is used)
 
 #### Analysis Example
 
@@ -177,26 +204,6 @@ $ jaws -a seasonal -v temperature_tc_1 gcnet_summit.nc
 
 ![seasonal](http://grele.ess.uci.edu/jaws/img/seasonal.png)
 
-
-<!--
-Storing AWS-like data using DSG convention:
-``` html
-$ jaws --L2=gcnet --featureType L2.ascii L3.nc
-```
-Unit-test to verify data:
-``` html
-$ jaws --L2=gcnet --kelvin sample_L2.ascii sample_L3.nc
-```
-Annotate L2b netCDF with CF and ACDD variable and global metadata:
-``` html
-$ jaws --L2=imau --creator_email=’janedoe@summit.com’ --L2.ascii L3.nc
-```
-Derive value-added data and metadata:
-``` html
-$ jaws --L2=gcnet --solar_zenith_angles L2.ascii L3.nc
-```
--->
-
 ___
 ## Credit
 
@@ -209,12 +216,12 @@ This software is being developed by the University of California Irvine under NA
 <!--
 * [API Reference](https://github.com/jaws/jaws/blob/master/API.md)
 * [Examples](https://)
--->
 
 
 ## Full Documentation
 
 See the [Wiki](https://github.com/jaws/jaws/wiki/) for full documentation, examples, operational details and other information.
+-->
 
 ## Bugs and Feedback
 
