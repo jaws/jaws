@@ -61,14 +61,16 @@ You can install `JAWS` and all its dependencies with:
 $ conda install -c conda-forge jaws
 ```
 
-####Installing from source
+#### Installing from source
+
 If you do not use conda, you can install `JAWS` from source with:
 ``` html
 $ pip install jaws
 ```
 (which will download the latest stable release from the [PyPI repository](https://pypi.org/) and trigger the build process.)
 
-####Update
+#### Update
+
 Users should periodically update JAWS to the latest version using:
 ```html
 $ conda update -c conda-forge jaws
@@ -118,7 +120,9 @@ The current version can translate L2 ASCII data from the following networks to n
 * Institute for Marine and Atmospheric Research (IMAU): Sample raw file for Antarctic stations can be downloaded from [here](http://grele.ess.uci.edu/jaws/sample_data/ant_aws17IMAU_20150101.txt) and for Greenland stations can be downloaded from [here](http://grele.ess.uci.edu/jaws/sample_data/grl_aws05IMAU_19930901.txt)
 * Programme for Monitoring of the Greenland Ice Sheet (PROMICE): Sample raw file can be downloaded from [here](http://grele.ess.uci.edu/jaws/sample_data/PROMICE_EGP_20160501.txt)
 
-```Note:
+```
+Note:
+
 For PROMICE, input file name must contain station name. e.g. 'PROMICE_KAN-B.txt' or 'KAN-B.txt' or 'Kangerlussuaq-B_abc.txt', etc.
 
 For IMAU, input file name must start with network type(i.e. 'ant' or 'grl'), followed by a underscore and then station number. e.g. 'ant_aws01.txt' or 'ant_aws15_123.txt' or 'grl_aws21abc.txt', etc.
