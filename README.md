@@ -143,6 +143,19 @@ $ jaws -4 -o ~/Desktop/AAWS_AGO-4_20161130.nc ~/Downloads/AAWS_AGO-4_20161130.tx
 
 where the argument to the optional `-o` is the user-defined output filename
 
+
+#### Value Added Information
+
+In addition to input variables, `JAWS` provides following variables in output netCDF file to make data more useful:
+
+ * time (seconds since 1970-01-01 00:00:00)
+ * time_bounds
+ * sza (solar zenith angle)
+ * latitude
+ * longitude
+ * ice_gps_velocity_x, ice_gps_velocity_y, ice_gps_velocity_total (For stations that archive GPS position)
+ * year, month, day, hour (if '-d/--drv_tm/--derive_times' flag is used)
+
 #### Analysis Example
 
 To perform analysis, the raw data should be converted to netCDF format using '-d/--drv_tm/--derive_times' flag. e.g.:
@@ -191,26 +204,6 @@ $ jaws -a seasonal -v temperature_tc_1 gcnet_summit.nc
 
 ![seasonal](http://grele.ess.uci.edu/jaws/img/seasonal.png)
 
-
-<!--
-Storing AWS-like data using DSG convention:
-``` html
-$ jaws --L2=gcnet --featureType L2.ascii L3.nc
-```
-Unit-test to verify data:
-``` html
-$ jaws --L2=gcnet --kelvin sample_L2.ascii sample_L3.nc
-```
-Annotate L2b netCDF with CF and ACDD variable and global metadata:
-``` html
-$ jaws --L2=imau --creator_email=’janedoe@summit.com’ --L2.ascii L3.nc
-```
-Derive value-added data and metadata:
-``` html
-$ jaws --L2=gcnet --solar_zenith_angles L2.ascii L3.nc
-```
--->
-
 ___
 ## Credit
 
@@ -223,12 +216,12 @@ This software is being developed by the University of California Irvine under NA
 <!--
 * [API Reference](https://github.com/jaws/jaws/blob/master/API.md)
 * [Examples](https://)
--->
 
 
 ## Full Documentation
 
 See the [Wiki](https://github.com/jaws/jaws/wiki/) for full documentation, examples, operational details and other information.
+-->
 
 ## Bugs and Feedback
 
