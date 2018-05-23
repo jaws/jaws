@@ -72,6 +72,9 @@ def get_parser():
 		"-D", "--dbg_lvl", "--debug_level",
 		help="Debug-level is lvl", default=0, type=int)
 	parser.add_argument(
+		'-r', "--vrs", "--version", "--revision",
+		help="JAWS current version and last modified date", action="store_true")
+	parser.add_argument(
 		"-L", "--dfl_lvl", "--dfl", "--deflate",
 		help="Lempel-Ziv deflation/compression (lvl=0..9) for netCDF4 output", default=0, type=int)
 	
@@ -224,6 +227,12 @@ def main(args):
 		msg = 'Converted {} to {}'.format(
 			os.path.basename(input_file), output_file)
 		print(msg)
+
+	if args.vrs:
+		dirname = os.path.dirname(__file__)
+		filename = os.path.join(dirname, 'jaws.py')
+		print("JAWS current version 0.4 last modified on {}".format(datetime.fromtimestamp(os.path.getmtime(filename))))
+
 
 
 def start():
