@@ -143,6 +143,9 @@ $ jaws -4 -o ~/Desktop/AAWS_AGO-4_20161130.nc ~/Downloads/AAWS_AGO-4_20161130.tx
 
 where the argument to the optional `-o` is the user-defined output filename
 
+A list of all options can be found in [docs/options.txt](docs/options.txt).
+
+To change the timezone, use the -t/--tz/--timezone argument. A list of all the timezones can be found [here](https://gist.github.com/heyalexej/8bf688fd67d7199be4a1682b3eec7568).
 
 #### Value Added Information
 
