@@ -1,4 +1,8 @@
-2018-05-11  Ajay Saini  <sainiak@uci.edu>
+2018-05-24  Ajay Saini  <sainiak@uci.edu>
+
+	* Code for version option to be called without running jaws
+
+2018-05-23  Ajay Saini  <sainiak@uci.edu>
 
 	* Add new option '-r/--rev/--revision/--version'
 

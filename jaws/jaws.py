@@ -205,7 +205,17 @@ def dispatch_converter(args, input_file, output_file, stations):
 
 def main(args):
 	"""
-	First check if this is an analysis task.
+	First check if user wants to know current version.
+	If yes, exit after printing it.
+	"""
+	if args.vrs:
+		dirname = os.path.dirname(__file__)
+		filename = os.path.join(dirname, 'jaws.py')
+		print("JAWS current version 0.4.1 last modified on {}".format(datetime.fromtimestamp(os.path.getmtime(filename))))
+		sys.exit(1)
+
+	"""
+	Check if this is an analysis task.
 	If yes, exit after generating plots.
 	"""
 	if args.anl:
@@ -227,11 +237,6 @@ def main(args):
 		msg = 'Converted {} to {}'.format(
 			os.path.basename(input_file), output_file)
 		print(msg)
-
-	if args.vrs:
-		dirname = os.path.dirname(__file__)
-		filename = os.path.join(dirname, 'jaws.py')
-		print("JAWS current version 0.4 last modified on {}".format(datetime.fromtimestamp(os.path.getmtime(filename))))
 
 
 
