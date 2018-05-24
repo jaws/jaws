@@ -19,7 +19,7 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name="jaws",
-    version='0.3.4',
+    version='0.4',
     description='Software to convert idiosyncratic ASCII formats to netCDF formats',
     long_description=long_description,
     url='https://github.com/jaws/jaws',

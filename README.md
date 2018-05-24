@@ -16,6 +16,8 @@
 ___
 ## News
 
+2018/05/23: Version 0.4 released: Pip installable, analysis.py callable from 'jaws' keyword
+
 2018/04/18: Version 0.3 released: Conda installable
 
 2018/01/22: Version 0.2 released: Conversion of GCNet, PROMICE and AAWS networks complete

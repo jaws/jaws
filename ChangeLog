@@ -1,3 +1,25 @@
+2018-05-11  Ajay Saini  <sainiak@uci.edu>
+
+	* Add new option '-r/--rev/--revision/--version'
+
+	* Create docs/options.txt
+
+	* Add link for all timezones and options in README
+
+	* git tag -a 0.4 -m 'Basking Shark: Pip installable, analysis.py callable from jaws keyword'; git push --tags
+
+	* Version 0.4 released to be sent to network managers
+
+2018-05-11  Ajay Saini  <sainiak@uci.edu>
+
+	* Add subsection 'Value Added Information' in README
+
+	* Installation instructions updated
+
+2018-05-09  Ajay Saini  <sainiak@uci.edu>
+
+	* Add attribute original_name for all networks
+
 2018-05-02  Ajay Saini  <sainiak@uci.edu>
 
 	* Add long_description in setup.py
