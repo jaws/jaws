@@ -1,0 +1,44 @@
+Positional arguments:
+
+input_file: Path to raw L2 data file for converting to netCDF (or use -i option)
+
+output_file: Path to save output netCDF file (or use -o option)
+
+
+Optional arguments:
+
+-i, --fl_in, --input: Path to raw L2 data file for converting to netCDF (or use first positional argument)
+
+-o, --fl_out, --output: Path to save output netCDF file (or use last positional argument)
+
+-3, --format3, --3, --fl_fmt=classic: Output file in netCDF3 CLASSIC (32-bit offset) storage format
+
+-4, --format4, --4, --netcdf4: Output file in netCDF4 (HDF5) storage format
+
+-5, --format5, --5, --fl_fmt=64bit_data: Output file in netCDF3 64-bit data (i.e., CDF5, PnetCDF) storage format
+
+-6, --format6, --6, --64: Output file in netCDF3 64-bit offset storage format
+
+-7, --format7, --7, --fl_fmt=netcdf4_classic: Output file in netCDF4 CLASSIC format (3+4=7)
+
+-d, --drv_tm, --derive_times: For GCNet, extra variables ('month', 'day' and 'hour') will be derived for further analysis. It will take more time
+
+-s, --stn_nm, --station_name: Override default station name
+
+-t, --tz, --timezone: Change the timezone, default is UTC
+
+-f, --fll_val_flt, --fillvalue_float: Override default float _FillValue
+
+-D, --dbg_lvl, --debug_level: Debug-level is lvl
+
+-r, --vrs, --version, --revision: JAWS current version and last modified date
+
+-L, --dfl_lvl, --dfl, --deflate: Lempel-Ziv deflation/compression (lvl=0..9) for netCDF4 output
+
+-a, --anl, --analysis: plot type e.g.- diurnal, monthly, annual, seasonal
+
+-v, --var, --variable: variable you want to analyse
+
+-y, --anl_yr, --analysis_year: Year you want to select
+
+-m, --anl_mth, --analysis_month: Month you want to select

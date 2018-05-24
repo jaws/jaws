@@ -16,19 +16,19 @@ def get_parser():
 	parser = argparse.ArgumentParser()
 	parser.add_argument(
 		"input_file", nargs='?',
-		help="Raw L2 data file to convert to netCDF (or use -i option)",
+		help="Path to raw L2 data file for converting to netCDF (or use -i option)",
 		type=str)
 	parser.add_argument(
 		"output_file", nargs='?',
-		help="Output netCDF file (or use -o option)", type=str)
+		help="Path to save output netCDF file (or use -o option)", type=str)
 	parser.add_argument(
 		"-i", "--fl_in", "--input",
-		help=("Raw L2 data file to convert to netCDF "
+		help=("Path to raw L2 data file for converting to netCDF "
 			  "(or use first positional argument)"),
 		type=str)
 	parser.add_argument(
 		"-o", "--fl_out", "--output",
-		help="Output netCDF file (or use last positional argument)",
+		help="Path to save output netCDF file (or use last positional argument)",
 		type=str)
 	parser.add_argument(
 		"-3", "--format3", "--3", "--fl_fmt=classic",
@@ -72,7 +72,7 @@ def get_parser():
 		"-D", "--dbg_lvl", "--debug_level",
 		help="Debug-level is lvl", default=0, type=int)
 	parser.add_argument(
-		'-r', "--vrs", "--version", "--revision",
+		"-r", "--vrs", "--version", "--revision",
 		help="JAWS current version and last modified date", action="store_true")
 	parser.add_argument(
 		"-L", "--dfl_lvl", "--dfl", "--deflate",
@@ -101,7 +101,7 @@ def get_parser():
 		'-y', '--anl_yr', '--analysis_year', 
 		help = 'Year you want to select', type = int)
 	parser.add_argument(
-		'-m','--anl_mth', '--analysis_month', 
+		'-m', '--anl_mth', '--analysis_month', 
 		help = 'Month you want to select', type = int)
 
 	return parser
