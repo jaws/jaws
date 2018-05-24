@@ -25,8 +25,18 @@ Q. Where will be the primary data archive? (Required)
 
 The JAWS project does not itself measure or archive any data.
 The primary data archive is with the AWS network providers.
-
+Only the network managers produce and archive the data on which JAWS operates.
+The networks supported thus far are AAWS (YOPP-endorsed), GCNet, IMAU, and PROMICE.
+JAWS already translates their L2 ASCII files into a common netCDF format.
+All of these networks are mature and are conducting measurements
+before, during, and after YOPP. By synthesizing their measurements 
+into a common format JAWS is thus contributing to the interoperability
+of polar measurements during YOPP. 
+ 
 Q. What real-time provision?
+
+JAWS is designed to work with data at any temporal resolution.
+However, JAWS has only been thoroughly tested on hourly AWS data.
 
 Q. Timeline(s) (for individual activities of the project (campaign(s), experiment(s), simulation(s), etc.)).
 If yes, for each timeline provide the following:
@@ -38,3 +48,24 @@ JAWS is funded by the NASA Advanced Information Systems Technology
 (AIST) Program (80NSSC17K0540)
 
 Q. Other Information
+
+The PI (Charlie Zender) has worked previously with data from
+AAWS (YOPP-endorsed), GCNet, IMAU, and PROMICE. Network managers
+from AAWS (M. Lazzara) and IMAU (C. Reijmer) are JAWS collaborators
+and are involved in its design. Zender will meet in-person with AAWS,
+GCNet, IMAU, and PROMICE teams in June and July to obtain their
+feedback on the beta version of JAWS.
+
+Once station data have been converted to JAWS format, we will conduct
+analyses to detect outliers in station data quality, and will have the
+ability to append consistent quality control flags to all datasets.
+
+It must be emphasized that JAWS translates not alters AWS data.
+Only network operators currently have sufficient expertise to alter
+their data. The next phase of JAWS, wherein we correct AWS solar
+radiometric data for biases induced by station tilt detected via the
+RIGB algorithm (Wang and Zender, 2016, TC doi:10.5194/tc-10-727-2016)
+has begun and will be complete by 2019. 
+Then JAWS will provide value-added, tilt-corrected solar fluxes.
+In all cases data will be clearly marked if JAWS alters it.
+JAWS fully records data provenance and history.
