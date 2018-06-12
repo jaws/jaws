@@ -1,4 +1,6 @@
 ![Shark](http://grele.ess.uci.edu/jaws/img/shark.png)
+![NASA](http://grele.ess.uci.edu/jaws/img/nasa.png)
+![YOPP](http://grele.ess.uci.edu/jaws/img/yopp_logo.png)
 
 
 # Justified Automated Weather Station (JAWS) Software 
