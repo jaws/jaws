@@ -1,4 +1,5 @@
 import os
+import sys
 import json
 import pandas as pd
 
@@ -60,6 +61,7 @@ def load_dataset_attributes(name, ds):
 	attr_dict = read_ordered_json(path)
 
 	ds.attrs = attr_dict.pop('attrs')
+	ds.attrs['history'] = '{} {}'.format(datetime.now(), ' '.join(sys.argv))
 	for key, value in attr_dict.items():
 		ds[key].attrs = value
 
