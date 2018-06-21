@@ -214,7 +214,9 @@ $ jaws -a seasonal -v temperature_tc_1 gcnet_summit.nc
 ___
 ## Statistics
 Total number of networks handled by JAWS: 4 (AAWS, GCNet, IMAU, PROMICE)
+
 Total number of stations handled by JAWS: 137
+
 Total number of station-years of data handled by JAWS: 1462
 
 ## Credit

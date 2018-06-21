@@ -1,6 +1,20 @@
+2018-06-21  Ajay Saini  <sainiak@uci.edu>
+
+	* Add statistics about data handled by JAWS
+
+	* git tag -a 0.4.2 -m 'alpha02: Add global attribute history'; git push --tags
+
+2018-06-20  Ajay Saini  <sainiak@uci.edu>
+
+	* Add global attribute 'history'
+
+	* Correct latitude for GCNet-LAR stations
+
 2018-05-24  Ajay Saini  <sainiak@uci.edu>
 
 	* Code for version option to be called without running jaws
+
+	* git tag -a 0.4.1 -m 'alpha01: Correct code for version option'; git push --tags
 
 2018-05-23  Ajay Saini  <sainiak@uci.edu>
 
