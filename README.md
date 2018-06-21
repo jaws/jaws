@@ -212,6 +212,11 @@ $ jaws -a seasonal -v temperature_tc_1 gcnet_summit.nc
 ![seasonal](http://grele.ess.uci.edu/jaws/img/seasonal.png)
 
 ___
+## Statistics
+Total number of networks handled by JAWS: 4 (AAWS, GCNet, IMAU, PROMICE)
+Total number of stations handled by JAWS: 137
+Total number of station-years of data handled by JAWS: 1462
+
 ## Credit
 
 This software is being developed by the University of California Irvine under NASA Advanced Information Systems Technology (AIST) Proposal and Project 80NSSC17K0540.
