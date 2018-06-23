@@ -219,6 +219,10 @@ Total number of stations handled by JAWS: 137
 
 Total number of station-years of data handled by JAWS: 1462
 
+![Antarctica](http://grele.ess.uci.edu/jaws/img/map_ant.png)
+
+![Greenland](http://grele.ess.uci.edu/jaws/img/map_grl.png)
+
 ## Credit
 
 This software is being developed by the University of California Irvine under NASA Advanced Information Systems Technology (AIST) Proposal and Project 80NSSC17K0540.
