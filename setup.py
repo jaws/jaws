@@ -19,7 +19,7 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name="jaws",
-    version='0.4.2',
+    version='0.4.2.1',
     description='Software to convert idiosyncratic ASCII formats to netCDF formats',
     long_description=long_description,
     url='https://github.com/jaws/jaws',
@@ -42,7 +42,7 @@ setup(
         "Topic :: Software Development :: Libraries :: Python Modules",
         "Operating System :: OS Independent"],
 
-    install_requires=['pandas', 'numpy', 'xarray', 'pytz', 'matplotlib', 'netcdf4'],
+    install_requires=['pandas', 'numpy >= 1.11', 'xarray', 'pytz', 'matplotlib', 'netcdf4'],
 
     entry_points = {
         'console_scripts': ['jaws=jaws.jaws:start'],
