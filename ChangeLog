@@ -1,3 +1,11 @@
+2018-06-27  Ajay Saini  <sainiak@uci.edu>
+
+	* Update installation instructions
+
+2018-06-26  Ajay Saini  <sainiak@uci.edu>
+
+	* numpy>=1.11 for pip install
+
 2018-06-21  Ajay Saini  <sainiak@uci.edu>
 
 	* Add statistics about data handled by JAWS

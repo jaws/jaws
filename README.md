@@ -73,6 +73,14 @@ $ pip install jaws
 ```
 (which will download the latest stable release from the [PyPI repository](https://pypi.org/) and trigger the build process.)
 
+pip defaults to installing Python packages to a system directory (such as /usr/local/lib/python2.7). This requires root access.
+
+If you don't have root/administrative access, you can install `JAWS` using:
+``` html
+$ pip install jaws --user
+```
+`--user` makes pip install packages in your home directory instead, which doesn't require any special privileges.
+
 #### Update
 
 Users should periodically update JAWS to the latest version using:
