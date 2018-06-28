@@ -11,6 +11,7 @@ try:
 except:
 	import gcnet2nc, promice2nc, aaws2nc, imau2nc, common, analysis
 
+from common import version
 
 def get_parser():
 	parser = argparse.ArgumentParser()
@@ -211,7 +212,7 @@ def main(args):
 	if args.vrs:
 		dirname = os.path.dirname(__file__)
 		filename = os.path.join(dirname, 'jaws.py')
-		print("JAWS current version 0.4.1 last modified on {}".format(datetime.fromtimestamp(os.path.getmtime(filename))))
+		print("JAWS current version {} last modified on {}".format(version, datetime.fromtimestamp(os.path.getmtime(filename))))
 		sys.exit(1)
 
 	"""
