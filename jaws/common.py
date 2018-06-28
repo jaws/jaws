@@ -14,6 +14,7 @@ pascal_per_millibar = 100
 seconds_in_hour = 3600
 fillvalue_double = 9.969209968386869e+36
 fillvalue_float = 9.96921e+36
+jaws_version = '0.4.2'
 
 ###############################################################################
 
@@ -62,6 +63,7 @@ def load_dataset_attributes(name, ds):
 
 	ds.attrs = attr_dict.pop('attrs')
 	ds.attrs['history'] = '{} {}'.format(datetime.now(), ' '.join(sys.argv))
+	ds.attrs['JAWS'] = 'Justified Automatic Weather Station software version {} (Homepage = http://github.com/jaws/jaws)'.format(jaws_version)
 	for key, value in attr_dict.items():
 		ds[key].attrs = value
 
