@@ -9,7 +9,7 @@ from setuptools import setup, find_packages
 # To use a consistent encoding
 from codecs import open
 from os import path
-from common import jaws_version
+from jaws.common import jaws_version
 
 here = path.abspath(path.dirname(__file__))
 
