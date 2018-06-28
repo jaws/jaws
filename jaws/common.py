@@ -62,6 +62,7 @@ def load_dataset_attributes(name, ds):
 
 	ds.attrs = attr_dict.pop('attrs')
 	ds.attrs['history'] = '{} {}'.format(datetime.now(), ' '.join(sys.argv))
+	ds.attrs['JAWS'] = 'Justified Automatic Weather Station software version 0.4.2 (Homepage = http://github.com/jaws/jaws)'
 	for key, value in attr_dict.items():
 		ds[key].attrs = value
 
