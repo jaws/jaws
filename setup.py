@@ -9,7 +9,7 @@ from setuptools import setup, find_packages
 # To use a consistent encoding
 from codecs import open
 from os import path
-from common import version
+from common import jaws_version
 
 here = path.abspath(path.dirname(__file__))
 
@@ -20,7 +20,7 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name="jaws",
-    version='{}'.format(version),
+    version='{}'.format(jaws_version),
     description='Software to convert idiosyncratic ASCII formats to netCDF formats',
     long_description=long_description,
     url='https://github.com/jaws/jaws',
