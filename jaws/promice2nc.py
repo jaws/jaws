@@ -22,7 +22,7 @@ def init_dataframe(args, input_file):
 	convert_current = 1000
 	check_na = -999
 
-	df = common.load_dataframe('promice', input_file, 1, delim_whitespace=True)
+	df = common.load_dataframe('promice', input_file, 1)
 	df.index.name = 'time'
 	df.replace(check_na, np.nan, inplace=True)
 	df.loc[:, ['air_temperature', 'air_temperature_hygroclip', 'surface_temp',
