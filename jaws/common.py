@@ -36,7 +36,7 @@ def load_dataframe(name, input_file, header_rows, **kwargs):
 		skip_blank_lines=True,
 		header=None,
 		names=columns,
-		sep=r'\t|\s+|\,|\:|\;', 
+		sep=r'\t|\s+|\,', 
 		engine='python',
 		**kwargs)
 
