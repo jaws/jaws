@@ -13,7 +13,7 @@ except:
 def init_dataframe(args, input_file):
 	check_na = 999.0
 
-	df = common.load_dataframe('gcnet', input_file, 54, delim_whitespace=True)
+	df = common.load_dataframe('gcnet', input_file, 54)
 	df.index.name = 'time'
 	df['qc25'] = df['qc25'].astype(str)  # To avoid 999 values marked as N/A
 	df.replace(check_na, np.nan, inplace=True)
@@ -33,7 +33,7 @@ def init_dataframe(args, input_file):
 	return df
 
 def get_station(args, input_file, stations):
-	df = common.load_dataframe('gcnet', input_file, 54, delim_whitespace=True)
+	df = common.load_dataframe('gcnet', input_file, 54)
 	station_number = df['station_number'][0]
 
 	if 30 <= station_number <= 32:
