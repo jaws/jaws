@@ -119,7 +119,9 @@ def gcnet2nc(args, input_file, output_file, stations):
 	common.log(args, 4, 'Calculating quality control variables')
 	fill_dataset_quality_control(df, ds)
 
-	if args.drv_tm:
+	if args.no_drv_tm:
+		pass
+	else:
 		common.log(args, 5, 'Calculating month and day')
 		derive_times(df, month, day)
 		ds['hour'] = 'time', hour
