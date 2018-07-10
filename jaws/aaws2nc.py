@@ -45,7 +45,9 @@ def get_time_and_sza(args, input_file, latitude, longitude, dataframe):
 		dtime = datetime.strptime(dtime, '%Y-%m-%dT%H:%M:%SZ')
 		dtime = tz.localize(dtime.replace(tzinfo=None))
 
-		if args.drv_tm:
+		if args.no_drv_tm:
+			pass
+		else:
 			year[idx] = dtime.year
 			month[idx] = dtime.month
 			day[idx] = dtime.day
@@ -75,7 +77,9 @@ def aaws2nc(args, input_file, output_file, stations):
 	time, time_bounds, sza = get_time_and_sza(
 		args, input_file, latitude, longitude, df)[:3]
 
-	if args.drv_tm:
+	if args.no_drv_tm:
+		pass
+	else:
 		common.log(args, 5, 'Calculating month and day')
 		year, month, day, hour, day_of_year = get_time_and_sza(
 		args, input_file, latitude, longitude, df)[3:]
