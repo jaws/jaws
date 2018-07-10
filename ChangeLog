@@ -1,4 +1,12 @@
-2018-06-28  Ajay Saini  <sainiak@uci.edu>
+2018-07-09  Ajay Saini  <sainiak@uci.edu>
+
+	* Change '--drv_tm' to '--no_drv_tm', by default included in output file
+
+	* Update tests
+
+	* git tag -a 0.4.5 -m 'beta02: Change --drv_tm to --no_drv_tm'; git push --tags
+
+2018-06-29  Ajay Saini  <sainiak@uci.edu>
 
 	* Use regular expression to identify separator for input data
 
