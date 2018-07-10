@@ -88,13 +88,13 @@ class TestJaws(unittest.TestCase):
         self.assertEqual(''.join(station), 'TestStation')
 
     def test_compression(self):
-        """Test overriding default station name."""
+        """Test that compression level works correctly."""
         nc = convert_to_dataset('../sample_data/AAWS_AGO-4_20161130.txt', '-L', '5')
         self.assertTrue(nc)
 
     def test_all_options(self):
-        """Test overriding default station name."""
-        nc = convert_to_dataset('../sample_data/AAWS_AGO-4_20161130.txt', '-3', '-d', '-s', 'TestStation', '-t' ,'America/Los_Angeles', '-D', '1', '-L', '5')
+        """Test that all options works correctly simultaneously."""
+        nc = convert_to_dataset('../sample_data/AAWS_AGO-4_20161130.txt', '-3', '-no_drv_tm', '-s', 'TestStation', '-t' ,'America/Los_Angeles', '-D', '1', '-L', '5')
         self.assertTrue(nc)
 
 
