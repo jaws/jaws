@@ -94,7 +94,7 @@ class TestJaws(unittest.TestCase):
 
     def test_all_options(self):
         """Test that all options works correctly simultaneously."""
-        nc = convert_to_dataset('../sample_data/AAWS_AGO-4_20161130.txt', '-3', '-no_drv_tm', '-s', 'TestStation', '-t' ,'America/Los_Angeles', '-D', '1', '-L', '5')
+        nc = convert_to_dataset('../sample_data/AAWS_AGO-4_20161130.txt', '-3', '--no_drv_tm', '-s', 'TestStation', '-t' ,'America/Los_Angeles', '-D', '1', '-L', '5')
         self.assertTrue(nc)
 
 
