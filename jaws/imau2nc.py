@@ -115,7 +115,9 @@ def imau2nc(args, input_file, output_file, stations):
 	hour, month, day, time, time_bounds, sza = get_time_and_sza(
 		args, df, longitude, latitude)
 
-	if args.drv_tm:
+	if args.no_drv_tm:
+		pass
+	else:
 		common.log(args, 5, 'Calculating month and day')
 		derive_times(df, month, day)
 		ds['hour'] = 'time', hour

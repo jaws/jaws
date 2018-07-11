@@ -14,7 +14,7 @@ pascal_per_millibar = 100
 seconds_in_hour = 3600
 fillvalue_double = 9.969209968386869e+36
 fillvalue_float = 9.96921e+36
-jaws_version = '0.4.4'
+jaws_version = '0.4.5'
 
 ###############################################################################
 
@@ -63,11 +63,16 @@ def load_dataset_attributes(name, ds):
 	path = 'resources/{}/ds.json'.format(name)
 	attr_dict = read_ordered_json(path)
 
-	ds.attrs = attr_dict.pop('attrs')
+	ds.attrs = attr_dict.pop('attributes')
 	ds.attrs['history'] = '{} {}'.format(datetime.now(), ' '.join(sys.argv))
 	ds.attrs['JAWS'] = 'Justified Automatic Weather Station software version {} (Homepage = http://github.com/jaws/jaws)'.format(jaws_version)
 	for key, value in attr_dict.items():
-		ds[key].attrs = value
+		for key1, value1 in value.items():
+			for key2, value2 in value1.items():
+				if key2 == 'type':
+					pass
+				else:
+					ds[key1].attrs = value2.items()
 
 
 def read_ordered_json(path):

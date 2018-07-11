@@ -11,7 +11,10 @@ try:
 except:
 	import gcnet2nc, promice2nc, aaws2nc, imau2nc, common, analysis
 
-from common import jaws_version
+try:
+	from jaws.common import jaws_version
+except:
+	from common import jaws_version
 
 def get_parser():
 	parser = argparse.ArgumentParser()
@@ -54,9 +57,9 @@ def get_parser():
 		help="Output file in netCDF4 CLASSIC format (3+4=7)",
 		action="store_true")
 	parser.add_argument(
-		"-d", "--drv_tm", "--derive_times",
-		help=("For GCNet, extra variables ('month', 'day' and 'hour')"
-			  " will be derived for further analysis. It will take more time"),
+		"--no_drv_tm", "--no_derive_times",
+		help=("By default extra variables ('month', 'day' and 'hour') are derived for "
+			  "further analysis. Select this flag to not derive them"),
 		action="store_true")
 	parser.add_argument(
 		"-s", "--stn_nm", "--station_name",
