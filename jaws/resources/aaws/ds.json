@@ -1,5 +1,5 @@
 {
-  "attrs": {
+  "attributes": {
     "source": "surface observation",
     "featureType": "timeSeries",
     "institution": "UW SSEC",
@@ -8,79 +8,114 @@
     "data_type": "q1h",
     "time_convention": "'time: point' variables are valid for exactly the time value stored in the time coordinate, whereas 'time: mean' variables are valid for the mean time within the time_bounds variable. For example, air_temp was continuously measured at high frequency and then averaged over each period contained in the time_bounds variable into the store hourly-mean values."
   },
-  "air_temp": {
-    "long_name": "Air Temperature",
-    "standard_name": "air_temperature",
-    "original_name": "air_temp",
-    "units": "kelvin",
-    "cell_methods": "time: mean",
-    "coordinates": "longitude latitude"
-  },
-  "vtempdiff": {
-    "long_name": "Vertical Temperature Differential",
-    "original_name": "vtempdiff",
-    "units": "1",
-    "cell_methods": "time: mean",
-    "coordinates": "longitude latitude"
-  },
-  "rh": {
-    "long_name": "Relative Humidity",
-    "standard_name": "relative_humidity",
-    "original_name": "rh",
-    "units": "1",
-    "cell_methods": "time: mean",
-    "coordinates": "longitude latitude"
-  },
-  "pressure": {
-    "long_name": "Air Pressure",
-    "standard_name": "air_pressure",
-    "original_name": "pressure",
-    "units": "pascal",
-    "cell_methods": "time: mean",
-    "coordinates": "longitude latitude"
-  },
-  "wind_dir": {
-    "long_name": "Wind Direction",
-    "standard_name": "wind_from_direction",
-    "original_name": "wind_dir",
-    "units": "degree",
-    "cell_methods": "time: mean",
-    "coordinates": "longitude latitude"
-  },
-  "wind_spd": {
-    "long_name": "Wind Speed",
-    "standard_name": "wind_speed",
-    "original_name": "wind_spd",
-    "units": "meter second-1",
-    "cell_methods": "time: mean",
-    "coordinates": "longitude latitude"
-  },
-  "time": {
-    "long_name": "Time",
-    "standard_name": "time",
-    "units": "seconds since 1970-01-01 00:00:00",
-    "bounds": "time_bounds",
-    "calendar": "standard"
-  },
-  "sza": {
-    "long_name": "Solar Zenith Angle",
-    "standard_name": "solar_zenith_angle",
-    "units": "degree",
-    "cell_methods": "time: mean",
-    "coordinates": "longitude latitude"
-  },
-  "station_name": {
-    "long_name": "Station Name",
-    "cf_role": "timeseries_id"
-  },
-  "latitude": {
-    "long_name": "Latitude",
-    "standard_name": "latitude",
-    "units": "degrees_north"
-  },
-  "longitude": {
-    "long_name": "Longitude",
-    "standard_name": "longitude",
-    "units": "degrees_east"
+  "variables": {
+    "air_temp": {
+      "type": "float",
+      "attributes": {
+        "long_name": "Air Temperature",
+        "standard_name": "air_temperature",
+        "original_name": "air_temp",
+        "units": "kelvin",
+        "cell_methods": "time: mean",
+        "coordinates": "longitude latitude"
+      }
+    },
+    "vtempdiff": {
+      "type": "float",
+      "attributes": {
+        "long_name": "Vertical Temperature Differential",
+        "original_name": "vtempdiff",
+        "units": "1",
+        "cell_methods": "time: mean",
+        "coordinates": "longitude latitude"
+      }
+    },
+    "rh": {
+      "type": "float",
+      "attributes": {
+        "long_name": "Relative Humidity",
+        "standard_name": "relative_humidity",
+        "original_name": "rh",
+        "units": "1",
+        "cell_methods": "time: mean",
+        "coordinates": "longitude latitude"
+      }
+    },
+    "pressure": {
+      "type": "float",
+      "attributes": {
+        "long_name": "Air Pressure",
+        "standard_name": "air_pressure",
+        "original_name": "pressure",
+        "units": "pascal",
+        "cell_methods": "time: mean",
+        "coordinates": "longitude latitude"
+      }
+    },
+    "wind_dir": {
+      "type": "float",
+      "attributes": {
+        "long_name": "Wind Direction",
+        "standard_name": "wind_from_direction",
+        "original_name": "wind_dir",
+        "units": "degree",
+        "cell_methods": "time: mean",
+        "coordinates": "longitude latitude"
+      }
+    },
+    "wind_spd": {
+      "type": "float",
+      "attributes": {
+        "long_name": "Wind Speed",
+        "standard_name": "wind_speed",
+        "original_name": "wind_spd",
+        "units": "meter second-1",
+        "cell_methods": "time: mean",
+        "coordinates": "longitude latitude"
+      }
+    },
+    "time": {
+      "type": "double",
+      "attributes": {
+        "long_name": "Time",
+        "standard_name": "time",
+        "units": "seconds since 1970-01-01 00:00:00",
+        "bounds": "time_bounds",
+        "calendar": "standard"
+      }
+    },
+    "sza": {
+      "type": "double",
+      "attributes": {
+        "long_name": "Solar Zenith Angle",
+        "standard_name": "solar_zenith_angle",
+        "units": "degree",
+        "cell_methods": "time: mean",
+        "coordinates": "longitude latitude"
+      }
+    },
+    "station_name": {
+      "type": "string",
+      "attributes": {
+        "long_name": "Station Name",
+        "cf_role": "timeseries_id"
+      }
+    },
+    "latitude": {
+      "type": "double",
+      "attributes": {
+        "long_name": "Latitude",
+        "standard_name": "latitude",
+        "units": "degrees_north"
+      }
+    },
+    "longitude": {
+      "type": "double",
+      "attributes": {
+        "long_name": "Longitude",
+        "standard_name": "longitude",
+        "units": "degrees_east"
+      }
+    }
   }
 }
