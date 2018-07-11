@@ -11,7 +11,10 @@ try:
 except:
 	import gcnet2nc, promice2nc, aaws2nc, imau2nc, common, analysis
 
-from common import jaws_version
+try:
+	from jaws.common import jaws_version
+except:
+	from common import jaws_version
 
 def get_parser():
 	parser = argparse.ArgumentParser()
