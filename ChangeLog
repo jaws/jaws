@@ -7,7 +7,7 @@
 2018-06-28  Ajay Saini  <sainiak@uci.edu>
 
 	* Add global attribute JAWS
-	
+
 	* Define common version variable in common.py
 
 	* Rename version as jaws_version
