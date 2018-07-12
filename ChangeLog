@@ -1,3 +1,11 @@
+2018-07-11  Ajay Saini  <sainiak@uci.edu>
+
+	* Making climlab available through JAWS
+
+	* climlab RRTM modifications
+
+	* Work on getting DMI data
+
 2018-07-10  Ajay Saini  <sainiak@uci.edu>
 
 	* Update all 'ds.json' files' structure according to nco-json format
