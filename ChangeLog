@@ -1,3 +1,15 @@
+2018-07-14  Ajay Saini  <sainiak@uci.edu>
+
+	* Add function to extrapolate surface temperature in GCNet
+
+	* Add attributes for surface_temp
+
+	* Add encoding for surface_temp
+
+	* Write surface_temp to output file
+
+	* git tag -a 0.4.7 -m 'beta04: Extrapolate surface temperature in GCNet'; git push --tags
+
 2018-07-11  Ajay Saini  <sainiak@uci.edu>
 
 	* Making climlab available through JAWS
