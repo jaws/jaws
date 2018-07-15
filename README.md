@@ -231,6 +231,9 @@ Total number of station-years of data handled by JAWS: 1462
 
 ![Greenland](http://grele.ess.uci.edu/jaws/img/map_grl.png)
 
+## Benchmark
+As of version 0.4.7, it takes about 3.5 minutes to process Summit(GCNet) data from 19960512 to 20170524
+
 ## Credit
 
 This software is being developed by the University of California Irvine under NASA Advanced Information Systems Technology (AIST) Proposal and Project 80NSSC17K0540.
