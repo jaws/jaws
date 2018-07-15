@@ -146,6 +146,7 @@ def gcnet2nc(args, input_file, output_file, stations):
 	ds['station_name'] = tuple(), station_name
 	ds['latitude'] = tuple(), latitude
 	ds['longitude'] = tuple(), longitude
+	ds['surface_temp'] = 'time', surface_temp
 
 	comp_level = args.dfl_lvl
 	
