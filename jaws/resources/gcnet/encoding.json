@@ -467,5 +467,11 @@
   },
   "station_name": {
     "dtype": "unicode"
+  },
+  "surface_temp": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   }
 }

@@ -100,6 +100,15 @@ def derive_times(dataframe, month, day):
 			True)
 
 
+def extrapolate_temp(dataframe):
+	ht1 = 2
+	ht2 = 10
+	temp_ht1 = dataframe['temperature_tc_1']
+	temp_ht2 = dataframe['temperature_tc_2']
+
+	surface_temp = temp_ht1 - (((temp_ht2 - temp_ht1)/(ht2 - ht1))*ht1)
+	return surface_temp
+
 
 def gcnet2nc(args, input_file, output_file, stations):
 	df = init_dataframe(args, input_file)
@@ -108,6 +117,8 @@ def gcnet2nc(args, input_file, output_file, stations):
 
 	ds = xr.Dataset.from_dataframe(df)
 	ds = ds.drop('time')
+
+	surface_temp = extrapolate_temp(df)
 
 	common.log(args, 2, 'Retrieving latitude, longitude and station name')
 	latitude, longitude, station_name = get_station(args, input_file, stations)
@@ -135,6 +146,7 @@ def gcnet2nc(args, input_file, output_file, stations):
 	ds['station_name'] = tuple(), station_name
 	ds['latitude'] = tuple(), latitude
 	ds['longitude'] = tuple(), longitude
+	ds['surface_temp'] = 'time', surface_temp
 
 	comp_level = args.dfl_lvl
 	
