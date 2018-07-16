@@ -1,3 +1,11 @@
+2018-07-15  Ajay Saini  <sainiak@uci.edu>
+
+	* Add benchmark for Summit station on homepage
+
+	* Work on h5json
+
+	* Compare hourly temperature for station data v/s MERRA
+
 2018-07-14  Ajay Saini  <sainiak@uci.edu>
 
 	* Add function to extrapolate surface temperature in GCNet
