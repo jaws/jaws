@@ -18,7 +18,15 @@ def init_dataframe(args, input_file):
 			input_file_vars =[x.strip() for x in line[11:].split(',')]
 			break
 
-	df, columns = common.load_dataframe('aaws', input_file, 8, input_file_vars=input_file_vars)
+	header_rows = 0
+	with open(input_file) as stream:
+		for line in stream:
+			if line.startswith('#'):
+				header_rows += 1
+			else:
+				break
+
+	df, columns = common.load_dataframe('aaws', input_file, header_rows, input_file_vars=input_file_vars)
 	df.index.name = 'time'
 	df.loc[:, 'air_temp'] += common.freezing_point_temp
 	df.loc[:, 'pressure'] *= common.pascal_per_millibar
