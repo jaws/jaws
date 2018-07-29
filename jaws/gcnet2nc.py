@@ -172,7 +172,7 @@ def gcnet2nc(args, input_file, output_file, stations):
 
 	comp_level = args.dfl_lvl
 	
-	common.load_dataset_attributes('gcnet', ds)
+	common.load_dataset_attributes('gcnet', ds, args)
 	encoding = common.get_encoding('gcnet', common.get_fillvalue(args), comp_level)
 
 	common.write_data(args, ds, output_file, encoding)
