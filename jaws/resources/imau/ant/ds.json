@@ -382,6 +382,27 @@
         "standard_name": "longitude",
         "units": "degrees_east"
       }
+    },
+    "hour": {
+      "type": "int",
+      "attributes": {
+        "long_name": "Hour of day(UTC)",
+        "units": "1"
+      }
+    },
+    "day": {
+      "type": "int",
+      "attributes": {
+        "long_name": "Day of month",
+        "units": "1"
+      }
+    },
+    "month": {
+      "type": "int",
+      "attributes": {
+        "long_name": "Month of year",
+        "units": "1"
+      }
     }
   }
 }
