@@ -84,6 +84,8 @@ def get_encoding(name, fillvalue, comp_level):
 				recursive_fill(v)
 
 	recursive_fill(data)
+	#Get encoding for only those variables present in input file
+	data = {k: data[k] for k in columns}
 	return data
 
 
