@@ -112,9 +112,13 @@ def load_dataset_attributes(name, ds):
 	ds.attrs = attr_dict.pop('attributes')
 	ds.attrs['history'] = '{} {}'.format(datetime.now(), ' '.join(sys.argv))
 	ds.attrs['JAWS'] = 'Justified Automatic Weather Station software version {} (Homepage = http://github.com/jaws/jaws)'.format(jaws_version)
+
+	extra_derived_vars = ['time', 'time_bounds', 'sza', 'station_name', 'latitude', 'longitude', 'surface_temp', 
+	'ice_velocity_GPS_total', 'ice_velocity_GPS_x', 'ice_velocity_GPS_y', 'hour', 'month', 'day']
+	
 	for key, value in attr_dict.items():
 		for key1, value1 in value.items():
-			if key1 in columns:		#Check if column is present in input file
+			if (key1 in columns) or (key1 in extra_derived_vars):		#Check if column is present in input file
 				for key2, value2 in value1.items():
 					if key2 == 'type':
 						pass
