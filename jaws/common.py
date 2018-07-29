@@ -101,6 +101,22 @@ def load_dataset_attributes(name, ds):
 						pass
 					else:
 						ds[key1].attrs = value2.items()
+	for column in columns:
+		if column in ('qc1', 'qc9', 'qc17', 'qc25'):
+			load_dataset_attributes_derived(name, ds)
+
+
+def load_dataset_attributes_derived(name, ds):
+	path = 'resources/{}/ds_derived.json'.format(name)
+	attr_dict = read_ordered_json(path)
+	
+	for key, value in attr_dict.items():
+		for key1, value1 in value.items():
+			for key2, value2 in value1.items():
+				if key2 == 'type':
+					pass
+				else:
+					ds[key1].attrs = value2.items()
 
 
 def read_ordered_json(path):
