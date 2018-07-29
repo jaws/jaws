@@ -95,11 +95,12 @@ def load_dataset_attributes(name, ds):
 	ds.attrs['JAWS'] = 'Justified Automatic Weather Station software version {} (Homepage = http://github.com/jaws/jaws)'.format(jaws_version)
 	for key, value in attr_dict.items():
 		for key1, value1 in value.items():
-			for key2, value2 in value1.items():
-				if key2 == 'type':
-					pass
-				else:
-					ds[key1].attrs = value2.items()
+			if key1 in columns:		#Check if column is present in input file
+				for key2, value2 in value1.items():
+					if key2 == 'type':
+						pass
+					else:
+						ds[key1].attrs = value2.items()
 
 
 def read_ordered_json(path):
