@@ -1,0 +1,9 @@
+{
+	"stamp": "timestamp",
+	"air_temp": "air_temp",
+	"vtempdiff": "vtempdiff",
+	"rh": "rh",
+	"pressure": "pressure",
+	"wind_dir": "wind_dir",
+	"wind_spd": "wind_spd"
+}
