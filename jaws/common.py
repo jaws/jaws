@@ -30,10 +30,10 @@ def load_dataframe(name, input_file, header_rows, **kwargs):
 	input_file_vars = [item for sublist in[v for k,v in kwargs.iteritems()] for item in sublist]
 	
 	global columns
-	
+
 	if (name == 'gcnet' and header_rows == 54) or (name == 'promice' and len(input_file_vars) == 44) or (
-		name == 'aaws' and len(input_file_vars) == 6)	or (name == 'imau/ant' or 'imau/grl'):
-		
+		name == 'aaws' and len(input_file_vars) == 6)	or (name == 'imau/ant') or (name == 'imau/grl'):
+
 		path = relative_path('resources/{}/columns.txt'.format(name))
 		with open(path) as stream:
 			columns = stream.read().split('\n')
