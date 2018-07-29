@@ -63,7 +63,7 @@ def get_station(args, input_file, stations):
 	return common.parse_station(args, station)
 
 
-def fill_dataset_quality_control(dataframe, dataset):
+def fill_dataset_quality_control(dataframe, dataset, input_file):
 	temp_df, columns = common.load_dataframe('gcnet', input_file, header_rows)
 	
 	keys = common.read_ordered_json('resources/gcnet/quality_control.json')
@@ -150,7 +150,7 @@ def gcnet2nc(args, input_file, output_file, stations):
 		args, df, longitude, latitude)
 
 	common.log(args, 4, 'Calculating quality control variables')
-	fill_dataset_quality_control(df, ds)
+	fill_dataset_quality_control(df, ds, input_file)
 
 	if args.no_drv_tm:
 		pass
