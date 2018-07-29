@@ -1,4 +1,38 @@
-2018-07-23  Ajay Saini  <sainiak@uci.edu>
+2018-07-25  Ajay Saini  <sainiak@uci.edu>
+
+	* Calculate header rows in GCNet
+
+	* Read GCNet file with different columns
+
+	* Add exception for GCNet columns with no names
+
+	* Add exception for quality control variables in GCNet
+
+	* Add argument to fill_dataset_quality_control function
+
+	* Load attributes only for variables present in input file
+
+	* Separate loading attributes for quality control variables in GCNEet
+
+	* Add gcnet/ds_derived.json and gcnet/original_columns.json
+
+	* Get encoding for only those variables present in input file
+
+	* Create dataframe for variables only present in input file for PROMICE and AAWS 
+
+	* Load attributes for extra derived variables
+
+	* Add attributes for hour,day,month
+
+	* Load attribute exception for no_drv_tm variables
+
+	* Change iteritems to items for Python3 compatibilty
+
+	* Add aaws/original_columns.json and promice/original_columns.json
+
+	* git tag -a 0.4.8 -m 'gamma01: Compatibility for different columns than standard'; git push --tags
+
+2018-07-25  Ajay Saini  <sainiak@uci.edu>
 
 	* AAWS, PROMICE files can be converted with different columns than standard
 
