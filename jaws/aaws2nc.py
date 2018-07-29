@@ -10,7 +10,15 @@ except:
 
 
 def init_dataframe(args, input_file):
-	df = common.load_dataframe('aaws', input_file, 8)
+
+	with open(input_file) as stream:
+		stream.readline()
+		stream.readline()
+		for line in stream:
+			input_file_vars =[x.strip() for x in line[11:].split(',')]
+			break
+
+	df, columns = common.load_dataframe('aaws', input_file, 8, input_file_vars=input_file_vars)
 	df.index.name = 'time'
 	df.loc[:, 'air_temp'] += common.freezing_point_temp
 	df.loc[:, 'pressure'] *= common.pascal_per_millibar

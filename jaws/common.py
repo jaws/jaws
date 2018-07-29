@@ -27,7 +27,13 @@ def get_fillvalue(args):
 
 def load_dataframe(name, input_file, header_rows, **kwargs):
 	
-	if (name == 'gcnet' and header_rows == 54) or (name == 'promice' or 'aaws' or 'imau/ant' or 'imau/grl'):
+	input_file_vars = [item for sublist in[v for k,v in kwargs.iteritems()] for item in sublist]
+	
+	global columns
+	
+	if (name == 'gcnet' and header_rows == 54) or (name == 'promice' and len(input_file_vars) == 44) or (
+		name == 'aaws' and len(input_file_vars) == 6)	or (name == 'imau/ant' or 'imau/grl'):
+		
 		path = relative_path('resources/{}/columns.txt'.format(name))
 		with open(path) as stream:
 			columns = stream.read().split('\n')
@@ -56,15 +62,25 @@ def load_dataframe(name, input_file, header_rows, **kwargs):
 						elif count == 2:
 							columns.append('sw_up_max')
 
-	df =  pd.read_csv(
+	elif (name == 'promice' or 'aaws'):
+		path = relative_path('resources/{}/original_columns.json'.format(name))
+		org_columns = read_ordered_json(path)
+		columns = []
+		if name == 'aaws':
+			columns.append('timestamp')
+
+		for column_name,std_name in org_columns.items():
+			if column_name in input_file_vars:
+				columns.append(std_name)
+
+	df = pd.read_csv(
 		input_file,
 		skiprows=header_rows,
 		skip_blank_lines=True,
 		header=None,
 		names=columns,
 		sep=r'\t|\s+|\,', 
-		engine='python',
-		**kwargs)
+		engine='python')
 
 	return df, columns
 
