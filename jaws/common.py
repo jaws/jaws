@@ -131,10 +131,10 @@ def load_dataset_attributes(name, ds, args):
 						ds[key1].attrs = value2.items()
 	for column in columns:
 		if column in ('qc1', 'qc9', 'qc17', 'qc25'):
-			load_dataset_attributes_derived(name, ds)
+			load_dataset_attributes_gcnet_qltyctrl(name, ds)
 
 
-def load_dataset_attributes_derived(name, ds):
+def load_dataset_attributes_gcnet_qltyctrl(name, ds):
 	path = 'resources/{}/ds_derived.json'.format(name)
 	attr_dict = read_ordered_json(path)
 	
