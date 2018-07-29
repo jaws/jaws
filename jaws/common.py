@@ -25,10 +25,24 @@ def get_fillvalue(args):
 
 
 def load_dataframe(name, input_file, header_rows, **kwargs):
-	path = relative_path('resources/{}/columns.txt'.format(name))
-	with open(path) as stream:
-		columns = stream.read().split('\n')
-	columns = [i.strip() for i in columns if i.strip()]
+	
+	if (name == 'gcnet' and header_rows == 54) or (name == 'promice' or 'aaws' or 'imau/ant' or 'imau/grl'):
+		path = relative_path('resources/{}/columns.txt'.format(name))
+		with open(path) as stream:
+			columns = stream.read().split('\n')
+		columns = [i.strip() for i in columns if i.strip()]
+
+	elif (name == 'gcnet'):
+		path = relative_path('resources/{}/original_columns.json'.format(name))
+		org_columns = read_ordered_json(path)
+		columns = []
+
+		with open(input_file) as stream:
+			stream.readline()
+			for line in stream:
+				for column_name,std_name in org_columns.items():
+					if re.search(r'\b' + column_name + r'\b', line):
+						columns.append(std_name)
 
 	return pd.read_csv(
 		input_file,
