@@ -39,10 +39,21 @@ def load_dataframe(name, input_file, header_rows, **kwargs):
 
 		with open(input_file) as stream:
 			stream.readline()
+			count = 0
 			for line in stream:
+				isColumnFoundForThisLine = False
 				for column_name,std_name in org_columns.items():
 					if re.search(r'\b' + column_name + r'\b', line):
+						isColumnFoundForThisLine = True
 						columns.append(std_name)
+
+				if not isColumnFoundForThisLine:
+					if '[W m-2]' in line:
+						count += 1
+						if count == 1:
+							columns.append('sw_down_max')
+						elif count == 2:
+							columns.append('sw_up_max')
 
 	return pd.read_csv(
 		input_file,
