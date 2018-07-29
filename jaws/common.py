@@ -27,7 +27,7 @@ def get_fillvalue(args):
 
 def load_dataframe(name, input_file, header_rows, **kwargs):
 	
-	input_file_vars = [item for sublist in[v for k,v in kwargs.iteritems()] for item in sublist]
+	input_file_vars = [item for sublist in[v for k,v in kwargs.items()] for item in sublist]
 	
 	global columns
 
