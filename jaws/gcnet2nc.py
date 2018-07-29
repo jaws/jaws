@@ -13,7 +13,15 @@ except:
 def init_dataframe(args, input_file):
 	check_na = 999.0
 
-	df = common.load_dataframe('gcnet', input_file, 54)
+	global header_rows
+	header_rows = 0
+	with open(input_file) as stream:
+		for line in stream:
+			header_rows += 1
+			if len(line.strip()) == 0 :
+				break
+
+	df = common.load_dataframe('gcnet', input_file, header_rows)
 	df.index.name = 'time'
 	df['qc25'] = df['qc25'].astype(str)  # To avoid 999 values marked as N/A
 	df.replace(check_na, np.nan, inplace=True)
