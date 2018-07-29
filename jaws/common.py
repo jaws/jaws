@@ -55,7 +55,7 @@ def load_dataframe(name, input_file, header_rows, **kwargs):
 						elif count == 2:
 							columns.append('sw_up_max')
 
-	return pd.read_csv(
+	df =  pd.read_csv(
 		input_file,
 		skiprows=header_rows,
 		skip_blank_lines=True,
@@ -64,6 +64,8 @@ def load_dataframe(name, input_file, header_rows, **kwargs):
 		sep=r'\t|\s+|\,', 
 		engine='python',
 		**kwargs)
+
+	return df, columns
 
 
 def get_encoding(name, fillvalue, comp_level):

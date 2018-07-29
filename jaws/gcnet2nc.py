@@ -21,9 +21,15 @@ def init_dataframe(args, input_file):
 			if len(line.strip()) == 0 :
 				break
 
-	df = common.load_dataframe('gcnet', input_file, header_rows)
+	df, columns = common.load_dataframe('gcnet', input_file, header_rows)
 	df.index.name = 'time'
-	df['qc25'] = df['qc25'].astype(str)  # To avoid 999 values marked as N/A
+	
+	#Convert only if this column is present in input file
+	try:
+		df['qc25'] = df['qc25'].astype(str)  # To avoid 999 values marked as N/A
+	except Exception:
+		pass
+	
 	df.replace(check_na, np.nan, inplace=True)
 
 	temperature_keys = [
@@ -36,12 +42,16 @@ def init_dataframe(args, input_file):
 	df.loc[:, temperature_keys] += common.freezing_point_temp
 	df.loc[:, 'atmos_pressure'] *= common.pascal_per_millibar
 	df = df.where((pd.notnull(df)), common.get_fillvalue(args))
-	df['qc25'] = df['qc25'].astype(int)  # Convert it back to int
+
+	try:
+		df['qc25'] = df['qc25'].astype(int)  # Convert it back to int
+	except Exception:
+		pass
 
 	return df
 
 def get_station(args, input_file, stations):
-	df = common.load_dataframe('gcnet', input_file, 54)
+	df, columns = common.load_dataframe('gcnet', input_file, header_rows)
 	station_number = df['station_number'][0]
 
 	if 30 <= station_number <= 32:
@@ -54,11 +64,15 @@ def get_station(args, input_file, stations):
 
 
 def fill_dataset_quality_control(dataframe, dataset):
+	temp_df, columns = common.load_dataframe('gcnet', input_file, header_rows)
+	
 	keys = common.read_ordered_json('resources/gcnet/quality_control.json')
-	for key, attributes in keys.items():
-		values = [list(map(int, i)) for i in zip(*map(str, dataframe[key]))]
-		for attr, value in zip(attributes, values):
-			dataset[attr] = 'time', value
+	for key, attributes in keys.items():		
+		#Check if qc variables are present in input file
+		if key in columns:
+			values = [list(map(int, i)) for i in zip(*map(str, dataframe[key]))]
+			for attr, value in zip(attributes, values):
+				dataset[attr] = 'time', value
 
 
 def get_time_and_sza(args, dataframe, longitude, latitude):
