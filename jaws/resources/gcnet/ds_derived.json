@@ -1,0 +1,193 @@
+{
+  "variables": {
+    "qc_swdn": {
+      "type": "byte",
+      "attributes": {
+        "long_name": "Quality Control flag for Shortwave Flux Down",
+        "units": "1"
+      }
+    },
+    "qc_swup": {
+      "type": "byte",
+      "attributes": {
+        "long_name": "Quality Control flag for Shortwave Flux Up",
+        "units": "1"
+      }
+    },
+    "qc_netradiation": {
+      "type": "byte",
+      "attributes": {
+        "long_name": "Quality Control flag for Net Radiation",
+        "units": "1"
+      }
+    },
+    "qc_ttc1": {
+      "type": "byte",
+      "attributes": {
+        "long_name": "Quality Control flag for TC-1 Air Temperature",
+        "units": "1"
+      }
+    },
+    "qc_ttc2": {
+      "type": "byte",
+      "attributes": {
+        "long_name": "Quality Control flag for TC-2 Air Temperature",
+        "units": "1"
+      }
+    },
+    "qc_tcs1": {
+      "type": "byte",
+      "attributes": {
+        "long_name": "Quality Control flag for CS500-1 Air Temperature",
+        "units": "1"
+      }
+    },
+    "qc_tcs2": {
+      "type": "byte",
+      "attributes": {
+        "long_name": "Quality Control flag for CS500-2 Air Temperature",
+        "units": "1"
+      }
+    },
+    "qc_rh1": {
+      "type": "byte",
+      "attributes": {
+        "long_name": "Quality Control flag for Relative Humidity 1",
+        "units": "1"
+      }
+    },
+    "qc_rh2": {
+      "type": "byte",
+      "attributes": {
+        "long_name": "Quality Control flag for Relative Humidity 2",
+        "units": "1"
+      }
+    },
+    "qc_u1": {
+      "type": "byte",
+      "attributes": {
+        "long_name": "Quality Control flag for U1 Wind Speed",
+        "units": "1"
+      }
+    },
+    "qc_u2": {
+      "type": "byte",
+      "attributes": {
+        "long_name": "Quality Control flag for U2 Wind Speed",
+        "units": "1"
+      }
+    },
+    "qc_ud1": {
+      "type": "byte",
+      "attributes": {
+        "long_name": "Quality Control flag for U Direction 1",
+        "units": "1"
+      }
+    },
+    "qc_ud2": {
+      "type": "byte",
+      "attributes": {
+        "long_name": "Quality Control flag for U Direction 2",
+        "units": "1"
+      }
+    },
+    "qc_pressure": {
+      "type": "byte",
+      "attributes": {
+        "long_name": "Quality Control flag for Atmospheric Pressure",
+        "units": "1"
+      }
+    },
+    "qc_snowheight1": {
+      "type": "byte",
+      "attributes": {
+        "long_name": "Quality Control flag for Snow Height 1",
+        "units": "1"
+      }
+    },
+    "qc_snowheight2": {
+      "type": "byte",
+      "attributes": {
+        "long_name": "Quality Control flag for Snow Height 2",
+        "units": "1"
+      }
+    },
+    "qc_tsnow1": {
+      "type": "byte",
+      "attributes": {
+        "long_name": "Quality Control flag for T Snow 1",
+        "units": "1"
+      }
+    },
+    "qc_tsnow2": {
+      "type": "byte",
+      "attributes": {
+        "long_name": "Quality Control flag for T Snow 2",
+        "units": "1"
+      }
+    },
+    "qc_tsnow3": {
+      "type": "byte",
+      "attributes": {
+        "long_name": "Quality Control flag for T Snow 3",
+        "units": "1"
+      }
+    },
+    "qc_tsnow4": {
+      "type": "byte",
+      "attributes": {
+        "long_name": "Quality Control flag for T Snow 4",
+        "units": "1"
+      }
+    },
+    "qc_tsnow5": {
+      "type": "byte",
+      "attributes": {
+        "long_name": "Quality Control flag for T Snow 5",
+        "units": "1"
+      }
+    },
+    "qc_tsnow6": {
+      "type": "byte",
+      "attributes": {
+        "long_name": "Quality Control flag for T Snow 6",
+        "units": "1"
+      }
+    },
+    "qc_tsnow7": {
+      "type": "byte",
+      "attributes": {
+        "long_name": "Quality Control flag for T Snow 7",
+        "units": "1"
+      }
+    },
+    "qc_tsnow8": {
+      "type": "byte",
+      "attributes": {
+        "long_name": "Quality Control flag for T Snow 8",
+        "units": "1"
+      }
+    },
+    "qc_tsnow9": {
+      "type": "byte",
+      "attributes": {
+        "long_name": "Quality Control flag for T Snow 9",
+        "units": "1"
+      }
+    },
+    "qc_tsnow10": {
+      "type": "byte",
+      "attributes": {
+        "long_name": "Quality Control flag for T Snow 10",
+        "units": "1"
+      }
+    },
+    "qc_battery": {
+      "type": "byte",
+      "attributes": {
+        "long_name": "Quality Control flag for Battery Voltage",
+        "units": "1"
+      }
+    }
+  }
+}

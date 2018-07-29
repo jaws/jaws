@@ -13,9 +13,23 @@ except:
 def init_dataframe(args, input_file):
 	check_na = 999.0
 
-	df = common.load_dataframe('gcnet', input_file, 54)
+	global header_rows
+	header_rows = 0
+	with open(input_file) as stream:
+		for line in stream:
+			header_rows += 1
+			if len(line.strip()) == 0 :
+				break
+
+	df, columns = common.load_dataframe('gcnet', input_file, header_rows)
 	df.index.name = 'time'
-	df['qc25'] = df['qc25'].astype(str)  # To avoid 999 values marked as N/A
+	
+	#Convert only if this column is present in input file
+	try:
+		df['qc25'] = df['qc25'].astype(str)  # To avoid 999 values marked as N/A
+	except Exception:
+		pass
+	
 	df.replace(check_na, np.nan, inplace=True)
 
 	temperature_keys = [
@@ -28,12 +42,16 @@ def init_dataframe(args, input_file):
 	df.loc[:, temperature_keys] += common.freezing_point_temp
 	df.loc[:, 'atmos_pressure'] *= common.pascal_per_millibar
 	df = df.where((pd.notnull(df)), common.get_fillvalue(args))
-	df['qc25'] = df['qc25'].astype(int)  # Convert it back to int
+
+	try:
+		df['qc25'] = df['qc25'].astype(int)  # Convert it back to int
+	except Exception:
+		pass
 
 	return df
 
 def get_station(args, input_file, stations):
-	df = common.load_dataframe('gcnet', input_file, 54)
+	df, columns = common.load_dataframe('gcnet', input_file, header_rows)
 	station_number = df['station_number'][0]
 
 	if 30 <= station_number <= 32:
@@ -45,12 +63,16 @@ def get_station(args, input_file, stations):
 	return common.parse_station(args, station)
 
 
-def fill_dataset_quality_control(dataframe, dataset):
+def fill_dataset_quality_control(dataframe, dataset, input_file):
+	temp_df, columns = common.load_dataframe('gcnet', input_file, header_rows)
+	
 	keys = common.read_ordered_json('resources/gcnet/quality_control.json')
 	for key, attributes in keys.items():
-		values = [list(map(int, i)) for i in zip(*map(str, dataframe[key]))]
-		for attr, value in zip(attributes, values):
-			dataset[attr] = 'time', value
+		#Check if qc variables are present in input file
+		if key in columns:
+			values = [list(map(int, i)) for i in zip(*map(str, dataframe[key]))]
+			for attr, value in zip(attributes, values):
+				dataset[attr] = 'time', value
 
 
 def get_time_and_sza(args, dataframe, longitude, latitude):
@@ -128,7 +150,7 @@ def gcnet2nc(args, input_file, output_file, stations):
 		args, df, longitude, latitude)
 
 	common.log(args, 4, 'Calculating quality control variables')
-	fill_dataset_quality_control(df, ds)
+	fill_dataset_quality_control(df, ds, input_file)
 
 	if args.no_drv_tm:
 		pass
@@ -150,7 +172,7 @@ def gcnet2nc(args, input_file, output_file, stations):
 
 	comp_level = args.dfl_lvl
 	
-	common.load_dataset_attributes('gcnet', ds)
+	common.load_dataset_attributes('gcnet', ds, args)
 	encoding = common.get_encoding('gcnet', common.get_fillvalue(args), comp_level)
 
 	common.write_data(args, ds, output_file, encoding)

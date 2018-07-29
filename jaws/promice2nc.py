@@ -22,7 +22,12 @@ def init_dataframe(args, input_file):
 	convert_current = 1000
 	check_na = -999
 
-	df = common.load_dataframe('promice', input_file, 1)
+	with open(input_file) as stream:
+		for line in stream:
+			input_file_vars =[x.strip() for x in line.split(' ')]
+			break
+
+	df, columns = common.load_dataframe('promice', input_file, 1, input_file_vars=input_file_vars)
 	df.index.name = 'time'
 	df.replace(check_na, np.nan, inplace=True)
 	df.loc[:, ['air_temperature', 'air_temperature_hygroclip', 'surface_temp',
@@ -163,7 +168,7 @@ def promice2nc(args, input_file, output_file, stations):
 
 	comp_level = args.dfl_lvl
 	
-	common.load_dataset_attributes('promice', ds)
+	common.load_dataset_attributes('promice', ds, args)
 	encoding = common.get_encoding('promice', common.get_fillvalue(args), comp_level)
 
 	common.write_data(args, ds, output_file, encoding)

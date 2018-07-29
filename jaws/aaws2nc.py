@@ -10,7 +10,23 @@ except:
 
 
 def init_dataframe(args, input_file):
-	df = common.load_dataframe('aaws', input_file, 8)
+
+	with open(input_file) as stream:
+		stream.readline()
+		stream.readline()
+		for line in stream:
+			input_file_vars =[x.strip() for x in line[11:].split(',')]
+			break
+
+	header_rows = 0
+	with open(input_file) as stream:
+		for line in stream:
+			if line.startswith('#'):
+				header_rows += 1
+			else:
+				break
+
+	df, columns = common.load_dataframe('aaws', input_file, header_rows, input_file_vars=input_file_vars)
 	df.index.name = 'time'
 	df.loc[:, 'air_temp'] += common.freezing_point_temp
 	df.loc[:, 'pressure'] *= common.pascal_per_millibar
@@ -98,7 +114,7 @@ def aaws2nc(args, input_file, output_file, stations):
 
 	comp_level = args.dfl_lvl
 	
-	common.load_dataset_attributes('aaws', ds)
+	common.load_dataset_attributes('aaws', ds, args)
 	encoding = common.get_encoding('aaws', common.get_fillvalue(args), comp_level)
 
 	common.write_data(args, ds, output_file, encoding)

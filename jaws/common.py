@@ -1,5 +1,6 @@
 import os
 import sys
+import re
 import json
 import pandas as pd
 
@@ -25,20 +26,63 @@ def get_fillvalue(args):
 
 
 def load_dataframe(name, input_file, header_rows, **kwargs):
-	path = relative_path('resources/{}/columns.txt'.format(name))
-	with open(path) as stream:
-		columns = stream.read().split('\n')
-	columns = [i.strip() for i in columns if i.strip()]
+	
+	input_file_vars = [item for sublist in[v for k,v in kwargs.items()] for item in sublist]
+	
+	global columns
 
-	return pd.read_csv(
+	if (name == 'gcnet' and header_rows == 54) or (name == 'promice' and len(input_file_vars) == 44) or (
+		name == 'aaws' and len(input_file_vars) == 6)	or (name == 'imau/ant') or (name == 'imau/grl'):
+
+		path = relative_path('resources/{}/columns.txt'.format(name))
+		with open(path) as stream:
+			columns = stream.read().split('\n')
+		columns = [i.strip() for i in columns if i.strip()]
+
+	elif (name == 'gcnet'):
+		path = relative_path('resources/{}/original_columns.json'.format(name))
+		org_columns = read_ordered_json(path)
+		columns = []
+
+		with open(input_file) as stream:
+			stream.readline()
+			count = 0
+			for line in stream:
+				isColumnFoundForThisLine = False
+				for column_name,std_name in org_columns.items():
+					if re.search(r'\b' + column_name + r'\b', line):
+						isColumnFoundForThisLine = True
+						columns.append(std_name)
+
+				if not isColumnFoundForThisLine:
+					if '[W m-2]' in line:
+						count += 1
+						if count == 1:
+							columns.append('sw_down_max')
+						elif count == 2:
+							columns.append('sw_up_max')
+
+	elif (name == 'promice' or 'aaws'):
+		path = relative_path('resources/{}/original_columns.json'.format(name))
+		org_columns = read_ordered_json(path)
+		columns = []
+		if name == 'aaws':
+			columns.append('timestamp')
+
+		for column_name,std_name in org_columns.items():
+			if column_name in input_file_vars:
+				columns.append(std_name)
+
+	df = pd.read_csv(
 		input_file,
 		skiprows=header_rows,
 		skip_blank_lines=True,
 		header=None,
 		names=columns,
 		sep=r'\t|\s+|\,', 
-		engine='python',
-		**kwargs)
+		engine='python')
+
+	return df, columns
 
 
 def get_encoding(name, fillvalue, comp_level):
@@ -56,16 +100,44 @@ def get_encoding(name, fillvalue, comp_level):
 				recursive_fill(v)
 
 	recursive_fill(data)
+	#Get encoding for only those variables present in input file
+	data = {k: data[k] for k in columns}
 	return data
 
 
-def load_dataset_attributes(name, ds):
+def load_dataset_attributes(name, ds, args):
 	path = 'resources/{}/ds.json'.format(name)
 	attr_dict = read_ordered_json(path)
 
 	ds.attrs = attr_dict.pop('attributes')
 	ds.attrs['history'] = '{} {}'.format(datetime.now(), ' '.join(sys.argv))
 	ds.attrs['JAWS'] = 'Justified Automatic Weather Station software version {} (Homepage = http://github.com/jaws/jaws)'.format(jaws_version)
+
+	derived_vars = ['time', 'time_bounds', 'sza', 'station_name', 'latitude', 'longitude', 'surface_temp', 
+	'ice_velocity_GPS_total', 'ice_velocity_GPS_x', 'ice_velocity_GPS_y']
+
+	no_drv_tm_vars = []
+	
+	if not args.no_drv_tm:
+		no_drv_tm_vars = ['hour', 'month', 'day']
+
+	for key, value in attr_dict.items():
+		for key1, value1 in value.items():
+			if (key1 in columns) or (key1 in derived_vars) or (key1 in no_drv_tm_vars):		#Check if column is present in input file
+				for key2, value2 in value1.items():
+					if key2 == 'type':
+						pass
+					else:
+						ds[key1].attrs = value2.items()
+	for column in columns:
+		if column in ('qc1', 'qc9', 'qc17', 'qc25'):
+			load_dataset_attributes_gcnet_qltyctrl(name, ds)
+
+
+def load_dataset_attributes_gcnet_qltyctrl(name, ds):
+	path = 'resources/{}/ds_derived.json'.format(name)
+	attr_dict = read_ordered_json(path)
+	
 	for key, value in attr_dict.items():
 		for key1, value1 in value.items():
 			for key2, value2 in value1.items():
