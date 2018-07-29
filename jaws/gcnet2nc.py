@@ -67,7 +67,7 @@ def fill_dataset_quality_control(dataframe, dataset, input_file):
 	temp_df, columns = common.load_dataframe('gcnet', input_file, header_rows)
 	
 	keys = common.read_ordered_json('resources/gcnet/quality_control.json')
-	for key, attributes in keys.items():		
+	for key, attributes in keys.items():
 		#Check if qc variables are present in input file
 		if key in columns:
 			values = [list(map(int, i)) for i in zip(*map(str, dataframe[key]))]
