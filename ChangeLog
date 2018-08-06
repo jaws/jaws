@@ -1,4 +1,8 @@
-2018-07-25  Ajay Saini  <sainiak@uci.edu>
+2018-08-03  Ajay Saini  <sainiak@uci.edu>
+
+	* RIGB- Clear sky detection complete
+
+2018-07-28  Ajay Saini  <sainiak@uci.edu>
 
 	* Calculate header rows in GCNet
 
