@@ -47,7 +47,6 @@ def init_dataframe(args, input_file):
     df, columns = common.load_dataframe('scar', input_file, header_rows, input_file_vars=input_file_vars)
     df.index.name = 'time'
     df.replace(check_na, np.nan, inplace=True)
-    print(df.head(1))
     df.loc[:, 'air_temp'] += common.freezing_point_temp
     df.loc[:, 'wind_spd'] *= knot_to_ms
     df = df.where((pd.notnull(df)), common.get_fillvalue(args))
@@ -81,10 +80,7 @@ def scar2nc(args, input_file, output_file):
     ds = xr.Dataset.from_dataframe(df)
     ds = ds.drop('time')
 
-    #common.log(args, 2, 'Retrieving latitude, longitude and station name')
-    #latitude, longitude, station_name = get_station(args, input_file, stations)
-
-    common.log(args, 3, 'Calculating time and sza')
+    common.log(args, 2, 'Calculating time and sza')
     time, time_bounds, sza, day_of_year = get_time_and_sza(
         args, df, latitude, longitude)
 
@@ -100,7 +96,7 @@ def scar2nc(args, input_file, output_file):
 
     comp_level = args.dfl_lvl
 
-    common.load_dataset_attributes('scar', ds, args)
+    common.load_dataset_attributes('scar', ds, args, country = country, institution = institution)
     encoding = common.get_encoding('scar', common.get_fillvalue(args), comp_level)
 
     common.write_data(args, ds, output_file, encoding)

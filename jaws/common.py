@@ -106,11 +106,19 @@ def get_encoding(name, fillvalue, comp_level):
 	return data
 
 
-def load_dataset_attributes(name, ds, args):
+def load_dataset_attributes(name, ds, args, **kwargs):
 	path = 'resources/{}/ds.json'.format(name)
 	attr_dict = read_ordered_json(path)
 
 	ds.attrs = attr_dict.pop('attributes')
+
+	if name == 'scar':
+		country = kwargs.pop('country')
+		institution = kwargs.pop('institution')
+
+		ds.attrs['operated_by'] = country
+		ds.attrs['institution'] = institution
+
 	ds.attrs['history'] = '{} {}'.format(datetime.now(), ' '.join(sys.argv))
 	ds.attrs['JAWS'] = 'Justified Automatic Weather Station software version {} (Homepage = http://github.com/jaws/jaws)'.format(jaws_version)
 
