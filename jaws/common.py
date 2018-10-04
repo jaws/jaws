@@ -32,7 +32,8 @@ def load_dataframe(name, input_file, header_rows, **kwargs):
 	global columns
 
 	if (name == 'gcnet' and header_rows == 54) or (name == 'promice' and len(input_file_vars) == 44) or (
-		name == 'aaws' and len(input_file_vars) == 6)	or (name == 'imau/ant') or (name == 'imau/grl'):
+		name == 'aaws' and len(input_file_vars) == 6)	or (name == 'imau/ant') or (name == 'imau/grl') or (
+		name=='scar'):
 
 		path = relative_path('resources/{}/columns.txt'.format(name))
 		with open(path) as stream:
@@ -114,7 +115,7 @@ def load_dataset_attributes(name, ds, args):
 	ds.attrs['JAWS'] = 'Justified Automatic Weather Station software version {} (Homepage = http://github.com/jaws/jaws)'.format(jaws_version)
 
 	derived_vars = ['time', 'time_bounds', 'sza', 'station_name', 'latitude', 'longitude', 'surface_temp', 
-	'ice_velocity_GPS_total', 'ice_velocity_GPS_x', 'ice_velocity_GPS_y']
+	'ice_velocity_GPS_total', 'ice_velocity_GPS_x', 'ice_velocity_GPS_y', 'day_of_year']
 
 	no_drv_tm_vars = []
 	

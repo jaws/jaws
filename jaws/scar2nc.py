@@ -47,6 +47,7 @@ def init_dataframe(args, input_file):
     df, columns = common.load_dataframe('scar', input_file, header_rows, input_file_vars=input_file_vars)
     df.index.name = 'time'
     df.replace(check_na, np.nan, inplace=True)
+    print(df.head(1))
     df.loc[:, 'air_temp'] += common.freezing_point_temp
     df.loc[:, 'wind_spd'] *= knot_to_ms
     df = df.where((pd.notnull(df)), common.get_fillvalue(args))
@@ -85,7 +86,7 @@ def scar2nc(args, input_file, output_file):
 
     common.log(args, 3, 'Calculating time and sza')
     time, time_bounds, sza, day_of_year = get_time_and_sza(
-        args, df, latitude, longitude)[:3]
+        args, df, latitude, longitude)
 
     ds['day_of_year'] = 'time', day_of_year
 

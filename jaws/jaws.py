@@ -7,9 +7,9 @@ import re
 from datetime import datetime
 
 try:
-	from jaws import gcnet2nc, promice2nc, aaws2nc, imau2nc, common, analysis
+	from jaws import gcnet2nc, promice2nc, aaws2nc, imau2nc, scar2nc, common, analysis
 except:
-	import gcnet2nc, promice2nc, aaws2nc, imau2nc, common, analysis
+	import gcnet2nc, promice2nc, aaws2nc, imau2nc, scar2nc, common, analysis
 
 try:
 	from jaws.common import jaws_version
@@ -191,21 +191,24 @@ def dispatch_converter(args, input_file, output_file, stations):
 	Reads the first character of the input file, and uses it to guess the
 	format of the input file and dispatch the right converter.
 	"""
-	with open(input_file) as stream:
-		char = stream.readline()[0]
-
-	converters = {
-		'D': gcnet2nc.gcnet2nc,
-		'Y': promice2nc.promice2nc,
-		'#': aaws2nc.aaws2nc,
-		'1': imau2nc.imau2nc,
-		'2': imau2nc.imau2nc}
-
-	errmsg = 'Conversion failed: unsupported input file format.'
-	if char in converters:
-		converters[char](args, input_file, output_file, stations)
+	if input_file[-7:] == 'aws.dat':
+		scar2nc.scar2nc(args, input_file, output_file)
 	else:
-		raise RuntimeError(errmsg)
+		with open(input_file) as stream:
+			char = stream.readline()[0]
+
+		converters = {
+			'D': gcnet2nc.gcnet2nc,
+			'Y': promice2nc.promice2nc,
+			'#': aaws2nc.aaws2nc,
+			'1': imau2nc.imau2nc,
+			'2': imau2nc.imau2nc}
+
+		errmsg = 'Conversion failed: unsupported input file format.'
+		if char in converters:
+			converters[char](args, input_file, output_file, stations)
+		else:
+			raise RuntimeError(errmsg)
 
 def main(args):
 	"""
