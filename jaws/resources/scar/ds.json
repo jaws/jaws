@@ -1,0 +1,151 @@
+{
+  "attributes": {
+    "source": "surface observation",
+    "featureType": "timeSeries",
+    "Conventions": "CF-1.7",
+    "time_convention": "'time: point' variables are valid for exactly the time value stored in the time coordinate, whereas 'time: mean' variables are valid for the mean time within the time_bounds variable. For example, air_temp was continuously measured at high frequency and then averaged over each period contained in the time_bounds variable into the store hourly-mean values."
+  },
+  "variables": {
+    "year": {
+      "type": "short",
+      "attributes": {
+        "long_name": "Year",
+        "original_name": "Year",
+        "units": "1"
+      }
+    },
+    "month": {
+      "type": "short",
+      "attributes": {
+        "long_name": "Month",
+        "original_name": "Month",
+        "units": "1"
+      }
+    },
+    "day": {
+      "type": "short",
+      "attributes": {
+        "long_name": "Day of month",
+        "original_name": "Day",
+        "units": "1"
+      }
+    },
+    "hour": {
+      "type": "short",
+      "attributes": {
+        "long_name": "Hour of day",
+        "original_name": "Hour",
+        "units": "1"
+      }
+    },
+    "minute": {
+      "type": "short",
+      "attributes": {
+        "long_name": "Minute of hour",
+        "original_name": "Minute",
+        "units": "1"
+      }
+    },
+    "air_press": {
+      "type": "float",
+      "attributes": {
+        "long_name": "Air Pressure",
+        "standard_name": "air_pressure",
+        "original_name": "Pressure",
+        "units": "pascal",
+        "cell_methods": "time: mean",
+        "coordinates": "longitude latitude"
+      }
+    },
+    "air_temp": {
+      "type": "float",
+      "attributes": {
+        "long_name": "Air Temperature",
+        "standard_name": "air_temperature",
+        "original_name": "Temperature",
+        "units": "kelvin",
+        "cell_methods": "time: mean",
+        "coordinates": "longitude latitude"
+      }
+    },
+    "wind_spd": {
+      "type": "float",
+      "attributes": {
+        "long_name": "Wind Speed",
+        "standard_name": "wind_speed",
+        "original_name": "Wind Speed",
+        "units": "meter second-1",
+        "cell_methods": "time: mean",
+        "coordinates": "longitude latitude"
+      }
+    },
+    "wind_dir": {
+      "type": "float",
+      "attributes": {
+        "long_name": "Wind Direction",
+        "standard_name": "wind_from_direction",
+        "original_name": "Wind Direction",
+        "units": "degree",
+        "cell_methods": "time: mean",
+        "coordinates": "longitude latitude"
+      }
+    },
+    "time": {
+      "type": "double",
+      "attributes": {
+        "long_name": "Time",
+        "standard_name": "time",
+        "units": "seconds since 1970-01-01 00:00:00",
+        "bounds": "time_bounds",
+        "calendar": "standard"
+      }
+    },
+    "sza": {
+      "type": "double",
+      "attributes": {
+        "long_name": "Solar Zenith Angle",
+        "standard_name": "solar_zenith_angle",
+        "units": "degree",
+        "cell_methods": "time: mean",
+        "coordinates": "longitude latitude"
+      }
+    },
+    "station_name": {
+      "type": "string",
+      "attributes": {
+        "long_name": "Station Name",
+        "cf_role": "timeseries_id"
+      }
+    },
+    "latitude": {
+      "type": "double",
+      "attributes": {
+        "long_name": "Latitude",
+        "standard_name": "latitude",
+        "units": "degrees_north"
+      }
+    },
+    "longitude": {
+      "type": "double",
+      "attributes": {
+        "long_name": "Longitude",
+        "standard_name": "longitude",
+        "units": "degrees_east"
+      }
+    },
+    "height": {
+      "type": "double",
+      "attributes": {
+        "long_name": "Height of sensor",
+        "units": "meter"
+      }
+    },
+    "day_of_year": {
+      "type": "int",
+      "attributes": {
+        "long_name": "Day of year",
+        "units": "1"
+      }
+    }
+  }
+}
