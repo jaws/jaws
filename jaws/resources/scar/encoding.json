@@ -1,0 +1,96 @@
+{
+  "year": {
+    "_FillValue": false,
+    "dtype": "i2",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "month": {
+    "_FillValue": false,
+    "dtype": "i2",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "day": {
+    "_FillValue": false,
+    "dtype": "i2",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "hour": {
+    "_FillValue": false,
+    "dtype": "i2",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "minute": {
+    "_FillValue": false,
+    "dtype": "i2",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "air_press": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "air_temp": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "wind_spd": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "wind_dir": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "time": {
+    "_FillValue": false,
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "time_bounds": {
+    "_FillValue": false,
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "sza": {
+    "_FillValue": false,
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "station_name": {
+    "dtype": "unicode"
+  },
+  "latitude": {
+    "_FillValue": false,
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "longitude": {
+    "_FillValue": false,
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "height": {
+    "_FillValue": false,
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "day_of_year": {
+    "_FillValue": false,
+    "dtype": "i2",
+    "zlib": true,
+    "complevel": "COMP"
+  }
+}

@@ -1,0 +1,11 @@
+{
+	"Year": "year",
+	"Month": "month",
+	"Day": "day",
+	"Hour (UTC)": "hour",
+	"Minute": "minute",
+	"Pressure (hPa)": "air_press",
+	"Temperature (Deg C)": "air_temp",
+	"Wind Speed (knots)": "wind_spd",
+	"Wind Direction (Degrees)": "wind_dir"
+}
