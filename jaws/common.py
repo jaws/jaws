@@ -116,19 +116,21 @@ def load_dataset_attributes(name, ds, args, **kwargs):
 		country = kwargs.pop('country')
 		institution = kwargs.pop('institution')
 
-		ds.attrs['operated_by'] = country
-		ds.attrs['institution'] = institution
+		if country:
+			ds.attrs['operated_by'] = country
+		if institution:
+			ds.attrs['institution'] = institution
 
 	ds.attrs['history'] = '{} {}'.format(datetime.now(), ' '.join(sys.argv))
 	ds.attrs['JAWS'] = 'Justified Automatic Weather Station software version {} (Homepage = http://github.com/jaws/jaws)'.format(jaws_version)
 
 	derived_vars = ['time', 'time_bounds', 'sza', 'station_name', 'latitude', 'longitude', 'surface_temp', 
-	'ice_velocity_GPS_total', 'ice_velocity_GPS_x', 'ice_velocity_GPS_y', 'day_of_year', 'height']
+	'ice_velocity_GPS_total', 'ice_velocity_GPS_x', 'ice_velocity_GPS_y', 'height']
 
 	no_drv_tm_vars = []
 	
 	if not args.no_drv_tm:
-		no_drv_tm_vars = ['hour', 'month', 'day']
+		no_drv_tm_vars = ['hour', 'month', 'day', 'day_of_year']
 
 	for key, value in attr_dict.items():
 		for key1, value1 in value.items():
