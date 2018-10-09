@@ -1,3 +1,27 @@
+2018-10-08  Ajay Saini  <sainiak@uci.edu>
+
+	* Script to convert SCAR datasets to netCDF format
+
+	* Integrate scar2nc with jaws.py
+
+	* Add jaws/resources/scar/columns.txt
+
+	* Add jaws/resources/scar/ds.json
+
+	* Add jaws/resources/scar/encoding.json
+
+	* Add jaws/resources/scar/original_columns.json
+
+	* Correct usage of sin and cos functions
+
+	* Add global attribute 'operated_by' and 'institution'
+
+	* Add 'height' to derived_vars in load_dataset_attributes
+
+	* Move 'day_of_year' to no_drv_tm_vars and make attrs 'country' and 'institution' optional
+
+	* git tag -a 0.5 -m 'Great White Shark: SCAR stations processed by JAWS'; git push --tags
+
 2018-08-03  Ajay Saini  <sainiak@uci.edu>
 
 	* RIGB- Clear sky detection complete
