@@ -4,3 +4,4 @@ include jaws/resources/gcnet/*
 include jaws/resources/imau/ant/*
 include jaws/resources/imau/grl/*
 include jaws/resources/promice/*
+include jaws/resources/scar/*
