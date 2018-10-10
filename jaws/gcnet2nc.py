@@ -22,7 +22,6 @@ def init_dataframe(args, input_file):
                 break
 
     df, columns = common.load_dataframe('gcnet', input_file, header_rows)
-    df.index.name = 'time'
 
     #Convert only if this column is present in input file
     try:

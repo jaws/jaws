@@ -28,7 +28,6 @@ def init_dataframe(args, input_file):
             break
 
     df, columns = common.load_dataframe('promice', input_file, 1, input_file_vars=input_file_vars)
-    df.index.name = 'time'
     df.replace(check_na, np.nan, inplace=True)
     df.loc[:, ['air_temperature', 'air_temperature_hygroclip', 'surface_temp',
                'ice_temp_01', 'ice_temp_02', 'ice_temp_03', 'ice_temp_04',

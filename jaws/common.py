@@ -83,6 +83,8 @@ def load_dataframe(name, input_file, header_rows, **kwargs):
         sep=r'\t|\s+|\,',
         engine='python')
 
+    df.index.name = 'time'
+
     return df, columns
 
 

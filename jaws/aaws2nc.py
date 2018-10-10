@@ -27,7 +27,6 @@ def init_dataframe(args, input_file):
                 break
 
     df, columns = common.load_dataframe('aaws', input_file, header_rows, input_file_vars=input_file_vars)
-    df.index.name = 'time'
     df.loc[:, 'air_temp'] += common.freezing_point_temp
     df.loc[:, 'pressure'] *= common.pascal_per_millibar
     df = df.where((pd.notnull(df)), common.get_fillvalue(args))

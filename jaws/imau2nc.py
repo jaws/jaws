@@ -15,7 +15,6 @@ def init_dataframe(args, input_file, sub_type):
     check_na = -9999
 
     df, columns = common.load_dataframe(sub_type, input_file, 0)
-    df.index.name = 'time'
     df.replace(check_na, np.nan, inplace=True)
 
     if sub_type == 'imau/ant':
