@@ -19,10 +19,29 @@ jaws_version = '0.5.1'
 
 ###############################################################################
 
+
+def log(args, level, message):
+    if args.dbg_lvl > level:
+        print(message)
+
+
 def get_fillvalue(args):
     if args.fll_val_flt:
         return args.fll_val_flt
     return fillvalue_float
+
+
+def relative_path(path):
+    """Get relative path based on the location of this file."""
+    this_dir = os.path.dirname(os.path.realpath(__file__))
+    return os.path.join(this_dir, path)
+
+
+def read_ordered_json(path):
+    path = relative_path(path)
+    decoder = json.JSONDecoder(object_pairs_hook=collections.OrderedDict)
+    with open(path) as stream:
+        return decoder.decode(stream.read())
 
 
 def load_dataframe(name, input_file, header_rows, **kwargs):
@@ -32,15 +51,15 @@ def load_dataframe(name, input_file, header_rows, **kwargs):
     global columns
 
     if (name == 'gcnet' and header_rows == 54) or (name == 'promice' and len(input_file_vars) == 44) or (
-        name == 'aaws' and len(input_file_vars) == 6)	or (name == 'imau/ant') or (name == 'imau/grl') or (
-        name=='scar'):
+        name == 'aaws' and len(input_file_vars) == 6) or (name == 'imau/ant') or (name == 'imau/grl') or (
+        name == 'scar'):
 
         path = relative_path('resources/{}/columns.txt'.format(name))
         with open(path) as stream:
             columns = stream.read().split('\n')
         columns = [i.strip() for i in columns if i.strip()]
 
-    elif (name == 'gcnet'):
+    elif name == 'gcnet':
         path = relative_path('resources/{}/original_columns.json'.format(name))
         org_columns = read_ordered_json(path)
         columns = []
@@ -50,7 +69,7 @@ def load_dataframe(name, input_file, header_rows, **kwargs):
             count = 0
             for line in stream:
                 isColumnFoundForThisLine = False
-                for column_name,std_name in org_columns.items():
+                for column_name, std_name in org_columns.items():
                     if re.search(r'\b' + column_name + r'\b', line):
                         isColumnFoundForThisLine = True
                         columns.append(std_name)
@@ -63,7 +82,7 @@ def load_dataframe(name, input_file, header_rows, **kwargs):
                         elif count == 2:
                             columns.append('sw_up_max')
 
-    elif (name == 'promice' or 'aaws'):
+    elif name == 'promice' or 'aaws':
         path = relative_path('resources/{}/original_columns.json'.format(name))
         org_columns = read_ordered_json(path)
         columns = []
@@ -88,26 +107,6 @@ def load_dataframe(name, input_file, header_rows, **kwargs):
     return df, columns
 
 
-def get_encoding(name, fillvalue, comp_level):
-    path = relative_path('resources/{}/encoding.json'.format(name))
-    with open(path) as stream:
-        data = json.load(stream)
-
-    def recursive_fill(data):
-        for k, v in data.items():
-            if k == '_FillValue' and v == 'FILL':
-                data[k] = fillvalue
-            elif k == 'complevel' and v == 'COMP':
-                data[k] = comp_level
-            elif isinstance(v, dict):
-                recursive_fill(v)
-
-    recursive_fill(data)
-    #Get encoding for only those variables present in input file
-    data = {k: data[k] for k in columns}
-    return data
-
-
 def load_dataset_attributes(name, ds, args, **kwargs):
     path = 'resources/{}/ds.json'.format(name)
     attr_dict = read_ordered_json(path)
@@ -124,10 +123,11 @@ def load_dataset_attributes(name, ds, args, **kwargs):
             ds.attrs['institution'] = institution
 
     ds.attrs['history'] = '{} {}'.format(datetime.now(), ' '.join(sys.argv))
-    ds.attrs['JAWS'] = 'Justified Automatic Weather Station software version {} (Homepage = http://github.com/jaws/jaws)'.format(jaws_version)
+    ds.attrs['JAWS'] = 'Justified Automated Weather Station software version {} (Homepage = https://github.com/' \
+                       'jaws/jaws)'.format(jaws_version)
 
     derived_vars = ['time', 'time_bounds', 'sza', 'station_name', 'latitude', 'longitude', 'surface_temp',
-    'ice_velocity_GPS_total', 'ice_velocity_GPS_x', 'ice_velocity_GPS_y', 'height']
+                    'ice_velocity_GPS_total', 'ice_velocity_GPS_x', 'ice_velocity_GPS_y', 'height']
 
     no_drv_tm_vars = []
 
@@ -136,7 +136,7 @@ def load_dataset_attributes(name, ds, args, **kwargs):
 
     for key, value in attr_dict.items():
         for key1, value1 in value.items():
-            if (key1 in columns) or (key1 in derived_vars) or (key1 in no_drv_tm_vars):		#Check if column is present in input file
+            if (key1 in columns) or (key1 in derived_vars) or (key1 in no_drv_tm_vars):
                 for key2, value2 in value1.items():
                     if key2 == 'type':
                         pass
@@ -160,16 +160,24 @@ def load_dataset_attributes_gcnet_qltyctrl(name, ds):
                     ds[key1].attrs = value2.items()
 
 
-def read_ordered_json(path):
-    path = relative_path(path)
-    decoder = json.JSONDecoder(object_pairs_hook=collections.OrderedDict)
+def get_encoding(name, fillvalue, comp_level):
+    path = relative_path('resources/{}/encoding.json'.format(name))
     with open(path) as stream:
-        return decoder.decode(stream.read())
+        data = json.load(stream)
 
+    def recursive_fill(data):
+        for k, v in data.items():
+            if k == '_FillValue' and v == 'FILL':
+                data[k] = fillvalue
+            elif k == 'complevel' and v == 'COMP':
+                data[k] = comp_level
+            elif isinstance(v, dict):
+                recursive_fill(v)
 
-def log(args, level, message):
-    if args.dbg_lvl > level:
-        print(message)
+    recursive_fill(data)
+    # Get encoding for only those variables present in input file
+    data = {k: data[k] for k in columns}
+    return data
 
 
 def parse_station(args, station):
@@ -186,10 +194,11 @@ def parse_station(args, station):
 
 def time_common(tzone):
     tz = pytz.timezone(tzone)
-    dtime_1970 = datetime(1970,1,1)
+    dtime_1970 = datetime(1970, 1, 1)
     dtime_1970 = tz.localize(dtime_1970.replace(tzinfo=None))
 
     return dtime_1970, tz
+
 
 def get_month_day(year, day, one_based=False):
     if one_based:  # if Jan 1st is 1 instead of 0
@@ -200,19 +209,14 @@ def get_month_day(year, day, one_based=False):
 
 def write_data(args, ds, op_file, encoding):
     if args.format3 == 1:
-        ds.to_netcdf(op_file, format = 'NETCDF3_CLASSIC', unlimited_dims={'time':True}, encoding = encoding)
+        ds.to_netcdf(op_file, format='NETCDF3_CLASSIC', unlimited_dims={'time': True}, encoding=encoding)
     elif args.format4 == 1:
-        ds.to_netcdf(op_file, format = 'NETCDF4', unlimited_dims={'time':True}, encoding = encoding)
+        ds.to_netcdf(op_file, format='NETCDF4', unlimited_dims={'time': True}, encoding=encoding)
     elif args.format5 == 1:
-        ds.to_netcdf(op_file, format = 'NETCDF3_64BIT', unlimited_dims={'time':True}, encoding = encoding)
+        ds.to_netcdf(op_file, format='NETCDF3_64BIT', unlimited_dims={'time': True}, encoding=encoding)
     elif args.format6 == 1:
-        ds.to_netcdf(op_file, format = 'NETCDF3_64BIT', unlimited_dims={'time':True}, encoding = encoding)
+        ds.to_netcdf(op_file, format='NETCDF3_64BIT', unlimited_dims={'time': True}, encoding=encoding)
     elif args.format7 == 1:
-        ds.to_netcdf(op_file, format = 'NETCDF4_CLASSIC', unlimited_dims={'time':True}, encoding = encoding)
+        ds.to_netcdf(op_file, format='NETCDF4_CLASSIC', unlimited_dims={'time': True}, encoding=encoding)
     else:
-        ds.to_netcdf(op_file, unlimited_dims={'time':True}, encoding = encoding)
-
-def relative_path(path):
-    """Get relative path based on the location of this file."""
-    this_dir = os.path.dirname(os.path.realpath(__file__))
-    return os.path.join(this_dir, path)
+        ds.to_netcdf(op_file, unlimited_dims={'time': True}, encoding=encoding)
