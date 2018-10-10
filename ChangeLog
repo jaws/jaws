@@ -4,6 +4,10 @@
 
 	* Update homepage
 
+	* Add sample_data/SCAR_Sofiab_aws.dat
+
+	* git tag -a 0.5.1 -m 'alpha01: Include jaws/resources/scar/* in MANIFEST.in'; git push --tags
+
 2018-10-08  Ajay Saini  <sainiak@uci.edu>
 
 	* Script to convert SCAR datasets to netCDF format
