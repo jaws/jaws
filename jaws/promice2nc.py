@@ -1,8 +1,7 @@
 from datetime import datetime
-
 import os
 import re
-from math import sin, cos, sqrt, atan2, radians
+import warnings
 
 import numpy as np
 import pandas as pd
@@ -13,10 +12,8 @@ try:
 except ImportError:
     import common, sunposition
 
-
-import warnings
-
 warnings.filterwarnings("ignore")
+
 
 def init_dataframe(args, input_file):
     convert_current = 1000
@@ -91,17 +88,17 @@ def get_ice_velocity(args, dataframe, delta_x, delta_y):
                 dataframe['longitude_GPS'][delta_y])):
             velocity.append(fillvalue)
         else:
-            lat1 = radians(dataframe['latitude_GPS'][idx])
-            lon1 = radians(dataframe['longitude_GPS'][idx])
-            lat2 = radians(dataframe['latitude_GPS'][delta_x])
-            lon2 = radians(dataframe['longitude_GPS'][delta_y])
+            lat1 = np.radians(dataframe['latitude_GPS'][idx])
+            lon1 = np.radians(dataframe['longitude_GPS'][idx])
+            lat2 = np.radians(dataframe['latitude_GPS'][delta_x])
+            lon2 = np.radians(dataframe['longitude_GPS'][delta_y])
 
             dlat = lat2 - lat1
             dlon = lon2 - lon1
 
-            a = (sin(dlat / 2) ** 2 +
-                 cos(lat1) * cos(lat2) * sin(dlon / 2) ** 2)
-            c = 2 * atan2(sqrt(a), sqrt(1 - a))
+            a = (np.sin(dlat / 2) ** 2 +
+                 np.cos(lat1) * np.cos(lat2) * np.sin(dlon / 2) ** 2)
+            c = 2 * np.arctan2(np.sqrt(a), np.sqrt(1 - a))
 
             # Multiplied by 1000 to convert km to meters
             distance = (R * c) * 1000

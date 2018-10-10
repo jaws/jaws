@@ -1,6 +1,6 @@
-from datetime import datetime, timedelta
-
+from datetime import datetime
 import os
+
 import numpy as np
 import pandas as pd
 import xarray as xr
@@ -19,20 +19,21 @@ def init_dataframe(args, input_file, sub_type):
 
     if sub_type == 'imau/ant':
         temperature_keys = ['temp_cnr1', 'air_temp',
-        'snow_temp_1a', 'snow_temp_2a', 'snow_temp_3a', 'snow_temp_4a', 'snow_temp_5a',
-        'snow_temp_1b', 'snow_temp_2b', 'snow_temp_3b', 'snow_temp_4b', 'snow_temp_5b',
-        'temp_logger']
+                            'snow_temp_1a', 'snow_temp_2a', 'snow_temp_3a', 'snow_temp_4a', 'snow_temp_5a',
+                            'snow_temp_1b', 'snow_temp_2b', 'snow_temp_3b', 'snow_temp_4b', 'snow_temp_5b',
+                            'temp_logger']
 
     elif sub_type == 'imau/grl':
         temperature_keys = ['temp_cnr1', 'air_temp2', 'air_temp6',
-        'snow_temp_1', 'snow_temp_2', 'snow_temp_3', 'snow_temp_4', 'snow_temp_5',
-        'datalogger']
+                            'snow_temp_1', 'snow_temp_2', 'snow_temp_3', 'snow_temp_4', 'snow_temp_5',
+                            'datalogger']
 
     df.loc[:, temperature_keys] += common.freezing_point_temp
     df.loc[:, 'air_pressure'] *= common.pascal_per_millibar
     df = df.where((pd.notnull(df)), common.get_fillvalue(args))
 
     return df
+
 
 def get_station(args, input_file, stations):
     filename = os.path.basename(input_file)
@@ -88,20 +89,19 @@ def derive_times(dataframe, month, day):
             True)
 
 
-
 def imau2nc(args, input_file, output_file, stations):
     with open(input_file) as stream:
         line = stream.readline()
         var_count = len(line.split(','))
 
-    errmsg = 'Unknown sub-type of IMAU network. Antarctic stations have 31 columns while Greenland stations have 35. Your dataset has {} columns.'.format(var_count)
+    errmsg = 'Unknown sub-type of IMAU network. Antarctic stations have 31 columns while Greenland stations have 35. ' \
+             'Your dataset has {} columns.'.format(var_count)
     if var_count == 31:
         sub_type = 'imau/ant'
     elif var_count == 35:
         sub_type = 'imau/grl'
     else:
         raise RuntimeError(errmsg)
-
 
     df = init_dataframe(args, input_file, sub_type)
     ds = xr.Dataset.from_dataframe(df)

@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import datetime
 
 import numpy as np
 import pandas as pd
@@ -23,7 +23,7 @@ def init_dataframe(args, input_file):
 
     df, columns = common.load_dataframe('gcnet', input_file, header_rows)
 
-    #Convert only if this column is present in input file
+    # Convert only if this column is present in input file
     try:
         df['qc25'] = df['qc25'].astype(str)  # To avoid 999 values marked as N/A
     except Exception:
@@ -49,6 +49,7 @@ def init_dataframe(args, input_file):
 
     return df
 
+
 def get_station(args, input_file, stations):
     df, columns = common.load_dataframe('gcnet', input_file, header_rows)
     station_number = df['station_number'][0]
@@ -67,7 +68,7 @@ def fill_dataset_quality_control(dataframe, dataset, input_file):
 
     keys = common.read_ordered_json('resources/gcnet/quality_control.json')
     for key, attributes in keys.items():
-        #Check if qc variables are present in input file
+        # Check if qc variables are present in input file
         if key in columns:
             values = [list(map(int, i)) for i in zip(*map(str, dataframe[key]))]
             for attr, value in zip(attributes, values):

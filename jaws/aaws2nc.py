@@ -18,6 +18,7 @@ def init_dataframe(args, input_file):
             input_file_vars =[x.strip() for x in line[11:].split(',')]
             break
 
+    global header_rows
     header_rows = 0
     with open(input_file) as stream:
         for line in stream:
@@ -49,7 +50,6 @@ def get_time_and_sza(args, input_file, latitude, longitude, dataframe):
     idx = 0
 
     dtime_1970, tz = common.time_common(args.tz)
-    header_rows = 8
 
     with open(input_file) as stream:
         lines = stream.readlines()[header_rows:]
@@ -97,7 +97,7 @@ def aaws2nc(args, input_file, output_file, stations):
     else:
         common.log(args, 5, 'Calculating month and day')
         year, month, day, hour, day_of_year = get_time_and_sza(
-        args, input_file, latitude, longitude, df)[3:]
+            args, input_file, latitude, longitude, df)[3:]
         ds['year'] = 'time', year
         ds['month'] = 'time', month
         ds['day'] = 'time', day
