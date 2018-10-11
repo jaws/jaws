@@ -1,3 +1,13 @@
+2018-10-10  Ajay Saini  <sainiak@uci.edu>
+
+	* Convert indent to spaces
+
+	* Move df.index.name to common.load_dataframe from individual files
+
+	* PEP 8 corrections and rearrange function
+
+	* git tag -a 0.5.2 -m 'alpha02: PEP 8 corrections'; git push --tags
+
 2018-10-09  Ajay Saini  <sainiak@uci.edu>
 
 	* include jaws/resources/scar/* in MANIFEST.in
