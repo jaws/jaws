@@ -1,16 +1,16 @@
-import xarray
-import pandas as pd
-import matplotlib as mpl
-import matplotlib.pyplot as plt
-import argparse
 import sys
 
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+import xarray
+
+
 def setup(args):
-    mpl.rc('figure', figsize = (15, 10))
-    mpl.rc('font', size = 12)
-    mpl.rc('axes.spines', top = False, right = False)
-    mpl.rc('axes', grid = False)
-    mpl.rc('axes', facecolor = 'white')
+    mpl.rc('figure', figsize=(15, 10))
+    mpl.rc('font', size=12)
+    mpl.rc('axes.spines', top=False, right=False)
+    mpl.rc('axes', grid=False)
+    mpl.rc('axes', facecolor='white')
 
     global ds, df
     ds = xarray.open_dataset(args.input_file)
@@ -28,7 +28,7 @@ def setup(args):
     global year
     year = df['year']
 
-    #df[args.var].replace([999.00], [245], inplace=True)
+    # df[args.var].replace([999.00], [245], inplace=True)
 
     global month, days
 
@@ -36,52 +36,51 @@ def setup(args):
     month = df['month_derived']
     if month[0][0] == '1':
         month[0][0] = 'Jan'
-        days = range(1,32)
+        days = range(1, 32)
     elif month[0][0] == '2':
         month[0][0] = 'Feb'
-        days = range(1,29)
+        days = range(1, 29)
     elif month[0][0] == '3':
         month[0][0] = 'Mar'
-        days = range(1,32)
+        days = range(1, 32)
     elif month[0][0] == '4':
         month[0][0] = 'Apr'
-        days = range(1,31)
+        days = range(1, 31)
     elif month[0][0] == '5':
         month[0][0] = 'May'
-        days = range(1,32)
+        days = range(1, 32)
     elif month[0][0] == '6':
         month[0][0] = 'Jun'
-        days = range(1,31)
+        days = range(1, 31)
     elif month[0][0] == '7':
         month[0][0] = 'Jul'
-        days = range(1,32)
+        days = range(1, 32)
     elif month[0][0] == '8':
         month[0][0] = 'Aug'
-        days = range(1,32)
+        days = range(1, 32)
     elif month[0][0] == '9':
         month[0][0] = 'Sep'
-        days = range(1,31)
+        days = range(1, 31)
     elif month[0][0] == '10':
         month[0][0] = 'Oct'
-        days = range(1,32)
+        days = range(1, 32)
     elif month[0][0] == '11':
         month[0][0] = 'Nov'
-        days = range(1,31)
+        days = range(1, 31)
     elif month[0][0] == '12':
         month[0][0] = 'Dec'
-        days = range(1,32)
-
+        days = range(1, 32)
 
     global hours, days_year, months
 
-    hours = range(0,24)
+    hours = range(0, 24)
 
-    if year[0][0]%4 == 0:
-        days_year = range(1,367)
+    if year[0][0] % 4 == 0:
+        days_year = range(1, 367)
     else:
-        days_year = range(1,366)
+        days_year = range(1, 366)
 
-    months = range(1,13)
+    months = range(1, 13)
 
 
 def check_error(var_x, var_y):
@@ -127,7 +126,7 @@ def annual(args):
     global var_doy_avg, var_doy_max, var_doy_min
 
     try:
-        df['day_of_year'] = df['julian_decimal_time'].astype(int)	#GCNet
+        df['day_of_year'] = df['julian_decimal_time'].astype(int)  # GCNet
         doy = df['day_of_year']
     except:
         doy = df['day_of_year']
@@ -157,35 +156,34 @@ def main(args):
 
     if args.anl == 'diurnal':
         diurnal(args)
-        plt.errorbar(hours, var_hour_avg, yerr = var_hour_sd, fmt='--o', ecolor='lightskyblue', color='k')
+        plt.errorbar(hours, var_hour_avg, yerr=var_hour_sd, fmt='--o', ecolor='lightskyblue', color='k')
         plt.xticks(hours)
         plt.xlabel('Hour of the day')
         plt.title('Diurnal cycle at {} for {}-{}'.format(df.station_name[0][0], month[0][0], year[0][0]))
 
     elif args.anl == 'monthly':
         monthly(args)
-        plt.plot(days,var_day_avg, label='mean', color ='black')
-        plt.fill_between(days,var_day_max, var_day_min, label='max-min', facecolor='darkseagreen', alpha=0.3)
+        plt.plot(days, var_day_avg, label='mean', color='black')
+        plt.fill_between(days, var_day_max, var_day_min, label='max-min', facecolor='darkseagreen', alpha=0.3)
         plt.xticks(days)
         plt.xlabel('Day of month')
         plt.title('Temperature at {} for {}-{}'.format(df.station_name[0][0], month[0][0], year[0][0]))
 
     elif args.anl == 'annual':
         annual(args)
-        plt.plot(days_year,var_doy_avg, label='mean', color ='black')
-        #plt.fill_between(days_year,var_doy_max, var_doy_min, label='max-min', facecolor='green', alpha=0.3)
-        plt.plot(days_year,var_doy_max, label='max', color = 'darkseagreen')
-        plt.plot(days_year,var_doy_min, label='min', color = 'lightskyblue')
+        plt.plot(days_year, var_doy_avg, label='mean', color ='black')
+        # plt.fill_between(days_year, var_doy_max, var_doy_min, label='max-min', facecolor='green', alpha=0.3)
+        plt.plot(days_year, var_doy_max, label='max', color='darkseagreen')
+        plt.plot(days_year, var_doy_min, label='min', color='lightskyblue')
         plt.xlabel('Day of year')
         plt.title('Temperature at {} for {}'.format(df.station_name[0][0], year[0][0]))
 
     elif args.anl == 'seasonal':
         seasonal(args)
-        plt.errorbar(months, var_month_avg, yerr = var_month_sd, fmt='--o', ecolor= 'lightskyblue', color='k')
+        plt.errorbar(months, var_month_avg, yerr=var_month_sd, fmt='--o', ecolor='lightskyblue', color='k')
         plt.xticks(months)
         plt.xlabel('Month')
         plt.title('Climatological seasonal cycle at {}'.format(df.station_name[0][0]))
-
 
     plt.legend(loc='best', fancybox=True, framealpha=0.3)
     plt.ylabel('{} [{}]'.format(ds[args.var].long_name, ds[args.var].units))

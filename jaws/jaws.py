@@ -1,20 +1,20 @@
-import os
-import sys
 import argparse
 import collections
-import re
-
 from datetime import datetime
+import os
+import re
+import sys
 
 try:
     from jaws import gcnet2nc, promice2nc, aaws2nc, imau2nc, scar2nc, common, analysis
-except:
+except ImportError:
     import gcnet2nc, promice2nc, aaws2nc, imau2nc, scar2nc, common, analysis
 
 try:
     from jaws.common import jaws_version
-except:
+except ImportError:
     from common import jaws_version
+
 
 def get_parser():
     parser = argparse.ArgumentParser()
@@ -137,6 +137,7 @@ def get_stations():
 
     return ordered
 
+
 def get_input_file(args):
     """
     Retrieve the input file.
@@ -150,8 +151,7 @@ def get_input_file(args):
     print('Error: You failed to provide input file!\n')
     get_parser().print_help()
     print('\n')
-    print(
-        'Post questions, suggestions, patches at https://github.com/jaws/jaws')
+    print('Post questions, suggestions, patches at https://github.com/jaws/jaws')
     sys.exit(1)
 
 
@@ -210,6 +210,7 @@ def dispatch_converter(args, input_file, output_file, stations):
         else:
             raise RuntimeError(errmsg)
 
+
 def main(args):
     """
     First check if user wants to know current version.
@@ -218,7 +219,8 @@ def main(args):
     if args.vrs:
         dirname = os.path.dirname(__file__)
         filename = os.path.join(dirname, 'jaws.py')
-        print("JAWS current version {} last modified on {}".format(jaws_version, datetime.fromtimestamp(os.path.getmtime(filename))))
+        print("JAWS current version {} last modified on {}".format(
+            jaws_version, datetime.fromtimestamp(os.path.getmtime(filename))))
         sys.exit(1)
 
     """
