@@ -6,7 +6,7 @@ import xarray as xr
 
 try:
     from jaws import common, sunposition
-except:
+except ImportError:
     import common, sunposition
 
 
@@ -45,7 +45,6 @@ def init_dataframe(args, input_file):
                 break
 
     df, columns = common.load_dataframe('scar', input_file, header_rows, input_file_vars=input_file_vars)
-    df.index.name = 'time'
     df.replace(check_na, np.nan, inplace=True)
     df.loc[:, 'air_temp'] += common.freezing_point_temp
     df.loc[:, 'wind_spd'] *= knot_to_ms
