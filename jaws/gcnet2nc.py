@@ -123,8 +123,8 @@ def derive_times(dataframe, month, day):
 
 
 def extrapolate_temp(dataframe):
-    ht1 = 2
-    ht2 = 10
+    ht1 = dataframe['wind_sensor_height_1']
+    ht2 = dataframe['wind_sensor_height_2']
     temp_ht1 = dataframe['temperature_tc_1']
     temp_ht2 = dataframe['temperature_tc_2']
 
