@@ -74,6 +74,7 @@
         "long_name": "Air Temperature",
         "standard_name": "air_temperature",
         "original_name": "AirTemperature",
+        "sensor_height": "Sensor height is ~2.7 m if no snow layer is present",
         "units": "kelvin",
         "cell_methods": "time: mean",
         "coordinates": "longitude latitude"
@@ -118,6 +119,7 @@
         "long_name": "Wind Speed",
         "standard_name": "wind_speed",
         "original_name": "WindSpeed",
+        "sensor_height": "Sensor height is ~3.1 m if no snow layer is present",
         "units": "meter second-1",
         "cell_methods": "time: mean",
         "coordinates": "longitude latitude"
@@ -129,6 +131,7 @@
         "long_name": "Wind Direction",
         "standard_name": "wind_from_direction",
         "original_name": "WindDirection",
+        "sensor_height": "Sensor height is ~3.1 m if no snow layer is present",
         "units": "degree",
         "cell_methods": "time: mean",
         "coordinates": "longitude latitude"
@@ -140,6 +143,7 @@
         "long_name": "Shortwave Radiation Down",
         "standard_name": "downwelling_shortwave_flux_in_air",
         "original_name": "ShortwaveRadiationDown",
+        "sensor_height": "Sensor height is ~2.8 m if no snow layer is present",
         "units": "watt meter-2",
         "cell_methods": "time: mean",
         "coordinates": "longitude latitude"
@@ -151,6 +155,7 @@
         "long_name": "Tilt corrected Shortwave Radiation Down using 'tilt_east' and 'tilt_north'",
         "standard_name": "downwelling_shortwave_flux_in_air",
         "original_name": "ShortwaveRadiationDown_Cor",
+        "sensor_height": "Sensor height is ~2.8 m if no snow layer is present",
         "units": "watt meter-2",
         "cell_methods": "time: mean",
         "coordinates": "longitude latitude"
@@ -162,6 +167,7 @@
         "long_name": "Shortwave Radiation Up",
         "standard_name": "upwelling_shortwave_flux_in_air",
         "original_name": "ShortwaveRadiationUp",
+        "sensor_height": "Sensor height is ~2.8 m if no snow layer is present",
         "units": "watt meter-2",
         "cell_methods": "time: mean",
         "coordinates": "longitude latitude"
@@ -173,6 +179,7 @@
         "long_name": "Tilt corrected Shortwave Radiation Up using 'tilt_east' and 'tilt_north'",
         "standard_name": "upwelling_shortwave_flux_in_air",
         "original_name": "ShortwaveRadiationUp_Cor",
+        "sensor_height": "Sensor height is ~2.8 m if no snow layer is present",
         "units": "watt meter-2",
         "cell_methods": "time: mean",
         "coordinates": "longitude latitude"
@@ -195,6 +202,7 @@
         "long_name": "Longwave Radiation Down",
         "standard_name": "downwelling_longwave_flux_in_air",
         "original_name": "LongwaveRadiationDown",
+        "sensor_height": "Sensor height is ~2.8 m if no snow layer is present",
         "units": "watt meter-2",
         "cell_methods": "time: mean",
         "coordinates": "longitude latitude"
@@ -206,6 +214,7 @@
         "long_name": "Longwave Radiation Up",
         "standard_name": "upwelling_longwave_flux_in_air",
         "original_name": "LongwaveRadiationUp",
+        "sensor_height": "Sensor height is ~2.8 m if no snow layer is present",
         "units": "watt meter-2",
         "cell_methods": "time: mean",
         "coordinates": "longitude latitude"
