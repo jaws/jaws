@@ -128,6 +128,7 @@ JAWS works with any Python distribution, and especially well with Anaconda and [
 
 ___
 ## Example
+JAWS is a command-line tool. Linux/Unix users can run JAWS from terminal and Windows users from Anaconda Prompt. 
 
 The current version can translate L2 ASCII data from the following networks to netCDF format: 
 * Antarctic Automatic Weather Stations (AAWS): Sample raw file can be downloaded from [here](http://grele.ess.uci.edu/jaws/sample_data/AAWS_AGO-4_20161130.txt). Right click on the link and select "Save link as".
