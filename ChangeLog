@@ -1,3 +1,15 @@
+2018-10-22  Ajay Saini  <sainiak@uci.edu>
+
+	* Skip loading attributes of qltyctrl vars not present in input
+
+	* Height for surface_temp calculation taken from input file
+
+	* PROMICE metadata "sensor_height" added
+
+	* Anaconda prompt instruction added on homepage
+
+	* git tag -a 0.5.3 -m 'alpha03: GCNet-qltyctrl'; git push --tags
+
 2018-10-10  Ajay Saini  <sainiak@uci.edu>
 
 	* Convert indent to spaces
