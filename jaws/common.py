@@ -157,7 +157,10 @@ def load_dataset_attributes_gcnet_qltyctrl(name, ds):
                 if key2 == 'type':
                     pass
                 else:
-                    ds[key1].attrs = value2.items()
+                    try:
+                        ds[key1].attrs = value2.items()
+                    except KeyError:
+                        pass
 
 
 def get_encoding(name, fillvalue, comp_level):
