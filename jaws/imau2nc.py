@@ -6,9 +6,9 @@ import pandas as pd
 import xarray as xr
 
 try:
-    from jaws import common, sunposition, clearsky
+    from jaws import common, sunposition, clearsky, tilt_angle
 except ImportError:
-    import common, sunposition, clearsky
+    import common, sunposition, clearsky, tilt_angle
 
 
 def init_dataframe(args, input_file, sub_type):
@@ -132,6 +132,8 @@ def imau2nc(args, input_file, output_file, stations):
 
     if args.rigb:
         clr_df = clearsky.main(ds)
+        if not clr_df.empty:
+            ds = tilt_angle.main(ds, latitude, longitude, clr_df)
 
     comp_level = args.dfl_lvl
 
