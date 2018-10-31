@@ -8,9 +8,9 @@ import pandas as pd
 import xarray as xr
 
 try:
-    from jaws import common, sunposition
+    from jaws import common, sunposition, clearsky
 except ImportError:
-    import common, sunposition
+    import common, sunposition, clearsky
 
 warnings.filterwarnings("ignore")
 
@@ -161,6 +161,9 @@ def promice2nc(args, input_file, output_file, stations):
     ds['station_name'] = tuple(), station_name
     ds['latitude'] = tuple(), latitude
     ds['longitude'] = tuple(), longitude
+
+    if args.rigb:
+        clr_df = clearsky.main(ds)
 
     comp_level = args.dfl_lvl
 
