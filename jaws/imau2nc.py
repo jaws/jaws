@@ -75,6 +75,9 @@ def get_time_and_sza(args, dataframe, longitude, latitude):
 
         time_bounds[idx] = (time[idx] - seconds_in_hour, time[idx])
 
+        time[idx] = time[idx] - common.seconds_in_half_hour
+        temp_dtime = datetime.utcfromtimestamp(time[idx])
+
         sza[idx] = sunposition.sunpos(temp_dtime, latitude, longitude, 0)[1]
 
     return hour, month, day, time, time_bounds, sza
