@@ -107,6 +107,9 @@ def get_parser():
     parser.add_argument(
         '-m', '--anl_mth', '--analysis_month',
         help = 'Month you want to select', type = int)
+    parser.add_argument(
+        '--rigb',
+        help='Correct tilt angle and direction', action="store_true")
 
     return parser
 
