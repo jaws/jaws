@@ -5,9 +5,9 @@ import pandas as pd
 import xarray as xr
 
 try:
-    from jaws import common, sunposition
+    from jaws import common, sunposition, clearsky, tilt_angle
 except ImportError:
-    import common, sunposition
+    import common, sunposition, clearsky, tilt_angle
 
 
 def init_dataframe(args, input_file):
@@ -108,6 +108,9 @@ def get_time_and_sza(args, dataframe, longitude, latitude):
 
         time_bounds[idx] = (time[idx] - seconds_in_hour, time[idx])
 
+        time[idx] = time[idx] - common.seconds_in_half_hour
+        temp_dtime = datetime.utcfromtimestamp(time[idx])
+
         sza[idx] = sunposition.sunpos(temp_dtime, latitude, longitude, 0)[1]
 
     return hour, month, day, time, time_bounds, sza
@@ -169,6 +172,11 @@ def gcnet2nc(args, input_file, output_file, stations):
     ds['latitude'] = tuple(), latitude
     ds['longitude'] = tuple(), longitude
     ds['surface_temp'] = 'time', surface_temp
+
+    if args.rigb:
+        clr_df = clearsky.main(ds)
+        if not clr_df.empty:
+            ds = tilt_angle.main(ds, latitude, longitude, clr_df)
 
     comp_level = args.dfl_lvl
 

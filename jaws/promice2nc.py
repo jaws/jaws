@@ -8,9 +8,9 @@ import pandas as pd
 import xarray as xr
 
 try:
-    from jaws import common, sunposition
+    from jaws import common, sunposition, clearsky, tilt_angle
 except ImportError:
-    import common, sunposition
+    import common, sunposition, clearsky, tilt_angle
 
 warnings.filterwarnings("ignore")
 
@@ -68,6 +68,9 @@ def get_time_and_sza(args, dataframe, longitude, latitude):
 
         time[idx] = (dtime - dtime_1970).total_seconds()
         time_bounds[idx] = (time[idx], time[idx] + common.seconds_in_hour)
+
+        time[idx] = time[idx] + common.seconds_in_half_hour
+        dtime = datetime.utcfromtimestamp(time[idx])
 
         sza[idx] = sunposition.sunpos(dtime, latitude, longitude, 0)[1]
 
@@ -161,6 +164,11 @@ def promice2nc(args, input_file, output_file, stations):
     ds['station_name'] = tuple(), station_name
     ds['latitude'] = tuple(), latitude
     ds['longitude'] = tuple(), longitude
+
+    if args.rigb:
+        clr_df = clearsky.main(ds)
+        if not clr_df.empty:
+            ds = tilt_angle.main(ds, latitude, longitude, clr_df)
 
     comp_level = args.dfl_lvl
 

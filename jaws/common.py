@@ -13,6 +13,7 @@ from datetime import datetime, timedelta
 freezing_point_temp = 273.15
 pascal_per_millibar = 100
 seconds_in_hour = 3600
+seconds_in_half_hour = 1800
 fillvalue_double = 9.969209968386869e+36
 fillvalue_float = 9.96921e+36
 jaws_version = '0.5.3'

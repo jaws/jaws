@@ -17,6 +17,8 @@ requirements:
     - pytz
     - netcdf4
     - matplotlib
+    - scipy
+    - pyngl
   run:
     - python
     - pandas
@@ -25,6 +27,8 @@ requirements:
     - pytz
     - netcdf4
     - matplotlib
+    - scipy
+    - pyngl
 
 about:
   home: https://github.com/jaws/jaws

@@ -72,9 +72,10 @@ def get_time_and_sza(args, input_file, latitude, longitude, dataframe):
             idx += 1
 
         seconds = (dtime - dtime_1970).total_seconds()
-        time.append(seconds)
         bounds.append((seconds - common.seconds_in_hour, seconds))
 
+        time.append(seconds-common.seconds_in_half_hour)
+        dtime = datetime.utcfromtimestamp(seconds - common.seconds_in_half_hour)
         sza.append(sunposition.sunpos(dtime, latitude, longitude, 0)[1])
 
     return time, bounds, sza, year, month, day, hour, day_of_year

@@ -64,12 +64,15 @@ def get_time_and_sza(args, dataframe, longitude, latitude):
         dtime = datetime(*[dataframe[k][idx] for k in keys])
         dtime = tz.localize(dtime.replace(tzinfo=None))
 
+        day_of_year[idx] = dtime.timetuple().tm_yday
+
         time[idx] = (dtime - dtime_1970).total_seconds()
         time_bounds[idx] = (time[idx], time[idx] + common.seconds_in_hour)
 
-        sza[idx] = sunposition.sunpos(dtime, latitude, longitude, 0)[1]
+        time[idx] = time[idx] - common.seconds_in_half_hour
+        dtime = datetime.utcfromtimestamp(time[idx])
 
-        day_of_year[idx] = dtime.timetuple().tm_yday
+        sza[idx] = sunposition.sunpos(dtime, latitude, longitude, 0)[1]
 
     return time, time_bounds, sza, day_of_year
 
