@@ -19,6 +19,7 @@ requirements:
     - matplotlib
     - scipy
     - pyngl
+    - pynio
   run:
     - python
     - pandas
@@ -29,6 +30,7 @@ requirements:
     - matplotlib
     - scipy
     - pyngl
+    - pynio
 
 about:
   home: https://github.com/jaws/jaws
