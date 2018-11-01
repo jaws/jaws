@@ -79,7 +79,7 @@ class TestJaws(unittest.TestCase):
     def test_format5(self):
         """Test that --format5 option works correctly."""
         nc = convert_to_dataset('../sample_data/AAWS_AGO-4_20161130.txt', '-5')
-        self.assertEqual(nc.file_format, 'NETCDF3_64BIT')
+        self.assertEqual(nc.file_format, 'NETCDF3_64BIT_OFFSET')
 
     def test_station_name(self):
         """Test overriding default station name."""
