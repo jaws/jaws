@@ -18,6 +18,8 @@
 ___
 ## News
 
+2018/10/31: Version 0.6 released: RIGB tilt correction
+
 2018/10/08: Version 0.5 released: SCAR stations convertible to netCDF by JAWS
 
 2018/05/23: Version 0.4 released: Pip installable, analysis.py callable from 'jaws' keyword
@@ -166,6 +168,12 @@ A list of all options can be found in [docs/options.txt](docs/options.txt).
 
 To change the timezone, use the -t/--tz/--timezone argument. A list of all the timezones can be found [here](https://gist.github.com/heyalexej/8bf688fd67d7199be4a1682b3eec7568).
 
+To run RIGB:
+
+``` html
+$ jaws ~/Downloads/PROMICE_EGP_20160501.txt --rigb
+```
+
 #### Value Added Information
 
 In addition to input variables, `JAWS` provides following variables in output netCDF file to make data more useful:
@@ -177,6 +185,7 @@ In addition to input variables, `JAWS` provides following variables in output ne
  * longitude
  * ice_gps_velocity_x, ice_gps_velocity_y, ice_gps_velocity_total (For stations that archive GPS position)
  * year, month, day, hour (if '-d/--drv_tm/--derive_times' option is used)
+ * adjusetd_fsds (corrected downwelling shortwave flux)
 
 #### Analysis Example
 

@@ -42,3 +42,5 @@ Optional arguments:
 -y, --anl_yr, --analysis_year: Year you want to select
 
 -m, --anl_mth, --analysis_month: Month you want to select
+
+--rigb: Turn on if you want to calculate corrected downwelling shortwave flux

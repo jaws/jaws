@@ -1,3 +1,25 @@
+2018-10-31  Ajay Saini  <sainiak@uci.edu>
+
+	* Add .idea/ to gitignore
+
+	* Add argument --rigb
+
+	* clearsky.py: Script to find clear days
+
+	* Calculate clear_df from clearsky.main() in other scripts
+
+	* tilt_angle.py: Script to calculate tilt_angles and corrected fsds
+
+	* Calculate adjusted_fsds from tilt_angle.main() in other scripts
+
+	* Calculate time and sza at half hour
+
+	* Add scipy and pyngl as project requirements
+
+	* Updaet homepage and docs/requirements.txt
+
+	* git tag -a 0.6 -m 'Tiger Shark: RIGB'; git push --tags
+
 2018-10-22  Ajay Saini  <sainiak@uci.edu>
 
 	* Skip loading attributes of qltyctrl vars not present in input
