@@ -122,6 +122,10 @@ def main(dataset):
 
         dat = df_temp['sw_down'].tolist()
         dat_rmvmsng = df_temp['sw_down'].dropna().tolist()
+
+        if len(dat_rmvmsng) < 15:
+            continue
+
         hrs = list(range(len(dat)))
         hrs_rmvmsng = list(range(len(dat_rmvmsng)))
         dat_fill = Ngl.ftcurv(hrs_rmvmsng, dat_rmvmsng, hrs)
