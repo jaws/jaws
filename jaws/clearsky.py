@@ -36,7 +36,7 @@ def clr_prd(dat_sza, tg_fsds, tg_sza, date, stn_name, outfile):
 
     clr_hrs = []
     daylight = []
-    hours = list(range(24))
+    hours = list(range(len(dat_sza)))
     for hour in hours:
         if dat_sza[hour] > 0:
             daylight.append(hour)
