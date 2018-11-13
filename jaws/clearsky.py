@@ -123,6 +123,10 @@ def main(dataset):
         dat = df_temp['sw_down'].tolist()
         dat_rmvmsng = df_temp['sw_down'].dropna().tolist()
 
+        # Set negative values to zero in sw_down
+        dat = [i if i>=0 else 0 for i in dat]
+        dat_rmvmsng = [i if i>=0 else 0 for i in dat_rmvmsng]
+
         if len(dat_rmvmsng) < 15:
             continue
 
