@@ -84,8 +84,16 @@ def clr_shift(dat_sza, dat_fill, hrs, date, stn_name):
 
 def write_to_file(cons_clr_hrs, daylight, date):
     final_hrs = []
+
+    if len(daylight) <= 12:
+        min_clrhrs_needed = 6
+    elif 12 < len(daylight) < 16:
+        min_clrhrs_needed = 7
+    elif len(daylight) >= 16:
+        min_clrhrs_needed = 8
+    
     for group in cons_clr_hrs:
-        if len(group) >= int(len(daylight)/2):
+        if len(group) >= min_clrhrs_needed:
             final_hrs.append(group)
 
             clr_lst.append(["{}-{}-{}".format(
