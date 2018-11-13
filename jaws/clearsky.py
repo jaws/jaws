@@ -23,10 +23,12 @@ def interpolate(x, y):
     return diff
 
 
-def clr_prd(dat_sza, tg_fsds, tg_sza, date):
-    scale = 1400
-    offset = 0
-    offset_range = 15
+def clr_prd(dat_sza, tg_fsds, tg_sza, date, stn_name, outfile):
+    para_file = pd.read_csv('../resources/lst_para_rdn.txt')
+
+    scale = para_file.loc[para_file['stn_name'] == stn_name, 'scale'].iloc[0]
+    offset = para_file.loc[para_file['stn_name'] == stn_name, 'offset'].iloc[0]
+    offset_range = para_file.loc[para_file['stn_name'] == stn_name, 'offset_range'].iloc[0]
 
     tg_sza_scale = [i*scale for i in tg_sza]
     tg_sza_up = [i-offset+offset_range for i in tg_sza_scale]
@@ -56,7 +58,7 @@ def clr_prd(dat_sza, tg_fsds, tg_sza, date):
     return final_hrs, clr_lst
 
 
-def clr_shift(dat_sza, dat_fill, hrs, date):
+def clr_shift(dat_sza, dat_fill, hrs, date, stn_name):
     dat_sza_shift = list(range(len(dat_sza)))
 
     shift = [1, 2, 3]
@@ -72,7 +74,7 @@ def clr_shift(dat_sza, dat_fill, hrs, date):
 
         tg_sza_shift = interpolate(hrs,dat_sza_shift)
 
-        cons_clr_hrs, clr_lst = clr_prd(dat_sza, tg_fsds, tg_sza_shift, date)
+        cons_clr_hrs, clr_lst = clr_prd(dat_sza, tg_fsds, tg_sza_shift, date, stn_name)
 
         if cons_clr_hrs:
             break
@@ -100,6 +102,8 @@ def main(dataset):
     ds = dataset.drop('time_bounds')
     df = ds.to_dataframe()
 
+    stn_name = df['station_name'][0]
+ 
     df.reset_index(level=['time'], inplace=True)
     date_hour = df['time'].tolist()
     dates = sorted(set(date_hour), key=date_hour.index)
@@ -118,10 +122,10 @@ def main(dataset):
         tg_fsds = interpolate(hrs,dat_fill)
         tg_sza = interpolate(hrs,dat_sza)
 
-        final_hrs, clr_lst = clr_prd(dat_sza, tg_fsds, tg_sza, date)
+        final_hrs, clr_lst = clr_prd(dat_sza, tg_fsds, tg_sza, date, stn_name)
 
         if not final_hrs:
-            clr_lst = clr_shift(dat_sza, dat_fill, hrs, date)
+            clr_lst = clr_shift(dat_sza, dat_fill, hrs, date, stn_name)
 
     clr_df = pd.DataFrame(clr_lst)
 
