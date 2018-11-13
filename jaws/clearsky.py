@@ -110,7 +110,7 @@ def main(dataset):
     dates = [datetime.utcfromtimestamp(i) for i in dates]
 
     for date in dates:
-        df_temp = df[(df.month == date.month) & (df.day == date.day)]
+        df_temp = df[(df.year == date.year) & (df.month == date.month) & (df.day == date.day)]
 
         dat = df_temp['sw_down'].tolist()
         dat_rmvmsng = df_temp['sw_down'].dropna().tolist()
