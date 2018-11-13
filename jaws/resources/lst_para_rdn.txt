@@ -1,0 +1,78 @@
+﻿network_name,file_name,lat,lon,stn_name,scale,offset,offset_range
+ant_aws13,ant_aws13,-82.12,55.03,Pole of inaccessibility,1400,0,10
+ant_aws10,ant_aws10,-79.57,-45.78,Berkner Island,1400,0,10
+ant_aws12,ant_aws12,-78.65,35.63,Plateau Station B,1400,0,10
+ant_aws08,ant_aws08,-76,-8.05,SWEDARP9798 Camp Victoria,1400,0,10
+ant_aws09,ant_aws09,-75,0,DML05 Kohnen,1400,0,10
+ant_aws03,ant_aws03,-74.98,15,NARE9697 site M,1400,0,10
+ant_aws07,ant_aws07,-74.57,-11.05,Scharffenbergbotnen,1400,0,10
+ant_aws06,ant_aws06,-74.47,-11.52,SWEDARP9798 Svea,1400,0,10
+ant_aws05,ant_aws05,-73.1,-13.16,SWEDARP9798 Wasa Aboa,1400,0,10
+ant_aws04,ant_aws04,-72.75,-15.48,SWEDARP9798 Rampen,1400,0,10
+ant_aws02,ant_aws02,-72.25,2.88,NARE9697 site C,1400,0,10
+ant_aws16,ant_aws16,-71.95,23.33,Princess Elisabeth station,1400,0,10
+ant_aws01,ant_aws01,-71.9,3.08,NARE9697 site A,1400,0,10
+ant_aws11,ant_aws11,-71.16,-6.8,Halvfarryggen,1400,0,10
+ant_aws19,ant_aws19,-70.95,26.27,King Baudoin Ice Shelf,1400,0,10
+ant_aws15,ant_aws15,-67.57,-62.15,Larsen C South,1400,0,10
+ant_aws14,ant_aws14,-67.02,-61.5,Larsen C North,1400,0,10
+ant_aws18,ant_aws18,-66.4,-63.37,Larsen C West,1400,0,10
+ant_aws17,ant_aws17,-65.93,-61.85,Scar Inlet Larsen B,1400,0,10
+promice_qasl,promice_Qassimiut-L,61.0308,-46.8493,QAS-L,1400,0,15
+promice_qasm,promice_Qassimiut-M,61.0998,-46.833,QAS-M,1400,0,15
+promice_qasu,promice_Qassimiut-U,61.1753,-46.8195,QAS-U,1400,0,15
+promice_qasa,promice_Qassimiut-A,61.243,-46.7328,QAS-A,1400,0,15
+gcnet_dome,gcnet_dome,63.14889,-44.81717,South Dome,1400,0,15
+promice_nukk,promice_Nuuk-K,64.1623,-51.3587,NUK-K,1400,0,15
+promice_nukl,promice_Nuuk-L,64.4822,-49.5358,NUK-L,1400,0,15
+promice_nuku,promice_Nuuk-U,64.5108,-49.2692,NUK-U,1400,0,15
+promice_nukn,promice_Nuuk-N,64.9452,-49.885,NUK-N,1400,0,15
+promice_tasl,promice_Tasiilaq-L,65.6402,-38.8987,TAS-L,1400,0,15
+promice_mit,promice_MIT,65.6922,-37.828,MIT,1400,0,15
+promice_tasu,promice_Tasiilaq-U,65.6978,-38.8668,TAS-U,1400,0,15
+gcnet_kulu,gcnet_kulu,65.75845,-39.60177,KULU,1400,0,15
+promice_tasa,promice_Tasiilaq-A,65.779,-38.8995,TAS-A,1400,0,15
+gcnet_saddle,gcnet_saddle,65.99947,-44.50016,Saddle,1400,0,15
+grl_aws21,grl_aws21,66.37,-39.32,S21 East Greenland,1400,0,15
+gcnet_nasa-se,gcnet_nasa-se,66.4797,-42.5002,NASA-SE,1400,0,15
+gcnet_dye2,gcnet_dye2,66.48001,-46.27889,DYE-2,1400,0,15
+grl_aws10,grl_aws10,67,-47.02,S10 K-transect,1400,0,15
+promice_kanu,promice_Kangerlussuaq-U,67.0003,-47.0253,KAN-U,1400,0,15
+gcnet_lar3,gcnet_lar3,67.03166,-62.65027,LAR3,1400,0,15
+grl_aws09,grl_aws09,67.05,-48.22,S9 K-transect,1400,0,15
+promice_kanm,promice_Kangerlussuaq-M,67.067,-48.8355,KAN-M,1400,0,15
+grl_aws06,grl_aws06,67.07,-49.38,S6 K-transect,1400,0,15
+grl_aws05,grl_aws05,67.08,-50.1,S5 K-transect,1400,0,15
+promice_kanl,promice_Kangerlussuaq-L,67.0955,-49.9513,KAN-L,1400,0,15
+promice_kanb,promice_Kangerlussuaq-B,67.1252,-50.1832,KAN-B,1400,0,15
+gcnet_aurora,gcnet_aurora,67.13583,-47.29222,Aurora,1400,0,15
+gcnet_lar2,gcnet_lar2,67.57638,-63.2575,LAR2,1400,0,15
+gcnet_lar1,gcnet_lar1,68.14111,-63.95194,LAR1,1400,0,15
+gcnet_jar3,gcnet_jar3,69.39444,-50.31,JAR3,1400,0,15
+gcnet_jar2,gcnet_jar2,69.42,-50.0575,JAR 2,1400,0,15
+gcnet_jar,gcnet_jar,69.498358,-49.68156,JAR,1400,0,15
+gcnet_swiss,gcnet_swiss,69.56833,-49.31582,Swiss Camp,1400,0,15
+gcnet_kar,gcnet_kar,69.69942,-33.00058,KAR,1400,0,15
+gcnet_cp2,gcnet_cp2,69.87968,-46.98692,CP2,1400,0,15
+gcnet_crawford,gcnet_crawford,69.87975,-46.98667,Crawford Pt.,1400,0,15
+promice_scol,promice_Scoresbysund-L,72.223,-26.8182,SCO-L,1400,0,10
+promice_scou,promice_Scoresbysund-U,72.3933,-27.2333,SCO-U,1400,0,10
+gcnet_summit,gcnet_summit,72.57972,-38.50454,Summit,1400,0,10
+promice_upeu,promice_Upernavik-U,72.8878,-53.5783,UPE-U,1400,0,10
+promice_upel,promice_Upernavik-L,72.8932,-54.2955,UPE-L,1400,0,10
+gcnet_nasa-u,gcnet_nasa-u,73.84189,-49.49831,NASA-U,1400,0,10
+gcnet_nasa-e,gcnet_nasa-e,75,-29.99972,NASA-E,1400,0,10
+gcnet_ngrip,gcnet_ngrip,75.09975,-42.33256,NGRIP,1400,0,10
+promice_egp,promice_EGP,75.6247,-35.9748,EGP,1400,0,10
+promice_thul,promice_ThuleAirbase-L,76.3998,-68.2665,THU-L,1400,0,10
+promice_thuu,promice_ThuleAirbase-U,76.4197,-68.1463,THU-U,1400,0,10
+gcnet_gits,gcnet_gits,77.13781,-61.04113,GITS,1400,0,10
+gcnet_neem,gcnet_neem,77.50222,-50.87444,NEEM,1400,0,10
+gcnet_tunu-n,gcnet_tunu-n,78.01677,-33.99387,TUNU-N,1400,0,10
+gcnet_humboldt,gcnet_humboldt,78.5266,-56.8305,Humboldt,1400,0,10
+grl_aws22,grl_aws22,78.9,-22.38,S22 North East Greenland,1400,0,10
+grl_aws23,grl_aws23,78.92,-21.45,S23 North East Greenland,1400,0,10
+promice_kpcu,promice_KronprinsChristianland-U,79.8347,-25.1662,KPC-U,1400,0,10
+promice_kpcl,promice_KronprinsChristianland-L,79.9108,-24.0828,KPC-L,1400,0,10
+gcnet_peterman-ela,gcnet_peterman-ela,80.08305,-58.07277,Peterman ELA,1400,0,10
+gcnet_petermann-gl,gcnet_petermann-gl,80.68361,-60.29305,Petermann Gl.,1400,-15,10
