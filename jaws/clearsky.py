@@ -106,8 +106,8 @@ def main(dataset):
  
     df.reset_index(level=['time'], inplace=True)
     date_hour = df['time'].tolist()
-    dates = sorted(set(date_hour), key=date_hour.index)
-    dates = [datetime.utcfromtimestamp(i) for i in dates]
+    dates = [i.date() for i in date_hour]
+    dates = sorted(set(dates), key=dates.index)
 
     for date in dates:
         df_temp = df[(df.year == date.year) & (df.month == date.month) & (df.day == date.day)]
