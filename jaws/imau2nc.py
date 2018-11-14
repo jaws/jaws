@@ -50,7 +50,7 @@ def get_time_and_sza(args, dataframe, longitude, latitude):
     seconds_in_hour = common.seconds_in_hour
     num_rows = dataframe['year'].size
 
-    month, day, time, time_bounds, sza = ([0] * num_rows for _ in range(5))
+    month, day, minutes, time, time_bounds, sza = ([0] * num_rows for _ in range(6))
 
     hour = dataframe['day_of_year']
     hour = [round(i - int(i), 3) * hour_conversion for i in hour]
@@ -80,7 +80,7 @@ def get_time_and_sza(args, dataframe, longitude, latitude):
 
         sza[idx] = sunposition.sunpos(temp_dtime, latitude, longitude, 0)[1]
 
-    return hour, month, day, time, time_bounds, sza
+    return month, day, hour, minutes, time, time_bounds, sza
 
 
 def derive_times(dataframe, month, day):
@@ -90,6 +90,37 @@ def derive_times(dataframe, month, day):
             int(dataframe['year'][idx]),
             int(dataframe['day_of_year'][idx]),
             True)
+
+
+def grl_time(args, dataframe, longitude, latitude):
+    seconds_in_15min = 15*60
+    # dtime_1970, tz = common.time_common(args.tz)
+    num_rows = dataframe['year'].size
+
+    month, day, time, time_bounds, sza = ([0] * num_rows for _ in range(5))
+
+    hour = (dataframe['hour_mult_100']/100).astype(int)
+    minutes = (((dataframe['hour_mult_100']/100) % 1) * 100).astype(int)
+    temp_dtime = pd.to_datetime(dataframe['year']*1000 + dataframe['day_of_year'].astype(int), format='%Y%j')
+
+    dataframe['hour'] = hour
+    dataframe['minutes'] = minutes
+    dataframe['dtime'] = temp_dtime
+
+    dataframe['dtime'] = pd.to_datetime(dataframe.dtime)
+    dataframe['dtime'] += pd.to_timedelta(dataframe.hour, unit='h')
+    dataframe['dtime'] += pd.to_timedelta(dataframe.minutes, unit='m')
+
+    time = (dataframe['dtime'] - datetime(1970, 1, 1)) / np.timedelta64(1, 's') - seconds_in_15min
+    time_bounds = [(i-seconds_in_15min, i+seconds_in_15min) for i in time]
+
+    month = pd.DatetimeIndex(dataframe['dtime']).month.values
+    day = pd.DatetimeIndex(dataframe['dtime']).day.values
+
+    for idx in range(num_rows):
+        sza[idx] = sunposition.sunpos(dataframe['dtime'][idx], latitude, longitude, 0)[1]
+
+    return month, day, hour, minutes, time, time_bounds, sza
 
 
 def imau2nc(args, input_file, output_file, stations):
@@ -113,19 +144,22 @@ def imau2nc(args, input_file, output_file, stations):
     common.log(args, 2, 'Retrieving latitude, longitude and station name')
     latitude, longitude, station_name = get_station(args, input_file, stations)
 
-    common.log(args, 3, 'Calculating time and sza')
-    hour, month, day, time, time_bounds, sza = get_time_and_sza(
-        args, df, longitude, latitude)
+    if sub_type == 'imau/grl':
+        month, day, hour, minutes, time, time_bounds, sza = grl_time(
+            args, df, longitude, latitude)
 
-    if args.no_drv_tm:
-        pass
-    else:
+    elif sub_type == 'imau/ant':
+        common.log(args, 3, 'Calculating time and sza')
+        month, day, hour, minutes, time, time_bounds, sza = get_time_and_sza(
+            args, df, longitude, latitude)
+
         common.log(args, 5, 'Calculating month and day')
         derive_times(df, month, day)
-        ds['hour'] = 'time', hour
-        ds['month'] = 'time', month
-        ds['day'] = 'time', day
-
+    
+    ds['month'] = 'time', month
+    ds['day'] = 'time', day
+    ds['hour'] = 'time', hour
+    ds['minutes'] = 'time', minutes
     ds['time'] = 'time', time
     ds['time_bounds'] = ('time', 'nbnd'), time_bounds
     ds['sza'] = 'time', sza
