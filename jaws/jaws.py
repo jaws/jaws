@@ -134,8 +134,9 @@ def get_stations():
             raise RuntimeError(errmsg)
         name, lon, lat, name2 = match.groups()
         lon, lat = float(lon), float(lat)
+        name = name.strip()
         name2 = name2.strip()
-        value = [lon, lat, name2] if name2 else [lon, lat]
+        value = [lon, lat, name] if name2 else [lon, lat]
         ordered[name.strip()] = value
 
     return ordered
