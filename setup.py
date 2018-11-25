@@ -23,6 +23,7 @@ setup(
     version='{}'.format(jaws_version),
     description='Software to convert idiosyncratic ASCII formats to netCDF formats',
     long_description=long_description,
+    long_description_content_type='text/markdown',
     url='https://github.com/jaws/jaws',
     author='Ajay Saini',
     author_email='ajcse1@gmail.com',
