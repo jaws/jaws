@@ -76,53 +76,38 @@ def fill_dataset_quality_control(dataframe, dataset, input_file):
 
 
 def get_time_and_sza(args, dataframe, longitude, latitude):
-    # Divided by 4 because each hour value is a multiple of 4
-    # and then multiplied by 100 to convert decimal to integer
+    dtime_1970, tz = common.time_common(args.tz)
+    num_rows = dataframe['year'].size
+    sza = [0] * num_rows
+
     hour_conversion = 100 / 4
     last_hour = 23
-    seconds_in_hour = common.seconds_in_hour
-    num_rows = dataframe['year'].size
-
-    month, day, time, time_bounds, sza = ([0] * num_rows for _ in range(5))
-
     hour = dataframe['julian_decimal_time']
     hour = [round(i - int(i), 3) * hour_conversion for i in hour]
     hour = [int(h) if int(h) <= last_hour else 0 for h in hour]
 
-    dtime_1970, tz = common.time_common(args.tz)
+    temp_dtime = pd.to_datetime(dataframe['year']*1000 + dataframe['julian_decimal_time'].astype(int), format='%Y%j')
+
+    dataframe['hour'] = hour
+    dataframe['dtime'] = temp_dtime
+
+    dataframe['dtime'] = pd.to_datetime(dataframe.dtime)
+    dataframe['dtime'] += pd.to_timedelta(dataframe.hour, unit='h')
+    dataframe['dtime'] -= pd.to_timedelta(common.seconds_in_half_hour, unit='s')
+
+    dataframe['dtime'] = [tz.localize(i.replace(tzinfo=None)) for i in dataframe['dtime']]
+
+    time = (dataframe['dtime'] - dtime_1970) / np.timedelta64(1, 's')
+    time_bounds = [(i-common.seconds_in_half_hour, i+common.seconds_in_half_hour) for i in time]
+
+    month = pd.DatetimeIndex(dataframe['dtime']).month.values
+    day = pd.DatetimeIndex(dataframe['dtime']).day.values
+    minutes = pd.DatetimeIndex(dataframe['dtime']).minute.values
 
     for idx in range(num_rows):
-        time_year = dataframe['year'][idx]
-        time_j = int(dataframe['julian_decimal_time'][idx])
-        time_hour = hour[idx]
+        sza[idx] = sunposition.sunpos(dataframe['dtime'][idx], latitude, longitude, 0)[1]
 
-        if time_j <= 366:
-            temp_dtime = '{} {} {}'.format(time_year, time_j, time_hour)
-            temp_dtime = datetime.strptime(temp_dtime, "%Y %j %H")
-            temp_dtime = tz.localize(temp_dtime.replace(tzinfo=None))
-
-            time[idx] = (temp_dtime - dtime_1970).total_seconds()
-        else:
-            # Assign time of previous row, if julian_decimal_time > 366
-            time[idx] = time[idx - 1]
-
-        time_bounds[idx] = (time[idx] - seconds_in_hour, time[idx])
-
-        time[idx] = time[idx] - common.seconds_in_half_hour
-        temp_dtime = datetime.utcfromtimestamp(time[idx])
-
-        sza[idx] = sunposition.sunpos(temp_dtime, latitude, longitude, 0)[1]
-
-    return hour, month, day, time, time_bounds, sza
-
-
-def derive_times(dataframe, month, day):
-    num_rows = dataframe['year'].size
-    for idx in range(num_rows):
-        month[idx], day[idx] = common.get_month_day(
-            int(dataframe['year'][idx]),
-            int(dataframe['julian_decimal_time'][idx]),
-            True)
+    return month, day, hour, minutes, time, time_bounds, sza
 
 
 def extrapolate_temp(dataframe):
@@ -149,7 +134,7 @@ def gcnet2nc(args, input_file, output_file, stations):
     latitude, longitude, station_name = get_station(args, input_file, stations)
 
     common.log(args, 3, 'Calculating time and sza')
-    hour, month, day, time, time_bounds, sza = get_time_and_sza(
+    month, day, hour, minutes, time, time_bounds, sza = get_time_and_sza(
         args, df, longitude, latitude)
 
     common.log(args, 4, 'Calculating quality control variables')
@@ -158,11 +143,10 @@ def gcnet2nc(args, input_file, output_file, stations):
     if args.no_drv_tm:
         pass
     else:
-        common.log(args, 5, 'Calculating month and day')
-        derive_times(df, month, day)
-        ds['hour'] = 'time', hour
         ds['month'] = 'time', month
         ds['day'] = 'time', day
+        ds['hour'] = 'time', hour
+        ds['minutes'] = 'time', minutes
 
     ds['time'] = 'time', time
     ds['time_bounds'] = ('time', 'nbnd'), time_bounds
