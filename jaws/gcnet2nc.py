@@ -78,7 +78,7 @@ def fill_dataset_quality_control(dataframe, dataset, input_file):
 def get_time_and_sza(args, dataframe, longitude, latitude):
     dtime_1970, tz = common.time_common(args.tz)
     num_rows = dataframe['year'].size
-    sza = [0] * num_rows
+    sza, az = ([0] * num_rows for _ in range(2))
 
     hour_conversion = 100 / 4
     last_hour = 23
@@ -105,9 +105,11 @@ def get_time_and_sza(args, dataframe, longitude, latitude):
     minutes = pd.DatetimeIndex(dataframe['dtime']).minute.values
 
     for idx in range(num_rows):
-        sza[idx] = sunposition.sunpos(dataframe['dtime'][idx], latitude, longitude, 0)[1]
+        solar_angles = sunposition.sunpos(dataframe['dtime'][idx], latitude, longitude, 0)
+        az[idx] = solar_angles[0]
+        sza[idx] = solar_angles[1]
 
-    return month, day, hour, minutes, time, time_bounds, sza
+    return month, day, hour, minutes, time, time_bounds, sza, az
 
 
 def extrapolate_temp(dataframe):
@@ -134,7 +136,7 @@ def gcnet2nc(args, input_file, output_file, stations):
     latitude, longitude, station_name = get_station(args, input_file, stations)
 
     common.log(args, 3, 'Calculating time and sza')
-    month, day, hour, minutes, time, time_bounds, sza = get_time_and_sza(
+    month, day, hour, minutes, time, time_bounds, sza, az = get_time_and_sza(
         args, df, longitude, latitude)
 
     common.log(args, 4, 'Calculating quality control variables')
@@ -151,6 +153,7 @@ def gcnet2nc(args, input_file, output_file, stations):
     ds['time'] = 'time', time
     ds['time_bounds'] = ('time', 'nbnd'), time_bounds
     ds['sza'] = 'time', sza
+    ds['az'] = 'time', az
     ds['station_number'] = tuple(), station_number
     ds['station_name'] = tuple(), station_name
     ds['latitude'] = tuple(), latitude

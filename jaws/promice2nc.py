@@ -59,7 +59,7 @@ def get_time_and_sza(args, dataframe, longitude, latitude):
     dtime_1970, tz = common.time_common(args.tz)
 
     num_rows = dataframe['year'].size
-    time, time_bounds, sza = ([0] * num_rows for _ in range(3))
+    time, time_bounds, sza, az = ([0] * num_rows for _ in range(4))
 
     for idx in range(num_rows):
         keys = ('year', 'month', 'day', 'hour')
@@ -72,9 +72,11 @@ def get_time_and_sza(args, dataframe, longitude, latitude):
         time[idx] = time[idx] + common.seconds_in_half_hour
         dtime = datetime.utcfromtimestamp(time[idx])
 
-        sza[idx] = sunposition.sunpos(dtime, latitude, longitude, 0)[1]
+        solar_angles = sunposition.sunpos(dtime, latitude, longitude, 0)
+        az[idx] = solar_angles[0]
+        sza[idx] = solar_angles[1]
 
-    return time, time_bounds, sza
+    return time, time_bounds, sza, az
 
 
 def get_ice_velocity(args, dataframe, delta_x, delta_y):
@@ -150,7 +152,7 @@ def promice2nc(args, input_file, output_file, stations):
     latitude, longitude, station_name = get_station(args, input_file, stations)
 
     common.log(args, 3, 'Calculating time and sza')
-    time, time_bounds, sza = get_time_and_sza(args, df, longitude, latitude)
+    time, time_bounds, sza, az = get_time_and_sza(args, df, longitude, latitude)
 
     common.log(args, 4, 'Converting lat_GPS and lon_GPS')
     convert_coordinates(args, df)
@@ -161,6 +163,7 @@ def promice2nc(args, input_file, output_file, stations):
     ds['time'] = 'time', time
     ds['time_bounds'] = ('time', 'nbnd'), time_bounds
     ds['sza'] = 'time', sza
+    ds['az'] = 'time', az
     ds['station_name'] = tuple(), station_name
     ds['latitude'] = tuple(), latitude
     ds['longitude'] = tuple(), longitude
