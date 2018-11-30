@@ -37,10 +37,7 @@ def main(dataset, latitude, longitude, clr_df):
     dates = df['time'].tolist()
     time = sorted(set(dates), key=dates.index)
 
-    tilt_df = pd.DataFrame(index=time, columns=['fsds_adjusted', 'fsds_diff'])
-
-    fsds_adjusted = []
-    fsds_diff = []
+    tilt_df = pd.DataFrame(index=time, columns=['tilt_direction', 'tilt_angle'])
 
     lat = latitude
     lon = longitude
@@ -60,7 +57,7 @@ def main(dataset, latitude, longitude, clr_df):
         for hour in hours:
             current_date_hour.append(datetime(year, month, day, hour))
 
-        calculated_df = pd.DataFrame(index=current_date_hour, columns=['fsds_adjusted', 'fsds_diff'])
+        calculated_df = pd.DataFrame(index=current_date_hour, columns=['tilt_direction', 'tilt_angle'])
 
         fsds_rrtm = open(grele_path+dir_rrtm+stn+'_'+clrdate.replace('-', '')+'.txt').read().split(',')
         fsds_rrtm = [float(i) for i in fsds_rrtm]
@@ -182,25 +179,21 @@ def main(dataset, latitude, longitude, clr_df):
 
         top_pair = best_pairs[num_spikes.index(min(num_spikes))]
 
-        fsds_adjusted.append(fsds_toppair_dict[top_pair])
-        fsds_diff.append([x-y for x,y in zip(fsds_adjusted, fsds_jaws)])
-
-        calculated_df['fsds_adjusted'] = fsds_adjusted
-        calculated_df['fsds_diff'] = fsds_diff
+        calculated_df['tilt_direction'] = top_pair[0]
+        calculated_df['tilt_angle'] = top_pair[1]
 
         for val in calculated_df.index:
-            tilt_df.at[val, 'fsds_adjusted'] = calculated_df.loc[val]['fsds_adjusted']
-            tilt_df.at[val, 'fsds_diff'] = calculated_df.loc[val]['fsds_diff']
+            tilt_df.at[val, 'tilt_direction'] = calculated_df.loc[val]['tilt_direction']
+            tilt_df.at[val, 'tilt_angle'] = calculated_df.loc[val]['tilt_angle']
 
-    for col in tilt_df:
-        tilt_df['fsds_adjusted'] = pd.to_numeric(tilt_df['fsds_adjusted'], errors='coerce')
-        tilt_df['fsds_diff'] = pd.to_numeric(tilt_df['fsds_diff'], errors='coerce')
+    tilt_df['tilt_direction'] = pd.to_numeric(tilt_df['tilt_direction'], errors='coerce')
+    tilt_df['tilt_angle'] = pd.to_numeric(tilt_df['tilt_angle'], errors='coerce')
 
     tilt_df = tilt_df.interpolate()
-    fsds_adjusted_values = tilt_df['fsds_adjusted'].tolist()
-    fsds_diff_values = tilt_df['fsds_diff'].tolist()
+    tilt_direction_values = tilt_df['tilt_direction'].tolist()
+    tilt_angle_values = tilt_df['tilt_angle'].tolist()
 
-    ds['fsds_adjusted'] = 'time', fsds_adjusted_values
-    ds['fsds_diff'] = 'time', fsds_diff_values
+    ds['tilt_direction'] = 'time', tilt_direction_values
+    ds['tilt_angle'] = 'time', tilt_angle_values
 
     return ds
