@@ -32,9 +32,9 @@ def clr_prd(dat_sza, tg_fsds, tg_sza, date, stn_name):
     path = common.relative_path('resources/lst_para_rdn.txt')
     para_file = pd.read_csv(path)
 
-    scale = para_file.loc[para_file['stn_name'] == stn_name, 'scale'].iloc[0]
-    offset = para_file.loc[para_file['stn_name'] == stn_name, 'offset'].iloc[0]
-    offset_range = para_file.loc[para_file['stn_name'] == stn_name, 'offset_range'].iloc[0]
+    scale = para_file.loc[para_file['network_name'] == stn_name, 'scale'].iloc[0]
+    offset = para_file.loc[para_file['network_name'] == stn_name, 'offset'].iloc[0]
+    offset_range = para_file.loc[para_file['network_name'] == stn_name, 'offset_range'].iloc[0]
 
     tg_sza_scale = [i*scale for i in tg_sza]
     tg_sza_up = [i-offset+offset_range for i in tg_sza_scale]
