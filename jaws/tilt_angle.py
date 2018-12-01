@@ -11,6 +11,11 @@ try:
 except ImportError:  # Python 3.x
     pass
 
+try:
+    from jaws import common
+except ImportError:
+    import common
+
 
 def deg_to_rad(list_deg):
     list_rad = [np.radians(i) for i in list_deg]
@@ -18,10 +23,11 @@ def deg_to_rad(list_deg):
     return list_rad
 
 
-def main(dataset, latitude, longitude, clr_df):
+def main(dataset, latitude, longitude, clr_df, args):
     ddr = 0.25
     rho = 0.8
     smallest_double = 2.2250738585072014e-308
+    dtime_1970, tz = common.time_common(args.tz)
 
     clrprd_file = clr_df
     clrprd = [(str(x)+'_'+str(y)+'_'+str(z)) for x, y, z in
@@ -30,18 +36,19 @@ def main(dataset, latitude, longitude, clr_df):
     hours = list(range(24))
     half_hours = list(np.arange(0, 24, 0.5))
 
-    ds = dataset
+    ds = dataset.drop('time_bounds')
     df = ds.to_dataframe()
 
-    df.reset_index(level=['time'], inplace=True)
-    dates = df['time'].tolist()
-    time = sorted(set(dates), key=dates.index)
+    date_hour = [datetime.fromtimestamp(i, tz) for i in df.index.values]
+    dates = [i.date() for i in date_hour]
 
-    tilt_df = pd.DataFrame(index=time, columns=['tilt_direction', 'tilt_angle'])
+    tilt_df = pd.DataFrame(index=dates, columns=['tilt_direction', 'tilt_angle'])
 
     lat = latitude
     lon = longitude
-    stn = df['station_name'][0]
+
+    df.reset_index(level=['time'], inplace=True)
+    stn_name = df['station_name'][0]
 
     grele_path = 'http://grele.ess.uci.edu/jaws/rigb_data/'
     dir_rrtm = 'rrtm-airx3std/'
@@ -59,7 +66,7 @@ def main(dataset, latitude, longitude, clr_df):
 
         calculated_df = pd.DataFrame(index=current_date_hour, columns=['tilt_direction', 'tilt_angle'])
 
-        fsds_rrtm = open(grele_path+dir_rrtm+stn+'_'+clrdate.replace('-', '')+'.txt').read().split(',')
+        fsds_rrtm = open(grele_path+dir_rrtm+stn_name+'_'+clrdate.replace('-', '')+'.txt').read().split(',')
         fsds_rrtm = [float(i) for i in fsds_rrtm]
 
         # Subset dataframe

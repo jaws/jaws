@@ -163,7 +163,7 @@ def gcnet2nc(args, input_file, output_file, stations):
     if args.rigb:
         clr_df = clearsky.main(ds, args)
         if not clr_df.empty:
-            ds = tilt_angle.main(ds, latitude, longitude, clr_df)
+            ds = tilt_angle.main(ds, latitude, longitude, clr_df, args)
 
         ds = fsds_adjust.main(ds, args)
 
