@@ -161,7 +161,7 @@ def gcnet2nc(args, input_file, output_file, stations):
     ds['surface_temp'] = 'time', surface_temp
 
     if args.rigb:
-        clr_df = clearsky.main(ds)
+        clr_df = clearsky.main(ds, args)
         if not clr_df.empty:
             ds = tilt_angle.main(ds, latitude, longitude, clr_df)
 

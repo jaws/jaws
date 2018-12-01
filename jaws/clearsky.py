@@ -7,6 +7,11 @@ import numpy as np
 import pandas as pd
 import scipy.interpolate
 
+try:
+    from jaws import common
+except ImportError:
+    import common
+
 
 def interpolate(x, y):
     dv = scipy.interpolate.interp1d(x, y, fill_value='extrapolate')
@@ -23,8 +28,9 @@ def interpolate(x, y):
     return diff
 
 
-def clr_prd(dat_sza, tg_fsds, tg_sza, date, stn_name, outfile):
-    para_file = pd.read_csv('../resources/lst_para_rdn.txt')
+def clr_prd(dat_sza, tg_fsds, tg_sza, date, stn_name):
+    path = common.relative_path('resources/lst_para_rdn.txt')
+    para_file = pd.read_csv(path)
 
     scale = para_file.loc[para_file['stn_name'] == stn_name, 'scale'].iloc[0]
     offset = para_file.loc[para_file['stn_name'] == stn_name, 'offset'].iloc[0]
@@ -102,20 +108,21 @@ def write_to_file(cons_clr_hrs, daylight, date):
     return final_hrs, clr_lst
 
 
-def main(dataset):
+def main(dataset, args):
     global tg_fsds, dat_sza, dat_fill, hrs, year, clr_lst
 
     clr_lst = []
+    dtime_1970, tz = common.time_common(args.tz)
 
     ds = dataset.drop('time_bounds')
     df = ds.to_dataframe()
 
-    stn_name = df['station_name'][0]
- 
-    df.reset_index(level=['time'], inplace=True)
-    date_hour = df['time'].tolist()
+    date_hour = [datetime.fromtimestamp(i, tz) for i in df.index.values]
     dates = [i.date() for i in date_hour]
     dates = sorted(set(dates), key=dates.index)
+
+    df.reset_index(level=['time'], inplace=True)
+    stn_name = df['station_name'][0]
 
     for date in dates:
         df_temp = df[(df.year == date.year) & (df.month == date.month) & (df.day == date.day)]
