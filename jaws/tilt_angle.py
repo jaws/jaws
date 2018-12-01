@@ -73,8 +73,8 @@ def main(dataset, latitude, longitude, clr_df, args):
         # Subset dataframe
         df_sub = df[(df.year == year) & (df.month == month) & (df.day == day)]
 
-        fsds_jaws_nonmsng = df_sub['sw_down'][0].dropna().tolist()
-        indexMissingJAWS = np.where(df_sub['sw_down'][0].isna())
+        fsds_jaws_nonmsng = df_sub['sw_down'].dropna().tolist()
+        indexMissingJAWS = np.where(df_sub['sw_down'].isna())
         indexMissingJAWS = [a for b in indexMissingJAWS for a in b]  # Convert to list
 
         hours_nonmsng = list(range(len(fsds_jaws_nonmsng)))
