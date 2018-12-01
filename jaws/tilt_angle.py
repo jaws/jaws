@@ -159,10 +159,13 @@ def main(dataset, latitude, longitude, clr_df, args):
 
         dailyavg_possiblepair_dict = dict(zip(daily_avg_diff, possible_pairs))
 
-        if min(dailyavg_possiblepair_dict.keys()) <= 50:
-            for val in dailyavg_possiblepair_dict.keys():
-                if val <= min(dailyavg_possiblepair_dict.keys())+5:
-                    best_pairs.append(dailyavg_possiblepair_dict.get(val))
+        if not dailyavg_possiblepair_dict.keys():
+            continue  # Skip day if no possible pair
+        else:
+            if min(dailyavg_possiblepair_dict.keys()) <= 50:
+                for val in dailyavg_possiblepair_dict.keys():
+                    if val <= min(dailyavg_possiblepair_dict.keys())+5:
+                        best_pairs.append(dailyavg_possiblepair_dict.get(val))
 
 
         #########PART-3#############
@@ -183,10 +186,13 @@ def main(dataset, latitude, longitude, clr_df, args):
             
             num_spikes.append(spike_hrs)
 
-        top_pair = best_pairs[num_spikes.index(min(num_spikes))]
+        try:
+            top_pair = best_pairs[num_spikes.index(min(num_spikes))]
 
-        tilt_df.at[current_date_hour, 'tilt_direction'] = top_pair[0]
-        tilt_df.at[current_date_hour, 'tilt_angle'] = top_pair[1]
+            tilt_df.at[current_date_hour, 'tilt_direction'] = top_pair[0]
+            tilt_df.at[current_date_hour, 'tilt_angle'] = top_pair[1]
+        except:
+            continue  # Skip day if no top pair
 
     tilt_df['tilt_direction'] = pd.to_numeric(tilt_df['tilt_direction'], errors='coerce')
     tilt_df['tilt_angle'] = pd.to_numeric(tilt_df['tilt_angle'], errors='coerce')
