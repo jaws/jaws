@@ -60,14 +60,13 @@ def main(dataset, latitude, longitude, clr_df, args):
         year = int(clrdate[:4])
         month = int(clrdate[5:7])
         day = int(clrdate[8:10])
-        current_date_hour = []
-        for hour in hours:
-            current_date_hour.append(datetime(year, month, day, hour))
+        current_date_hour = datetime(year, month, day).date()
 
-        calculated_df = pd.DataFrame(index=current_date_hour, columns=['tilt_direction', 'tilt_angle'])
-
-        fsds_rrtm = open(grele_path+dir_rrtm+stn_name+'_'+clrdate.replace('-', '')+'.txt').read().split(',')
-        fsds_rrtm = [float(i) for i in fsds_rrtm]
+        try:
+            fsds_rrtm = open(grele_path+dir_rrtm+stn_name+'_'+clrdate.replace('-', '')+'.txt').read().split(',')
+            fsds_rrtm = [float(i) for i in fsds_rrtm]
+        except:
+            pass
 
         # Subset dataframe
         df_sub = df[(df.year == year) & (df.month == month) & (df.day == day)]
@@ -137,7 +136,7 @@ def main(dataset, latitude, longitude, clr_df, args):
                 if dnmr == 0:
                     dnmr = smallest_double
                 fsds_correct.append(nmr/dnmr)
-                
+
                 count += 1
 
             if (abs(cos_i.index(max(cos_i)) - fsds_intrp.index(max(fsds_intrp))) <= 1 and 
@@ -167,7 +166,7 @@ def main(dataset, latitude, longitude, clr_df, args):
 
 
         #########PART-3#############
- 
+
         fsds_toppair_dict = {k: fsds_possiblepair_dict[k] for k in best_pairs}
 
         num_spikes = []
@@ -186,12 +185,8 @@ def main(dataset, latitude, longitude, clr_df, args):
 
         top_pair = best_pairs[num_spikes.index(min(num_spikes))]
 
-        calculated_df['tilt_direction'] = top_pair[0]
-        calculated_df['tilt_angle'] = top_pair[1]
-
-        for val in calculated_df.index:
-            tilt_df.at[val, 'tilt_direction'] = calculated_df.loc[val]['tilt_direction']
-            tilt_df.at[val, 'tilt_angle'] = calculated_df.loc[val]['tilt_angle']
+        tilt_df.at[current_date_hour, 'tilt_direction'] = top_pair[0]
+        tilt_df.at[current_date_hour, 'tilt_angle'] = top_pair[1]
 
     tilt_df['tilt_direction'] = pd.to_numeric(tilt_df['tilt_direction'], errors='coerce')
     tilt_df['tilt_angle'] = pd.to_numeric(tilt_df['tilt_angle'], errors='coerce')
@@ -200,7 +195,7 @@ def main(dataset, latitude, longitude, clr_df, args):
     tilt_direction_values = tilt_df['tilt_direction'].tolist()
     tilt_angle_values = tilt_df['tilt_angle'].tolist()
 
-    ds['tilt_direction'] = 'time', tilt_direction_values
-    ds['tilt_angle'] = 'time', tilt_angle_values
+    dataset['tilt_direction'] = 'time', tilt_direction_values
+    dataset['tilt_angle'] = 'time', tilt_angle_values
 
-    return ds
+    return dataset
