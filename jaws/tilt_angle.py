@@ -143,7 +143,7 @@ def main(dataset, latitude, longitude, clr_df, args):
                abs(fsds_correct.index(max(fsds_correct)) - sza_noon.index(max(sza_noon))) <= 1):
                 possible_pairs.append(pair)
 
-                fsds_correct_half = fsds_correct[::2]
+                fsds_correct_half = fsds_correct[1::2]
                 fsds_possiblepair_dict[pair] = fsds_correct_half
 
                 for msng_idx in indexMissingJAWS:
@@ -177,8 +177,9 @@ def main(dataset, latitude, longitude, clr_df, args):
             fsds_correct_top = fsds_toppair_dict[pair]
             counter = 0
             spike_hrs = 0
-            diff_top = [abs(x-y) for x,y in zip(fsds_correct_top, fsds_rrtm)]
-            fsds_rrtm_10 = [ij*0.1 for ij in fsds_rrtm]
+            diff_top = [abs(x-y) for x, y in zip(fsds_correct_top[clrhr_start:clrhr_end],
+                                                 fsds_rrtm[clrhr_start:clrhr_end])]
+            fsds_rrtm_10 = [ij*0.1 for ij in fsds_rrtm[clrhr_start:clrhr_end]]
             for val in diff_top:
                 if diff_top[counter] > fsds_rrtm_10[counter]:
                     spike_hrs += 1
