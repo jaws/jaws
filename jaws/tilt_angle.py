@@ -172,6 +172,9 @@ def main(dataset, latitude, longitude, clr_df, args):
 
         fsds_bestpair_dict = {k: fsds_possiblepair_dict[k] for k in best_pairs}
 
+        bestpair_dailyavg_dict = dict((bp, [key for (key, value) in dailyavg_possiblepair_dict.items() if value == bp])
+                                      for bp in best_pairs)
+
         num_spikes = []
         for pair in fsds_bestpair_dict:
             fsds_correct_top = fsds_bestpair_dict[pair]
@@ -185,7 +188,7 @@ def main(dataset, latitude, longitude, clr_df, args):
                     spike_hrs += 1
                 counter += 1
             
-            num_spikes.append(spike_hrs)
+            num_spikes.append(spike_hrs, bestpair_dailyavg_dict[pair])
 
         try:
             top_pair = best_pairs[num_spikes.index(min(num_spikes))]
