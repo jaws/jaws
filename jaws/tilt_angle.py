@@ -58,6 +58,7 @@ def main(dataset, latitude, longitude, clr_df, args):
         clrdate = line.split('_')[0]
         clrhr_start = int(line.split('_')[1])
         clrhr_end = int(line.split('_')[2])
+        clrhr_end = clrhr_end + 1  # To make sure we include the last hour when slicing the data
         year = int(clrdate[:4])
         month = int(clrdate[5:7])
         day = int(clrdate[8:10])
