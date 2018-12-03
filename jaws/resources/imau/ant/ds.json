@@ -403,6 +403,42 @@
         "long_name": "Month of year",
         "units": "1"
       }
+    },
+    "tilt_direction": {
+      "type": "float",
+      "attributes": {
+        "long_name": "Tilt Direction",
+        "units": "degree",
+        "cell_methods": "time: mean",
+        "coordinates": "longitude latitude"
+      }
+    },
+    "tilt_angle": {
+      "type": "float",
+      "attributes": {
+        "long_name": "Tilt Angle",
+        "units": "degree",
+        "cell_methods": "time: mean",
+        "coordinates": "longitude latitude"
+      }
+    },
+    "fsds_adjusted": {
+      "type": "float",
+      "attributes": {
+        "long_name": "Adjusted Shortwave Flux Down",
+        "units": "watt meter-2",
+        "cell_methods": "time: mean",
+        "coordinates": "longitude latitude"
+      }
+    },
+    "cloud_fraction": {
+      "type": "float",
+      "attributes": {
+        "long_name": "Cloud fraction",
+        "units": "1",
+        "cell_methods": "time: mean",
+        "coordinates": "longitude latitude"
+      }
     }
   }
 }
