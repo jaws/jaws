@@ -170,11 +170,11 @@ def main(dataset, latitude, longitude, clr_df, args):
 
         #########PART-3#############
 
-        fsds_toppair_dict = {k: fsds_possiblepair_dict[k] for k in best_pairs}
+        fsds_bestpair_dict = {k: fsds_possiblepair_dict[k] for k in best_pairs}
 
         num_spikes = []
-        for pair in fsds_toppair_dict:
-            fsds_correct_top = fsds_toppair_dict[pair]
+        for pair in fsds_bestpair_dict:
+            fsds_correct_top = fsds_bestpair_dict[pair]
             counter = 0
             spike_hrs = 0
             diff_top = [abs(x-y) for x, y in zip(fsds_correct_top[clrhr_start:clrhr_end],
