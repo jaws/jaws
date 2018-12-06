@@ -1,9 +1,9 @@
 from datetime import datetime
 import requests
 
-import Ngl
 import numpy as np
 import pandas as pd
+from scipy.interpolate import CubicSpline
 
 import sunposition
 
@@ -35,13 +35,14 @@ def main(dataset, latitude, longitude, clr_df, args):
               zip(clrprd_file[0].tolist(), clrprd_file[1].tolist(), clrprd_file[2].tolist())]
 
     hours = list(range(24))
-    half_hours = list(np.arange(0, 24, 0.5))
+    half_hours = (list(np.arange(0, 24, 0.5)))
 
     ds = dataset.drop('time_bounds')
     df = ds.to_dataframe()
 
     date_hour = [datetime.fromtimestamp(i, tz) for i in df.index.values]
     dates = [i.date() for i in date_hour]
+    df['dates'] = dates
 
     tilt_df = pd.DataFrame(index=dates, columns=['tilt_direction', 'tilt_angle'])
 
@@ -50,6 +51,7 @@ def main(dataset, latitude, longitude, clr_df, args):
 
     df.reset_index(level=['time'], inplace=True)
     stn_name = df['station_name'][0]
+    df[['sw_down']] = df[['sw_down']].replace(common.fillvalue_float, np.nan)
 
     grele_path = 'http://grele.ess.uci.edu/jaws/rigb_data/'
     dir_rrtm = 'rrtm-airx3std/'
@@ -68,20 +70,24 @@ def main(dataset, latitude, longitude, clr_df, args):
             rrtm_file = requests.get(grele_path+dir_rrtm+stn_name+'.'+clrdate.replace('-', '')+'.txt')
             fsds_rrtm = rrtm_file.text.strip().split(',')
             fsds_rrtm = [float(i) for i in fsds_rrtm]
+            print(clrdate)
         except:
             continue
 
         # Subset dataframe
-        df_sub = df[(df.year == year) & (df.month == month) & (df.day == day)]
+        df_sub = df[df.dates == current_date_hour]
 
         fsds_jaws_nonmsng = df_sub['sw_down'].dropna().tolist()
         indexMissingJAWS = np.where(df_sub['sw_down'].isna())
         indexMissingJAWS = [a for b in indexMissingJAWS for a in b]  # Convert to list
 
-        hours_nonmsng = list(range(len(fsds_jaws_nonmsng)))
+        hours_nonmsng = np.where(df_sub['sw_down'].notnull())
+        hours_nonmsng = [a for b in hours_nonmsng for a in b]  # Convert to list
+        hours_nonmsng = [i+0.5 for i in hours_nonmsng]  # Half-hour values
 
         # Interpolate fsds and sza for half-hour values
-        fsds_intrp = list(Ngl.ftcurv(hours_nonmsng, fsds_jaws_nonmsng, half_hours))
+        fsds_intrp = CubicSpline(hours_nonmsng, fsds_jaws_nonmsng, extrapolate=True)(half_hours)
+        fsds_intrp = [a for a in fsds_intrp]  # Convert to list
 
         # Calculate azimuth angle
         az = []
@@ -189,7 +195,7 @@ def main(dataset, latitude, longitude, clr_df, args):
                     spike_hrs += 1
                 counter += 1
             
-            num_spikes.append(spike_hrs, bestpair_dailyavg_dict[pair])
+            num_spikes.append((spike_hrs, bestpair_dailyavg_dict[pair]))
 
         try:
             top_pair = best_pairs[num_spikes.index(min(num_spikes))]
