@@ -15,7 +15,7 @@
     "zlib": true,
     "complevel": "COMP"
   },
-  "sw_down": {
+  "fsds": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,

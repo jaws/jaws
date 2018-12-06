@@ -34,7 +34,7 @@
         "note": "For each year, time starts at 1.0000 and ends at 365.9999."
       }
     },
-    "sw_down": {
+    "fsds": {
       "type": "float",
       "attributes": {
         "long_name": "Shortwave Flux Down",
