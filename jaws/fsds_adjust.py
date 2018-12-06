@@ -3,6 +3,7 @@ import os
 import requests
 
 import numpy as np
+import pandas as pd
 import xarray as xr
 
 try:
@@ -30,6 +31,7 @@ def main(dataset, args):
 
     date_hour = [datetime.fromtimestamp(i, tz) for i in df.index.values]
     dates = [i.date() for i in date_hour]
+    df['dates'] = dates
     dates = sorted(set(dates), key=dates.index)
 
     df['fsds_adjusted'] = ''
@@ -57,7 +59,7 @@ def main(dataset, args):
 
         cf = [0.9999999 if i == 100 else i/100 for i in cf]
 
-        df_sub = df[(df.year == year) & (df.month == month) & (df.day == day)]
+        df_sub = df[df.dates == date]
 
         fsds_jaws = df_sub['sw_down'].tolist()
         fsds_jaws = [fillvalue_double if np.isnan(i) else i for i in fsds_jaws]
@@ -90,7 +92,7 @@ def main(dataset, args):
 
                 dnmr = cos_i + (ddr * (1 + np.cos(beta[count])) / 2.) + (
                             rho * (np.sin(alpha[count]) + ddr) * (1 - np.cos(beta[count])) / 2.)
-                if dnmr == 0:
+                if dnmr == 0 or dnmr == np.nan:
                     dnmr = smallest_double
 
                 df.at[idx_count, 'fsds_adjusted'] = nmr/dnmr
@@ -100,6 +102,9 @@ def main(dataset, args):
                 idx_count += 1
         except:
             pass
+
+    df['fsds_adjusted'] = pd.to_numeric(df['fsds_adjusted'], errors='coerce')
+    df['cloud_fraction'] = pd.to_numeric(df['cloud_fraction'], errors='coerce')
     fsds_adjusted_values = df['fsds_adjusted'].tolist()
     cloud_fraction_values = df['cloud_fraction'].tolist()
     dataset['fsds_adjusted'] = 'time', fsds_adjusted_values
