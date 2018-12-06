@@ -7,7 +7,7 @@ wind_spd2_max
 wind_spd6_max
 wind_dir2
 wind_dir6
-sw_in
+fsds
 sw_out
 lw_in
 lw_out

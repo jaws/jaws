@@ -53,7 +53,7 @@
     "zlib": true,
     "complevel": "COMP"
   },
-  "sw_in": {
+  "fsds": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,

@@ -4,7 +4,7 @@ hour_mult_100
 wind_dir
 wind_spd
 wind_spd_max
-sw_in
+fsds
 sw_out
 lw_in
 lw_out

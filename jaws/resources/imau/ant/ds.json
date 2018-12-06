@@ -65,7 +65,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "sw_in": {
+    "fsds": {
       "type": "float",
       "attributes": {
         "long_name": "Calibrated Shortwave Incoming Radiation ",
