@@ -11,7 +11,7 @@ relative_humidity_wrtwater
 relative_humidity
 wind_speed
 wind_direction
-shortwave_radiation_down
+fsds
 shortwave_radiation_down_cor
 shortwave_radiation_up
 shortwave_radiation_up_cor

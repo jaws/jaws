@@ -137,7 +137,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "shortwave_radiation_down": {
+    "fsds": {
       "type": "float",
       "attributes": {
         "long_name": "Shortwave Radiation Down",
