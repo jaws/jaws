@@ -128,7 +128,8 @@ def load_dataset_attributes(name, ds, args, **kwargs):
                        'jaws/jaws)'.format(jaws_version)
 
     derived_vars = ['time', 'time_bounds', 'sza', 'station_name', 'latitude', 'longitude', 'surface_temp',
-                    'ice_velocity_GPS_total', 'ice_velocity_GPS_x', 'ice_velocity_GPS_y', 'height']
+                    'ice_velocity_GPS_total', 'ice_velocity_GPS_x', 'ice_velocity_GPS_y', 'height',
+                    'tilt_direction', 'tilt_angle', 'fsds_adjusted', 'cloud_fraction']
 
     no_drv_tm_vars = []
 
@@ -180,7 +181,7 @@ def get_encoding(name, fillvalue, comp_level):
 
     recursive_fill(data)
     # Get encoding for only those variables present in input file
-    data = {k: data[k] for k in columns}
+    # data = {k: data[k] for k in columns}
     return data
 
 
