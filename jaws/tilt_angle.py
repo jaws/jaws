@@ -51,7 +51,7 @@ def main(dataset, latitude, longitude, clr_df, args):
 
     df.reset_index(level=['time'], inplace=True)
     stn_name = df['station_name'][0]
-    df[['sw_down']] = df[['sw_down']].replace(common.fillvalue_float, np.nan)
+    df[['fsds']] = df[['fsds']].replace(common.fillvalue_float, np.nan)
 
     grele_path = 'http://grele.ess.uci.edu/jaws/rigb_data/'
     dir_rrtm = 'rrtm-airx3std/'
@@ -77,11 +77,11 @@ def main(dataset, latitude, longitude, clr_df, args):
         # Subset dataframe
         df_sub = df[df.dates == current_date_hour]
 
-        fsds_jaws_nonmsng = df_sub['sw_down'].dropna().tolist()
-        indexMissingJAWS = np.where(df_sub['sw_down'].isna())
+        fsds_jaws_nonmsng = df_sub['fsds'].dropna().tolist()
+        indexMissingJAWS = np.where(df_sub['fsds'].isna())
         indexMissingJAWS = [a for b in indexMissingJAWS for a in b]  # Convert to list
 
-        hours_nonmsng = np.where(df_sub['sw_down'].notnull())
+        hours_nonmsng = np.where(df_sub['fsds'].notnull())
         hours_nonmsng = [a for b in hours_nonmsng for a in b]  # Convert to list
         hours_nonmsng = [i+0.5 for i in hours_nonmsng]  # Half-hour values
 

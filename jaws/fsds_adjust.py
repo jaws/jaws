@@ -61,7 +61,7 @@ def main(dataset, args):
 
         df_sub = df[df.dates == date]
 
-        fsds_jaws = df_sub['sw_down'].tolist()
+        fsds_jaws = df_sub['fsds'].tolist()
         fsds_jaws = [fillvalue_double if np.isnan(i) else i for i in fsds_jaws]
 
         sza = df_sub['sza'].tolist()

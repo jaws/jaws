@@ -123,15 +123,15 @@ def main(dataset, args):
 
     df.reset_index(level=['time'], inplace=True)
     stn_name = df['station_name'][0]
-    df[['sw_down']] = df[['sw_down']].replace(common.fillvalue_float, np.nan)
+    df[['fsds']] = df[['fsds']].replace(common.fillvalue_float, np.nan)
 
     for date in dates:
         df_temp = df[df.dates == date]
 
-        dat = df_temp['sw_down'].tolist()
-        dat_nonmsng = df_temp['sw_down'].dropna().tolist()
+        dat = df_temp['fsds'].tolist()
+        dat_nonmsng = df_temp['fsds'].dropna().tolist()
 
-        # Set negative values to zero in sw_down
+        # Set negative values to zero in fsds
         dat = [i if i >= 0 else 0 for i in dat]
         dat_nonmsng = [i if i >= 0 else 0 for i in dat_nonmsng]
 
@@ -141,7 +141,7 @@ def main(dataset, args):
         hrs = list(range(len(dat)))
         hrs_30min = [i+0.5 for i in hrs]
 
-        hours_nonmsng = np.where(df_temp['sw_down'].notnull())
+        hours_nonmsng = np.where(df_temp['fsds'].notnull())
         hours_nonmsng = [a for b in hours_nonmsng for a in b]  # Convert to list
         hours_nonmsng = [i+0.5 for i in hours_nonmsng]  # Half-hour values
 
