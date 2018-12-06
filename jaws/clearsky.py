@@ -2,10 +2,9 @@ from datetime import datetime
 from itertools import groupby
 from operator import itemgetter
 
-import Ngl
 import numpy as np
 import pandas as pd
-import scipy.interpolate
+from scipy.interpolate import interp1d, CubicSpline
 
 try:
     from jaws import common
@@ -14,7 +13,7 @@ except ImportError:
 
 
 def interpolate(x, y):
-    dv = scipy.interpolate.interp1d(x, y, fill_value='extrapolate')
+    dv = interp1d(x, y, fill_value='extrapolate')
     alpha = 0.01
     dv_left, dv_right, tg_left, tg_right = ([None]*len(x) for _ in range(4))
     i = 0
@@ -119,27 +118,34 @@ def main(dataset, args):
 
     date_hour = [datetime.fromtimestamp(i, tz) for i in df.index.values]
     dates = [i.date() for i in date_hour]
+    df['dates'] = dates
     dates = sorted(set(dates), key=dates.index)
 
     df.reset_index(level=['time'], inplace=True)
     stn_name = df['station_name'][0]
+    df[['sw_down']] = df[['sw_down']].replace(common.fillvalue_float, np.nan)
 
     for date in dates:
-        df_temp = df[(df.year == date.year) & (df.month == date.month) & (df.day == date.day)]
+        df_temp = df[df.dates == date]
 
         dat = df_temp['sw_down'].tolist()
-        dat_rmvmsng = df_temp['sw_down'].dropna().tolist()
+        dat_nonmsng = df_temp['sw_down'].dropna().tolist()
 
         # Set negative values to zero in sw_down
-        dat = [i if i>=0 else 0 for i in dat]
-        dat_rmvmsng = [i if i>=0 else 0 for i in dat_rmvmsng]
+        dat = [i if i >= 0 else 0 for i in dat]
+        dat_nonmsng = [i if i >= 0 else 0 for i in dat_nonmsng]
 
-        if len(dat_rmvmsng) < 15:
+        if len(dat_nonmsng) < 15:
             continue
 
         hrs = list(range(len(dat)))
-        hrs_rmvmsng = list(range(len(dat_rmvmsng)))
-        dat_fill = Ngl.ftcurv(hrs_rmvmsng, dat_rmvmsng, hrs)
+        hrs_30min = [i+0.5 for i in hrs]
+
+        hours_nonmsng = np.where(df_temp['sw_down'].notnull())
+        hours_nonmsng = [a for b in hours_nonmsng for a in b]  # Convert to list
+        hours_nonmsng = [i+0.5 for i in hours_nonmsng]  # Half-hour values
+
+        dat_fill = CubicSpline(hours_nonmsng, dat_nonmsng, extrapolate=True)(hrs_30min)
         dat_sza = [np.cos(np.radians(i)) for i in df_temp['sza'].tolist()]
 
         tg_fsds = interpolate(hrs,dat_fill)
