@@ -161,11 +161,15 @@ def gcnet2nc(args, input_file, output_file, stations):
     ds['surface_temp'] = 'time', surface_temp
 
     if args.rigb:
+        common.log(args, 6, 'Detecting clear days')
         clr_df = clearsky.main(ds, args)
+
         if not clr_df.empty:
+            common.log(args, 7, 'Calculating tilt angle and direction')
             ds = tilt_angle.main(ds, latitude, longitude, clr_df, args)
 
-        ds = fsds_adjust.main(ds, args)
+            common.log(args, 8, 'Calculating corrected_fsds')
+            ds = fsds_adjust.main(ds, args)
 
     comp_level = args.dfl_lvl
 
