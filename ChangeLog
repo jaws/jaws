@@ -1,3 +1,111 @@
+2018-12-06  Ajay Saini  <sainiak@uci.edu>
+
+	* git tag -a 0.6.1 -m 'alpha01: RIGB fsds_adjusted'; git push --tags
+
+	* Remove 'pyngl' and add 'requests' as project requirement
+
+	* fsds_adjust.py: Skip deleting ceres file on Windows
+
+	* common.py: Add 'az' to derived_vars list
+
+	* Add attributes and encoding for 'az'
+
+	* Correct encoding
+
+	* Rename 'sw_down' as 'fsds' in RIGB scripts
+
+	* PROMICE: Rename 'shortwave_radiation_down' as 'fsds'
+
+	* IMAU: Rename 'sw_in' as 'fsds'
+
+	* GCNet: Rename 'sw_down' as 'fsds'
+
+	* Add new variables to derived_vars attribute list
+
+	* Add log messages for RIGB operations
+
+	* fsds_adjust.py: Convert df to numeric, correct subsetting of df
+
+	* tilt_angle.py: Use scipy instead of Ngl, correct subsetting of df
+
+	* clearsky.py: Use scipy instead of Ngl, correct subsetting of df
+
+2018-12-03  Ajay Saini  <sainiak@uci.edu>
+
+	* tilt_angle.py: Increase ladt clear hour by 1 to include it while slicing data
+
+2018-12-02  Ajay Saini  <sainiak@uci.edu>
+
+	* tilt_angle.py: Select pair with the smallest daily_avg_diff if min(num_spikes) same
+
+	* tilt_angle.py: Rename 'fsds_toppair_dict' as 'fsds_bestpair_dict'
+
+	* Update encoding.json of GCNet, IMAU, PROMICE to include new calculated variables
+
+	* Update ds.json of GCNet, IMAU, PROMICE to include new calculated variables
+
+	* tilt_angle.py: Correct calculations to find pairs
+
+2018-11-30  Ajay Saini  <sainiak@uci.edu>
+
+	* tilt_angle.py: Correct indexing of dataframe variables
+
+	* tilt_angle.py: Skip day if no possible or top pair
+
+	* tilt_angle.py: Correct reading of rrtm outputs from grele
+
+	* tilt_angle.py: Correct writing of tilt_angle and tilt_direction to dataset
+
+	* tilt_angle.py: Correct calculation of date index
+
+	* clearsky.py: Correct reading of lst_para_rdn.txt
+
+	* clearsky.py: Correct calculation of dates and use relative path for para_file
+
+	* tilt_angle.py: Output tilt direction and angle instead of fsds_ajusted
+
+	* Calculate azimuth angle (az) for GCNet, IMAU, PROMICE
+
+	* Call fsds_adjust.py script in all network scripts
+
+	* Add new script to calculate fsds_adjusted
+
+2018-11-25  Ajay Saini  <sainiak@uci.edu>
+
+	* gcnet2nc.py: Recalculate get_time_and_sza function
+
+2018-11-24  Ajay Saini  <sainiak@uci.edu>
+
+	* setup.py: Give type of README file
+
+	* Using network_stn name as station name
+
+2018-11-13  Ajay Saini  <sainiak@uci.edu>
+
+	* Correct time calculation for IMAU/grl
+
+2018-11-12  Ajay Saini  <sainiak@uci.edu>
+
+	* Add file having list of parameters for clearsky detection
+
+	* clearsky.py: Read parameters specific to station from file
+
+	* clearsky.py: subset df by year as well
+
+	* clearsky.py: correct definition of hours
+
+	* clearsky.py: correct calculation of dates
+
+	* clearsky.py: Daylight between 12 and 16
+
+	* clearsky.py: Skip day if more than (2/3) values missing
+
+	* clearsky.py: Set negative values to zero in sw_down
+
+	* stations.txt: Replace '_' with '-' in PROMICE station names
+
+	* stations.txt: Remove ',' in station names
+
 2018-10-31  Ajay Saini  <sainiak@uci.edu>
 
 	* Add .idea/ to gitignore
