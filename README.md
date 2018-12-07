@@ -18,6 +18,8 @@
 ___
 ## News
 
+2018/12/07: Version 0.6.3 released: RIGB fsds_adjusted
+
 2018/10/31: Version 0.6 released: RIGB tilt correction
 
 2018/10/08: Version 0.5 released: SCAR stations convertible to netCDF by JAWS
@@ -58,7 +60,7 @@ ___
 ## Installation
 
 #### Requirements:
- * Python 2.7, 3.5, or 3.6 (as of version 0.3.4)
+ * Python 2.7, 3.6, or 3.7 (as of version 0.6.3)
 
 #### Installing pre-built binaries with conda (Linux, Mac OSX, and Windows)
 
@@ -168,11 +170,17 @@ A list of all options can be found in [docs/options.txt](docs/options.txt).
 
 To change the timezone, use the -t/--tz/--timezone argument. A list of all the timezones can be found [here](https://gist.github.com/heyalexej/8bf688fd67d7199be4a1682b3eec7568).
 
+#### RIGB
+
+Download sample data from [here](http://grele.ess.uci.edu/jaws/sample_data/gcnet_summit_20120817.txt)
+
 To run RIGB:
 
 ``` html
-$ jaws ~/Downloads/PROMICE_EGP_20160501.txt --rigb
+$ jaws ~/Downloads/gcnet_summit_20120817.txt --rigb
 ```
+
+RIGB uses [climlab](https://github.com/brian-rose/climlab) package to simulate clear-sky radiation.
 
 #### Value Added Information
 
@@ -248,7 +256,7 @@ Total number of station-years of data handled by JAWS: 1462
 ![Greenland](http://grele.ess.uci.edu/jaws/img/map_grl.png)
 
 ## Benchmark
-As of version 0.5, it takes about 3.5 minutes to process Summit(GCNet) data from 19960512 to 20170524
+As of version 0.6.3, it takes about 3.5 minutes to process Summit(GCNet) data from 19960512 to 20170524
 
 ## Credit
 
