@@ -8,7 +8,7 @@ import xarray as xr
 
 try:
     from jaws import common
-except ImportError:
+except:
     import common
 
 

@@ -5,7 +5,7 @@ import xarray as xr
 
 try:
     from jaws import common, sunposition
-except ImportError:
+except:
     import common, sunposition
 
 

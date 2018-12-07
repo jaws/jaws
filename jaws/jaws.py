@@ -7,12 +7,12 @@ import sys
 
 try:
     from jaws import gcnet2nc, promice2nc, aaws2nc, imau2nc, scar2nc, common, analysis
-except ImportError:
+except:
     import gcnet2nc, promice2nc, aaws2nc, imau2nc, scar2nc, common, analysis
 
 try:
     from jaws.common import jaws_version
-except ImportError:
+except:
     from common import jaws_version
 
 
