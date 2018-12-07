@@ -1,5 +1,9 @@
 2018-12-06  Ajay Saini  <sainiak@uci.edu>
 
+	* git tag -a 0.6.2 -m 'alpha02: ImportError'; git push --tags
+
+	* Remove ImportError
+
 	* git tag -a 0.6.1 -m 'alpha01: RIGB fsds_adjusted'; git push --tags
 
 	* Remove 'pyngl' and add 'requests' as project requirement
