@@ -2,14 +2,18 @@ from datetime import datetime
 from itertools import groupby
 from operator import itemgetter
 
-import Ngl
 import numpy as np
 import pandas as pd
-import scipy.interpolate
+from scipy.interpolate import interp1d, CubicSpline
+
+try:
+    from jaws import common
+except ImportError:
+    import common
 
 
 def interpolate(x, y):
-    dv = scipy.interpolate.interp1d(x, y, fill_value='extrapolate')
+    dv = interp1d(x, y, fill_value='extrapolate')
     alpha = 0.01
     dv_left, dv_right, tg_left, tg_right = ([None]*len(x) for _ in range(4))
     i = 0
@@ -23,12 +27,13 @@ def interpolate(x, y):
     return diff
 
 
-def clr_prd(dat_sza, tg_fsds, tg_sza, date, stn_name, outfile):
-    para_file = pd.read_csv('../resources/lst_para_rdn.txt')
+def clr_prd(dat_sza, tg_fsds, tg_sza, date, stn_name):
+    path = common.relative_path('resources/lst_para_rdn.txt')
+    para_file = pd.read_csv(path)
 
-    scale = para_file.loc[para_file['stn_name'] == stn_name, 'scale'].iloc[0]
-    offset = para_file.loc[para_file['stn_name'] == stn_name, 'offset'].iloc[0]
-    offset_range = para_file.loc[para_file['stn_name'] == stn_name, 'offset_range'].iloc[0]
+    scale = para_file.loc[para_file['network_name'] == stn_name, 'scale'].iloc[0]
+    offset = para_file.loc[para_file['network_name'] == stn_name, 'offset'].iloc[0]
+    offset_range = para_file.loc[para_file['network_name'] == stn_name, 'offset_range'].iloc[0]
 
     tg_sza_scale = [i*scale for i in tg_sza]
     tg_sza_up = [i-offset+offset_range for i in tg_sza_scale]
@@ -102,37 +107,45 @@ def write_to_file(cons_clr_hrs, daylight, date):
     return final_hrs, clr_lst
 
 
-def main(dataset):
+def main(dataset, args):
     global tg_fsds, dat_sza, dat_fill, hrs, year, clr_lst
 
     clr_lst = []
+    dtime_1970, tz = common.time_common(args.tz)
 
     ds = dataset.drop('time_bounds')
     df = ds.to_dataframe()
 
-    stn_name = df['station_name'][0]
- 
-    df.reset_index(level=['time'], inplace=True)
-    date_hour = df['time'].tolist()
+    date_hour = [datetime.fromtimestamp(i, tz) for i in df.index.values]
     dates = [i.date() for i in date_hour]
+    df['dates'] = dates
     dates = sorted(set(dates), key=dates.index)
 
+    df.reset_index(level=['time'], inplace=True)
+    stn_name = df['station_name'][0]
+    df[['fsds']] = df[['fsds']].replace(common.fillvalue_float, np.nan)
+
     for date in dates:
-        df_temp = df[(df.year == date.year) & (df.month == date.month) & (df.day == date.day)]
+        df_temp = df[df.dates == date]
 
-        dat = df_temp['sw_down'].tolist()
-        dat_rmvmsng = df_temp['sw_down'].dropna().tolist()
+        dat = df_temp['fsds'].tolist()
+        dat_nonmsng = df_temp['fsds'].dropna().tolist()
 
-        # Set negative values to zero in sw_down
-        dat = [i if i>=0 else 0 for i in dat]
-        dat_rmvmsng = [i if i>=0 else 0 for i in dat_rmvmsng]
+        # Set negative values to zero in fsds
+        dat = [i if i >= 0 else 0 for i in dat]
+        dat_nonmsng = [i if i >= 0 else 0 for i in dat_nonmsng]
 
-        if len(dat_rmvmsng) < 15:
+        if len(dat_nonmsng) < 15:
             continue
 
         hrs = list(range(len(dat)))
-        hrs_rmvmsng = list(range(len(dat_rmvmsng)))
-        dat_fill = Ngl.ftcurv(hrs_rmvmsng, dat_rmvmsng, hrs)
+        hrs_30min = [i+0.5 for i in hrs]
+
+        hours_nonmsng = np.where(df_temp['fsds'].notnull())
+        hours_nonmsng = [a for b in hours_nonmsng for a in b]  # Convert to list
+        hours_nonmsng = [i+0.5 for i in hours_nonmsng]  # Half-hour values
+
+        dat_fill = CubicSpline(hours_nonmsng, dat_nonmsng, extrapolate=True)(hrs_30min)
         dat_sza = [np.cos(np.radians(i)) for i in df_temp['sza'].tolist()]
 
         tg_fsds = interpolate(hrs,dat_fill)

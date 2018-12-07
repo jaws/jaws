@@ -109,6 +109,7 @@ def load_dataframe(name, input_file, header_rows, **kwargs):
 
 
 def load_dataset_attributes(name, ds, args, **kwargs):
+    global derived_vars, no_drv_tm_vars, rigb_vars
     path = 'resources/{}/ds.json'.format(name)
     attr_dict = read_ordered_json(path)
 
@@ -127,7 +128,7 @@ def load_dataset_attributes(name, ds, args, **kwargs):
     ds.attrs['JAWS'] = 'Justified Automated Weather Station software version {} (Homepage = https://github.com/' \
                        'jaws/jaws)'.format(jaws_version)
 
-    derived_vars = ['time', 'time_bounds', 'sza', 'station_name', 'latitude', 'longitude', 'surface_temp',
+    derived_vars = ['time', 'time_bounds', 'sza', 'az','station_name', 'latitude', 'longitude', 'surface_temp',
                     'ice_velocity_GPS_total', 'ice_velocity_GPS_x', 'ice_velocity_GPS_y', 'height']
 
     no_drv_tm_vars = []
@@ -135,9 +136,14 @@ def load_dataset_attributes(name, ds, args, **kwargs):
     if not args.no_drv_tm:
         no_drv_tm_vars = ['hour', 'month', 'day', 'day_of_year']
 
+    if args.rigb:
+        rigb_vars = ['tilt_direction', 'tilt_angle', 'fsds_adjusted', 'cloud_fraction']
+    else:
+        rigb_vars=[]
+
     for key, value in attr_dict.items():
         for key1, value1 in value.items():
-            if (key1 in columns) or (key1 in derived_vars) or (key1 in no_drv_tm_vars):
+            if (key1 in columns) or (key1 in derived_vars) or (key1 in no_drv_tm_vars) or (key1 in rigb_vars):
                 for key2, value2 in value1.items():
                     if key2 == 'type':
                         pass
@@ -164,7 +170,7 @@ def load_dataset_attributes_gcnet_qltyctrl(name, ds):
                         pass
 
 
-def get_encoding(name, fillvalue, comp_level):
+def get_encoding(name, fillvalue, comp_level, args):
     path = relative_path('resources/{}/encoding.json'.format(name))
     with open(path) as stream:
         data = json.load(stream)
@@ -179,8 +185,15 @@ def get_encoding(name, fillvalue, comp_level):
                 recursive_fill(v)
 
     recursive_fill(data)
+    masterlist = [columns, derived_vars]
+    if not args.no_drv_tm:
+        masterlist.append(no_drv_tm_vars)
+    if args.rigb:
+        masterlist.append(rigb_vars)
+
     # Get encoding for only those variables present in input file
-    data = {k: data[k] for k in columns}
+    masterlist = [item for sublist in masterlist for item in sublist]
+    data = {k: data[k] for k in masterlist if k in data.keys()}
     return data
 
 

@@ -6,9 +6,9 @@ import pandas as pd
 import xarray as xr
 
 try:
-    from jaws import common, sunposition, clearsky, tilt_angle
+    from jaws import common, sunposition, clearsky, tilt_angle, fsds_adjust
 except ImportError:
-    import common, sunposition, clearsky, tilt_angle
+    import common, sunposition, clearsky, tilt_angle, fsds_adjust
 
 
 def init_dataframe(args, input_file, sub_type):
@@ -50,7 +50,7 @@ def get_time_and_sza(args, dataframe, longitude, latitude):
     seconds_in_hour = common.seconds_in_hour
     num_rows = dataframe['year'].size
 
-    month, day, minutes, time, time_bounds, sza = ([0] * num_rows for _ in range(6))
+    month, day, minutes, time, time_bounds, sza, az = ([0] * num_rows for _ in range(7))
 
     hour = dataframe['day_of_year']
     hour = [round(i - int(i), 3) * hour_conversion for i in hour]
@@ -78,9 +78,11 @@ def get_time_and_sza(args, dataframe, longitude, latitude):
         time[idx] = time[idx] - common.seconds_in_half_hour
         temp_dtime = datetime.utcfromtimestamp(time[idx])
 
-        sza[idx] = sunposition.sunpos(temp_dtime, latitude, longitude, 0)[1]
+        solar_angles = sunposition.sunpos(temp_dtime, latitude, longitude, 0)
+        az[idx] = solar_angles[0]
+        sza[idx] = solar_angles[1]
 
-    return month, day, hour, minutes, time, time_bounds, sza
+    return month, day, hour, minutes, time, time_bounds, sza, az
 
 
 def derive_times(dataframe, month, day):
@@ -97,7 +99,7 @@ def grl_time(args, dataframe, longitude, latitude):
     # dtime_1970, tz = common.time_common(args.tz)
     num_rows = dataframe['year'].size
 
-    month, day, time, time_bounds, sza = ([0] * num_rows for _ in range(5))
+    month, day, time, time_bounds, sza, az = ([0] * num_rows for _ in range(6))
 
     hour = (dataframe['hour_mult_100']/100).astype(int)
     minutes = (((dataframe['hour_mult_100']/100) % 1) * 100).astype(int)
@@ -118,9 +120,11 @@ def grl_time(args, dataframe, longitude, latitude):
     day = pd.DatetimeIndex(dataframe['dtime']).day.values
 
     for idx in range(num_rows):
-        sza[idx] = sunposition.sunpos(dataframe['dtime'][idx], latitude, longitude, 0)[1]
+        solar_angles = sunposition.sunpos(dataframe['dtime'][idx], latitude, longitude, 0)
+        az[idx] = solar_angles[0]
+        sza[idx] = solar_angles[1]
 
-    return month, day, hour, minutes, time, time_bounds, sza
+    return month, day, hour, minutes, time, time_bounds, sza, az
 
 
 def imau2nc(args, input_file, output_file, stations):
@@ -145,12 +149,12 @@ def imau2nc(args, input_file, output_file, stations):
     latitude, longitude, station_name = get_station(args, input_file, stations)
 
     if sub_type == 'imau/grl':
-        month, day, hour, minutes, time, time_bounds, sza = grl_time(
+        month, day, hour, minutes, time, time_bounds, sza, az = grl_time(
             args, df, longitude, latitude)
 
     elif sub_type == 'imau/ant':
         common.log(args, 3, 'Calculating time and sza')
-        month, day, hour, minutes, time, time_bounds, sza = get_time_and_sza(
+        month, day, hour, minutes, time, time_bounds, sza, az = get_time_and_sza(
             args, df, longitude, latitude)
 
         common.log(args, 5, 'Calculating month and day')
@@ -163,18 +167,25 @@ def imau2nc(args, input_file, output_file, stations):
     ds['time'] = 'time', time
     ds['time_bounds'] = ('time', 'nbnd'), time_bounds
     ds['sza'] = 'time', sza
+    ds['az'] = 'time', az
     ds['station_name'] = tuple(), station_name
     ds['latitude'] = tuple(), latitude
     ds['longitude'] = tuple(), longitude
 
     if args.rigb:
-        clr_df = clearsky.main(ds)
+        common.log(args, 6, 'Detecting clear days')
+        clr_df = clearsky.main(ds, args)
+
         if not clr_df.empty:
-            ds = tilt_angle.main(ds, latitude, longitude, clr_df)
+            common.log(args, 7, 'Calculating tilt angle and direction')
+            ds = tilt_angle.main(ds, latitude, longitude, clr_df, args)
+
+            common.log(args, 8, 'Calculating corrected_fsds')
+            ds = fsds_adjust.main(ds, args)
 
     comp_level = args.dfl_lvl
 
     common.load_dataset_attributes(sub_type, ds, args)
-    encoding = common.get_encoding(sub_type, common.get_fillvalue(args), comp_level)
+    encoding = common.get_encoding(sub_type, common.get_fillvalue(args), comp_level, args)
 
     common.write_data(args, ds, output_file, encoding)

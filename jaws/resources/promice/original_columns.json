@@ -12,7 +12,7 @@
 	"RelativeHumidity(%)": "relative_humidity",
 	"WindSpeed(m/s)": "wind_speed",
 	"WindDirection(d)": "wind_direction",
-	"ShortwaveRadiationDown(W/m2)": "shortwave_radiation_down",
+	"ShortwaveRadiationDown(W/m2)": "fsds",
 	"ShortwaveRadiationDown_Cor(W/m2)": "shortwave_radiation_down_cor",
 	"ShortwaveRadiationUp(W/m2)": "shortwave_radiation_up",
 	"ShortwaveRadiationUp_Cor(W/m2)": "shortwave_radiation_up_cor",

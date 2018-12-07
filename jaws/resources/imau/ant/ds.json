@@ -65,7 +65,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "sw_in": {
+    "fsds": {
       "type": "float",
       "attributes": {
         "long_name": "Calibrated Shortwave Incoming Radiation ",
@@ -360,6 +360,16 @@
         "coordinates": "longitude latitude"
       }
     },
+    "az": {
+      "type": "double",
+      "attributes": {
+        "long_name": "Solar Azimuth Angle",
+        "standard_name": "solar_azimuth_angle",
+        "units": "degree",
+        "cell_methods": "time: mean",
+        "coordinates": "longitude latitude"
+      }
+    },
     "station_name": {
       "type": "string",
       "attributes": {
@@ -402,6 +412,42 @@
       "attributes": {
         "long_name": "Month of year",
         "units": "1"
+      }
+    },
+    "tilt_direction": {
+      "type": "float",
+      "attributes": {
+        "long_name": "Tilt Direction",
+        "units": "degree",
+        "cell_methods": "time: mean",
+        "coordinates": "longitude latitude"
+      }
+    },
+    "tilt_angle": {
+      "type": "float",
+      "attributes": {
+        "long_name": "Tilt Angle",
+        "units": "degree",
+        "cell_methods": "time: mean",
+        "coordinates": "longitude latitude"
+      }
+    },
+    "fsds_adjusted": {
+      "type": "float",
+      "attributes": {
+        "long_name": "Adjusted Shortwave Flux Down",
+        "units": "watt meter-2",
+        "cell_methods": "time: mean",
+        "coordinates": "longitude latitude"
+      }
+    },
+    "cloud_fraction": {
+      "type": "float",
+      "attributes": {
+        "long_name": "Cloud fraction",
+        "units": "1",
+        "cell_methods": "time: mean",
+        "coordinates": "longitude latitude"
       }
     }
   }

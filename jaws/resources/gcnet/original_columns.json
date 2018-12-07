@@ -2,7 +2,7 @@
 	"Station Number": "station_number",
 	"Year": "year",
 	"Julian Decimal Time": "julian_decimal_time",
-	"SW_down": "sw_down",
+	"SW_down": "fsds",
 	"SW_up": "sw_up",
 	"Net Radiation": "net_radiation",
 	"TC Air 1": "temperature_tc_1",

@@ -77,7 +77,7 @@
     "zlib": true,
     "complevel": "COMP"
   },
-  "shortwave_radiation_down": {
+  "fsds": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
@@ -296,6 +296,11 @@
     "zlib": true,
     "complevel": "COMP"
   },
+  "az": {
+    "_FillValue": false,
+    "zlib": true,
+    "complevel": "COMP"
+  },
   "latitude": {
     "_FillValue": false,
     "zlib": true,
@@ -308,5 +313,29 @@
   },
   "station_name": {
     "dtype": "unicode"
+  },
+  "tilt_direction": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "tilt_angle": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "fsds_adjusted": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "cloud_fraction": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   }
 }

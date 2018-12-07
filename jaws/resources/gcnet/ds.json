@@ -34,7 +34,7 @@
         "note": "For each year, time starts at 1.0000 and ends at 365.9999."
       }
     },
-    "sw_down": {
+    "fsds": {
       "type": "float",
       "attributes": {
         "long_name": "Shortwave Flux Down",
@@ -589,6 +589,16 @@
         "coordinates": "longitude latitude"
       }
     },
+    "az": {
+      "type": "double",
+      "attributes": {
+        "long_name": "Solar Azimuth Angle",
+        "standard_name": "solar_azimuth_angle",
+        "units": "degree",
+        "cell_methods": "time: mean",
+        "coordinates": "longitude latitude"
+      }
+    },
     "station_name": {
       "type": "string",
       "attributes": {
@@ -639,6 +649,42 @@
         "long_name": "Extrapolated Surface Temperature",
         "standard_name": "surface_temperature",
         "units": "kelvin"
+      }
+    },
+    "tilt_direction": {
+      "type": "float",
+      "attributes": {
+        "long_name": "Tilt Direction",
+        "units": "degree",
+        "cell_methods": "time: mean",
+        "coordinates": "longitude latitude"
+      }
+    },
+    "tilt_angle": {
+      "type": "float",
+      "attributes": {
+        "long_name": "Tilt Angle",
+        "units": "degree",
+        "cell_methods": "time: mean",
+        "coordinates": "longitude latitude"
+      }
+    },
+    "fsds_adjusted": {
+      "type": "float",
+      "attributes": {
+        "long_name": "Adjusted Shortwave Flux Down",
+        "units": "watt meter-2",
+        "cell_methods": "time: mean",
+        "coordinates": "longitude latitude"
+      }
+    },
+    "cloud_fraction": {
+      "type": "float",
+      "attributes": {
+        "long_name": "Cloud fraction",
+        "units": "1",
+        "cell_methods": "time: mean",
+        "coordinates": "longitude latitude"
       }
     }
   }

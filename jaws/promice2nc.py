@@ -8,9 +8,9 @@ import pandas as pd
 import xarray as xr
 
 try:
-    from jaws import common, sunposition, clearsky, tilt_angle
+    from jaws import common, sunposition, clearsky, tilt_angle, fsds_adjust
 except ImportError:
-    import common, sunposition, clearsky, tilt_angle
+    import common, sunposition, clearsky, tilt_angle, fsds_adjust
 
 warnings.filterwarnings("ignore")
 
@@ -59,7 +59,7 @@ def get_time_and_sza(args, dataframe, longitude, latitude):
     dtime_1970, tz = common.time_common(args.tz)
 
     num_rows = dataframe['year'].size
-    time, time_bounds, sza = ([0] * num_rows for _ in range(3))
+    time, time_bounds, sza, az = ([0] * num_rows for _ in range(4))
 
     for idx in range(num_rows):
         keys = ('year', 'month', 'day', 'hour')
@@ -72,9 +72,11 @@ def get_time_and_sza(args, dataframe, longitude, latitude):
         time[idx] = time[idx] + common.seconds_in_half_hour
         dtime = datetime.utcfromtimestamp(time[idx])
 
-        sza[idx] = sunposition.sunpos(dtime, latitude, longitude, 0)[1]
+        solar_angles = sunposition.sunpos(dtime, latitude, longitude, 0)
+        az[idx] = solar_angles[0]
+        sza[idx] = solar_angles[1]
 
-    return time, time_bounds, sza
+    return time, time_bounds, sza, az
 
 
 def get_ice_velocity(args, dataframe, delta_x, delta_y):
@@ -150,7 +152,7 @@ def promice2nc(args, input_file, output_file, stations):
     latitude, longitude, station_name = get_station(args, input_file, stations)
 
     common.log(args, 3, 'Calculating time and sza')
-    time, time_bounds, sza = get_time_and_sza(args, df, longitude, latitude)
+    time, time_bounds, sza, az = get_time_and_sza(args, df, longitude, latitude)
 
     common.log(args, 4, 'Converting lat_GPS and lon_GPS')
     convert_coordinates(args, df)
@@ -161,18 +163,25 @@ def promice2nc(args, input_file, output_file, stations):
     ds['time'] = 'time', time
     ds['time_bounds'] = ('time', 'nbnd'), time_bounds
     ds['sza'] = 'time', sza
+    ds['az'] = 'time', az
     ds['station_name'] = tuple(), station_name
     ds['latitude'] = tuple(), latitude
     ds['longitude'] = tuple(), longitude
 
     if args.rigb:
-        clr_df = clearsky.main(ds)
+        common.log(args, 6, 'Detecting clear days')
+        clr_df = clearsky.main(ds, args)
+
         if not clr_df.empty:
-            ds = tilt_angle.main(ds, latitude, longitude, clr_df)
+            common.log(args, 7, 'Calculating tilt angle and direction')
+            ds = tilt_angle.main(ds, latitude, longitude, clr_df, args)
+
+            common.log(args, 8, 'Calculating corrected_fsds')
+            ds = fsds_adjust.main(ds, args)
 
     comp_level = args.dfl_lvl
 
     common.load_dataset_attributes('promice', ds, args)
-    encoding = common.get_encoding('promice', common.get_fillvalue(args), comp_level)
+    encoding = common.get_encoding('promice', common.get_fillvalue(args), comp_level, args)
 
     common.write_data(args, ds, output_file, encoding)

@@ -99,6 +99,6 @@ def scar2nc(args, input_file, output_file):
     comp_level = args.dfl_lvl
 
     common.load_dataset_attributes('scar', ds, args, country = country, institution = institution)
-    encoding = common.get_encoding('scar', common.get_fillvalue(args), comp_level)
+    encoding = common.get_encoding('scar', common.get_fillvalue(args), comp_level, args)
 
     common.write_data(args, ds, output_file, encoding)

@@ -15,7 +15,7 @@
     "zlib": true,
     "complevel": "COMP"
   },
-  "sw_down": {
+  "fsds": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
@@ -455,6 +455,11 @@
     "zlib": true,
     "complevel": "COMP"
   },
+  "az": {
+    "_FillValue": false,
+    "zlib": true,
+    "complevel": "COMP"
+  },
   "latitude": {
     "_FillValue": false,
     "zlib": true,
@@ -469,6 +474,30 @@
     "dtype": "unicode"
   },
   "surface_temp": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "tilt_direction": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "tilt_angle": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "fsds_adjusted": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "cloud_fraction": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
