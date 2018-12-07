@@ -23,11 +23,9 @@ install:
   - conda update -q conda
   # Useful for debugging any issues with conda
   - conda info -a
-  # Add conda-forge channel
-  - conda config --add channels conda-forge
 
   # Replace dep1 dep2 ... with your dependencies
-  - conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION pandas numpy xarray pytz netCDF4 conda-build scipy pyngl
+  - conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION pandas numpy xarray pytz netCDF4 conda-build scipy requests
   - source activate test-environment
   #- conda build conda.recipe
   #- conda install -n test-environment --use-local jaws

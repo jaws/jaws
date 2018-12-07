@@ -44,7 +44,7 @@ setup(
         "Topic :: Software Development :: Libraries :: Python Modules",
         "Operating System :: OS Independent"],
 
-    install_requires=['pandas', 'numpy >= 1.11', 'xarray', 'pytz', 'matplotlib', 'netcdf4', 'scipy', 'pyngl'],
+    install_requires=['pandas', 'numpy >= 1.11', 'xarray', 'pytz', 'matplotlib', 'netcdf4', 'scipy', 'requests'],
 
     entry_points = {
         'console_scripts': ['jaws=jaws.jaws:start'],
