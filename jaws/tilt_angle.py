@@ -5,17 +5,15 @@ import numpy as np
 import pandas as pd
 from scipy.interpolate import CubicSpline
 
-import sunposition
-
 try:
     from itertools import izip as zip
 except ImportError:  # Python 3.x
     pass
 
 try:
-    from jaws import common
+    from jaws import common, sunposition
 except ImportError:
-    import common
+    import common, sunposition
 
 
 def deg_to_rad(list_deg):
