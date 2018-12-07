@@ -110,6 +110,9 @@ def main(dataset, args):
     dataset['fsds_adjusted'] = 'time', fsds_adjusted_values
     dataset['cloud_fraction'] = 'time', cloud_fraction_values
 
-    os.remove(stn_name + sfx)
+    try:
+        os.remove(stn_name + sfx)
+    except:  # Windows
+        pass
 
     return dataset
