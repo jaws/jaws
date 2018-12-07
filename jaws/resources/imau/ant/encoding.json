@@ -200,6 +200,11 @@
     "zlib": true,
     "complevel": "COMP"
   },
+  "az": {
+    "_FillValue": false,
+    "zlib": true,
+    "complevel": "COMP"
+  },
   "latitude": {
     "_FillValue": false,
     "zlib": true,

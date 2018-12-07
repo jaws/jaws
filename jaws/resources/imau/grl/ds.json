@@ -404,6 +404,16 @@
         "coordinates": "longitude latitude"
       }
     },
+    "az": {
+      "type": "double",
+      "attributes": {
+        "long_name": "Solar Azimuth Angle",
+        "standard_name": "solar_azimuth_angle",
+        "units": "degree",
+        "cell_methods": "time: mean",
+        "coordinates": "longitude latitude"
+      }
+    },
     "station_name": {
       "type": "string",
       "attributes": {
