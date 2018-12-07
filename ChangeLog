@@ -1,5 +1,13 @@
 2018-12-06  Ajay Saini  <sainiak@uci.edu>
 
+	* git tag -a 0.6.3 -m 'alpha03: sunposition.py correct import'; git push --tags
+
+	* tilt_angle.py: Correct import of sunposition
+	
+	* Undo remove ImportError
+
+2018-12-06  Ajay Saini  <sainiak@uci.edu>
+
 	* git tag -a 0.6.2 -m 'alpha02: ImportError'; git push --tags
 
 	* Remove ImportError
