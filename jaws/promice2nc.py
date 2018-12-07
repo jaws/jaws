@@ -182,6 +182,6 @@ def promice2nc(args, input_file, output_file, stations):
     comp_level = args.dfl_lvl
 
     common.load_dataset_attributes('promice', ds, args)
-    encoding = common.get_encoding('promice', common.get_fillvalue(args), comp_level)
+    encoding = common.get_encoding('promice', common.get_fillvalue(args), comp_level, args)
 
     common.write_data(args, ds, output_file, encoding)
