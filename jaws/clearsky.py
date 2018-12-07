@@ -8,7 +8,7 @@ from scipy.interpolate import interp1d, CubicSpline
 
 try:
     from jaws import common
-except:
+except ImportError:
     import common
 
 

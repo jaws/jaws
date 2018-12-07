@@ -7,7 +7,7 @@ import xarray as xr
 
 try:
     from jaws import common, sunposition, clearsky, tilt_angle, fsds_adjust
-except:
+except ImportError:
     import common, sunposition, clearsky, tilt_angle, fsds_adjust
 
 

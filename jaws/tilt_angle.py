@@ -9,12 +9,12 @@ import sunposition
 
 try:
     from itertools import izip as zip
-except:  # Python 3.x
+except ImportError:  # Python 3.x
     pass
 
 try:
     from jaws import common
-except:
+except ImportError:
     import common
 
 
