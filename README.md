@@ -18,7 +18,7 @@
 ___
 ## News
 
-2018/12/07: Version 0.6.3 released: RIGB fsds_adjusted
+2018/12/07: Version 0.6.3 released: RIGB adjusted fluxes archived
 
 2018/10/31: Version 0.6 released: RIGB tilt correction
 
@@ -170,7 +170,7 @@ A list of all options can be found in [docs/options.txt](docs/options.txt).
 
 To change the timezone, use the -t/--tz/--timezone argument. A list of all the timezones can be found [here](https://gist.github.com/heyalexej/8bf688fd67d7199be4a1682b3eec7568).
 
-#### RIGB
+#### __RIGB__
 
 Download sample data from [here](http://grele.ess.uci.edu/jaws/sample_data/gcnet_summit_20120817.txt)
 
