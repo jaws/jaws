@@ -77,8 +77,8 @@ def main(dataset, args):
 
         az = deg_to_rad(az)
         alpha = deg_to_rad(alpha)
-        # beta = deg_to_rad(beta)
-        # aw = deg_to_rad(aw)
+        beta = deg_to_rad(beta)
+        aw = deg_to_rad(aw)
 
         count = 0
         try:

@@ -22,6 +22,12 @@ def deg_to_rad(list_deg):
     return list_rad
 
 
+def rad_to_deg(list_rad):
+    list_deg = [np.degrees(i) for i in list_rad]
+
+    return list_deg
+
+
 def main(dataset, latitude, longitude, clr_df, args):
     ddr = 0.25
     rho = 0.8
@@ -209,6 +215,12 @@ def main(dataset, latitude, longitude, clr_df, args):
     tilt_df = tilt_df.interpolate()
     tilt_direction_values = tilt_df['tilt_direction'].tolist()
     tilt_angle_values = tilt_df['tilt_angle'].tolist()
+
+    tilt_direction_values = rad_to_deg(tilt_direction_values)
+    tilt_direction_values = [270-d for d in tilt_direction_values]
+    tilt_direction_values = [d-360 if d > 360 else d for d in tilt_direction_values]
+
+    tilt_angle_values = rad_to_deg(tilt_angle_values)
 
     dataset['tilt_direction'] = 'time', tilt_direction_values
     dataset['tilt_angle'] = 'time', tilt_angle_values
