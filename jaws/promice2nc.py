@@ -168,6 +168,7 @@ def promice2nc(args, input_file, output_file, stations):
     ds['latitude'] = tuple(), latitude
     ds['longitude'] = tuple(), longitude
 
+    rigb_vars = []
     if args.rigb:
         common.log(args, 6, 'Detecting clear days')
         clr_df = clearsky.main(ds, args)
