@@ -180,9 +180,11 @@ def promice2nc(args, input_file, output_file, stations):
             common.log(args, 8, 'Calculating corrected_fsds')
             ds = fsds_adjust.main(ds, args)
 
+            rigb_vars = ['tilt_direction', 'tilt_angle', 'fsds_adjusted', 'cloud_fraction']
+
     comp_level = args.dfl_lvl
 
-    common.load_dataset_attributes('promice', ds, args)
+    common.load_dataset_attributes('promice', ds, args, rigb_vars=rigb_vars)
     encoding = common.get_encoding('promice', common.get_fillvalue(args), comp_level, args)
 
     common.write_data(args, ds, output_file, encoding)

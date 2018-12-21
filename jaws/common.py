@@ -114,7 +114,8 @@ def load_dataset_attributes(name, ds, args, **kwargs):
     attr_dict = read_ordered_json(path)
 
     ds.attrs = attr_dict.pop('attributes')
-    rigb_vars = kwargs.pop('rigb_vars')
+    if name == 'imau/ant' or 'imau/grl' or 'gcnet' or 'promice':
+        rigb_vars = kwargs.pop('rigb_vars')
 
     if name == 'scar':
         country = kwargs.pop('country')
