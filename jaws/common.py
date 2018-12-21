@@ -114,8 +114,6 @@ def load_dataset_attributes(name, ds, args, **kwargs):
     attr_dict = read_ordered_json(path)
 
     ds.attrs = attr_dict.pop('attributes')
-    if name == 'imau/ant' or 'imau/grl' or 'gcnet' or 'promice':
-        rigb_vars = kwargs.pop('rigb_vars')
 
     if name == 'scar':
         country = kwargs.pop('country')
@@ -137,6 +135,11 @@ def load_dataset_attributes(name, ds, args, **kwargs):
 
     if not args.no_drv_tm:
         no_drv_tm_vars = ['hour', 'month', 'day', 'day_of_year']
+
+    rigb_vars = []
+
+    if name in ['imau/ant', 'imau/grl', 'gcnet', 'promice']:
+        rigb_vars = kwargs.pop('rigb_vars')
 
     for key, value in attr_dict.items():
         for key1, value1 in value.items():
