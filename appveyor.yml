@@ -31,6 +31,7 @@ install:
     # We need to pin conda until https://github.com/conda/conda/issues/6556 is fixed.
     - cmd: conda config --system --add pinned_packages defaults::conda
     - cmd: conda config --add channels conda-forge --force
+    - cmd: conda config --add channels anaconda --force
 
     # Install conda-build.
     - cmd: conda install conda-build
