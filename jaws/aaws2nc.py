@@ -15,7 +15,7 @@ def init_dataframe(args, input_file):
         stream.readline()
         stream.readline()
         for line in stream:
-            input_file_vars =[x.strip() for x in line[11:].split(',')]
+            input_file_vars = [x.strip() for x in line[11:].split(',')]
             break
 
     global header_rows
@@ -54,7 +54,7 @@ def get_time_and_sza(args, input_file, latitude, longitude, dataframe):
     with open(input_file) as stream:
         lines = stream.readlines()[header_rows:]
 
-    time, bounds, sza = [], [], []
+    time, time_bounds, sza = [], [], []
     for line in lines:
         dtime = line.strip().split(",")[0]
         dtime = datetime.strptime(dtime, '%Y-%m-%dT%H:%M:%SZ')
@@ -72,13 +72,13 @@ def get_time_and_sza(args, input_file, latitude, longitude, dataframe):
             idx += 1
 
         seconds = (dtime - dtime_1970).total_seconds()
-        bounds.append((seconds - common.seconds_in_hour, seconds))
+        time_bounds.append((seconds - common.seconds_in_hour, seconds))
 
         time.append(seconds-common.seconds_in_half_hour)
         dtime = datetime.utcfromtimestamp(seconds - common.seconds_in_half_hour)
         sza.append(sunposition.sunpos(dtime, latitude, longitude, 0)[1])
 
-    return time, bounds, sza, year, month, day, hour, day_of_year
+    return time, time_bounds, sza, year, month, day, hour, day_of_year
 
 
 def aaws2nc(args, input_file, output_file, stations):
