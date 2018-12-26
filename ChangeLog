@@ -1,3 +1,29 @@
+2018-12-26  Ajay Saini  <sainiak@uci.edu>
+
+	* git tag -a 0.6.4 -m 'alpha04: tilt angle and direction in degrees'; git push --tags
+
+2018-12-24  Ajay Saini  <sainiak@uci.edu>
+
+	* Appveyor: Add 'anaconda' to channel list
+
+2018-12-20  Ajay Saini  <sainiak@uci.edu>
+
+	* Avoid rigb_vars attributes if no clear day in input file
+
+2018-12-13  Ajay Saini  <sainiak@uci.edu>
+
+	* imau2nc: Combined function for ant and grl to calculate time
+
+	* aaws2nc: Rename 'bounds' as 'time_bounds'
+
+2018-12-12  Ajay Saini  <sainiak@uci.edu>
+
+	* Convert tilt angle and direction from radians to degrees
+
+2018-12-07  Ajay Saini  <sainiak@uci.edu>
+
+	* Update RIGB instructions on homepage
+
 2018-12-06  Ajay Saini  <sainiak@uci.edu>
 
 	* git tag -a 0.6.3 -m 'alpha03: sunposition.py correct import'; git push --tags
