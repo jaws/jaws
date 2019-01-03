@@ -180,7 +180,7 @@ def promice2nc(args, input_file, output_file, stations):
             common.log(args, 8, 'Calculating corrected_fsds')
             ds = fsds_adjust.main(ds, args)
 
-            rigb_vars = ['tilt_direction', 'tilt_angle', 'fsds_adjusted', 'cloud_fraction']
+            rigb_vars = ['tilt_direction', 'tilt_angle', 'fsds_adjusted', 'fsus_adjusted', 'cloud_fraction']
 
     comp_level = args.dfl_lvl
 

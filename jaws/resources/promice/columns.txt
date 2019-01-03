@@ -13,7 +13,7 @@ wind_speed
 wind_direction
 fsds
 shortwave_radiation_down_cor
-shortwave_radiation_up
+fsus
 shortwave_radiation_up_cor
 albedo_theta
 longwave_radiation_down

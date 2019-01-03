@@ -109,7 +109,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "sw_out": {
+    "fsus": {
       "type": "float",
       "attributes": {
         "long_name": "Calibrated Shortwave Outgoing Radiation",
@@ -480,6 +480,15 @@
       "type": "float",
       "attributes": {
         "long_name": "Adjusted Shortwave Flux Down",
+        "units": "watt meter-2",
+        "cell_methods": "time: mean",
+        "coordinates": "longitude latitude"
+      }
+    },
+    "fsus_adjusted": {
+      "type": "float",
+      "attributes": {
+        "long_name": "Adjusted Shortwave Flux Up",
         "units": "watt meter-2",
         "cell_methods": "time: mean",
         "coordinates": "longitude latitude"

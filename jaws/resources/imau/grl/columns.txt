@@ -8,7 +8,7 @@ wind_spd6_max
 wind_dir2
 wind_dir6
 fsds
-sw_out
+fsus
 lw_in
 lw_out
 temp_cnr1

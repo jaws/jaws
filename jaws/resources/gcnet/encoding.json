@@ -21,7 +21,7 @@
     "zlib": true,
     "complevel": "COMP"
   },
-  "sw_up": {
+  "fsus": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
@@ -492,6 +492,12 @@
     "complevel": "COMP"
   },
   "fsds_adjusted": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "fsus_adjusted": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
