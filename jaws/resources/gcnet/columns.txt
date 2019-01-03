@@ -2,7 +2,7 @@ station_number
 year
 julian_decimal_time
 fsds
-sw_up
+fsus
 net_radiation
 temperature_tc_1
 temperature_tc_2

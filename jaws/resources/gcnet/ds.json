@@ -45,7 +45,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "sw_up": {
+    "fsus": {
       "type": "float",
       "attributes": {
         "long_name": "Shortwave Flux Up",

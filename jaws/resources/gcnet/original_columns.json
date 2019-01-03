@@ -3,7 +3,7 @@
 	"Year": "year",
 	"Julian Decimal Time": "julian_decimal_time",
 	"SW_down": "fsds",
-	"SW_up": "sw_up",
+	"SW_up": "fsus",
 	"Net Radiation": "net_radiation",
 	"TC Air 1": "temperature_tc_1",
 	"TC Air 2": "temperature_tc_2",
