@@ -441,6 +441,15 @@
         "coordinates": "longitude latitude"
       }
     },
+    "fsus_adjusted": {
+      "type": "float",
+      "attributes": {
+        "long_name": "Adjusted Shortwave Flux Up",
+        "units": "watt meter-2",
+        "cell_methods": "time: mean",
+        "coordinates": "longitude latitude"
+      }
+    },
     "cloud_fraction": {
       "type": "float",
       "attributes": {
