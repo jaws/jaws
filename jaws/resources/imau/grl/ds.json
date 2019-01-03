@@ -109,7 +109,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "sw_out": {
+    "fsus": {
       "type": "float",
       "attributes": {
         "long_name": "Calibrated Shortwave Outgoing Radiation",
