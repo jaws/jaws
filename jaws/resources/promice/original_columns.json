@@ -14,7 +14,7 @@
 	"WindDirection(d)": "wind_direction",
 	"ShortwaveRadiationDown(W/m2)": "fsds",
 	"ShortwaveRadiationDown_Cor(W/m2)": "shortwave_radiation_down_cor",
-	"ShortwaveRadiationUp(W/m2)": "shortwave_radiation_up",
+	"ShortwaveRadiationUp(W/m2)": "fsus",
 	"ShortwaveRadiationUp_Cor(W/m2)": "shortwave_radiation_up_cor",
 	"Albedo_theta<70d": "albedo_theta",
 	"LongwaveRadiationDown(W/m2)": "longwave_radiation_down",

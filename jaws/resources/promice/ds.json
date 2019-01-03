@@ -161,7 +161,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "shortwave_radiation_up": {
+    "fsus": {
       "type": "float",
       "attributes": {
         "long_name": "Shortwave Radiation Up",

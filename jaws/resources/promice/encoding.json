@@ -89,7 +89,7 @@
     "zlib": true,
     "complevel": "COMP"
   },
-  "shortwave_radiation_up": {
+  "fsus": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
