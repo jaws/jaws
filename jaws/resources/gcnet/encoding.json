@@ -497,6 +497,12 @@
     "zlib": true,
     "complevel": "COMP"
   },
+  "fsus_adjusted": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
   "cloud_fraction": {
     "_FillValue": "FILL",
     "dtype": "f4",
