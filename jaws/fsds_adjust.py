@@ -18,6 +18,86 @@ def deg_to_rad(list_deg):
     return list_rad
 
 
+def post_process(df, dates, stn_name, sfx):
+    df['fsds_adjusted_new'] = ''
+    df['fsus_adjusted'] = ''
+    thrsh = 0.1
+
+    for date in dates:
+        year = date.year
+        month = date.month
+        day = date.day
+
+        ceres_df = xr.open_dataset(stn_name + sfx).to_dataframe()
+        toa = ceres_df.loc[
+             str(year)+'-'+str(month)+'-'+str(day):str(year)+'-'+str(month)+'-'+str(day)
+             ]['adj_atmos_sw_down_all_toa_1h'].values.tolist()
+
+        df_sub = df[df.dates == date]
+
+        fsds_jaws = df_sub['fsds_adjusted'].tolist()
+        fsds_jaws = [common.fillvalue_float if np.isnan(i) else i for i in fsds_jaws]
+
+        fsus_jaws = df_sub['fsus'].tolist()
+        fsus_jaws = [common.fillvalue_float if np.isnan(i) else i for i in fsus_jaws]
+
+        sza = df_sub['sza'].tolist()
+
+        fsds_alb = fsds_jaws
+
+        idx_alb = 0
+        while idx_alb < len(fsds_jaws):
+            if (fsds_jaws[idx_alb] <= 0) or (fsus_jaws[idx_alb] < 0):
+                fsds_alb[idx_alb] = common.fillvalue_float
+
+            idx_alb += 1
+
+        albedo = [x/y for x, y in zip(fsus_jaws, fsds_alb)]
+        albedo = [abs(i) for i in albedo]
+        hours = np.arange(len(albedo))
+
+        dy = np.diff(albedo, 1)
+        dx = np.diff(hours, 1)
+        yfirst = dy/dx
+        xfirst = 0.5 * (hours[:-1] + hours[1:])
+
+        dyfirst = np.diff(yfirst, 1)
+        dxfirst = np.diff(xfirst, 1)
+        ysecond = dyfirst / dxfirst
+
+        idx = 0
+        while idx < len(ysecond):
+            if ysecond[idx] > thrsh:
+                fsds_jaws[idx] = common.fillvalue_float
+            if fsds_jaws[idx] < 0:
+                fsds_jaws[idx] = 0
+            if fsus_jaws[idx] == 0:
+                fsds_jaws[idx] = 0
+            if fsds_jaws[idx] > toa[idx]:
+                fsds_jaws[idx] = common.fillvalue_float
+            if (fsds_jaws[idx] < toa[idx]*0.05) and (fsds_jaws[idx] != 0):
+                fsds_jaws[idx] = common.fillvalue_float
+                fsus_jaws[idx] = common.fillvalue_float
+            if (fsus_jaws[idx] > fsds_jaws[idx]*0.99) or (fsus_jaws[idx] < fsds_jaws[idx]*0.1):
+                fsus_jaws[idx] = common.fillvalue_float
+            if np.cos(sza[idx]) <= 0:
+                fsds_jaws[idx] = 0
+            if fsds_jaws[idx] == 0:
+                fsus_jaws[idx] = 0
+
+            df.at[idx, 'fsds_adjusted_new'] = fsds_jaws[idx]
+            df.at[idx, 'fsus_adjusted'] = fsus_jaws[idx]
+
+            idx += 1
+
+    df['fsds_adjusted_new'] = pd.to_numeric(df['fsds_adjusted_new'], errors='coerce')
+    df['fsus_adjusted'] = pd.to_numeric(df['fsus_adjusted'], errors='coerce')
+    fsds_adjusted_values_new = df['fsds_adjusted_new'].tolist()
+    fsus_adjusted_values = df['fsus_adjusted'].tolist()
+
+    return fsds_adjusted_values_new, fsus_adjusted_values
+
+
 def main(dataset, args):
     rho = 0.8  # reflectance
     smallest_double = 2.2250738585072014e-308
@@ -105,10 +185,14 @@ def main(dataset, args):
 
     df['fsds_adjusted'] = pd.to_numeric(df['fsds_adjusted'], errors='coerce')
     df['cloud_fraction'] = pd.to_numeric(df['cloud_fraction'], errors='coerce')
-    fsds_adjusted_values = df['fsds_adjusted'].tolist()
+    # fsds_adjusted_values = df['fsds_adjusted'].tolist()
     cloud_fraction_values = df['cloud_fraction'].tolist()
-    dataset['fsds_adjusted'] = 'time', fsds_adjusted_values
+    # dataset['fsds_adjusted'] = 'time', fsds_adjusted_values
     dataset['cloud_fraction'] = 'time', cloud_fraction_values
+
+    fsds_adjusted_values_new, fsus_adjusted_values = post_process(df, dates, stn_name, sfx)
+    dataset['fsds_adjusted'] = 'time', fsds_adjusted_values_new
+    dataset['fsus_adjusted'] = 'time', fsus_adjusted_values
 
     try:
         os.remove(stn_name + sfx)
