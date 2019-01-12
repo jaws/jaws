@@ -12,7 +12,7 @@ requirements:
     - python
     - setuptools
     - pandas
-    - numpy >=1.11
+    - numpy >=1.15.2
     - xarray
     - pytz
     - netcdf4
@@ -22,7 +22,7 @@ requirements:
   run:
     - python
     - pandas
-    - numpy >=1.11
+    - numpy >=1.15.2
     - xarray
     - pytz
     - netcdf4
