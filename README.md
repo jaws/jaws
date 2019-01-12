@@ -18,6 +18,8 @@
 ___
 ## News
 
+2019/01/11: Version 0.6.5 released: RIGB post-processing
+
 2018/12/07: Version 0.6.3 released: RIGB adjusted fluxes archived
 
 2018/10/31: Version 0.6 released: RIGB tilt correction
@@ -193,7 +195,7 @@ In addition to input variables, `JAWS` provides following variables in output ne
  * longitude
  * ice_gps_velocity_x, ice_gps_velocity_y, ice_gps_velocity_total (For stations that archive GPS position)
  * year, month, day, hour (if '-d/--drv_tm/--derive_times' option is used)
- * adjusetd_fsds (corrected downwelling shortwave flux)
+ * adjusted_fsds (corrected downwelling shortwave flux)
 
 #### Analysis Example
 
@@ -256,7 +258,7 @@ Total number of station-years of data handled by JAWS: 1462
 ![Greenland](http://grele.ess.uci.edu/jaws/img/map_grl.png)
 
 ## Benchmark
-As of version 0.6.3, it takes about 3.5 minutes to process Summit(GCNet) data from 19960512 to 20170524
+As of version 0.6.5, it takes about 3.5 minutes to process Summit(GCNet) data from 19960512 to 20170524
 
 ## Credit
 

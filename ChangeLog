@@ -1,3 +1,53 @@
+2019-01-11  Ajay Saini  <sainiak@uci.edu>
+
+	* rrtm_clr.py: Output one file per station over clear days only in netCDF format
+
+	* tilt_angle.py: Modified to read RRTM results from netCDF file instead of txt
+
+	* git tag -a 0.6.5 -m 'beta01: RIGB post-processing'; git push --tags
+
+2019-01-10  Ajay Saini  <sainiak@uci.edu>
+
+	* Add file containing clear sky days for all stations
+
+	* rrtm_merra.py: Output one file per station over clear days only in netCDF format
+
+	* rrtm_merra.py: Correct aod value
+
+2019-01-08  Ajay Saini  <sainiak@uci.edu>
+
+	* Correct outfile name
+
+	* nomiss_merra.py: Write output variables as multi-dimensional
+
+	* nomiss_merra.py: Rename outdir
+
+	* Add script rrtm_merra.py to run RRTM on MERRA datasets
+
+2019-01-07  Ajay Saini  <sainiak@uci.edu>
+
+	* nomiss_meerra.py: Loop through 8 hours
+
+2019-01-03  Ajay Saini  <sainiak@uci.edu>
+
+	* Add nomiss script for MERRA dataset
+
+2019-01-02  Ajay Saini  <sainiak@uci.edu>
+
+	* Post-processing of fsds_adjusted and fsus_adjusted
+
+	* GCNet: Rename 'sw_up' as 'fsus'
+
+	* IMAU: Rename 'sw_out' as 'fsus'
+
+	* PROMICE: Rename 'shortwave_radiation_down' as 'fsus'
+
+	* Update ds.json of GCNet, IMAU, PROMICE to include 'fsus_adjusted'
+
+	* Update encoding.json of GCNet, IMAU, PROMICE to include 'fsus_adjusted'
+
+	* Add 'fsus_adjusted' to rigb_vars list
+
 2018-12-26  Ajay Saini  <sainiak@uci.edu>
 
 	* git tag -a 0.6.4 -m 'alpha04: tilt angle and direction in degrees'; git push --tags
