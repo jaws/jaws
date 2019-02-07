@@ -1,3 +1,9 @@
+2019-02-06  Ajay Saini  <sainiak@uci.edu>
+
+	* jaws.py: Modification to read POLENET stations
+
+	* git tag -a 0.7 -m 'alpha01: POLENET'; git push --tags
+
 2019-01-11  Ajay Saini  <sainiak@uci.edu>
 
 	* rrtm_clr.py: Output one file per station over clear days only in netCDF format

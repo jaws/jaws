@@ -18,6 +18,8 @@
 ___
 ## News
 
+2019/02/06: Version 0.7 released: POLENET network added
+
 2019/01/11: Version 0.6.5 released: RIGB post-processing
 
 2018/12/07: Version 0.6.3 released: RIGB adjusted fluxes archived
@@ -142,6 +144,7 @@ The current version can translate L2 ASCII data from the following networks to n
 * Institute for Marine and Atmospheric Research (IMAU): Sample raw file for Antarctic stations can be downloaded from [here](http://grele.ess.uci.edu/jaws/sample_data/ant_aws17IMAU_20150101.txt) and for Greenland stations can be downloaded from [here](http://grele.ess.uci.edu/jaws/sample_data/grl_aws05IMAU_19930901.txt)
 * Programme for Monitoring of the Greenland Ice Sheet (PROMICE): Sample raw file can be downloaded from [here](http://grele.ess.uci.edu/jaws/sample_data/PROMICE_EGP_20160501.txt)
 * Scientific Committee on Antarctic Research (SCAR): Sample raw file can be downloaded from [here](http://grele.ess.uci.edu/jaws/sample_data/SCAR_Sofiab_aws.dat)
+* The Polar Earth Observing Network (POLENET): Sample raw file can be downloaded from [here](http://grele.ess.uci.edu/jaws/sample_data/polenet_FoynPoint_20100208.dat)
 
 ```
 Note:
@@ -151,6 +154,8 @@ For PROMICE, input file name must contain station name. e.g. 'PROMICE_KAN-B.txt'
 For IMAU, input file name must start with network type(i.e. 'ant' or 'grl'), followed by a underscore and then station number. e.g. 'ant_aws01.txt' or 'ant_aws15_123.txt' or 'grl_aws21abc.txt', etc.
 
 For SCAR, input file name must end with '_aws.dat'
+
+For POLENET, input file name must start with 'polenet_'
 ```
 The user provides the input file path. By default, the output file will be stored within the current directory with same name as of input file (e.g. PROMICE_EGP_20160501.nc). The user can optionally give their own output path/name. Execute this to get output file in current directory:
 
@@ -249,7 +254,7 @@ ___
 ## Statistics
 Total number of networks handled by JAWS: 4 (AAWS, GCNet, IMAU, PROMICE)
 
-Total number of stations handled by JAWS: 137
+Total number of stations handled by JAWS: 378
 
 Total number of station-years of data handled by JAWS: 1462
 
