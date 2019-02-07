@@ -2,7 +2,7 @@
 
 	* jaws.py: Modification to read POLENET stations
 
-	* git tag -a 0.7 -m 'alpha01: POLENET'; git push --tags
+	* git tag -a 0.7 -m 'Pacific Sleeper Shark: POLENET'; git push --tags
 
 2019-01-11  Ajay Saini  <sainiak@uci.edu>
 
