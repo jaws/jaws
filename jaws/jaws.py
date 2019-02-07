@@ -195,7 +195,8 @@ def dispatch_converter(args, input_file, output_file, stations):
     Reads the first character of the input file, and uses it to guess the
     format of the input file and dispatch the right converter.
     """
-    if input_file[-7:] == 'aws.dat':
+    input_file_basename = os.path.basename(input_file)
+    if input_file_basename[-7:] == 'aws.dat' or input_file_basename[:8] == 'polenet_':
         scar2nc.scar2nc(args, input_file, output_file)
     else:
         with open(input_file) as stream:
