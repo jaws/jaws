@@ -67,26 +67,29 @@ def post_process(df, dates, stn_name, sfx):
 
         idx = 0
         while idx < len(ysecond):
-            if ysecond[idx] > thrsh:
-                fsds_jaws[idx] = common.fillvalue_float
-            if fsds_jaws[idx] < 0:
-                fsds_jaws[idx] = 0
-            if fsus_jaws[idx] == 0:
-                fsds_jaws[idx] = 0
-            if fsds_jaws[idx] > toa[idx]:
-                fsds_jaws[idx] = common.fillvalue_float
-            if (fsds_jaws[idx] < toa[idx]*0.05) and (fsds_jaws[idx] != 0):
-                fsds_jaws[idx] = common.fillvalue_float
-                fsus_jaws[idx] = common.fillvalue_float
-            if (fsus_jaws[idx] > fsds_jaws[idx]*0.99) or (fsus_jaws[idx] < fsds_jaws[idx]*0.1):
-                fsus_jaws[idx] = common.fillvalue_float
-            if np.cos(sza[idx]) <= 0:
-                fsds_jaws[idx] = 0
-            if fsds_jaws[idx] == 0:
-                fsus_jaws[idx] = 0
+            try:
+                if ysecond[idx] > thrsh:
+                    fsds_jaws[idx] = common.fillvalue_float
+                if fsds_jaws[idx] < 0:
+                    fsds_jaws[idx] = 0
+                if fsus_jaws[idx] == 0:
+                    fsds_jaws[idx] = 0
+                if fsds_jaws[idx] > toa[idx]:
+                    fsds_jaws[idx] = common.fillvalue_float
+                if (fsds_jaws[idx] < toa[idx]*0.05) and (fsds_jaws[idx] != 0):
+                    fsds_jaws[idx] = common.fillvalue_float
+                    fsus_jaws[idx] = common.fillvalue_float
+                if (fsus_jaws[idx] > fsds_jaws[idx]*0.99) or (fsus_jaws[idx] < fsds_jaws[idx]*0.1):
+                    fsus_jaws[idx] = common.fillvalue_float
+                if np.cos(sza[idx]) <= 0:
+                    fsds_jaws[idx] = 0
+                if fsds_jaws[idx] == 0:
+                    fsus_jaws[idx] = 0
 
-            df.at[idx, 'fsds_adjusted_new'] = fsds_jaws[idx]
-            df.at[idx, 'fsus_adjusted'] = fsus_jaws[idx]
+                df.at[idx, 'fsds_adjusted_new'] = fsds_jaws[idx]
+                df.at[idx, 'fsus_adjusted'] = fsus_jaws[idx]
+            except:  # Exception for list index out of range toa[idx]
+                pass
 
             idx += 1
 
