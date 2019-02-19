@@ -1,5 +1,17 @@
 2019-02-06  Ajay Saini  <sainiak@uci.edu>
 
+	* tilt_angle.py: Skip poping out of list if empty
+
+	* git tag -a 0.7.1 -m 'alpha01: MERRA'; git push --tags
+
+2019-02-06  Ajay Saini  <sainiak@uci.edu>
+
+	* Add '--merra' as an option and tilt_angle.py reads per station RRTM file instead of per day
+
+	* fsds_adjust.py: Exception for list index out of range toa[idx]
+
+2019-02-06  Ajay Saini  <sainiak@uci.edu>
+
 	* jaws.py: Modification to read POLENET stations
 
 	* git tag -a 0.7 -m 'Pacific Sleeper Shark: POLENET'; git push --tags

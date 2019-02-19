@@ -64,7 +64,7 @@ ___
 ## Installation
 
 #### Requirements:
- * Python 2.7, 3.6, or 3.7 (as of version 0.6.3)
+ * Python 2.7, 3.6, or 3.7 (as of JAWS version 0.7)
 
 #### Installing pre-built binaries with conda (Linux, Mac OSX, and Windows)
 
@@ -252,18 +252,18 @@ $ jaws -a seasonal -v temperature_tc_1 gcnet_summit.nc
 
 ___
 ## Statistics
-Total number of networks handled by JAWS: 4 (AAWS, GCNet, IMAU, PROMICE)
+Total number of networks handled by JAWS: 6 (AAWS, GCNet, IMAU, PROMICE, SCAR, POLENET)
 
 Total number of stations handled by JAWS: 378
 
-Total number of station-years of data handled by JAWS: 1462
+Total number of station-years of data handled by JAWS: 3600
 
 ![Antarctica](http://grele.ess.uci.edu/jaws/img/map_ant.png)
 
 ![Greenland](http://grele.ess.uci.edu/jaws/img/map_grl.png)
 
 ## Benchmark
-As of version 0.6.5, it takes about 3.5 minutes to process Summit(GCNet) data from 19960512 to 20170524
+As of version 0.7, it takes about 3.5 minutes to process Summit(GCNet) data from 19960512 to 20170524
 
 ## Credit
 
