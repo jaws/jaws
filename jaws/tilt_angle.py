@@ -1,9 +1,11 @@
 from datetime import datetime
+import os
 import requests
 
 import numpy as np
 import pandas as pd
 from scipy.interpolate import CubicSpline
+import xarray as xr
 
 try:
     from itertools import izip as zip
@@ -60,6 +62,13 @@ def main(dataset, latitude, longitude, clr_df, args):
     grele_path = 'http://grele.ess.uci.edu/jaws/rigb_data/'
     dir_rrtm = 'rrtm-airx3std/'
 
+    if args.merra:
+        dir_rrtm = 'rrtm-merra/'
+
+    rrtm_file = requests.get(grele_path + dir_rrtm + stn_name + '.rrtm.nc')
+    open(stn_name + '.rrtm.nc', 'wb').write(rrtm_file.content)
+    rrtm_df = xr.open_dataset(stn_name + '.rrtm.nc').to_dataframe()
+
     for line in clrprd:
         clrdate = line.split('_')[0]
         clrhr_start = int(line.split('_')[1])
@@ -71,9 +80,8 @@ def main(dataset, latitude, longitude, clr_df, args):
         current_date_hour = datetime(year, month, day).date()
 
         try:
-            rrtm_file = requests.get(grele_path+dir_rrtm+stn_name+'.'+clrdate.replace('-', '')+'.txt')
-            fsds_rrtm = rrtm_file.text.strip().split(',')
-            fsds_rrtm = [float(i) for i in fsds_rrtm]
+            fsds_rrtm = rrtm_df.loc[str(year) + '-' + str(month) + '-' + str(day):
+                                    str(year) + '-' + str(month) + '-' + str(day)]['fsds'].values.tolist()
             print(clrdate)
         except:
             continue
@@ -158,8 +166,14 @@ def main(dataset, latitude, longitude, clr_df, args):
                 fsds_possiblepair_dict[pair] = fsds_correct_half
 
                 for msng_idx in indexMissingJAWS:
-                    fsds_correct_half.pop(msng_idx)
-                    fsds_rrtm.pop(msng_idx)
+                    try:
+                        fsds_correct_half.pop(msng_idx)
+                    except:
+                        pass
+                    try:
+                        fsds_rrtm.pop(msng_idx)
+                    except:
+                        pass
 
                 diff = [abs(x-y) for x,y in zip(fsds_correct_half[clrhr_start:clrhr_end],
                                                 fsds_rrtm[clrhr_start:clrhr_end])]
@@ -224,5 +238,10 @@ def main(dataset, latitude, longitude, clr_df, args):
 
     dataset['tilt_direction'] = 'time', tilt_direction_values
     dataset['tilt_angle'] = 'time', tilt_angle_values
+
+    try:  # Remove downloaded rrtm_df file
+        os.remove(stn_name + '.rrtm.nc')
+    except:  # Windows
+        pass
 
     return dataset
