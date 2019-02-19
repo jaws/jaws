@@ -166,8 +166,14 @@ def main(dataset, latitude, longitude, clr_df, args):
                 fsds_possiblepair_dict[pair] = fsds_correct_half
 
                 for msng_idx in indexMissingJAWS:
-                    fsds_correct_half.pop(msng_idx)
-                    fsds_rrtm.pop(msng_idx)
+                    try:
+                        fsds_correct_half.pop(msng_idx)
+                    except:
+                        pass
+                    try:
+                        fsds_rrtm.pop(msng_idx)
+                    except:
+                        pass
 
                 diff = [abs(x-y) for x,y in zip(fsds_correct_half[clrhr_start:clrhr_end],
                                                 fsds_rrtm[clrhr_start:clrhr_end])]
