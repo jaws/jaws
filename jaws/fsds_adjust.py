@@ -144,7 +144,10 @@ def main(dataset, args):
              str(year)+'-'+str(month)+'-'+str(day):str(year)+'-'+str(month)+'-'+str(day)
              ]['cldarea_total_1h'].values.tolist()
 
-        cf = [0.9999999 if i == 100 else i/100 for i in cf]
+        if args.merra:
+            pass
+        else:
+            cf = [0.9999999 if i == 100 else i/100 for i in cf]
 
         df_sub = df[df.dates == date]
 
