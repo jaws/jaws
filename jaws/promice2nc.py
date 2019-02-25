@@ -60,6 +60,7 @@ def get_time_and_sza(args, dataframe, longitude, latitude):
 
     num_rows = dataframe['year'].size
     time, time_bounds, sza, az = ([0] * num_rows for _ in range(4))
+    dates = []
 
     for idx in range(num_rows):
         keys = ('year', 'month', 'day', 'hour')
@@ -71,12 +72,15 @@ def get_time_and_sza(args, dataframe, longitude, latitude):
 
         time[idx] = time[idx] + common.seconds_in_half_hour
         dtime = datetime.utcfromtimestamp(time[idx])
+        dates.append(int(dtime.date().strftime("%Y%m%d")))
 
         solar_angles = sunposition.sunpos(dtime, latitude, longitude, 0)
         az[idx] = solar_angles[0]
         sza[idx] = solar_angles[1]
 
-    return time, time_bounds, sza, az
+    first_date = min(dates)
+    last_date = max(dates)
+    return time, time_bounds, sza, az, first_date, last_date
 
 
 def get_ice_velocity(args, dataframe, delta_x, delta_y):
@@ -152,7 +156,7 @@ def promice2nc(args, input_file, output_file, stations):
     latitude, longitude, station_name = get_station(args, input_file, stations)
 
     common.log(args, 3, 'Calculating time and sza')
-    time, time_bounds, sza, az = get_time_and_sza(args, df, longitude, latitude)
+    time, time_bounds, sza, az, first_date, last_date = get_time_and_sza(args, df, longitude, latitude)
 
     common.log(args, 4, 'Converting lat_GPS and lon_GPS')
     convert_coordinates(args, df)
@@ -171,7 +175,7 @@ def promice2nc(args, input_file, output_file, stations):
     rigb_vars = []
     if args.rigb:
         common.log(args, 6, 'Detecting clear days')
-        clr_df = clearsky.main(ds, args)
+        clr_df = common.get_cleardays_df(station_name, first_date, last_date)
 
         if not clr_df.empty:
             common.log(args, 7, 'Calculating tilt angle and direction')

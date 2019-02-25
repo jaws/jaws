@@ -38,7 +38,7 @@ def main(dataset, latitude, longitude, clr_df, args):
 
     clrprd_file = clr_df
     clrprd = [(str(x)+'_'+str(y)+'_'+str(z)) for x, y, z in
-              zip(clrprd_file[0].tolist(), clrprd_file[1].tolist(), clrprd_file[2].tolist())]
+              zip(clrprd_file['date'].tolist(), clrprd_file['start_hour'].tolist(), clrprd_file['end_hour'].tolist())]
 
     hours = list(range(24))
     half_hours = (list(np.arange(0, 24, 0.5)))
@@ -75,8 +75,8 @@ def main(dataset, latitude, longitude, clr_df, args):
         clrhr_end = int(line.split('_')[2])
         clrhr_end = clrhr_end + 1  # To make sure we include the last hour when slicing the data
         year = int(clrdate[:4])
-        month = int(clrdate[5:7])
-        day = int(clrdate[8:10])
+        month = int(clrdate[4:6])
+        day = int(clrdate[6:])
         current_date_hour = datetime(year, month, day).date()
 
         try:

@@ -72,13 +72,17 @@ def get_time_and_sza(args, dataframe, longitude, latitude, sub_type):
 
     month = pd.DatetimeIndex(dataframe['dtime']).month.values
     day = pd.DatetimeIndex(dataframe['dtime']).day.values
+    dates = list(pd.DatetimeIndex(dataframe['dtime']).date)
+    dates = [int(d.strftime("%Y%m%d")) for d in dates]
+    first_date = min(dates)
+    last_date = max(dates)
 
     for idx in range(num_rows):
         solar_angles = sunposition.sunpos(dataframe['dtime'][idx], latitude, longitude, 0)
         az[idx] = solar_angles[0]
         sza[idx] = solar_angles[1]
 
-    return month, day, hour, minutes, time, time_bounds, sza, az
+    return month, day, hour, minutes, time, time_bounds, sza, az, first_date, last_date
 
 
 def imau2nc(args, input_file, output_file, stations):
@@ -103,7 +107,8 @@ def imau2nc(args, input_file, output_file, stations):
     latitude, longitude, station_name = get_station(args, input_file, stations)
 
     common.log(args, 3, 'Calculating time and sza')
-    month, day, hour, minutes, time, time_bounds, sza, az = get_time_and_sza(args, df, longitude, latitude, sub_type)
+    month, day, hour, minutes, time, time_bounds, sza, az, first_date, last_date = get_time_and_sza(
+        args, df, longitude, latitude, sub_type)
 
     ds['month'] = 'time', month
     ds['day'] = 'time', day
@@ -120,7 +125,7 @@ def imau2nc(args, input_file, output_file, stations):
     rigb_vars = []
     if args.rigb:
         common.log(args, 6, 'Detecting clear days')
-        clr_df = clearsky.main(ds, args)
+        clr_df = common.get_cleardays_df(station_name, first_date, last_date)
 
         if not clr_df.empty:
             common.log(args, 7, 'Calculating tilt angle and direction')

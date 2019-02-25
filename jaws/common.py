@@ -224,6 +224,17 @@ def get_month_day(year, day, one_based=False):
     return dt.month, dt.day
 
 
+def get_cleardays_df(station_name, first_date, last_date):
+    path_cleardays = relative_path('resources/cleardays.csv')
+    clr_df = pd.read_csv(path_cleardays)
+    clr_df = clr_df.loc[clr_df['network_name'] == station_name]
+    clr_df = clr_df.drop('network_name', 1)
+    clr_df = clr_df.loc[(clr_df['date'] >= first_date) & (clr_df['date'] <= last_date)]
+    clr_df[['start_hour', 'end_hour']] = clr_df[['start_hour', 'end_hour']].astype(int)
+
+    return clr_df
+
+
 def write_data(args, ds, op_file, encoding):
     if args.format3 == 1:
         ds.to_netcdf(op_file, format='NETCDF3_CLASSIC', unlimited_dims={'time': True}, encoding=encoding)
