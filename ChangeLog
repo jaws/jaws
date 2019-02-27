@@ -1,10 +1,20 @@
+2019-02-26  Ajay Saini  <sainiak@uci.edu>
+
+	* Testing of GCNet after changes
+
+	* Documentation
+
+2019-02-25  Ajay Saini  <sainiak@uci.edu>
+
+	* Work on MERRA_cf_toa
+
 2019-02-19  Ajay Saini  <sainiak@uci.edu>
 
 	* tilt_angle.py: Skip poping out of list if empty
 
 	* git tag -a 0.7.1 -m 'alpha01: MERRA'; git push --tags
 
-2019-02-15s  Ajay Saini  <sainiak@uci.edu>
+2019-02-15  Ajay Saini  <sainiak@uci.edu>
 
 	* Add '--merra' as an option and tilt_angle.py reads per station RRTM file instead of per day
 
