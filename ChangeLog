@@ -1,3 +1,19 @@
+2019-03-01  Ajay Saini  <sainiak@uci.edu>
+
+	* git tag -a 0.7.2 -m 'alpha02: cleardays and derivative'; git push --tags
+
+2019-02-28  Ajay Saini  <sainiak@uci.edu>
+
+	* fsds_adjust.py: Correct function to calculate derivative
+
+	* Log messages for exception
+
+2019-02-27  Ajay Saini  <sainiak@uci.edu>
+
+	* Resolve fsds_adjusted error
+
+	* Readthedocs and sphinx tutorial
+
 2019-02-26  Ajay Saini  <sainiak@uci.edu>
 
 	* Testing of GCNet after changes
@@ -7,6 +23,14 @@
 2019-02-25  Ajay Saini  <sainiak@uci.edu>
 
 	* Work on MERRA_cf_toa
+
+2019-02-24  Ajay Saini  <sainiak@uci.edu>
+
+	* Detect clear days from 'cleardays.csv'
+
+	* Add path for merra_cf_toa files and update for ceres_cf_toa
+
+	* fsds_adjust.py: Don't divide cf by 100 if merra_cf_toa
 
 2019-02-19  Ajay Saini  <sainiak@uci.edu>
 
