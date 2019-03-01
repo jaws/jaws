@@ -32,7 +32,7 @@ def first_order_derivative(tm, var):
     return slope
 
 
-def post_process(df, dates, stn_name, sfx):
+def post_process(df, dates, stn_name, sfx, args):
     df['fsds_adjusted_new'] = ''
     df['fsus_adjusted'] = ''
     thrsh = 0.1
@@ -105,7 +105,7 @@ def post_process(df, dates, stn_name, sfx):
                 df.at[idx, 'fsds_adjusted_new'] = fsds_jaws[idx]
                 df.at[idx, 'fsus_adjusted'] = fsus_jaws[idx]
             except:  # Exception for list index out of range toa[idx]
-                pass
+                common.log(args, 9, 'Warning: list index out of range for toa[idx]')
 
             idx += 1
 
@@ -216,7 +216,7 @@ def main(dataset, args):
     # dataset['fsds_adjusted'] = 'time', fsds_adjusted_values
     dataset['cloud_fraction'] = 'time', cloud_fraction_values
 
-    fsds_adjusted_values_new, fsus_adjusted_values = post_process(df, dates, stn_name, sfx)
+    fsds_adjusted_values_new, fsus_adjusted_values = post_process(df, dates, stn_name, sfx, args)
     dataset['fsds_adjusted'] = 'time', fsds_adjusted_values_new
     dataset['fsus_adjusted'] = 'time', fsus_adjusted_values
 
