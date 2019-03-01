@@ -38,7 +38,7 @@ def main(dataset, latitude, longitude, clr_df, args):
 
     clrprd_file = clr_df
     clrprd = [(str(x)+'_'+str(y)+'_'+str(z)) for x, y, z in
-              zip(clrprd_file[0].tolist(), clrprd_file[1].tolist(), clrprd_file[2].tolist())]
+              zip(clrprd_file['date'].tolist(), clrprd_file['start_hour'].tolist(), clrprd_file['end_hour'].tolist())]
 
     hours = list(range(24))
     half_hours = (list(np.arange(0, 24, 0.5)))
@@ -75,8 +75,8 @@ def main(dataset, latitude, longitude, clr_df, args):
         clrhr_end = int(line.split('_')[2])
         clrhr_end = clrhr_end + 1  # To make sure we include the last hour when slicing the data
         year = int(clrdate[:4])
-        month = int(clrdate[5:7])
-        day = int(clrdate[8:10])
+        month = int(clrdate[4:6])
+        day = int(clrdate[6:])
         current_date_hour = datetime(year, month, day).date()
 
         try:
@@ -84,6 +84,7 @@ def main(dataset, latitude, longitude, clr_df, args):
                                     str(year) + '-' + str(month) + '-' + str(day)]['fsds'].values.tolist()
             print(clrdate)
         except:
+            common.log(args, 9, 'Warning: RRTM file not found')
             continue
 
         # Subset dataframe
@@ -169,11 +170,11 @@ def main(dataset, latitude, longitude, clr_df, args):
                     try:
                         fsds_correct_half.pop(msng_idx)
                     except:
-                        pass
+                        common.log(args, 9, 'Warning: missing index fsds_correct_half')
                     try:
                         fsds_rrtm.pop(msng_idx)
                     except:
-                        pass
+                        common.log(args, 9, 'Warning: missing index fsds_rrtm')
 
                 diff = [abs(x-y) for x,y in zip(fsds_correct_half[clrhr_start:clrhr_end],
                                                 fsds_rrtm[clrhr_start:clrhr_end])]
@@ -221,6 +222,7 @@ def main(dataset, latitude, longitude, clr_df, args):
             tilt_df.at[current_date_hour, 'tilt_direction'] = top_pair[0]
             tilt_df.at[current_date_hour, 'tilt_angle'] = top_pair[1]
         except:
+            common.log(args, 9, 'Warning: no top pair found')
             continue  # Skip day if no top pair
 
     tilt_df['tilt_direction'] = pd.to_numeric(tilt_df['tilt_direction'], errors='coerce')

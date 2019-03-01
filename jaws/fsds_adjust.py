@@ -4,6 +4,7 @@ import requests
 
 import numpy as np
 import pandas as pd
+import scipy.interpolate
 import xarray as xr
 
 try:
@@ -18,7 +19,20 @@ def deg_to_rad(list_deg):
     return list_rad
 
 
-def post_process(df, dates, stn_name, sfx):
+def first_order_derivative(tm, var):
+    dv = scipy.interpolate.interp1d(tm, var, fill_value='extrapolate')
+    alpha = 0.01
+    dv_left, dv_right = ([None] * len(tm) for _ in range(2))
+    i = 0
+    for hour in tm:
+        dv_left[i] = float(dv(hour - alpha))
+        dv_right[i] = float(dv(hour + alpha))
+        i += 1
+    slope = [(x1 - x2) / (2 * alpha) for (x1, x2) in zip(dv_right, dv_left)]
+    return slope
+
+
+def post_process(df, dates, stn_name, sfx, args):
     df['fsds_adjusted_new'] = ''
     df['fsus_adjusted'] = ''
     thrsh = 0.1
@@ -56,19 +70,21 @@ def post_process(df, dates, stn_name, sfx):
         albedo = [abs(i) for i in albedo]
         hours = np.arange(len(albedo))
 
-        dy = np.diff(albedo, 1)
+        '''dy = np.diff(albedo, 1)
         dx = np.diff(hours, 1)
         yfirst = dy/dx
         xfirst = 0.5 * (hours[:-1] + hours[1:])
 
         dyfirst = np.diff(yfirst, 1)
         dxfirst = np.diff(xfirst, 1)
-        ysecond = dyfirst / dxfirst
+        ysecond = dyfirst / dxfirst'''
+
+        alb_second_derv = first_order_derivative(hours, first_order_derivative(hours, albedo))
 
         idx = 0
-        while idx < len(ysecond):
+        while idx < len(alb_second_derv):
             try:
-                if ysecond[idx] > thrsh:
+                if abs(alb_second_derv[idx]) > thrsh:
                     fsds_jaws[idx] = common.fillvalue_float
                 if fsds_jaws[idx] < 0:
                     fsds_jaws[idx] = 0
@@ -89,13 +105,13 @@ def post_process(df, dates, stn_name, sfx):
                 df.at[idx, 'fsds_adjusted_new'] = fsds_jaws[idx]
                 df.at[idx, 'fsus_adjusted'] = fsus_jaws[idx]
             except:  # Exception for list index out of range toa[idx]
-                pass
+                common.log(args, 9, 'Warning: list index out of range for toa[idx]')
 
             idx += 1
 
-    df['fsds_adjusted_new'] = pd.to_numeric(df['fsds_adjusted_new'], errors='coerce')
+    #df['fsds_adjusted_new'] = pd.to_numeric(df['fsds_adjusted_new'], errors='coerce')
     df['fsus_adjusted'] = pd.to_numeric(df['fsus_adjusted'], errors='coerce')
-    fsds_adjusted_values_new = df['fsds_adjusted_new'].tolist()
+    fsds_adjusted_values_new = df['fsds_adjusted'].tolist()
     fsus_adjusted_values = df['fsus_adjusted'].tolist()
 
     return fsds_adjusted_values_new, fsus_adjusted_values
@@ -124,8 +140,12 @@ def main(dataset, args):
     stn_name = df['station_name'][0]
 
     grele_path = 'http://grele.ess.uci.edu/jaws/rigb_data/'
-    dir_ceres = 'ceres/'
-    sfx = '.ceres.nc'
+    if args.merra:
+        dir_ceres = 'cf_toa/merra/'
+        sfx = '.merra_cf_toa.nc'
+    else:
+        dir_ceres = 'cf_toa/ceres/'
+        sfx = '.ceres_cf_toa.nc'
     url = grele_path + dir_ceres + stn_name + sfx
     r = requests.get(url, allow_redirects=True)
     open(stn_name + sfx, 'wb').write(r.content)
@@ -140,7 +160,10 @@ def main(dataset, args):
              str(year)+'-'+str(month)+'-'+str(day):str(year)+'-'+str(month)+'-'+str(day)
              ]['cldarea_total_1h'].values.tolist()
 
-        cf = [0.9999999 if i == 100 else i/100 for i in cf]
+        if args.merra:
+            pass
+        else:
+            cf = [0.9999999 if i == 100 else i/100 for i in cf]
 
         df_sub = df[df.dates == date]
 
@@ -193,7 +216,7 @@ def main(dataset, args):
     # dataset['fsds_adjusted'] = 'time', fsds_adjusted_values
     dataset['cloud_fraction'] = 'time', cloud_fraction_values
 
-    fsds_adjusted_values_new, fsus_adjusted_values = post_process(df, dates, stn_name, sfx)
+    fsds_adjusted_values_new, fsus_adjusted_values = post_process(df, dates, stn_name, sfx, args)
     dataset['fsds_adjusted'] = 'time', fsds_adjusted_values_new
     dataset['fsus_adjusted'] = 'time', fsus_adjusted_values
 
