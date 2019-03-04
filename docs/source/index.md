@@ -3,14 +3,23 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-JAWS Documentation!
-================================
+Justified Automated Weather Station (JAWS) Software
+===================================================
 
 
-Home
+.. image:: http://grele.ess.uci.edu/jaws/img/shark.png
+   :width: 350 px
+   :align: center
+
+
+User's Guide
 ^^^^^
 
 .. toctree::
    :maxdepth: 2
 
-   license
+   About
+   Overview
+   Installation
+   Example
+   RIGB
