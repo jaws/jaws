@@ -1,3 +1,9 @@
+2019-03-04  Ajay Saini  <sainiak@uci.edu>
+
+	* git tag -a 0.7.3 -m 'alpha03: psost-processing correction'; git push --tags
+
+	* Documentation
+
 2019-03-01  Ajay Saini  <sainiak@uci.edu>
 
 	* git tag -a 0.7.2 -m 'alpha02: cleardays and derivative'; git push --tags
