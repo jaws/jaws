@@ -79,7 +79,10 @@ def post_process(df, dates, stn_name, sfx, args):
         dxfirst = np.diff(xfirst, 1)
         ysecond = dyfirst / dxfirst'''
 
-        alb_second_derv = first_order_derivative(hours, first_order_derivative(hours, albedo))
+        if len(albedo) < 2:
+            continue
+        else:
+            alb_second_derv = first_order_derivative(hours, first_order_derivative(hours, albedo))
 
         idx = 0
         while idx < len(alb_second_derv):
