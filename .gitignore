@@ -11,3 +11,5 @@ annual_cycle.ipynb
 climatological_seasonal_cycle.ipynb
 
 .idea/
+
+docs/build/
