@@ -142,14 +142,14 @@ def main(dataset, args):
     df.reset_index(level=['time'], inplace=True)
     stn_name = df['station_name'][0]
 
-    grele_path = 'http://grele.ess.uci.edu/jaws/rigb_data/'
+    jaws_path = 'http://jaws.ess.uci.edu/jaws/rigb_data/'
     if args.merra:
         dir_ceres = 'cf_toa/merra/'
         sfx = '.merra_cf_toa.nc'
     else:
         dir_ceres = 'cf_toa/ceres/'
         sfx = '.ceres_cf_toa.nc'
-    url = grele_path + dir_ceres + stn_name + sfx
+    url = jaws_path + dir_ceres + stn_name + sfx
     r = requests.get(url, allow_redirects=True)
     open(stn_name + sfx, 'wb').write(r.content)
 

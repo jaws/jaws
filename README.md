@@ -1,6 +1,6 @@
-![Shark](http://grele.ess.uci.edu/jaws/img/shark.png)
-![NASA](http://grele.ess.uci.edu/jaws/img/nasa.png)
-![YOPP](http://grele.ess.uci.edu/jaws/img/yopp_logo.png)
+![Shark](http://jaws.ess.uci.edu/jaws/img/shark.png)
+![NASA](http://jaws.ess.uci.edu/jaws/img/nasa.png)
+![YOPP](http://jaws.ess.uci.edu/jaws/img/yopp_logo.png)
 
 
 # Justified Automated Weather Station (JAWS) Software 
@@ -139,12 +139,12 @@ ___
 JAWS is a command-line tool. Linux/Unix users can run JAWS from terminal and Windows users from Anaconda Prompt. 
 
 The current version can translate L2 ASCII data from the following networks to netCDF format: 
-* Antarctic Automatic Weather Stations (AAWS): Sample raw file can be downloaded from [here](http://grele.ess.uci.edu/jaws/sample_data/AAWS_AGO-4_20161130.txt). Right click on the link and select "Save link as".
-* Greenland Climate Network (GCNet): Sample raw file can be downloaded from [here](http://grele.ess.uci.edu/jaws/sample_data/GCNet_Summit_20140601.txt)
-* Institute for Marine and Atmospheric Research (IMAU): Sample raw file for Antarctic stations can be downloaded from [here](http://grele.ess.uci.edu/jaws/sample_data/ant_aws17IMAU_20150101.txt) and for Greenland stations can be downloaded from [here](http://grele.ess.uci.edu/jaws/sample_data/grl_aws05IMAU_19930901.txt)
-* Programme for Monitoring of the Greenland Ice Sheet (PROMICE): Sample raw file can be downloaded from [here](http://grele.ess.uci.edu/jaws/sample_data/PROMICE_EGP_20160501.txt)
-* Scientific Committee on Antarctic Research (SCAR): Sample raw file can be downloaded from [here](http://grele.ess.uci.edu/jaws/sample_data/SCAR_Sofiab_aws.dat)
-* The Polar Earth Observing Network (POLENET): Sample raw file can be downloaded from [here](http://grele.ess.uci.edu/jaws/sample_data/polenet_FoynPoint_20100208.dat)
+* Antarctic Automatic Weather Stations (AAWS): Sample raw file can be downloaded from [here](http://jaws.ess.uci.edu/jaws/sample_data/AAWS_AGO-4_20161130.txt). Right click on the link and select "Save link as".
+* Greenland Climate Network (GCNet): Sample raw file can be downloaded from [here](http://jaws.ess.uci.edu/jaws/sample_data/GCNet_Summit_20120817.txt)
+* Institute for Marine and Atmospheric Research (IMAU): Sample raw file for Antarctic stations can be downloaded from [here](http://jaws.ess.uci.edu/jaws/sample_data/ant_aws17IMAU_20150101.txt) and for Greenland stations can be downloaded from [here](http://jaws.ess.uci.edu/jaws/sample_data/grl_aws05IMAU_20151008.txt)
+* Programme for Monitoring of the Greenland Ice Sheet (PROMICE): Sample raw file can be downloaded from [here](http://jaws.ess.uci.edu/jaws/sample_data/PROMICE_EGP_20160503.txt)
+* Scientific Committee on Antarctic Research (SCAR): Sample raw file can be downloaded from [here](http://jaws.ess.uci.edu/jaws/sample_data/SCAR_Sofiab_aws.dat)
+* The Polar Earth Observing Network (POLENET): Sample raw file can be downloaded from [here](http://jaws.ess.uci.edu/jaws/sample_data/polenet_FoynPoint_20100208.dat)
 
 ```
 Note:
@@ -179,7 +179,7 @@ To change the timezone, use the -t/--tz/--timezone argument. A list of all the t
 
 #### __RIGB__
 
-Download sample data from [here](http://grele.ess.uci.edu/jaws/sample_data/gcnet_summit_20120817.txt)
+Download sample data from [here](http://jaws.ess.uci.edu/jaws/sample_data/gcnet_summit_20120817.txt)
 
 To run RIGB:
 
@@ -220,7 +220,7 @@ The user provides input file path, variable name (on which analysis needs to be 
 $ jaws -a diurnal -v temperature_tc_1 -y 2002 -m 5 gcnet_summit.nc
 ```
 
-![diurnal](http://grele.ess.uci.edu/jaws/img/diurnal.png)
+![diurnal](http://jaws.ess.uci.edu/jaws/img/diurnal.png)
 
 ii. Avg, max and min values for each day of a month for any variable
 
@@ -228,7 +228,7 @@ ii. Avg, max and min values for each day of a month for any variable
 $ jaws --anl=monthly --var=temperature_cs500_1 --anl_yr=2013 --anl_mth=2 gcnet_summit.nc
 ```
 
-![monthly](http://grele.ess.uci.edu/jaws/img/monthly.png)
+![monthly](http://jaws.ess.uci.edu/jaws/img/monthly.png)
 
 iii. Annual cycle with daily mean, max and min
 
@@ -238,7 +238,7 @@ Since it is annual plot, user shouldn't provide the '-m' argument
 $ jaws --analysis=annual --variable=temperature_tc_1 --analysis_year=2016 gcnet_summit.nc
 ```
 
-![annual](http://grele.ess.uci.edu/jaws/img/annual.png)
+![annual](http://jaws.ess.uci.edu/jaws/img/annual.png)
 
 iv. Climatological seasonal cycle showing variation for each month through multiple years
 
@@ -248,7 +248,7 @@ Since it is seasonal plot, user shouldn't provide both '-y', '-m' argument.
 $ jaws -a seasonal -v temperature_tc_1 gcnet_summit.nc
 ```
 
-![seasonal](http://grele.ess.uci.edu/jaws/img/seasonal.png)
+![seasonal](http://jaws.ess.uci.edu/jaws/img/seasonal.png)
 
 ___
 ## Statistics
@@ -258,9 +258,9 @@ Total number of stations handled by JAWS: 378
 
 Total number of station-years of data handled by JAWS: 3600
 
-![Antarctica](http://grele.ess.uci.edu/jaws/img/map_ant.png)
+![Antarctica](http://jaws.ess.uci.edu/jaws/img/map_ant.png)
 
-![Greenland](http://grele.ess.uci.edu/jaws/img/map_grl.png)
+![Greenland](http://jaws.ess.uci.edu/jaws/img/map_grl.png)
 
 ## Benchmark
 As of version 0.7, it takes about 3.5 minutes to process Summit(GCNet) data from 19960512 to 20170524
