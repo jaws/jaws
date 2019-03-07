@@ -1,3 +1,6 @@
+About
+=====
+
 JAWS is a scientiﬁc software workﬂow to ingest Level 2 (L2) data in the multiple 
 formats now distributed, harmonize it into a common format, and deliver value-added 
 Level 3 (L3) output suitable for distribution by the network operator, analysis by 
