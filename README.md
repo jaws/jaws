@@ -7,6 +7,7 @@
 
 [![Build Status](https://travis-ci.org/jaws/jaws.svg?branch=master)](https://travis-ci.org/jaws/jaws)
 [![Build status](https://ci.appveyor.com/api/projects/status/gt0r8jlo5iarqv55?svg=true)](https://ci.appveyor.com/project/ajcse1/jaws)
+[![Documentation Status](https://readthedocs.org/projects/jaws/badge/?version=latest)](https://jaws.readthedocs.io/en/latest/?badge=latest)
 
 [![Anaconda-Server Badge](https://anaconda.org/conda-forge/jaws/badges/installer/conda.svg)](https://conda.anaconda.org/conda-forge)
 [![Anaconda-Server Badge](https://anaconda.org/conda-forge/jaws/badges/version.svg)](https://anaconda.org/conda-forge/jaws)
