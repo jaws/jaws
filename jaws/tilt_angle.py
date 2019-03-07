@@ -59,13 +59,13 @@ def main(dataset, latitude, longitude, clr_df, args):
     stn_name = df['station_name'][0]
     df[['fsds']] = df[['fsds']].replace(common.fillvalue_float, np.nan)
 
-    grele_path = 'http://grele.ess.uci.edu/jaws/rigb_data/'
+    jaws_path = 'http://jaws.ess.uci.edu/jaws/rigb_data/'
     dir_rrtm = 'rrtm-airx3std/'
 
     if args.merra:
         dir_rrtm = 'rrtm-merra/'
 
-    rrtm_file = requests.get(grele_path + dir_rrtm + stn_name + '.rrtm.nc')
+    rrtm_file = requests.get(jaws_path + dir_rrtm + stn_name + '.rrtm.nc')
     open(stn_name + '.rrtm.nc', 'wb').write(rrtm_file.content)
     rrtm_df = xr.open_dataset(stn_name + '.rrtm.nc').to_dataframe()
 
