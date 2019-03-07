@@ -1,3 +1,19 @@
+2019-03-06  Ajay Saini  <sainiak@uci.edu>
+
+	* Add new sample files
+
+	* test.py: Correct file names
+
+	* Make jaws.ess.uci.edu as webserver
+
+	 * Documentation
+
+2019-03-05  Ajay Saini  <sainiak@uci.edu>
+
+	* Work on error messages
+
+	* Documentation
+
 2019-03-04  Ajay Saini  <sainiak@uci.edu>
 
 	* git tag -a 0.7.3 -m 'alpha03: psost-processing correction'; git push --tags

@@ -13,7 +13,7 @@ Justified Automated Weather Station (JAWS) Software
 
 
 User's Guide
-^^^^^
+^^^^^^^^^^^^
 
 .. toctree::
    :maxdepth: 2
@@ -23,3 +23,4 @@ User's Guide
    Installation
    Example
    RIGB
+   License
