@@ -204,7 +204,7 @@ class TestGCNet(TestConverter):
         """
         Test the first sample input file.
         """
-        self.check_output('../sample_data/GCNet_Summit_20140601.txt', '../sample_data/converted/GCNet_Summit_20140601.nc')
+        self.check_output('../sample_data/GCNet_Summit_20120817.txt', '../sample_data/converted/GCNet_Summit_20120817.nc')
 
 
 class TestPROMICE(TestConverter):
@@ -218,7 +218,7 @@ class TestPROMICE(TestConverter):
         """
         Test the first sample input file.
         """
-        self.check_output('../sample_data/PROMICE_EGP_20160501.txt', '../sample_data/converted/PROMICE_EGP_20160501.nc')
+        self.check_output('../sample_data/PROMICE_EGP_20160503.txt', '../sample_data/converted/PROMICE_EGP_20160503.nc')
 
 
 if __name__ == '__main__':
