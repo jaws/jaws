@@ -1,13 +1,12 @@
-About
-=====
+# About
 
 JAWS is a scientiﬁc software workﬂow to ingest Level 2 (L2) data in the multiple 
 formats now distributed, harmonize it into a common format, and deliver value-added 
 Level 3 (L3) output suitable for distribution by the network operator, analysis by 
 the researcher, and curation by the data center. 
-NASA has funded JAWS `project summary`_ from 20171001–20190930.
-
-.. _`project summary`: http://dust.ess.uci.edu/prp/prp_aist/prp_aist_smr.pdf 
+NASA has funded JAWS 
+([project summary](http://dust.ess.uci.edu/prp/prp_aist/prp_aist_smr.pdf)) 
+from 20171001&ndash;20190930.
 
 Automated Weather Station (AWS) and AWS-like networks are the primary source 
 of surface-level meteorological data in remote polar regions. 
