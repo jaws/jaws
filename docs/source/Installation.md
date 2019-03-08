@@ -1,7 +1,6 @@
-Installation
-============
+# Installation
 
-#### Requirements:
+#### Requirements
  * Python 2.7, 3.6, or 3.7 (as of JAWS version 0.7)
 
 #### Installing pre-built binaries with conda (Linux, Mac OSX, and Windows)

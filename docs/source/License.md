@@ -1,5 +1,4 @@
-License
-=======
+# License
 
 Copyright [2018] [Charles S. Zender]
 
