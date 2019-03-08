@@ -13,6 +13,7 @@
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
 import os
+from recommonmark.parser import CommonMarkParser
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
 
@@ -47,8 +48,8 @@ templates_path = ['ntemplates']
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
 #
-# source_suffix = ['.rst', '.md']
-source_suffix = ['.md', '.txt']
+source_suffix = ['.rst', '.md', '.txt']
+source_parsers = {'.md': CommonMarkParser,}
 
 # The master toctree document.
 master_doc = 'index'
