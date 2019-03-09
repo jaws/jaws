@@ -1,6 +1,7 @@
 from datetime import datetime
 import os
 import requests
+import time
 
 import numpy as np
 import pandas as pd
@@ -68,6 +69,8 @@ def main(dataset, latitude, longitude, clr_df, args):
     rrtm_file = requests.get(jaws_path + dir_rrtm + stn_name + '.rrtm.nc')
     open(stn_name + '.rrtm.nc', 'wb').write(rrtm_file.content)
     rrtm_df = xr.open_dataset(stn_name + '.rrtm.nc').to_dataframe()
+    start_time = time.time()
+    print('Tilt correction will take long time')
 
     for line in clrprd:
         clrdate = line.split('_')[0]
@@ -79,12 +82,17 @@ def main(dataset, latitude, longitude, clr_df, args):
         day = int(clrdate[6:])
         current_date_hour = datetime(year, month, day).date()
 
-        try:
-            fsds_rrtm = rrtm_df.loc[str(year) + '-' + str(month) + '-' + str(day):
-                                    str(year) + '-' + str(month) + '-' + str(day)]['fsds'].values.tolist()
-            print(clrdate)
-        except:
-            common.log(args, 9, 'Warning: RRTM file not found')
+        fsds_rrtm = rrtm_df.loc[str(year) + '-' + str(month) + '-' + str(day):
+                                str(year) + '-' + str(month) + '-' + str(day)]['fsds'].values.tolist()
+        if fsds_rrtm:
+            if args.dbg_lvl > 6:
+                print(clrdate)
+            else:
+                current_time = time.time()
+                if (current_time-start_time) > 10*60:
+                    print('Still working...')
+                start_time = current_time
+        else:
             continue
 
         # Subset dataframe
