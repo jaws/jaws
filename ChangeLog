@@ -1,3 +1,23 @@
+2019-03-09  Ajay Saini  <sainiak@uci.edu>
+
+	* git tag -a 0.7.4 -m 'beta01: AIRS pre-2002 correction'; git push --tags
+
+2019-03-08  Ajay Saini  <sainiak@uci.edu>
+
+	* Debug tilt_angle.py error
+
+	* Documentation
+
+2019-03-07  Ajay Saini  <sainiak@uci.edu>
+
+	* README.md: Badge for ReadtheDocs
+
+	* Convert docs/source/index.md to index.rst
+
+	* conf.py: CommonMarkParser for .md files
+
+	* Documentation
+
 2019-03-06  Ajay Saini  <sainiak@uci.edu>
 
 	* Add new sample files
