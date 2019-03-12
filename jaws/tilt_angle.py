@@ -91,7 +91,7 @@ def main(dataset, latitude, longitude, clr_df, args):
                 current_time = time.time()
                 if (current_time-start_time) > 10*60:
                     print('Still working...')
-                start_time = current_time
+                    start_time = current_time
         else:
             continue
 
