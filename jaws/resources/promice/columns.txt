@@ -11,6 +11,8 @@ relative_humidity_wrtwater
 relative_humidity
 wind_speed
 wind_direction
+sensible_heat_flux
+latent_heat_flux
 fsds
 shortwave_radiation_down_cor
 fsus

@@ -77,6 +77,18 @@
     "zlib": true,
     "complevel": "COMP"
   },
+  "sensible_heat_flux": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "latent_heat_flux": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
   "fsds": {
     "_FillValue": "FILL",
     "dtype": "f4",

@@ -137,6 +137,30 @@
         "coordinates": "longitude latitude"
       }
     },
+    "sensible_heat_flux": {
+      "type": "float",
+      "attributes": {
+        "long_name": "Sensible Heat Flux",
+        "standard_name": "surface_downward_sensible_heat_flux",
+        "original_name": "SensibleHeatFlux",
+        "sensor_height": "Sensor height is ~2.8 m if no snow layer is present",
+        "units": "watt meter-2",
+        "cell_methods": "time: mean",
+        "coordinates": "longitude latitude"
+      }
+    },
+    "latent_heat_flux": {
+      "type": "float",
+      "attributes": {
+        "long_name": "Latent Heat Flux",
+        "standard_name": "surface_downward_latent_heat_flux",
+        "original_name": "LatentHeatFlux",
+        "sensor_height": "Sensor height is ~2.8 m if no snow layer is present",
+        "units": "watt meter-2",
+        "cell_methods": "time: mean",
+        "coordinates": "longitude latitude"
+      }
+    },
     "fsds": {
       "type": "float",
       "attributes": {

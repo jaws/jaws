@@ -1,3 +1,9 @@
+2019-03-12  Ajay Saini  <sainiak@uci.edu>
+
+	* tilt_angle.py: Correction in heartbeat message'
+
+	* PROMICE: Add new vars Sensible Heat Flux and Latent Heat Flux
+
 2019-03-09  Ajay Saini  <sainiak@uci.edu>
 
 	* git tag -a 0.7.4 -m 'beta01: AIRS pre-2002 correction'; git push --tags
