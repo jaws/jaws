@@ -51,7 +51,7 @@ def load_dataframe(name, input_file, header_rows, **kwargs):
 
     global columns
 
-    if (name == 'gcnet' and header_rows == 54) or (name == 'promice' and len(input_file_vars) == 44) or (
+    if (name == 'gcnet' and header_rows == 54) or (name == 'promice' and len(input_file_vars) == 46) or (
         name == 'aaws' and len(input_file_vars) == 6) or (name == 'imau/ant') or (name == 'imau/grl') or (
         name == 'scar'):
 
