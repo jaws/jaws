@@ -45,7 +45,7 @@ def post_process(df, dates, stn_name, sfx, args):
         ceres_df = xr.open_dataset(stn_name + sfx).to_dataframe()
         toa = ceres_df.loc[
              str(year)+'-'+str(month)+'-'+str(day):str(year)+'-'+str(month)+'-'+str(day)
-             ]['adj_atmos_sw_down_all_toa_1h'].values.tolist()
+             ][toa_incoming_shortwave_flux].values.tolist()
 
         df_sub = df[df.dates == date]
 
@@ -143,12 +143,19 @@ def main(dataset, args):
     stn_name = df['station_name'][0]
 
     jaws_path = 'http://jaws.ess.uci.edu/jaws/rigb_data/'
+
+    global toa_incoming_shortwave_flux
     if args.merra:
         dir_ceres = 'cf_toa/merra/'
         sfx = '.merra_cf_toa.nc'
+        cloud_fraction_var = 'CLDTOT'
+        toa_incoming_shortwave_flux = 'SWTDN'
     else:
         dir_ceres = 'cf_toa/ceres/'
         sfx = '.ceres_cf_toa.nc'
+        cloud_fraction_var = 'cldarea_total_1h'
+        toa_incoming_shortwave_flux = 'adj_atmos_sw_down_all_toa_1h'
+
     url = jaws_path + dir_ceres + stn_name + sfx
     r = requests.get(url, allow_redirects=True)
     open(stn_name + sfx, 'wb').write(r.content)
@@ -161,7 +168,7 @@ def main(dataset, args):
         ceres_df = xr.open_dataset(stn_name + sfx).to_dataframe()
         cf = ceres_df.loc[
              str(year)+'-'+str(month)+'-'+str(day):str(year)+'-'+str(month)+'-'+str(day)
-             ]['cldarea_total_1h'].values.tolist()
+             ][cloud_fraction_var].values.tolist()
 
         if args.merra:
             pass
