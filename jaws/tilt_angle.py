@@ -67,8 +67,20 @@ def main(dataset, latitude, longitude, clr_df, args):
         dir_rrtm = 'rrtm-merra/'
 
     rrtm_file = requests.get(jaws_path + dir_rrtm + stn_name + '.rrtm.nc')
-    open(stn_name + '.rrtm.nc', 'wb').write(rrtm_file.content)
-    rrtm_df = xr.open_dataset(stn_name + '.rrtm.nc').to_dataframe()
+
+    if rrtm_file:
+        open(stn_name + '.rrtm.nc', 'wb').write(rrtm_file.content)
+        rrtm_df = xr.open_dataset(stn_name + '.rrtm.nc').to_dataframe()
+    else:  # If no AIRS RRTM file, try MERRA RRTM file
+        dir_rrtm = 'rrtm-merra/'
+        rrtm_file = requests.get(jaws_path + dir_rrtm + stn_name + '.rrtm.nc')
+        if rrtm_file:
+            open(stn_name + '.rrtm.nc', 'wb').write(rrtm_file.content)
+            rrtm_df = xr.open_dataset(stn_name + '.rrtm.nc').to_dataframe()
+        else:
+            print('ERROR: RRTM data not available for this station. Please report it on github.com/jaws/jaws/issues')
+            os._exit(1)
+
     start_time = time.time()
     print('Tilt correction will take long time')
 
