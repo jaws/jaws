@@ -251,6 +251,8 @@ def call_rigb(args, station_name, first_date, last_date, ds, latitude, longitude
             print('Skipping RIGB, since no clear-sky day found')
     else:
         log(args, 7, 'Calculating tilt angle and direction')
+        if len(clr_df.index) >= 5:
+            print('Tilt correction will take long time')
         ds = tilt_angle.main(ds, latitude, longitude, clr_df, args)
 
         log(args, 8, 'Calculating corrected_fsds')

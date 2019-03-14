@@ -83,7 +83,6 @@ def main(dataset, latitude, longitude, clr_df, args):
             os._exit(1)
 
     start_time = time.time()
-    print('Tilt correction will take long time')
 
     for line in clrprd:
         clrdate = line.split('_')[0]
