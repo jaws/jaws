@@ -62,13 +62,26 @@ def main(dataset, latitude, longitude, clr_df, args):
 
     jaws_path = 'http://jaws.ess.uci.edu/jaws/rigb_data/'
     dir_rrtm = 'rrtm-airx3std/'
+    sfx = '.rrtm.nc'
 
     if args.merra:
         dir_rrtm = 'rrtm-merra/'
 
-    rrtm_file = requests.get(jaws_path + dir_rrtm + stn_name + '.rrtm.nc')
-    open(stn_name + '.rrtm.nc', 'wb').write(rrtm_file.content)
-    rrtm_df = xr.open_dataset(stn_name + '.rrtm.nc').to_dataframe()
+    rrtm_file = requests.get(jaws_path + dir_rrtm + stn_name + sfx)
+
+    if rrtm_file:
+        open(stn_name + sfx, 'wb').write(rrtm_file.content)
+        rrtm_df = xr.open_dataset(stn_name + sfx).to_dataframe()
+    else:  # If no AIRS RRTM file, try MERRA RRTM file
+        dir_rrtm = 'rrtm-merra/'
+        rrtm_file = requests.get(jaws_path + dir_rrtm + stn_name + sfx)
+        if rrtm_file:
+            open(stn_name + sfx, 'wb').write(rrtm_file.content)
+            rrtm_df = xr.open_dataset(stn_name + sfx).to_dataframe()
+        else:
+            print('ERROR: RRTM data not available for this station. Please report it on github.com/jaws/jaws/issues')
+            os._exit(1)
+
     start_time = time.time()
     print('Tilt correction will take long time')
 
@@ -250,7 +263,7 @@ def main(dataset, latitude, longitude, clr_df, args):
     dataset['tilt_angle'] = 'time', tilt_angle_values
 
     try:  # Remove downloaded rrtm_df file
-        os.remove(stn_name + '.rrtm.nc')
+        os.remove(stn_name + sfx)
     except:  # Windows
         pass
 
