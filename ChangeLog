@@ -1,3 +1,11 @@
+2019-03-14  Ajay Saini  <sainiak@uci.edu>
+
+	* Define common call_rigb function
+
+	* call_rigb: print message if 5 or more cleardays
+
+	* RIGB documentation
+
 2019-03-13  Ajay Saini  <sainiak@uci.edu>
 
 	* CERES: different variable name for AIRS and MERRA
