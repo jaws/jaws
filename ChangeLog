@@ -2,7 +2,13 @@
 
 	* CERES: different variable name for AIRS and MERRA
 
-	* PROMICE: Add new vars Sensible Heat Flux and Latent Heat Flux
+	* tilt_angle.py: Choose MERRA automatically if AIRS RRTM not available
+
+	* tilt_angle.py: Set suffix for file names
+
+	* Remove cleardays for ant_aws01, ant_aws02 and ant_aws03 due to non-availability of RRTM data
+
+	* git tag -a 0.7.5 -m 'beta02: Choose MERRA automatically if AIRS RRTM not available'; git push --tags
 
 2019-03-12  Ajay Saini  <sainiak@uci.edu>
 
