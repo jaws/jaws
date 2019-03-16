@@ -8,6 +8,11 @@ import collections
 import pytz
 from datetime import datetime, timedelta
 
+try:
+    from jaws import tilt_angle, fsds_adjust
+except ImportError:
+    import tilt_angle, fsds_adjust
+
 ###############################################################################
 
 freezing_point_temp = 273.15
@@ -233,6 +238,29 @@ def get_cleardays_df(station_name, first_date, last_date):
     clr_df[['start_hour', 'end_hour']] = clr_df[['start_hour', 'end_hour']].astype(int)
 
     return clr_df
+
+
+def call_rigb(args, station_name, first_date, last_date, ds, latitude, longitude, rigb_vars):
+    log(args, 6, 'Detecting clear-sky day(s)')
+    clr_df = get_cleardays_df(station_name, first_date, last_date)
+    if args.dbg_lvl > 6:
+        print("Found {} clear-sky day(s)".format(len(clr_df.index)))
+
+    if clr_df.empty:
+        if args.dbg_lvl > 6:
+            print('Skipping RIGB, since no clear-sky day found')
+    else:
+        log(args, 7, 'Calculating tilt angle and direction')
+        if len(clr_df.index) >= 5:
+            print('Tilt correction will take long time')
+        ds = tilt_angle.main(ds, latitude, longitude, clr_df, args)
+
+        log(args, 8, 'Calculating corrected_fsds')
+        ds = fsds_adjust.main(ds, args)
+
+        rigb_vars = ['tilt_direction', 'tilt_angle', 'fsds_adjusted', 'fsus_adjusted', 'cloud_fraction']
+
+    return ds, rigb_vars
 
 
 def write_data(args, ds, op_file, encoding):

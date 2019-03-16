@@ -174,17 +174,8 @@ def promice2nc(args, input_file, output_file, stations):
 
     rigb_vars = []
     if args.rigb:
-        common.log(args, 6, 'Detecting clear days')
-        clr_df = common.get_cleardays_df(station_name, first_date, last_date)
-
-        if not clr_df.empty:
-            common.log(args, 7, 'Calculating tilt angle and direction')
-            ds = tilt_angle.main(ds, latitude, longitude, clr_df, args)
-
-            common.log(args, 8, 'Calculating corrected_fsds')
-            ds = fsds_adjust.main(ds, args)
-
-            rigb_vars = ['tilt_direction', 'tilt_angle', 'fsds_adjusted', 'fsus_adjusted', 'cloud_fraction']
+        ds, rigb_vars = common.call_rigb(
+            args, station_name, first_date, last_date, ds, latitude, longitude, rigb_vars)
 
     comp_level = args.dfl_lvl
 

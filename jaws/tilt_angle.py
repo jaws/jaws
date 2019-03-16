@@ -31,6 +31,25 @@ def rad_to_deg(list_rad):
     return list_deg
 
 
+def get_rrtm_file(jaws_path, dir_rrtm, stn_name, sfx):
+    url = jaws_path + dir_rrtm + stn_name + sfx
+    try:
+        rrtm_file = requests.get(url, allow_redirects=True)
+    except requests.ConnectionError:
+        print('ERROR: Unable to download RRTM file from web-server, please check your internet connection \n'
+              'HINT: Internet connection is needed only when performing RIGB operation')
+        os._exit(1)
+
+    return rrtm_file
+
+
+def get_rrtm_df(stn_name, sfx, rrtm_file):
+    open(stn_name + sfx, 'wb').write(rrtm_file.content)
+    rrtm_df = xr.open_dataset(stn_name + sfx).to_dataframe()
+
+    return  rrtm_df
+
+
 def main(dataset, latitude, longitude, clr_df, args):
     ddr = 0.25
     rho = 0.8
@@ -67,23 +86,20 @@ def main(dataset, latitude, longitude, clr_df, args):
     if args.merra:
         dir_rrtm = 'rrtm-merra/'
 
-    rrtm_file = requests.get(jaws_path + dir_rrtm + stn_name + sfx)
+    rrtm_file = get_rrtm_file(jaws_path, dir_rrtm, stn_name, sfx)
 
     if rrtm_file:
-        open(stn_name + sfx, 'wb').write(rrtm_file.content)
-        rrtm_df = xr.open_dataset(stn_name + sfx).to_dataframe()
+        rrtm_df = get_rrtm_df(stn_name, sfx, rrtm_file)
     else:  # If no AIRS RRTM file, try MERRA RRTM file
         dir_rrtm = 'rrtm-merra/'
-        rrtm_file = requests.get(jaws_path + dir_rrtm + stn_name + sfx)
+        rrtm_file = get_rrtm_file(jaws_path, dir_rrtm, stn_name, sfx)
         if rrtm_file:
-            open(stn_name + sfx, 'wb').write(rrtm_file.content)
-            rrtm_df = xr.open_dataset(stn_name + sfx).to_dataframe()
+            rrtm_df = get_rrtm_df(stn_name, sfx, rrtm_file)
         else:
             print('ERROR: RRTM data not available for this station. Please report it on github.com/jaws/jaws/issues')
             os._exit(1)
 
     start_time = time.time()
-    print('Tilt correction will take long time')
 
     for line in clrprd:
         clrdate = line.split('_')[0]

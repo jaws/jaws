@@ -157,8 +157,14 @@ def main(dataset, args):
         toa_incoming_shortwave_flux = 'adj_atmos_sw_down_all_toa_1h'
 
     url = jaws_path + dir_ceres + stn_name + sfx
-    r = requests.get(url, allow_redirects=True)
-    open(stn_name + sfx, 'wb').write(r.content)
+    try:
+        ceres_file = requests.get(url, allow_redirects=True)
+    except requests.ConnectionError:
+        print('ERROR: Unable to download CERES file from web-server, please check your internet connection \n'
+              'HINT: Internet connection is needed only when performing RIGB operation')
+        os._exit(1)
+
+    open(stn_name + sfx, 'wb').write(ceres_file.content)
 
     for date in dates:
         year = date.year
