@@ -1,3 +1,9 @@
+2019-03-15  Ajay Saini  <sainiak@uci.edu>
+
+	* tilt_angle.py, fsds_adjust.py: Exception if no internet connection to download files
+
+	* git tag -a 0.7.6 -m 'beta03: RIGB common function'; git push --tags
+
 2019-03-14  Ajay Saini  <sainiak@uci.edu>
 
 	* Define common call_rigb function
