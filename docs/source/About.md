@@ -6,7 +6,7 @@ Level 3 (L3) output suitable for distribution by the network operator, analysis 
 the researcher, and curation by the data center. 
 NASA has funded JAWS 
 ([project summary](http://dust.ess.uci.edu/prp/prp_aist/prp_aist_smr.pdf)) 
-from 20171001&ndash;20190930.
+from 20171001 to 20190930.
 
 Automated Weather Station (AWS) and AWS-like networks are the primary source 
 of surface-level meteorological data in remote polar regions. 

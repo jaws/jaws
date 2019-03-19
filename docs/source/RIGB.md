@@ -4,9 +4,11 @@ RIGB (Retrospective, Iterative, Geometry-Based) is a method that corrects tilt a
 direction for AWS with solar radiometry. Unattended AWS are subject to tilt, especially 
 when anchored in snow and ice. This tilt can alter the AWS-retrieved albedo from a the 
 expected “smiley face” diurnal profile to almost a frown. 
+![fig4a](http://jaws.ess.uci.edu/jaws/img/fig4a_proposal.png)
 
 The tilt angle at South Dome station was β ≈ 15◦ in 2008, 
 enough to bias retrieved albedo by 0.05–0.10.
+![fig4b](http://jaws.ess.uci.edu/jaws/img/fig4b_proposal.png)
 
 The RIGB tilt-correction algorithm advanced the state-of-the-art in removing 
 surface shortwave biases from AWS. It reduces solar biases by 11Wm−2 averaged over 
