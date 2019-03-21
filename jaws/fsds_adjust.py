@@ -203,8 +203,8 @@ def main(dataset, args):
         aw = deg_to_rad(aw)
 
         count = 0
-        try:
-            while count < len(alpha):
+        while count < len(alpha):
+            if len(cf) == len(alpha):
                 cos_i = (np.cos(alpha[count]) * np.cos(az[count] - aw[count]) * np.sin(beta[count]) + (
                         np.sin(alpha[count]) * np.cos(beta[count])))
 
@@ -220,10 +220,8 @@ def main(dataset, args):
                 df.at[idx_count, 'fsds_adjusted'] = nmr/dnmr
                 df.at[idx_count, 'cloud_fraction'] = cf[count]
 
-                count += 1
-                idx_count += 1
-        except:
-            pass
+            count += 1
+            idx_count += 1
 
     df['fsds_adjusted'] = pd.to_numeric(df['fsds_adjusted'], errors='coerce')
     df['cloud_fraction'] = pd.to_numeric(df['cloud_fraction'], errors='coerce')
