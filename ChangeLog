@@ -1,8 +1,26 @@
+2019-03-23  Ajay Saini  <sainiak@uci.edu>
+
+	* git tag -a 0.7.7 -m 'gamma01: Tilt direction correction'; git push --tags
+
+2019-03-22  Ajay Saini  <sainiak@uci.edu>
+
+	* Raw tilt direction values to be used in fsds_adjust calculations
+
+	* ds.json: Add 'direction' attribute for tilt_direction
+
+	* GCNet: Remove surface_temp from calculated variables
+
+2019-03-21  Ajay Saini  <sainiak@uci.edu>
+
+	* Debug RIGB output mismatch
+
+	* Insert NASA and YOPP logos on ReadtheDocs homepage
+
 2019-03-20  Ajay Saini  <sainiak@uci.edu>
 
 	* Debug windows running issue
 
-	* Debug incorrect fsds_adjusted for multi-year data
+	* fsds_adjsut.py: Correct calculation for multi-year data
 
 2019-03-19  Ajay Saini  <sainiak@uci.edu>
 
