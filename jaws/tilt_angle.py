@@ -270,6 +270,9 @@ def main(dataset, latitude, longitude, clr_df, args):
     tilt_angle_values = tilt_df['tilt_angle'].tolist()
 
     tilt_direction_values = rad_to_deg(tilt_direction_values)
+    dataset['tilt_direction_raw'] = 'time', tilt_direction_values
+
+    # Change tilt_direction to 0 pointing north
     tilt_direction_values = [270-d for d in tilt_direction_values]
     tilt_direction_values = [d-360 if d > 360 else d for d in tilt_direction_values]
 
