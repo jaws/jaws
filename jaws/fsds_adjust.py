@@ -193,7 +193,7 @@ def main(dataset, args):
 
         alpha = [(90 - i) for i in sza]
 
-        aw = df_sub['tilt_direction'].tolist()
+        aw = df_sub['tilt_direction_raw'].tolist()
 
         beta = df_sub['tilt_angle'].tolist()
 
@@ -233,6 +233,9 @@ def main(dataset, args):
     fsds_adjusted_values_new, fsus_adjusted_values = post_process(df, dates, stn_name, sfx, args)
     dataset['fsds_adjusted'] = 'time', fsds_adjusted_values_new
     dataset['fsus_adjusted'] = 'time', fsus_adjusted_values
+
+    # Drop tilt_direction_raw becasue it was needed only for calculations here
+    dataset = dataset.drop('tilt_direction_raw')
 
     try:
         os.remove(stn_name + sfx)
