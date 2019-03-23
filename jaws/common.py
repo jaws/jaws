@@ -133,7 +133,7 @@ def load_dataset_attributes(name, ds, args, **kwargs):
     ds.attrs['JAWS'] = 'Justified Automated Weather Station software version {} (Homepage = https://github.com/' \
                        'jaws/jaws)'.format(jaws_version)
 
-    derived_vars = ['time', 'time_bounds', 'sza', 'az','station_name', 'latitude', 'longitude', 'surface_temp',
+    derived_vars = ['time', 'time_bounds', 'sza', 'az','station_name', 'latitude', 'longitude',
                     'ice_velocity_GPS_total', 'ice_velocity_GPS_x', 'ice_velocity_GPS_y', 'height']
 
     no_drv_tm_vars = []
