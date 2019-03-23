@@ -462,6 +462,7 @@
       "type": "float",
       "attributes": {
         "long_name": "Tilt Direction",
+        "direction": "Zero pointing north",
         "units": "degree",
         "cell_methods": "time: mean",
         "coordinates": "longitude latitude"
