@@ -31,4 +31,5 @@ User's Guide
    Installation
    Example
    RIGB
+   Modification
    License
