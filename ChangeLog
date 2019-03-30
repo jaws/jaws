@@ -1,3 +1,45 @@
+2019-03-30  Ajay Saini  <sainiak@uci.edu>
+
+	* git tag -a 0.8 -m 'Greenland Shark: RIGB modifications'; git push --tags
+
+2019-03-29  Ajay Saini  <sainiak@uci.edu>
+
+	* tilt_angle.py: Interpolate in both direction
+
+	* fsds_adjust.py: Intiliaze new dataframe values as float instead of str
+
+	* fsds_adjust.py: Create outer_idx for writing fsds_adjusted_new values
+
+	* fsds_adjust.py: Convert sza from degrees to radians before calculation
+
+	* fsds_adjust.py: Correct values in post-process function
+
+	* fsds_adjust.py: Correct way to check nan values
+
+	* Update cleardays
+
+2019-03-28  Ajay Saini  <sainiak@uci.edu>
+
+	* Debug fsds_adjust script
+
+	* Debug python 7  dependencies issue
+
+2019-03-27  Ajay Saini  <sainiak@uci.edu>
+
+	* Debug fsds_adjsut script
+
+	* Fix windows issue
+
+2019-03-26  Ajay Saini  <sainiak@uci.edu>
+
+	* Work on presentation
+
+	* Debug fsds_adjsut script
+
+2019-03-25  Ajay Saini  <sainiak@uci.edu>
+
+	* Debug Windows installation issue
+
 2019-03-23  Ajay Saini  <sainiak@uci.edu>
 
 	* git tag -a 0.7.7 -m 'gamma01: Tilt direction correction'; git push --tags
