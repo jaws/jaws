@@ -36,6 +36,7 @@ def post_process(df, dates, stn_name, sfx, args):
     df['fsds_adjusted_new'] = np.float()
     df['fsus_adjusted'] = np.float()
     thrsh = 0.1
+    outer_idx = 0
 
     for date in dates:
         year = date.year
@@ -105,12 +106,13 @@ def post_process(df, dates, stn_name, sfx, args):
                 if fsds_jaws[idx] == 0:
                     fsus_jaws[idx] = 0
 
-                df.at[idx, 'fsds_adjusted_new'] = fsds_jaws[idx]
-                df.at[idx, 'fsus_adjusted'] = fsus_jaws[idx]
+                df.at[outer_idx, 'fsds_adjusted_new'] = fsds_jaws[idx]
+                df.at[outer_idx, 'fsus_adjusted'] = fsus_jaws[idx]
             except:  # Exception for list index out of range toa[idx]
                 common.log(args, 9, 'Warning: list index out of range for toa[idx]')
 
             idx += 1
+            outer_idx += 1
 
     #df['fsds_adjusted_new'] = pd.to_numeric(df['fsds_adjusted_new'], errors='coerce')
     # df['fsus_adjusted'] = pd.to_numeric(df['fsus_adjusted'], errors='coerce')
