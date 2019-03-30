@@ -3,7 +3,6 @@ import os
 import requests
 
 import numpy as np
-import pandas as pd
 import scipy.interpolate
 import xarray as xr
 
@@ -72,14 +71,17 @@ def post_process(df, dates, stn_name, sfx, args):
         albedo = [abs(i) for i in albedo]
         hours = np.arange(len(albedo))
 
-        '''dy = np.diff(albedo, 1)
+        # Earlier used function to calculate second-order derivative, gives same result
+        '''
+        dy = np.diff(albedo, 1)
         dx = np.diff(hours, 1)
         yfirst = dy/dx
         xfirst = 0.5 * (hours[:-1] + hours[1:])
 
         dyfirst = np.diff(yfirst, 1)
         dxfirst = np.diff(xfirst, 1)
-        ysecond = dyfirst / dxfirst'''
+        ysecond = dyfirst / dxfirst
+        '''
 
         if len(albedo) < 2:
             continue
@@ -115,8 +117,6 @@ def post_process(df, dates, stn_name, sfx, args):
             idx += 1
             outer_idx += 1
 
-    #df['fsds_adjusted_new'] = pd.to_numeric(df['fsds_adjusted_new'], errors='coerce')
-    # df['fsus_adjusted'] = pd.to_numeric(df['fsus_adjusted'], errors='coerce')
     fsds_adjusted_values_new = df['fsds_adjusted_new'].tolist()
     fsus_adjusted_values = df['fsus_adjusted'].tolist()
 
@@ -226,18 +226,14 @@ def main(dataset, args):
             count += 1
             idx_count += 1
 
-    # df['fsds_adjusted'] = pd.to_numeric(df['fsds_adjusted'], errors='coerce')
-    # df['cloud_fraction'] = pd.to_numeric(df['cloud_fraction'], errors='coerce')
-    # fsds_adjusted_values = df['fsds_adjusted'].tolist()
     cloud_fraction_values = df['cloud_fraction'].tolist()
-    # dataset['fsds_adjusted'] = 'time', fsds_adjusted_values
     dataset['cloud_fraction'] = 'time', cloud_fraction_values
 
     fsds_adjusted_values_new, fsus_adjusted_values = post_process(df, dates, stn_name, sfx, args)
     dataset['fsds_adjusted'] = 'time', fsds_adjusted_values_new
     dataset['fsus_adjusted'] = 'time', fsus_adjusted_values
 
-    # Drop tilt_direction_raw becasue it was needed only for calculations here
+    # Drop tilt_direction_raw because it was needed only for calculations here
     dataset = dataset.drop('tilt_direction_raw')
 
     try:
