@@ -3,7 +3,6 @@ import os
 import requests
 
 import numpy as np
-import pandas as pd
 import scipy.interpolate
 import xarray as xr
 
@@ -33,9 +32,10 @@ def first_order_derivative(tm, var):
 
 
 def post_process(df, dates, stn_name, sfx, args):
-    df['fsds_adjusted_new'] = ''
-    df['fsus_adjusted'] = ''
+    df['fsds_adjusted_new'] = np.float()
+    df['fsus_adjusted'] = np.float()
     thrsh = 0.1
+    outer_idx = 0
 
     for date in dates:
         year = date.year
@@ -56,6 +56,7 @@ def post_process(df, dates, stn_name, sfx, args):
         fsus_jaws = [common.fillvalue_float if np.isnan(i) else i for i in fsus_jaws]
 
         sza = df_sub['sza'].tolist()
+        sza = deg_to_rad(sza)
 
         fsds_alb = fsds_jaws
 
@@ -70,14 +71,17 @@ def post_process(df, dates, stn_name, sfx, args):
         albedo = [abs(i) for i in albedo]
         hours = np.arange(len(albedo))
 
-        '''dy = np.diff(albedo, 1)
+        # Earlier used function to calculate second-order derivative, gives same result
+        '''
+        dy = np.diff(albedo, 1)
         dx = np.diff(hours, 1)
         yfirst = dy/dx
         xfirst = 0.5 * (hours[:-1] + hours[1:])
 
         dyfirst = np.diff(yfirst, 1)
         dxfirst = np.diff(xfirst, 1)
-        ysecond = dyfirst / dxfirst'''
+        ysecond = dyfirst / dxfirst
+        '''
 
         if len(albedo) < 2:
             continue
@@ -98,23 +102,22 @@ def post_process(df, dates, stn_name, sfx, args):
                 if (fsds_jaws[idx] < toa[idx]*0.05) and (fsds_jaws[idx] != 0):
                     fsds_jaws[idx] = common.fillvalue_float
                     fsus_jaws[idx] = common.fillvalue_float
-                if (fsus_jaws[idx] > fsds_jaws[idx]*0.99) or (fsus_jaws[idx] < fsds_jaws[idx]*0.1):
+                if (fsus_jaws[idx] > fsds_jaws[idx]*0.95) or (fsus_jaws[idx] < fsds_jaws[idx]*0.05):
                     fsus_jaws[idx] = common.fillvalue_float
                 if np.cos(sza[idx]) <= 0:
                     fsds_jaws[idx] = 0
                 if fsds_jaws[idx] == 0:
                     fsus_jaws[idx] = 0
 
-                df.at[idx, 'fsds_adjusted_new'] = fsds_jaws[idx]
-                df.at[idx, 'fsus_adjusted'] = fsus_jaws[idx]
+                df.at[outer_idx, 'fsds_adjusted_new'] = fsds_jaws[idx]
+                df.at[outer_idx, 'fsus_adjusted'] = fsus_jaws[idx]
             except:  # Exception for list index out of range toa[idx]
                 common.log(args, 9, 'Warning: list index out of range for toa[idx]')
 
             idx += 1
+            outer_idx += 1
 
-    #df['fsds_adjusted_new'] = pd.to_numeric(df['fsds_adjusted_new'], errors='coerce')
-    df['fsus_adjusted'] = pd.to_numeric(df['fsus_adjusted'], errors='coerce')
-    fsds_adjusted_values_new = df['fsds_adjusted'].tolist()
+    fsds_adjusted_values_new = df['fsds_adjusted_new'].tolist()
     fsus_adjusted_values = df['fsus_adjusted'].tolist()
 
     return fsds_adjusted_values_new, fsus_adjusted_values
@@ -136,8 +139,8 @@ def main(dataset, args):
     df['dates'] = dates
     dates = sorted(set(dates), key=dates.index)
 
-    df['fsds_adjusted'] = ''
-    df['cloud_fraction'] = ''
+    df['fsds_adjusted'] = np.float()
+    df['cloud_fraction'] = np.float()
 
     df.reset_index(level=['time'], inplace=True)
     stn_name = df['station_name'][0]
@@ -214,7 +217,7 @@ def main(dataset, args):
 
                 dnmr = cos_i + (ddr * (1 + np.cos(beta[count])) / 2.) + (
                             rho * (np.sin(alpha[count]) + ddr) * (1 - np.cos(beta[count])) / 2.)
-                if dnmr == 0 or dnmr == np.nan:
+                if dnmr == 0 or np.isnan(dnmr):
                     dnmr = smallest_double
 
                 df.at[idx_count, 'fsds_adjusted'] = nmr/dnmr
@@ -223,18 +226,14 @@ def main(dataset, args):
             count += 1
             idx_count += 1
 
-    df['fsds_adjusted'] = pd.to_numeric(df['fsds_adjusted'], errors='coerce')
-    df['cloud_fraction'] = pd.to_numeric(df['cloud_fraction'], errors='coerce')
-    # fsds_adjusted_values = df['fsds_adjusted'].tolist()
     cloud_fraction_values = df['cloud_fraction'].tolist()
-    # dataset['fsds_adjusted'] = 'time', fsds_adjusted_values
     dataset['cloud_fraction'] = 'time', cloud_fraction_values
 
     fsds_adjusted_values_new, fsus_adjusted_values = post_process(df, dates, stn_name, sfx, args)
     dataset['fsds_adjusted'] = 'time', fsds_adjusted_values_new
     dataset['fsus_adjusted'] = 'time', fsus_adjusted_values
 
-    # Drop tilt_direction_raw becasue it was needed only for calculations here
+    # Drop tilt_direction_raw because it was needed only for calculations here
     dataset = dataset.drop('tilt_direction_raw')
 
     try:

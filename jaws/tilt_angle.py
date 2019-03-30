@@ -265,7 +265,7 @@ def main(dataset, latitude, longitude, clr_df, args):
     tilt_df['tilt_direction'] = pd.to_numeric(tilt_df['tilt_direction'], errors='coerce')
     tilt_df['tilt_angle'] = pd.to_numeric(tilt_df['tilt_angle'], errors='coerce')
 
-    tilt_df = tilt_df.interpolate()
+    tilt_df = tilt_df.interpolate(limit_direction='both')
     tilt_direction_values = tilt_df['tilt_direction'].tolist()
     tilt_angle_values = tilt_df['tilt_angle'].tolist()
 
