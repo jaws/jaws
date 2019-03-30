@@ -57,6 +57,7 @@ def post_process(df, dates, stn_name, sfx, args):
         fsus_jaws = [common.fillvalue_float if np.isnan(i) else i for i in fsus_jaws]
 
         sza = df_sub['sza'].tolist()
+        sza = deg_to_rad(sza)
 
         fsds_alb = fsds_jaws
 
