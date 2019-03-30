@@ -217,7 +217,7 @@ def main(dataset, args):
 
                 dnmr = cos_i + (ddr * (1 + np.cos(beta[count])) / 2.) + (
                             rho * (np.sin(alpha[count]) + ddr) * (1 - np.cos(beta[count])) / 2.)
-                if dnmr == 0 or dnmr == np.nan:
+                if dnmr == 0 or np.isnan(dnmr):
                     dnmr = smallest_double
 
                 df.at[idx_count, 'fsds_adjusted'] = nmr/dnmr
