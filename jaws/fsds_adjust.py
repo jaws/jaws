@@ -33,8 +33,8 @@ def first_order_derivative(tm, var):
 
 
 def post_process(df, dates, stn_name, sfx, args):
-    df['fsds_adjusted_new'] = ''
-    df['fsus_adjusted'] = ''
+    df['fsds_adjusted_new'] = np.float()
+    df['fsus_adjusted'] = np.float()
     thrsh = 0.1
 
     for date in dates:
@@ -113,8 +113,8 @@ def post_process(df, dates, stn_name, sfx, args):
             idx += 1
 
     #df['fsds_adjusted_new'] = pd.to_numeric(df['fsds_adjusted_new'], errors='coerce')
-    df['fsus_adjusted'] = pd.to_numeric(df['fsus_adjusted'], errors='coerce')
-    fsds_adjusted_values_new = df['fsds_adjusted'].tolist()
+    # df['fsus_adjusted'] = pd.to_numeric(df['fsus_adjusted'], errors='coerce')
+    fsds_adjusted_values_new = df['fsds_adjusted_new'].tolist()
     fsus_adjusted_values = df['fsus_adjusted'].tolist()
 
     return fsds_adjusted_values_new, fsus_adjusted_values
@@ -136,8 +136,8 @@ def main(dataset, args):
     df['dates'] = dates
     dates = sorted(set(dates), key=dates.index)
 
-    df['fsds_adjusted'] = ''
-    df['cloud_fraction'] = ''
+    df['fsds_adjusted'] = np.float()
+    df['cloud_fraction'] = np.float()
 
     df.reset_index(level=['time'], inplace=True)
     stn_name = df['station_name'][0]
@@ -223,8 +223,8 @@ def main(dataset, args):
             count += 1
             idx_count += 1
 
-    df['fsds_adjusted'] = pd.to_numeric(df['fsds_adjusted'], errors='coerce')
-    df['cloud_fraction'] = pd.to_numeric(df['cloud_fraction'], errors='coerce')
+    # df['fsds_adjusted'] = pd.to_numeric(df['fsds_adjusted'], errors='coerce')
+    # df['cloud_fraction'] = pd.to_numeric(df['cloud_fraction'], errors='coerce')
     # fsds_adjusted_values = df['fsds_adjusted'].tolist()
     cloud_fraction_values = df['cloud_fraction'].tolist()
     # dataset['fsds_adjusted'] = 'time', fsds_adjusted_values
