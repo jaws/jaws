@@ -91,12 +91,10 @@ def post_process(df, dates, stn_name, sfx, args):
         idx = 0
         while idx < len(alb_second_derv):
             try:
+                if np.cos(sza[idx]) <= 0:
+                    fsds_jaws[idx] = 0
                 if abs(alb_second_derv[idx]) > thrsh:
                     fsds_jaws[idx] = common.fillvalue_float
-                if fsds_jaws[idx] < 0:
-                    fsds_jaws[idx] = 0
-                if fsus_jaws[idx] == 0:
-                    fsds_jaws[idx] = 0
                 if fsds_jaws[idx] > toa[idx]:
                     fsds_jaws[idx] = common.fillvalue_float
                 if (fsds_jaws[idx] < toa[idx]*0.05) and (fsds_jaws[idx] != 0):
@@ -104,7 +102,9 @@ def post_process(df, dates, stn_name, sfx, args):
                     fsus_jaws[idx] = common.fillvalue_float
                 if (fsus_jaws[idx] > fsds_jaws[idx]*0.95) or (fsus_jaws[idx] < fsds_jaws[idx]*0.05):
                     fsus_jaws[idx] = common.fillvalue_float
-                if np.cos(sza[idx]) <= 0:
+                if fsds_jaws[idx] < 0:
+                    fsds_jaws[idx] = 0
+                if fsus_jaws[idx] == 0:
                     fsds_jaws[idx] = 0
                 if fsds_jaws[idx] == 0:
                     fsus_jaws[idx] = 0
