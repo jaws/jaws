@@ -30,7 +30,8 @@ User's Guide
    Overview
    Installation
    Example
-   RIGB
    Arguments
+   RIGB
+   Analysis
    Modification
    License
