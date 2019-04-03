@@ -180,8 +180,6 @@ where the argument to the optional `-o` is the user-defined output filename
 
 A list of all options can be found in [here](docs/source/Arguments.md).
 
-To change the timezone, use the -t/--tz/--timezone argument. A list of all the timezones can be found [here](https://gist.github.com/heyalexej/8bf688fd67d7199be4a1682b3eec7568).
-
 #### __RIGB__
 
 Download sample data from [here](http://jaws.ess.uci.edu/jaws/sample_data/gcnet_summit_20120817.txt)
@@ -204,20 +202,19 @@ In addition to input variables, `JAWS` provides following variables in output ne
  * latitude
  * longitude
  * ice_gps_velocity_x, ice_gps_velocity_y, ice_gps_velocity_total (For stations that archive GPS position)
- * year, month, day, hour (if '-d/--drv_tm/--derive_times' option is used)
+ * year, month, day, hour
  * adjusted_fsds (corrected downwelling shortwave flux)
 
 #### Analysis Example
 
-To perform analysis, the raw data should be converted to netCDF format using '-d/--drv_tm/--derive_times' flag. e.g.:
-
-``` html
-$ jaws -d ~/Downloads/GCNet_Summit.txt
 ```
-
+Note: The sample files we have provided contain only 1-day data. So, it can only be used to perform the first
+analysis below (i.e. diurnal). For rest of the 3 plots, user needs to have monthly, yearly and multi-yearly data 
+respectively.
+```
 JAWS can be used to analyse the data in multiple ways such as:
 
-i. Plotting monthly diurnal cycle to see hourly changes for any variable throughout the month.
+i. *Plotting monthly diurnal cycle to see hourly changes for any variable throughout the month*:
 
 The user provides input file path, variable name (on which analysis needs to be done) and analysis type (i.e. diurnal, monthly, annual or seasonal). Year and month are optional arguments. If the input file contains data for only single year, then the user doesn't  need to provide the '-y' argument. Similar is the case for '-m' argument.
 
@@ -227,7 +224,7 @@ $ jaws -a diurnal -v temperature_tc_1 -y 2002 -m 5 gcnet_summit.nc
 
 ![diurnal](http://jaws.ess.uci.edu/jaws/img/diurnal.png)
 
-ii. Avg, max and min values for each day of a month for any variable
+ii. *Avg, max and min values for each day of a month for any variable*:
 
 ```
 $ jaws --anl=monthly --var=temperature_cs500_1 --anl_yr=2013 --anl_mth=2 gcnet_summit.nc
@@ -235,7 +232,7 @@ $ jaws --anl=monthly --var=temperature_cs500_1 --anl_yr=2013 --anl_mth=2 gcnet_s
 
 ![monthly](http://jaws.ess.uci.edu/jaws/img/monthly.png)
 
-iii. Annual cycle with daily mean, max and min
+iii. *Annual cycle with daily mean, max and min*:
 
 Since it is annual plot, user shouldn't provide the '-m' argument
 
@@ -245,7 +242,7 @@ $ jaws --analysis=annual --variable=temperature_tc_1 --analysis_year=2016 gcnet_
 
 ![annual](http://jaws.ess.uci.edu/jaws/img/annual.png)
 
-iv. Climatological seasonal cycle showing variation for each month through multiple years
+iv. *Climatological seasonal cycle showing variation for each month through multiple years*:
 
 Since it is seasonal plot, user shouldn't provide both '-y', '-m' argument.
 
@@ -268,7 +265,7 @@ Total number of station-years of data handled by JAWS: 3600
 ![Greenland](http://jaws.ess.uci.edu/jaws/img/map_grl.png)
 
 ## Benchmark
-As of version 0.7, it takes about 3.5 minutes to process Summit(GCNet) data from 19960512 to 20170524
+As of version 0.8, it takes about 3.5 minutes to process Summit(GCNet) data from 19960512 to 20170524
 
 ## Credit
 
