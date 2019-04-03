@@ -31,5 +31,6 @@ User's Guide
    Installation
    Example
    RIGB
+   Arguments
    Modification
    License
