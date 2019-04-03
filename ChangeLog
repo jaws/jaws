@@ -1,3 +1,13 @@
+2019-04-01  Ajay Saini  <sainiak@uci.edu>
+
+	* fsds_adjust.py: Rearrange order of equations in post-processing
+
+	* Documentation
+
+2019-04-02  Ajay Saini  <sainiak@uci.edu>
+
+	* Debug gcnet_ngrip error
+
 2019-03-30  Ajay Saini  <sainiak@uci.edu>
 
 	* git tag -a 0.8 -m 'Greenland Shark: RIGB modifications'; git push --tags

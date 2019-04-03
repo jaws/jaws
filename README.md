@@ -16,8 +16,12 @@
 [![Anaconda-Server Badge](https://anaconda.org/conda-forge/jaws/badges/license.svg)](https://anaconda.org/conda-forge/jaws)
 [![Anaconda-Server Badge](https://anaconda.org/conda-forge/jaws/badges/downloads.svg)](https://anaconda.org/conda-forge/jaws)
 
+## Documentation
+Please visit [JAWS Homepage](https://jaws.readthedocs.io) for detailed documentation.
 ___
 ## News
+
+2019/03/30: Version 0.8 released: RIGB improvement, Documentation
 
 2019/02/06: Version 0.7 released: POLENET network added
 
@@ -174,7 +178,7 @@ $ jaws -4 -o ~/Desktop/AAWS_AGO-4_20161130.nc ~/Downloads/AAWS_AGO-4_20161130.tx
 
 where the argument to the optional `-o` is the user-defined output filename
 
-A list of all options can be found in [docs/options.txt](docs/options.txt).
+A list of all options can be found in [here](docs/source/Arguments.md).
 
 To change the timezone, use the -t/--tz/--timezone argument. A list of all the timezones can be found [here](https://gist.github.com/heyalexej/8bf688fd67d7199be4a1682b3eec7568).
 
