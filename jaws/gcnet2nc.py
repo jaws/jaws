@@ -32,14 +32,12 @@ def init_dataframe(args, input_file):
     df.replace(check_na, np.nan, inplace=True)
 
     temperature_keys = [
-        'temperature_tc_1', 'temperature_tc_2', 'temperature_cs500_1',
-        'temperature_cs500_2', 't_snow_01', 't_snow_02', 't_snow_03',
-        't_snow_04', 't_snow_05', 't_snow_06', 't_snow_07', 't_snow_08',
-        't_snow_09', 't_snow_10', 'max_air_temperature_1',
-        'max_air_temperature_2', 'min_air_temperature_1',
-        'min_air_temperature_2', 'ref_temperature']
+        'ta_tc1', 'ta_tc2', 'ta_cs1', 'ta_cs2',
+        'tsn1', 'tsn2', 'tsn3','tsn4', 'tsn5',
+        'tsn6', 'tsn7', 'tsn8', 'tsn9', 'tsn10',
+        'ta_max1', 'ta_max2', 'ta_min1','ta_min2', 'ref_temp']
     df.loc[:, temperature_keys] += common.freezing_point_temp
-    df.loc[:, 'atmos_pressure'] *= common.pascal_per_millibar
+    df.loc[:, 'ps'] *= common.pascal_per_millibar
     df = df.where((pd.notnull(df)), common.get_fillvalue(args))
 
     try:
@@ -121,8 +119,8 @@ def get_time_and_sza(args, dataframe, longitude, latitude):
 def extrapolate_temp(dataframe):
     ht1 = dataframe['wind_sensor_height_1']
     ht2 = dataframe['wind_sensor_height_2']
-    temp_ht1 = dataframe['temperature_tc_1']
-    temp_ht2 = dataframe['temperature_tc_2']
+    temp_ht1 = dataframe['ta_tc1']
+    temp_ht2 = dataframe['ta_tc1']
 
     surface_temp = temp_ht1 - (((temp_ht2 - temp_ht1)/(ht2 - ht1))*ht1)
     return surface_temp

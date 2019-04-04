@@ -56,7 +56,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "net_radiation": {
+    "fsns": {
       "type": "float",
       "attributes": {
         "long_name": "Net Radiation",
@@ -67,7 +67,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "temperature_tc_1": {
+    "ta_tc1": {
       "type": "float",
       "attributes": {
         "long_name": "TC-1 Air Temperature",
@@ -79,7 +79,7 @@
         "note": "air temperature from TC sensor"
       }
     },
-    "temperature_tc_2": {
+    "ta_tc2": {
       "type": "float",
       "attributes": {
         "long_name": "TC-2 Air Temperature",
@@ -91,7 +91,7 @@
         "note": "air temperature from TC sensor"
       }
     },
-    "temperature_cs500_1": {
+    "ta_cs1": {
       "type": "float",
       "attributes": {
         "long_name": "CS500-1 Air Temperature",
@@ -103,7 +103,7 @@
         "note": "air temperature from CS500 sensor"
       }
     },
-    "temperature_cs500_2": {
+    "ta_cs2": {
       "type": "float",
       "attributes": {
         "long_name": "CS500-2 Air Temperature",
@@ -115,7 +115,7 @@
         "note": "air temperature from CS500 sensor"
       }
     },
-    "relative_humidity_1": {
+    "rh1": {
       "type": "float",
       "attributes": {
         "long_name": "Relative Humidity 1",
@@ -126,7 +126,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "relative_humidity_2": {
+    "rh2": {
       "type": "float",
       "attributes": {
         "long_name": "Relative Humidity 2",
@@ -137,7 +137,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "u1_wind_speed": {
+    "wspd1": {
       "type": "float",
       "attributes": {
         "long_name": "U1 Wind Speed",
@@ -148,7 +148,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "u2_wind_speed": {
+    "wspd2": {
       "type": "float",
       "attributes": {
         "long_name": "U2 Wind Speed",
@@ -159,7 +159,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "u_direction_1": {
+    "wdir1": {
       "type": "float",
       "attributes": {
         "long_name": "U Direction 1",
@@ -170,7 +170,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "u_direction_2": {
+    "wdir2": {
       "type": "float",
       "attributes": {
         "long_name": "U Direction 2",
@@ -181,7 +181,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "atmos_pressure": {
+    "ps": {
       "type": "float",
       "attributes": {
         "long_name": "Atmospheric Pressure",
@@ -192,7 +192,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "snow_height_1": {
+    "snh1": {
       "type": "float",
       "attributes": {
         "long_name": "Snow Height 1",
@@ -203,7 +203,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "snow_height_2": {
+    "snh2": {
       "type": "float",
       "attributes": {
         "long_name": "Snow Height 2",
@@ -214,7 +214,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "t_snow_01": {
+    "tsn1": {
       "type": "float",
       "attributes": {
         "long_name": "T Snow 1",
@@ -225,7 +225,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "t_snow_02": {
+    "tsn2": {
       "type": "float",
       "attributes": {
         "long_name": "T Snow 2",
@@ -236,7 +236,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "t_snow_03": {
+    "tsn3": {
       "type": "float",
       "attributes": {
         "long_name": "T Snow 3",
@@ -247,7 +247,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "t_snow_04": {
+    "tsn4": {
       "type": "float",
       "attributes": {
         "long_name": "T Snow 4",
@@ -258,7 +258,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "t_snow_05": {
+    "tsn5": {
       "type": "float",
       "attributes": {
         "long_name": "T Snow 5",
@@ -269,7 +269,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "t_snow_06": {
+    "tsn6": {
       "type": "float",
       "attributes": {
         "long_name": "T Snow 6",
@@ -280,7 +280,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "t_snow_07": {
+    "tsn7": {
       "type": "float",
       "attributes": {
         "long_name": "T Snow 7",
@@ -291,7 +291,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "t_snow_08": {
+    "tsn8": {
       "type": "float",
       "attributes": {
         "long_name": "T Snow 8",
@@ -302,7 +302,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "t_snow_09": {
+    "tsn9": {
       "type": "float",
       "attributes": {
         "long_name": "T Snow 9",
@@ -313,7 +313,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "t_snow_10": {
+    "tsn10": {
       "type": "float",
       "attributes": {
         "long_name": "T Snow 10",
@@ -335,7 +335,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "sw_down_max": {
+    "fsds_max": {
       "type": "float",
       "attributes": {
         "long_name": "Shortwave Flux Down Max",
@@ -346,7 +346,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "sw_up_max": {
+    "fsus_max": {
       "type": "float",
       "attributes": {
         "long_name": "Shortwave Flux Up Max",
@@ -357,7 +357,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "net_radiation_max": {
+    "fsns_max": {
       "type": "float",
       "attributes": {
         "long_name": "Net Radiation Max",
@@ -368,7 +368,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "max_air_temperature_1": {
+    "ta_max1": {
       "type": "float",
       "attributes": {
         "long_name": "Max Air Temperature 1",
@@ -379,7 +379,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "max_air_temperature_2": {
+    "ta_max2": {
       "type": "float",
       "attributes": {
         "long_name": "Max Air Temperature 2",
@@ -390,7 +390,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "min_air_temperature_1": {
+    "ta_min1": {
       "type": "float",
       "attributes": {
         "long_name": "Min Air Temperature 1",
@@ -401,7 +401,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "min_air_temperature_2": {
+    "ta_min2": {
       "type": "float",
       "attributes": {
         "long_name": "Min Air Temperature 2",
@@ -412,7 +412,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "max_windspeed_u1": {
+    "wspd_max1": {
       "type": "float",
       "attributes": {
         "long_name": "Max Windspeed-U1",
@@ -423,7 +423,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "max_windspeed_u2": {
+    "wspd_max2": {
       "type": "float",
       "attributes": {
         "long_name": "Max Windspeed-U2",
@@ -434,7 +434,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "stdev_windspeed_u1": {
+    "wspd_stdev1": {
       "type": "float",
       "attributes": {
         "long_name": "StdDev Windspeed-U1",
@@ -445,7 +445,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "stdev_windspeed_u2": {
+    "wspd_stdev2": {
       "type": "float",
       "attributes": {
         "long_name": "StdDev Windspeed-U2",
@@ -456,7 +456,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "ref_temperature": {
+    "ref_temp": {
       "type": "float",
       "attributes": {
         "long_name": "Reference Temperature",
@@ -467,7 +467,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "windspeed_2m": {
+    "wspd_2m": {
       "type": "float",
       "attributes": {
         "long_name": "Windspeed@2m",
@@ -478,7 +478,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "windspeed_10m": {
+    "wspd_10m": {
       "type": "float",
       "attributes": {
         "long_name": "Windspeed@10m",
@@ -511,7 +511,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "albedo": {
+    "alb": {
       "type": "float",
       "attributes": {
         "long_name": "Albedo",
