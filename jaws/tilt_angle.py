@@ -136,7 +136,12 @@ def main(dataset, latitude, longitude, clr_df, args):
         hours_nonmsng = [i+0.5 for i in hours_nonmsng]  # Half-hour values
 
         # Interpolate fsds and sza for half-hour values
-        fsds_intrp = CubicSpline(hours_nonmsng, fsds_jaws_nonmsng, extrapolate=True)(half_hours)
+        if len(fsds_jaws_nonmsng) < 2:
+            if args.dbg_lvl > 6:
+                print("Skipping this day as there is only 1 value of fsds")
+            continue
+        else:
+            fsds_intrp = CubicSpline(hours_nonmsng, fsds_jaws_nonmsng, extrapolate=True)(half_hours)
         fsds_intrp = [a for a in fsds_intrp]  # Convert to list
 
         # Calculate azimuth angle
