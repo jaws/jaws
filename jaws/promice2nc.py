@@ -26,11 +26,11 @@ def init_dataframe(args, input_file):
 
     df, columns = common.load_dataframe('promice', input_file, 1, input_file_vars=input_file_vars)
     df.replace(check_na, np.nan, inplace=True)
-    df.loc[:, ['air_temperature', 'air_temperature_hygroclip', 'surface_temp',
-               'ice_temp_01', 'ice_temp_02', 'ice_temp_03', 'ice_temp_04',
-               'ice_temp_05', 'ice_temp_06', 'ice_temp_07', 'ice_temp_08',
-               'logger_temp']] += common.freezing_point_temp
-    df.loc[:, ['air_pressure']] *= common.pascal_per_millibar
+    df.loc[:, ['ta', 'ta_hygroclip', 'ts',
+               'tice1', 'tice2', 'tice3', 'tice4',
+               'tice5', 'tice6', 'tice7', 'tice8',
+               'temp_logger']] += common.freezing_point_temp
+    df.loc[:, ['pa']] *= common.pascal_per_millibar
     df.loc[:, ['fan_current']] /= convert_current
     df = df.where((pd.notnull(df)), common.get_fillvalue(args))
 

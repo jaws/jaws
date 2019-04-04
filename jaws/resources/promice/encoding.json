@@ -35,55 +35,55 @@
     "zlib": true,
     "complevel": "COMP"
   },
-  "air_pressure": {
+  "pa": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "air_temperature": {
+  "ta": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "air_temperature_hygroclip": {
+  "ta_hygroclip": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "relative_humidity_wrtwater": {
+  "rh_wrtwater": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "relative_humidity": {
+  "rh": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "wind_speed": {
+  "wspd": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "wind_direction": {
+  "wdir": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "sensible_heat_flux": {
+  "hfss": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "latent_heat_flux": {
+  "hfls": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
@@ -95,7 +95,7 @@
     "zlib": true,
     "complevel": "COMP"
   },
-  "shortwave_radiation_down_cor": {
+  "fsds_cor": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
@@ -107,37 +107,37 @@
     "zlib": true,
     "complevel": "COMP"
   },
-  "shortwave_radiation_up_cor": {
+  "fsus_cor": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "albedo_theta": {
+  "alb": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "longwave_radiation_down": {
+  "flds": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "longwave_radiation_up": {
+  "flus": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "cloudcover": {
+  "clt": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "surface_temp": {
+  "ts": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
@@ -167,49 +167,49 @@
     "zlib": true,
     "complevel": "COMP"
   },
-  "ice_temp_01": {
+  "tice1": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "ice_temp_02": {
+  "tice2": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "ice_temp_03": {
+  "tice3": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "ice_temp_04": {
+  "tice4": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "ice_temp_05": {
+  "tice5": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "ice_temp_06": {
+  "tice6": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "ice_temp_07": {
+  "tice7": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "ice_temp_08": {
+  "tice8": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
@@ -245,7 +245,7 @@
     "zlib": true,
     "complevel": "COMP"
   },
-  "elevation": {
+  "orog": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
@@ -257,7 +257,7 @@
     "zlib": true,
     "complevel": "COMP"
   },
-  "logger_temp": {
+  "temp_logger": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,

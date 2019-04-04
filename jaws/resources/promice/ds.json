@@ -57,7 +57,7 @@
         "units": "1"
       }
     },
-    "air_pressure": {
+    "pa": {
       "type": "float",
       "attributes": {
         "long_name": "Air Pressure",
@@ -68,7 +68,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "air_temperature": {
+    "ta": {
       "type": "float",
       "attributes": {
         "long_name": "Air Temperature",
@@ -80,7 +80,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "air_temperature_hygroclip": {
+    "ta_hygroclip": {
       "type": "float",
       "attributes": {
         "long_name": "Air Temperature HygroClip",
@@ -91,7 +91,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "relative_humidity_wrtwater": {
+    "rh_wrtwater": {
       "type": "float",
       "attributes": {
         "long_name": "Relative Humidity with regard to Water",
@@ -102,7 +102,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "relative_humidity": {
+    "rh": {
       "type": "float",
       "attributes": {
         "long_name": "Relative Humidity",
@@ -113,7 +113,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "wind_speed": {
+    "wspd": {
       "type": "float",
       "attributes": {
         "long_name": "Wind Speed",
@@ -125,7 +125,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "wind_direction": {
+    "wdir": {
       "type": "float",
       "attributes": {
         "long_name": "Wind Direction",
@@ -137,7 +137,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "sensible_heat_flux": {
+    "hfss": {
       "type": "float",
       "attributes": {
         "long_name": "Sensible Heat Flux",
@@ -149,7 +149,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "latent_heat_flux": {
+    "hfls": {
       "type": "float",
       "attributes": {
         "long_name": "Latent Heat Flux",
@@ -173,7 +173,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "shortwave_radiation_down_cor": {
+    "fsds_cor": {
       "type": "float",
       "attributes": {
         "long_name": "Tilt corrected Shortwave Radiation Down using 'tilt_east' and 'tilt_north'",
@@ -197,7 +197,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "shortwave_radiation_up_cor": {
+    "fsus_cor": {
       "type": "float",
       "attributes": {
         "long_name": "Tilt corrected Shortwave Radiation Up using 'tilt_east' and 'tilt_north'",
@@ -209,7 +209,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "albedo_theta": {
+    "alb": {
       "type": "float",
       "attributes": {
         "long_name": "Albedo_theta<70d",
@@ -220,7 +220,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "longwave_radiation_down": {
+    "flds": {
       "type": "float",
       "attributes": {
         "long_name": "Longwave Radiation Down",
@@ -232,7 +232,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "longwave_radiation_up": {
+    "flus": {
       "type": "float",
       "attributes": {
         "long_name": "Longwave Radiation Up",
@@ -244,7 +244,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "cloudcover": {
+    "clt": {
       "type": "float",
       "attributes": {
         "long_name": "Estimated Cloud Cover",
@@ -255,7 +255,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "surface_temp": {
+    "ts": {
       "type": "float",
       "attributes": {
         "long_name": "Surface Temperature",
@@ -310,7 +310,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "ice_temp_01": {
+    "tice1": {
       "type": "float",
       "attributes": {
         "long_name": "Ice Temperature 1",
@@ -321,7 +321,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "ice_temp_02": {
+    "tice2": {
       "type": "float",
       "attributes": {
         "long_name": "Ice Temperature 2",
@@ -332,7 +332,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "ice_temp_03": {
+    "tice3": {
       "type": "float",
       "attributes": {
         "long_name": "Ice Temperature 3",
@@ -343,7 +343,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "ice_temp_04": {
+    "tice4": {
       "type": "float",
       "attributes": {
         "long_name": "Ice Temperature 4",
@@ -354,7 +354,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "ice_temp_05": {
+    "tice5": {
       "type": "float",
       "attributes": {
         "long_name": "Ice Temperature 5",
@@ -365,7 +365,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "ice_temp_06": {
+    "tice6": {
       "type": "float",
       "attributes": {
         "long_name": "Ice Temperature 6",
@@ -376,7 +376,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "ice_temp_07": {
+    "tice7": {
       "type": "float",
       "attributes": {
         "long_name": "Ice Temperature 7",
@@ -387,7 +387,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "ice_temp_08": {
+    "tice8": {
       "type": "float",
       "attributes": {
         "long_name": "Ice Temperature 8",
@@ -447,7 +447,7 @@
         "units": "degrees_east"
       }
     },
-    "elevation": {
+    "orog": {
       "type": "float",
       "attributes": {
         "long_name": "Elevation GPS",
@@ -469,7 +469,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "logger_temp": {
+    "temp_logger": {
       "type": "float",
       "attributes": {
         "long_name": "Logger Temperature",
