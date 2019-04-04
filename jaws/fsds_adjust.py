@@ -83,13 +83,18 @@ def post_process(df, dates, stn_name, sfx, args):
         ysecond = dyfirst / dxfirst
         '''
 
+        idx = 0
         if len(albedo) < 2:
+            while idx < len(fsds_adjusted):
+                df.at[outer_idx, 'fsds_adjusted_new'] = fsds_adjusted[idx]
+                df.at[outer_idx, 'fsus_adjusted'] = fsus_jaws[idx]
+                outer_idx += 1
+                idx += 1
             continue
         else:
             alb_second_derv = first_order_derivative(hours, first_order_derivative(hours, albedo))
 
-        idx = 0
-        while idx < len(alb_second_derv):
+        while idx < len(fsds_adjusted):
             try:
                 if np.cos(sza[idx]) <= 0:
                     fsds_adjusted[idx] = 0
