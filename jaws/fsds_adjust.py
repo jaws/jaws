@@ -49,8 +49,8 @@ def post_process(df, dates, stn_name, sfx, args):
 
         df_sub = df[df.dates == date]
 
-        fsds_jaws = df_sub['fsds_adjusted'].tolist()
-        fsds_jaws = [common.fillvalue_float if np.isnan(i) else i for i in fsds_jaws]
+        fsds_adjusted = df_sub['fsds_adjusted'].tolist()
+        fsds_adjusted = [common.fillvalue_float if np.isnan(i) else i for i in fsds_adjusted]
 
         fsus_jaws = df_sub['fsus'].tolist()
         fsus_jaws = [common.fillvalue_float if np.isnan(i) else i for i in fsus_jaws]
@@ -58,11 +58,11 @@ def post_process(df, dates, stn_name, sfx, args):
         sza = df_sub['sza'].tolist()
         sza = deg_to_rad(sza)
 
-        fsds_alb = fsds_jaws
+        fsds_alb = fsds_adjusted
 
         idx_alb = 0
-        while idx_alb < len(fsds_jaws):
-            if (fsds_jaws[idx_alb] <= 0) or (fsus_jaws[idx_alb] < 0):
+        while idx_alb < len(fsds_adjusted):
+            if (fsds_adjusted[idx_alb] <= 0) or (fsus_jaws[idx_alb] < 0):
                 fsds_alb[idx_alb] = common.fillvalue_float
 
             idx_alb += 1
@@ -83,33 +83,38 @@ def post_process(df, dates, stn_name, sfx, args):
         ysecond = dyfirst / dxfirst
         '''
 
+        idx = 0
         if len(albedo) < 2:
+            while idx < len(fsds_adjusted):
+                df.at[outer_idx, 'fsds_adjusted_new'] = fsds_adjusted[idx]
+                df.at[outer_idx, 'fsus_adjusted'] = fsus_jaws[idx]
+                outer_idx += 1
+                idx += 1
             continue
         else:
             alb_second_derv = first_order_derivative(hours, first_order_derivative(hours, albedo))
 
-        idx = 0
-        while idx < len(alb_second_derv):
+        while idx < len(fsds_adjusted):
             try:
                 if np.cos(sza[idx]) <= 0:
-                    fsds_jaws[idx] = 0
+                    fsds_adjusted[idx] = 0
                 if abs(alb_second_derv[idx]) > thrsh:
-                    fsds_jaws[idx] = common.fillvalue_float
-                if fsds_jaws[idx] > toa[idx]:
-                    fsds_jaws[idx] = common.fillvalue_float
-                if (fsds_jaws[idx] < toa[idx]*0.05) and (fsds_jaws[idx] != 0):
-                    fsds_jaws[idx] = common.fillvalue_float
+                    fsds_adjusted[idx] = common.fillvalue_float
+                if fsds_adjusted[idx] > toa[idx]:
+                    fsds_adjusted[idx] = common.fillvalue_float
+                if (fsds_adjusted[idx] < toa[idx]*0.05) and (fsds_adjusted[idx] != 0):
+                    fsds_adjusted[idx] = common.fillvalue_float
                     fsus_jaws[idx] = common.fillvalue_float
-                if (fsus_jaws[idx] > fsds_jaws[idx]*0.95) or (fsus_jaws[idx] < fsds_jaws[idx]*0.05):
+                if (fsus_jaws[idx] > fsds_adjusted[idx]*0.95) or (fsus_jaws[idx] < fsds_adjusted[idx]*0.05):
                     fsus_jaws[idx] = common.fillvalue_float
-                if fsds_jaws[idx] < 0:
-                    fsds_jaws[idx] = 0
+                if fsds_adjusted[idx] < 0:
+                    fsds_adjusted[idx] = 0
                 if fsus_jaws[idx] == 0:
-                    fsds_jaws[idx] = 0
-                if fsds_jaws[idx] == 0:
+                    fsds_adjusted[idx] = 0
+                if fsds_adjusted[idx] == 0:
                     fsus_jaws[idx] = 0
 
-                df.at[outer_idx, 'fsds_adjusted_new'] = fsds_jaws[idx]
+                df.at[outer_idx, 'fsds_adjusted_new'] = fsds_adjusted[idx]
                 df.at[outer_idx, 'fsus_adjusted'] = fsus_jaws[idx]
             except:  # Exception for list index out of range toa[idx]
                 common.log(args, 9, 'Warning: list index out of range for toa[idx]')
