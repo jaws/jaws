@@ -4,8 +4,8 @@
 	"Day": "day",
 	"Hour (UTC)": "hour",
 	"Minute": "minute",
-	"Pressure (hPa)": "air_press",
-	"Temperature (Deg C)": "air_temp",
-	"Wind Speed (knots)": "wind_spd",
-	"Wind Direction (Degrees)": "wind_dir"
+	"Pressure (hPa)": "pa",
+	"Temperature (Deg C)": "ta",
+	"Wind Speed (knots)": "wspd",
+	"Wind Direction (Degrees)": "wdir"
 }

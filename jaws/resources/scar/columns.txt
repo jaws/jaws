@@ -3,7 +3,7 @@ month
 day
 hour
 minute
-air_press
-air_temp
-wind_spd
-wind_dir
+pa
+ta
+wspd
+wdir

@@ -29,25 +29,25 @@
     "zlib": true,
     "complevel": "COMP"
   },
-  "air_press": {
+  "pa": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "air_temp": {
+  "ta": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "wind_spd": {
+  "wspd": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "wind_dir": {
+  "wdir": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
