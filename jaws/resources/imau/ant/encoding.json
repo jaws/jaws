@@ -17,19 +17,19 @@
     "zlib": true,
     "complevel": "COMP"
   },
-  "wind_dir": {
+  "wdir": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "wind_spd": {
+  "wspd": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "wind_spd_max": {
+  "wspd_max": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
@@ -47,13 +47,13 @@
     "zlib": true,
     "complevel": "COMP"
   },
-  "lw_in": {
+  "flds": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "lw_out": {
+  "flus": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
@@ -65,7 +65,7 @@
     "zlib": true,
     "complevel": "COMP"
   },
-  "air_temp": {
+  "ta": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
@@ -77,73 +77,73 @@
     "zlib": true,
     "complevel": "COMP"
   },
-  "air_pressure": {
+  "pa": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "sonic_alt": {
+  "snh": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "snow_temp_1a": {
+  "tsn1a": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "snow_temp_2a": {
+  "tsn2a": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "snow_temp_3a": {
+  "tsn3a": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "snow_temp_4a": {
+  "tsn4a": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "snow_temp_5a": {
+  "tsn5a": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "snow_temp_1b": {
+  "tsn1b": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "snow_temp_2b": {
+  "tsn2b": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "snow_temp_3b": {
+  "tsn3b": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "snow_temp_4b": {
+  "tsn4b": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "snow_temp_5b": {
+  "tsn5b": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,

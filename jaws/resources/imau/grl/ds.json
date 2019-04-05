@@ -32,7 +32,7 @@
         "units": "1"
       }
     },
-    "wind_spd2": {
+    "wspd2": {
       "type": "float",
       "attributes": {
         "long_name": "Wind Speed 2",
@@ -43,7 +43,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "wind_spd6": {
+    "wspd6": {
       "type": "float",
       "attributes": {
         "long_name": "Wind Speed 6",
@@ -54,7 +54,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "wind_spd2_max": {
+    "wspd2_max": {
       "type": "float",
       "attributes": {
         "long_name": "Wind Speed 2 Maximum",
@@ -65,7 +65,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "wind_spd6_max": {
+    "wspd6_max": {
       "type": "float",
       "attributes": {
         "long_name": "Wind Speed 6 Maximum",
@@ -76,7 +76,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "wind_dir2": {
+    "wdir2": {
       "type": "float",
       "attributes": {
         "long_name": "Wind Direction 2",
@@ -87,7 +87,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "wind_dir6": {
+    "wdir6": {
       "type": "float",
       "attributes": {
         "long_name": "Wind Direction 6",
@@ -120,7 +120,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "lw_in": {
+    "flds": {
       "type": "float",
       "attributes": {
         "long_name": "Calibrated Longwave Incoming Radiation",
@@ -131,7 +131,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "lw_out": {
+    "flus": {
       "type": "float",
       "attributes": {
         "long_name": "Calibrated Longwave Outgoing Radiation",
@@ -153,7 +153,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "air_temp2": {
+    "ta2": {
       "type": "float",
       "attributes": {
         "long_name": "Air Temperature 2",
@@ -164,7 +164,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "air_temp6": {
+    "ta6": {
       "type": "float",
       "attributes": {
         "long_name": "Air Temperature 6",
@@ -197,7 +197,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "air_pressure": {
+    "pa": {
       "type": "float",
       "attributes": {
         "long_name": "Air Pressure",
@@ -274,7 +274,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "snow_temp_1": {
+    "tsn1": {
       "type": "float",
       "attributes": {
         "long_name": "Snow Temperature 1",
@@ -285,7 +285,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "snow_temp_2": {
+    "tsn2": {
       "type": "float",
       "attributes": {
         "long_name": "Snow Temperature 2",
@@ -296,7 +296,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "snow_temp_3": {
+    "tsn3": {
       "type": "float",
       "attributes": {
         "long_name": "Snow Temperature 3",
@@ -307,7 +307,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "snow_temp_4": {
+    "tsn4": {
       "type": "float",
       "attributes": {
         "long_name": "Snow Temperature 4",
@@ -318,7 +318,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "snow_temp_5": {
+    "tsn5": {
       "type": "float",
       "attributes": {
         "long_name": "Snow Temperature 5",
@@ -329,7 +329,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "tilt_angle_1": {
+    "tilt_angle_1_cnr1": {
       "type": "float",
       "attributes": {
         "long_name": "CNR1 Tilt Angle 1",
@@ -340,7 +340,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "tilt_angle_2": {
+    "tilt_angle_2_cnr1": {
       "type": "float",
       "attributes": {
         "long_name": "CNR1 Tilt Angle 2",

@@ -2,7 +2,7 @@
   "timestamp": {
     "dtype": "unicode"
   },
-  "air_temp": {
+  "ta": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
@@ -20,19 +20,19 @@
     "zlib": true,
     "complevel": "COMP"
   },
-  "pressure": {
+  "pa": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "wind_dir": {
+  "wdir": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "wind_spd": {
+  "wspd": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,

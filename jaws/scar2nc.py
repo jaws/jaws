@@ -46,8 +46,8 @@ def init_dataframe(args, input_file):
 
     df, columns = common.load_dataframe('scar', input_file, header_rows, input_file_vars=input_file_vars)
     df.replace(check_na, np.nan, inplace=True)
-    df.loc[:, 'air_temp'] += common.freezing_point_temp
-    df.loc[:, 'wind_spd'] *= knot_to_ms
+    df.loc[:, 'ta'] += common.freezing_point_temp
+    df.loc[:, 'wspd'] *= knot_to_ms
     df = df.where((pd.notnull(df)), common.get_fillvalue(args))
 
     return df, stn_name, lat, lon, height, country, institution

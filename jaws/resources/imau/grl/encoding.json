@@ -17,37 +17,37 @@
     "zlib": true,
     "complevel": "COMP"
   },
-  "wind_spd2": {
+  "wspd2": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "wind_spd6": {
+  "wspd6": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "wind_spd2_max": {
+  "wspd2_max": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "wind_spd6_max": {
+  "wspd6_max": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "wind_dir2": {
+  "wdir2": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "wind_dir6": {
+  "wdir6": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
@@ -65,13 +65,13 @@
     "zlib": true,
     "complevel": "COMP"
   },
-  "lw_in": {
+  "flds": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "lw_out": {
+  "flus": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
@@ -83,13 +83,13 @@
     "zlib": true,
     "complevel": "COMP"
   },
-  "air_temp2": {
+  "ta2": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "air_temp6": {
+  "ta6": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
@@ -107,7 +107,7 @@
     "zlib": true,
     "complevel": "COMP"
   },
-  "air_pressure": {
+  "pa": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
@@ -149,43 +149,43 @@
     "zlib": true,
     "complevel": "COMP"
   },
-  "snow_temp_1": {
+  "tsn1": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "snow_temp_2": {
+  "tsn2": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "snow_temp_3": {
+  "tsn3": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "snow_temp_4": {
+  "tsn4": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "snow_temp_5": {
+  "tsn5": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "tilt_angle_1": {
+  "tilt_angle_1_cnr1": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "tilt_angle_2": {
+  "tilt_angle_2_cnr1": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,

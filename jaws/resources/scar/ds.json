@@ -46,7 +46,7 @@
         "units": "1"
       }
     },
-    "air_press": {
+    "pa": {
       "type": "float",
       "attributes": {
         "long_name": "Air Pressure",
@@ -57,7 +57,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "air_temp": {
+    "ta": {
       "type": "float",
       "attributes": {
         "long_name": "Air Temperature",
@@ -68,7 +68,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "wind_spd": {
+    "wspd": {
       "type": "float",
       "attributes": {
         "long_name": "Wind Speed",
@@ -79,7 +79,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "wind_dir": {
+    "wdir": {
       "type": "float",
       "attributes": {
         "long_name": "Wind Direction",

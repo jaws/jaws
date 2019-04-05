@@ -27,145 +27,145 @@
     "zlib": true,
     "complevel": "COMP"
   },
-  "net_radiation": {
+  "fsns": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "temperature_tc_1": {
+  "ta_tc1": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "temperature_tc_2": {
+  "ta_tc2": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "temperature_cs500_1": {
+  "ta_cs1": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "temperature_cs500_2": {
+  "ta_cs2": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "relative_humidity_1": {
+  "rh1": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "relative_humidity_2": {
+  "rh2": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "u1_wind_speed": {
+  "wspd1": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "u2_wind_speed": {
+  "wspd2": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "u_direction_1": {
+  "wdir1": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "u_direction_2": {
+  "wdir2": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "atmos_pressure": {
+  "ps": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "snow_height_1": {
+  "snh1": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "snow_height_2": {
+  "snh2": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "t_snow_01": {
+  "tsn1": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "t_snow_02": {
+  "tsn2": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "t_snow_03": {
+  "tsn3": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "t_snow_04": {
+  "tsn4": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "t_snow_05": {
+  "tsn5": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "t_snow_06": {
+  "tsn6": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "t_snow_07": {
+  "tsn7": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "t_snow_08": {
+  "tsn8": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "t_snow_09": {
+  "tsn9": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "t_snow_10": {
+  "tsn10": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
@@ -177,85 +177,85 @@
     "zlib": true,
     "complevel": "COMP"
   },
-  "sw_down_max": {
+  "fsds_max": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "sw_up_max": {
+  "fsus_max": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "net_radiation_max": {
+  "fsns_max": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "max_air_temperature_1": {
+  "ta_max1": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "max_air_temperature_2": {
+  "ta_max2": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "min_air_temperature_1": {
+  "ta_min1": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "min_air_temperature_2": {
+  "ta_min2": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "max_windspeed_u1": {
+  "wspd_max1": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "max_windspeed_u2": {
+  "wspd_max2": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "stdev_windspeed_u1": {
+  "wspd_stdev1": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "stdev_windspeed_u2": {
+  "wspd_stdev2": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "ref_temperature": {
+  "ref_temp": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "windspeed_2m": {
+  "wspd_2m": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
   },
-  "windspeed_10m": {
+  "wspd_10m": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
@@ -273,7 +273,7 @@
     "zlib": true,
     "complevel": "COMP"
   },
-  "albedo": {
+  "alb": {
     "_FillValue": "FILL",
     "dtype": "f4",
     "zlib": true,
