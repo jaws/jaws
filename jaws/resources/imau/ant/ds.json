@@ -32,7 +32,7 @@
         "units": "1"
       }
     },
-    "wind_dir": {
+    "wdir": {
       "type": "float",
       "attributes": {
         "long_name": "Wind Direction",
@@ -43,7 +43,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "wind_spd": {
+    "wspd": {
       "type": "float",
       "attributes": {
         "long_name": "Wind Speed",
@@ -54,7 +54,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "wind_spd_max": {
+    "wspd_max": {
       "type": "float",
       "attributes": {
         "long_name": "Wind Speed Maximum",
@@ -87,7 +87,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "lw_in": {
+    "flds": {
       "type": "float",
       "attributes": {
         "long_name": "Calibrated Longwave Incoming Radiation",
@@ -98,7 +98,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "lw_out": {
+    "flus": {
       "type": "float",
       "attributes": {
         "long_name": "Calibrated Longwave Outgoing Radiation",
@@ -120,7 +120,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "air_temp": {
+    "ta": {
       "type": "float",
       "attributes": {
         "long_name": "Air Temperature",
@@ -142,7 +142,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "air_pressure": {
+    "pa": {
       "type": "float",
       "attributes": {
         "long_name": "Air Pressure",
@@ -153,7 +153,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "sonic_alt": {
+    "snh": {
       "type": "float",
       "attributes": {
         "long_name": "Hoogte Height above Snow Surface",
@@ -164,7 +164,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "snow_temp_1a": {
+    "tsn1a": {
       "type": "float",
       "attributes": {
         "long_name": "T1a Snow Temperature",
@@ -175,7 +175,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "snow_temp_2a": {
+    "tsn2a": {
       "type": "float",
       "attributes": {
         "long_name": "T2a Snow Temperature",
@@ -186,7 +186,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "snow_temp_3a": {
+    "tsn3a": {
       "type": "float",
       "attributes": {
         "long_name": "T3a Snow Temperature",
@@ -197,7 +197,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "snow_temp_4a": {
+    "tsn4a": {
       "type": "float",
       "attributes": {
         "long_name": "T4a Snow Temperature",
@@ -208,7 +208,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "snow_temp_5a": {
+    "tsn5a": {
       "type": "float",
       "attributes": {
         "long_name": "T5a Snow Temperature",
@@ -219,7 +219,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "snow_temp_1b": {
+    "tsn1b": {
       "type": "float",
       "attributes": {
         "long_name": "T1b Snow Temperature",
@@ -230,7 +230,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "snow_temp_2b": {
+    "tsn2b": {
       "type": "float",
       "attributes": {
         "long_name": "T2b Snow Temperature",
@@ -241,7 +241,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "snow_temp_3b": {
+    "tsn3b": {
       "type": "float",
       "attributes": {
         "long_name": "T3b Snow Temperature",
@@ -252,7 +252,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "snow_temp_4b": {
+    "tsn4b": {
       "type": "float",
       "attributes": {
         "long_name": "T4b Snow Temperature",
@@ -263,7 +263,7 @@
         "coordinates": "longitude latitude"
       }
     },
-    "snow_temp_5b": {
+    "tsn5b": {
       "type": "float",
       "attributes": {
         "long_name": "T5b Snow Temperature",
