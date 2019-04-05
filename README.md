@@ -21,6 +21,8 @@ Please visit [JAWS Homepage](https://jaws.readthedocs.io) for detailed documenta
 ___
 ## News
 
+2019/04/04: Version 0.8.1 released: RIGB fix 1 hr shift issue; CMIP naming
+
 2019/03/30: Version 0.8 released: RIGB improvement, Documentation
 
 2019/02/06: Version 0.7 released: POLENET network added

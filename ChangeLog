@@ -1,4 +1,28 @@
+2019-04-04  Ajay Saini  <sainiak@uci.edu>
+
+	* CMIP names for variables across all networks
+
+	* git tag -a 0.8.1 -m 'alpha01: RIGB fix 1 hr shift issue; CMIP naming'; git push --tags
+
+2019-04-03  Ajay Saini  <sainiak@uci.edu>
+
+	* docs: Add Analysis.md
+
+	* Update analysis instructions in README
+
+	* fsds_adjust.py: Rename 'fsds_jaws' as 'fsds_adjusted' in postprocess function
+
+	* fsds_adjust.py: Fix shift issue
+
+	* tilt_angle.py: Add exception if first entry is clear day having only 1 hour
+
 2019-04-02  Ajay Saini  <sainiak@uci.edu>
+
+	* fsds_adjust.py: Rearrange order of equations in post-processing
+
+	* docs: Add Arguments.md
+
+	* Remove docs/options.txt
 
 	* Update instructions for analysis
 
@@ -36,7 +60,7 @@
 
 	* Debug fsds_adjust script
 
-	* Debug python 7  dependencies issue
+	* Debug python 3.7  dependencies issue
 
 2019-03-27  Ajay Saini  <sainiak@uci.edu>
 
