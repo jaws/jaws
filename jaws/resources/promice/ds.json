@@ -451,7 +451,7 @@
       "type": "float",
       "attributes": {
         "long_name": "Elevation GPS",
-        "standard_name": "",
+        "standard_name": "surface_altitude",
         "original_name": "ElevationGPS",
         "units": "meter",
         "cell_methods": "time: point",
