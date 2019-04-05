@@ -1,7 +1,7 @@
 timestamp
-air_temp
+ta
 vtempdiff
 rh
-pressure
-wind_dir
-wind_spd
+pa
+wdir
+wspd
