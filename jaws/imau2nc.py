@@ -23,8 +23,8 @@ def init_dataframe(args, input_file, sub_type):
                             'temp_logger']
 
     elif sub_type == 'imau/grl':
-        temperature_keys = ['temp_cnr1', 'air_temp2', 'air_temp6',
-                            'snow_temp_1', 'snow_temp_2', 'snow_temp_3', 'snow_temp_4', 'snow_temp_5',
+        temperature_keys = ['temp_cnr1', 'ta2', 'ta6',
+                            'tsn1', 'tsn2', 'tsn3', 'tsn4', 'tsn5',
                             'datalogger']
 
     df.loc[:, temperature_keys] += common.freezing_point_temp
