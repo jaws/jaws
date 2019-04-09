@@ -16,9 +16,26 @@
 [![Anaconda-Server Badge](https://anaconda.org/conda-forge/jaws/badges/license.svg)](https://anaconda.org/conda-forge/jaws)
 [![Anaconda-Server Badge](https://anaconda.org/conda-forge/jaws/badges/downloads.svg)](https://anaconda.org/conda-forge/jaws)
 
+___
+
 ## Documentation
 Please visit [JAWS Homepage](https://jaws.readthedocs.io) for detailed documentation.
-___
+
+## Supported AWS Networks
+
+[AAWS](https://amrc.ssec.wisc.edu/), [GCNet](http://cires1.colorado.edu/steffen/gcnet/), 
+[IMAU](http://www.projects.science.uu.nl/iceclimate/aws/), [POLENET](http://polenet.org/), 
+[PROMICE](http://www.promice.org/home.html), [SCAR](https://legacy.bas.ac.uk/met/jds/met/SCAR_oma.htm)
+
+Number of stations = **378**
+
+Number of station-years of data = **3600**
+
+**Maps** of Antarctica and Greenland with location of all stations are in [Stations Map](#stations-map) section.
+
+If your network is not in the above list and you would like it to be supported by `JAWS`, 
+please open an [issue](https://github.com/jaws/jaws/issues) or contact *Charlie Zender* at <zender@uci.edu>
+
 ## News
 
 2019/04/04: Version 0.8.1 released: RIGB fix 1 hr shift issue; CMIP naming
@@ -294,13 +311,7 @@ Note: Since it is seasonal plot, user shouldn't provide both '-y', '-m' argument
 ![seasonal](http://jaws.ess.uci.edu/jaws/img/seasonal.png)
 
 ___
-## Statistics
-Total number of networks handled by JAWS: 6 (AAWS, GCNet, IMAU, PROMICE, SCAR, POLENET)
-
-Total number of stations handled by JAWS: 378
-
-Total number of station-years of data handled by JAWS: 3600
-
+## Stations Map
 ![Antarctica](http://jaws.ess.uci.edu/jaws/img/map_ant.png)
 
 ![Greenland](http://jaws.ess.uci.edu/jaws/img/map_grl.png)
