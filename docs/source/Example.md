@@ -17,49 +17,13 @@ with same name as of input file
 The user can optionally give their own output path/filename using `-o` option as following:
 
 ``` html
-$ jaws -o ~/Desktop/EGP_20160503.nc PROMICE_EGP_20160503.txt
+$ jaws -o ~/Desktop/PROMICE_EGP_20160503.nc PROMICE_EGP_20160503.txt
 ```
 
-or
+where the first argument i.e. after `-o` is the user-defined path to output file and 
+the last argument is path to input file.
 
-``` html
-$ jaws -o ~/Desktop/EGP_20160501.nc ~/Downloads/PROMICE_EGP_20160503.txt
-```
-
-where the first argument i.e. after `-o` is the user-defined output filename and 
-the last argument is input filename
-
-All options are explained in detail in the next section.
-
-
-The current version can translate L2 ASCII data from the following networks to netCDF format: 
-
-* Antarctic Automatic Weather Stations (**AAWS**): 
-Sample raw file can be downloaded from 
-[here](http://jaws.ess.uci.edu/jaws/sample_data/AAWS_AGO-4_20161130.txt). 
-Right click on the link and select "Save link as".
-
-* Greenland Climate Network (**GCNet**): 
-Sample raw file can be downloaded from 
-[here](http://jaws.ess.uci.edu/jaws/sample_data/GCNet_Summit_20120817.txt)
-
-* Institute for Marine and Atmospheric Research (**IMAU**): 
-Sample raw file for Antarctic stations can be downloaded from 
-[here](http://jaws.ess.uci.edu/jaws/sample_data/ant_aws17IMAU_20150101.txt) 
-and for Greenland stations can be downloaded from 
-[here](http://jaws.ess.uci.edu/jaws/sample_data/grl_aws05IMAU_20151008.txt)
-
-* The Polar Earth Observing Network (**POLENET**): 
-Sample raw file can be downloaded from 
-[here](http://jaws.ess.uci.edu/jaws/sample_data/polenet_FoynPoint_20100208.dat)
-
-* Programme for Monitoring of the Greenland Ice Sheet (**PROMICE**): 
-Sample raw file can be downloaded from 
-[here](http://jaws.ess.uci.edu/jaws/sample_data/PROMICE_EGP_20160503.txt)
-
-* Scientific Committee on Antarctic Research (**SCAR**): 
-Sample raw file can be downloaded from 
-[here](http://jaws.ess.uci.edu/jaws/sample_data/SCAR_Sofiab_aws.dat)
+All options are explained in detail in the [Arguments](Arguments.md) section.
 
 ```
 Important Note:
