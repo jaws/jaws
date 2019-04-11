@@ -8,20 +8,11 @@ Justified Automated Weather Station (JAWS) Software
 
 
 .. image:: http://jaws.ess.uci.edu/jaws/img/nasa.png
-   :width: 250 px
-   :align: left
+   :width: 200 px
 
 .. image:: http://jaws.ess.uci.edu/jaws/img/yopp_logo.png
-   :width: 350 px
-   :align: right
+   :width: 300 px
 
-.. image:: http://jaws.ess.uci.edu/jaws/img/shark.png
-   :width: 500 px
-   :align: center
-
-
-User's Guide
-^^^^^^^^^^^^
 
 .. toctree::
    :maxdepth: 2
