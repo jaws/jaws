@@ -19,7 +19,6 @@ Justified Automated Weather Station (JAWS) Software
    :hidden:
 
    Networks
-   Overview
    Installation
    Example
    Arguments
