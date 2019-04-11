@@ -16,6 +16,7 @@ Justified Automated Weather Station (JAWS) Software
 
 .. toctree::
    :maxdepth: 2
+   :hidden:
 
    About
    Overview
