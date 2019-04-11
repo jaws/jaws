@@ -93,7 +93,19 @@ if not on_rtd:  # only import and set the theme if we're building docs locally
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['nstatic']
+html_static_path = ['_static']
+
+def setup(app):
+    app.add_stylesheet('theme_override.css')
+
+
+# The name of an image file (relative to this directory) to place at the top
+# of the sidebar.
+html_logo = os.path.join('_static', 'shark_icon.ico')
+
+# If not '', a 'Last updated on:' timestamp is inserted at every page bottom,
+# using the given strftime format.
+html_last_updated_fmt = '%b %d, %Y at %H:%M:%S'
 
 # Custom sidebar templates, must be a dictionary that maps document names
 # to template names.
