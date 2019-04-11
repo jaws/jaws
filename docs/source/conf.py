@@ -103,6 +103,10 @@ def setup(app):
 # of the sidebar.
 html_logo = os.path.join('_static', 'shark_icon.ico')
 
+# If not '', a 'Last updated on:' timestamp is inserted at every page bottom,
+# using the given strftime format.
+html_last_updated_fmt = '%b %d, %Y at %H:%M:%S'
+
 # Custom sidebar templates, must be a dictionary that maps document names
 # to template names.
 #
