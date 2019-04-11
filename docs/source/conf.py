@@ -99,6 +99,9 @@ def setup(app):
     app.add_stylesheet('theme_override.css')
 
 
+# The name of an image file (relative to this directory) to place at the top
+# of the sidebar.
+html_logo = os.path.join('_static', 'shark_icon.ico')
 
 # Custom sidebar templates, must be a dictionary that maps document names
 # to template names.
