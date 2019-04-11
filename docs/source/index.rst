@@ -49,3 +49,12 @@ data distributors. L2 borehole data suffers from similar interoperability issues
 as does non-polar AWS data. Hence our L3 format will be extensible to global AWS and
 permafrost networks. JAWS will increase in situ data accessibility and utility, and
 enable new derived products.
+
+Components
+----------
+
+**1) Standardization**: Convert L2 data (usually ASCII tables) into a netCDF-based L3 format compliant with metadata conventions (Climate-Forecast and ACDD) that promote automated discovery and analysis.
+
+**2) Adjustment**: Include value-added L3 features like the Retrospective, Iterative, Geometry-Based (RIGB) tilt angle and direction corrections, solar zenith angle, standardized quality flags, GPS-derived ice velocity, and turbulent fluxes.
+
+**3) API**: Provide a scriptable API to extend the initial L2-to-L3 conversion to newer AWS-like networks and instruments.
