@@ -52,7 +52,7 @@ def init_dataframe(args, input_file):
     df.loc[:, 'wspd'] *= knot_to_ms
     df = df.where((pd.notnull(df)), common.get_fillvalue(args))
 
-    return df, stn_name, lat, lon, height, country, institution
+    return df, temperature_vars, stn_name, lat, lon, height, country, institution
 
 
 def get_time_and_sza(args, dataframe, longitude, latitude):
@@ -80,7 +80,8 @@ def get_time_and_sza(args, dataframe, longitude, latitude):
 
 
 def scar2nc(args, input_file, output_file):
-    df, station_name, latitude, longitude, height, country, institution = init_dataframe(args, input_file)
+    df, temperature_vars, station_name, latitude, longitude, height, country, institution = init_dataframe(
+        args, input_file)
     ds = xr.Dataset.from_dataframe(df)
     ds = ds.drop('time')
 
@@ -100,7 +101,8 @@ def scar2nc(args, input_file, output_file):
 
     comp_level = args.dfl_lvl
 
-    common.load_dataset_attributes('scar', ds, args, country = country, institution = institution)
+    common.load_dataset_attributes('scar', ds, args, country = country, institution = institution,
+                                   temperature_vars=temperature_vars)
     encoding = common.get_encoding('scar', common.get_fillvalue(args), comp_level, args)
 
     common.write_data(args, ds, output_file, encoding)
