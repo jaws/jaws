@@ -28,11 +28,13 @@ def init_dataframe(args, input_file):
                 break
 
     df, columns = common.load_dataframe('aaws', input_file, header_rows, input_file_vars=input_file_vars)
-    df.loc[:, 'ta'] += common.freezing_point_temp
+    temperature_vars = ['ta']
+    if not args.celsius:
+        df.loc[:, temperature_vars] += common.freezing_point_temp
     df.loc[:, 'pa'] *= common.pascal_per_millibar
     df = df.where((pd.notnull(df)), common.get_fillvalue(args))
 
-    return df
+    return df, temperature_vars
 
 
 def get_station(args, input_file, stations):
@@ -82,7 +84,7 @@ def get_time_and_sza(args, input_file, latitude, longitude, dataframe):
 
 
 def aaws2nc(args, input_file, output_file, stations):
-    df = init_dataframe(args, input_file)
+    df, temperature_vars = init_dataframe(args, input_file)
     ds = xr.Dataset.from_dataframe(df)
     ds = ds.drop('time')
 
@@ -114,7 +116,7 @@ def aaws2nc(args, input_file, output_file, stations):
 
     comp_level = args.dfl_lvl
 
-    common.load_dataset_attributes('aaws', ds, args)
+    common.load_dataset_attributes('aaws', ds, args, temperature_vars=temperature_vars)
     encoding = common.get_encoding('aaws', common.get_fillvalue(args), comp_level, args)
 
     common.write_data(args, ds, output_file, encoding)

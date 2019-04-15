@@ -31,12 +31,13 @@ def init_dataframe(args, input_file):
 
     df.replace(check_na, np.nan, inplace=True)
 
-    temperature_keys = [
+    temperature_vars = [
         'ta_tc1', 'ta_tc2', 'ta_cs1', 'ta_cs2',
         'tsn1', 'tsn2', 'tsn3','tsn4', 'tsn5',
         'tsn6', 'tsn7', 'tsn8', 'tsn9', 'tsn10',
         'ta_max1', 'ta_max2', 'ta_min1','ta_min2', 'ref_temp']
-    df.loc[:, temperature_keys] += common.freezing_point_temp
+    if not args.celsius:
+        df.loc[:, temperature_vars] += common.freezing_point_temp
     df.loc[:, 'ps'] *= common.pascal_per_millibar
     df = df.where((pd.notnull(df)), common.get_fillvalue(args))
 
@@ -45,7 +46,7 @@ def init_dataframe(args, input_file):
     except Exception:
         pass
 
-    return df
+    return df, temperature_vars
 
 
 def get_station(args, input_file, stations):
@@ -128,7 +129,7 @@ def extrapolate_temp(dataframe):
 
 
 def gcnet2nc(args, input_file, output_file, stations):
-    df = init_dataframe(args, input_file)
+    df, temperature_vars = init_dataframe(args, input_file)
     station_number = df['station_number'][0]
     df.drop('station_number', axis=1, inplace=True)
 
@@ -172,7 +173,7 @@ def gcnet2nc(args, input_file, output_file, stations):
 
     comp_level = args.dfl_lvl
 
-    common.load_dataset_attributes('gcnet', ds, args, rigb_vars=rigb_vars)
+    common.load_dataset_attributes('gcnet', ds, args, rigb_vars=rigb_vars, temperature_vars=temperature_vars)
     encoding = common.get_encoding('gcnet', common.get_fillvalue(args), comp_level, args)
 
     common.write_data(args, ds, output_file, encoding)

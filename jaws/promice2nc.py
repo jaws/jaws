@@ -26,15 +26,17 @@ def init_dataframe(args, input_file):
 
     df, columns = common.load_dataframe('promice', input_file, 1, input_file_vars=input_file_vars)
     df.replace(check_na, np.nan, inplace=True)
-    df.loc[:, ['ta', 'ta_hygroclip', 'ts',
+    temperature_vars = ['ta', 'ta_hygroclip', 'ts',
                'tice1', 'tice2', 'tice3', 'tice4',
                'tice5', 'tice6', 'tice7', 'tice8',
-               'temp_logger']] += common.freezing_point_temp
+               'temp_logger']
+    if not args.celsius:
+        df.loc[:, temperature_vars] += common.freezing_point_temp
     df.loc[:, ['pa']] *= common.pascal_per_millibar
     df.loc[:, ['fan_current']] /= convert_current
     df = df.where((pd.notnull(df)), common.get_fillvalue(args))
 
-    return df
+    return df, temperature_vars
 
 
 def get_station(args, input_file, stations):
@@ -148,7 +150,7 @@ def convert_coordinates(args, dataframe):
 
 
 def promice2nc(args, input_file, output_file, stations):
-    df = init_dataframe(args, input_file)
+    df, temperature_vars = init_dataframe(args, input_file)
     ds = xr.Dataset.from_dataframe(df)
     ds = ds.drop('time')
 
@@ -179,7 +181,7 @@ def promice2nc(args, input_file, output_file, stations):
 
     comp_level = args.dfl_lvl
 
-    common.load_dataset_attributes('promice', ds, args, rigb_vars=rigb_vars)
+    common.load_dataset_attributes('promice', ds, args, rigb_vars=rigb_vars, temperature_vars=temperature_vars)
     encoding = common.get_encoding('promice', common.get_fillvalue(args), comp_level, args)
 
     common.write_data(args, ds, output_file, encoding)
