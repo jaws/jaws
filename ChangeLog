@@ -1,3 +1,17 @@
+2019-04-14  Ajay Saini  <sainiak@uci.edu>
+
+	* Add option to convert temperature in celsius
+
+	* git tag -a 0.8.2 -m 'alpha02: Celsius option'; git push --tags
+
+2019-04-12  Ajay Saini  <sainiak@uci.edu>
+
+	* Documenation
+
+2019-04-11  Ajay Saini  <sainiak@uci.edu>
+
+	* Documenation
+
 2019-04-10  Ajay Saini  <sainiak@uci.edu>
 
 	* Add usage for Optional Arguments
