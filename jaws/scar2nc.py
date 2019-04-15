@@ -46,7 +46,9 @@ def init_dataframe(args, input_file):
 
     df, columns = common.load_dataframe('scar', input_file, header_rows, input_file_vars=input_file_vars)
     df.replace(check_na, np.nan, inplace=True)
-    df.loc[:, 'ta'] += common.freezing_point_temp
+    temperature_vars = ['ta']
+    if not args.celsius:
+        df.loc[:, temperature_vars] += common.freezing_point_temp
     df.loc[:, 'wspd'] *= knot_to_ms
     df = df.where((pd.notnull(df)), common.get_fillvalue(args))
 

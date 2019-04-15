@@ -28,7 +28,9 @@ def init_dataframe(args, input_file):
                 break
 
     df, columns = common.load_dataframe('aaws', input_file, header_rows, input_file_vars=input_file_vars)
-    df.loc[:, 'ta'] += common.freezing_point_temp
+    temperature_vars = ['ta']
+    if not args.celsius:
+        df.loc[:, temperature_vars] += common.freezing_point_temp
     df.loc[:, 'pa'] *= common.pascal_per_millibar
     df = df.where((pd.notnull(df)), common.get_fillvalue(args))
 

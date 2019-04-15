@@ -101,6 +101,14 @@ This will convert *'ABC.txt'* to *'XYZ.nc'*.
     $ jaws --rigb --merra ABC.txt
     ```
 
+* `-c, --cel, --celsius`: By default, all temperature variables will be in Kelvin (K) in output file (CF convention). 
+    Use this option if you want them in Celsius (°C) in output file
+
+    Usage:
+    ``` html
+    $ jaws --celsius ABC.txt
+    ```
+
 * `-s, --stn_nm, --station_name`: Override default station name
 
     Usage:

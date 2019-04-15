@@ -31,12 +31,13 @@ def init_dataframe(args, input_file):
 
     df.replace(check_na, np.nan, inplace=True)
 
-    temperature_keys = [
+    temperature_vars = [
         'ta_tc1', 'ta_tc2', 'ta_cs1', 'ta_cs2',
         'tsn1', 'tsn2', 'tsn3','tsn4', 'tsn5',
         'tsn6', 'tsn7', 'tsn8', 'tsn9', 'tsn10',
         'ta_max1', 'ta_max2', 'ta_min1','ta_min2', 'ref_temp']
-    df.loc[:, temperature_keys] += common.freezing_point_temp
+    if not args.celsius:
+        df.loc[:, temperature_vars] += common.freezing_point_temp
     df.loc[:, 'ps'] *= common.pascal_per_millibar
     df = df.where((pd.notnull(df)), common.get_fillvalue(args))
 

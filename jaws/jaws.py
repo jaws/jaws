@@ -81,9 +81,6 @@ def get_parser():
     parser.add_argument(
         "-L", "--dfl_lvl", "--dfl", "--deflate",
         help="Lempel-Ziv deflation/compression (lvl=0..9) for netCDF4 output", default=0, type=int)
-    parser.add_argument(
-        "--merra",
-        help="MERRA", action="store_true")
 
     '''
     
@@ -113,6 +110,12 @@ def get_parser():
     parser.add_argument(
         '--rigb',
         help='Correct tilt angle and direction', action="store_true")
+    parser.add_argument(
+        "--merra",
+        help="MERRA", action="store_true")
+    parser.add_argument(
+        "-c", "--cel", "--celsius",
+        help="Temperature in degree celsius", action="store_true")
 
     return parser
 
