@@ -185,6 +185,10 @@ def main(args):
         plt.xlabel('Month')
         plt.title('Climatological seasonal cycle at {}'.format(df.station_name[0][0]))
 
+    else:
+        print("Please choose a valid argument for analysis from ['diurnal', 'monthly', 'annual', 'seasonal']")
+        sys.exit(1)
+
     plt.legend(loc='best', fancybox=True, framealpha=0.3)
     plt.ylabel('{} [{}]'.format(ds[args.var].long_name, ds[args.var].units))
 
