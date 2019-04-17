@@ -6,9 +6,9 @@ import xarray
 
 
 def setup(args):
-    mpl.rc('figure', figsize=(15, 10))
-    mpl.rc('font', size=12)
-    mpl.rc('axes.spines', top=False, right=False)
+    mpl.rc('figure', figsize=(18, 12))
+    mpl.rc('font', size=24)
+    mpl.rc('axes.spines', top=True, right=True)
     mpl.rc('axes', grid=False)
     mpl.rc('axes', facecolor='white')
 
