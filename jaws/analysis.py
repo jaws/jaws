@@ -165,7 +165,10 @@ def main(args):
         plt.errorbar(hours, var_hour_avg, yerr=var_hour_sd, fmt='--o', ecolor='lightskyblue', color='k')
         plt.xticks(hours)
         plt.xlabel('Hour of the day')
-        plt.title('Diurnal cycle at {} for {}-{}'.format(df.station_name[0], month[0], year[0]))
+        if len(df.day) == 24:
+            plt.title('Diurnal cycle at {} for {}-{}-{}'.format(df.station_name[0], df.day[0], month[0], year[0]))
+        else:
+            plt.title('Diurnal cycle at {} for {}-{}'.format(df.station_name[0], month[0], year[0]))
 
     elif args.anl == 'monthly':
         monthly(args)
