@@ -114,7 +114,7 @@ def get_parser():
         "--merra",
         help="MERRA", action="store_true")
     parser.add_argument(
-        "-c", "--celsius", "--cel",
+        "-c", "--celsius", "--cel", "--centigrade",
         help="Temperature in degree celsius", action="store_true")
 
     return parser
