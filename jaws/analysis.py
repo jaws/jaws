@@ -14,6 +14,7 @@ def setup(args):
 
     global ds, df
     ds = xarray.open_dataset(args.input_file)
+    ds = ds.drop('time_bounds')
     df = ds.to_dataframe()
 
     if args.anl_yr:
@@ -34,48 +35,48 @@ def setup(args):
 
     df['month_derived'] = df['month'].astype(str)
     month = df['month_derived']
-    if month[0][0] == '1':
-        month[0][0] = 'Jan'
+    if month[0] == '1':
+        month[0] = 'Jan'
         days = range(1, 32)
-    elif month[0][0] == '2':
-        month[0][0] = 'Feb'
+    elif month[0] == '2':
+        month[0] = 'Feb'
         days = range(1, 29)
-    elif month[0][0] == '3':
-        month[0][0] = 'Mar'
+    elif month[0] == '3':
+        month[0] = 'Mar'
         days = range(1, 32)
-    elif month[0][0] == '4':
-        month[0][0] = 'Apr'
+    elif month[0] == '4':
+        month[0] = 'Apr'
         days = range(1, 31)
-    elif month[0][0] == '5':
-        month[0][0] = 'May'
+    elif month[0] == '5':
+        month[0] = 'May'
         days = range(1, 32)
-    elif month[0][0] == '6':
-        month[0][0] = 'Jun'
+    elif month[0] == '6':
+        month[0] = 'Jun'
         days = range(1, 31)
-    elif month[0][0] == '7':
-        month[0][0] = 'Jul'
+    elif month[0] == '7':
+        month[0] = 'Jul'
         days = range(1, 32)
-    elif month[0][0] == '8':
-        month[0][0] = 'Aug'
+    elif month[0] == '8':
+        month[0] = 'Aug'
         days = range(1, 32)
-    elif month[0][0] == '9':
-        month[0][0] = 'Sep'
+    elif month[0] == '9':
+        month[0] = 'Sep'
         days = range(1, 31)
-    elif month[0][0] == '10':
-        month[0][0] = 'Oct'
+    elif month[0] == '10':
+        month[0] = 'Oct'
         days = range(1, 32)
-    elif month[0][0] == '11':
-        month[0][0] = 'Nov'
+    elif month[0] == '11':
+        month[0] = 'Nov'
         days = range(1, 31)
-    elif month[0][0] == '12':
-        month[0][0] = 'Dec'
+    elif month[0] == '12':
+        month[0] = 'Dec'
         days = range(1, 32)
 
     global hours, days_year, months
 
     hours = range(0, 24)
 
-    if year[0][0] % 4 == 0:
+    if year[0] % 4 == 0:
         days_year = range(1, 367)
     else:
         days_year = range(1, 366)
@@ -164,7 +165,7 @@ def main(args):
         plt.errorbar(hours, var_hour_avg, yerr=var_hour_sd, fmt='--o', ecolor='lightskyblue', color='k')
         plt.xticks(hours)
         plt.xlabel('Hour of the day')
-        plt.title('Diurnal cycle at {} for {}-{}'.format(df.station_name[0][0], month[0][0], year[0][0]))
+        plt.title('Diurnal cycle at {} for {}-{}'.format(df.station_name[0], month[0], year[0]))
 
     elif args.anl == 'monthly':
         monthly(args)
@@ -172,7 +173,7 @@ def main(args):
         plt.fill_between(days, var_day_max, var_day_min, label='max-min', facecolor='darkseagreen', alpha=0.3)
         plt.xticks(days)
         plt.xlabel('Day of month')
-        plt.title('Temperature at {} for {}-{}'.format(df.station_name[0][0], month[0][0], year[0][0]))
+        plt.title('Temperature at {} for {}-{}'.format(df.station_name[0], month[0], year[0]))
 
     elif args.anl == 'annual':
         annual(args)
@@ -181,14 +182,14 @@ def main(args):
         plt.plot(days_year, var_doy_max, label='max', color='darkseagreen')
         plt.plot(days_year, var_doy_min, label='min', color='lightskyblue')
         plt.xlabel('Day of year')
-        plt.title('Temperature at {} for {}'.format(df.station_name[0][0], year[0][0]))
+        plt.title('Temperature at {} for {}'.format(df.station_name[0], year[0]))
 
     elif args.anl == 'seasonal':
         seasonal(args)
         plt.errorbar(months, var_month_avg, yerr=var_month_sd, fmt='--o', ecolor='lightskyblue', color='k')
         plt.xticks(months)
         plt.xlabel('Month')
-        plt.title('Climatological seasonal cycle at {}'.format(df.station_name[0][0]))
+        plt.title('Climatological seasonal cycle at {}'.format(df.station_name[0]))
 
     else:
         print("ERROR: Please choose a valid argument for analysis from ['diurnal', 'monthly', 'annual', 'seasonal']")
