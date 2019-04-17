@@ -152,6 +152,11 @@ def seasonal(args):
 
 
 def main(args):
+
+    if not args.var:
+        print('ERROR: Please provide variable name to analyze')
+        sys.exit(1)
+
     setup(args)
 
     if args.anl == 'diurnal':
