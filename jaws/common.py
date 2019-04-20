@@ -134,7 +134,7 @@ def load_dataset_attributes(name, ds, args, **kwargs):
                        'jaws/jaws)'.format(jaws_version)
 
     derived_vars = ['time', 'time_bounds', 'sza', 'az','station_name', 'latitude', 'longitude',
-                    'ice_velocity_GPS_total', 'ice_velocity_GPS_x', 'ice_velocity_GPS_y', 'height']
+                    'ice_velocity_GPS_total', 'ice_velocity_GPS_x', 'ice_velocity_GPS_y', 'height', 'sh', 'lh']
 
     no_drv_tm_vars = []
 
