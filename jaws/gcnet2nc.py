@@ -272,8 +272,11 @@ def gcnet2nc(args, input_file, output_file, stations):
     common.log(args, 4, 'Calculating quality control variables')
     fill_dataset_quality_control(df, ds, input_file)
 
-    common.log(args, 5, 'Calculating Sensible and Latent Heat Fluxes')
-    sh, lh = fluxes(df)
+    if args.flx:
+        common.log(args, 5, 'Calculating Sensible and Latent Heat Fluxes')
+        sh, lh = fluxes(df)
+        ds['sh'] = 'time', sh
+        ds['lh'] = 'time', lh
 
     if args.no_drv_tm:
         pass
@@ -292,8 +295,6 @@ def gcnet2nc(args, input_file, output_file, stations):
     ds['latitude'] = tuple(), latitude
     ds['longitude'] = tuple(), longitude
     # ds['surface_temp'] = 'time', surface_temp
-    ds['sh'] = 'time', sh
-    ds['lh'] = 'time', lh
 
     rigb_vars = []
     if args.rigb:

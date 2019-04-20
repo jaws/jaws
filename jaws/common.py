@@ -114,7 +114,7 @@ def load_dataframe(name, input_file, header_rows, **kwargs):
 
 
 def load_dataset_attributes(name, ds, args, **kwargs):
-    global derived_vars, no_drv_tm_vars, rigb_vars
+    global derived_vars, no_drv_tm_vars, rigb_vars, flx_vars
     path = 'resources/{}/ds.json'.format(name)
     attr_dict = read_ordered_json(path)
 
@@ -134,7 +134,7 @@ def load_dataset_attributes(name, ds, args, **kwargs):
                        'jaws/jaws)'.format(jaws_version)
 
     derived_vars = ['time', 'time_bounds', 'sza', 'az','station_name', 'latitude', 'longitude',
-                    'ice_velocity_GPS_total', 'ice_velocity_GPS_x', 'ice_velocity_GPS_y', 'height', 'sh', 'lh']
+                    'ice_velocity_GPS_total', 'ice_velocity_GPS_x', 'ice_velocity_GPS_y', 'height']
 
     no_drv_tm_vars = []
 
@@ -146,9 +146,14 @@ def load_dataset_attributes(name, ds, args, **kwargs):
     if name in ['imau/ant', 'imau/grl', 'gcnet', 'promice']:
         rigb_vars = kwargs.pop('rigb_vars')
 
+    flx_vars = []
+    if name == 'gcnet' and args.flx:
+        flx_vars = ['sh', 'lh']
+
     for key, value in attr_dict.items():
         for key1, value1 in value.items():
-            if (key1 in columns) or (key1 in derived_vars) or (key1 in no_drv_tm_vars) or (key1 in rigb_vars):
+            if (key1 in columns) or (key1 in derived_vars) or (key1 in no_drv_tm_vars) or (
+                    key1 in rigb_vars) or (key1 in flx_vars):
                 for key2, value2 in value1.items():
                     if key2 == 'type':
                         pass
@@ -199,6 +204,8 @@ def get_encoding(name, fillvalue, comp_level, args):
         masterlist.append(no_drv_tm_vars)
     if args.rigb:
         masterlist.append(rigb_vars)
+    if args.flx:
+        masterlist.append(flx_vars)
 
     # Get encoding for only those variables present in input file
     masterlist = [item for sublist in masterlist for item in sublist]
