@@ -26,12 +26,12 @@ install:
 
   # Replace dep1 dep2 ... with your dependencies
   - conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION pandas numpy xarray pytz netCDF4 conda-build scipy requests
-  - pip install metpy
   - source activate test-environment
   #- conda build conda.recipe
   #- conda install -n test-environment --use-local jaws
 
 script:
     - cd tests
+    - pip install metpy
     - pip install matplotlib
     - python test.py
