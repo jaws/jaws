@@ -130,7 +130,8 @@ def extrapolate_temp(dataframe):
 '''
 
 
-def fluxes(df):  # This method is very sensitive to input data quality
+def gradient_fluxes(df):  # This method is very sensitive to input data quality
+    """Returns Sensible Heat Flux and Latent Heat Flux based on Steffen & DeMaria (1996) method"""
     g = 9.81  # m/s**2
     cp = 1005  # J/kg/K
     k = 0.4  # von Karman
@@ -274,7 +275,7 @@ def gcnet2nc(args, input_file, output_file, stations):
 
     if args.flx:
         common.log(args, 5, 'Calculating Sensible and Latent Heat Fluxes')
-        sh, lh = fluxes(df)
+        sh, lh = gradient_fluxes(df)
         ds['sh'] = 'time', sh
         ds['lh'] = 'time', lh
 
