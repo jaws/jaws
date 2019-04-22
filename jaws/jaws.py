@@ -117,7 +117,7 @@ def get_parser():
         "-c", "--celsius", "--cel", "--centigrade",
         help="Temperature in degree celsius", action="store_true")
     parser.add_argument(
-        "--flx", "--fluxes",
+        "--flx", "--gradient_fluxes",
         help="Calculate sensible and latent heat fluxes for GCNet", action="store_true")
 
     return parser
