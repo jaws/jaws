@@ -32,7 +32,7 @@ formats now distributed, harmonize it into a common format, and deliver value-ad
 Level 3 (L3) output suitable for distribution by the network operator, analysis by
 the researcher, and curation by the data center.
 NASA has funded JAWS
-([project summary](http://dust.ess.uci.edu/prp/prp_aist/prp_aist_smr.pdf))
+`project summary <http://dust.ess.uci.edu/prp/prp_aist/prp_aist_smr.pdf>`_
 from 20171001 to 20190930.
 
 Automated Weather Station (AWS) and AWS-like networks are the primary source
