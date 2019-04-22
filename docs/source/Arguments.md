@@ -185,3 +185,12 @@ This will convert *'ABC.txt'* to *'XYZ.nc'*.
     ``` html
     $ jaws -D 5 ABC.txt
     ```
+
+* `--flx, --gradient_fluxes`: This method is only for GCNet stations. Calculate gradient fluxes i.e. Sensible Heat Flux 
+    and Latent Heat flux based on [Steffen & DeMaria (1996)](http://doi.org/10.1175/1520-0450(1996)035<2067:sefoaw>2.0.co;2). 
+    This method is very sensitive to input data quality. It is used as following:
+
+    Usage:
+    ``` html
+    $ jaws --flx ABC.txt
+    ```
