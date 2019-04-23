@@ -25,6 +25,7 @@ Justified Automated Weather Station (JAWS) Software
    RIGB
    Analysis
    Modification
+   Add new network
    License
 
 JAWS is a scientific software workflow to ingest Level 2 (L2) data in the multiple
