@@ -32,5 +32,6 @@ install:
 
 script:
     - cd tests
+    - conda install -c conda-forge metpy
     - pip install matplotlib
     - python test.py

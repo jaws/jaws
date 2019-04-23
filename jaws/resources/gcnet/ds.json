@@ -696,6 +696,24 @@
         "cell_methods": "time: mean",
         "coordinates": "longitude latitude"
       }
+    },
+    "sh": {
+      "type": "float",
+      "attributes": {
+        "long_name": "Sensible Heat Flux",
+        "units": "watt meter-2",
+        "cell_methods": "time: mean",
+        "coordinates": "longitude latitude"
+      }
+    },
+    "lh": {
+      "type": "float",
+      "attributes": {
+        "long_name": "Latent Heat Flux",
+        "units": "watt meter-2",
+        "cell_methods": "time: mean",
+        "coordinates": "longitude latitude"
+      }
     }
   }
 }

@@ -102,7 +102,8 @@ This will convert *'ABC.txt'* to *'XYZ.nc'*.
     ```
 
 * `-c, --cel, --celsius` `--centigrade`: By default, all temperature variables will be in Kelvin (K) in output file (CF convention). 
-    Use this option if you want them in Celsius (°C) in output file
+    Use this option if you want them in Celsius (°C) in output netCDF file. If during analysis step, you find that units are Kelvin 
+    and you want the plots in Celsius, first convert the raw file to netCDF using this option and then do the analysis.  
 
     Usage:
     ``` html
@@ -184,4 +185,13 @@ This will convert *'ABC.txt'* to *'XYZ.nc'*.
     Usage:
     ``` html
     $ jaws -D 5 ABC.txt
+    ```
+
+* `--flx, --gradient_fluxes`: This method is only for GCNet stations. Calculate gradient fluxes i.e. Sensible Heat Flux 
+    and Latent Heat flux based on [Steffen & DeMaria (1996)](http://doi.org/10.1175/1520-0450(1996)035<2067:sefoaw>2.0.co;2). 
+    This method is very sensitive to input data quality. It is used as following:
+
+    Usage:
+    ``` html
+    $ jaws --flx ABC.txt
     ```

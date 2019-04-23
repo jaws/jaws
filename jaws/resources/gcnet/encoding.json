@@ -508,5 +508,17 @@
     "dtype": "f4",
     "zlib": true,
     "complevel": "COMP"
+  },
+  "sh": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "lh": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
   }
 }
