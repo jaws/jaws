@@ -1,3 +1,61 @@
+2019-04-23  Ajay Saini  <sainiak@uci.edu>
+
+	* git tag -a 0.8.3 -m 'alpha03: Gradient fluxes for GCNet'; git push --tags
+
+2019-04-22  Ajay Saini  <sainiak@uci.edu>
+
+	* docs/index.rst: Correct way for external link
+
+	* docs/Networks.md: Align images
+
+	* gcnet2nc.py: Rename fluxes function as gradient_fluxes
+
+	* jaws.py: Rename --fluxes option as --gradient_fluxes
+
+	* docs/Arguments.md: Add details about --flx option
+
+	* docs/Add new network.md
+
+	* docs/Github.md
+
+	* docs: Note for --celsius option
+
+2019-04-21  Ajay Saini  <sainiak@uci.edu>
+
+	* travis.yml: conda install metpy
+
+2019-04-20  Ajay Saini  <sainiak@uci.edu>
+
+	* Add metpy as project requirement
+
+2019-04-19  Ajay Saini  <sainiak@uci.edu>
+
+	* gcnet2nc.py: Define function to calculate heat fluxes
+
+	* gcnet/ds.json: Add 'sh' and 'lh'
+
+	* gcnet/encoding.json: Add 'sh' and 'lh'
+
+	* common.py: Add 'sh' and 'lh' to derived_vars list
+
+	* Make --fluxes as an option
+
+2019-04-16  Ajay Saini  <sainiak@uci.edu>
+
+	* analysis.py: Update plot setup
+
+	* analysis.py: Throw error if variable name not given
+
+	* analysis.py: drop time_bounds dimension
+
+	* analysis.py: print day in title for diurnal plot if 1-day data
+
+	* Add --centigrade alias
+
+2019-04-15  Ajay Saini  <sainiak@uci.edu>
+
+	* analysis.py: Throw error if wrong argument value used for -a option
+
 2019-04-14  Ajay Saini  <sainiak@uci.edu>
 
 	* Add option to convert temperature in celsius
