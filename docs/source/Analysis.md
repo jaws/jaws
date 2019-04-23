@@ -6,12 +6,12 @@ netCDF using previous steps. We are working to make it accept ASCII files as inp
 In the following examples we have used GCNet station at Summit, if you are using a separate network, you need to change 
 the variable name accordingly.
 
-JAWS has ability to analyse the data in multiple ways such as:
+JAWS has the ability to analyze the data in multiple ways such as:
 
 #### Diurnal
 
-JAWS can be used to plot monthly diurnal cycle to see hourly changes for any variable throughout the month. 
-The user needs to provide input file path, variable name (on which analysis needs to be done) and 
+JAWS can be used to plot the monthly diurnal cycle to see hourly changes for any variable throughout the month. 
+The user needs to provide the input file path, variable name (on which analysis needs to be done) and 
 analysis type (i.e. diurnal, monthly, annual or seasonal). The argument for analysis is `-a, --anl or --analysis` and
 variable name is `-v, --var or --variable`.
 
@@ -46,15 +46,15 @@ We will take two examples here:
     The blue error bar shows standard deviation for that hour across the month.
 
 ```
-Important: This same file from Case 2 will be used for next three analysis because we need at-least monthly, yearly and 
-multi-yearly data respectively for them.
+Important: This same file from Case 2 will be used for the next three analysis because we need at least the monthly, yearly and 
+multi-yearly data.
 ```
 
 #### Monthly
 
 In this analysis, we can analyze avg, max and min values for each day of a month for any variable
 
-This time we will do it for ***temperature*** from different sensor for Feb-2013 as following:
+This time we will do it for ***temperature*** from a different sensor for Feb-2013 as following:
 
 ```
 $ jaws --anl monthly --var ta_cs1 --anl_yr 2013 --anl_mth 2 gcnet_summit.nc
@@ -70,7 +70,7 @@ To plot an annual cycle with daily mean, max and min:
 $ jaws --analysis annual --variable ta_tc1 --analysis_year 2016 gcnet_summit.nc
 ```
 
-Note: Since it is annual plot, user shouldn't provide the '-m' argument
+Note: Since this is an annual plot, the user shouldn't provide the '-m' argument
 
 ![](http://jaws.ess.uci.edu/jaws/img/annual.png)
 
@@ -82,7 +82,7 @@ Climatological seasonal cycle showing variation for each month through multiple 
 $ jaws -a seasonal -v ta_tc1 gcnet_summit.nc
 ```
 
-Note: Since it is seasonal plot, user shouldn't provide both '-y', '-m' argument.
+Note: Since this is a seasonal plot, the user shouldn't provide both '-y', '-m' argument.
 
 ![](http://jaws.ess.uci.edu/jaws/img/seasonal.png)
 

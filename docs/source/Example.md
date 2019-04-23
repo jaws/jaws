@@ -4,7 +4,7 @@ JAWS is a command-line tool.
 Linux/Unix users can run JAWS from terminal and Windows users from Anaconda Prompt. 
 
 The only required argument that a user has to provide is the input file path. 
-The following minimalist command converts the input file (using default options):
+The following minimalist command converts the input ASCII file to netCDF format (using default options):
 
 ``` html
 $ jaws PROMICE_EGP_20160503.txt

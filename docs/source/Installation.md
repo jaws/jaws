@@ -7,7 +7,7 @@
 
 By far the simplest and recommended way to install `JAWS` is using [conda](https://conda.io/docs/) (which is the wonderful package manager that comes with [Anaconda](https://conda.io/docs/user-guide/install/index.html) or [Miniconda](https://conda.io/miniconda.html) distribution).
 
-To avoid dependencies version mismatch, it is recommended to create separate conda environment as following:
+To avoid dependencies version mismatch, it is recommended to create a separate conda environment as following:
 ```html
 $ conda  create --name jaws_env python=3.7
 $ source activate jaws_env
