@@ -26,6 +26,7 @@ Justified Automated Weather Station (JAWS) Software
    Analysis
    Modification
    Add new network
+   Github
    License
 
 JAWS is a scientific software workflow to ingest Level 2 (L2) data in the multiple
