@@ -5,16 +5,21 @@ direction for AWS with solar radiometry. Unattended AWS are subject to tilt, esp
 when anchored in snow and ice. This tilt can alter the AWS-retrieved albedo from a the 
 expected “smiley face” diurnal profile to almost a frown. 
 
-![](http://jaws.ess.uci.edu/jaws/img/fig4a_proposal.png)
+<p align="left">
+  <img width="500" src="http://jaws.ess.uci.edu/jaws/img/fig4a_proposal.png">
+</p>
 
 The tilt angle at South Dome station was β ≈ 15◦ in 2008, 
 enough to bias retrieved albedo by 0.05–0.10.
 
-![](http://jaws.ess.uci.edu/jaws/img/fig4b_proposal.png)
+<p align="left">
+  <img width="500" src="http://jaws.ess.uci.edu/jaws/img/fig4b_proposal.png">
+</p>
 
 The RIGB tilt-correction algorithm advanced the state-of-the-art in removing 
 surface shortwave biases from AWS. It reduces solar biases by 11Wm−2 averaged over 
-Greenland from May–Sept (Wang et al., 2016), enough to melt 0.24m snow water equivalent. 
+Greenland from May–Sept ([Wang et al., 2016](https://www.the-cryosphere.net/10/727/2016/)), 
+enough to melt 0.24m snow water equivalent. 
 
 To run RIGB, user needs to specify “--rigb” option as below:
 

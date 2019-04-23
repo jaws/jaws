@@ -42,9 +42,5 @@ A raw sample file can be downloaded from
   <img width="600" src="http://jaws.ess.uci.edu/jaws/img/map_grl.png">
 </p>
 
-![](http://jaws.ess.uci.edu/jaws/img/map_ant.png)
-
-![](http://jaws.ess.uci.edu/jaws/img/map_grl.png)
-
 If your network is not in the above list and you would like it to be supported by **JAWS**, please open an issue 
 on [Github](https://github.com/jaws/jaws/issues) or contact *Charlie Zender* at <zender@uci.edu>
