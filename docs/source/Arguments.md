@@ -102,7 +102,8 @@ This will convert *'ABC.txt'* to *'XYZ.nc'*.
     ```
 
 * `-c, --cel, --celsius` `--centigrade`: By default, all temperature variables will be in Kelvin (K) in output file (CF convention). 
-    Use this option if you want them in Celsius (°C) in output file
+    Use this option if you want them in Celsius (°C) in output netCDF file. If during analysis step, you find that units are Kelvin 
+    and you want the plots in Celsius, first convert the raw file to netCDF using this option and then do the analysis.  
 
     Usage:
     ``` html

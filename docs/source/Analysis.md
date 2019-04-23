@@ -18,7 +18,11 @@ variable name is `-v, --var or --variable`.
 We will take two examples here:
 
 * ***Case 1***: The input file contains only 1-day data. We will consider the file converted previously i.e.
- [GCNet_Summit_20120817.nc](http://jaws.ess.uci.edu/jaws/sample_data/converted/GCNet_Summit_20120817.nc)
+ [GCNet_Summit_20120817.nc](http://jaws.ess.uci.edu/jaws/sample_data/converted/GCNet_Summit_20120817.nc). 
+ By default, the temperature variables will be in Kelvin (K) units in converted netCDF file. If you would like them in 
+ Celsius (°C), please use `-c, --cel, --celsius` `--centigrade` option when converting the raw file to netCDF. 
+ Please note that `--analysis` option will only use units that are in netCDF file and units can't be changed during 
+ this step.
 
     Use the following command to see how ***temperature*** varies throughout the day:
     ```
