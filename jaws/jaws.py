@@ -17,6 +17,9 @@ except ImportError:
 
 
 def get_parser():
+    """
+    Define all arguments and store them in a parser
+    """
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "input_file", nargs='?',
@@ -124,6 +127,9 @@ def get_parser():
 
 
 def parse_args(args):
+    """
+    Returns arguments passed on command line
+    """
     return get_parser().parse_args(args)
 
 
@@ -227,9 +233,9 @@ def dispatch_converter(args, input_file, output_file, stations):
 
 def main(args):
     """
-    First check if user wants to know current version.
-    If yes, exit after printing it.
+    Identify what JAWS task to perform.
     """
+    # First check if user wants to know current version. If yes, exit after printing it.
     if args.vrs:
         dirname = os.path.dirname(__file__)
         filename = os.path.join(dirname, 'jaws.py')
@@ -237,14 +243,12 @@ def main(args):
             jaws_version, datetime.fromtimestamp(os.path.getmtime(filename))))
         sys.exit(1)
 
-    """
-    Check if this is an analysis task.
-    If yes, exit after generating plots.
-    """
+    # Check if this is an analysis task. If yes, exit after generating plots.
     if args.anl:
         analysis.main(args)
         sys.exit(1)
 
+    # Convert to netCDF
     start_time = datetime.now()
 
     stations = get_stations()
@@ -262,8 +266,10 @@ def main(args):
         print(msg)
 
 
-
 def start():
+    """
+    Entry point for setup.py.
+    """
     main(parse_args(sys.argv[1:]))
 
 
