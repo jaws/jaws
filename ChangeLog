@@ -1,3 +1,25 @@
+2019-04-30  Ajay Saini  <sainiak@uci.edu>
+
+	* gcnet2nc, promice2nc, aaws2nc, imau2nc, scar2nc: docstring and comments
+
+2019-04-29  Ajay Saini  <sainiak@uci.edu>
+
+	* Rearrange arguments
+
+	* common.py: docstring and comments
+
+2019-04-26  Ajay Saini  <sainiak@uci.edu>
+
+	* jaws.py: docstring
+
+2019-04-25  Ajay Saini  <sainiak@uci.edu>
+
+	* surface_temp for gcnet
+
+2019-04-24  Ajay Saini  <sainiak@uci.edu>
+
+	* surface_temp for gcnet
+
 2019-04-23  Ajay Saini  <sainiak@uci.edu>
 
 	* git tag -a 0.8.3 -m 'alpha03: Gradient fluxes for GCNet'; git push --tags
