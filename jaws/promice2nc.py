@@ -16,6 +16,7 @@ warnings.filterwarnings("ignore")
 
 
 def init_dataframe(args, input_file):
+    """Initialize dataframe with data from input file; convert current, temperature and pressure to SI units"""
     convert_current = 1000
     check_na = -999
 
@@ -40,6 +41,7 @@ def init_dataframe(args, input_file):
 
 
 def get_station(args, input_file, stations):
+    """Get latitude, longitude and name for each station"""
     path = 'resources/promice/aliases.txt'
     aliases = {}
     with open(common.relative_path(path)) as stream:
@@ -58,6 +60,7 @@ def get_station(args, input_file, stations):
 
 
 def get_time_and_sza(args, dataframe, longitude, latitude):
+    """Calculate additional time related variables"""
     dtime_1970, tz = common.time_common(args.tz)
 
     num_rows = dataframe['year'].size
@@ -86,6 +89,7 @@ def get_time_and_sza(args, dataframe, longitude, latitude):
 
 
 def get_ice_velocity(args, dataframe, delta_x, delta_y):
+    """Calculate GPS-derived ice velocity using Haversine formula"""
     num_rows = dataframe['year'].size
     R = 6373.0  # Approx radius of earth
     fillvalue = common.get_fillvalue(args)
@@ -125,6 +129,7 @@ def get_ice_velocity(args, dataframe, delta_x, delta_y):
 
 
 def fill_ice_velocity(args, dataframe, dataset):
+    """Calculate total ice velocity and its x, y components"""
     params = (
         ('ice_velocity_GPS_total', 1, 1),
         ('ice_velocity_GPS_x', 0, 1),
@@ -134,8 +139,9 @@ def fill_ice_velocity(args, dataframe, dataset):
 
 
 def convert_coordinates(args, dataframe):
-    # Exclude NAs
+    """Convert latitude_GPS and longitude_GPS units from ddmm to degrees"""
     fillvalue = common.get_fillvalue(args)
+    # Exclude NAs
     df1 = dataframe[dataframe.latitude_GPS != fillvalue]
     df2 = dataframe[dataframe.longitude_GPS != fillvalue]
 
@@ -150,6 +156,7 @@ def convert_coordinates(args, dataframe):
 
 
 def promice2nc(args, input_file, output_file, stations):
+    """Main function to convert PROMICE txt file to netCDF"""
     df, temperature_vars = init_dataframe(args, input_file)
     ds = xr.Dataset.from_dataframe(df)
     ds = ds.drop('time')
