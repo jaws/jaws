@@ -27,11 +27,13 @@ jaws_version = '0.8.3'
 
 
 def log(args, level, message):
+    """Print log messages"""
     if args.dbg_lvl > level:
         print(message)
 
 
 def get_fillvalue(args):
+    """Return user provided fillvalue_float"""
     if args.fll_val_flt:
         return args.fll_val_flt
     return fillvalue_float
@@ -44,6 +46,7 @@ def relative_path(path):
 
 
 def read_ordered_json(path):
+    """Return json file as an ordered dict"""
     path = relative_path(path)
     decoder = json.JSONDecoder(object_pairs_hook=collections.OrderedDict)
     with open(path) as stream:
@@ -51,7 +54,7 @@ def read_ordered_json(path):
 
 
 def load_dataframe(name, input_file, header_rows, **kwargs):
-
+    """Create skeleton of dataframe based on type of input file"""
     input_file_vars = [item for sublist in[v for k,v in kwargs.items()] for item in sublist]
 
     global columns
@@ -114,6 +117,7 @@ def load_dataframe(name, input_file, header_rows, **kwargs):
 
 
 def load_dataset_attributes(name, ds, args, **kwargs):
+    """Assign global and variable attributes"""
     global derived_vars, no_drv_tm_vars, rigb_vars, flx_vars
     path = 'resources/{}/ds.json'.format(name)
     attr_dict = read_ordered_json(path)
@@ -169,6 +173,7 @@ def load_dataset_attributes(name, ds, args, **kwargs):
 
 
 def load_dataset_attributes_gcnet_qltyctrl(name, ds):
+    """Assign attributes for GCNet Quality Control variables"""
     path = 'resources/{}/ds_derived.json'.format(name)
     attr_dict = read_ordered_json(path)
 
@@ -185,6 +190,7 @@ def load_dataset_attributes_gcnet_qltyctrl(name, ds):
 
 
 def get_encoding(name, fillvalue, comp_level, args):
+    """Assign encoding to all variables"""
     path = relative_path('resources/{}/encoding.json'.format(name))
     with open(path) as stream:
         data = json.load(stream)
@@ -214,6 +220,7 @@ def get_encoding(name, fillvalue, comp_level, args):
 
 
 def parse_station(args, station):
+    """Get latitude, longitude and name for each station"""
     if len(station) == 3:
         latitude, longitude, name = station
     else:
@@ -226,6 +233,7 @@ def parse_station(args, station):
 
 
 def time_common(tzone):
+    """Define common time variables to be used across different scripts"""
     tz = pytz.timezone(tzone)
     dtime_1970 = datetime(1970, 1, 1)
     dtime_1970 = tz.localize(dtime_1970.replace(tzinfo=None))
@@ -234,6 +242,7 @@ def time_common(tzone):
 
 
 def get_month_day(year, day, one_based=False):
+    """Get month and day from day of year"""
     if one_based:  # if Jan 1st is 1 instead of 0
         day -= 1
     dt = datetime(year, 1, 1) + timedelta(days=day)
@@ -241,17 +250,26 @@ def get_month_day(year, day, one_based=False):
 
 
 def get_cleardays_df(station_name, first_date, last_date):
+    """
+    Get clear-sky periods
+    :param station_name: Station name
+    :param first_date: First date of input data
+    :param last_date: Last date of input data
+    :return: Dataframe containing clear periods between first and last date of that station
+    """
     path_cleardays = relative_path('resources/cleardays.csv')
     clr_df = pd.read_csv(path_cleardays)
     clr_df = clr_df.loc[clr_df['network_name'] == station_name]
     clr_df = clr_df.drop('network_name', 1)
     clr_df = clr_df.loc[(clr_df['date'] >= first_date) & (clr_df['date'] <= last_date)]
+    # Convert half-hour values to full-hour to subset variable values in tilt_angle script (e.g. 10.5 to 10)
     clr_df[['start_hour', 'end_hour']] = clr_df[['start_hour', 'end_hour']].astype(int)
 
     return clr_df
 
 
 def call_rigb(args, station_name, first_date, last_date, ds, latitude, longitude, rigb_vars):
+    """Calculate tilt angle, tilt direction and adjusted downwelling shortwave flux"""
     log(args, 6, 'Detecting clear-sky day(s)')
     clr_df = get_cleardays_df(station_name, first_date, last_date)
     if args.dbg_lvl > 6:
@@ -262,19 +280,24 @@ def call_rigb(args, station_name, first_date, last_date, ds, latitude, longitude
             print('Skipping RIGB, since no clear-sky day found')
     else:
         log(args, 7, 'Calculating tilt angle and direction')
-        if len(clr_df.index) >= 5:
+        if len(clr_df.index) >= 5:  # It takes around 3 minutes for 1 day, so print message if 5 or more days (15 min)
             print('Tilt correction will take long time')
+
+        # Call tilt_angle script to get tilt_angle and tilt_direction
         ds = tilt_angle.main(ds, latitude, longitude, clr_df, args)
 
         log(args, 8, 'Calculating corrected_fsds')
+        # Call fsds_adjust script to get fsds_adjusted
         ds = fsds_adjust.main(ds, args)
 
+        # Define rigb_vars for attributes and encoding
         rigb_vars = ['tilt_direction', 'tilt_angle', 'fsds_adjusted', 'fsus_adjusted', 'cloud_fraction']
 
     return ds, rigb_vars
 
 
 def write_data(args, ds, op_file, encoding):
+    """Write data to netCDF file"""
     if args.format3 == 1:
         ds.to_netcdf(op_file, format='NETCDF3_CLASSIC', unlimited_dims={'time': True}, encoding=encoding)
     elif args.format4 == 1:

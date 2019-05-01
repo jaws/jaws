@@ -1,7 +1,6 @@
-from datetime import datetime
-
 from metpy.units import units
-from metpy.calc import potential_temperature, density, mixing_ratio_from_relative_humidity, specific_humidity_from_mixing_ratio
+from metpy.calc import potential_temperature, density
+from metpy.calc import mixing_ratio_from_relative_humidity, specific_humidity_from_mixing_ratio
 import numpy as np
 import pandas as pd
 import xarray as xr
@@ -13,6 +12,7 @@ except ImportError:
 
 
 def init_dataframe(args, input_file):
+    """Initialize dataframe with data from input file; convert temperature and pressure to SI units"""
     check_na = 999.0
 
     global header_rows
@@ -52,6 +52,7 @@ def init_dataframe(args, input_file):
 
 
 def get_station(args, input_file, stations):
+    """Get latitude, longitude and name for each station"""
     df, columns = common.load_dataframe('gcnet', input_file, header_rows)
     station_number = df['station_number'][0]
 
@@ -65,6 +66,7 @@ def get_station(args, input_file, stations):
 
 
 def fill_dataset_quality_control(dataframe, dataset, input_file):
+    """Create new separate quality control variables for each variable from qc1, qc9, qc17, qc25"""
     temp_df, columns = common.load_dataframe('gcnet', input_file, header_rows)
 
     keys = common.read_ordered_json('resources/gcnet/quality_control.json')
@@ -77,6 +79,7 @@ def fill_dataset_quality_control(dataframe, dataset, input_file):
 
 
 def get_time_and_sza(args, dataframe, longitude, latitude):
+    """Calculate additional time related variables"""
     dtime_1970, tz = common.time_common(args.tz)
     num_rows = dataframe['year'].size
     sza, az = ([0] * num_rows for _ in range(2))
@@ -94,11 +97,13 @@ def get_time_and_sza(args, dataframe, longitude, latitude):
 
     dataframe['dtime'] = pd.to_datetime(dataframe.dtime)
     dataframe['dtime'] += pd.to_timedelta(dataframe.hour, unit='h')
+    # Each timestamp is average of previous and current hour values i.e. value at hour=5 is average of hour=4 and hour=5
+    # Our 'time' variable will represent values at half-hour i.e. 4.5 in above case, so subtract 30 minutes from all.
     dataframe['dtime'] -= pd.to_timedelta(common.seconds_in_half_hour, unit='s')
 
-    dataframe['dtime'] = [tz.localize(i.replace(tzinfo=None)) for i in dataframe['dtime']]
+    dataframe['dtime'] = [tz.localize(i.replace(tzinfo=None)) for i in dataframe['dtime']]  # Set timezone
 
-    time = (dataframe['dtime'] - dtime_1970) / np.timedelta64(1, 's')
+    time = (dataframe['dtime'] - dtime_1970) / np.timedelta64(1, 's')  # Seconds since 1970
     time_bounds = [(i-common.seconds_in_half_hour, i+common.seconds_in_half_hour) for i in time]
 
     month = pd.DatetimeIndex(dataframe['dtime']).month.values
@@ -254,6 +259,7 @@ def gradient_fluxes(df):  # This method is very sensitive to input data quality
 
 
 def gcnet2nc(args, input_file, output_file, stations):
+    """Main function to convert GCNet ascii file to netCDF"""
     df, temperature_vars = init_dataframe(args, input_file)
     station_number = df['station_number'][0]
     df.drop('station_number', axis=1, inplace=True)

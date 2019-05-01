@@ -11,7 +11,7 @@ except ImportError:
 
 
 def init_dataframe(args, input_file):
-
+    """Initialize dataframe with data from input file; convert temperature and speed to SI units"""
     knot_to_ms = 0.514444
     header_rows = 0
     with open(input_file) as stream:
@@ -56,6 +56,7 @@ def init_dataframe(args, input_file):
 
 
 def get_time_and_sza(args, dataframe, longitude, latitude):
+    """Calculate additional time related variables"""
     dtime_1970, tz = common.time_common(args.tz)
 
     num_rows = dataframe['year'].size
@@ -71,6 +72,8 @@ def get_time_and_sza(args, dataframe, longitude, latitude):
         time[idx] = (dtime - dtime_1970).total_seconds()
         time_bounds[idx] = (time[idx], time[idx] + common.seconds_in_hour)
 
+        # Each timestamp is average of previous and current hour values i.e. value at hour=5 is average of hour=4 and 5
+        # Our 'time' variable will represent values at half-hour i.e. 4.5 in above case, so subtract 30 minutes from all
         time[idx] = time[idx] - common.seconds_in_half_hour
         dtime = datetime.utcfromtimestamp(time[idx])
 
@@ -80,6 +83,7 @@ def get_time_and_sza(args, dataframe, longitude, latitude):
 
 
 def scar2nc(args, input_file, output_file):
+    """Main function to convert SCAR txt file to netCDF"""
     df, temperature_vars, station_name, latitude, longitude, height, country, institution = init_dataframe(
         args, input_file)
     ds = xr.Dataset.from_dataframe(df)

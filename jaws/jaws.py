@@ -17,23 +17,66 @@ except ImportError:
 
 
 def get_parser():
+    """
+    Define all arguments and store them in a parser
+    """
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "input_file", nargs='?',
+        "input_file",
+        nargs="?",
         help="Path to raw L2 data file for converting to netCDF (or use -i option)",
         type=str)
     parser.add_argument(
-        "output_file", nargs='?',
-        help="Path to save output netCDF file (or use -o option)", type=str)
+        "output_file",
+        nargs="?",
+        help="Path to save output netCDF file (or use -o option)",
+        type=str)
     parser.add_argument(
         "-i", "--fl_in", "--input",
-        help=("Path to raw L2 data file for converting to netCDF "
-              "(or use first positional argument)"),
+        help="Path to raw L2 data file for converting to netCDF (or use first positional argument)",
         type=str)
     parser.add_argument(
         "-o", "--fl_out", "--output",
         help="Path to save output netCDF file (or use last positional argument)",
         type=str)
+    parser.add_argument(
+        "-r", "--vrs", "--version", "--revision",
+        help="JAWS current version and last modified date",
+        action="store_true")
+    parser.add_argument(
+        "-c", "--celsius", "--cel", "--centigrade",
+        help="Temperature in degree celsius (default is Kelvin)",
+        action="store_true")
+
+    ###########################################################################
+    # RIGB arguments
+    parser.add_argument(
+        "--rigb",
+        help="Calculate adjusted downwelling shortwave flux, tilt_angle and tilt_direction. "
+             "This option is only for stations that archive radiometric data.",
+        action="store_true")
+    parser.add_argument(
+        "--merra",
+        help="Select MERRA dataset for thermodynamic profiles in RIGB calculations",
+        action="store_true")
+    ###########################################################################
+
+    parser.add_argument(
+        "-f", "--fll_val_flt", "--fillvalue_float",
+        help="Override default float _FillValue",
+        type=float)
+    parser.add_argument(
+        "-s", "--stn_nm", "--station_name",
+        help="Override default station name",
+        type=str)
+    parser.add_argument(
+        "-t", "--tz", "--timezone",
+        help="Change the timezone, default is UTC",
+        default="UTC",
+        type=str)
+
+    ###########################################################################
+    # netCDF formats arguments
     parser.add_argument(
         "-3", "--format3", "--3", "--fl_fmt=classic",
         help="Output file in netCDF3 CLASSIC (32-bit offset) storage format",
@@ -44,86 +87,66 @@ def get_parser():
         action="store_true")
     parser.add_argument(
         "-5", "--format5", "--5", "--fl_fmt=64bit_data",
-        help=("Output file in netCDF3 64-bit data"
-              " (i.e., CDF5, PnetCDF) storage format"),
+        help="Output file in netCDF3 64-bit data (i.e., CDF5, PnetCDF) storage format",
         action="store_true")
     parser.add_argument(
-        "-6", "--format6", "--6", "--64",
-        "--fl_fmt=64bit_offset",
+        "-6", "--format6", "--6", "--64", "--fl_fmt=64bit_offset",
         help="Output file in netCDF3 64-bit offset storage format",
         action="store_true")
     parser.add_argument(
         "-7", "--format7", "--7", "--fl_fmt=netcdf4_classic",
         help="Output file in netCDF4 CLASSIC format (3+4=7)",
         action="store_true")
-    parser.add_argument(
-        "--no_drv_tm", "--no_derive_times",
-        help=("By default extra variables ('month', 'day' and 'hour') are derived for "
-              "further analysis. Select this flag to not derive them"),
-        action="store_true")
-    parser.add_argument(
-        "-s", "--stn_nm", "--station_name",
-        help="Override default station name",
-        type=str)
-    parser.add_argument(
-        "-t", "--tz", "--timezone",
-        help="Change the timezone, default is UTC",
-        default='UTC', type=str)
-    parser.add_argument(
-        "-f", "--fll_val_flt", "--fillvalue_float",
-        help="Override default float _FillValue", type=float)
-    parser.add_argument(
-        "-D", "--dbg_lvl", "--debug_level",
-        help="Debug-level is lvl", default=0, type=int)
-    parser.add_argument(
-        "-r", "--vrs", "--version", "--revision",
-        help="JAWS current version and last modified date", action="store_true")
+    ###########################################################################
+
     parser.add_argument(
         "-L", "--dfl_lvl", "--dfl", "--deflate",
-        help="Lempel-Ziv deflation/compression (lvl=0..9) for netCDF4 output", default=0, type=int)
-
-    '''
-    
-    /* Argument --debuglevel in increasing levels of verbosity */
-    jaws_dbg_quiet, /* 0 */ Quiet all non-error messages
-    jaws_dbg_std,   /* 1 */ Elapsed time
-    jaws_dbg_fl,	/* 2 */ Input/Output Filepaths
-    jaws_dbg_coords,/* 3 */ lat, lon, stn_name
-    jaws_dbg_time,  /* 4 */ time and sza
-    jaws_dbg_var1,  /* 5 */ For GCNet- quality control variables, For PROMICE- lat_GPS, lon_GPS
-    jaws_dbg_var2,  /* 6 */ For GCNet- month and day, For PROMICE- ice_velocity
-    
-    '''
-
-    parser.add_argument(
-        '-a', '--anl', '--analysis',
-        help = "plot type e.g.- diurnal, monthly, annual, seasonal", type = str)
-    parser.add_argument(
-        '-v', '--var', '--variable',
-        help = 'variable you want to analyse', type = str)
-    parser.add_argument(
-        '-y', '--anl_yr', '--analysis_year',
-        help = 'Year you want to select', type = int)
-    parser.add_argument(
-        '-m', '--anl_mth', '--analysis_month',
-        help = 'Month you want to select', type = int)
-    parser.add_argument(
-        '--rigb',
-        help='Correct tilt angle and direction', action="store_true")
-    parser.add_argument(
-        "--merra",
-        help="MERRA", action="store_true")
-    parser.add_argument(
-        "-c", "--celsius", "--cel", "--centigrade",
-        help="Temperature in degree celsius", action="store_true")
+        help="Lempel-Ziv deflation/compression (lvl=0..9) for netCDF4 output",
+        default=0,
+        type=int)
     parser.add_argument(
         "--flx", "--gradient_fluxes",
-        help="Calculate sensible and latent heat fluxes for GCNet", action="store_true")
+        help="This method is only for GCNet stations. Calculate gradient fluxes i.e. Sensible and Latent Heat Flux "
+             "based on Steffen & DeMaria (1996). This method is very sensitive to input data quality.",
+        action="store_true")
+    parser.add_argument(
+        "--no_drv_tm", "--no_derive_times",
+        help=("By default extra time variables (month, day and hour) are derived for further analysis. "
+              "Use this option to not derive them"),
+        action="store_true")
+    parser.add_argument(
+        "-D", "--dbg_lvl", "--debug_level",
+        help="Debug-level ranging from 1 to 9. It prints what steps are occurring during conversion.",
+        default=0,
+        type=int)
+
+    ###########################################################################
+    # Analysis arguments
+    parser.add_argument(
+        "-a", "--anl", "--analysis",
+        help="Plot type e.g.- diurnal, monthly, annual, seasonal",
+        type=str)
+    parser.add_argument(
+        "-v", "--var", "--variable",
+        help="Variable you want to analyze",
+        type=str)
+    parser.add_argument(
+        "-y", "--anl_yr", "--analysis_year",
+        help="Year you want to select for analysis",
+        type=int)
+    parser.add_argument(
+        "-m", "--anl_mth", "--analysis_month",
+        help="Month you want to select for analysis",
+        type=int)
+    ###########################################################################
 
     return parser
 
 
 def parse_args(args):
+    """
+    Returns arguments passed on command line
+    """
     return get_parser().parse_args(args)
 
 
@@ -227,9 +250,9 @@ def dispatch_converter(args, input_file, output_file, stations):
 
 def main(args):
     """
-    First check if user wants to know current version.
-    If yes, exit after printing it.
+    Identify what JAWS task to perform.
     """
+    # First check if user wants to know current version. If yes, exit after printing it.
     if args.vrs:
         dirname = os.path.dirname(__file__)
         filename = os.path.join(dirname, 'jaws.py')
@@ -237,14 +260,12 @@ def main(args):
             jaws_version, datetime.fromtimestamp(os.path.getmtime(filename))))
         sys.exit(1)
 
-    """
-    Check if this is an analysis task.
-    If yes, exit after generating plots.
-    """
+    # Check if this is an analysis task. If yes, exit after generating plots.
     if args.anl:
         analysis.main(args)
         sys.exit(1)
 
+    # Convert to netCDF
     start_time = datetime.now()
 
     stations = get_stations()
@@ -262,8 +283,10 @@ def main(args):
         print(msg)
 
 
-
 def start():
+    """
+    Entry point for setup.py.
+    """
     main(parse_args(sys.argv[1:]))
 
 

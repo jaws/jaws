@@ -10,7 +10,7 @@ except ImportError:
 
 
 def init_dataframe(args, input_file):
-
+    """Initialize dataframe with data from input file; convert temperature and pressure to SI units"""
     with open(input_file) as stream:
         stream.readline()
         stream.readline()
@@ -38,6 +38,7 @@ def init_dataframe(args, input_file):
 
 
 def get_station(args, input_file, stations):
+    """Get latitude, longitude and name for each station"""
     with open(input_file) as stream:
         stream.readline()
         name = stream.readline()[12:]
@@ -47,6 +48,7 @@ def get_station(args, input_file, stations):
 
 
 def get_time_and_sza(args, input_file, latitude, longitude, dataframe):
+    """Calculate additional time related variables"""
     num_rows = dataframe['timestamp'].size
     year, month, day, hour, day_of_year = ([0] * num_rows for _ in range(5))
     idx = 0
@@ -77,6 +79,8 @@ def get_time_and_sza(args, input_file, latitude, longitude, dataframe):
         time_bounds.append((seconds - common.seconds_in_hour, seconds))
 
         time.append(seconds-common.seconds_in_half_hour)
+        # Each timestamp is average of previous and current hour values i.e. value at hour=5 is average of hour=4 and 5
+        # Our 'time' variable will represent values at half-hour i.e. 4.5 in above case, so subtract 30 minutes from all
         dtime = datetime.utcfromtimestamp(seconds - common.seconds_in_half_hour)
         sza.append(sunposition.sunpos(dtime, latitude, longitude, 0)[1])
 
@@ -84,6 +88,7 @@ def get_time_and_sza(args, input_file, latitude, longitude, dataframe):
 
 
 def aaws2nc(args, input_file, output_file, stations):
+    """Main function to convert AAWS txt file to netCDF"""
     df, temperature_vars = init_dataframe(args, input_file)
     ds = xr.Dataset.from_dataframe(df)
     ds = ds.drop('time')
