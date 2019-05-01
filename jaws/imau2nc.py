@@ -11,6 +11,7 @@ except ImportError:
 
 
 def init_dataframe(args, input_file, sub_type):
+    """Initialize dataframe with data from input file; convert temperature and pressure to SI units"""
     check_na = -9999
 
     df, columns = common.load_dataframe(sub_type, input_file, 0)
@@ -36,6 +37,7 @@ def init_dataframe(args, input_file, sub_type):
 
 
 def get_station(args, input_file, stations):
+    """Get latitude, longitude and name for each station"""
     filename = os.path.basename(input_file)
     name = filename[:9]
     lat, lon, new_name = common.parse_station(args, stations[name])
@@ -43,6 +45,7 @@ def get_station(args, input_file, stations):
 
 
 def get_time_and_sza(args, dataframe, longitude, latitude, sub_type):
+    """Calculate additional time related variables"""
     seconds_in_30min = 30*60
     seconds_in_15min = 15*60
     dtime_1970, tz = common.time_common(args.tz)
@@ -61,6 +64,8 @@ def get_time_and_sza(args, dataframe, longitude, latitude, sub_type):
     dataframe['dtime'] += pd.to_timedelta(dataframe.hour, unit='h')
 
     if sub_type == 'imau/ant':
+        # Each timestamp is average of previous and current hour values i.e. value at hour=5 is average of hour=4 and 5
+        # Our 'time' variable will represent values at half-hour i.e. 4.5 in above case, so subtract 30 minutes from all
         time = (dataframe['dtime'] - dtime_1970) / np.timedelta64(1, 's') - seconds_in_30min
         time_bounds = [(i-seconds_in_30min, i+seconds_in_30min) for i in time]
     elif sub_type == 'imau/grl':
@@ -68,6 +73,8 @@ def get_time_and_sza(args, dataframe, longitude, latitude, sub_type):
         dataframe['minutes'] = minutes
         dataframe['dtime'] += pd.to_timedelta(dataframe.minutes, unit='m')
 
+        # Each timestamp is average of previous and current half-hour values i.e. value at hr=5 is average of 4.5 and 5
+        # Our 'time' variable will represent values at half of 30 min i.e. 4.75, so subtract 15 minutes from all
         time = (dataframe['dtime'] - dtime_1970) / np.timedelta64(1, 's') - seconds_in_15min
         time_bounds = [(i-seconds_in_15min, i+seconds_in_15min) for i in time]
 
@@ -87,6 +94,7 @@ def get_time_and_sza(args, dataframe, longitude, latitude, sub_type):
 
 
 def imau2nc(args, input_file, output_file, stations):
+    """Main function to convert IMAU ascii file to netCDF"""
     with open(input_file) as stream:
         line = stream.readline()
         var_count = len(line.split(','))
