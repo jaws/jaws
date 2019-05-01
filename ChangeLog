@@ -2,6 +2,8 @@
 
 	* gcnet2nc, promice2nc, aaws2nc, imau2nc, scar2nc: docstring and comments
 
+	* promice/ds.json: 'positive' attribute for ice_GPS_velocity_x and ice_GPS_velocity_y
+
 2019-04-29  Ajay Saini  <sainiak@uci.edu>
 
 	* Rearrange arguments

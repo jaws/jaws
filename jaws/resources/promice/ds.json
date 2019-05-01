@@ -518,6 +518,7 @@
         "long_name": "x-component of Ice velocity derived from GPS Lat and Long",
         "standard_name": "land_ice_surface_x_velocity",
         "units": "meter second-1",
+        "positive": "Positive x is towards east",
         "cell_methods": "time: mean",
         "coordinates": "longitude latitude"
       }
@@ -528,6 +529,7 @@
         "long_name": "y-component of Ice velocity derived from GPS Lat and Long",
         "standard_name": "land_ice_surface_y_velocity",
         "units": "meter second-1",
+        "positive": "Positive y is towards north",
         "cell_methods": "time: mean",
         "coordinates": "longitude latitude"
       }
