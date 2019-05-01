@@ -75,6 +75,8 @@ def get_time_and_sza(args, dataframe, longitude, latitude):
         time[idx] = (dtime - dtime_1970).total_seconds()
         time_bounds[idx] = (time[idx], time[idx] + common.seconds_in_hour)
 
+        # Each timestamp is average of current and next hour values i.e. value at hour=5 is average of hour=5 and hour=6
+        # Our 'time' variable will represent values at half-hour i.e. 5.5 in above case, so add 30 minutes to all.
         time[idx] = time[idx] + common.seconds_in_half_hour
         dtime = datetime.utcfromtimestamp(time[idx])
         dates.append(int(dtime.date().strftime("%Y%m%d")))
