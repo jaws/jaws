@@ -134,7 +134,6 @@ def main(dataset, args):
     # Constants
     rho = 0.8  # reflectance
     smallest_double = 2.2250738585072014e-308
-    fillvalue_double = 9.969209968386869e+36
     dtime_1970, tz = common.time_common(args.tz)
     idx_count = 0
 
@@ -202,7 +201,7 @@ def main(dataset, args):
 
         # Get fsds_jaws for that day and substitute NaN with fillvalue_float
         fsds_jaws = df_sub['fsds'].tolist()
-        fsds_jaws = [fillvalue_double if np.isnan(i) else i for i in fsds_jaws]
+        fsds_jaws = [common.fillvalue_float if np.isnan(i) else i for i in fsds_jaws]
 
         sza = df_sub['sza'].tolist()
         az = df_sub['az'].tolist()
