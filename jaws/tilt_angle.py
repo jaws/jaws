@@ -20,18 +20,21 @@ except ImportError:
 
 
 def deg_to_rad(list_deg):
+    """Convert degrees to radians"""
     list_rad = [np.radians(i) for i in list_deg]
 
     return list_rad
 
 
 def rad_to_deg(list_rad):
+    """Convert radians to degrees"""
     list_deg = [np.degrees(i) for i in list_rad]
 
     return list_deg
 
 
 def get_rrtm_file(jaws_path, dir_rrtm, stn_name, sfx):
+    """Download RRTM file for requested station"""
     url = jaws_path + dir_rrtm + stn_name + sfx
     try:
         rrtm_file = requests.get(url, allow_redirects=True)
@@ -44,6 +47,7 @@ def get_rrtm_file(jaws_path, dir_rrtm, stn_name, sfx):
 
 
 def get_rrtm_df(stn_name, sfx, rrtm_file):
+    """Store the downloaded RRTM file into a dataframe"""
     open(stn_name + sfx, 'wb').write(rrtm_file.content)
     rrtm_df = xr.open_dataset(stn_name + sfx).to_dataframe()
 
@@ -57,26 +61,30 @@ def main(dataset, latitude, longitude, clr_df, args):
     dtime_1970, tz = common.time_common(args.tz)
 
     clrprd_file = clr_df
+    # Combine date, start_hour and end_hour into a single string, e.g. 20080103_16_23
     clrprd = [(str(x)+'_'+str(y)+'_'+str(z)) for x, y, z in
               zip(clrprd_file['date'].tolist(), clrprd_file['start_hour'].tolist(), clrprd_file['end_hour'].tolist())]
 
     hours = list(range(24))
     half_hours = (list(np.arange(0, 24, 0.5)))
 
-    ds = dataset.drop('time_bounds')
-    df = ds.to_dataframe()
+    ds = dataset.drop('time_bounds')  # Drop time_bounds dimension so that we don't have double entries of same data
+    df = ds.to_dataframe()  # Convert to dataframe
 
-    date_hour = [datetime.fromtimestamp(i, tz) for i in df.index.values]
-    dates = [i.date() for i in date_hour]
-    df['dates'] = dates
+    date_hour = [datetime.fromtimestamp(i, tz) for i in df.index.values]  # Index is seconds since 1970
+    dates = [i.date() for i in date_hour]  # Get dates
+    df['dates'] = dates  # Add as new column
 
+    # Create new dataframe to store tilt_direction and tilt_angle
     tilt_df = pd.DataFrame(index=dates, columns=['tilt_direction', 'tilt_angle'])
 
     lat = latitude
     lon = longitude
 
+    # Drop 'time' as index to do proper indexing for station_name
     df.reset_index(level=['time'], inplace=True)
     stn_name = df['station_name'][0]
+    # Replace fillvalue with nan for calculations
     df[['fsds']] = df[['fsds']].replace(common.fillvalue_float, np.nan)
 
     jaws_path = 'http://jaws.ess.uci.edu/jaws/rigb_data/'
@@ -100,6 +108,11 @@ def main(dataset, latitude, longitude, clr_df, args):
             os._exit(1)
 
     start_time = time.time()
+
+    ########################################################################################
+    #                   Tilt Angle and Tilt Direction Calculations                         #
+
+    #                           ########PART-1#############                                #
 
     for line in clrprd:
         clrdate = line.split('_')[0]
@@ -222,8 +235,7 @@ def main(dataset, latitude, longitude, clr_df, args):
                                                 fsds_rrtm[clrhr_start:clrhr_end])]
                 daily_avg_diff.append(np.nanmean(diff))
 
-
-        #########PART-2#############
+        #                           ########PART-2#############                                #
 
         dailyavg_possiblepair_dict = dict(zip(daily_avg_diff, possible_pairs))
 
@@ -235,8 +247,7 @@ def main(dataset, latitude, longitude, clr_df, args):
                     if val <= min(dailyavg_possiblepair_dict.keys())+5:
                         best_pairs.append(dailyavg_possiblepair_dict.get(val))
 
-
-        #########PART-3#############
+        #                           ########PART-3#############                                #
 
         fsds_bestpair_dict = {k: fsds_possiblepair_dict[k] for k in best_pairs}
 
@@ -267,22 +278,25 @@ def main(dataset, latitude, longitude, clr_df, args):
             common.log(args, 9, 'Warning: no top pair found')
             continue  # Skip day if no top pair
 
+    ########################################################################################
+
     tilt_df['tilt_direction'] = pd.to_numeric(tilt_df['tilt_direction'], errors='coerce')
     tilt_df['tilt_angle'] = pd.to_numeric(tilt_df['tilt_angle'], errors='coerce')
 
-    tilt_df = tilt_df.interpolate(limit_direction='both')
+    tilt_df = tilt_df.interpolate(limit_direction='both')  # Interpolate missing values
     tilt_direction_values = tilt_df['tilt_direction'].tolist()
     tilt_angle_values = tilt_df['tilt_angle'].tolist()
 
     tilt_direction_values = rad_to_deg(tilt_direction_values)
-    dataset['tilt_direction_raw'] = 'time', tilt_direction_values
+    dataset['tilt_direction_raw'] = 'time', tilt_direction_values  # Raw values to be used in fsds_adjust script
 
-    # Change tilt_direction to 0 pointing north
+    # Change tilt_direction to 0 pointing north. These values will be in output netCDF file
     tilt_direction_values = [270-d for d in tilt_direction_values]
     tilt_direction_values = [d-360 if d > 360 else d for d in tilt_direction_values]
 
     tilt_angle_values = rad_to_deg(tilt_angle_values)
 
+    # Add tilt_direction and tilt_angle to output file
     dataset['tilt_direction'] = 'time', tilt_direction_values
     dataset['tilt_angle'] = 'time', tilt_angle_values
 
