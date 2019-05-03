@@ -5,26 +5,12 @@ import matplotlib.pyplot as plt
 import xarray
 
 
-def setup(args):
+def setup(df):
     mpl.rc('figure', figsize=(18, 12))
     mpl.rc('font', size=24)
     mpl.rc('axes.spines', top=True, right=True)
     mpl.rc('axes', grid=False)
     mpl.rc('axes', facecolor='white')
-
-    global ds, df
-    ds = xarray.open_dataset(args.input_file)
-    ds = ds.drop('time_bounds')
-    df = ds.to_dataframe()
-
-    if args.anl_yr:
-        df = df[df.year == args.anl_yr]
-    if args.anl_mth:
-        df = df[df.month == args.anl_mth]
-
-    if df.size == 0:
-        print('ERROR: Provide a valid year and month')
-        sys.exit(1)
 
     global year
     year = df['year']
@@ -98,9 +84,7 @@ def check_error(var_x, var_y):
         sys.exit(1)
 
 
-def diurnal(args):
-    global var_hour_avg, var_hour_sd
-
+def diurnal(args, df):
     hour = df['hour']
     var_hour_avg = df[args.var].groupby(hour).mean()
     var_hour_sd = df[args.var].groupby(hour).std()
@@ -110,7 +94,7 @@ def diurnal(args):
     return var_hour_avg, var_hour_sd, hours
 
 
-def monthly(args):
+def monthly(args, df):
     global var_day_avg, var_day_max, var_day_min
 
     day = df['day']
@@ -123,7 +107,7 @@ def monthly(args):
     return var_day_avg, var_day_max, var_day_min
 
 
-def annual(args):
+def annual(args, df):
     global var_doy_avg, var_doy_max, var_doy_min
 
     try:
@@ -140,7 +124,7 @@ def annual(args):
     return var_doy_avg, var_doy_max, var_doy_min, days_year
 
 
-def seasonal(args):
+def seasonal(args, df):
     global var_month_avg, var_month_sd
 
     month = df['month']
@@ -158,10 +142,23 @@ def main(args):
         print('ERROR: Please provide variable name to analyze')
         sys.exit(1)
 
-    setup(args)
+    ds = xarray.open_dataset(args.input_file)
+    ds = ds.drop('time_bounds')
+    df = ds.to_dataframe()
+
+    if args.anl_yr:
+        df = df[df.year == args.anl_yr]
+    if args.anl_mth:
+        df = df[df.month == args.anl_mth]
+
+    if df.size == 0:
+        print('ERROR: Provide a valid year and month')
+        sys.exit(1)
+
+    setup(df)
 
     if args.anl == 'diurnal':
-        diurnal(args)
+        var_hour_avg, var_hour_sd, hours = diurnal(args, df)
         plt.errorbar(hours, var_hour_avg, yerr=var_hour_sd, fmt='--o', ecolor='lightskyblue', color='k')
         plt.xticks(hours)
         plt.xlabel('Hour of the day')
@@ -171,7 +168,7 @@ def main(args):
             plt.title('Diurnal cycle at {} for {}-{}'.format(df.station_name[0], month[0], year[0]))
 
     elif args.anl == 'monthly':
-        monthly(args)
+        monthly(args, df)
         plt.plot(days, var_day_avg, label='mean', color='black')
         plt.fill_between(days, var_day_max, var_day_min, label='max-min', facecolor='darkseagreen', alpha=0.3)
         plt.xticks(days)
@@ -179,7 +176,7 @@ def main(args):
         plt.title('Temperature at {} for {}-{}'.format(df.station_name[0], month[0], year[0]))
 
     elif args.anl == 'annual':
-        annual(args)
+        annual(args, df)
         plt.plot(days_year, var_doy_avg, label='mean', color ='black')
         # plt.fill_between(days_year, var_doy_max, var_doy_min, label='max-min', facecolor='green', alpha=0.3)
         plt.plot(days_year, var_doy_max, label='max', color='darkseagreen')
@@ -188,7 +185,7 @@ def main(args):
         plt.title('Temperature at {} for {}'.format(df.station_name[0], year[0]))
 
     elif args.anl == 'seasonal':
-        seasonal(args)
+        seasonal(args, df)
         plt.errorbar(months, var_month_avg, yerr=var_month_sd, fmt='--o', ecolor='lightskyblue', color='k')
         plt.xticks(months)
         plt.xlabel('Month')
