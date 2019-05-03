@@ -15,10 +15,6 @@ def setup(df):
 
     # df[args.var].replace([999.00], [245], inplace=True)
 
-    global months
-
-    months = range(1, 13)
-
 
 def check_error(var_x, var_y, args):
     if len(var_x) != len(var_y):
@@ -28,7 +24,7 @@ def check_error(var_x, var_y, args):
             print('ERROR: Provide data for each day of the month')
         elif var_y == range(1, 367) if isleap(args.anl_yr) else range(1, 366):
             print('ERROR: Provide data for each day of the year')
-        elif var_y == months:
+        elif var_y == range(1, 13):
             print('ERROR: Provide data for all the months')
 
         sys.exit(1)
@@ -75,12 +71,11 @@ def annual(args, df):
 
 
 def seasonal(args, df):
-    global var_month_avg, var_month_sd
-
     month = df['month']
     var_month_avg = df[args.var].groupby(month).mean()
     var_month_sd = df[args.var].groupby(month).std()
 
+    months = range(1, 13)
     check_error(var_month_avg, months, args)
 
     return var_month_avg, var_month_sd, months
@@ -140,11 +135,11 @@ def main(args):
         plt.title('Temperature at {} for {}'.format(stn_nm, year))
 
     elif args.anl == 'seasonal':
-        seasonal(args, df)
+        var_month_avg, var_month_sd, months = seasonal(args, df)
         plt.errorbar(months, var_month_avg, yerr=var_month_sd, fmt='--o', ecolor='lightskyblue', color='k')
         plt.xticks(months)
         plt.xlabel('Month')
-        plt.title('Climatological seasonal cycle at {}'.format(df.station_name[0]))
+        plt.title('Climatological seasonal cycle at {}'.format(stn_nm))
 
     else:
         print("ERROR: Please choose a valid argument for analysis from ['diurnal', 'monthly', 'annual', 'seasonal']")
