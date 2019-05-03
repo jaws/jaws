@@ -14,27 +14,15 @@ def plot_setup():
     mpl.rc('axes', facecolor='white')
 
 
-def check_error(var_x, var_y, args):
-    if len(var_x) != len(var_y):
-        if var_y == range(0, 24):
-            print('ERROR: Provide data for each hour of the day')
-        elif var_y == monthrange(args.anl_yr, args.anl_mth)[1]:
-            print('ERROR: Provide data for each day of the month')
-        elif var_y == range(1, 367) if isleap(args.anl_yr) else range(1, 366):
-            print('ERROR: Provide data for each day of the year')
-        elif var_y == range(1, 13):
-            print('ERROR: Provide data for all the months')
-
-        sys.exit(1)
-
-
 def diurnal(args, df):
     hour = df['hour']
     var_hour_avg = df[args.var].groupby(hour).mean()
     var_hour_sd = df[args.var].groupby(hour).std()
 
     hours = range(0, 24)
-    check_error(var_hour_avg, hours, args)
+    if len(var_hour_avg) != len(hours):
+        print('ERROR: Provide data for each hour of the day')
+        sys.exit(1)
 
     return var_hour_avg, var_hour_sd, hours
 
@@ -46,7 +34,9 @@ def monthly(args, df):
     var_day_min = df[args.var].groupby(day).min()
 
     days = range(0, monthrange(args.anl_yr, args.anl_mth)[1])
-    check_error(var_day_avg, days, args)
+    if len(var_day_avg) != len(days):
+        print('ERROR: Provide data for each day of the month')
+        sys.exit(1)
 
     return var_day_avg, var_day_max, var_day_min, days
 
@@ -62,8 +52,9 @@ def annual(args, df):
     var_doy_min = df[args.var].groupby(doy).min()
 
     days_year = range(1, 367) if isleap(args.anl_yr) else range(1, 366)
-
-    check_error(var_doy_avg, days_year, args)
+    if len(var_doy_avg) != len(days_year):
+        print('ERROR: Provide data for each day of the year')
+        sys.exit(1)
 
     return var_doy_avg, var_doy_max, var_doy_min, days_year
 
@@ -74,7 +65,9 @@ def seasonal(args, df):
     var_month_sd = df[args.var].groupby(month).std()
 
     months = range(1, 13)
-    check_error(var_month_avg, months, args)
+    if len(var_month_avg) != len(months):
+        print('ERROR: Provide data for all the months')
+        sys.exit(1)
 
     return var_month_avg, var_month_sd, months
 
