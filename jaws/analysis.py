@@ -1,3 +1,4 @@
+from calendar import monthrange, month_abbr
 import sys
 
 import matplotlib as mpl
@@ -17,47 +18,6 @@ def setup(df):
 
     # df[args.var].replace([999.00], [245], inplace=True)
 
-    global month, days
-
-    df['month_derived'] = df['month'].astype(str)
-    month = df['month_derived']
-    if month[0] == '1':
-        month[0] = 'Jan'
-        days = range(1, 32)
-    elif month[0] == '2':
-        month[0] = 'Feb'
-        days = range(1, 29)
-    elif month[0] == '3':
-        month[0] = 'Mar'
-        days = range(1, 32)
-    elif month[0] == '4':
-        month[0] = 'Apr'
-        days = range(1, 31)
-    elif month[0] == '5':
-        month[0] = 'May'
-        days = range(1, 32)
-    elif month[0] == '6':
-        month[0] = 'Jun'
-        days = range(1, 31)
-    elif month[0] == '7':
-        month[0] = 'Jul'
-        days = range(1, 32)
-    elif month[0] == '8':
-        month[0] = 'Aug'
-        days = range(1, 32)
-    elif month[0] == '9':
-        month[0] = 'Sep'
-        days = range(1, 31)
-    elif month[0] == '10':
-        month[0] = 'Oct'
-        days = range(1, 32)
-    elif month[0] == '11':
-        month[0] = 'Nov'
-        days = range(1, 31)
-    elif month[0] == '12':
-        month[0] = 'Dec'
-        days = range(1, 32)
-
     global days_year, months
 
     if year[0] % 4 == 0:
@@ -68,11 +28,11 @@ def setup(df):
     months = range(1, 13)
 
 
-def check_error(var_x, var_y):
+def check_error(var_x, var_y, args):
     if len(var_x) != len(var_y):
         if var_y == range(0, 24):
             print('ERROR: Provide data for each hour of the day')
-        elif var_y == days:
+        elif var_y == monthrange(args.anl_yr, args.anl_mth)[1]:
             print('ERROR: Provide data for each day of the month')
         elif var_y == days_year:
             print('ERROR: Provide data for each day of the year')
@@ -94,16 +54,15 @@ def diurnal(args, df):
 
 
 def monthly(args, df):
-    global var_day_avg, var_day_max, var_day_min
-
     day = df['day']
     var_day_avg = df[args.var].groupby(day).mean()
     var_day_max = df[args.var].groupby(day).max()
     var_day_min = df[args.var].groupby(day).min()
 
-    check_error(var_day_avg, days)
+    days = range(0, monthrange(args.anl_yr, args.anl_mth)[1])
+    check_error(var_day_avg, days, args)
 
-    return var_day_avg, var_day_max, var_day_min
+    return var_day_avg, var_day_max, var_day_min, days
 
 
 def annual(args, df):
@@ -145,10 +104,14 @@ def main(args):
     ds = ds.drop('time_bounds')
     df = ds.to_dataframe()
 
+    stn_nm = df.station_name[0]
+
     if args.anl_yr:
         df = df[df.year == args.anl_yr]
+        year = args.anl_yr
     if args.anl_mth:
         df = df[df.month == args.anl_mth]
+        month = args.anl_mth
 
     if df.size == 0:
         print('ERROR: Provide a valid year and month')
@@ -167,12 +130,12 @@ def main(args):
             plt.title('Diurnal cycle at {} for {}-{}'.format(df.station_name[0], month[0], year[0]))
 
     elif args.anl == 'monthly':
-        monthly(args, df)
+        var_day_avg, var_day_max, var_day_min, days = monthly(args, df)
         plt.plot(days, var_day_avg, label='mean', color='black')
         plt.fill_between(days, var_day_max, var_day_min, label='max-min', facecolor='darkseagreen', alpha=0.3)
         plt.xticks(days)
         plt.xlabel('Day of month')
-        plt.title('Temperature at {} for {}-{}'.format(df.station_name[0], month[0], year[0]))
+        plt.title('Temperature at {} for {}-{}'.format(stn_nm, month_abbr[month], year))
 
     elif args.anl == 'annual':
         annual(args, df)
