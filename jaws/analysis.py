@@ -121,13 +121,14 @@ def main(args):
 
     if args.anl == 'diurnal':
         var_hour_avg, var_hour_sd, hours = diurnal(args, df)
-        plt.errorbar(hours, var_hour_avg, yerr=var_hour_sd, fmt='--o', ecolor='lightskyblue', color='k')
+        if len(df.day) == 24:
+            plt.plot(hours, var_hour_avg, '--', marker='.', markersize=15, color='k')
+            plt.title('Diurnal cycle at {} for {}-{}-{}'.format(stn_nm, df.day[0], month_abbr[df.month[0]], df.year[0]))
+        else:
+            plt.errorbar(hours, var_hour_avg, yerr=var_hour_sd, fmt='--o', ecolor='lightskyblue', color='k')
+            plt.title('Diurnal cycle at {} for {}-{}'.format(stn_nm, month_abbr[month], year))
         plt.xticks(hours)
         plt.xlabel('Hour of the day')
-        if len(df.day) == 24:
-            plt.title('Diurnal cycle at {} for {}-{}-{}'.format(df.station_name[0], df.day[0], month[0], year[0]))
-        else:
-            plt.title('Diurnal cycle at {} for {}-{}'.format(df.station_name[0], month[0], year[0]))
 
     elif args.anl == 'monthly':
         var_day_avg, var_day_max, var_day_min, days = monthly(args, df)
