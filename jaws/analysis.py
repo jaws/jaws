@@ -77,13 +77,13 @@ def seasonal(args, df):
     return var_month_avg, var_month_sd, months
 
 
-def main(args):
+def main(args, input_file):
 
     if not args.var:
         print('ERROR: Please provide variable name to analyze')
         sys.exit(1)
 
-    ds = xarray.open_dataset(args.input_file)
+    ds = xarray.open_dataset(input_file)
     ds = ds.drop('time_bounds')  # Drop time_bounds dimension so that we don't have double entries of same data
     df = ds.to_dataframe()  # Convert to dataframe
 

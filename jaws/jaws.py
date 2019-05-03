@@ -260,19 +260,23 @@ def main(args):
             jaws_version, datetime.fromtimestamp(os.path.getmtime(filename))))
         sys.exit(1)
 
+    # Get station, input and output file name
+    stations = get_stations()
+    input_file = get_input_file(args)
+    output_file = get_output_file(args, input_file, stations)
+
     # Check if this is an analysis task. If yes, exit after generating plots.
-    if args.anl:
-        analysis.main(args)
+    if args.anl and os.path.splitext(input_file)[1] == '.nc':
+        analysis.main(args, input_file)
         sys.exit(1)
 
     # Convert to netCDF
     start_time = datetime.now()
 
-    stations = get_stations()
-    input_file = get_input_file(args)
-    output_file = get_output_file(args, input_file, stations)
-
     dispatch_converter(args, input_file, output_file, stations)
+
+    if args.anl and os.path.splitext(input_file)[1] != '.nc':
+        analysis.main(args, output_file)
 
     if args.dbg_lvl > 0:
         print('Elapsed time: {}'.format(datetime.now() - start_time))
