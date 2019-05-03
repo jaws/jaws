@@ -1,4 +1,4 @@
-from calendar import monthrange, month_abbr
+from calendar import monthrange, month_abbr, isleap
 import sys
 
 import matplotlib as mpl
@@ -13,17 +13,9 @@ def setup(df):
     mpl.rc('axes', grid=False)
     mpl.rc('axes', facecolor='white')
 
-    global year
-    year = df['year']
-
     # df[args.var].replace([999.00], [245], inplace=True)
 
-    global days_year, months
-
-    if year[0] % 4 == 0:
-        days_year = range(1, 367)
-    else:
-        days_year = range(1, 366)
+    global months
 
     months = range(1, 13)
 
@@ -34,7 +26,7 @@ def check_error(var_x, var_y, args):
             print('ERROR: Provide data for each hour of the day')
         elif var_y == monthrange(args.anl_yr, args.anl_mth)[1]:
             print('ERROR: Provide data for each day of the month')
-        elif var_y == days_year:
+        elif var_y == range(1, 367) if isleap(args.anl_yr) else range(1, 366):
             print('ERROR: Provide data for each day of the year')
         elif var_y == months:
             print('ERROR: Provide data for all the months')
@@ -66,8 +58,6 @@ def monthly(args, df):
 
 
 def annual(args, df):
-    global var_doy_avg, var_doy_max, var_doy_min
-
     try:
         df['day_of_year'] = df['julian_decimal_time'].astype(int)  # GCNet
         doy = df['day_of_year']
@@ -76,6 +66,8 @@ def annual(args, df):
     var_doy_avg = df[args.var].groupby(doy).mean()
     var_doy_max = df[args.var].groupby(doy).max()
     var_doy_min = df[args.var].groupby(doy).min()
+
+    days_year = range(1, 367) if isleap(args.anl_yr) else range(1, 366)
 
     check_error(var_doy_avg, days_year, args)
 
@@ -139,13 +131,13 @@ def main(args):
         plt.title('Temperature at {} for {}-{}'.format(stn_nm, month_abbr[month], year))
 
     elif args.anl == 'annual':
-        annual(args, df)
+        var_doy_avg, var_doy_max, var_doy_min, days_year = annual(args, df)
         plt.plot(days_year, var_doy_avg, label='mean', color ='black')
         # plt.fill_between(days_year, var_doy_max, var_doy_min, label='max-min', facecolor='green', alpha=0.3)
         plt.plot(days_year, var_doy_max, label='max', color='darkseagreen')
         plt.plot(days_year, var_doy_min, label='min', color='lightskyblue')
         plt.xlabel('Day of year')
-        plt.title('Temperature at {} for {}'.format(df.station_name[0], year[0]))
+        plt.title('Temperature at {} for {}'.format(stn_nm, year))
 
     elif args.anl == 'seasonal':
         seasonal(args, df)
