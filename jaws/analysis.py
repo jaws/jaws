@@ -48,7 +48,7 @@ def diurnal(args, df):
     var_hour_sd = df[args.var].groupby(hour).std()
 
     hours = range(0, 24)
-    check_error(var_hour_avg, hours)
+    check_error(var_hour_avg, hours, args)
 
     return var_hour_avg, var_hour_sd, hours
 
@@ -77,7 +77,7 @@ def annual(args, df):
     var_doy_max = df[args.var].groupby(doy).max()
     var_doy_min = df[args.var].groupby(doy).min()
 
-    check_error(var_doy_avg, days_year)
+    check_error(var_doy_avg, days_year, args)
 
     return var_doy_avg, var_doy_max, var_doy_min, days_year
 
@@ -89,7 +89,7 @@ def seasonal(args, df):
     var_month_avg = df[args.var].groupby(month).mean()
     var_month_sd = df[args.var].groupby(month).std()
 
-    check_error(var_month_avg, months)
+    check_error(var_month_avg, months, args)
 
     return var_month_avg, var_month_sd, months
 
