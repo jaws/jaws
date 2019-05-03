@@ -84,6 +84,18 @@ def main(args):
 
     stn_nm = df.station_name[0]
 
+    if len(df.day) == 24:
+        if args.anl != 'diurnal':
+            print('ERROR: This is a single day file and you can only run diurnal analysis on it')
+            sys.exit(1)
+    else:
+        if not args.anl_yr and args.anl in ['diurnal', 'monthly', 'annual']:
+            print('ERROR: Provide a year using --anl_yr argument to do the analysis')
+            sys.exit(1)
+        if not args.anl_mth and args.anl in ['diurnal', 'monthly']:
+            print('ERROR: Provide a month using --anl_mth argument to do the analysis')
+            sys.exit(1)
+
     if args.anl_yr:
         df = df[df.year == args.anl_yr]
         year = args.anl_yr
