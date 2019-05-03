@@ -131,7 +131,7 @@ def main(args, input_file):
         plt.fill_between(days, var_day_max, var_day_min, label='max-min', facecolor='darkseagreen', alpha=0.3)
         plt.xticks(days)
         plt.xlabel('Day of month')
-        plt.title('Monthly change at {} for {}-{}'.format(stn_nm, month_abbr[month], year))
+        plt.title('Change at {} for {}-{}'.format(stn_nm, month_abbr[month], year))
 
     elif args.anl == 'annual':
         var_doy_avg, var_doy_max, var_doy_min, days_year = annual(args, df)
@@ -140,7 +140,7 @@ def main(args, input_file):
         plt.plot(days_year, var_doy_max, label='max', color='darkseagreen')
         plt.plot(days_year, var_doy_min, label='min', color='lightskyblue')
         plt.xlabel('Day of year')
-        plt.title('Annual change at {} for {}'.format(stn_nm, year))
+        plt.title('Change at {} for {}'.format(stn_nm, year))
 
     elif args.anl == 'seasonal':
         var_month_avg, var_month_sd, months = seasonal(args, df)
