@@ -6,14 +6,12 @@ import matplotlib.pyplot as plt
 import xarray
 
 
-def setup(df):
+def plot_setup():
     mpl.rc('figure', figsize=(18, 12))
     mpl.rc('font', size=24)
     mpl.rc('axes.spines', top=True, right=True)
     mpl.rc('axes', grid=False)
     mpl.rc('axes', facecolor='white')
-
-    # df[args.var].replace([999.00], [245], inplace=True)
 
 
 def check_error(var_x, var_y, args):
@@ -104,7 +102,7 @@ def main(args):
         print('ERROR: Provide a valid year and month')
         sys.exit(1)
 
-    setup(df)
+    plot_setup()
 
     if args.anl == 'diurnal':
         var_hour_avg, var_hour_sd, hours = diurnal(args, df)
