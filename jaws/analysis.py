@@ -7,6 +7,7 @@ import xarray
 
 
 def plot_setup():
+    """Customize plot properties"""
     mpl.rc('figure', figsize=(18, 12))
     mpl.rc('font', size=24)
     mpl.rc('axes.spines', top=True, right=True)
@@ -15,6 +16,7 @@ def plot_setup():
 
 
 def diurnal(args, df):
+    """Plot hourly average with standard deviation"""
     hour = df['hour']
     var_hour_avg = df[args.var].groupby(hour).mean()
     var_hour_sd = df[args.var].groupby(hour).std()
@@ -28,12 +30,13 @@ def diurnal(args, df):
 
 
 def monthly(args, df):
+    """Plot daily average for a month with max and min"""
     day = df['day']
     var_day_avg = df[args.var].groupby(day).mean()
     var_day_max = df[args.var].groupby(day).max()
     var_day_min = df[args.var].groupby(day).min()
 
-    days = range(0, monthrange(args.anl_yr, args.anl_mth)[1])
+    days = range(0, monthrange(args.anl_yr, args.anl_mth)[1])  # Monthrange gives number of days in a month of a year
     if len(var_day_avg) != len(days):
         print('ERROR: Provide data for each day of the month')
         sys.exit(1)
@@ -42,6 +45,7 @@ def monthly(args, df):
 
 
 def annual(args, df):
+    """Plot daily average for a year with max and min"""
     try:
         df['day_of_year'] = df['julian_decimal_time'].astype(int)  # GCNet
         doy = df['day_of_year']
@@ -60,6 +64,7 @@ def annual(args, df):
 
 
 def seasonal(args, df):
+    """Plot monthly average for multiple years with standard deviation"""
     month = df['month']
     var_month_avg = df[args.var].groupby(month).mean()
     var_month_sd = df[args.var].groupby(month).std()
@@ -79,8 +84,8 @@ def main(args):
         sys.exit(1)
 
     ds = xarray.open_dataset(args.input_file)
-    ds = ds.drop('time_bounds')
-    df = ds.to_dataframe()
+    ds = ds.drop('time_bounds')  # Drop time_bounds dimension so that we don't have double entries of same data
+    df = ds.to_dataframe()  # Convert to dataframe
 
     stn_nm = df.station_name[0]
 
@@ -97,10 +102,10 @@ def main(args):
             sys.exit(1)
 
     if args.anl_yr:
-        df = df[df.year == args.anl_yr]
+        df = df[df.year == args.anl_yr]  # Subset dataframe for that year
         year = args.anl_yr
     if args.anl_mth:
-        df = df[df.month == args.anl_mth]
+        df = df[df.month == args.anl_mth]  # Subset dataframe for that month
         month = args.anl_mth
 
     if df.size == 0:
@@ -126,7 +131,7 @@ def main(args):
         plt.fill_between(days, var_day_max, var_day_min, label='max-min', facecolor='darkseagreen', alpha=0.3)
         plt.xticks(days)
         plt.xlabel('Day of month')
-        plt.title('Temperature at {} for {}-{}'.format(stn_nm, month_abbr[month], year))
+        plt.title('Monthly change at {} for {}-{}'.format(stn_nm, month_abbr[month], year))
 
     elif args.anl == 'annual':
         var_doy_avg, var_doy_max, var_doy_min, days_year = annual(args, df)
@@ -135,7 +140,7 @@ def main(args):
         plt.plot(days_year, var_doy_max, label='max', color='darkseagreen')
         plt.plot(days_year, var_doy_min, label='min', color='lightskyblue')
         plt.xlabel('Day of year')
-        plt.title('Temperature at {} for {}'.format(stn_nm, year))
+        plt.title('Annual change at {} for {}'.format(stn_nm, year))
 
     elif args.anl == 'seasonal':
         var_month_avg, var_month_sd, months = seasonal(args, df)
@@ -148,6 +153,7 @@ def main(args):
         print("ERROR: Please choose a valid argument for analysis from ['diurnal', 'monthly', 'annual', 'seasonal']")
         sys.exit(1)
 
+    # Legend and y-axis label (common for all plots)
     plt.legend(loc='best', fancybox=True, framealpha=0.3)
     plt.ylabel('{} [{}]'.format(ds[args.var].long_name, ds[args.var].units))
 
