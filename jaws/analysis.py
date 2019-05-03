@@ -58,9 +58,7 @@ def setup(df):
         month[0] = 'Dec'
         days = range(1, 32)
 
-    global hours, days_year, months
-
-    hours = range(0, 24)
+    global days_year, months
 
     if year[0] % 4 == 0:
         days_year = range(1, 367)
@@ -72,7 +70,7 @@ def setup(df):
 
 def check_error(var_x, var_y):
     if len(var_x) != len(var_y):
-        if var_y == hours:
+        if var_y == range(0, 24):
             print('ERROR: Provide data for each hour of the day')
         elif var_y == days:
             print('ERROR: Provide data for each day of the month')
@@ -89,6 +87,7 @@ def diurnal(args, df):
     var_hour_avg = df[args.var].groupby(hour).mean()
     var_hour_sd = df[args.var].groupby(hour).std()
 
+    hours = range(0, 24)
     check_error(var_hour_avg, hours)
 
     return var_hour_avg, var_hour_sd, hours
