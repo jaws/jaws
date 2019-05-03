@@ -11,7 +11,6 @@ def plot_setup():
     mpl.rc('figure', figsize=(18, 12))
     mpl.rc('font', size=24)
     mpl.rc('axes.spines', top=True, right=True)
-    mpl.rc('axes', grid=False)
     mpl.rc('axes', facecolor='white')
 
 
@@ -126,6 +125,7 @@ def main(args, input_file):
         plt.xlabel('Hour of the day')
 
     elif args.anl == 'monthly':
+        mpl.rc('axes', grid=True)
         var_day_avg, var_day_max, var_day_min, days = monthly(args, df)
         plt.plot(days, var_day_avg, label='mean', color='black')
         plt.fill_between(days, var_day_max, var_day_min, label='max-min', facecolor='darkseagreen', alpha=0.3)
@@ -134,6 +134,7 @@ def main(args, input_file):
         plt.title('Change at {} for {}-{}'.format(stn_nm, month_abbr[month], year))
 
     elif args.anl == 'annual':
+        mpl.rc('axes', grid=True)
         var_doy_avg, var_doy_max, var_doy_min, days_year = annual(args, df)
         plt.plot(days_year, var_doy_avg, label='mean', color ='black')
         # plt.fill_between(days_year, var_doy_max, var_doy_min, label='max-min', facecolor='green', alpha=0.3)
