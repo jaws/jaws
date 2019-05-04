@@ -1,3 +1,43 @@
+2019-05-03  Ajay Saini  <sainiak@uci.edu>
+
+    * analysis.py: Separate diurnal plots for single-day and multiple-days
+
+    * analysis.py: Modify annual function
+
+    * analysis.py: Modify seasonal function
+
+    * analysis.py: Rename setup to plot_setup()
+
+    * analysis.py: Merge check_error function into other functions
+
+    * analysis.py: Add new conditions to identify errors
+
+    * analysis.py: Docstring and comments
+
+    * Analysis done directly for ascii txt files
+
+    * analysis.py: Change title
+
+    * analysis.py: Turn on grid for monthly and annual plots
+
+    * git tag -a 0.8.4 -m 'beta01: Analysis for txt files'; git push --tags
+
+2019-05-02  Ajay Saini  <sainiak@uci.edu>
+
+    * tilt_angle.py: docstring and comments
+
+    * fsds_adjust.py: docstring and comments
+
+    * clearsky.py: renaming, docstring and comments
+
+    * analysis.py: Define dataframe in main function instead of setup()
+
+    * analysis.py: Modify diurnal function
+
+    * analysis.py: Modify monthly function
+
+    * analysis.py: Modify check_error function
+
 2019-04-30  Ajay Saini  <sainiak@uci.edu>
 
 	* gcnet2nc, promice2nc, aaws2nc, imau2nc, scar2nc: docstring and comments
