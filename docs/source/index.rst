@@ -26,6 +26,8 @@ Justified Automated Weather Station (JAWS) Software
    Analysis
    Modification
    Add new network
+   Acronyms
+   References
    Github
    License
 
