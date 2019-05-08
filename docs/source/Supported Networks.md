@@ -1,4 +1,4 @@
-# Networks
+# Supported Networks
 
 The current version of *JAWS* can translate L2 ASCII data from the following AWS networks to netCDF format: 
 

@@ -18,7 +18,7 @@ Justified Automated Weather Station (JAWS) Software
    :maxdepth: 2
    :hidden:
 
-   Networks
+   Supported Networks
    Installation
    Download AWS Data
    Example
