@@ -20,6 +20,7 @@ Justified Automated Weather Station (JAWS) Software
 
    Networks
    Installation
+   Download AWS Data
    Example
    Arguments
    RIGB
