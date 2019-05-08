@@ -23,7 +23,7 @@ Justified Automated Weather Station (JAWS) Software
    Download AWS Data
    Example
    Arguments
-   RIGB
+   RIGB Adjustment
    Analysis
    API
    Acronyms

@@ -1,4 +1,4 @@
-# RIGB
+# RIGB Adjustment
 
 RIGB (Retrospective, Iterative, Geometry-Based) is a method that corrects tilt angle and 
 direction for AWS with solar radiometry. Unattended AWS are subject to tilt, especially 
