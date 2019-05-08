@@ -1,6 +1,6 @@
-# Modification
+# API
 
-## Adding new variables to a network
+## Adding new variables to an existing network
 ___
 
 Each network has a list of variables (from raw file) that are known to `JAWS` at:
@@ -47,3 +47,8 @@ of variables in **jaws/common.py**. Since we have added two variable, so we will
 
 If you have trouble following the above or have any questions, please open up an issue
 on [Github](https://github.com/jaws/jaws/issues)
+
+## Add new network
+
+If your network is not in the list [here](Networks.md) and you would like it to be supported by **JAWS**, 
+please open an issue on [Github](https://github.com/jaws/jaws/issues) or contact *Charlie Zender* at <zender@uci.edu>

@@ -25,8 +25,7 @@ Justified Automated Weather Station (JAWS) Software
    Arguments
    RIGB
    Analysis
-   Modification
-   Add new network
+   API
    Acronyms
    References
    Github
