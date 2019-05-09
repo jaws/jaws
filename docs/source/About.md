@@ -27,4 +27,6 @@ enable new derived products.
 
 **2) Adjustment**: Include value-added L3 features like the Retrospective, Iterative, Geometry-Based (RIGB) tilt angle and direction corrections, solar zenith angle, standardized quality flags, GPS-derived ice velocity, and turbulent fluxes.
 
-**3) API**: Provide a scriptable API to extend the initial L2-to-L3 conversion to newer AWS-like networks and instruments.
+**3) Analysis**: Perform analysis on input variables and generate plots to identify trends.
+
+**4) API**: Provide a scriptable API to extend the initial L2-to-L3 conversion to newer AWS-like networks and instruments.
