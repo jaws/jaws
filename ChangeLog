@@ -1,5 +1,29 @@
 2019-05-03  Ajay Saini  <sainiak@uci.edu>
 
+    * Add docs/Download AWS Data.md
+
+    * Rename docs/Networks.md to 'Supported Networks.md'
+
+    * docs/Supported Networks.md: Update networks info
+
+    * Add docs/About.md
+
+    * Merge Modification.md and 'Add new network.md' into docs/API.md
+
+    * API.md: Correct link for networks section
+
+    * Rename docs/source/RIGB to 'RIGB Adjustment.md'
+
+    * About.md: Add analysis in components
+
+2019-05-06  Ajay Saini  <sainiak@uci.edu>
+
+    * Add docs/Acronyms.md
+
+    * Add docs/References.md
+
+2019-05-03  Ajay Saini  <sainiak@uci.edu>
+
     * analysis.py: Separate diurnal plots for single-day and multiple-days
 
     * analysis.py: Modify annual function
