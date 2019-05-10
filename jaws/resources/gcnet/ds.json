@@ -4,6 +4,7 @@
     "source": "Surface Observations",
     "featureType": "timeSeries",
     "institution": "Cooperative Institute for Research in Enviornmental Sciences",
+    "network_name": "GCNet",
     "reference": "http://cires.colorado.edu/science/groups/steffen/gcnet/",
     "Conventions": "CF-1.7",
     "time_convention": "'time: point' variables are valid for exactly the time value stored in the time coordinate, whereas 'time: mean' variables are valid for the mean time within the time_bounds variable. For example, battery_voltage was measured once per hour at the time stored in the 'time' coordinate. On the other hand, temperature_tc_1 was continually measured at high frequency and then averaged over each period contained in the time_bounds variable into the stored hourly-mean values."

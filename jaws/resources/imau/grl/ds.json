@@ -3,6 +3,7 @@
     "source": "surface observation",
     "featureType": "timeSeries",
     "institution": "Institute for Marine and Atmospheric Research (IMAU)",
+    "network_name": "IMAU",
     "reference": "https://www.projects.science.uu.nl/iceclimate/aws/",
     "Conventions": "CF-1.7",
     "time_convention": "'time: point' variables are valid for exactly the time value stored in the time coordinate, whereas 'time: mean' variables are valid for the mean time within the time_bounds variable. For example, air_temp was continuously measured at high frequency and then averaged over each period contained in the time_bounds variable into the store hourly-mean values."

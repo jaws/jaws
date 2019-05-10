@@ -4,6 +4,7 @@
     "source": "Surface Observations",
     "featureType": "timeSeries",
     "institution": "Programme for Monitoring of the Greenland Ice Sheet",
+    "network_name": "PROMICE",
     "reference": "http://www.promice.dk/home.html",
     "Conventions": "CF-1.7",
     "time_convention": "'time: point' variables are valid for exactly the time value stored in the time coordinate, whereas 'time: mean' variables are valid for the mean time within the time_bounds variable. For example, elevation was measured once per hour at the time stored in the 'time' coordinate. On the other hand, air_temperature was continually measured at high frequency and then averaged over each period contained in the time_bounds variable into the stored hourly-mean values."
