@@ -1,4 +1,5 @@
 from calendar import monthrange, month_abbr, isleap
+import os
 import sys
 
 import matplotlib as mpl
@@ -88,6 +89,18 @@ def main(args, input_file):
 
     stn_nm = df.station_name[0]
 
+    try:
+        network_name = ds.network_name
+        if '_' in stn_nm:  # For IMAU, GCNet, PROMICE, get only station name and capitalize first character
+            stn_nm = stn_nm.split('_')[1].capitalize()
+        if network_name == 'IMAU':
+            stn_nm = stn_nm.upper()  # Station name contains 'Aws', make it uppercase i.e. 'AWS'
+    except:  # POLENET and SCAR don't have network_name as global attribute
+        if os.path.basename(input_file)[:8] == 'polenet_':
+            network_name = 'POLENET'
+        else:
+            network_name = 'SCAR'
+
     if len(df.day) == 24:
         if args.anl != 'diurnal':
             print('ERROR: This is a single day file and you can only run diurnal analysis on it')
@@ -117,10 +130,10 @@ def main(args, input_file):
         var_hour_avg, var_hour_sd, hours = diurnal(args, df)
         if len(df.day) == 24:
             plt.plot(hours, var_hour_avg, '--', marker='.', markersize=15, color='k')
-            plt.title('Diurnal cycle at {} for {}-{}-{}'.format(stn_nm, df.day[0], month_abbr[df.month[0]], df.year[0]))
+            plt.title('Diurnal cycle at {}({}) for {}-{}-{}'.format(stn_nm, network_name, df.day[0], month_abbr[df.month[0]], df.year[0]))
         else:
             plt.errorbar(hours, var_hour_avg, yerr=var_hour_sd, fmt='--o', ecolor='lightskyblue', color='k')
-            plt.title('Diurnal cycle at {} for {}-{}'.format(stn_nm, month_abbr[month], year))
+            plt.title('Diurnal cycle at {}({}) for {}-{}'.format(stn_nm, network_name, month_abbr[month], year))
         plt.xticks(hours)
         plt.xlabel('Hour of the day')
 
@@ -131,7 +144,7 @@ def main(args, input_file):
         plt.fill_between(days, var_day_max, var_day_min, label='max-min', facecolor='darkseagreen', alpha=0.3)
         plt.xticks(days)
         plt.xlabel('Day of month')
-        plt.title('Change at {} for {}-{}'.format(stn_nm, month_abbr[month], year))
+        plt.title('Change at {}({}) for {}-{}'.format(stn_nm, network_name, month_abbr[month], year))
 
     elif args.anl == 'annual':
         mpl.rc('axes', grid=True)
@@ -141,14 +154,14 @@ def main(args, input_file):
         plt.plot(days_year, var_doy_max, label='max', color='darkseagreen')
         plt.plot(days_year, var_doy_min, label='min', color='lightskyblue')
         plt.xlabel('Day of year')
-        plt.title('Change at {} for {}'.format(stn_nm, year))
+        plt.title('Change at {}({}) for {}'.format(stn_nm, network_name, year))
 
     elif args.anl == 'seasonal':
         var_month_avg, var_month_sd, months = seasonal(args, df)
         plt.errorbar(months, var_month_avg, yerr=var_month_sd, fmt='--o', ecolor='lightskyblue', color='k')
         plt.xticks(months)
         plt.xlabel('Month')
-        plt.title('Climatological seasonal cycle at {}'.format(stn_nm))
+        plt.title('Climatological seasonal cycle at {}({})'.format(stn_nm, network_name))
 
     else:
         print("ERROR: Please choose a valid argument for analysis from ['diurnal', 'monthly', 'annual', 'seasonal']")
