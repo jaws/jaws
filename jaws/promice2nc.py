@@ -22,7 +22,7 @@ def init_dataframe(args, input_file):
 
     with open(input_file) as stream:
         for line in stream:
-            input_file_vars =[x.strip() for x in line.split(' ')]
+            input_file_vars =[x.strip() for x in line.split(' ') if x]
             break
 
     df, columns = common.load_dataframe('promice', input_file, 1, input_file_vars=input_file_vars)
