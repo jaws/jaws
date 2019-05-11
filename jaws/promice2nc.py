@@ -1,6 +1,7 @@
 from datetime import datetime
 import os
 import re
+import sys
 import warnings
 
 import numpy as np
@@ -57,6 +58,10 @@ def get_station(args, input_file, stations):
     for key, value in aliases.items():
         if key in filename:
             return common.parse_station(args, stations[value])
+        else:
+            print("ERROR: Please check input file name. It should include station name e.g. KAN-B. Note that there is "
+                  "'-' between KAN and B not '_'. This condition is only for PROMICE stations.")
+            sys.exit(1)
 
 
 def get_time_and_sza(args, dataframe, longitude, latitude):
