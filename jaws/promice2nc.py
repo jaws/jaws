@@ -1,6 +1,7 @@
 from datetime import datetime
 import os
 import re
+import sys
 import warnings
 
 import numpy as np
@@ -22,7 +23,7 @@ def init_dataframe(args, input_file):
 
     with open(input_file) as stream:
         for line in stream:
-            input_file_vars =[x.strip() for x in line.split(' ')]
+            input_file_vars =[x.strip() for x in line.split(' ') if x]
             break
 
     df, columns = common.load_dataframe('promice', input_file, 1, input_file_vars=input_file_vars)
@@ -54,9 +55,16 @@ def get_station(args, input_file, stations):
                 aliases[b] = bits[-1]
 
     filename = os.path.basename(input_file)
+    count = 0
     for key, value in aliases.items():
         if key in filename:
+            count += 1
             return common.parse_station(args, stations[value])
+
+    if count == 0:
+        print("ERROR: Please check input file name. It should include station name e.g. KAN-B. Note that there is "
+              "'-' between KAN and B not '_'. This condition is only for PROMICE stations.")
+        sys.exit(1)
 
 
 def get_time_and_sza(args, dataframe, longitude, latitude):

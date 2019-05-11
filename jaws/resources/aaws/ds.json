@@ -3,6 +3,7 @@
     "source": "surface observation",
     "featureType": "timeSeries",
     "institution": "UW SSEC",
+    "network_name": "AAWS",
     "reference": "https://amrc.ssec.wisc.edu/",
     "Conventions": "CF-1.7",
     "data_type": "q1h",

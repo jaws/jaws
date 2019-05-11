@@ -233,6 +233,9 @@ def dispatch_converter(args, input_file, output_file, stations):
     else:
         with open(input_file) as stream:
             char = stream.readline()[0]
+        if char == ' ':  # For PROMICE v03 files, the first character is blank space, so read the second character
+            with open(input_file) as stream:
+                char = stream.readline()[1]
 
         converters = {
             'D': gcnet2nc.gcnet2nc,
