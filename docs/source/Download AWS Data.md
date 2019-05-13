@@ -14,12 +14,6 @@ For IMAU, input file name must start with network type(i.e. 'ant' or 'grl'),
 followed by a underscore and then station number. 
 e.g. 'ant_aws01.txt' or 'ant_aws15_123.txt' or 'grl_aws21abc.txt', etc.
 
-For SCAR, input file name must end with '_aws.dat'.
-e.g. 'Sofiab_aws.dat' or '123abc_aws.dat', etc.
-
-For POLENET, input file name must start with 'polenet_'.
-e.g. 'polenet_FoynPoint.txt' or 'polenet_FoynPoint_20100208.dat', etc.
-
 ```
 
 The complete data for each network can be downloaded or requested from following links:
