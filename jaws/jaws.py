@@ -227,8 +227,13 @@ def dispatch_converter(args, input_file, output_file, stations):
     Reads the first character of the input file, and uses it to guess the
     format of the input file and dispatch the right converter.
     """
-    input_file_basename = os.path.basename(input_file)
-    if input_file_basename[-7:] == 'aws.dat' or input_file_basename[:8] == 'polenet_':
+    pol_scar = False  # Check if input file is from POLENET or SCAR network
+    with open(input_file) as stream:
+        stream.readline()  # Skip first line
+        if stream.readline().startswith("Operated by"):
+            pol_scar = True
+
+    if pol_scar:
         scar2nc.scar2nc(args, input_file, output_file)
     else:
         with open(input_file) as stream:
