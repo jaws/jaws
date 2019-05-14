@@ -33,15 +33,8 @@ install:
     - cmd: conda config --add channels conda-forge --force
     - cmd: conda config --add channels anaconda --force
 
-    # Install conda-build.
-    - cmd: conda install conda-build
-
-    - cmd: set PYTHONUNBUFFERED=1
-  
-    - cmd: conda info --all
-
 # Skip .NET project specific build phase.
 build: off
 
 test_script:
-    - conda build conda.recipe
+    - python setup.py test
