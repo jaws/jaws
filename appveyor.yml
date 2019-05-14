@@ -33,6 +33,7 @@ install:
     - cmd: conda config --add channels conda-forge --force
     - cmd: conda config --add channels anaconda --force
     - cmd: conda install netCDF4
+    - cmd: conda install -c conda-forge metpy
 
 # Skip .NET project specific build phase.
 build: off
