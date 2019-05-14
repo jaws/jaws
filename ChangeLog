@@ -1,4 +1,26 @@
-2019-05-03  Ajay Saini  <sainiak@uci.edu>
+2019-05-13  Ajay Saini  <sainiak@uci.edu>
+
+    * jaws.py: Change method to detect POLENET and SCAR files
+
+    * docs: Update note about POLENET and SCAR files
+
+    * docs: Add 'Citing JAWS.md'
+
+    * docs: Correct link for getting data
+
+2019-05-10  Ajay Saini  <sainiak@uci.edu>
+
+    * ds.json: Add global attribute 'networks_name'
+
+    * analysis.py: Network name in plot title
+
+    * Update SCAR sample file
+
+    * PROMICE v03 files: Add exception for first blank character
+
+    * PROMICE: Error msg for if wrong input file name
+
+2019-05-08  Ajay Saini  <sainiak@uci.edu>
 
     * Add docs/Download AWS Data.md
 
