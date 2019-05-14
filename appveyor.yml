@@ -32,9 +32,10 @@ install:
     - cmd: conda config --system --add pinned_packages defaults::conda
     - cmd: conda config --add channels conda-forge --force
     - cmd: conda config --add channels anaconda --force
+    - cmd: conda install netCDF4
 
 # Skip .NET project specific build phase.
 build: off
 
 test_script:
-    - python setup.py test
+    - python test\test.py
