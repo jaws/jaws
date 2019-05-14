@@ -27,6 +27,7 @@ Justified Automated Weather Station (JAWS) Software
    Analysis
    API
    Acronyms
-   References
+   Citing JAWS
    Github
+   References
    License

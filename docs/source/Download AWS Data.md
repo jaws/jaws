@@ -14,12 +14,6 @@ For IMAU, input file name must start with network type(i.e. 'ant' or 'grl'),
 followed by a underscore and then station number. 
 e.g. 'ant_aws01.txt' or 'ant_aws15_123.txt' or 'grl_aws21abc.txt', etc.
 
-For SCAR, input file name must end with '_aws.dat'.
-e.g. 'Sofiab_aws.dat' or '123abc_aws.dat', etc.
-
-For POLENET, input file name must start with 'polenet_'.
-e.g. 'polenet_FoynPoint.txt' or 'polenet_FoynPoint_20100208.dat', etc.
-
 ```
 
 The complete data for each network can be downloaded or requested from following links:
@@ -30,8 +24,8 @@ The complete data for each network can be downloaded or requested from following
 
 <u>**IMAU**</u>: [https://www.uu.nl/en/research/imau/contact](https://www.uu.nl/en/research/imau/contact)
 
-<u>**POLENET**</u>: Data can be obtained via anonymous FTP to ftp.bas.ac.uk in src/SCAR_EGOMA/POLENET_AWS directory. All `*.dat` files are supported by JAWS.
+<u>**POLENET**</u>: Data can be obtained via anonymous FTP to ftp.bas.ac.uk in src/SCAR_EGOMA/POLENET_AWS directory.
 
-<u>**PROMICE**</u>: [http://www.promice.org/PromiceDataPortal/#Auatomatic%20weather%20stations](http://www.promice.org/PromiceDataPortal/#Auatomatic%20weather%20stations)
+<u>**PROMICE**</u>: [https://promice.org/PromiceDataPortal/api/download/f24019f7-d586-4465-8181-d4965421e6eb/v03/hourly/csv](https://promice.org/PromiceDataPortal/api/download/f24019f7-d586-4465-8181-d4965421e6eb/v03/hourly/csv)
 
-<u>**SCAR**</u>: Data can be obtained via anonymous FTP to ftp.bas.ac.uk in src/SCAR_EGOMA/AWS directory. All `*_aws.dat` files are supported by JAWS.
+<u>**SCAR**</u>: Data can be obtained via anonymous FTP to ftp.bas.ac.uk in src/SCAR_EGOMA/AWS directory.
