@@ -38,4 +38,5 @@ install:
 build: off
 
 test_script:
-    - python tests/test.py
+    - cd tests
+    - python test.py
