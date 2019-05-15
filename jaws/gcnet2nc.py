@@ -39,8 +39,12 @@ def init_dataframe(args, input_file):
         'tsn6', 'tsn7', 'tsn8', 'tsn9', 'tsn10',
         'ta_max1', 'ta_max2', 'ta_min1','ta_min2', 'ref_temp']
     if not args.celsius:
-        df.loc[:, temperature_vars] += common.freezing_point_temp
-    df.loc[:, 'ps'] *= common.pascal_per_millibar
+        df.loc[:, temperature_vars] += common.freezing_point_temp  # Convert units to Kelvin
+
+    pressure_vars = ['ps']
+    if not args.mb:
+        df.loc[:, pressure_vars] *= common.pascal_per_millibar  # Convert units to millibar/hPa
+
     df = df.where((pd.notnull(df)), common.get_fillvalue(args))
 
     try:
@@ -48,7 +52,7 @@ def init_dataframe(args, input_file):
     except Exception:
         pass
 
-    return df, temperature_vars
+    return df, temperature_vars, pressure_vars
 
 
 def get_station(args, input_file, stations):
@@ -260,7 +264,7 @@ def gradient_fluxes(df):  # This method is very sensitive to input data quality
 
 def gcnet2nc(args, input_file, output_file, stations):
     """Main function to convert GCNet ascii file to netCDF"""
-    df, temperature_vars = init_dataframe(args, input_file)
+    df, temperature_vars, pressure_vars = init_dataframe(args, input_file)
     station_number = df['station_number'][0]
     df.drop('station_number', axis=1, inplace=True)
 
@@ -310,7 +314,8 @@ def gcnet2nc(args, input_file, output_file, stations):
 
     comp_level = args.dfl_lvl
 
-    common.load_dataset_attributes('gcnet', ds, args, rigb_vars=rigb_vars, temperature_vars=temperature_vars)
+    common.load_dataset_attributes('gcnet', ds, args, rigb_vars=rigb_vars, temperature_vars=temperature_vars,
+                                   pressure_vars=pressure_vars)
     encoding = common.get_encoding('gcnet', common.get_fillvalue(args), comp_level, args)
 
     common.write_data(args, ds, output_file, encoding)
