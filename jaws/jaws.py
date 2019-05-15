@@ -47,6 +47,10 @@ def get_parser():
         "-c", "--celsius", "--cel", "--centigrade",
         help="Temperature in degree celsius (default is Kelvin)",
         action="store_true")
+    parser.add_argument(
+        "--mb", "--hPa", "--millibar",
+        help="Pressure in millibar/hPa (default is Pascal)",
+        action="store_true")
 
     ###########################################################################
     # RIGB arguments

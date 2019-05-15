@@ -46,13 +46,20 @@ def init_dataframe(args, input_file):
 
     df, columns = common.load_dataframe('scar', input_file, header_rows, input_file_vars=input_file_vars)
     df.replace(check_na, np.nan, inplace=True)
+
     temperature_vars = ['ta']
     if not args.celsius:
-        df.loc[:, temperature_vars] += common.freezing_point_temp
-    df.loc[:, 'wspd'] *= knot_to_ms
+        df.loc[:, temperature_vars] += common.freezing_point_temp  # Convert units to Kelvin
+
+    pressure_vars = ['pa']
+    if not args.mb:
+        df.loc[:, pressure_vars] *= common.pascal_per_millibar  # Convert units to millibar/hPa
+
+    df.loc[:, 'wspd'] *= knot_to_ms  # Convert units to meter per second
+
     df = df.where((pd.notnull(df)), common.get_fillvalue(args))
 
-    return df, temperature_vars, stn_name, lat, lon, height, country, institution
+    return df, temperature_vars, pressure_vars, stn_name, lat, lon, height, country, institution
 
 
 def get_time_and_sza(args, dataframe, longitude, latitude):
@@ -84,7 +91,7 @@ def get_time_and_sza(args, dataframe, longitude, latitude):
 
 def scar2nc(args, input_file, output_file):
     """Main function to convert SCAR txt file to netCDF"""
-    df, temperature_vars, station_name, latitude, longitude, height, country, institution = init_dataframe(
+    df, temperature_vars, pressure_vars, station_name, latitude, longitude, height, country, institution = init_dataframe(
         args, input_file)
     ds = xr.Dataset.from_dataframe(df)
     ds = ds.drop('time')
@@ -106,7 +113,7 @@ def scar2nc(args, input_file, output_file):
     comp_level = args.dfl_lvl
 
     common.load_dataset_attributes('scar', ds, args, country = country, institution = institution,
-                                   temperature_vars=temperature_vars)
+                                   temperature_vars=temperature_vars, pressure_vars=pressure_vars)
     encoding = common.get_encoding('scar', common.get_fillvalue(args), comp_level, args)
 
     common.write_data(args, ds, output_file, encoding)

@@ -167,6 +167,12 @@ def load_dataset_attributes(name, ds, args, **kwargs):
         temperature_vars = kwargs.pop('temperature_vars')
         for var in temperature_vars:
             ds[var].attrs.update([('units', 'celsius')])
+
+    if args.mb:
+        pressure_vars = kwargs.pop('pressure_vars')
+        for var in pressure_vars:
+            ds[var].attrs.update([('units', 'hPa')])
+
     for column in columns:
         if column in ('qc1', 'qc9', 'qc17', 'qc25'):
             load_dataset_attributes_gcnet_qltyctrl(name, ds)

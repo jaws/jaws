@@ -64,13 +64,23 @@ This will convert *'ABC.txt'* to *'XYZ.nc'*.
     ```
 
 * `-c, --cel, --celsius` `--centigrade`: By default, all temperature variables will be in Kelvin (K) in output file 
-    (CF convention). Use this option if you want them in Celsius (°C) in output netCDF file. If during analysis step, 
+    (SI units). Use this option if you want them in Celsius (°C) in output netCDF file. If during analysis step, 
     you find that units are Kelvin and you want the plots in Celsius, first convert the raw file to netCDF using this 
     option and then do the analysis.
 
     Usage:
     ``` html
     $ jaws --celsius ABC.txt
+    ```
+
+* `--mb, --hPa, --millibar`: By default, all pressure variables will be in Pascal (Pa) in output file 
+    (SI units). Use this option if you want them in hPa/millibar in output netCDF file. If during analysis step, 
+    you find that units are Pa and you want the plots in hPa, first convert the raw file to netCDF using this 
+    option and then do the analysis.
+
+    Usage:
+    ``` html
+    $ jaws --hPa ABC.txt
     ```
 
 * `--rigb`: Calculate adjusted downwelling shortwave flux, tilt_angle and tilt_direction. 
