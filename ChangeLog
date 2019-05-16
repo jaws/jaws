@@ -1,3 +1,9 @@
+2019-05-16  Ajay Saini  <sainiak@uci.edu>
+
+    * Debug IMAU files
+
+    * git tag -a 0.8.5 -m 'beta02: PROMICE v03 support'; git push --tags
+
 2019-05-15  Ajay Saini  <sainiak@uci.edu>
 
     * Add --hPa option to convert pressure units
