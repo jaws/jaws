@@ -48,7 +48,7 @@ def get_station(args, input_file, stations):
     name = filename[:9]
     try:
         lat, lon, new_name = common.parse_station(args, stations[name])
-    except KeyError, err:
+    except KeyError as err:
         print('KeyError: {}'.format(err))
         print('HINT: This KeyError can occur when JAWS is asked to process station that is not in its database. '
               'Please inform the JAWS maintainers by opening an issue at https://github.com/jaws/jaws/issues.')
