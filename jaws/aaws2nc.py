@@ -1,4 +1,5 @@
 from datetime import datetime
+import sys
 
 import pandas as pd
 import xarray as xr
@@ -48,7 +49,14 @@ def get_station(args, input_file, stations):
         stream.readline()
         name = stream.readline()[12:]
     name = name.strip('\n\r')
-    lat, lon, new_name = common.parse_station(args, stations[name])
+    try:
+        lat, lon, new_name = common.parse_station(args, stations[name])
+    except KeyError, err:
+        print('KeyError: {}'.format(err))
+        print('HINT: This KeyError can occur when JAWS is asked to process station that is not in its database. '
+              'Please inform the JAWS maintainers by opening an issue at https://github.com/jaws/jaws/issues.')
+        sys.exit(1)
+
     return lat, lon, new_name or name
 
 

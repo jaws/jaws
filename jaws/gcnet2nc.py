@@ -4,6 +4,7 @@ from metpy.calc import mixing_ratio_from_relative_humidity, specific_humidity_fr
 import numpy as np
 import pandas as pd
 import xarray as xr
+import sys
 
 try:
     from jaws import common, sunposition, clearsky, tilt_angle, fsds_adjust
@@ -60,13 +61,20 @@ def get_station(args, input_file, stations):
     df, columns = common.load_dataframe('gcnet', input_file, header_rows)
     station_number = df['station_number'][0]
 
-    if 30 <= station_number <= 32:
+    if 1 <= station_number <= 23:
+        station = list(stations.values())[station_number]
+    elif 30 <= station_number <= 32:
         name = 'gcnet_lar{}'.format(station_number - 29)
         station = stations[name]
     else:
-        station = list(stations.values())[station_number]
+        print('KeyError: {}'.format(df['station_number'][0]))
+        print('HINT: This KeyError can occur when JAWS is asked to process station that is not in its database. '
+              'Please inform the JAWS maintainers by opening an issue at https://github.com/jaws/jaws/issues.')
+        sys.exit(1)
 
-    return common.parse_station(args, station)
+    lat, lon, stn_nm = common.parse_station(args, station)
+
+    return lat, lon, stn_nm
 
 
 def fill_dataset_quality_control(dataframe, dataset, input_file):
