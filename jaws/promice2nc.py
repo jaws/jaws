@@ -65,12 +65,17 @@ def get_station(args, input_file, stations):
     for key, value in aliases.items():
         if key in filename:
             count += 1
-            return common.parse_station(args, stations[value])
+            lat, lon, stn_nm = common.parse_station(args, stations[value])
 
     if count == 0:
         print("ERROR: Please check input file name. It should include station name e.g. KAN-B. Note that there is "
               "'-' between KAN and B not '_'. This condition is only for PROMICE stations.")
+        print('HINT: If you still see the error after correcting station name according to above condition, '
+              'then JAWS is asked to process station that is not in its database. '
+              'Please inform the JAWS maintainers by opening an issue at https://github.com/jaws/jaws/issues.')
         sys.exit(1)
+
+    return lat, lon, stn_nm
 
 
 def get_time_and_sza(args, dataframe, longitude, latitude):
