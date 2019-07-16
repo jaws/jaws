@@ -77,11 +77,8 @@ def get_time_and_sza(args, dataframe, longitude, latitude):
         day_of_year[idx] = dtime.timetuple().tm_yday
 
         time[idx] = (dtime - dtime_1970).total_seconds()
-        time_bounds[idx] = (time[idx], time[idx] + common.seconds_in_hour)
+        time_bounds[idx] = (time[idx], time[idx])
 
-        # Each timestamp is average of previous and current hour values i.e. value at hour=5 is average of hour=4 and 5
-        # Our 'time' variable will represent values at half-hour i.e. 4.5 in above case, so subtract 30 minutes from all
-        time[idx] = time[idx] - common.seconds_in_half_hour
         dtime = datetime.utcfromtimestamp(time[idx])
 
         sza[idx] = sunposition.sunpos(dtime, latitude, longitude, 0)[1]
