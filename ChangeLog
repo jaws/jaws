@@ -1,3 +1,19 @@
+2019-07-17  Ajay Saini  <sainiak@uci.edu>
+
+    * git tag -a 0.9 -m 'Great Hammerhead Shark: Correct time variable for SCAR'; git push --tags
+
+2019-07-16  Ajay Saini  <sainiak@uci.edu>
+
+    * scar2nc: Correct time and time_bounds as values are instantaneous
+
+2019-06-30  Ajay Saini  <sainiak@uci.edu>
+
+    * Add exceptions for new stations
+
+    * Add exception and hint for metpy.units(pint) ImportError
+
+    * Correct KeyError syntax for Python 3
+
 2019-05-23  Ajay Saini  <sainiak@uci.edu>
 
     * Work on PROMICE monthly input files

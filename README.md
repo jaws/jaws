@@ -38,6 +38,16 @@ please open an [issue](https://github.com/jaws/jaws/issues) or contact *Charlie 
 
 ## News
 
+2019/07/17: Version 0.9 released: Correct time variable for SCAR; Add hints
+
+2019/05/16: Version 0.8.5 released: PROMICE v03 files supported; --hPa option
+
+2019/05/03: Version 0.8.4 released: Analysis for txt files
+
+2019/04/23: Version 0.8.3 released: Gradient fluxes for GCNet
+
+2019/04/14: Version 0.8.2 released: Celsius option
+
 2019/04/04: Version 0.8.1 released: RIGB fix 1 hr shift issue; CMIP naming
 
 2019/03/30: Version 0.8 released: RIGB improvement, Documentation
