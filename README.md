@@ -25,11 +25,12 @@ Please visit [JAWS Homepage](https://jaws.readthedocs.io) for detailed documenta
 
 [AAWS](https://amrc.ssec.wisc.edu/), [GCNet](http://cires1.colorado.edu/steffen/gcnet/), 
 [IMAU](http://www.projects.science.uu.nl/iceclimate/aws/), [POLENET](http://polenet.org/), 
-[PROMICE](http://www.promice.org/home.html), [SCAR](https://legacy.bas.ac.uk/met/jds/met/SCAR_oma.htm)
+[PROMICE](http://www.promice.org/home.html), [SCAR](https://legacy.bas.ac.uk/met/jds/met/SCAR_oma.htm), 
+[NSIDC](https://nsidc.org/data/nsidc-0190)
 
-Number of stations = **378**
+Number of stations = **620**
 
-Number of station-years of data = **3600**
+Number of station-years of data = **4000+**
 
 **Maps** of Antarctica and Greenland with location of all stations are in [Stations Map](#stations-map) section.
 
@@ -37,6 +38,8 @@ If your network is not in the above list and you would like it to be supported b
 please open an [issue](https://github.com/jaws/jaws/issues) or contact *Charlie Zender* at <zender@uci.edu>
 
 ## News
+
+2019/08/11: Version 0.9.1 released: Add new network NSIDC
 
 2019/07/17: Version 0.9 released: Correct time variable for SCAR; Add hints
 
@@ -179,6 +182,7 @@ The current version can translate L2 ASCII data from the following networks to n
 * Programme for Monitoring of the Greenland Ice Sheet (PROMICE): Sample raw file can be downloaded from [here](http://jaws.ess.uci.edu/jaws/sample_data/PROMICE_EGP_20160503.txt)
 * Scientific Committee on Antarctic Research (SCAR): Sample raw file can be downloaded from [here](http://jaws.ess.uci.edu/jaws/sample_data/SCAR_Sofiab_aws.dat)
 * The Polar Earth Observing Network (POLENET): Sample raw file can be downloaded from [here](http://jaws.ess.uci.edu/jaws/sample_data/polenet_FoynPoint_20100208.dat)
+* National Snow & Ice Data Center (NSIDC): Sample raw file can be downloaded from [here](http://jaws.ess.uci.edu/jaws/sample_data/NSIDC_890010_19730101_19730901.dat)
 
 ```
 Note:
@@ -329,7 +333,7 @@ ___
 ![Greenland](http://jaws.ess.uci.edu/jaws/img/map_grl.png)
 
 ## Benchmark
-As of version 0.8, it takes about 3.5 minutes to process Summit(GCNet) data from 19960512 to 20170524
+As of version 0.9, it takes about 3.5 minutes to process Summit(GCNet) data from 19960512 to 20170524
 
 ## Credit
 

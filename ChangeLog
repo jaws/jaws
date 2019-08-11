@@ -1,3 +1,11 @@
+2019-08-11  Ajay Saini  <sainiak@uci.edu>
+
+    * git tag -a 0.9.1 -m 'alpha01: Add new network NSIDC'; git push --tags
+
+2019-08-10  Ajay Saini  <sainiak@uci.edu>
+
+    * nsidc2nc: Script to convert NSIDC stations to netCDF format
+
 2019-07-17  Ajay Saini  <sainiak@uci.edu>
 
     * git tag -a 0.9 -m 'Great Hammerhead Shark: Correct time variable for SCAR'; git push --tags
