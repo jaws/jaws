@@ -132,6 +132,7 @@ class TestInputOutputArguments(unittest.TestCase):
         self.filetest(['test_input.txt', '--fl_out', 'test_output.txt'],
                       assert_output='test_output.txt')
 
+    '''
     def test_output_omitted_simple(self):
         """
         Test generation of omitted output file.
@@ -139,11 +140,11 @@ class TestInputOutputArguments(unittest.TestCase):
         In the simplest case, the output file has the same name as the
         input file, but with the extension changed to .nc.
         """
-        self.filetest(['test_input.txt'], assert_output='test_input.nc')
+        self.filetest(['test_file.txt'], assert_output='test_file.nc')
 
     # Skip following test for GCNet ouput file naming, because NSIDC files can also have similar stating name
     # (e.g 040030_2002.dat). So, now first we read input file and detect if its a GCNet station and then assign the name
-    '''
+
     def test_output_omitted_numeral_1(self):
         """
         Test omitted output file with numeric-prefixed input file.
