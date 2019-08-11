@@ -61,7 +61,7 @@ def load_dataframe(name, input_file, header_rows, **kwargs):
 
     if (name == 'gcnet' and header_rows == 54) or (name == 'promice' and len(input_file_vars) == 46) or (
         name == 'aaws' and len(input_file_vars) == 6) or (name == 'imau/ant') or (name == 'imau/grl') or (
-        name == 'scar'):
+        name == 'scar') or (name == 'nsidc'):
 
         path = relative_path('resources/{}/columns.txt'.format(name))
         with open(path) as stream:
@@ -132,6 +132,12 @@ def load_dataset_attributes(name, ds, args, **kwargs):
             ds.attrs['operated_by'] = country
         if institution:
             ds.attrs['institution'] = institution
+
+    if name == 'nsidc':
+        qlty_ctrl = kwargs.pop('qlty_ctrl')
+
+        if qlty_ctrl:
+            ds.attrs['quality_control_process'] = qlty_ctrl
 
     ds.attrs['history'] = '{} {}'.format(datetime.now(), ' '.join(sys.argv))
     ds.attrs['JAWS'] = 'Justified Automated Weather Station software version {} (Homepage = https://github.com/' \

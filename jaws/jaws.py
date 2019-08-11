@@ -6,9 +6,9 @@ import re
 import sys
 
 try:
-    from jaws import gcnet2nc, promice2nc, aaws2nc, imau2nc, scar2nc, common, analysis
+    from jaws import gcnet2nc, promice2nc, aaws2nc, imau2nc, scar2nc, nsidc2nc, common, analysis
 except ImportError:
-    import gcnet2nc, promice2nc, aaws2nc, imau2nc, scar2nc, common, analysis
+    import gcnet2nc, promice2nc, aaws2nc, imau2nc, scar2nc, nsidc2nc, common, analysis
 
 try:
     from jaws.common import jaws_version
@@ -208,18 +208,21 @@ def get_output_file(args, input_file, stations):
         return args.fl_out
 
     basename = os.path.basename(input_file).split('.')[0]
-    try:
-        name_number = int(basename[:2])
-    except ValueError:
-        return basename + '.nc'
+    # For GCNet input files having name like 01c.dat
+    with open(input_file) as stream:
+        if stream.readline()[0] == 'D':
+            try:
+                name_number = int(basename[:2])
+            except ValueError:
+                return basename + '.nc'
 
-    stations = list(stations.keys())
-    if 0 < name_number < 24:
-        basename = stations[name_number]
-    elif basename[2:] == 'c':
-        basename = stations[name_number - 6]
-    else:
-        pass
+            stations = list(stations.keys())
+            if 0 < name_number < 24:
+                basename = stations[name_number]
+            elif basename[2:] == 'c':
+                basename = stations[name_number - 6]
+            else:
+                pass
 
     return basename + '.nc'
 
@@ -251,7 +254,8 @@ def dispatch_converter(args, input_file, output_file, stations):
             'Y': promice2nc.promice2nc,
             '#': aaws2nc.aaws2nc,
             '1': imau2nc.imau2nc,
-            '2': imau2nc.imau2nc}
+            '2': imau2nc.imau2nc,
+            'S': nsidc2nc.nsidc2nc}
 
         errmsg = 'Conversion failed: unsupported input file format.'
         if char in converters:
