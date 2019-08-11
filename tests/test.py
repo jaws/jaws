@@ -139,7 +139,7 @@ class TestInputOutputArguments(unittest.TestCase):
         In the simplest case, the output file has the same name as the
         input file, but with the extension changed to .nc.
         """
-        self.filetest(['test_file.txt'], assert_output='test_file.nc')
+        self.filetest(['test_input.txt'], assert_output='test_input.nc')
 
     # Skip following test for GCNet ouput file naming, because NSIDC files can also have similar stating name
     # (e.g 040030_2002.dat). So, now first we read input file and detect if its a GCNet station and then assign the name
