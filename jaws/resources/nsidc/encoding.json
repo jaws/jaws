@@ -1,0 +1,156 @@
+{
+  "year": {
+    "dtype": "i2",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "month": {
+    "dtype": "i2",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "day": {
+    "dtype": "i2",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "hour": {
+    "dtype": "i2",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "minute": {
+    "dtype": "i2",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "wdir": {
+    "dtype": "i4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "wdir_qc": {
+    "dtype": "i2",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "wtype": {
+    "dtype": "unicode",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "wspd": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "wspd_qc": {
+    "dtype": "i2",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "cig": {
+    "dtype": "i4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "hqc": {
+    "dtype": "i2",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "visby": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "visby_qc": {
+    "dtype": "i2",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "vv": {
+    "dtype": "unicode",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "vqc": {
+    "dtype": "i2",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "ta": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "ta_qc": {
+    "dtype": "i2",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "dpt": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "dpt_qc": {
+    "dtype": "i2",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "slp": {
+    "_FillValue": "FILL",
+    "dtype": "f4",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "slp_qc": {
+    "dtype": "i2",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "day_of_year": {
+    "dtype": "i2",
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "time": {
+    "_FillValue": false,
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "time_bounds": {
+    "_FillValue": false,
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "sza": {
+    "_FillValue": false,
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "station_name": {
+    "dtype": "unicode"
+  },
+  "latitude": {
+    "_FillValue": false,
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "longitude": {
+    "_FillValue": false,
+    "zlib": true,
+    "complevel": "COMP"
+  },
+  "elevation": {
+    "_FillValue": false,
+    "dtype": "i4",
+    "zlib": true,
+    "complevel": "COMP"
+  }
+}
