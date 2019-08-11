@@ -1,0 +1,284 @@
+{
+  "attributes": {
+    "source": "surface observation",
+    "featureType": "timeSeries",
+    "institution": "NSIDC",
+    "network_name": "NSIDC",
+    "reference": "http://nsidc.org/data/nsidc-0190.html",
+    "Conventions": "CF-1.7",
+    "time_convention": "'time: point' variables are valid for exactly the time value stored in the time coordinate, whereas 'time: mean' variables are valid for the mean time within the time_bounds variable. For example, air_temp was continuously measured at high frequency and then averaged over each period contained in the time_bounds variable into the store hourly-mean values."
+  },
+  "variables": {
+    "year": {
+      "type": "short",
+      "attributes": {
+        "long_name": "Year",
+        "original_name": "year",
+        "units": "1"
+      }
+    },
+    "month": {
+      "type": "short",
+      "attributes": {
+        "long_name": "Month of Year",
+        "original_name": "mo",
+        "units": "1"
+      }
+    },
+    "day": {
+      "type": "short",
+      "attributes": {
+        "long_name": "Day of Month",
+        "original_name": "da",
+        "units": "1"
+      }
+    },
+    "hour": {
+      "type": "short",
+      "attributes": {
+        "long_name": "Hour of Day",
+        "original_name": "hr",
+        "units": "1"
+      }
+    },
+    "minute": {
+      "type": "short",
+      "attributes": {
+        "long_name": "Minute of hour",
+        "original_name": "mn",
+        "units": "1"
+      }
+    },
+    "wdir": {
+      "type": "int",
+      "attributes": {
+        "long_name": "Wind Direction",
+        "standard_name": "wind_from_direction",
+        "original_name": "dir",
+        "units": "degree",
+        "cell_methods": "time: mean",
+        "coordinates": "longitude latitude"
+      }
+    },
+    "wdir_qc": {
+      "type": "short",
+      "attributes": {
+        "long_name": "Wind Direction Quality Code",
+        "original_name": "dqc",
+        "units": "1",
+        "cell_methods": "time: mean",
+        "coordinates": "longitude latitude"
+      }
+    },
+    "wtype": {
+      "type": "string",
+      "attributes": {
+        "long_name": "Wind Observation Type Code",
+        "original_name": "wtype",
+        "units": "1",
+        "cell_methods": "time: mean",
+        "coordinates": "longitude latitude"
+      }
+    },
+    "wspd": {
+      "type": "int",
+      "attributes": {
+        "long_name": "Wind Speed",
+        "standard_name": "wind_speed",
+        "original_name": "wsp",
+        "units": "meter second-1",
+        "cell_methods": "time: mean",
+        "coordinates": "longitude latitude"
+      }
+    },
+    "wspd_qc": {
+      "type": "short",
+      "attributes": {
+        "long_name": "Wind Speed Quality Code",
+        "original_name": "sqc",
+        "units": "1",
+        "cell_methods": "time: mean",
+        "coordinates": "longitude latitude"
+      }
+    },
+    "cig": {
+      "type": "int",
+      "attributes": {
+        "long_name": "Ceiling Determination Code",
+        "original_name": "cig",
+        "units": "1",
+        "cell_methods": "time: mean",
+        "coordinates": "longitude latitude"
+      }
+    },
+    "hqc": {
+      "type": "short",
+      "attributes": {
+        "long_name": "Sky Condition 'Ceiling and Visibility Okay' (CAVOK) code",
+        "original_name": "hqc",
+        "units": "1",
+        "cell_methods": "time: mean",
+        "coordinates": "longitude latitude"
+      }
+    },
+    "visby": {
+      "type": "int",
+      "attributes": {
+        "long_name": "Visibility",
+        "original_name": "visby",
+        "units": "meters",
+        "cell_methods": "time: mean",
+        "coordinates": "longitude latitude"
+      }
+    },
+    "visby_qc": {
+      "type": "short",
+      "attributes": {
+        "long_name": "Visibility Quality Code",
+        "original_name": "dqc",
+        "units": "1",
+        "cell_methods": "time: mean",
+        "coordinates": "longitude latitude"
+      }
+    },
+    "vv": {
+      "type": "string",
+      "attributes": {
+        "long_name": "Visibility Variability Code",
+        "original_name": "vv",
+        "units": "1",
+        "cell_methods": "time: mean",
+        "coordinates": "longitude latitude"
+      }
+    },
+    "vqc": {
+      "type": "short",
+      "attributes": {
+        "long_name": "Visibility Variability Quality Code",
+        "original_name": "vqc",
+        "units": "1",
+        "cell_methods": "time: mean",
+        "coordinates": "longitude latitude"
+      }
+    },
+    "ta": {
+      "type": "int",
+      "attributes": {
+        "long_name": "Air Temperature",
+        "standard_name": "air_temperature",
+        "original_name": "dbt",
+        "units": "kelvin",
+        "cell_methods": "time: mean",
+        "coordinates": "longitude latitude"
+      }
+    },
+    "ta_qc": {
+      "type": "short",
+      "attributes": {
+        "long_name": "Air Temperature Quality Code",
+        "original_name": "bqc",
+        "units": "1",
+        "cell_methods": "time: mean",
+        "coordinates": "longitude latitude"
+      }
+    },
+    "dpt": {
+      "type": "int",
+      "attributes": {
+        "long_name": "Dew Point Temperature",
+        "original_name": "dpt",
+        "units": "kelvin",
+        "cell_methods": "time: mean",
+        "coordinates": "longitude latitude"
+      }
+    },
+    "dpt_qc": {
+      "type": "short",
+      "attributes": {
+        "long_name": "Dew Point Temperature Quality Code",
+        "original_name": "pqc",
+        "units": "1",
+        "cell_methods": "time: mean",
+        "coordinates": "longitude latitude"
+      }
+    },
+    "slp": {
+      "type": "int",
+      "attributes": {
+        "long_name": "Sea Level Pressure",
+        "standard_name": "air_pressure_at_mean_sea_level",
+        "original_name": "slp",
+        "units": "pascal",
+        "cell_methods": "time: mean",
+        "coordinates": "longitude latitude"
+      }
+    },
+    "slp_qc": {
+      "type": "short",
+      "attributes": {
+        "long_name": "Sea Level Pressure Quality Code",
+        "original_name": "sqc",
+        "units": "1",
+        "cell_methods": "time: mean",
+        "coordinates": "longitude latitude"
+      }
+    },
+    "day_of_year": {
+      "type": "short",
+      "attributes": {
+        "long_name": "Day of year",
+        "units": "1"
+      }
+    },
+    "time": {
+      "type": "double",
+      "attributes": {
+        "long_name": "Time",
+        "standard_name": "time",
+        "units": "seconds since 1970-01-01 00:00:00",
+        "bounds": "time_bounds",
+        "calendar": "standard"
+      }
+    },
+    "sza": {
+      "type": "double",
+      "attributes": {
+        "long_name": "Solar Zenith Angle",
+        "standard_name": "solar_zenith_angle",
+        "units": "degree",
+        "cell_methods": "time: mean",
+        "coordinates": "longitude latitude"
+      }
+    },
+    "station_name": {
+      "type": "string",
+      "attributes": {
+        "long_name": "Station Name",
+        "cf_role": "timeseries_id"
+      }
+    },
+    "latitude": {
+      "type": "double",
+      "attributes": {
+        "long_name": "Latitude",
+        "standard_name": "latitude",
+        "units": "degrees_north"
+      }
+    },
+    "longitude": {
+      "type": "double",
+      "attributes": {
+        "long_name": "Longitude",
+        "standard_name": "longitude",
+        "units": "degrees_east"
+      }
+    },
+    "elevation": {
+      "type": "int",
+      "attributes": {
+        "long_name": "Elevation",
+        "units": "meter"
+      }
+    }
+  }
+}
