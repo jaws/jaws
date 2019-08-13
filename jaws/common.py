@@ -21,7 +21,7 @@ seconds_in_hour = 3600
 seconds_in_half_hour = 1800
 fillvalue_double = 9.969209968386869e+36
 fillvalue_float = 9.96921e+36
-jaws_version = '0.9.1'
+jaws_version = '0.9.2'
 
 ###############################################################################
 
