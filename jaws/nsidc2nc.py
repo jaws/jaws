@@ -59,6 +59,11 @@ def get_station(args, input_file, stations):
 def get_time_and_sza(args, dataframe, longitude, latitude):
     """Calculate additional time related variables"""
     dtime_1970, tz = common.time_common(args.tz)
+    year1900 = False
+    dtime_1900 = tz.localize(datetime(1900, 1, 1).replace(tzinfo=None))
+    if dataframe['year'][0] < 1970:
+        dtime_1970 = dtime_1900
+        year1900 = True
 
     num_rows = dataframe['year'].size
     time, time_bounds, sza, day_of_year = ([0] * num_rows for _ in range(4))
@@ -77,7 +82,7 @@ def get_time_and_sza(args, dataframe, longitude, latitude):
 
         sza[idx] = sunposition.sunpos(dtime, latitude, longitude, 0)[1]
 
-    return time, time_bounds, sza, day_of_year
+    return time, time_bounds, sza, day_of_year, year1900
 
 
 def nsidc2nc(args, input_file, output_file, stations):
@@ -90,7 +95,7 @@ def nsidc2nc(args, input_file, output_file, stations):
     latitude, longitude, station_name, elevation, qlty_ctrl = get_station(args, input_file, stations)
 
     common.log(args, 3, 'Calculating time and sza')
-    time, time_bounds, sza, day_of_year = get_time_and_sza(args, df, latitude, longitude)
+    time, time_bounds, sza, day_of_year, year1900 = get_time_and_sza(args, df, latitude, longitude)
 
     ds['day_of_year'] = 'time', day_of_year
     ds['time'] = 'time', time
@@ -104,7 +109,7 @@ def nsidc2nc(args, input_file, output_file, stations):
     comp_level = args.dfl_lvl
 
     common.load_dataset_attributes('nsidc', ds, args, temperature_vars=temperature_vars, pressure_vars=pressure_vars,
-                                   qlty_ctrl=qlty_ctrl)
+                                   qlty_ctrl=qlty_ctrl, year1900=year1900)
     encoding = common.get_encoding('nsidc', common.get_fillvalue(args), comp_level, args)
 
     common.write_data(args, ds, output_file, encoding)
