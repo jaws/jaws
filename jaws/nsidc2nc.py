@@ -24,6 +24,9 @@ def init_dataframe(args, input_file):
     df['dpt'].replace(9999, np.nan, inplace=True)
     df['slp'].replace(99999, np.nan, inplace=True)
 
+    factor10_vars = ['wspd', 'ta', 'dpt', 'slp']  # Input data has scaling factor of 10 for these variables
+    df.loc[:, factor10_vars] /= 10  # Divide by 10 to get original values
+
     temperature_vars = ['ta', 'dpt']
     if not args.celsius:
         df.loc[:, temperature_vars] += common.freezing_point_temp  # Convert units to Kelvin
