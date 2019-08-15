@@ -179,7 +179,7 @@ def load_dataset_attributes(name, ds, args, **kwargs):
         for var in pressure_vars:
             ds[var].attrs.update([('units', 'hPa')])
 
-    if kwargs.pop('year1900'):
+    if name == 'nsidc' and kwargs.pop('year1900'):
         ds['time'].attrs.update([('units', 'seconds since 1900-01-01 00:00:00')])
 
     for column in columns:
