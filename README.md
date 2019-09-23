@@ -328,9 +328,13 @@ Note: Since it is seasonal plot, user shouldn't provide both '-y', '-m' argument
 
 ___
 ## Stations Map
+![Greenland](http://jaws.ess.uci.edu/jaws/img/map_grl.png)
+
 ![Antarctica](http://jaws.ess.uci.edu/jaws/img/map_ant.png)
 
-![Greenland](http://jaws.ess.uci.edu/jaws/img/map_grl.png)
+![Antarctica_Peninsula](http://jaws.ess.uci.edu/jaws/img/map_ant_inset_a.png)
+
+![South_Antarctica](http://jaws.ess.uci.edu/jaws/img/map_ant_inset_b.png)
 
 ## Benchmark
 As of version 0.9, it takes about 3.5 minutes to process Summit(GCNet) data from 19960512 to 20170524

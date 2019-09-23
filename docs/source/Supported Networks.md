@@ -34,9 +34,18 @@ If your network is not in the above list and you would like it to be supported b
 **Total number of station-years of data handled by JAWS: 3600**
 
 <p align="center">
+  <img width="600" src="http://jaws.ess.uci.edu/jaws/img/map_grl.png">
+</p>
+
+<p align="center">
   <img width="1000" src="http://jaws.ess.uci.edu/jaws/img/map_ant.png">
 </p>
 
 <p align="center">
-  <img width="600" src="http://jaws.ess.uci.edu/jaws/img/map_grl.png">
+  <img width="1000" src="http://jaws.ess.uci.edu/jaws/img/map_ant_inset_a.png">
 </p>
+
+<p align="center">
+  <img width="1000" src="http://jaws.ess.uci.edu/jaws/img/map_ant_inset_b.png">
+</p>
+
