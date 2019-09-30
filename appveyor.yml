@@ -31,8 +31,6 @@ install:
     # Install conda-build.
     - cmd: conda install conda-build
 
-    - cmd: conda install libarchive
-
     - cmd: set PYTHONUNBUFFERED=1
   
     - cmd: conda info --all
