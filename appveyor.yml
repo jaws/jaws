@@ -35,7 +35,7 @@ install:
   
     - cmd: conda info --all
 
-    - cmd: conda update --all
+    - cmd: pip install libarchive
 
 # Skip .NET project specific build phase.
 build: off
