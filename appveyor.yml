@@ -35,6 +35,8 @@ install:
   
     - cmd: conda info --all
 
+    - cmd: conda update --all
+
 # Skip .NET project specific build phase.
 build: off
 
