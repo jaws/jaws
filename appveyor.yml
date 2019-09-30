@@ -35,10 +35,8 @@ install:
   
     - cmd: conda info --all
 
-    - cmd: pip install libarchive
-
 # Skip .NET project specific build phase.
 build: off
 
 test_script:
-    - conda build conda.recipe
+    # - conda build conda.recipe
