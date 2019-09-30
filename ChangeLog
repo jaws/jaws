@@ -1,5 +1,9 @@
 2019-08-13  Ajay Saini  <sainiak@uci.edu>
 
+    * git tag -a 1.0 -m 'Whale Shark: Stable, long-term release'; git push --tags
+
+2019-08-13  Ajay Saini  <sainiak@uci.edu>
+
     * nsidc: Calculate time as 'seconds since 1900-01-01' for files having starting year prior to 1970
 
     * nsidc2nc: Divide variables by 10 having scaling factor of 10

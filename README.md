@@ -32,12 +32,20 @@ Number of stations = **620**
 
 Number of station-years of data = **4000+**
 
+Size of data for all stations = **~4 GB**
+
+Earliest year of available data = **1931** (Station 040030 from NSIDC)
+
 **Maps** of Antarctica and Greenland with location of all stations are in [Stations Map](#stations-map) section.
 
 If your network is not in the above list and you would like it to be supported by `JAWS`, 
 please open an [issue](https://github.com/jaws/jaws/issues) or contact *Charlie Zender* at <zender@uci.edu>
 
 ## News
+
+2019/09/30: Version 1.0 released: Stable, long-term release
+
+2019/08/14: Version 0.9.3 released: Correct time for NSIDC files prior to 1970
 
 2019/08/11: Version 0.9.1 released: Add new network NSIDC
 
