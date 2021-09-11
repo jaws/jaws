@@ -1,3 +1,7 @@
+2021-09-11  Charlie Zender  <zender@uci.edu>
+
+	* Use SPDX-compatible license identifier Apache-2.0
+
 2019-08-13  Ajay Saini  <sainiak@uci.edu>
 
     * git tag -a 1.0 -m 'Whale Shark: Stable, long-term release'; git push --tags

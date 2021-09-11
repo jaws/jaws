@@ -34,5 +34,5 @@ requirements:
 
 about:
   home: https://github.com/jaws/jaws
-  license: Apache License, Version 2.0
+  license: Apache-2.0
   license_file: LICENSE
